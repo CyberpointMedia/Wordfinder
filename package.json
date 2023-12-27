@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  },
+  "dependencies": {
+    "lucide": "^0.302.0",
+    "morris.js": "^0.5.0",
+    "preline": "^2.0.2",
+    "raphael": "^2.3.0",
+    "simplebar": "^6.2.5"
+  }
+}
