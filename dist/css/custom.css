@@ -40,12 +40,26 @@ table.dataTable>tfoot>tr>td {
     left: -9999em;
 }
 
+tr:hover .row-actions {
+    position: static;
+}
+
 .row-actions a:hover {
     color: #007BFF;
 }
 
 .row-actions a.trash:hover {
     color: #b32d2e;
+}
+
+.page-content {
+    margin-left: 245px;
+}
+
+@media (max-width:1024px) {
+    .page-content {
+        margin-left: 0px;
+    }
 }
 
 html[data-sidenav-view=condensed] .page-content {
