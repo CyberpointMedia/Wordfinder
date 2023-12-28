@@ -16,6 +16,7 @@ $(document).ready(function() {
         }
     });
 });
+
 // show hide password
 $(document).ready(function() {
     $('.toggle-password').click(function() {

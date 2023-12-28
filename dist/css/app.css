@@ -648,7 +648,7 @@ textarea::placeholder {
     background-size: 1.5em 1.5em;
     padding-right: 2.5rem;
     -webkit-print-color-adjust: exact;
-    print-color-adjust: exact
+    appearance: none;
 }
 
 .form-checkbox,

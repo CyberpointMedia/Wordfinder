@@ -147,7 +147,7 @@
 
                         <ul class="sub-menu hidden" id="menuUsers">
                             <li class="menu-item">
-                                <a href="all-users.html" class="menu-link">
+                                <a href="javascript:void(0)" class="menu-link">
                                     <span class="menu-text">All Users</span>
                                 </a>
                             </li>
@@ -254,11 +254,91 @@
 
             <!-- main content start here -->
             <main class="py-8 px-5">
-                <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <div class="mb-6 flex gap-3 sm:flex-row sm:items-center">
                     <h1 class="text-2xl font-bold text-black">
-                        Dashboard
+                        Users
                     </h1>
+                    <a href="add-user.html" class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add New User</a>
                 </div>
+                <ul class="subsubsub flex flex-wrap space-x-2 mb-6">
+                    <li class="all"><a href="all-pages.html" class="current text-black" aria-current="page">All <span class="count">(1)</span></a> |</li>
+                    <li class="publish"><a href="published.html" class="text-black">Administrator  <span class="count">(1)</span></a></li>
+                </ul>
+
+                <!-- table start here -->
+                <div class="bg-white overflow-x-auto">
+                    <table class="w-full divide-y divide-gray-200 border" id="example">
+                        <thead class="text-left bg-[#DBF4FF]">
+                            <tr>
+                                <th>
+                                    <input type="checkbox" class="selectAll">
+                                </th>
+                                <th>
+                                    Username
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Email
+                                </th>
+                                <th>
+                                    Role
+                                </th>
+                                <th>
+                                    Posts
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="">
+                                <td>
+                                    <input type="checkbox" value="2" class="">
+                                </td>
+                                <td>
+                                    <div class="flex items-start">
+                                        <img alt="#" src="images/admin.svg" class="avatar avatar-32 photo inline-block mr-2" height="32" width="32" loading="lazy" decoding="async">
+                                        <div class="">
+                                            <strong><a class="row-title text-[#2271b1] text-sm" href="javascript:void(0)">admin</a></strong>
+
+                                            <div class="row-actions mt-1"><span class="edit"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">Edit</a> | </span>
+                                                <span class="view"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">View</a></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>-</td>
+                                <td><a href="mailto:example@gmail.com" class="text-[#2271b1] text-xs">example@gmail.com</a></td>
+                                <td>Administrator</td>
+                                <td><a href="javascript:void(0)" class="text-[#2271b1] text-xs hover:text-[#007BFF]">1</a></td>
+                            </tr>
+
+                        </tbody>
+                        <tfoot class="text-left bg-[#DBF4FF]">
+                            <tr>
+                                <th>
+                                    <input type="checkbox" class="selectAll">
+                                </th>
+                                <th>
+                                    Username
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Email
+                                </th>
+                                <th>
+                                    Role
+                                </th>
+                                <th>
+                                    Posts
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- table end here -->
             </main>
 
             <!-- main content end here -->
