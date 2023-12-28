@@ -53,7 +53,7 @@
 
                         <ul class="sub-menu hidden" id="menuPages">
                             <li class="menu-item">
-                                <a href="all-pages.html" class="menu-link">
+                                <a href="javascript:void(0)" class="menu-link">
                                     <span class="menu-text">All Pages</span>
                                 </a>
                             </li>
@@ -195,9 +195,9 @@
             </div>
         </div>
         <!-- Sidenav Menu End  -->
-        <div class="page-content bg-[#DBF4FF]">
+        <div class="page-content bg-white">
             <!-- header Start -->
-            <header class="app-header bg-white">
+            <header class="app-header bg-white border-b shadow-md">
                 <div class="flex items-center justify-between px-3 gap-3 w-full">
                     <!-- Brand Logo -->
                     <a href="dashboard.html" class="logo-box">
@@ -264,11 +264,76 @@
 
             <!-- main content start here -->
             <main class="py-8 px-5">
-                <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <div class="mb-6 flex gap-3 sm:flex-row sm:items-center">
                     <h1 class="text-2xl font-bold text-black">
-                        Dashboard
+                        Pages
                     </h1>
+                    <a href="javascript:(0)" class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add New Page</a>
                 </div>
+                <ul class="subsubsub flex flex-wrap space-x-2 mb-6">
+                    <li class="all"><a href="all-pages.html" class="text-black" aria-current="page">All <span class="count">(3)</span></a> |</li>
+                    <li class="publish"><a href="published.html" class="current text-black">Published <span class="count">(1)</span></a> |</li>
+                    <li class="trash"><a href="trash.html" class="text-black">Trash <span class="count">(1)</span></a> |</li>
+                    <li class="draft"><a href="draft.html" class="text-black">Draft <span class="count">(1)</span></a></li>
+                </ul>
+
+                <!-- table start here -->
+                <div class="bg-white overflow-x-auto">
+                    <table class="w-full divide-y divide-gray-200 border" id="example">
+                        <thead class="text-left bg-[#DBF4FF]">
+                            <tr>
+                                <th>
+                                    <input type="checkbox" class="selectAll">
+                                </th>
+                                <th>
+                                    Title
+                                </th>
+                                <th>
+                                    Author
+                                </th>
+                                <th>
+                                    Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="">
+                                <td>
+                                    <input type="checkbox" value="2" class="">
+                                </td>
+                                <td>
+                                    <div class="">
+                                        <strong><a class="row-title text-[#2271b1] text-sm" href="javascript:void(0)">Contact Page</a></strong>
+                                    </div>
+                                    <div class="row-actions mt-1"><span class="edit"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">Edit</a> | </span><span class="inline"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">Quick&nbsp;Edit</a> | </span>
+                                        <span class="trash"><a href="javascript:void(0)" class="trash text-[#b32d2e] text-xs">Trash</a> | </span>
+                                        <span class="view"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">View</a></span>
+                                    </div>
+                                </td>
+                                <td>Admin</td>
+                                <td>Published<br> 2023/12/27 at 7:00 am</td>
+                            </tr>
+
+                        </tbody>
+                        <tfoot class="text-left bg-[#DBF4FF]">
+                            <tr>
+                                <th>
+                                    <input type="checkbox" class="selectAll">
+                                </th>
+                                <th>
+                                    Title
+                                </th>
+                                <th>
+                                    Author
+                                </th>
+                                <th>
+                                    Date
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- table end here -->
             </main>
 
             <!-- main content end here -->

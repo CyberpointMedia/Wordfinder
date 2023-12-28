@@ -3,6 +3,10 @@
     color: #007BFF;
 }
 
+.subsubsub li a.current {
+    font-weight: 500;
+}
+
 table.dataTable thead>tr>th:nth-child(1).sorting_asc:before,
 table.dataTable thead>tr>th:nth-child(1).sorting:before,
 table.dataTable thead>tr>th:nth-child(1).sorting:after,
@@ -33,6 +37,19 @@ table.dataTable>tfoot>tr>td {
 .dataTables_length,
 .dataTables_filter {
     margin-bottom: 20px;
+}
+
+table.dataTable {
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+table.dataTable tbody tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+table.dataTable tbody tr:nth-child(even) {
+    background-color: #f6f7f7;
 }
 
 .row-actions {
@@ -88,4 +105,25 @@ html[data-sidenav-view=condensed] .page-content {
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:focus {
     box-shadow: none !important;
+}
+
+input::placeholder {
+    font-size: 13px;
+    color: #393939;
+    opacity: 0.7 !important;
+}
+
+.eyeOff,
+.show-password .eyeOpen {
+    display: none;
+}
+
+.show-password .eyeOff {
+    display: block;
+}
+
+@media(min-width:320px) and (max-width:480px) {
+    .subsubsub li {
+        margin-bottom: 5px;
+    }
 }
