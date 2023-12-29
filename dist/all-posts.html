@@ -53,7 +53,7 @@
 
                         <ul class="sub-menu hidden" id="menuPages">
                             <li class="menu-item">
-                                <a href="all-pages.html" class="menu-link">
+                                <a href="javascript:void(0)" class="menu-link">
                                     <span class="menu-text">All Pages</span>
                                 </a>
                             </li>
@@ -94,7 +94,7 @@
                     </li>
 
                     <li class="menu-item">
-                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuPosts">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle active" data-hs-collapse="#menuPosts">
                             <i data-lucide="pen-square" class="menu-icon"></i>
                             <span class="menu-text"> Posts </span>
                             <span class="menu-arrow">
@@ -109,7 +109,7 @@
 
                         <ul class="sub-menu hidden" id="menuPosts">
                             <li class="menu-item">
-                                <a href="all-posts.html" class="menu-link">
+                                <a href="javascript:void(0)" class="menu-link active">
                                     <span class="menu-text">All Posts</span>
                                 </a>
                             </li>
@@ -132,7 +132,7 @@
                     </li>
 
                     <li class="menu-item">
-                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle active" data-hs-collapse="#menuUsers">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuUsers">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="user-circle" class="lucide lucide-user-circle menu-icon"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"></path></svg>
                             <span class="menu-text"> Users </span>
                             <span class="menu-arrow">
@@ -147,7 +147,7 @@
 
                         <ul class="sub-menu hidden" id="menuUsers">
                             <li class="menu-item">
-                                <a href="javascript:void(0)" class="menu-link active">
+                                <a href="all-users.html" class="menu-link">
                                     <span class="menu-text">All Users</span>
                                 </a>
                             </li>
@@ -256,13 +256,15 @@
             <main class="py-8 px-5">
                 <div class="mb-6 flex gap-3 sm:flex-row sm:items-center">
                     <h1 class="text-2xl font-bold text-black">
-                        Users
+                        Posts
                     </h1>
-                    <a href="add-user.html" class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add New User</a>
+                    <a href="javascript:(0)" class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add New Posts</a>
                 </div>
                 <ul class="subsubsub flex flex-wrap space-x-2 mb-6">
-                    <li class="all"><a href="all-pages.html" class="current text-black" aria-current="page">All <span class="count">(1)</span></a> |</li>
-                    <li class="publish"><a href="published.html" class="text-black">Administrator  <span class="count">(1)</span></a></li>
+                    <li class="all"><a href="all-posts.html" class="current text-black" aria-current="page">All <span class="count">(1)</span></a> |</li>
+                    <li class="publish"><a href="javascript:void(0)" class="text-black">Published <span class="count">(1)</span></a> |</li>
+                    <li class="trash"><a href="javascript:void(0)" class="text-black">Trash <span class="count">(1)</span></a> |</li>
+                    <li class="draft"><a href="javascript:void(0)" class="text-black">Draft <span class="count">(1)</span></a></li>
                 </ul>
 
                 <!-- table start here -->
@@ -274,19 +276,16 @@
                                     <input type="checkbox" class="selectAll">
                                 </th>
                                 <th>
-                                    Username
+                                    Title
                                 </th>
                                 <th>
-                                    Name
+                                    Author
                                 </th>
                                 <th>
-                                    Email
+                                    Categories
                                 </th>
                                 <th>
-                                    Role
-                                </th>
-                                <th>
-                                    Posts
+                                    Date
                                 </th>
                             </tr>
                         </thead>
@@ -296,23 +295,18 @@
                                     <input type="checkbox" value="2" class="">
                                 </td>
                                 <td>
-                                    <div class="flex items-start">
-                                        <img alt="#" src="images/admin.svg" class="avatar avatar-32 photo inline-block mr-2" height="32" width="32" loading="lazy" decoding="async">
-                                        <div class="">
-                                            <strong><a class="row-title text-[#2271b1] text-sm" href="javascript:void(0)">admin</a></strong>
-
-                                            <div class="row-actions mt-1"><span class="edit"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">Edit</a> | </span>
-                                                <span class="view"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">View</a></span>
-                                            </div>
-                                        </div>
+                                    <div class="">
+                                        <strong><a class="row-title text-[#2271b1] text-sm" href="javascript:void(0)">Hello world!</a></strong>
+                                    </div>
+                                    <div class="row-actions mt-1"><span class="edit"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">Edit</a> | </span><span class="inline"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">Quick&nbsp;Edit</a> | </span>
+                                        <span class="trash"><a href="javascript:void(0)" class="trash text-[#b32d2e] text-xs">Trash</a> | </span>
+                                        <span class="view"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">View</a></span>
                                     </div>
                                 </td>
-                                <td>-</td>
-                                <td><a href="mailto:example@gmail.com" class="text-[#2271b1] text-xs">example@gmail.com</a></td>
-                                <td>Administrator</td>
-                                <td><a href="javascript:void(0)" class="text-[#2271b1] text-xs hover:text-[#007BFF]">1</a></td>
+                                <td>Admin</td>
+                                <td>Uncategorized</td>
+                                <td>Published<br> 2023/12/27 at 7:00 am</td>
                             </tr>
-
                         </tbody>
                         <tfoot class="text-left bg-[#DBF4FF]">
                             <tr>
@@ -320,19 +314,16 @@
                                     <input type="checkbox" class="selectAll">
                                 </th>
                                 <th>
-                                    Username
+                                    Title
                                 </th>
                                 <th>
-                                    Name
+                                    Author
                                 </th>
                                 <th>
-                                    Email
+                                    Categories
                                 </th>
                                 <th>
-                                    Role
-                                </th>
-                                <th>
-                                    Posts
+                                    Date
                                 </th>
                             </tr>
                         </tfoot>
