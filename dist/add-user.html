@@ -95,7 +95,7 @@
 
                     <li class="menu-item">
                         <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuPosts">
-                            <i data-lucide="lightbulb" class="menu-icon"></i>
+                            <i data-lucide="pen-square" class="menu-icon"></i>
                             <span class="menu-text"> Posts </span>
                             <span class="menu-arrow">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
@@ -157,7 +157,7 @@
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="javascript:void(0)" class="menu-link">
+                                <a href="user-profile.html" class="menu-link">
                                     <span class="menu-text">Profile</span>
                                 </a>
                             </li>
@@ -278,21 +278,23 @@
                     </div>
                     <div class="grid sm:grid-cols-3">
                         <label class="mt-1 mb-2" for="password1">Password<span class="text-danger">*</span></label>
-                        <div class="sm:col-span-2 relative">
+                        <div class="sm:col-span-2">
                             <input id="password1" type="password" placeholder="Password" required="" class="form-input bg-[#F0F7FA] border-0">
-                            <div class="absolute right-[12px] bottom-[22px] cursor-pointer toggle-password">
-                                <i data-lucide="eye" class="w-4 h-4 eyeOpen"></i>
-                                <i data-lucide="eye-off" class="w-4 h-4 eyeOff"></i>
-                            </div>
                         </div>
                     </div>
+
                     <div class="grid sm:grid-cols-3">
-                        <label class="mt-1 mb-2" for="confirmPass">Confirm Password<span class="text-danger">*</span></label>
-                        <div class="sm:col-span-2 relative">
-                            <input type="password" required="" placeholder="Confirm Password" class="form-input bg-[#F0F7FA] border-0" id="confirmPass">
-                            <div class="absolute right-[12px] bottom-[22px] cursor-pointer toggle-password">
-                                <i data-lucide="eye" class="w-4 h-4 eyeOpen"></i>
-                                <i data-lucide="eye-off" class="w-4 h-4 eyeOff"></i>
+                        <label class="mt-1 mb-2" for="password">Password</label>
+                        <div class="sm:col-span-2">
+                            <button type="button" class="py-2 w-40 text-black bg-[#DBF4FF] rounded-lg" id="generate-pw" aria-expanded="true">Generate Password</button>
+                            <div id="show-generate-pw" class="flex mt-4 hidden">
+                                <div class="relative w-full">
+                                    <input id="password" type="password" placeholder="********" class="form-input bg-[#F0F7FA] border-0">
+                                    <div class="absolute right-[12px] bottom-[22px] cursor-pointer toggle-password">
+                                        <i data-lucide="eye" class="w-4 h-4 eyeOpen"></i>
+                                        <i data-lucide="eye-off" class="w-4 h-4 eyeOff"></i>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -329,7 +331,7 @@
 
                     <div class="grid sm:grid-cols-3">
                         <div></div>
-                        <div class="sm:col-span-2 flex items-center gap-2">
+                        <div class="sm:col-span-2 flex items-center gap-2 mt-4">
                             <button type="submit" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">
                                 Add New User
                             </button>
