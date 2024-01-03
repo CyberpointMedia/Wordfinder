@@ -33,6 +33,16 @@ $(document).ready(function() {
         $(this).parent("#show-generate-pw").addClass("hidden");
         $(".toggle-password").removeClass("show-password");
     });
+
+    //page settings on add new page start 
+    $("#pageSettings").click(function() {
+        $("#settingSidebar").toggleClass("show");
+    });
+    $("#closeSetting").click(function() {
+        $("#settingSidebar").removeClass("show");
+    });
+
+    //page settings on add new page end 
 });
 
 // add profile picture
@@ -50,3 +60,24 @@ var loadFile = function(event) {
         URL.revokeObjectURL(output.src) // free memory
     }
 };
+
+
+
+// add title on add new page 
+jQuery(function($) {
+    $("#title").focusout(function() {
+        var element = $(this);
+        if (!element.text().replace(" ", "").length) {
+            element.empty();
+        }
+    });
+});
+
+$("#title").keypress(function(event) {
+    // if (event.which === 13) {
+    //     performSearch();
+    // }
+    // alert("hello");
+    $("#top-bttns").children("button").removeClass("cursor-not-allowed");
+    $("#top-bttns").children("button").removeClass("opacity-25");
+});

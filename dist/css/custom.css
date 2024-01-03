@@ -127,6 +127,90 @@ button:hover {
     opacity: 0.7;
 }
 
+.cardHeader {
+    position: relative;
+    border-radius: 16px 16px 0 0;
+}
+
+
+/* .hs-accordion.active .cardHeader {
+    border-radius: 16px 16px 0 0;
+} */
+
+.hs-accordion.active .cardBody {
+    border-radius: 0px 0px 16px 16px;
+}
+
+.cardHeader .leftHandle {
+    position: absolute;
+    bottom: -22px;
+    left: 45px;
+}
+
+.cardHeader .rightHandle {
+    position: absolute;
+    bottom: -22px;
+    right: 45px;
+}
+
+#title {
+    width: 100%;
+}
+
+#title:focus-visible {
+    outline: none;
+}
+
+#title[placeholder]:empty:before {
+    content: attr(placeholder);
+    color: #555;
+    opacity: 0.5;
+}
+
+#title[placeholder]:empty:focus:before {
+    content: "Add Title";
+    color: #555;
+    opacity: 0.5;
+}
+
+.opacity-25:hover {
+    opacity: 0.25;
+}
+
+#settingSidebar {
+    position: absolute;
+    right: -100%;
+    width: 260px;
+    height: 70vh;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-transition-duration: .5s;
+    transition-duration: .5s;
+}
+
+#settingSidebar.show {
+    right: 20px;
+}
+
+#settingSidebar .hs-accordion.active .hs-accordion-toggle {
+    background: #DBF4FF;
+    color: #007bff;
+}
+
+.titleSticky {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+}
+
 @media(min-width:667px) and (max-width:767px) {
     .dataTables_wrapper .dataTables_info {
         float: left;
@@ -139,5 +223,8 @@ button:hover {
 @media(min-width:320px) and (max-width:480px) {
     .subsubsub li {
         margin-bottom: 5px;
+    }
+    .apexcharts-pie-label {
+        font-size: 12px;
     }
 }
