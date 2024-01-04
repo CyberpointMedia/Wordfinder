@@ -33,16 +33,6 @@ $(document).ready(function() {
         $(this).parent("#show-generate-pw").addClass("hidden");
         $(".toggle-password").removeClass("show-password");
     });
-
-    //page settings on add new page start 
-    $("#pageSettings").click(function() {
-        $("#settingSidebar").toggleClass("show");
-    });
-    $("#closeSetting").click(function() {
-        $("#settingSidebar").removeClass("show");
-    });
-
-    //page settings on add new page end 
 });
 
 // add profile picture
@@ -80,4 +70,61 @@ $("#title").keypress(function(event) {
     // alert("hello");
     $("#top-bttns").children("button").removeClass("cursor-not-allowed");
     $("#top-bttns").children("button").removeClass("opacity-25");
+});
+
+
+// featured image set in add new page start
+const inputFile = document.querySelector("#picture__input");
+const pictureImage = document.querySelector(".picture__image");
+const pictureImageTxt = "Set featured image";
+pictureImage.innerHTML = pictureImageTxt;
+
+inputFile.addEventListener("change", function(e) {
+    const inputTarget = e.target;
+    const file = inputTarget.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.addEventListener("load", function(e) {
+            const readerTarget = e.target;
+
+            const img = document.createElement("img");
+            img.src = readerTarget.result;
+            img.classList.add("picture__img");
+
+            pictureImage.innerHTML = "";
+            pictureImage.appendChild(img);
+        });
+
+        reader.readAsDataURL(file);
+    } else {
+        pictureImage.innerHTML = pictureImageTxt;
+    }
+});
+// featured image set in add new page end
+
+// datetimepicker calendar start 
+flatpickr("#datetimePicker", {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    onClose: function(selectedDates, dateStr, instance) {
+        // Close the calendar after selecting a date
+        instance.close("#datetimePicker");
+    },
+    onChange: function(selectedDates, dateStr, instance) {
+        // Update the text of the button with the chosen date
+        document.getElementById("datetimePicker").innerText = dateStr;
+    },
+});
+// datetimepicker calendar end
+
+
+$(document).ready(function() {
+    $('#mySelect').select2({
+        width: '100%', // Adjust the width as needed
+        placeholder: 'Select one or more options',
+        allowClear: true, // Enable option to clear selection
+        //multiple: true, // Enable multiple selection
+    });
 });

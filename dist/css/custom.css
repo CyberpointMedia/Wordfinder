@@ -173,6 +173,32 @@ button:hover {
     opacity: 0.5;
 }
 
+@keyframes blink {
+    0%,
+    50% {
+        opacity: 1;
+    }
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+.blinking-cursor {
+    position: absolute;
+    left: 15px;
+    top: 34px;
+    display: inline-block;
+    width: 1px;
+    height: 2em;
+    background-color: #8b8888;
+    animation: blink 1s infinite;
+}
+
+#title:focus+.blinking-cursor {
+    display: none !important;
+}
+
 .opacity-25:hover {
     opacity: 0.25;
 }
@@ -180,7 +206,7 @@ button:hover {
 #settingSidebar {
     position: absolute;
     right: -100%;
-    width: 260px;
+    width: 280px;
     height: 70vh;
     -webkit-transition-property: all;
     transition-property: all;
@@ -209,6 +235,40 @@ button:hover {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     -webkit-transition-duration: .3s;
     transition-duration: .3s;
+}
+
+.featuredImage #picture__input {
+    display: none;
+}
+
+.featuredImage .picture {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #ddd;
+    display: flex;
+    border: 1px solid transparent;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: sans-serif;
+    transition: color 300ms ease-in-out, background 300ms ease-in-out;
+    outline: none;
+    overflow: hidden;
+}
+
+.featuredImage .picture:hover,
+.featuredImage .picture:focus {
+    color: #000;
+    background: #ccc;
+    box-shadow: none;
+    outline: none;
+    border: 1px solid #3858e9;
+}
+
+.featuredImage .picture__img {
+    max-width: 100%;
 }
 
 @media(min-width:667px) and (max-width:767px) {
