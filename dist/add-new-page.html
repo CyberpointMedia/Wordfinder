@@ -264,9 +264,8 @@
                     <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill-rule="evenodd" clip-rule="evenodd" d="M18 4H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-4 14.5H6c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h8v13zm4.5-.5c0 .3-.2.5-.5.5h-2.5v-13H18c.3 0 .5.2.5.5v12z"></path>
                     </svg>
                 </button>
-                <div id="hs-overlay-right" class="hs-overlay hs-overlay-open:translate-x-0 translate-x-full fixed top-0 right-0 transition-all duration-300 transform h-full max-w-xs w-full z-[60] bg-white border-b border-gray-200 dark:bg-slate-700 dark:border-slate-500/70 hidden"
-                    tabindex="-1" data-simplebar>
-                    <div class="flex justify-between items-center py-3 px-4 border-b border-gray-200 dark:border-slate-500/70 titleSticky">
+                <div id="hs-overlay-right" class="hs-overlay hs-overlay-open:translate-x-0 translate-x-full fixed top-0 right-0 transition-all duration-300 transform h-full max-w-xs w-full z-[60] bg-white border-b border-gray-200 hidden" tabindex="-1" data-simplebar>
+                    <div class="flex justify-between items-center py-3 px-4 border-b border-gray-200 titleSticky">
                         <h3 class="font-bold">
                             Page
                         </h3>
@@ -373,14 +372,14 @@
                             </p>
                         </div>
 
-                        <!-- add sections -->
-                        <div class="flex gap-6">
-                            <div class="groupSection w-2/4">
+                        <!-- add sections start -->
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="groupSection md:w-2/4 w-full">
                                 <div class="cardHeader font-semibold text-white text-xl p-4 bg-[#007bff] text-center">
                                     Choose Section
                                 </div>
                                 <div class="bg-[#f0f7fa] p-6">
-                                    <select id="mySelect" class="w-full py-5 border rounded">
+                                    <select id="mySelect" class="w-full py-5 border rounded" multiple="multiple">
                                         <option selected value="section1">Section 1</option>
                                         <option value="section2">Section 2</option>
                                         <option value="section3">Section 3</option>
@@ -392,15 +391,214 @@
 
                             </div>
 
-                            <div class="choosenSection w-2/4">
+                            <div class="choosenSection md:w-2/4 w-full">
                                 <div class="cardHeader font-semibold text-white text-xl p-4 bg-[#007bff] text-center">
                                     Choosen Section
                                 </div>
                                 <div class="bg-[#f0f7fa] p-6">
-
+                                    <ul id="selectedValuesList"></ul>
                                 </div>
                             </div>
                         </div>
+                        <!-- add sections end -->
+
+                        <!-- seo tabs start -->
+                        <nav id="seoTabs" class="flex md:pl-3 md:ml-4 ml-2 mt-8" aria-label="Tabs" role="tablist">
+                            <button type="button" class="hs-tabs bg-white py-2 md:px-5 px-4 inline-flex items-center gap-2 border transition-all whitespace-nowrap hover:text-[#007bff] text-lg active" id="home-item-3" data-hs-tab="#home-3" aria-controls="home-3" role="tab">
+                                <span class="">SEO</span>
+                            </button>
+                            <button type="button" class="hs-tabs bg-white py-2 md:px-5 px-4 inline-flex items-center gap-2 border transition-all whitespace-nowrap hover:text-[#007bff] text-lg" id="messages-item-3" data-hs-tab="#messages-3" aria-controls="messages-3" role="tab">
+                                <span class="">Schema</span>
+                            </button>
+                            <button type="button" class="hs-tabs bg-white py-2 md:px-5 px-4 inline-flex items-center gap-2 border transition-all whitespace-nowrap hover:text-[#007bff] text-lg" id="settings-item-3" data-hs-tab="#settings-3" aria-controls="settings-3" role="tab">
+                                <span class="">Social</span>
+                            </button>
+                        </nav>
+
+                        <div class="border mt-[-1px]">
+                            <div id="home-3" class="p-6" role="tabpanel" aria-labelledby="home-item-3">
+                                <div class="form-group mb-6">
+                                    <label class="mb-3 text-sm" for="seoTitle">SEO Title</label>
+                                    <div class="form-input bg-[#F0F7FA] space-x-2 border-0">
+                                        <span class="bg-[#007bff] text-white rounded-full py-2 px-4">Title</span>
+                                        <span class="bg-[#007bff] text-white rounded-full py-2 px-4">Page</span>
+                                        <span class="bg-[#007bff] text-white rounded-full py-2 px-4">Separator</span>
+                                        <span class="bg-[#007bff] text-white rounded-full py-2 px-4">Site title</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-6">
+                                    <label class="mb-3 text-sm" for="seoslug">Slug</label>
+                                    <input name="seoslug" id="seoslug" type="text" value="About" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                </div>
+
+                                <div class="form-group mb-6">
+                                    <label class="mb-3 text-sm" for="seoMetaDescription">Meta description</label>
+                                    <textarea id="seoMetaDescription" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                </div>
+
+                                <div class="form-group mb-6">
+                                    <label class="mb-3 text-sm" for="searchEngines">Allow search engines to show this content in search results?
+                                    </label>
+                                    <select class="form-select bg-[#F0F7FA] border-0 mb-3" id="searchEngines" name="searchEngines">
+                                        <option selected="selected" value="0">Yes (current default for Pages)</option>
+                                        <option value="1">No</option>
+                                        <option value="2">Yes</option>	
+                                    </select>
+                                </div>
+
+                                <div class="form-group mb-6">
+                                    <label class="mb-3 text-sm">Should search engines follow links on this content?
+                                    </label>
+                                    <div class="flex gap-x-6">
+                                        <div class="flex items-center">
+                                            <input type="radio" name="hs-radio-group" class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-group-1" checked>
+                                            <label for="hs-radio-group-1" class="text-sm text-gray-500 ms-2">Yes</label>
+                                        </div>
+
+                                        <div class="flex items-center">
+                                            <input type="radio" name="hs-radio-group" class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-group-2">
+                                            <label for="hs-radio-group-2" class="text-sm text-gray-500 ms-2">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-6">
+                                    <label class="mb-3 text-sm" for="metaRobots">
+                                        Meta robots advanced                                        
+                                    </label>
+                                    <select class="form-select bg-[#F0F7FA] border-0 mb-3" id="metaRobots" name="metaRobots">
+                                        <option value="0">No Image Index</option>
+                                        <option value="1">No Archive</option>
+                                        <option value="2">No Snippet</option>	
+                                    </select>
+                                </div>
+
+                                <div class="form-group mb-6">
+                                    <label class="mb-3 text-sm" for="breadcrumbsTitle">Breadcrumbs Title</label>
+                                    <input name="breadcrumbsTitle" id="breadcrumbsTitle" type="text" value="" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="mb-3 text-sm" for="canonicalURL">Canonical URL</label>
+                                    <input name="canonicalURL" id="canonicalURL" type="text" value="" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                </div>
+                            </div>
+
+                            <div id="messages-3" class="hidden p-6" role="tabpanel" aria-labelledby="messages-item-3">
+                                <div class="form-group mb-6">
+                                    <p class="mb-3 text-sm"><b>What type of page or content is this?</b></p>
+                                    <label class="mb-3 text-sm" for="Pagetype">
+                                        Page type                                      
+                                    </label>
+                                    <select class="form-select bg-[#F0F7FA] border-0 mb-3" id="Pagetype" name="Pagetype">
+                                        <option value="">Default for Pages (Web Page)</option>
+                                        <option value="WebPage">Web Page</option>
+                                        <option value="ItemPage">Item Page</option>
+                                        <option value="AboutPage">About Page</option>
+                                        <option value="FAQPage">FAQ Page</option>
+                                        <option value="QAPage">QA Page</option>
+                                        <option value="ProfilePage">Profile Page</option>
+                                        <option value="ContactPage">Contact Page</option>
+                                        <option value="MedicalWebPage">Medical Web Page</option>
+                                        <option value="CollectionPage">Collection Page</option>
+                                        <option value="CheckoutPage">Checkout Page</option>
+                                        <option value="RealEstateListing">Real Estate Listing</option>
+                                        <option value="SearchResultsPage">Search Results Page</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group mb-6">
+                                    <label class="mb-3 text-sm" for="articletype">
+                                        Article type                                      
+                                    </label>
+                                    <select class="form-select bg-[#F0F7FA] border-0 mb-3" id="articletype" name="articletype">
+                                        <option value="">Default for Pages (None)</option>
+                                        <option value="Article">Article</option>
+                                        <option value="BlogPosting">Blog Post</option>
+                                        <option value="SocialMediaPosting">Social Media Posting</option>
+                                        <option value="NewsArticle">News Article</option>
+                                        <option value="AdvertiserContentArticle">Advertiser Content Article</option>
+                                        <option value="SatiricalArticle">Satirical Article</option>
+                                        <option value="ScholarlyArticle">Scholarly Article</option>
+                                        <option value="TechArticle">Tech Article</option>
+                                        <option value="Report">Report</option>
+                                        <option value="None">None</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div id="settings-3" class="hidden" role="tabpanel" aria-labelledby="settings-item-3">
+                                <div class="hs-accordion-group" data-hs-accordion-always-open="">
+                                    <!-- social appearance start -->
+                                    <div class="hs-accordion active" id="hs-basic-always-open-heading-socialAppearance">
+                                        <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-4 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium hover:bg-[#DBF4FF] border-t" aria-controls="hs-basic-always-open-collapse-socialAppearance">
+                                        Social media appearance
+                                        <svg class="hs-accordion-active:hidden block w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+            
+                                        <svg class="hs-accordion-active:block hidden w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"></path></svg>
+                                      </button>
+                                        <div id="hs-basic-always-open-collapse-socialAppearance" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 px-4" aria-labelledby="hs-basic-always-open-heading-socialAppearance">
+                                            <div class="py-3">
+                                                <div class="form-group mb-6">
+                                                    <label class="mb-3 text-sm" for="socialPicture2">Social image</label>
+                                                    <img id='preview_img' class="h-16 w-16 object-cover mb-4" src="images/no-image.svg" alt="Current profile photo" />
+                                                    <div class="block relative">
+                                                        <span class="absolute inset-0 opacity-100 w-40 h-12 leading-[48px] top-0 text-black bg-[#DBF4FF] rounded-lg text-center cursor-pointer">Select Image</span>
+                                                        <input type="file" onchange="loadFile(event)" class="block w-40 h-12 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group mb-6">
+                                                    <label class="mb-3 text-sm" for="Socialtitle">Social title</label>
+                                                    <input name="Twittertitle" id="Socialitle" type="text" value="" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                </div>
+
+                                                <div class="form-group mb-6">
+                                                    <label class="mb-3 text-sm" for="Socialdescription">Social description</label>
+                                                    <textarea id="Socialdescription" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- social appearance end -->
+
+                                    <!-- twitter appearance start -->
+                                    <div class="hs-accordion" id="hs-basic-always-open-heading-twitter">
+                                        <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-4 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium hover:bg-[#DBF4FF] border-t" aria-controls="hs-basic-always-open-collapse-twitter">
+                                        Twitter appearance
+                                        <svg class="hs-accordion-active:hidden block w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+            
+                                        <svg class="hs-accordion-active:block hidden w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"></path></svg>
+                                      </button>
+                                        <div id="hs-basic-always-open-collapse-twitter" class="hs-accordion-content w-full overflow-hidden transition-[height] hidden duration-300 px-4" aria-labelledby="hs-basic-always-open-heading-twitter">
+                                            <div class="py-3">
+                                                <div class="form-group mb-6">
+                                                    <label class="mb-3 text-sm" for="socialPicture1">Twitter Image</label>
+                                                    <img id='preview_img' class="h-16 w-16 object-cover mb-4" src="images/no-image.svg" alt="Current profile photo" />
+                                                    <div class="block relative">
+                                                        <span class="absolute inset-0 opacity-100 w-40 h-12 leading-[48px] top-0 text-black bg-[#DBF4FF] rounded-lg text-center cursor-pointer">Select Image</span>
+                                                        <input type="file" onchange="loadFile(event)" class="block w-40 h-12 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group mb-6">
+                                                    <label class="mb-3 text-sm" for="Twittertitle">Twitter title</label>
+                                                    <input name="Twittertitle" id="Twittertitle" type="text" value="" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                </div>
+
+                                                <div class="form-group mb-6">
+                                                    <label class="mb-3 text-sm" for="Twitterdescription">Twitter description</label>
+                                                    <textarea id="Twitterdescription" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- twitter appearance end -->
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </main>
             </div>

@@ -259,13 +259,14 @@
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice {
-    background-color: #e4e4e4;
-    border: 1px solid #aaa;
+    background-color: #DBF4FF;
+    border: 1px solid #ddd;
     border-radius: 4px;
     cursor: default;
     float: left;
     margin-right: 5px;
     margin-top: 5px;
+    color: #393939;
     padding: 0 5px;
 }
 

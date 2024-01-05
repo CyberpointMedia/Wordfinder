@@ -120,11 +120,35 @@ flatpickr("#datetimePicker", {
 // datetimepicker calendar end
 
 
+// selected sections shows in another div
 $(document).ready(function() {
+    // Initialize Select2 with additional options for searching
     $('#mySelect').select2({
-        width: '100%', // Adjust the width as needed
-        placeholder: 'Select one or more options',
-        allowClear: true, // Enable option to clear selection
-        //multiple: true, // Enable multiple selection
+        placeholder: "Search sections...",
+        width: '100%',
+        tags: true, // Allow adding custom tags
+        tokenSeparators: [',', ' '] // Allow multiple tags to be entered separated by commas or spaces
+    });
+
+    // Set default value(s)
+    var defaultValues = ['option2', 'option3'];
+    $('#mySelect').val(defaultValues).trigger('change');
+
+    // Update displayed values as a list when the selection changes
+    $('#mySelect').on('change', function() {
+        var selectedValues = $(this).val();
+        var $selectedValuesList = $('#selectedValuesList');
+
+        // Clear previous list items
+        $selectedValuesList.empty();
+
+        // Append new list items for selected values
+        if (selectedValues && selectedValues.length > 0) {
+            selectedValues.forEach(function(value) {
+                $('<li>').text(value).appendTo($selectedValuesList);
+            });
+        } else {
+            $('<li>').text('None').appendTo($selectedValuesList);
+        }
     });
 });

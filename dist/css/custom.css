@@ -271,6 +271,16 @@ button:hover {
     max-width: 100%;
 }
 
+#seoTabs .hs-tabs.active {
+    color: #007bff;
+    border-bottom: transparent;
+}
+
+.hs-accordion.active button.hs-accordion-toggle {
+    color: #007bff;
+    background-color: #DBF4FF;
+}
+
 @media(min-width:667px) and (max-width:767px) {
     .dataTables_wrapper .dataTables_info {
         float: left;
