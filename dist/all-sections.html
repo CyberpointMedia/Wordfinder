@@ -53,7 +53,7 @@
 
                         <ul class="sub-menu hidden" id="menuPages">
                             <li class="menu-item">
-                                <a href="all-pages.html" class="menu-link">
+                                <a href="javascript:void(0);" class="menu-link">
                                     <span class="menu-text">All Pages</span>
                                 </a>
                             </li>
@@ -66,7 +66,7 @@
                     </li>
 
                     <li class="menu-item">
-                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuSection">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle active" data-hs-collapse="#menuSection">
                             <i data-lucide="lightbulb" class="menu-icon"></i>
                             <span class="menu-text"> Sections </span>
                             <span class="menu-arrow">
@@ -81,7 +81,7 @@
 
                         <ul class="sub-menu hidden" id="menuSection">
                             <li class="menu-item">
-                                <a href="all-sections.html" class="menu-link">
+                                <a href="javascript:void(0)" class="menu-link active">
                                     <span class="menu-text">All Sections</span>
                                 </a>
                             </li>
@@ -94,7 +94,7 @@
                     </li>
 
                     <li class="menu-item">
-                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle active" data-hs-collapse="#menuPosts">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuPosts">
                             <i data-lucide="pen-square" class="menu-icon"></i>
                             <span class="menu-text"> Posts </span>
                             <span class="menu-arrow">
@@ -109,7 +109,7 @@
 
                         <ul class="sub-menu hidden" id="menuPosts">
                             <li class="menu-item">
-                                <a href="javascript:void(0)" class="menu-link active">
+                                <a href="all-posts.html" class="menu-link">
                                     <span class="menu-text">All Posts</span>
                                 </a>
                             </li>
@@ -256,17 +256,10 @@
             <main class="py-8 px-5">
                 <div class="mb-6 flex gap-3 sm:flex-row sm:items-center">
                     <h1 class="text-2xl font-bold text-black">
-                        Posts
+                        All Sections
                     </h1>
-                    <a href="javascript:(0)" class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add New Posts</a>
+                    <a href="javascript:void(0);" class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add New Section</a>
                 </div>
-                <ul class="subsubsub flex flex-wrap space-x-2 mb-6">
-                    <li class="all"><a href="all-posts.html" class="current text-black" aria-current="page">All <span class="count">(1)</span></a> |</li>
-                    <li class="publish"><a href="javascript:void(0)" class="text-black">Published <span class="count">(1)</span></a> |</li>
-                    <li class="trash"><a href="javascript:void(0)" class="text-black">Trash <span class="count">(1)</span></a> |</li>
-                    <li class="draft"><a href="javascript:void(0)" class="text-black">Draft <span class="count">(1)</span></a></li>
-                </ul>
-
                 <!-- table start here -->
                 <div class="bg-white overflow-x-auto">
                     <table class="w-full divide-y divide-gray-200 border" id="example">
@@ -282,7 +275,7 @@
                                     Author
                                 </th>
                                 <th>
-                                    Categories
+                                    Page
                                 </th>
                                 <th>
                                     Date
@@ -296,7 +289,7 @@
                                 </td>
                                 <td>
                                     <div class="">
-                                        <strong><a class="row-title text-[#2271b1] text-sm" href="javascript:void(0)">Hello world!</a></strong>
+                                        <strong><a class="row-title text-[#2271b1] text-sm" href="service-section.html">Service Section</a></strong>
                                     </div>
                                     <div class="row-actions mt-1"><span class="edit"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">Edit</a> | </span>
                                         <span class="trash"><a href="javascript:void(0)" class="trash text-[#b32d2e] text-xs">Trash</a> | </span>
@@ -304,9 +297,10 @@
                                     </div>
                                 </td>
                                 <td>Admin</td>
-                                <td>Uncategorized</td>
+                                <td><a href="javascript:void(0);" class="text-[#2271b1]">Aabout Page</a></td>
                                 <td>Published<br> 2023/12/27 at 7:00 am</td>
                             </tr>
+
                         </tbody>
                         <tfoot class="text-left bg-[#DBF4FF]">
                             <tr>
@@ -320,7 +314,7 @@
                                     Author
                                 </th>
                                 <th>
-                                    Categories
+                                    Page
                                 </th>
                                 <th>
                                     Date
