@@ -1,0 +1,300 @@
+.subsubsub li a.current,
+.subsubsub li a:hover {
+    color: #007BFF;
+}
+
+.subsubsub li a.current {
+    font-weight: 500;
+}
+
+table.dataTable thead>tr>th:nth-child(1).sorting_asc:before,
+table.dataTable thead>tr>th:nth-child(1).sorting:before,
+table.dataTable thead>tr>th:nth-child(1).sorting:after,
+table.dataTable thead>tr>th:nth-child(1).sorting_asc:after {
+    opacity: 0;
+}
+
+table.dataTable thead th,
+table.dataTable tfoot th,
+table.dataTable thead td {
+    padding: 12px 18px !important;
+    border-bottom: 1px solid #e6e6e6 !important;
+}
+
+table.dataTable tbody th,
+table.dataTable tbody td {
+    padding: 12px 18px !important;
+    border-bottom: 1px solid #e6e6e6 !important;
+    vertical-align: top !important;
+}
+
+table.dataTable>tfoot>tr>th,
+table.dataTable>tfoot>tr>td {
+    border-top: 1px solid transparent !important;
+    border-bottom: 1px solid transparent !important;
+}
+
+.dataTables_length,
+.dataTables_filter {
+    margin-bottom: 20px;
+}
+
+table.dataTable {
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+table.dataTable tbody tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+table.dataTable tbody tr:nth-child(even) {
+    background-color: #f6f7f7;
+}
+
+.row-actions {
+    position: relative;
+    left: -9999em;
+}
+
+tr:hover .row-actions {
+    position: static;
+}
+
+.row-actions a:hover {
+    color: #007BFF;
+}
+
+.row-actions a.trash:hover {
+    color: #b32d2e;
+}
+
+.page-content {
+    margin-left: 245px;
+}
+
+@media (max-width:1024px) {
+    .page-content {
+        margin-left: 0px;
+    }
+}
+
+html[data-sidenav-view=condensed] .page-content {
+    margin-left: 5px !important;
+}
+
+.dataTables_paginate span .paginate_button {
+    width: 2rem;
+    height: 2rem;
+    padding: 6px !important;
+    border-radius: 100% !important;
+    border: 0px !important;
+    background: transparent !important;
+}
+
+.dataTables_paginate span .paginate_button:hover,
+.dataTables_paginate span .paginate_button.current {
+    background: #DBF4FF !important;
+    color: #000 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    color: #000 !important;
+    background: transparent;
+    border-color: transparent !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:focus {
+    box-shadow: none !important;
+}
+
+input::placeholder {
+    font-size: 13px;
+    color: #393939;
+    opacity: 0.7 !important;
+}
+
+.eyeOff,
+.show-password .eyeOpen {
+    display: none;
+}
+
+.show-password .eyeOff {
+    display: block;
+}
+
+button:hover {
+    opacity: 0.7;
+}
+
+.cardHeader {
+    position: relative;
+    border-radius: 16px 16px 0 0;
+}
+
+
+/* .hs-accordion.active .cardHeader {
+    border-radius: 16px 16px 0 0;
+} */
+
+.hs-accordion.active .cardBody {
+    border-radius: 0px 0px 16px 16px;
+}
+
+.cardHeader .leftHandle {
+    position: absolute;
+    bottom: -22px;
+    left: 45px;
+}
+
+.cardHeader .rightHandle {
+    position: absolute;
+    bottom: -22px;
+    right: 45px;
+}
+
+#title {
+    width: 100%;
+}
+
+#title:focus-visible {
+    outline: none;
+}
+
+#title[placeholder]:empty:before {
+    content: attr(placeholder);
+    color: #555;
+    opacity: 0.5;
+}
+
+#title[placeholder]:empty:focus:before {
+    content: "Add Title";
+    color: #555;
+    opacity: 0.5;
+}
+
+@keyframes blink {
+    0%,
+    50% {
+        opacity: 1;
+    }
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+.blinking-cursor {
+    position: absolute;
+    left: 15px;
+    top: 34px;
+    display: inline-block;
+    width: 1px;
+    height: 2em;
+    background-color: #8b8888;
+    animation: blink 1s infinite;
+}
+
+#title:focus+.blinking-cursor {
+    display: none !important;
+}
+
+.opacity-25:hover {
+    opacity: 0.25;
+}
+
+#settingSidebar {
+    position: absolute;
+    right: -100%;
+    width: 280px;
+    height: 70vh;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-transition-duration: .5s;
+    transition-duration: .5s;
+}
+
+#settingSidebar.show {
+    right: 20px;
+}
+
+#settingSidebar .hs-accordion.active .hs-accordion-toggle {
+    background: #DBF4FF;
+    color: #007bff;
+}
+
+.titleSticky {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+}
+
+.featuredImage #picture__input {
+    display: none;
+}
+
+.featuredImage .picture {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #ddd;
+    display: flex;
+    border: 1px solid transparent;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: sans-serif;
+    transition: color 300ms ease-in-out, background 300ms ease-in-out;
+    outline: none;
+    overflow: hidden;
+}
+
+.featuredImage .picture:hover,
+.featuredImage .picture:focus {
+    color: #000;
+    background: #ccc;
+    box-shadow: none;
+    outline: none;
+    border: 1px solid #3858e9;
+}
+
+.featuredImage .picture__img {
+    max-width: 100%;
+}
+
+#seoTabs .hs-tabs.active {
+    color: #007bff;
+    border-bottom: transparent;
+}
+
+.hs-accordion.active button.hs-accordion-toggle {
+    color: #007bff;
+    background-color: #DBF4FF;
+}
+
+@media(min-width:667px) and (max-width:767px) {
+    .dataTables_wrapper .dataTables_info {
+        float: left;
+    }
+    .dataTables_wrapper .dataTables_paginate {
+        float: right;
+    }
+}
+
+@media(min-width:320px) and (max-width:480px) {
+    .subsubsub li {
+        margin-bottom: 5px;
+    }
+    .apexcharts-pie-label {
+        font-size: 12px;
+    }
+}

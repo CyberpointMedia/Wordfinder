@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Right Image Section</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .content {
+            max-width: 60%;
+        }
+
+        .image {
+            max-width: 35%;
+            margin-left: 20px; /* Adjust the margin to create space between content and image */
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="content">
+        <!-- Your content goes here -->
+        <h1><%= section.title %></h1>
+        <p><%= section.subHeading %></p>
+        <!-- Add more content as needed -->
+    </div>
+    <div class="image">
+        <!-- Display the image -->
+        <img src="<%= section.image %>" alt="Image">
+    </div>
+</div>
+
+</body>
+</html>

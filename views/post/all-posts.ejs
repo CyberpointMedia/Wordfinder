@@ -1,0 +1,65 @@
+<!-- views/post/all-posts.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Posts</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        div {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>All Posts</h1>
+    <div>
+      <a href="/post/new">Create New Post</a>
+    </div>
+    <ul>
+      <% posts.forEach(post => { %>
+        <li>
+          <div>ID: <%= post._id %></div>
+          <div>Title: <%- parser.parse(post.title).toString() %></div>
+          <div>Description: <%- parser.parse(post.description).toString() %></div>
+          <div>Thumbnail URL: <%= post.thumbnailUrl %></div>
+          <div>Featured Image: <%- parser.parse(post.features).toString() %></div>
+  
+          <input type="checkbox" id="follow_<%= post._id %>" name="follow[]" value="<%= post._id %>">
+          <label for="follow_<%= post._id %>">Follow</label>
+          
+          <a href="/post/<%= post._id %>/edit" class="button">Edit Post</a>
+          <a href="/post/<%= post._id %>/delete" class="button">Delete Post</a>
+     
+          </li>
+    <% }); %>
+    </ul>
+  </body>  
+</html>

@@ -1,0 +1,17 @@
+<!-- views/section/create-pages.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Page</title>
+</head>
+<body>
+    <h1>Create a New Page</h1>
+    <form action="/pages/create" method="POST">
+        <label for="page_name">Page Name:</label>
+        <input type="text" id="page_name" name="page_name" required>
+        <button type="submit">Create Page</button>
+    </form>
+</body>
+</html>

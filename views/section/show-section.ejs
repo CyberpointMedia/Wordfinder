@@ -1,0 +1,82 @@
+<!-- show-section.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+</head>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 20px;
+        padding: 0;
+        background-color: #f8f8f8;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        background-color: #fff;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .button {
+        display: inline-block;
+        background-color: #008CBA;
+        color: #fff;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 4px;
+        margin-top: 10px;
+    }
+
+    .button:hover {
+        background-color: #00587a;
+    }
+
+    p {
+        color: #777;
+    }
+
+    /* Add specific styles for the included templates (center-image.ejs, right-image.ejs, left-image.ejs) if needed */
+</style>
+<body>
+    <h1>All Sections</h1>
+
+    <% if (sections.length > 0) { %>
+        <ul>
+            <% sections.forEach((section) => { %>
+                <li>
+                    <div>Image Position: <%= section.imagePosition %></div>
+                    <% if (section.imagePosition === 'center') { %>
+                        <%- include('center-image.ejs', { section: section }) %>
+                    <% } else if (section.imagePosition === 'right') { %>
+                        <%- include('right-image.ejs', { section: section }) %>
+                    <% } else if (section.imagePosition === 'left') { %>
+                        <%- include('left-image.ejs', { section: section }) %>
+                    <% } %>
+
+                    <a href="/section/edit/<%= section._id %>" class="button">Edit Section</a>
+                    <a href="/section/delete/<%= section._id %>" class="button">Delete Section</a>
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>No sections found.</p>
+    <% } %>
+    <br>
+    <a href="/section/create" class="button">
+        Create New Section
+    </a>
+</body>
+</html>
