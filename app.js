@@ -41,15 +41,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Set up EJS as the view engine
-app.use(express.static("views"));
-// app.set("views",path.join(__dirname,"views"));
+app.set("views",path.join(__dirname,"views"));
 app.set('view engine', 'ejs');
-app.use(express.static("public"));
-// app.use(express.static(path.join(__dirname,"public")));
+app.use(express.static(path.join(__dirname, "public")));
+app.use('/admin/node_modules', express.static(path.join(__dirname, 'node_modules')));
 // Use method-override middleware
 app.use(methodOverride("_method"));
-
-
 
 //mongodb 
 const MONGO_URL ="mongodb://127.0.0.1:27017/word_finder";
@@ -65,8 +62,6 @@ async function main(){
 }
 
 
-
-
 // Use the user and auth routes
 app.use('/user', userRoutes);
 // Use the authentication routes
@@ -74,13 +69,13 @@ app.use('/auth', authRoutes);
 //post route 
 app.use('/post', postRoutes);
 // Use the section routes
-app.use('/section', sectionRoutes);
+app.use('/admin/section', sectionRoutes);
 // Use the admin routes
 app.use('/admin', adminRoutes);
 // Use the editor routes
 app.use('/editor', editorRoutes);
 //pages
-app.use('/pages', pagesRoutes);
+app.use('/admin/pages', pagesRoutes);
 
 
 // Dashboard route

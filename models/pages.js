@@ -1,18 +1,52 @@
-// models/pages.js
+//models//pages.js
 const mongoose = require('mongoose');
 
 const pageSchema = new mongoose.Schema({
     page_name: {
         type: String,
-        required: true,
+    },
+    content: {
+        type: String,
+        default: " ",
     },
     sections: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Section',
     }],
-    content: {
+    seoTitle: {
         type: String,
-        default: "abcd",
+    },
+    seoslug: {
+        type: String,
+    },
+    metaDescription: {
+        type: String,
+    },
+    breadcrumbsTitle: {
+        type: String,
+    },
+    canonicalURL: {
+        type: String,
+    },
+    searchEngines: {
+        type: Number,
+        default: "2",
+    },
+    hsRadioGroup: {
+        type: String, // Assuming this should be a string based on the values in the form
+    },
+    metaRobots: {
+        type: Number,
+        default:"0", 
+    },
+    status: {
+        type: String,
+        enum: ['Published', 'Trash', 'Draft'],
+        default: 'Draft',
+    },
+    date: {
+        type: Date,
+        default: Date.now,
     },
 });
 

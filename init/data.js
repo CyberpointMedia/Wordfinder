@@ -20,5 +20,4 @@ const sampleSections = [
     },
     // Add more sections as needed
 ];
-
 module.exports = { data: sampleSections };

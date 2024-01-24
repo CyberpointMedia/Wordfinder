@@ -1,69 +1,106 @@
-<!-- views/section/pages.ejs -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Pages</title>
-</head>
-<style>
-    body {
-        font-family: 'Arial', sans-serif;
-        margin: 20px;
-        padding: 0;
-        background-color: #f8f8f8;
-    }
+<!-- show-section.ejs -->
 
-    h1 {
-        color: #333;
-    }
+<%- include('../header/head.ejs') %>
 
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
+    <body>
+        <!-- sidebar start here -->
+        <div class="flex overflow-hidden">
+            <%- include('../sidenav/sidenav.ejs') %>
+                <div class="page-content bg-white">
 
-    li {
-        background-color: #fff;
-        margin: 10px 0;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+                    <%- include('../header/header.ejs') %>
 
-    button {
-        background-color: #4caf50;
-        color: #fff;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 4px;
-        cursor: pointer;
-        margin-right: 10px;
-    }
+                    <!-- main content start here -->
+                    
+   <main class="py-8 px-5">
+    <div class="mb-6 flex gap-3 sm:flex-row sm:items-center">
+        <h1 class="text-2xl font-bold text-black">Pages</h1>
+        <a href="/admin/pages/create" class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add New Page</a>
+    </div>
 
-    .delete-button {
-        background-color: #f44336;
-    }
+    <!-- Dynamic content generation -->
+    <% if (pages.length > 0) { %>
 
-    p {
-        color: #777;
-    }
+        <ul class="subsubsub flex flex-wrap space-x-2 mb-6">
+            <li class="all"><a href="all-pages.html" class="current text-black" aria-current="page">All <span class="count">(3)</span></a> |</li>
+            <li class="publish"><a href="published.html" class="text-black">Published <span class="count">(1)</span></a> |</li>
+            <li class="trash"><a href="trash.html" class="text-black">Trash <span class="count">(1)</span></a> |</li>
+            <li class="draft"><a href="draft.html" class="text-black">Draft <span class="count">(1)</span></a></li>
+        </ul>
 
-    .button {
-        display: inline-block;
-        background-color: #008CBA;
-        color: #fff;
-        padding: 10px 20px;
-        text-decoration: none;
-        border-radius: 4px;
-        margin-top: 10px;
-    }
+        <!-- table start here -->
+        <div class="bg-white overflow-x-auto">
+            <table class="w-full divide-y divide-gray-200 border" id="example">
+                <!-- Table header -->
+                <thead class="text-left bg-[#DBF4FF]">
+                    <tr>
+                        <th>
+                            <input type="checkbox" class="selectAll">
+                        </th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
 
-    .button:hover {
-        background-color: #00587a;
-    }
-</style>
-<body>
+                <!-- Table body -->
+                <tbody class="divide-y divide-gray-200">
+                    <% pages.forEach((page) => { %>
+                        <tr class="">
+                            <td>
+                                <input type="checkbox" value="<%= page._id %>" class="">
+                            </td>
+                            <td>
+                                <div class="">
+                                    <strong>
+                                        <a class="row-title text-[#2271b1] text-sm" href="javascript:void(0)">
+                                            <%= page.page_name %> <!-- Display the actual page name -->
+                                        </a>
+                                    </strong>
+                                </div>
+                                <div class="row-actions mt-1">
+                                    <!-- Add your row actions here -->
+                                </div>
+                            </td>
+                            <% function formatDate(date) { %>
+                                <% const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric', hour12: true }; %>
+                                <%= new Date(date).toLocaleString('en-US', options) %>
+                            <% } %>
+                            <td>Admin</td>
+                            <td>Published<br> <%= formatDate(page.date) %></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+
+                <!-- Table footer -->
+                <tfoot class="text-left bg-[#DBF4FF]">
+                    <tr>
+                        <th>
+                            <input type="checkbox" class="selectAll">
+                        </th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Date</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!-- table end here -->
+    <% } else { %>
+        <p>No pages found.</p>
+    <% } %>
+</main>
+<!-- main content end here -->
+
+                </div>
+        </div>
+        <!-- sidebar end here -->
+        <%- include('../script/script.ejs') %>
+    </body>
+
+    </html>
+
+    <!-- <body>
     <h1>All Pages</h1>
 
     <% if (pages.length > 0) { %>
@@ -108,4 +145,4 @@
         }
     </script>
 </body>
-</html>
+</html> -->

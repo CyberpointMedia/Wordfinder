@@ -14,7 +14,7 @@ const upload = multer({
   limits: {
     fileSize: 2 * 1024 * 1024, // Limit file size to 2 MB
   },
-});
+}).single('picture__input');
 
 const router = express.Router();
 
@@ -28,18 +28,22 @@ router.route('/create')
       res.status(500).send('Internal Server Error');
     }
   })
-  .post(upload.single('image'), async (req, res) => {
+  .post(upload, async (req, res) => {  // <-- Adjusted this line
     try {
-      const { title, subHeading, imagePosition } = req.body;
+      const { title, subHeading, image, imagePosition, content, status } = req.body;
 
       // Check if an image was uploaded
+      console.log(req.body); // Log the uploaded file
       if (!req.file) {
         res.status(400).send('No image uploaded');
         return;
       }
 
+      // Assuming you want to use the uploaded file
+      const uploadedFile = req.file;
+
       // Use sharp to resize and convert the image to WebP format
-      const resizedImageBuffer = await sharp(req.file.buffer)
+      const resizedImageBuffer = await sharp(uploadedFile.buffer)
         .resize({ width: 800, height: 600 })
         .webp({ quality: 80 })
         .toBuffer();
@@ -49,12 +53,14 @@ router.route('/create')
         subHeading,
         image: resizedImageBuffer.toString('base64'),
         imagePosition,
+        content,
+        status,
       });
 
       // Save the section to the database
       await newSection.save();
 
-      res.redirect('/section/show');
+      res.redirect('/admin/section/create');
     } catch (error) {
       console.error('Error creating section:', error);
       res.status(500).send('Internal Server Error');
@@ -123,3 +129,28 @@ router.get('/delete/:id', async (req, res) => {
 });
 
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

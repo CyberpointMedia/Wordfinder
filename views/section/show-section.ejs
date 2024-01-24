@@ -1,82 +1,125 @@
 <!-- show-section.ejs -->
+<%- include('../header/head.ejs') %>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   
-</head>
-<style>
-    body {
-        font-family: 'Arial', sans-serif;
-        margin: 20px;
-        padding: 0;
-        background-color: #f8f8f8;
-    }
+    <body>
+        <!-- sidebar start here -->
+        <div class="flex overflow-hidden">
+            <!-- Sidenav Menu Start  -->
+            <%- include('../Sidenav/Sidenav.ejs') %>
 
-    h1 {
-        color: #333;
-    }
+                <div class="page-content bg-white">
+                    <!-- header Start -->
+                    <%- include('../header/header.ejs') %>
 
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
+                        <!-- main content start here -->
+                        <main class="py-8 px-5">
+                            <div class="mb-6 flex gap-3 sm:flex-row sm:items-center">
+                                <h1 class="text-2xl font-bold text-black">
+                                    All Sections
+                                </h1>
+                                <a href="/admin/section/create"
+                                    class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add
+                                    New Section</a>
+                            </div>
+                            <!-- table start here -->
+                            <div class="bg-white overflow-x-auto">
+                                <table class="w-full divide-y divide-gray-200 border" id="example">
+                                    <thead class="text-left bg-[#DBF4FF]">
+                                        <tr>
+                                            <th>
+                                                <input type="checkbox" class="selectAll">
+                                            </th>
+                                            <th>
+                                                Title
+                                            </th>
+                                            <th>
+                                                Author
+                                            </th>
+                                            <th>
+                                                Page
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+                                        </tr>
+                                    </thead>
 
-    li {
-        background-color: #fff;
-        margin: 10px 0;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+                                    <tbody class="divide-y divide-gray-200">
+                                        <% sections.forEach(section=> { %>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" value="<%= section._id %>" class="">
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <strong><a class="row-title text-[#2271b1] text-sm"
+                                                                href="<%= `/section/edit/${section._id}` %>">
+                                                                <%= section.title %>
+                                                            </a></strong>
+                                                    </div>
+                                                    <div class="row-actions mt-1">
+                                                        <span class="edit">
+                                                            <a href="<%= `/section/edit/${section._id}` %>"
+                                                                class="text-[#2271b1] text-xs">Edit</a> |
+                                                        </span>
+                                                        <span class="trash">
+                                                            <a href="<%= `/section/delete/${section._id}` %>"
+                                                                class="trash text-[#b32d2e] text-xs">Trash</a> |
+                                                        </span>
+                                                        <span class="view">
+                                                            <a href="<%= `/section/show/${section._id}` %>"
+                                                                class="text-[#2271b1] text-xs">View</a>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    Admin
+                                                </td>
+                                                <td><a href="javascript:void(0);" class="text-[#2271b1]">
+                                                        <%= section.page %>
+                                                    </a></td>
+                                                    <td>
+                                                        <%= section.status %><br>
+                                                        <% if (section.createdAt) { %>
+                                                          <%= section.createdAt.toLocaleString() %>
+                                                        <% } else { %>
+                                                          Unknown Date
+                                                        <% } %>
+                                                      </td>
+                                            </tr>
+                                            <% }); %>
+                                    </tbody>
 
-    .button {
-        display: inline-block;
-        background-color: #008CBA;
-        color: #fff;
-        padding: 10px 20px;
-        text-decoration: none;
-        border-radius: 4px;
-        margin-top: 10px;
-    }
+                                    <tfoot class="text-left bg-[#DBF4FF]">
+                                        <tr>
+                                            <th>
+                                                <input type="checkbox" class="selectAll">
+                                            </th>
+                                            <th>
+                                                Title
+                                            </th>
+                                            <th>
+                                                Author
+                                            </th>
+                                            <th>
+                                                Page
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- table end here -->
+                        </main>
 
-    .button:hover {
-        background-color: #00587a;
-    }
+                        <!-- main content end here -->
+                </div>
+        </div>
+        <!-- sidebar end here -->
 
-    p {
-        color: #777;
-    }
+    </body>
+    <%- include('../script/script.ejs') %>
 
-    /* Add specific styles for the included templates (center-image.ejs, right-image.ejs, left-image.ejs) if needed */
-</style>
-<body>
-    <h1>All Sections</h1>
-
-    <% if (sections.length > 0) { %>
-        <ul>
-            <% sections.forEach((section) => { %>
-                <li>
-                    <div>Image Position: <%= section.imagePosition %></div>
-                    <% if (section.imagePosition === 'center') { %>
-                        <%- include('center-image.ejs', { section: section }) %>
-                    <% } else if (section.imagePosition === 'right') { %>
-                        <%- include('right-image.ejs', { section: section }) %>
-                    <% } else if (section.imagePosition === 'left') { %>
-                        <%- include('left-image.ejs', { section: section }) %>
-                    <% } %>
-
-                    <a href="/section/edit/<%= section._id %>" class="button">Edit Section</a>
-                    <a href="/section/delete/<%= section._id %>" class="button">Delete Section</a>
-                </li>
-            <% }); %>
-        </ul>
-    <% } else { %>
-        <p>No sections found.</p>
-    <% } %>
-    <br>
-    <a href="/section/create" class="button">
-        Create New Section
-    </a>
-</body>
-</html>
+        </html>
