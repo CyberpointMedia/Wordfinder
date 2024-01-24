@@ -66,15 +66,5 @@ class ThemeCustomizer {
         var e, t, i, n, o = this.config;
         o && (e = document.querySelector("input[type=checkbox][name=dir][value=" + o.direction + "]"), t = document.querySelector("input[type=checkbox][name=data-mode][value=" + o.theme + "]"), i = document.querySelector("input[type=checkbox][name=data-topbar-color][value=" + o.topbar.color + "]"), n = document.querySelector("input[type=checkbox][name=data-sidenav-color][value=" + o.sidenav.color + "]"), o = document.querySelector("input[type=checkbox][name=data-sidenav-view][value=" + o.sidenav.view + "]"), e && (e.checked = !0), t && (t.checked = !0), i && (i.checked = !0), n && (n.checked = !0), o && (o.checked = !0))
     }
-    toggleDropdown(dropdownId) {
-        const dropdown = document.getElementById(dropdownId);
-        if (dropdown) {
-            dropdown.classList.toggle('hidden');
-        } else {
-            console.error(`Dropdown with ID ${dropdownId} not found.`);
-        }
-    }
     init() { this.initConfig(), this.initSidenav(), this.initSwitchListener(), this.initWindowSize(), this.adjustLayout(), this.setSwitchFromConfig() }
 }(new ThemeCustomizer).init();
-const themeCustomizer = new ThemeCustomizer();
-themeCustomizer.init();

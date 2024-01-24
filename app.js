@@ -11,7 +11,6 @@ const bodyParser = require('body-parser');
 const { parse } = require('node-html-parser');
 const session = require('express-session');
 
-
 const userRoutes = require('./routes/user');
 const authRoutes = require('./routes/auth');
 const postRoutes = require('./routes/post');
