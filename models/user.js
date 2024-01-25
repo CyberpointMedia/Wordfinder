@@ -1,4 +1,4 @@
-// models / user.js
+// models/user.js
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
@@ -35,8 +35,15 @@ const userSchema = new mongoose.Schema({
         type: String,
     },
     portfolioLink: String,
-    role: { type: String, enum: ['user', 'admin'], default: 'user' },
-
+    role: {
+        type: String,
+        enum: ['subscriber', 'contributor', 'author', 'editor', 'administrator'],
+        default: 'subscriber',
+    },
+    sendNotification: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 // Hash the password before saving to the database

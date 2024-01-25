@@ -3,6 +3,7 @@ const express = require('express');
 const User = require('../models/user');
 const { route } = require('./section');
 const section = require('../models/section');
+const passport = require('passport');
 const router = express.Router();
 
 // Route to render the user dashboard
@@ -64,7 +65,8 @@ router.get('/edit-profile', async (req, res) => {
 });
 
 
-router.get('/create-profile', (req, res) => {
+// Route to render the create-profile page
+router.get('/create-profile', ensureAuthenticated, (req, res) => {
     res.render('user/create-profile');
 });
 
@@ -92,6 +94,37 @@ router.post('/create-profile', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+router.post('/create-profile', ensureAuthenticated, async (req, res) => {
+    const { username, bio, portfolioLink } = req.body;
+
+    try {
+        // Find the user by their ID
+        const user = await User.findById(req.user.id);
+
+        // Update the user profile fields
+        user.username = username;
+        user.bio = bio;
+        user.portfolioLink = portfolioLink;
+
+        // Save the updated user profile
+        await user.save();
+
+        // Redirect to the user dashboard or any other page
+        res.redirect('/user/dashboard');
+    } catch (error) {
+        console.error('Error creating or updating user profile:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+// Passport.js middleware to check if the user is authenticated
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    } else {
+        // If not authenticated, redirect to the login page
+        res.redirect('/login');
+    }
+}
 
 // Route to handle the update of the user profile
 router.put('/update-profile', async (req, res) => {

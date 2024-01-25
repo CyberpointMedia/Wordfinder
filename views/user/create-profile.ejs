@@ -1,89 +1,124 @@
 <!-- views/user/create-profile.ejs -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Profile</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
+<%- include('../header/head.ejs') %>
 
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-top: 0; /* Add this line to remove default margin */
-        }
+    <body>
+        <!-- sidebar start here -->
+        <div class="flex overflow-hidden">
+            <%- include('../Sidenav/Sidenav.ejs') %>
+                <div class="page-content bg-white relative">
+                    <!-- header Start -->
+                    <%- include('../header/header.ejs') %>
+                        <form action="/user/create-profile" method="POST" enctype="application/x-www-form-urlencoded">
 
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            margin-top: 20px;
-        }
+                            <body>
+                                <!-- main content start here -->
+                                <main class="py-8 px-5">
+                                    <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+                                        <h1 class="text-2xl font-bold text-black">
+                                            Add New User
+                                        </h1>
+                                    </div>
+                                    <div class="mb-6">
+                                        <p>Create a new user and add them to this site.</p>
+                                    </div>
+                                    <!-- add user form start -->
+                                    <form class="space-y-4" action="#" method="post">
+                                        <div class="grid sm:grid-cols-3">
+                                            <label class="mt-1 mb-2" for="userName1">Username<span
+                                                    class="text-danger">*</span></label>
+                                            <div class="sm:col-span-2">
+                                                <input type="text" required="" class="form-input bg-[#F0F7FA] border-0"
+                                                    id="userName1" placeholder="User Name">
+                                            </div>
+                                        </div>
+                                        <div class="grid sm:grid-cols-3">
+                                            <label class="mt-1 mb-2" for="inputEmail3">Email<span
+                                                    class="text-danger">*</span></label>
+                                            <div class="sm:col-span-2">
+                                                <input type="email" required="" class="form-input bg-[#F0F7FA] border-0"
+                                                    id="inputEmail3" placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="grid sm:grid-cols-3">
+                                            <label class="mt-1 mb-2" for="password1">Password<span
+                                                    class="text-danger">*</span></label>
+                                            <div class="sm:col-span-2">
+                                                <input id="password1" type="password" placeholder="Password" required=""
+                                                    class="form-input bg-[#F0F7FA] border-0">
+                                            </div>
+                                        </div>
 
-        label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-        }
+                                        <div class="grid sm:grid-cols-3">
+                                            <label class="mt-1 mb-2" for="password">Password</label>
+                                            <div class="sm:col-span-2">
+                                                <button type="button"
+                                                    class="py-2 w-40 text-black bg-[#DBF4FF] rounded-lg"
+                                                    id="generate-pw" aria-expanded="true">Generate Password</button>
+                                                <div id="show-generate-pw" class="flex mt-4 hidden">
+                                                    <div class="relative w-full">
+                                                        <input id="password" type="password" placeholder="********"
+                                                            class="form-input bg-[#F0F7FA] border-0">
+                                                        <div
+                                                            class="absolute right-[12px] bottom-[22px] cursor-pointer toggle-password">
+                                                            <i data-lucide="eye" class="w-4 h-4 eyeOpen"></i>
+                                                            <i data-lucide="eye-off" class="w-4 h-4 eyeOff"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
-        input,
-        textarea {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
+                                        <div class="grid sm:grid-cols-3">
+                                            <label class="mt-1 mb-2" for="webSite">Web Site<span
+                                                    class="text-danger">*</span></label>
+                                            <div class="sm:col-span-2">
+                                                <input type="url" required="" class="form-input bg-[#F0F7FA] border-0"
+                                                    id="webSite" placeholder="URL">
+                                            </div>
+                                        </div>
 
-        button {
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-        }
+                                        <div class="grid sm:grid-cols-3">
+                                            <label class="mt-1 mb-2">Send User Notification</label>
+                                            <div class="sm:col-span-2">
+                                                <div class="flex items-center">
+                                                    <input type="checkbox" class="form-checkbox rounded-sm text-primary"
+                                                        id="customCheck1">
+                                                    <label class="ms-2 font-normal" for="customCheck1"> Send the new
+                                                        user an email about their account.</label>
+                                                </div>
+                                            </div>
+                                        </div>
 
-        /* Optional: Add some styling for better visual appeal */
-        button:hover {
-            background-color: #0056b3;
-        }
+                                        <div class="grid sm:grid-cols-3">
+                                            <label class="mt-1 mb-2" for="role">Role</label>
+                                            <div class="sm:col-span-2">
+                                                <select class="form-select bg-[#F0F7FA] border-0" id="role">
+                                                    <option selected="selected" value="subscriber">Subscriber</option>
+                                                    <option value="contributor">Contributor</option>
+                                                    <option value="author">Author</option>
+                                                    <option value="editor">Editor</option>
+                                                    <option value="administrator">Administrator</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
-        /* Optional: Add spacing between form elements */
-        form > * {
-            margin-bottom: 10px;
-        }
-    </style>
-</head>
-<body>
-    <h1>Create Your Profile</h1>
-
-    <form action="/user/create-profile" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-
-        <label for="bio">Bio:</label>
-        <textarea id="bio" name="bio" required></textarea>
-
-        <label for="portfolioLink">Portfolio Link:</label>
-        <input type="text" id="portfolioLink" name="portfolioLink">
-
-        <button type="submit">Create Profile</button>
-    </form>
-</body>
-</html>
+                                        <div class="grid sm:grid-cols-3">
+                                            <div></div>
+                                            <div class="sm:col-span-2 flex items-center gap-2 mt-4">
+                                                <button type="submit"
+                                                    class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">
+                                                    Add New User
+                                                </button>
+                                                <button type="reset"
+                                                    class="py-2 w-28 text-black bg-[#DBF4FF] rounded-lg">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!-- add user form end -->
+                                </main>
+                                <!-- main content end here -->
+                                <%- include('../script/script.ejs') %>
+                            </body>
+                            </html>

@@ -38,17 +38,15 @@ catch(err){
 }
   });
 
-
 // Route to handle admin registration
 router.get('/register', (req, res) => {
     console.log("register get request call");
-    res.render('admin/register');
+    res.render('user/create-profile.ejs');
 });
 
 router.post('/register', async (req, res) => {
     const { name, email, password } = req.body;
     console.log("Register route called");
-
     try {
         // Check if the email is already registered
         const existingUser = await User.findOne({ email });
