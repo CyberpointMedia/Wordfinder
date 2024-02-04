@@ -1,0 +1,442 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Word Finder Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/logo-sm.svg">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <link href="css/app.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- sidebar start here -->
+    <div class="flex overflow-hidden">
+        <!-- Sidenav Menu Start  -->
+        <div class="app-menu fixed">
+
+            <!-- Sidenav Brand Logo -->
+            <a href="dashboard.html" class="logo-box">
+                <!-- Dark Brand Logo -->
+                <div class="logo-dark">
+                    <img src="images/logo-lg.svg" class="logo-lg" alt="Word Finder">
+                    <img src="images/logo-sm.svg" class="logo-sm" alt="Word Finder">
+                </div>
+            </a>
+
+            <!--- Menu -->
+            <div data-simplebar>
+                <ul class="menu" data-hs-collapse="accordion">
+                    <li class="menu-item">
+                        <a href="dashboard.html" class="menu-link">
+                            <i data-lucide="home" class="menu-icon"></i>
+                            <span class="menu-text"> Dashboard </span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuPages">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="files" class="lucide lucide-files menu-icon"><path d="M15.5 2H8.6c-.4 0-.8.2-1.1.5-.3.3-.5.7-.5 1.1v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8c.4 0 .8-.2 1.1-.5.3-.3.5-.7.5-1.1V6.5L15.5 2z"></path><path d="M3 7.6v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8"></path><path d="M15 2v5h5"></path></svg>
+                            <span class="menu-text"> Pages </span>
+                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="active-Uparrow hidden">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                        </a>
+
+                        <ul class="sub-menu hidden" id="menuPages">
+                            <li class="menu-item">
+                                <a href="all-pages.html" class="menu-link">
+                                    <span class="menu-text">All Pages</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="add-new-page.html" class="menu-link">
+                                    <span class="menu-text">Add New Page</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuSection">
+                            <i data-lucide="lightbulb" class="menu-icon"></i>
+                            <span class="menu-text"> Sections </span>
+                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="active-Uparrow hidden">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                        </a>
+
+                        <ul class="sub-menu hidden" id="menuSection">
+                            <li class="menu-item">
+                                <a href="all-sections.html" class="menu-link">
+                                    <span class="menu-text">All Sections</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="add-new-section.html" class="menu-link">
+                                    <span class="menu-text">Add New Section</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuPosts">
+                            <i data-lucide="pen-square" class="menu-icon"></i>
+                            <span class="menu-text"> Posts </span>
+                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="active-Uparrow hidden">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                        </a>
+
+                        <ul class="sub-menu hidden" id="menuPosts">
+                            <li class="menu-item">
+                                <a href="all-posts.html" class="menu-link">
+                                    <span class="menu-text">All Posts</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="add-new-post.html" class="menu-link">
+                                    <span class="menu-text">Add New Post</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="categories.html" class="menu-link">
+                                    <span class="menu-text">Categories</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="tags.html" class="menu-link">
+                                    <span class="menu-text">Tags</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuUsers">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="user-circle" class="lucide lucide-user-circle menu-icon"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"></path></svg>
+                            <span class="menu-text"> Users </span>
+                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="active-Uparrow hidden">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                        </a>
+
+                        <ul class="sub-menu hidden" id="menuUsers">
+                            <li class="menu-item">
+                                <a href="all-users.html" class="menu-link">
+                                    <span class="menu-text">All Users</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="add-user.html" class="menu-link">
+                                    <span class="menu-text">Add New User</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="user-profile.html" class="menu-link">
+                                    <span class="menu-text">Profile</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuMyaccount">
+                            <i data-lucide="lightbulb" class="menu-icon"></i>
+                            <span class="menu-text"> My Account </span>
+                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="active-Uparrow hidden">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                        </a>
+
+                        <ul class="sub-menu hidden" id="menuMyaccount">
+                            <li class="menu-item">
+                                <a href="javascript:void(0)" class="menu-link">
+                                    <span class="menu-text">Edit Profile</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="login.html" class="menu-link">
+                                    <span class="menu-text">Log Out</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Sidenav Menu End  -->
+        <div class="page-content bg-white">
+            <!-- header Start -->
+            <header class="app-header bg-white border-b shadow-md">
+                <div class="flex items-center justify-between px-3 gap-3 w-full">
+                    <!-- Brand Logo -->
+                    <a href="dashboard.html" class="logo-box">
+
+                        <!-- Dark Brand Logo -->
+                        <div class="logo-dark">
+                            <img src="images/logo-lg.svg" class="logo-lg" alt="Word Finder">
+                            <img src="images/logo-lg.svg" class="logo-sm" alt="Word Finder">
+                        </div>
+                    </a>
+
+                    <!-- Sidenav Menu Toggle Button -->
+                    <button id="button-toggle-menu" class="nav-link p-2">
+                        <span class="sr-only">Menu Toggle Button</span>
+                        <span class="flex items-center justify-center h-6 w-6">
+                            <i data-lucide="menu" class="w-6 h-6 text-xl"></i>
+                        </span>
+                    </button>
+
+                    <!-- Profile Dropdown Button -->
+                    <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                        <button id="hs-dropdown-default" type="button" class="hs-dropdown-toggle nav-link flex items-center">
+                            <img src="images/admin.svg" alt="user-image" class="rounded-full h-8 w-8">
+                            <div class="lg:flex hidden">
+                                <span class="text-sm mx-2">Admin</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="active-Uparrow hidden">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </div>
+                        </button>
+
+                        <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] hs-dropdown-open:opacity-100 opacity-0 hidden z-10 mt-2 min-w-[10rem] bg-white border border-gray-200 shadow-md rounded py-2" aria-labelledby="hs-dropdown-default">
+                            <a class="flex items-center gap-x-3.5 py-2 px-5 text-sm hover:bg-gray-100" href="javascript:void(0);">
+                                <i data-lucide="user" class="w-4 h-4 me-2"></i>
+                                <span>My Account</span>
+                            </a>
+                            <a class="flex items-center gap-x-3.5 py-2 px-5 text-sm hover:bg-gray-100" href="javascript:void(0);">
+                                <i data-lucide="edit" class="w-4 h-4 me-2"></i>
+                                <span>Edit</span>
+                            </a>
+                            <hr class="my-2 border-gray-200">
+                            <a class="flex items-center gap-x-3.5 py-2 px-5 text-sm hover:bg-gray-100" href="login.html">
+                                <i data-lucide="log-out" class="w-4 h-4 me-2"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- header End -->
+
+            <!-- main content start here -->
+            <main class="py-8 px-5">
+                <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <h1 class="text-2xl font-bold text-black">
+                        Dashboard
+                    </h1>
+                </div>
+
+                <!-- top four boxes start -->
+                <div class="grid grid-cols-1 gap-6 md:grid-cols-3 xl:grid-cols-3">
+                    <!-- Value card -->
+                    <div class="flex items-center justify-between p-5 bg-[#DBF4FF] rounded-md">
+                        <div>
+                            <h6 class="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase">
+                                Average Article Time
+                            </h6>
+                            <span class="text-xl font-semibold">$30,000</span>
+                            <span class="inline-block px-2 py-px ml-2 text-xs text-green-500 bg-green-100 rounded-md">
+                          +4.4%
+                        </span>
+                        </div>
+                        <div>
+                            <span>
+                          <svg class="w-8 h-8 text-[#9ecdff]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                          </svg>
+                        </span>
+                        </div>
+                    </div>
+
+                    <!-- Users card -->
+                    <div class="flex items-center justify-between p-5 bg-[#DBF4FF] rounded-md">
+                        <div>
+                            <h6 class="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase">
+                                Users
+                            </h6>
+                            <span class="text-xl font-semibold">50,021</span>
+                            <span class="inline-block px-2 py-px ml-2 text-xs text-green-500 bg-green-100 rounded-md">
+                          +2.6%
+                        </span>
+                        </div>
+                        <div>
+                            <span>
+                          <svg class="w-8 h-8 text-[#9ecdff]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                          </svg>
+                        </span>
+                        </div>
+                    </div>
+
+                    <!-- Orders card -->
+                    <div class="flex items-center justify-between p-5 bg-[#DBF4FF] rounded-md">
+                        <div>
+                            <h6 class="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase">
+                                Words Find
+                            </h6>
+                            <span class="text-xl font-semibold">45,021</span>
+                            <span class="inline-block px-2 py-px ml-2 text-xs text-green-500 bg-green-100 rounded-md">
+                          +3.1%
+                        </span>
+                        </div>
+                        <div>
+                            <span>
+                          <svg class="w-8 h-8 text-[#9ecdff]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                          </svg>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- top four boxes end -->
+
+                <div class="flex flex-col md:flex-row gap-6 mt-6">
+                    <div class="w-full md:w-2/4 ">
+                        <div class="hs-accordion-group ">
+                            <div class="hs-accordion active " id="hs-basic-with-title-and-arrow-stretched-heading-one ">
+                                <div class="cardHeader hs-accordion-toggle inline-flex items-center justify-center gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none p-6 bg-[#007bff] text-center
+                                            " aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-one ">
+                                    Wordfinder Events and News
+                                    <svg class="hs-accordion-active:hidden block w-4 h-4 " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2 " stroke-linecap="round
+                                            " stroke-linejoin="round "><path d="m6 9 6 6 6-6 "/></svg>
+                                    <svg class="hs-accordion-active:block hidden w-4 h-4 " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2 " stroke-linecap="round
+                                            " stroke-linejoin="round "><path d="m18 15-6-6-6 6 "/></svg>
+
+                                    <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                                </div>
+                                <div id="hs-basic-with-title-and-arrow-stretched-collapse-one " class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 bg-[#f0f7fa] cardBody " aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one ">
+                                    <div class="px-5 py-8 ">
+                                        <div class="flex justify-between gap-x-3 mb-5 pb-4 border-b">
+                                            <img class="inline-block h-9 w-9 rounded-full" src="images/img1.jpg" alt="Image Description">
+                                            <div class="grow">
+                                                <div class="flex mb-2 justify-between">
+                                                    <p class="font-medium text-[#393939]">Admin
+                                                        <small class="text-gray-400">admin@gmail.com</small>
+                                                    </p>
+                                                </div>
+                                                <a href="javascript:void(0);" class="text-[#007bff] hover:opacity-50 underline hover:underline truncate">Lorem Ipsum is simply dummy text of the printing and typesetting</a>
+                                                <div class="mt-2 text-sm text-gray-400 justify-start flex items-center"><i data-lucide="calendar" class="inline-block w-[14px] h-[14px] me-2"></i>02/01/2024</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex justify-between gap-x-3 mb-5 pb-4 border-b">
+                                            <img class="inline-block h-9 w-9 rounded-full" src="images/img2.jpg" alt="Image Description">
+                                            <div class="grow">
+                                                <div class="flex mb-2 justify-between">
+                                                    <p class="font-medium text-[#393939]">Admin
+                                                        <small class="text-gray-400">admin@gmail.com</small>
+                                                    </p>
+                                                </div>
+                                                <a href="javascript:void(0);" class="text-[#007bff] hover:opacity-50 underline hover:underline truncate">Lorem Ipsum is simply dummy text of the printing and typesetting</a>
+                                                <div class="mt-2 text-sm text-gray-400 justify-start flex items-center"><i data-lucide="calendar" class="inline-block w-[14px] h-[14px] me-2"></i>25/12/2023</div>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between gap-x-3">
+                                            <img class="inline-block h-9 w-9 rounded-full" src="images/img3.jpg" alt="Image Description">
+                                            <div class="grow">
+                                                <div class="flex mb-2 justify-between">
+                                                    <p class="font-medium text-[#393939]">Admin
+                                                        <small class="text-gray-400">admin@gmail.com</small>
+                                                    </p>
+                                                </div>
+                                                <a href="javascript:void(0);" class="text-[#007bff] hover:opacity-50 underline hover:underline truncate">Lorem Ipsum is simply dummy text of the printing and typesetting</a>
+                                                <div class="mt-2 text-sm text-gray-400 justify-start flex items-center"><i data-lucide="calendar" class="inline-block w-[14px] h-[14px] me-2"></i>28/12/2023</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-2/4">
+                        <div class="hs-accordion-group">
+                            <div class="hs-accordion active" id="hs-basic-with-title-and-arrow-stretched-heading-one">
+                                <div class="cardHeader hs-accordion-toggle inline-flex items-center justify-center gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none p-6 bg-[#007bff] text-center" aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-one">
+                                    At a Glance
+                                    <svg class="hs-accordion-active:hidden block w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                    <svg class="hs-accordion-active:block hidden w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="44" viewBox="0 0 10 44" fill="none" class="leftHandle">
+                                        <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39)" fill="#0656AC"></circle>
+                                        <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5)" fill="#0656AC"></circle>
+                                        <rect x="-0.5" y="-0.5" width="35" height="3" rx="1.5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5)" fill="white" stroke="#0656AC"></rect>
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="44" viewBox="0 0 10 44" fill="none" class="rightHandle">
+                                        <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39)" fill="#0656AC"></circle>
+                                        <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5)" fill="#0656AC"></circle>
+                                        <rect x="-0.5" y="-0.5" width="35" height="3" rx="1.5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5)" fill="white" stroke="#0656AC"></rect>
+                                    </svg>
+                                </div>
+                                <div id="hs-basic-with-title-and-arrow-stretched-collapse-one" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 bg-[#f0f7fa] cardBody" aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one">
+                                    <div class="p-8">
+                                        <ul class="grid grid-cols-1 gap-6 md:grid-cols-2 justify-between ">
+                                            <li><i data-lucide="pin" class="menu-icon inline-block mx-2 w-[18px] h-[18px] "></i><a href="all-posts.html" class="text-[#007bff] ">1 Post</a></li>
+                                            <li><i data-lucide="files" class="menu-icon inline-block mx-2 w-[18px] h-[18px] "></i><a href="all-pages.html" class="text-[#007bff] ">3 Pages</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+
+            <!-- main content end here -->
+        </div>
+    </div>
+    <!-- sidebar end here -->
+    <script src="js/jquery.min.js " type="text/javascript "></script>
+    <script type="text/javascript " charset="utf8 " src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js "></script>
+    <script src="js/config.js " type="text/javascript "></script>
+    <script src="../node_modules/simplebar/dist/simplebar.min.js " type="text/javascript "></script>
+    <script src="../node_modules/lucide/dist/umd/lucide.min.js " type="text/javascript "></script>
+    <script src="../node_modules/preline/dist/preline.js " type="text/javascript "></script>
+    <script src="js/app.js " type="text/javascript "></script>
+    <script src="js/custom.js " type="text/javascript "></script>
+</body>
+
+</html>

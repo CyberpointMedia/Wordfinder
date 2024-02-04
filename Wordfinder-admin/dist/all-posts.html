@@ -1,0 +1,349 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Word Finder Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/logo-sm.svg">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <link href="css/app.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- sidebar start here -->
+    <div class="flex overflow-hidden">
+        <!-- Sidenav Menu Start  -->
+        <div class="app-menu fixed">
+
+            <!-- Sidenav Brand Logo -->
+            <a href="dashboard.html" class="logo-box">
+                <!-- Dark Brand Logo -->
+                <div class="logo-dark">
+                    <img src="images/logo-lg.svg" class="logo-lg" alt="Word Finder">
+                    <img src="images/logo-sm.svg" class="logo-sm" alt="Word Finder">
+                </div>
+            </a>
+
+            <!--- Menu -->
+            <div data-simplebar>
+                <ul class="menu" data-hs-collapse="accordion">
+                    <li class="menu-item">
+                        <a href="dashboard.html" class="menu-link">
+                            <i data-lucide="home" class="menu-icon"></i>
+                            <span class="menu-text"> Dashboard </span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuPages">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="files" class="lucide lucide-files menu-icon"><path d="M15.5 2H8.6c-.4 0-.8.2-1.1.5-.3.3-.5.7-.5 1.1v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8c.4 0 .8-.2 1.1-.5.3-.3.5-.7.5-1.1V6.5L15.5 2z"></path><path d="M3 7.6v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8"></path><path d="M15 2v5h5"></path></svg>
+                            <span class="menu-text"> Pages </span>
+                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="active-Uparrow hidden">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                        </a>
+
+                        <ul class="sub-menu hidden" id="menuPages">
+                            <li class="menu-item">
+                                <a href="all-pages.html" class="menu-link">
+                                    <span class="menu-text">All Pages</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="add-new-page.html" class="menu-link">
+                                    <span class="menu-text">Add New Page</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuSection">
+                            <i data-lucide="lightbulb" class="menu-icon"></i>
+                            <span class="menu-text"> Sections </span>
+                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="active-Uparrow hidden">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                        </a>
+
+                        <ul class="sub-menu hidden" id="menuSection">
+                            <li class="menu-item">
+                                <a href="all-sections.html" class="menu-link">
+                                    <span class="menu-text">All Sections</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="add-new-section.html" class="menu-link">
+                                    <span class="menu-text">Add New Section</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle active" data-hs-collapse="#menuPosts">
+                            <i data-lucide="pen-square" class="menu-icon"></i>
+                            <span class="menu-text"> Posts </span>
+                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="active-Uparrow hidden">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                        </a>
+
+                        <ul class="sub-menu hidden" id="menuPosts">
+                            <li class="menu-item">
+                                <a href="javascript:void(0)" class="menu-link active">
+                                    <span class="menu-text">All Posts</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="add-new-post.html" class="menu-link">
+                                    <span class="menu-text">Add New Post</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="categories.html" class="menu-link">
+                                    <span class="menu-text">Categories</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="tags.html" class="menu-link">
+                                    <span class="menu-text">Tags</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuUsers">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="user-circle" class="lucide lucide-user-circle menu-icon"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"></path></svg>
+                            <span class="menu-text"> Users </span>
+                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="active-Uparrow hidden">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                        </a>
+
+                        <ul class="sub-menu hidden" id="menuUsers">
+                            <li class="menu-item">
+                                <a href="all-users.html" class="menu-link">
+                                    <span class="menu-text">All Users</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="add-user.html" class="menu-link">
+                                    <span class="menu-text">Add New User</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="user-profile.html" class="menu-link">
+                                    <span class="menu-text">Profile</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuMyaccount">
+                            <i data-lucide="lightbulb" class="menu-icon"></i>
+                            <span class="menu-text"> My Account </span>
+                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="active-Uparrow hidden">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                        </a>
+
+                        <ul class="sub-menu hidden" id="menuMyaccount">
+                            <li class="menu-item">
+                                <a href="javascript:void(0)" class="menu-link">
+                                    <span class="menu-text">Edit Profile</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="login.html" class="menu-link">
+                                    <span class="menu-text">Log Out</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Sidenav Menu End  -->
+        <div class="page-content bg-white">
+            <!-- header Start -->
+            <header class="app-header bg-white border-b shadow-md">
+                <div class="flex items-center justify-between px-3 gap-3 w-full">
+                    <!-- Brand Logo -->
+                    <a href="dashboard.html" class="logo-box">
+
+                        <!-- Dark Brand Logo -->
+                        <div class="logo-dark">
+                            <img src="images/logo-lg.svg" class="logo-lg" alt="Word Finder">
+                            <img src="images/logo-lg.svg" class="logo-sm" alt="Word Finder">
+                        </div>
+                    </a>
+
+                    <!-- Sidenav Menu Toggle Button -->
+                    <button id="button-toggle-menu" class="nav-link p-2">
+                        <span class="sr-only">Menu Toggle Button</span>
+                        <span class="flex items-center justify-center h-6 w-6">
+                            <i data-lucide="menu" class="w-6 h-6 text-xl"></i>
+                        </span>
+                    </button>
+
+                    <!-- Profile Dropdown Button -->
+                    <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                        <button id="hs-dropdown-default" type="button" class="hs-dropdown-toggle nav-link flex items-center">
+                            <img src="images/admin.svg" alt="user-image" class="rounded-full h-8 w-8">
+                            <div class="lg:flex hidden">
+                                <span class="text-sm mx-2">Admin</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="active-Uparrow hidden">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </div>
+                        </button>
+
+                        <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] hs-dropdown-open:opacity-100 opacity-0 hidden z-10 mt-2 min-w-[10rem] bg-white border border-gray-200 shadow-md rounded py-2" aria-labelledby="hs-dropdown-default">
+                            <a class="flex items-center gap-x-3.5 py-2 px-5 text-sm hover:bg-gray-100" href="javascript:void(0);">
+                                <i data-lucide="user" class="w-4 h-4 me-2"></i>
+                                <span>My Account</span>
+                            </a>
+                            <a class="flex items-center gap-x-3.5 py-2 px-5 text-sm hover:bg-gray-100" href="javascript:void(0);">
+                                <i data-lucide="edit" class="w-4 h-4 me-2"></i>
+                                <span>Edit</span>
+                            </a>
+                            <hr class="my-2 border-gray-200">
+                            <a class="flex items-center gap-x-3.5 py-2 px-5 text-sm hover:bg-gray-100" href="login.html">
+                                <i data-lucide="log-out" class="w-4 h-4 me-2"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- header End -->
+
+            <!-- main content start here -->
+            <main class="py-8 px-5">
+                <div class="mb-6 flex gap-3 sm:flex-row sm:items-center">
+                    <h1 class="text-2xl font-bold text-black">
+                        Posts
+                    </h1>
+                    <a href="javascript:(0)" class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add New Posts</a>
+                </div>
+                <ul class="subsubsub flex flex-wrap space-x-2 mb-6">
+                    <li class="all"><a href="all-posts.html" class="current text-black" aria-current="page">All <span class="count">(1)</span></a> |</li>
+                    <li class="publish"><a href="javascript:void(0)" class="text-black">Published <span class="count">(1)</span></a> |</li>
+                    <li class="trash"><a href="javascript:void(0)" class="text-black">Trash <span class="count">(1)</span></a> |</li>
+                    <li class="draft"><a href="javascript:void(0)" class="text-black">Draft <span class="count">(1)</span></a></li>
+                </ul>
+
+                <!-- table start here -->
+                <div class="bg-white overflow-x-auto">
+                    <table class="w-full divide-y divide-gray-200 border" id="example">
+                        <thead class="text-left bg-[#DBF4FF]">
+                            <tr>
+                                <th>
+                                    <input type="checkbox" class="selectAll">
+                                </th>
+                                <th>
+                                    Title
+                                </th>
+                                <th>
+                                    Author
+                                </th>
+                                <th>
+                                    Categories
+                                </th>
+                                <th>
+                                    Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="">
+                                <td>
+                                    <input type="checkbox" value="2" class="">
+                                </td>
+                                <td>
+                                    <div class="">
+                                        <strong><a class="row-title text-[#2271b1] text-sm" href="javascript:void(0)">Hello world!</a></strong>
+                                    </div>
+                                    <div class="row-actions mt-1"><span class="edit"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">Edit</a> | </span>
+                                        <span class="trash"><a href="javascript:void(0)" class="trash text-[#b32d2e] text-xs">Trash</a> | </span>
+                                        <span class="view"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">View</a></span>
+                                    </div>
+                                </td>
+                                <td>Admin</td>
+                                <td>Uncategorized</td>
+                                <td>Published<br> 2023/12/27 at 7:00 am</td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="text-left bg-[#DBF4FF]">
+                            <tr>
+                                <th>
+                                    <input type="checkbox" class="selectAll">
+                                </th>
+                                <th>
+                                    Title
+                                </th>
+                                <th>
+                                    Author
+                                </th>
+                                <th>
+                                    Categories
+                                </th>
+                                <th>
+                                    Date
+                                </th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- table end here -->
+            </main>
+
+            <!-- main content end here -->
+        </div>
+    </div>
+    <!-- sidebar end here -->
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="js/config.js" type="text/javascript"></script>
+    <script src="../node_modules/simplebar/dist/simplebar.min.js" type="text/javascript"></script>
+    <script src="../node_modules/lucide/dist/umd/lucide.min.js" type="text/javascript"></script>
+    <script src="../node_modules/preline/dist/preline.js" type="text/javascript"></script>
+    <script src="js/app.js" type="text/javascript"></script>
+    <script src="js/custom.js" type="text/javascript"></script>
+</body>
+
+</html>
