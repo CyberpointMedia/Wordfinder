@@ -1,0 +1,648 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Word Finder | Articles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/logo-sm.svg">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+
+<body class="font-custom">
+    <!-- header start here -->
+    <header class="relative flex flex-wrap w-full py-5 text-sm bg-white shadow-md sm:justify-start sm:flex-nowrap">
+        <nav class="max-w-[85rem] w-full mx-auto px-4 md:px-6 lg:px-8" aria-label="Global">
+            <div class="relative sm:flex sm:items-center">
+                <div class="flex items-center justify-between">
+                    <a class="flex-none" href="index.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="152" height="52" viewBox="0 0 152 52" fill="none" class="logo">
+                        <rect width="51.6562" height="51.6562" rx="25.8281" fill="#007BFF"></rect>
+                        <path d="M74.5905 24.2989L71.6447 34.8436H69.152L67.173 27.3354L65.1033 34.8436L62.6258 34.8587L59.7856 24.2989H62.0517L63.9099 32.4869L66.0551 24.2989H68.4118L70.4361 32.4416L72.3094 24.2989H74.5905Z" fill="#283551"></path>
+                        <path d="M79.6878 34.9796C78.8821 34.9796 78.157 34.8033 77.5124 34.4508C76.8679 34.0882 76.3593 33.5796 75.9866 32.925C75.6241 32.2704 75.4428 31.515 75.4428 30.659C75.4428 29.8029 75.6291 29.0475 76.0017 28.3929C76.3844 27.7383 76.9031 27.2347 77.5577 26.8822C78.2124 26.5196 78.9426 26.3383 79.7483 26.3383C80.554 26.3383 81.2841 26.5196 81.9388 26.8822C82.5934 27.2347 83.1071 27.7383 83.4797 28.3929C83.8624 29.0475 84.0538 29.8029 84.0538 30.659C84.0538 31.515 83.8574 32.2704 83.4646 32.925C83.0819 33.5796 82.5582 34.0882 81.8935 34.4508C81.2388 34.8033 80.5036 34.9796 79.6878 34.9796ZM79.6878 33.1365C80.0705 33.1365 80.4281 33.0459 80.7604 32.8646C81.1029 32.6732 81.3748 32.3912 81.5762 32.0186C81.7776 31.6459 81.8784 31.1927 81.8784 30.659C81.8784 29.8633 81.6669 29.254 81.2439 28.831C80.8309 28.3979 80.3223 28.1814 79.7181 28.1814C79.1138 28.1814 78.6052 28.3979 78.1922 28.831C77.7894 29.254 77.588 29.8633 77.588 30.659C77.588 31.4546 77.7844 32.0689 78.1771 32.502C78.58 32.925 79.0836 33.1365 79.6878 33.1365Z" fill="#283551"></path>
+                        <path d="M87.7202 27.7735C87.9921 27.3304 88.3446 26.9829 88.7777 26.7311C89.2208 26.4793 89.7244 26.3535 90.2884 26.3535V28.5742H89.7294C89.0647 28.5742 88.5611 28.7303 88.2187 29.0425C87.8863 29.3547 87.7202 29.8986 87.7202 30.6741V34.8436H85.6052V26.4743H87.7202V27.7735Z" fill="#283551"></path>
+                        <path d="M91.1691 30.6287C91.1691 29.7827 91.3352 29.0324 91.6676 28.3778C92.01 27.7232 92.4733 27.2196 93.0574 26.8671C93.6416 26.5146 94.2912 26.3383 95.0062 26.3383C95.5501 26.3383 96.0688 26.4592 96.5623 26.7009C97.0557 26.9326 97.4485 27.2448 97.7406 27.6375V23.6644H99.8858V34.8436H97.7406V33.6048C97.4787 34.0177 97.1111 34.3501 96.6378 34.6019C96.1644 34.8537 95.6155 34.9796 94.9911 34.9796C94.2861 34.9796 93.6416 34.7983 93.0574 34.4357C92.4733 34.0731 92.01 33.5645 91.6676 32.9099C91.3352 32.2452 91.1691 31.4848 91.1691 30.6287ZM97.7557 30.659C97.7557 30.1453 97.655 29.7072 97.4536 29.3446C97.2521 28.972 96.9802 28.69 96.6378 28.4986C96.2954 28.2972 95.9278 28.1965 95.535 28.1965C95.1422 28.1965 94.7796 28.2922 94.4473 28.4835C94.1149 28.6749 93.843 28.9569 93.6315 29.3295C93.4301 29.6921 93.3294 30.1252 93.3294 30.6287C93.3294 31.1323 93.4301 31.5754 93.6315 31.9582C93.843 32.3308 94.1149 32.6178 94.4473 32.8193C94.7897 33.0207 95.1523 33.1214 95.535 33.1214C95.9278 33.1214 96.2954 33.0257 96.6378 32.8344C96.9802 32.6329 97.2521 32.3509 97.4536 31.9884C97.655 31.6157 97.7557 31.1726 97.7557 30.659Z" fill="#283551"></path>
+                        <path d="M112.062 24.2989V26.006H107.666V28.7101H111.035V30.387H107.666V34.8436H105.551V24.2989H112.062Z" fill="#283551"></path>
+                        <path d="M114.635 25.4772C114.262 25.4772 113.95 25.3614 113.698 25.1298C113.456 24.8881 113.335 24.591 113.335 24.2385C113.335 23.886 113.456 23.5939 113.698 23.3623C113.95 23.1206 114.262 22.9997 114.635 22.9997C115.007 22.9997 115.314 23.1206 115.556 23.3623C115.808 23.5939 115.934 23.886 115.934 24.2385C115.934 24.591 115.808 24.8881 115.556 25.1298C115.314 25.3614 115.007 25.4772 114.635 25.4772ZM115.677 26.4743V34.8436H113.562V26.4743H115.677Z" fill="#283551"></path>
+                        <path d="M122.404 26.3535C123.402 26.3535 124.207 26.6707 124.822 27.3052C125.436 27.9296 125.743 28.8058 125.743 29.9338V34.8436H123.628V30.2208C123.628 29.5561 123.462 29.0475 123.13 28.695C122.797 28.3325 122.344 28.1512 121.77 28.1512C121.186 28.1512 120.723 28.3325 120.38 28.695C120.048 29.0475 119.882 29.5561 119.882 30.2208V34.8436H117.767V26.4743H119.882V27.5167C120.164 27.1541 120.521 26.8721 120.954 26.6707C121.397 26.4592 121.881 26.3535 122.404 26.3535Z" fill="#283551"></path>
+                        <path d="M127.21 30.6287C127.21 29.7827 127.377 29.0324 127.709 28.3778C128.051 27.7232 128.515 27.2196 129.099 26.8671C129.683 26.5146 130.333 26.3383 131.048 26.3383C131.592 26.3383 132.11 26.4592 132.604 26.7009C133.097 26.9326 133.49 27.2448 133.782 27.6375V23.6644H135.927V34.8436H133.782V33.6048C133.52 34.0177 133.153 34.3501 132.679 34.6019C132.206 34.8537 131.657 34.9796 131.033 34.9796C130.328 34.9796 129.683 34.7983 129.099 34.4357C128.515 34.0731 128.051 33.5645 127.709 32.9099C127.377 32.2452 127.21 31.4848 127.21 30.6287ZM133.797 30.659C133.797 30.1453 133.696 29.7072 133.495 29.3446C133.294 28.972 133.022 28.69 132.679 28.4986C132.337 28.2972 131.969 28.1965 131.576 28.1965C131.184 28.1965 130.821 28.2922 130.489 28.4835C130.156 28.6749 129.884 28.9569 129.673 29.3295C129.472 29.6921 129.371 30.1252 129.371 30.6287C129.371 31.1323 129.472 31.5754 129.673 31.9582C129.884 32.3308 130.156 32.6178 130.489 32.8193C130.831 33.0207 131.194 33.1214 131.576 33.1214C131.969 33.1214 132.337 33.0257 132.679 32.8344C133.022 32.6329 133.294 32.3509 133.495 31.9884C133.696 31.6157 133.797 31.1726 133.797 30.659Z" fill="#283551"></path>
+                        <path d="M145.773 30.4777C145.773 30.7798 145.753 31.0517 145.713 31.2934H139.594C139.645 31.8977 139.856 32.3711 140.229 32.7135C140.601 33.0559 141.06 33.2271 141.603 33.2271C142.389 33.2271 142.948 32.8898 143.28 32.215H145.562C145.32 33.0207 144.857 33.6854 144.172 34.2091C143.487 34.7227 142.646 34.9796 141.649 34.9796C140.843 34.9796 140.118 34.8033 139.473 34.4508C138.839 34.0882 138.34 33.5796 137.978 32.925C137.625 32.2704 137.449 31.515 137.449 30.659C137.449 29.7928 137.625 29.0324 137.978 28.3778C138.33 27.7232 138.824 27.2196 139.458 26.8671C140.093 26.5146 140.823 26.3383 141.649 26.3383C142.444 26.3383 143.154 26.5096 143.779 26.852C144.413 27.1944 144.902 27.6829 145.244 28.3174C145.597 28.9418 145.773 29.6619 145.773 30.4777ZM143.582 29.8734C143.572 29.3295 143.376 28.8965 142.993 28.5742C142.611 28.2418 142.142 28.0757 141.588 28.0757C141.065 28.0757 140.622 28.2368 140.259 28.5591C139.906 28.8713 139.69 29.3094 139.609 29.8734H143.582Z" fill="#283551"></path>
+                        <path d="M149.432 27.7735C149.704 27.3304 150.056 26.9829 150.489 26.7311C150.932 26.4793 151.436 26.3535 152 26.3535V28.5742H151.441C150.776 28.5742 150.273 28.7303 149.93 29.0425C149.598 29.3547 149.432 29.8986 149.432 30.6741V34.8436H147.317V26.4743H149.432V27.7735Z" fill="#283551"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M33.3814 16.8028C32.2984 17.8818 32.8694 18.8519 35.5991 20.5698C38.6284 22.4756 42.2533 26.0633 43.4185 28.3085C44.6256 30.6339 44.4809 32.7512 43.0108 34.2803C41.2754 36.0845 38.5182 37.0678 36.2084 36.7062C33.6273 36.3016 30.0631 33.826 28.5602 31.3933C26.4808 28.0279 25.9848 27.462 24.8729 27.1839C23.0953 26.7394 21.5253 27.7292 20.0143 30.246C19.2396 31.5362 18.4611 32.5916 18.2837 32.5916C18.1063 32.5916 17.7153 31.1324 17.4143 29.3493C16.8893 26.2357 14.6506 21.0306 13.7024 20.7187C13.4276 20.6286 13.3217 22.2465 13.41 25.1902C13.4914 27.9159 13.2739 31.6155 12.8778 34.234C12.2818 38.1756 12.2792 38.8025 12.8519 39.906C14.5459 43.1706 17.7889 42.6343 22.5627 38.3005L23.6724 37.2935L24.5004 38.216C26.9218 40.9125 31.9996 42.8908 36.4848 42.8844C40.086 42.8797 42.9432 41.7474 45.7667 39.2054C50.7553 34.715 50.5069 29.0057 45.0678 23.1526L42.7761 20.686L48.9089 20.4702C52.2814 20.351 56.107 19.991 57.4096 19.6696C59.7345 19.0956 59.6285 19.0801 51.5963 18.8115C44.0391 18.5588 40.4736 18.0869 35.882 16.732C34.0071 16.1785 34.0079 16.1785 33.3814 16.8028Z" fill="white"></path>
+                     </svg>
+                    </a>
+                    <div class="sm:hidden">
+                        <button type="button" class="inline-flex items-center cursor-pointer disabled:opacity-50 disabled:pointer-events-none" data-hs-overlay="#hs-large-modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                               <path d="M8.27323 3.5C5.64209 3.5 3.5 5.64213 3.5 8.27323C3.5 10.9043 5.64213 13.0465 8.27323 13.0465C10.9043 13.0465 13.0465 10.9043 13.0465 8.27323C13.0465 5.64213 10.9043 3.5 8.27323 3.5ZM8.27323 11.1837C6.66659 11.1837 5.36272 9.87987 5.36272 8.27323C5.36272 6.66659 6.66659 5.36272 8.27323 5.36272C9.87987 5.36272 11.1837 6.66659 11.1837 8.27323C11.1837 9.87987 9.87987 11.1837 8.27323 11.1837Z" fill="#393939"/>
+                               <path d="M19.7268 3.5C17.0957 3.5 14.9536 5.64213 14.9536 8.27323C14.9536 10.9043 17.0957 13.0465 19.7268 13.0465C22.3579 13.0465 24.5001 10.9043 24.5001 8.27323C24.5001 5.64213 22.3579 3.5 19.7268 3.5ZM19.7268 11.1837C18.1202 11.1837 16.8163 9.87987 16.8163 8.27323C16.8163 6.66659 18.1202 5.36272 19.7268 5.36272C21.3335 5.36272 22.6374 6.66659 22.6374 8.27323C22.6374 9.87987 21.3335 11.1837 19.7268 11.1837Z" fill="#393939"/>
+                               <path d="M8.27323 14.9535C5.64209 14.9535 3.5 17.0957 3.5 19.7268C3.5 22.3579 5.64213 24.5 8.27323 24.5C10.9043 24.5 13.0465 22.3579 13.0465 19.7268C13.0465 17.0957 10.9043 14.9535 8.27323 14.9535ZM8.27323 22.6373C6.66659 22.6373 5.36272 21.3334 5.36272 19.7268C5.36272 18.1201 6.66659 16.8163 8.27323 16.8163C9.87987 16.8163 11.1837 18.1201 11.1837 19.7268C11.1837 21.3334 9.87987 22.6373 8.27323 22.6373Z" fill="#393939"/>
+                               <path d="M19.7268 14.9535C17.0957 14.9535 14.9536 17.0957 14.9536 19.7268C14.9536 22.3579 17.0957 24.5 19.7268 24.5C22.3579 24.5 24.5001 22.3579 24.5001 19.7268C24.5001 17.0957 22.3579 14.9535 19.7268 14.9535ZM19.7268 22.6373C18.1202 22.6373 16.8163 21.3334 16.8163 19.7268C16.8163 18.1201 18.1202 16.8163 19.7268 16.8163C21.3335 16.8163 22.6374 18.1201 22.6374 19.7268C22.6374 21.3334 21.3335 22.6373 19.7268 22.6373Z" fill="#393939"/>
+                            </svg>
+                         </button>
+                    </div>
+                </div>
+                <div id="navbar-hover-event" class="hidden overflow-hidden transition-all duration-300 hs-collapse basis-full grow sm:block">
+                    <div class="flex flex-col justify-between gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
+                        <a class="text-base font-normal text-blue-500" href="#" aria-current="page">Word Lists</a>
+                        <a href="javascript:void(0);" class="text-base font-normal text-[#393939] sm:py-4 hover:text-blue-500">
+                     Word Finders
+                     </a>
+                        <button type="button" class="inline-flex items-center cursor-pointer disabled:opacity-50 disabled:pointer-events-none" data-hs-overlay="#hs-large-modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                           <path d="M8.27323 3.5C5.64209 3.5 3.5 5.64213 3.5 8.27323C3.5 10.9043 5.64213 13.0465 8.27323 13.0465C10.9043 13.0465 13.0465 10.9043 13.0465 8.27323C13.0465 5.64213 10.9043 3.5 8.27323 3.5ZM8.27323 11.1837C6.66659 11.1837 5.36272 9.87987 5.36272 8.27323C5.36272 6.66659 6.66659 5.36272 8.27323 5.36272C9.87987 5.36272 11.1837 6.66659 11.1837 8.27323C11.1837 9.87987 9.87987 11.1837 8.27323 11.1837Z" fill="#393939"/>
+                           <path d="M19.7268 3.5C17.0957 3.5 14.9536 5.64213 14.9536 8.27323C14.9536 10.9043 17.0957 13.0465 19.7268 13.0465C22.3579 13.0465 24.5001 10.9043 24.5001 8.27323C24.5001 5.64213 22.3579 3.5 19.7268 3.5ZM19.7268 11.1837C18.1202 11.1837 16.8163 9.87987 16.8163 8.27323C16.8163 6.66659 18.1202 5.36272 19.7268 5.36272C21.3335 5.36272 22.6374 6.66659 22.6374 8.27323C22.6374 9.87987 21.3335 11.1837 19.7268 11.1837Z" fill="#393939"/>
+                           <path d="M8.27323 14.9535C5.64209 14.9535 3.5 17.0957 3.5 19.7268C3.5 22.3579 5.64213 24.5 8.27323 24.5C10.9043 24.5 13.0465 22.3579 13.0465 19.7268C13.0465 17.0957 10.9043 14.9535 8.27323 14.9535ZM8.27323 22.6373C6.66659 22.6373 5.36272 21.3334 5.36272 19.7268C5.36272 18.1201 6.66659 16.8163 8.27323 16.8163C9.87987 16.8163 11.1837 18.1201 11.1837 19.7268C11.1837 21.3334 9.87987 22.6373 8.27323 22.6373Z" fill="#393939"/>
+                           <path d="M19.7268 14.9535C17.0957 14.9535 14.9536 17.0957 14.9536 19.7268C14.9536 22.3579 17.0957 24.5 19.7268 24.5C22.3579 24.5 24.5001 22.3579 24.5001 19.7268C24.5001 17.0957 22.3579 14.9535 19.7268 14.9535ZM19.7268 22.6373C18.1202 22.6373 16.8163 21.3334 16.8163 19.7268C16.8163 18.1201 18.1202 16.8163 19.7268 16.8163C21.3335 16.8163 22.6374 18.1201 22.6374 19.7268C22.6374 21.3334 21.3335 22.6373 19.7268 22.6373Z" fill="#393939"/>
+                        </svg>
+                     </button>
+
+                    </div>
+                </div>
+
+                <!-- mega menu start here -->
+                <div id="hs-large-modal" class="hs-overlay hidden w-full h-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none">
+                    <div class="m-3 mt-0 transition-all ease-out opacity-0 hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 lg:max-w-7xl lg:w-full lg:mx-auto">
+                        <div class="relative p-5">
+                            <button type="button" class="absolute top-0 z-50 right-5" data-hs-overlay="#hs-small-modal">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                                    <path d="M15.5978 14L24.1196 5.44017C24.5761 4.98372 24.5761 4.26088 24.1196 3.84233C23.6632 3.38589 22.9403 3.38589 22.5218 3.84233L14 12.4022L5.44017 3.84233C4.98373 3.38589 4.26088 3.38589 3.84233 3.84233C3.38589 4.29878 3.38589 5.02162 3.84233 5.44017L12.3641 14L3.84233 22.5598C3.38589 23.0163 3.38589 23.7391 3.84233 24.1577C4.07055 24.3859 4.37493 24.5 4.64139 24.5C4.90784 24.5 5.21193 24.3859 5.44044 24.1577L14.0003 15.5978L22.5601 24.1577C22.7883 24.3859 23.0927 24.5 23.3592 24.5C23.6256 24.5 23.9297 24.3859 24.1582 24.1577C24.6147 23.7012 24.6147 22.9784 24.1582 22.5598L15.5978 14Z" fill="white"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="flex flex-col bg-white border shadow-sm pointer-events-auto rounded-xl">
+                            <div class="px-8 py-12 overflow-y-auto md:px-16">
+                                <div class="grid gap-4 md:grid-cols-4">
+                                    <div class="sm:col-span-2">
+                                        <span class="block text-xl pb-6 font-semibold text-[#007BFF]">Word Lists</span>
+                                        <div class="grid space-y-3 sm:space-y-0 sm:space-x-4 sm:grid-cols-2">
+                                            <ul class="space-y-2 text-base font-normal">
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="5-letter-words.html">
+                                                        5 Letter Words
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="words-with-X-and-Q.html">
+                                                        Words with X and Q
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Word Scramble
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Anagram Solver
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Word Unscrambler
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Words With Friends Cheat
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Scrabble Word Finder
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Word Finder
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Wordle
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Word Chums
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Anagramme Expert
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Nyt Spelling Bee Answers
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Crossword Solver
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Scrabble Go Word Finder
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Wordscapes Answers
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <ul class="space-y-2 text-base font-normal">
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        4 Pics 1 Word
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Text Twist
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Cody Cross
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Word Cookies Answers
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Wordfeud
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Apalabrados Trucos
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Word Solver
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Scrabble Cheat
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Word Generator
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Jumble Solver
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="sm:col-span-1">
+                                        <div class="flex flex-col">
+                                            <span class="block text-xl pb-6 font-semibold text-[#007BFF]">Dictionary</span>
+                                            <ul class="space-y-2 text-base font-normal">
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Dictionary
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Words With Friends Dictionary
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Scrabble Dictionary
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="flex flex-col">
+                                            <span class="block text-xl pb-6 pt-10 font-semibold text-[#007BFF]">List of Words</span>
+                                            <ul class="space-y-2 text-base font-normal">
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        All Consonant Words
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Vowel Words
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Words By Length
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Words Ending In
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Words Start With
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Words With Letters
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="sm:col-span-1">
+                                        <div class="flex flex-col">
+                                            <span class="block text-xl pb-6 font-semibold text-[#007BFF]">Tool</span>
+                                            <ul class="space-y-2 text-base font-normal">
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Password Generator
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Username Generator
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Random Word Generator
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Word Counter
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="flex flex-col">
+                                            <span class="block text-xl pb-6 pt-4 font-semibold text-[#007BFF]">Games</span>
+                                            <ul class="space-y-2 text-base font-normal">
+
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Scramble Words
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Codeword
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Outspell
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Crossword Puzzles
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Word Wipe
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- End Col -->
+
+                                    <!-- End Col -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- mega menu end here -->
+            </div>
+        </nav>
+    </header>
+    <!-- header end here -->
+
+    <!-- banner section start -->
+    <section class="bg-[#DBF4FF] sm:h-80 h-60 flex items-center align-middle">
+        <div class="container">
+            <h1 class="w-full h-full text-5xl font-semibold text-center sm:text-4xl">Articles</h1>
+        </div>
+    </section>
+    <!-- banner section end -->
+
+    <!-- content section start -->
+    <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-20">
+        <div class="container">
+            <!-- articles grid start here -->
+            <div class="grid gap-8 grid-cols sm:grid-cols-2 md:grid-cols-3">
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img1.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">An Easy Guide To Gender-Inclusive Language</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img2.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">Japanese Learning Resources - The Ultimate Guide</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img3.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">Is _____ a Word?</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img4.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">Which Singers Have the Biggest Vocabularies?</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img5.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">Which Language Does Every Country Want to Learn?</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img6.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">Handy Activities To Teach Your Kids About Environmental Issues</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img7.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">The Best Resources For Speech & Language Therapy</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img8.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">27 Games & Activities For Kids With Autism</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img9.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">School Choice</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img10.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">17 Learning Resources For Kids With Dyslexia</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img11.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">The Birth Of American Sign Language</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img12.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">The 25 Best Learning Apps For Kids</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img13.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">Wordfinder App by WordTips</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img14.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">Beneficial Video Games For Seniors</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img15.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">The Official Languages Found in the Most Countries Around the World</a> </h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img16.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">Latin - Its Origins, Impact, and Continued Use</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img17.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">13 English Verb Pairings Sent To Confuse Us</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img18.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">The Last Lines From 19 of the Most Beautiful Books Ever Written</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img19.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">Talk Nerdy to Me</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img20.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">Gaming at Work</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img21.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">Educational Divide</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img22.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">The 100 Most-Spoken Languages in the World</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img23.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">Point-and-Click</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img24.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">A Brief History of Word Games</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img25.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">Top Scrabble Tips for Beginners</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img26.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">How Anagrams Help in Word Games</a></h3>
+                    </div>
+                </div>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="article-details.html"><img src="images/article-img27.svg" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">A Few Effective Scrabble Strategies</a></h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- pagination start here -->
+            <nav class="flex items-center justify-center mt-10 gap-x-1 pagination">
+                <button type="button" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm sm:text-lg rounded-lg text-[#747474] hover:text-[#007BFF] hover:bg-[#F0F7FA] focus:outline-none focus:bg-[#F0F7FA] disabled:opacity-50 disabled:pointer-events-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                        <path d="M8.43753 2.81247C8.43753 2.93235 8.39171 3.05235 8.30019 3.14388L3.94409 7.49997L8.30019 11.8561C8.48335 12.0392 8.48335 12.3358 8.30019 12.5189C8.11702 12.7019 7.82042 12.702 7.63737 12.5189L2.94987 7.83138C2.76671 7.64821 2.76671 7.35161 2.94987 7.16856L7.63737 2.48106C7.82054 2.2979 8.11714 2.2979 8.30019 2.48106C8.39171 2.57259 8.43753 2.69259 8.43753 2.81247ZM12.0502 2.48106C11.867 2.2979 11.5704 2.2979 11.3874 2.48106L6.69987 7.16856C6.51671 7.35173 6.51671 7.64833 6.69987 7.83138L11.3874 12.5189C11.5705 12.702 11.8671 12.702 12.0502 12.5189C12.2332 12.3357 12.2333 12.0391 12.0502 11.8561L7.69409 7.49997L12.0502 3.14388C12.1417 3.05235 12.1875 2.93235 12.1875 2.81247C12.1875 2.69259 12.1417 2.57259 12.0502 2.48106Z" fill="#747474"/>
+                    </svg>
+                    <span>Previous</span>
+                </button>
+                <div class="flex items-center gap-x-1">
+                    <button type="button" class="h-10 w-10 flex justify-center items-center text-[#747474] hover:text-[#007BFF] hover:bg-[#F0F7FA] py-2 px-3 text-sm sm:text-lg rounded-lg active focus:outline-none focus:bg-[#F0F7FA] disabled:opacity-50 disabled:pointer-events-none"
+                        aria-current="page">1</button>
+
+                    <button type="button" class="h-10 w-10 flex justify-center items-center text-[#747474] hover:text-[#007BFF] hover:bg-[#F0F7FA] py-2 px-3 text-sm sm:text-lg rounded-lg focus:outline-none focus:bg-[#F0F7FA] disabled:opacity-50 disabled:pointer-events-none">2</button>
+
+                    <button type="button" class="h-10 w-10 flex justify-center items-center text-[#747474] hover:text-[#007BFF] hover:bg-[#F0F7FA] py-2 px-3 text-sm sm:text-lg rounded-lg focus:outline-none focus:bg-[#F0F7FA] disabled:opacity-50 disabled:pointer-events-none">3</button>
+                </div>
+                <button type="button" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm sm:text-lg rounded-lg text-[#747474] hover:text-[#007BFF] hover:bg-[#F0F7FA] focus:outline-none focus:bg-[#F0F7FA] disabled:opacity-50 disabled:pointer-events-none">
+                    <span>Next</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                        <path d="M6.56247 12.1875C6.56247 12.0676 6.60829 11.9476 6.69981 11.8561L11.0559 7.50003L6.69981 3.14394C6.51665 2.96077 6.51665 2.66417 6.69981 2.48112C6.88298 2.29808 7.17958 2.29796 7.36263 2.48112L12.0501 7.16862C12.2333 7.35179 12.2333 7.64839 12.0501 7.83144L7.36263 12.5189C7.17946 12.7021 6.88286 12.7021 6.69981 12.5189C6.60829 12.4274 6.56247 12.3074 6.56247 12.1875ZM2.94981 12.5189C3.13298 12.7021 3.42958 12.7021 3.61263 12.5189L8.30013 7.83144C8.48329 7.64827 8.48329 7.35167 8.30013 7.16862L3.61263 2.48112C3.42946 2.29796 3.13286 2.29796 2.94981 2.48112C2.76677 2.66429 2.76665 2.96089 2.94981 3.14393L7.30591 7.50003L2.94981 11.8561C2.85829 11.9476 2.81247 12.0676 2.81247 12.1875C2.81247 12.3074 2.85829 12.4274 2.94981 12.5189Z" fill="#747474"/>
+                    </svg>
+                </button>
+            </nav>
+            <!-- pagination end here -->
+
+        </div>
+    </div>
+    <!-- content section end -->
+
+    <!-- footer start -->
+    <footer class="bg-[#393939] md:pt-20">
+        <div class="container">
+            <div class="flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
+                <div class="lg:w-1/3">
+                    <a href="index.html" class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="152" height="52" viewBox="0 0 152 52" fill="none">
+                            <rect width="51.6562" height="51.6562" rx="25.8281" fill="#007BFF"/>
+                            <path d="M74.5905 24.2987L71.6447 34.8434H69.152L67.173 27.3352L65.1033 34.8434L62.6258 34.8585L59.7856 24.2987H62.0517L63.9099 32.4867L66.0551 24.2987H68.4118L70.4361 32.4414L72.3094 24.2987H74.5905Z" fill="white"/>
+                            <path d="M79.6878 34.9794C78.8821 34.9794 78.157 34.8031 77.5124 34.4506C76.8679 34.0881 76.3593 33.5795 75.9866 32.9248C75.6241 32.2702 75.4428 31.5148 75.4428 30.6588C75.4428 29.8027 75.6291 29.0474 76.0017 28.3927C76.3844 27.7381 76.9031 27.2345 77.5577 26.882C78.2124 26.5194 78.9426 26.3382 79.7483 26.3382C80.554 26.3382 81.2841 26.5194 81.9388 26.882C82.5934 27.2345 83.1071 27.7381 83.4797 28.3927C83.8624 29.0474 84.0538 29.8027 84.0538 30.6588C84.0538 31.5148 83.8574 32.2702 83.4646 32.9248C83.0819 33.5795 82.5582 34.0881 81.8935 34.4506C81.2388 34.8031 80.5036 34.9794 79.6878 34.9794ZM79.6878 33.1363C80.0705 33.1363 80.4281 33.0457 80.7604 32.8644C81.1029 32.673 81.3748 32.391 81.5762 32.0184C81.7776 31.6458 81.8784 31.1925 81.8784 30.6588C81.8784 29.8631 81.6669 29.2538 81.2439 28.8308C80.8309 28.3978 80.3223 28.1812 79.7181 28.1812C79.1138 28.1812 78.6052 28.3978 78.1922 28.8308C77.7894 29.2538 77.588 29.8631 77.588 30.6588C77.588 31.4544 77.7844 32.0688 78.1771 32.5018C78.58 32.9248 79.0836 33.1363 79.6878 33.1363Z" fill="white"/>
+                            <path d="M87.7202 27.7733C87.9921 27.3302 88.3446 26.9827 88.7777 26.7309C89.2208 26.4792 89.7244 26.3533 90.2884 26.3533V28.574H89.7294C89.0647 28.574 88.5611 28.7301 88.2187 29.0423C87.8863 29.3545 87.7202 29.8984 87.7202 30.6739V34.8434H85.6052V26.4741H87.7202V27.7733Z" fill="white"/>
+                            <path d="M91.1691 30.6286C91.1691 29.7826 91.3352 29.0322 91.6676 28.3776C92.01 27.723 92.4733 27.2194 93.0574 26.8669C93.6416 26.5144 94.2912 26.3382 95.0062 26.3382C95.5501 26.3382 96.0688 26.459 96.5623 26.7007C97.0557 26.9324 97.4485 27.2446 97.7406 27.6374V23.6642H99.8858V34.8434H97.7406V33.6046C97.4787 34.0176 97.1111 34.3499 96.6378 34.6017C96.1644 34.8535 95.6155 34.9794 94.9911 34.9794C94.2861 34.9794 93.6416 34.7981 93.0574 34.4355C92.4733 34.073 92.01 33.5644 91.6676 32.9097C91.3352 32.245 91.1691 31.4846 91.1691 30.6286ZM97.7557 30.6588C97.7557 30.1451 97.655 29.707 97.4536 29.3445C97.2521 28.9718 96.9802 28.6898 96.6378 28.4985C96.2954 28.297 95.9278 28.1963 95.535 28.1963C95.1422 28.1963 94.7796 28.292 94.4473 28.4834C94.1149 28.6747 93.843 28.9567 93.6315 29.3294C93.4301 29.6919 93.3294 30.125 93.3294 30.6286C93.3294 31.1321 93.4301 31.5753 93.6315 31.958C93.843 32.3306 94.1149 32.6176 94.4473 32.8191C94.7897 33.0205 95.1523 33.1212 95.535 33.1212C95.9278 33.1212 96.2954 33.0255 96.6378 32.8342C96.9802 32.6328 97.2521 32.3508 97.4536 31.9882C97.655 31.6155 97.7557 31.1724 97.7557 30.6588Z" fill="white"/>
+                            <path d="M112.062 24.2987V26.0058H107.666V28.71H111.035V30.3868H107.666V34.8434H105.551V24.2987H112.062Z" fill="white"/>
+                            <path d="M114.635 25.4771C114.262 25.4771 113.95 25.3612 113.698 25.1296C113.456 24.8879 113.335 24.5908 113.335 24.2383C113.335 23.8858 113.456 23.5937 113.698 23.3621C113.95 23.1204 114.262 22.9995 114.635 22.9995C115.007 22.9995 115.314 23.1204 115.556 23.3621C115.808 23.5937 115.934 23.8858 115.934 24.2383C115.934 24.5908 115.808 24.8879 115.556 25.1296C115.314 25.3612 115.007 25.4771 114.635 25.4771ZM115.677 26.4741V34.8434H113.562V26.4741H115.677Z" fill="white"/>
+                            <path d="M122.404 26.3533C123.402 26.3533 124.207 26.6705 124.822 27.305C125.436 27.9294 125.743 28.8056 125.743 29.9336V34.8434H123.628V30.2207C123.628 29.556 123.462 29.0474 123.13 28.6949C122.797 28.3323 122.344 28.151 121.77 28.151C121.186 28.151 120.723 28.3323 120.38 28.6949C120.048 29.0474 119.882 29.556 119.882 30.2207V34.8434H117.767V26.4741H119.882V27.5165C120.164 27.1539 120.521 26.8719 120.954 26.6705C121.397 26.459 121.881 26.3533 122.404 26.3533Z" fill="white"/>
+                            <path d="M127.21 30.6286C127.21 29.7826 127.377 29.0322 127.709 28.3776C128.051 27.723 128.515 27.2194 129.099 26.8669C129.683 26.5144 130.333 26.3382 131.048 26.3382C131.592 26.3382 132.11 26.459 132.604 26.7007C133.097 26.9324 133.49 27.2446 133.782 27.6374V23.6642H135.927V34.8434H133.782V33.6046C133.52 34.0176 133.153 34.3499 132.679 34.6017C132.206 34.8535 131.657 34.9794 131.033 34.9794C130.328 34.9794 129.683 34.7981 129.099 34.4355C128.515 34.073 128.051 33.5644 127.709 32.9097C127.377 32.245 127.21 31.4846 127.21 30.6286ZM133.797 30.6588C133.797 30.1451 133.696 29.707 133.495 29.3445C133.294 28.9718 133.022 28.6898 132.679 28.4985C132.337 28.297 131.969 28.1963 131.576 28.1963C131.184 28.1963 130.821 28.292 130.489 28.4834C130.156 28.6747 129.884 28.9567 129.673 29.3294C129.472 29.6919 129.371 30.125 129.371 30.6286C129.371 31.1321 129.472 31.5753 129.673 31.958C129.884 32.3306 130.156 32.6176 130.489 32.8191C130.831 33.0205 131.194 33.1212 131.576 33.1212C131.969 33.1212 132.337 33.0255 132.679 32.8342C133.022 32.6328 133.294 32.3508 133.495 31.9882C133.696 31.6155 133.797 31.1724 133.797 30.6588Z" fill="white"/>
+                            <path d="M145.773 30.4775C145.773 30.7796 145.753 31.0516 145.713 31.2933H139.594C139.645 31.8975 139.856 32.3709 140.229 32.7133C140.601 33.0557 141.06 33.227 141.603 33.227C142.389 33.227 142.948 32.8896 143.28 32.2148H145.562C145.32 33.0205 144.857 33.6852 144.172 34.2089C143.487 34.7226 142.646 34.9794 141.649 34.9794C140.843 34.9794 140.118 34.8031 139.473 34.4506C138.839 34.0881 138.34 33.5795 137.978 32.9248C137.625 32.2702 137.449 31.5148 137.449 30.6588C137.449 29.7926 137.625 29.0322 137.978 28.3776C138.33 27.723 138.824 27.2194 139.458 26.8669C140.093 26.5144 140.823 26.3382 141.649 26.3382C142.444 26.3382 143.154 26.5094 143.779 26.8518C144.413 27.1942 144.902 27.6827 145.244 28.3172C145.597 28.9416 145.773 29.6617 145.773 30.4775ZM143.582 29.8732C143.572 29.3294 143.376 28.8963 142.993 28.574C142.611 28.2416 142.142 28.0755 141.588 28.0755C141.065 28.0755 140.622 28.2366 140.259 28.5589C139.906 28.8711 139.69 29.3092 139.609 29.8732H143.582Z" fill="white"/>
+                            <path d="M149.432 27.7733C149.704 27.3302 150.056 26.9827 150.489 26.7309C150.932 26.4792 151.436 26.3533 152 26.3533V28.574H151.441C150.776 28.574 150.273 28.7301 149.93 29.0423C149.598 29.3545 149.432 29.8984 149.432 30.6739V34.8434H147.317V26.4741H149.432V27.7733Z" fill="white"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M33.3814 16.8026C32.2984 17.8817 32.8694 18.8518 35.5991 20.5697C38.6284 22.4755 42.2533 26.0631 43.4185 28.3083C44.6256 30.6338 44.4809 32.7511 43.0108 34.2802C41.2754 36.0844 38.5182 37.0677 36.2084 36.706C33.6273 36.3014 30.0631 33.8259 28.5602 31.3932C26.4808 28.0277 25.9848 27.4618 24.8729 27.1838C23.0953 26.7393 21.5253 27.7291 20.0143 30.2459C19.2396 31.536 18.4611 32.5915 18.2837 32.5915C18.1063 32.5915 17.7153 31.1323 17.4143 29.3492C16.8893 26.2356 14.6506 21.0304 13.7024 20.7185C13.4276 20.6284 13.3217 22.2464 13.41 25.19C13.4914 27.9158 13.2739 31.6154 12.8778 34.2339C12.2818 38.1755 12.2792 38.8024 12.8519 39.9059C14.5459 43.1705 17.7889 42.6342 22.5627 38.3004L23.6724 37.2934L24.5004 38.2159C26.9218 40.9124 31.9996 42.8907 36.4848 42.8843C40.086 42.8796 42.9432 41.7473 45.7667 39.2052C50.7553 34.7148 50.5069 29.0055 45.0678 23.1525L42.7761 20.6859L48.9089 20.4701C52.2814 20.3508 56.107 19.9909 57.4096 19.6695C59.7345 19.0954 59.6285 19.08 51.5963 18.8114C44.0391 18.5587 40.4736 18.0868 35.882 16.7318C34.0071 16.1784 34.0079 16.1784 33.3814 16.8026Z" fill="white"/>
+                          </svg>
+                    </a>
+                </div>
+                <div class="grid text-sm grid-cols gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
+                    <div class="space-y-3">
+                        <h3 class="text-lg font-normal text-white">Resources</h3>
+                        <ul class="space-y-2">
+                            <li>
+                                <a class="text-white text-[13px]" href="articles.html">Articles</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">Popular Pages</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">Top Searches</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">External Resources</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">Tools</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">Definitions</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h3 class="text-lg font-normal text-white">About</h3>
+                        <ul class="space-y-2">
+                            <li>
+                                <a class="text-white text-[13px]" href="contact.html">Contact</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="privacy-policy.html">Privacy</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">Terms</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">FAQ</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h3 class="text-lg font-normal text-white">Links</h3>
+                        <ul class="space-y-2">
+                            <li>
+                                <a class="text-white text-[13px]" href="#">Anagram Solver</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">WordFinderX</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">Letter Solver</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">Free Games</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h3 class="text-lg font-normal text-white">Share Your Thoughts</h3>
+                        <p class="text-white">
+                            Do you have suggestions or want to report a missing word?
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="py-8 text-sm text-center text-white">© 2022 Copyright: Word Finder</div>
+    </footer>
+    <!-- footer end -->
+    <script src="js/jquery.min.js " type="text/javascript "></script>
+    <script src="../node_modules/preline/dist/preline.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</body>
+
+</html>

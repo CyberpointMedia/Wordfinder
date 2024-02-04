@@ -1,0 +1,1122 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Word Finder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/logo-sm.svg">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+
+<body class="font-custom">
+    <!-- header start here -->
+    <header class="relative flex flex-wrap sm:justify-start sm:flex-nowrap w-full text-sm py-5 bg-[#DBF4FF]">
+        <nav class="max-w-[85rem] w-full mx-auto px-4 md:px-6 lg:px-8" aria-label="Global">
+            <div class="relative sm:flex sm:items-center">
+                <div class="flex items-center justify-between">
+                    <a class="flex-none" href="index.html">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="152" height="52" viewBox="0 0 152 52" fill="none" class="logo">
+                        <rect width="51.6562" height="51.6562" rx="25.8281" fill="#007BFF"></rect>
+                        <path d="M74.5905 24.2989L71.6447 34.8436H69.152L67.173 27.3354L65.1033 34.8436L62.6258 34.8587L59.7856 24.2989H62.0517L63.9099 32.4869L66.0551 24.2989H68.4118L70.4361 32.4416L72.3094 24.2989H74.5905Z" fill="#283551"></path>
+                        <path d="M79.6878 34.9796C78.8821 34.9796 78.157 34.8033 77.5124 34.4508C76.8679 34.0882 76.3593 33.5796 75.9866 32.925C75.6241 32.2704 75.4428 31.515 75.4428 30.659C75.4428 29.8029 75.6291 29.0475 76.0017 28.3929C76.3844 27.7383 76.9031 27.2347 77.5577 26.8822C78.2124 26.5196 78.9426 26.3383 79.7483 26.3383C80.554 26.3383 81.2841 26.5196 81.9388 26.8822C82.5934 27.2347 83.1071 27.7383 83.4797 28.3929C83.8624 29.0475 84.0538 29.8029 84.0538 30.659C84.0538 31.515 83.8574 32.2704 83.4646 32.925C83.0819 33.5796 82.5582 34.0882 81.8935 34.4508C81.2388 34.8033 80.5036 34.9796 79.6878 34.9796ZM79.6878 33.1365C80.0705 33.1365 80.4281 33.0459 80.7604 32.8646C81.1029 32.6732 81.3748 32.3912 81.5762 32.0186C81.7776 31.6459 81.8784 31.1927 81.8784 30.659C81.8784 29.8633 81.6669 29.254 81.2439 28.831C80.8309 28.3979 80.3223 28.1814 79.7181 28.1814C79.1138 28.1814 78.6052 28.3979 78.1922 28.831C77.7894 29.254 77.588 29.8633 77.588 30.659C77.588 31.4546 77.7844 32.0689 78.1771 32.502C78.58 32.925 79.0836 33.1365 79.6878 33.1365Z" fill="#283551"></path>
+                        <path d="M87.7202 27.7735C87.9921 27.3304 88.3446 26.9829 88.7777 26.7311C89.2208 26.4793 89.7244 26.3535 90.2884 26.3535V28.5742H89.7294C89.0647 28.5742 88.5611 28.7303 88.2187 29.0425C87.8863 29.3547 87.7202 29.8986 87.7202 30.6741V34.8436H85.6052V26.4743H87.7202V27.7735Z" fill="#283551"></path>
+                        <path d="M91.1691 30.6287C91.1691 29.7827 91.3352 29.0324 91.6676 28.3778C92.01 27.7232 92.4733 27.2196 93.0574 26.8671C93.6416 26.5146 94.2912 26.3383 95.0062 26.3383C95.5501 26.3383 96.0688 26.4592 96.5623 26.7009C97.0557 26.9326 97.4485 27.2448 97.7406 27.6375V23.6644H99.8858V34.8436H97.7406V33.6048C97.4787 34.0177 97.1111 34.3501 96.6378 34.6019C96.1644 34.8537 95.6155 34.9796 94.9911 34.9796C94.2861 34.9796 93.6416 34.7983 93.0574 34.4357C92.4733 34.0731 92.01 33.5645 91.6676 32.9099C91.3352 32.2452 91.1691 31.4848 91.1691 30.6287ZM97.7557 30.659C97.7557 30.1453 97.655 29.7072 97.4536 29.3446C97.2521 28.972 96.9802 28.69 96.6378 28.4986C96.2954 28.2972 95.9278 28.1965 95.535 28.1965C95.1422 28.1965 94.7796 28.2922 94.4473 28.4835C94.1149 28.6749 93.843 28.9569 93.6315 29.3295C93.4301 29.6921 93.3294 30.1252 93.3294 30.6287C93.3294 31.1323 93.4301 31.5754 93.6315 31.9582C93.843 32.3308 94.1149 32.6178 94.4473 32.8193C94.7897 33.0207 95.1523 33.1214 95.535 33.1214C95.9278 33.1214 96.2954 33.0257 96.6378 32.8344C96.9802 32.6329 97.2521 32.3509 97.4536 31.9884C97.655 31.6157 97.7557 31.1726 97.7557 30.659Z" fill="#283551"></path>
+                        <path d="M112.062 24.2989V26.006H107.666V28.7101H111.035V30.387H107.666V34.8436H105.551V24.2989H112.062Z" fill="#283551"></path>
+                        <path d="M114.635 25.4772C114.262 25.4772 113.95 25.3614 113.698 25.1298C113.456 24.8881 113.335 24.591 113.335 24.2385C113.335 23.886 113.456 23.5939 113.698 23.3623C113.95 23.1206 114.262 22.9997 114.635 22.9997C115.007 22.9997 115.314 23.1206 115.556 23.3623C115.808 23.5939 115.934 23.886 115.934 24.2385C115.934 24.591 115.808 24.8881 115.556 25.1298C115.314 25.3614 115.007 25.4772 114.635 25.4772ZM115.677 26.4743V34.8436H113.562V26.4743H115.677Z" fill="#283551"></path>
+                        <path d="M122.404 26.3535C123.402 26.3535 124.207 26.6707 124.822 27.3052C125.436 27.9296 125.743 28.8058 125.743 29.9338V34.8436H123.628V30.2208C123.628 29.5561 123.462 29.0475 123.13 28.695C122.797 28.3325 122.344 28.1512 121.77 28.1512C121.186 28.1512 120.723 28.3325 120.38 28.695C120.048 29.0475 119.882 29.5561 119.882 30.2208V34.8436H117.767V26.4743H119.882V27.5167C120.164 27.1541 120.521 26.8721 120.954 26.6707C121.397 26.4592 121.881 26.3535 122.404 26.3535Z" fill="#283551"></path>
+                        <path d="M127.21 30.6287C127.21 29.7827 127.377 29.0324 127.709 28.3778C128.051 27.7232 128.515 27.2196 129.099 26.8671C129.683 26.5146 130.333 26.3383 131.048 26.3383C131.592 26.3383 132.11 26.4592 132.604 26.7009C133.097 26.9326 133.49 27.2448 133.782 27.6375V23.6644H135.927V34.8436H133.782V33.6048C133.52 34.0177 133.153 34.3501 132.679 34.6019C132.206 34.8537 131.657 34.9796 131.033 34.9796C130.328 34.9796 129.683 34.7983 129.099 34.4357C128.515 34.0731 128.051 33.5645 127.709 32.9099C127.377 32.2452 127.21 31.4848 127.21 30.6287ZM133.797 30.659C133.797 30.1453 133.696 29.7072 133.495 29.3446C133.294 28.972 133.022 28.69 132.679 28.4986C132.337 28.2972 131.969 28.1965 131.576 28.1965C131.184 28.1965 130.821 28.2922 130.489 28.4835C130.156 28.6749 129.884 28.9569 129.673 29.3295C129.472 29.6921 129.371 30.1252 129.371 30.6287C129.371 31.1323 129.472 31.5754 129.673 31.9582C129.884 32.3308 130.156 32.6178 130.489 32.8193C130.831 33.0207 131.194 33.1214 131.576 33.1214C131.969 33.1214 132.337 33.0257 132.679 32.8344C133.022 32.6329 133.294 32.3509 133.495 31.9884C133.696 31.6157 133.797 31.1726 133.797 30.659Z" fill="#283551"></path>
+                        <path d="M145.773 30.4777C145.773 30.7798 145.753 31.0517 145.713 31.2934H139.594C139.645 31.8977 139.856 32.3711 140.229 32.7135C140.601 33.0559 141.06 33.2271 141.603 33.2271C142.389 33.2271 142.948 32.8898 143.28 32.215H145.562C145.32 33.0207 144.857 33.6854 144.172 34.2091C143.487 34.7227 142.646 34.9796 141.649 34.9796C140.843 34.9796 140.118 34.8033 139.473 34.4508C138.839 34.0882 138.34 33.5796 137.978 32.925C137.625 32.2704 137.449 31.515 137.449 30.659C137.449 29.7928 137.625 29.0324 137.978 28.3778C138.33 27.7232 138.824 27.2196 139.458 26.8671C140.093 26.5146 140.823 26.3383 141.649 26.3383C142.444 26.3383 143.154 26.5096 143.779 26.852C144.413 27.1944 144.902 27.6829 145.244 28.3174C145.597 28.9418 145.773 29.6619 145.773 30.4777ZM143.582 29.8734C143.572 29.3295 143.376 28.8965 142.993 28.5742C142.611 28.2418 142.142 28.0757 141.588 28.0757C141.065 28.0757 140.622 28.2368 140.259 28.5591C139.906 28.8713 139.69 29.3094 139.609 29.8734H143.582Z" fill="#283551"></path>
+                        <path d="M149.432 27.7735C149.704 27.3304 150.056 26.9829 150.489 26.7311C150.932 26.4793 151.436 26.3535 152 26.3535V28.5742H151.441C150.776 28.5742 150.273 28.7303 149.93 29.0425C149.598 29.3547 149.432 29.8986 149.432 30.6741V34.8436H147.317V26.4743H149.432V27.7735Z" fill="#283551"></path>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M33.3814 16.8028C32.2984 17.8818 32.8694 18.8519 35.5991 20.5698C38.6284 22.4756 42.2533 26.0633 43.4185 28.3085C44.6256 30.6339 44.4809 32.7512 43.0108 34.2803C41.2754 36.0845 38.5182 37.0678 36.2084 36.7062C33.6273 36.3016 30.0631 33.826 28.5602 31.3933C26.4808 28.0279 25.9848 27.462 24.8729 27.1839C23.0953 26.7394 21.5253 27.7292 20.0143 30.246C19.2396 31.5362 18.4611 32.5916 18.2837 32.5916C18.1063 32.5916 17.7153 31.1324 17.4143 29.3493C16.8893 26.2357 14.6506 21.0306 13.7024 20.7187C13.4276 20.6286 13.3217 22.2465 13.41 25.1902C13.4914 27.9159 13.2739 31.6155 12.8778 34.234C12.2818 38.1756 12.2792 38.8025 12.8519 39.906C14.5459 43.1706 17.7889 42.6343 22.5627 38.3005L23.6724 37.2935L24.5004 38.216C26.9218 40.9125 31.9996 42.8908 36.4848 42.8844C40.086 42.8797 42.9432 41.7474 45.7667 39.2054C50.7553 34.715 50.5069 29.0057 45.0678 23.1526L42.7761 20.686L48.9089 20.4702C52.2814 20.351 56.107 19.991 57.4096 19.6696C59.7345 19.0956 59.6285 19.0801 51.5963 18.8115C44.0391 18.5588 40.4736 18.0869 35.882 16.732C34.0071 16.1785 34.0079 16.1785 33.3814 16.8028Z" fill="white"></path>
+                     </svg>
+                    </a>
+                    <div class="sm:hidden">
+                        <button type="button" class="inline-flex items-center cursor-pointer disabled:opacity-50 disabled:pointer-events-none" data-hs-overlay="#hs-large-modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                               <path d="M8.27323 3.5C5.64209 3.5 3.5 5.64213 3.5 8.27323C3.5 10.9043 5.64213 13.0465 8.27323 13.0465C10.9043 13.0465 13.0465 10.9043 13.0465 8.27323C13.0465 5.64213 10.9043 3.5 8.27323 3.5ZM8.27323 11.1837C6.66659 11.1837 5.36272 9.87987 5.36272 8.27323C5.36272 6.66659 6.66659 5.36272 8.27323 5.36272C9.87987 5.36272 11.1837 6.66659 11.1837 8.27323C11.1837 9.87987 9.87987 11.1837 8.27323 11.1837Z" fill="#393939"/>
+                               <path d="M19.7268 3.5C17.0957 3.5 14.9536 5.64213 14.9536 8.27323C14.9536 10.9043 17.0957 13.0465 19.7268 13.0465C22.3579 13.0465 24.5001 10.9043 24.5001 8.27323C24.5001 5.64213 22.3579 3.5 19.7268 3.5ZM19.7268 11.1837C18.1202 11.1837 16.8163 9.87987 16.8163 8.27323C16.8163 6.66659 18.1202 5.36272 19.7268 5.36272C21.3335 5.36272 22.6374 6.66659 22.6374 8.27323C22.6374 9.87987 21.3335 11.1837 19.7268 11.1837Z" fill="#393939"/>
+                               <path d="M8.27323 14.9535C5.64209 14.9535 3.5 17.0957 3.5 19.7268C3.5 22.3579 5.64213 24.5 8.27323 24.5C10.9043 24.5 13.0465 22.3579 13.0465 19.7268C13.0465 17.0957 10.9043 14.9535 8.27323 14.9535ZM8.27323 22.6373C6.66659 22.6373 5.36272 21.3334 5.36272 19.7268C5.36272 18.1201 6.66659 16.8163 8.27323 16.8163C9.87987 16.8163 11.1837 18.1201 11.1837 19.7268C11.1837 21.3334 9.87987 22.6373 8.27323 22.6373Z" fill="#393939"/>
+                               <path d="M19.7268 14.9535C17.0957 14.9535 14.9536 17.0957 14.9536 19.7268C14.9536 22.3579 17.0957 24.5 19.7268 24.5C22.3579 24.5 24.5001 22.3579 24.5001 19.7268C24.5001 17.0957 22.3579 14.9535 19.7268 14.9535ZM19.7268 22.6373C18.1202 22.6373 16.8163 21.3334 16.8163 19.7268C16.8163 18.1201 18.1202 16.8163 19.7268 16.8163C21.3335 16.8163 22.6374 18.1201 22.6374 19.7268C22.6374 21.3334 21.3335 22.6373 19.7268 22.6373Z" fill="#393939"/>
+                            </svg>
+                         </button>
+                    </div>
+                </div>
+                <div id="navbar-hover-event" class="hidden overflow-hidden transition-all duration-300 hs-collapse basis-full grow sm:block">
+                    <div class="flex flex-col justify-between gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:ps-5">
+                        <a class="text-base font-normal text-blue-500" href="#" aria-current="page">Word Lists</a>
+                        <a href="javascript:void(0);" class="text-base font-normal text-[#393939] sm:py-4 hover:text-blue-500">
+                     Word Finders
+                     </a>
+                        <button type="button" class="inline-flex items-center cursor-pointer disabled:opacity-50 disabled:pointer-events-none" data-hs-overlay="#hs-large-modal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                           <path d="M8.27323 3.5C5.64209 3.5 3.5 5.64213 3.5 8.27323C3.5 10.9043 5.64213 13.0465 8.27323 13.0465C10.9043 13.0465 13.0465 10.9043 13.0465 8.27323C13.0465 5.64213 10.9043 3.5 8.27323 3.5ZM8.27323 11.1837C6.66659 11.1837 5.36272 9.87987 5.36272 8.27323C5.36272 6.66659 6.66659 5.36272 8.27323 5.36272C9.87987 5.36272 11.1837 6.66659 11.1837 8.27323C11.1837 9.87987 9.87987 11.1837 8.27323 11.1837Z" fill="#393939"/>
+                           <path d="M19.7268 3.5C17.0957 3.5 14.9536 5.64213 14.9536 8.27323C14.9536 10.9043 17.0957 13.0465 19.7268 13.0465C22.3579 13.0465 24.5001 10.9043 24.5001 8.27323C24.5001 5.64213 22.3579 3.5 19.7268 3.5ZM19.7268 11.1837C18.1202 11.1837 16.8163 9.87987 16.8163 8.27323C16.8163 6.66659 18.1202 5.36272 19.7268 5.36272C21.3335 5.36272 22.6374 6.66659 22.6374 8.27323C22.6374 9.87987 21.3335 11.1837 19.7268 11.1837Z" fill="#393939"/>
+                           <path d="M8.27323 14.9535C5.64209 14.9535 3.5 17.0957 3.5 19.7268C3.5 22.3579 5.64213 24.5 8.27323 24.5C10.9043 24.5 13.0465 22.3579 13.0465 19.7268C13.0465 17.0957 10.9043 14.9535 8.27323 14.9535ZM8.27323 22.6373C6.66659 22.6373 5.36272 21.3334 5.36272 19.7268C5.36272 18.1201 6.66659 16.8163 8.27323 16.8163C9.87987 16.8163 11.1837 18.1201 11.1837 19.7268C11.1837 21.3334 9.87987 22.6373 8.27323 22.6373Z" fill="#393939"/>
+                           <path d="M19.7268 14.9535C17.0957 14.9535 14.9536 17.0957 14.9536 19.7268C14.9536 22.3579 17.0957 24.5 19.7268 24.5C22.3579 24.5 24.5001 22.3579 24.5001 19.7268C24.5001 17.0957 22.3579 14.9535 19.7268 14.9535ZM19.7268 22.6373C18.1202 22.6373 16.8163 21.3334 16.8163 19.7268C16.8163 18.1201 18.1202 16.8163 19.7268 16.8163C21.3335 16.8163 22.6374 18.1201 22.6374 19.7268C22.6374 21.3334 21.3335 22.6373 19.7268 22.6373Z" fill="#393939"/>
+                        </svg>
+                     </button>
+
+                    </div>
+                </div>
+
+                <!-- mega menu start here -->
+                <div id="hs-large-modal" class="hs-overlay hidden w-full h-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none">
+                    <div class="m-3 mt-0 transition-all ease-out opacity-0 hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 lg:max-w-7xl lg:w-full lg:mx-auto">
+                        <div class="relative p-5">
+                            <button type="button" class="absolute top-0 z-50 right-5" data-hs-overlay="#hs-small-modal">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                                    <path d="M15.5978 14L24.1196 5.44017C24.5761 4.98372 24.5761 4.26088 24.1196 3.84233C23.6632 3.38589 22.9403 3.38589 22.5218 3.84233L14 12.4022L5.44017 3.84233C4.98373 3.38589 4.26088 3.38589 3.84233 3.84233C3.38589 4.29878 3.38589 5.02162 3.84233 5.44017L12.3641 14L3.84233 22.5598C3.38589 23.0163 3.38589 23.7391 3.84233 24.1577C4.07055 24.3859 4.37493 24.5 4.64139 24.5C4.90784 24.5 5.21193 24.3859 5.44044 24.1577L14.0003 15.5978L22.5601 24.1577C22.7883 24.3859 23.0927 24.5 23.3592 24.5C23.6256 24.5 23.9297 24.3859 24.1582 24.1577C24.6147 23.7012 24.6147 22.9784 24.1582 22.5598L15.5978 14Z" fill="white"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="flex flex-col bg-white border shadow-sm pointer-events-auto rounded-xl">
+                            <div class="px-8 py-12 overflow-y-auto md:px-16">
+                                <div class="grid gap-4 md:grid-cols-4">
+                                    <div class="sm:col-span-2">
+                                        <span class="block text-xl pb-6 font-semibold text-[#007BFF]">Word Lists</span>
+                                        <div class="grid space-y-3 sm:space-y-0 sm:space-x-4 sm:grid-cols-2">
+                                            <ul class="space-y-2 text-base font-normal">
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="5-letter-words.html">
+                                                        5 Letter Words
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="words-with-X-and-Q.html">
+                                                        Words with X and Q
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Word Scramble
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Anagram Solver
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Word Unscrambler
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Words With Friends Cheat
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Scrabble Word Finder
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Word Finder
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Wordle
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Word Chums
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Anagramme Expert
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Nyt Spelling Bee Answers
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Crossword Solver
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Scrabble Go Word Finder
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Wordscapes Answers
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <ul class="space-y-2 text-base font-normal">
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        4 Pics 1 Word
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Text Twist
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Cody Cross
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Word Cookies Answers
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Wordfeud
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Apalabrados Trucos
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Word Solver
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Scrabble Cheat
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Word Generator
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Jumble Solver
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="sm:col-span-1">
+                                        <div class="flex flex-col">
+                                            <span class="block text-xl pb-6 font-semibold text-[#007BFF]">Dictionary</span>
+                                            <ul class="space-y-2 text-base font-normal">
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Dictionary
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Words With Friends Dictionary
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Scrabble Dictionary
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="flex flex-col">
+                                            <span class="block text-xl pb-6 pt-10 font-semibold text-[#007BFF]">List of Words</span>
+                                            <ul class="space-y-2 text-base font-normal">
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        All Consonant Words
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Vowel Words
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Words By Length
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Words Ending In
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Words Start With
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Words With Letters
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="sm:col-span-1">
+                                        <div class="flex flex-col">
+                                            <span class="block text-xl pb-6 font-semibold text-[#007BFF]">Tool</span>
+                                            <ul class="space-y-2 text-base font-normal">
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Password Generator
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Username Generator
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Random Word Generator
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Word Counter
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="flex flex-col">
+                                            <span class="block text-xl pb-6 pt-4 font-semibold text-[#007BFF]">Games</span>
+                                            <ul class="space-y-2 text-base font-normal">
+
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Scramble Words
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Codeword
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Outspell
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Crossword Puzzles
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="javascript:void(0);">
+                                                        Word Wipe
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- End Col -->
+
+                                    <!-- End Col -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- mega menu end here -->
+            </div>
+        </nav>
+    </header>
+    <!-- header end here -->
+    <div class="bg-[#DBF4FF]">
+        <div class="container">
+            <div class="flex flex-wrap max-w-screen-md pt-10 pb-10 mx-auto md:pt-20 md:pb-20">
+                <div class="flex flex-wrap items-center justify-center w-full align-middle">
+                    <h1 class="block text-[#393939] text-5xl sm:text-7xl font-semibold mb-3 text-center"> Word Finder</h1>
+                    <p class="block w-full text-center">
+                        Enter up to 15 letters and up to 2 wildcards (? or space).
+                    </p>
+                    <form id="search-main" class="w-full mt-8 mb-6" action="#" method="post">
+                        <div class="input-group MainSearch border rounded-[20px] border-[#007BFF] overflow-hidden bg-white sm:py-4 py-2 text-center">
+                            <input type="text" name="letters" class="w-2/5 border-0 sm:w-4/6 md:w-2/3 main-search-input sm:text-lg focus:outline-none" placeholder="Type Letters ..." aria-label="Letters" aria-describedby="dictionary-select-field">
+                            <span class="p-0 border-0 input-group-text" id="dictionary-select-field">
+                          <select class="py-2 text-sm bg-white border-0 ps-2 pe-[30px] sm:text-lg focus:outline-none" aria-label="Default select example" name="scrabble_type">
+                             <option value="wwf" selected="">Words With Friends</option>
+                             <option value="us">Scrabble US</option>
+                             <option value="uk">Scrabble UK</option>
+                             <option value="all_en">All Dictionaries</option>
+                          </select>
+                       </span>
+                        </div>
+
+                        <div class="w-full mb-4 hs-accordion-group">
+                            <div class="w-full hs-accordion" id="hs-basic-advance-search">
+                                <button type="button" class="hs-accordion-toggle hs-accordion-active:text-blue-600 py-3 items-center gap-x-3 w-full font-medium text-center text-[#393939] text-lg mt-2 disabled:opacity-50 disabled:pointer-events-none" aria-controls="hs-basic-collapse-two">
+                                    Advanced Search
+
+                                    <svg class="inline-block transition duration-500 hs-accordion-active:rotate-180" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+
+                                </button>
+                                <div id="hs-basic-collapse-two" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-basic-advance-search">
+                                    <div class="advanceSearchBox border rounded-[20px] border-[#007BFF4D] p-7 bg-white mb-4">
+                                        <h2 class="mb-3 text-lg">Advanced Search</h2>
+                                        <div class="grid sm:justify-between gap-4 sm:grid-cols-2">
+                                            <div class="w-full flex bg-[#F0F7FA] rounded-[10px] p-5">
+                                                <input type="text" name="starts_with" class="w-full bg-transparent focus:outline-none placeholder:text-sm" placeholder="G" value="">
+                                                <span class="formQuestionMark-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="input-icon">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1521 3.02155C9.04839 3.23734 7.13401 4.14358 5.64585 5.62818C2.11805 9.14749 2.11805 14.8569 5.64585 18.3762C7.07804 19.8049 8.81918 20.6589 10.9056 20.9559C11.324 21.0155 12.7079 21.0145 13.1424 20.9543C15.1849 20.6716 16.9793 19.7891 18.3864 18.3751C20.0231 16.7305 20.9335 14.6377 21.0208 12.3192C21.1151 9.81628 20.1686 7.41395 18.3835 5.62515C16.9994 4.23812 15.2458 3.36232 13.2657 3.06914C12.8349 3.00535 11.5846 2.9772 11.1521 3.02155ZM13.3185 4.35429C14.9544 4.65226 16.3457 5.37551 17.4927 6.52406C18.9688 8.00221 19.7647 9.92135 19.7647 12.0022C19.7647 14.0832 18.9677 16.0047 17.4927 17.4797C16.0177 18.9547 14.0962 19.7517 12.0152 19.7517C9.93564 19.7517 8.01161 18.9537 6.53765 17.4797C5.373 16.315 4.64968 14.907 4.34816 13.2174C4.25847 12.7148 4.25847 11.2895 4.34816 10.7869C4.64968 9.09736 5.373 7.68931 6.53765 6.52466C7.79504 5.26726 9.31561 4.53074 11.1521 4.28948C11.5864 4.23245 12.8585 4.27049 13.3185 4.35429ZM11.5463 7.49687C10.9415 7.54784 10.3905 7.7829 10.0165 8.14945C9.48656 8.66896 9.4197 9.33594 9.86963 9.61521C10.2252 9.8359 10.5089 9.77302 10.7635 9.41714C11.0691 8.98989 11.2853 8.8647 11.7623 8.83874C12.5066 8.79827 12.9671 9.13636 12.9226 9.6907C12.8915 10.0781 12.7441 10.2809 12.1386 10.7692C11.5172 11.2703 11.3052 11.5606 11.1675 12.0993C11.0732 12.4679 11.0733 13.0864 11.1677 13.2944C11.2618 13.5016 11.3978 13.5646 11.7529 13.5655C12.2658 13.5667 12.4377 13.4039 12.4378 12.9166C12.4379 12.3197 12.5982 12.0222 13.1785 11.5419C14.1003 10.779 14.5191 9.98617 14.4094 9.21178C14.2463 8.06044 13.0884 7.36689 11.5463 7.49687ZM11.4692 14.4385C10.8393 14.6718 10.6507 15.4615 11.1101 15.9417C11.4681 16.3158 12.0186 16.3132 12.3858 15.9356C12.9417 15.3638 12.5812 14.4461 11.7862 14.4092C11.67 14.4038 11.5273 14.417 11.4692 14.4385Z" fill="#007BFF" fill-opacity="0.5"/>
+                                                      </svg>
+
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hover-icon">
+                                                        <circle cx="12" cy="12" r="9" fill="#007BFF"/>
+                                                        <path d="M10.0166 8.14948C10.3905 7.78292 10.9415 7.54787 11.5463 7.49689C13.0884 7.36691 14.2463 8.06046 14.4094 9.2118C14.5191 9.98619 14.1004 10.779 13.1785 11.5419C12.5983 12.0222 12.438 12.3198 12.4378 12.9166C12.4378 13.4039 12.2659 13.5668 11.7529 13.5655C11.3979 13.5646 11.2619 13.5016 11.1678 13.2944C11.0733 13.0864 11.0732 12.4679 11.1675 12.0993C11.3053 11.5606 11.5172 11.2703 12.1386 10.7692C12.7441 10.281 12.8916 10.0781 12.9227 9.69072C12.9672 9.13638 12.5067 8.79829 11.7623 8.83876C11.2853 8.86472 11.0691 8.98991 10.7635 9.41716C10.5089 9.77304 10.2252 9.83592 9.86967 9.61523C9.41974 9.33597 9.48659 8.66898 10.0166 8.14948Z" fill="white"/>
+                                                        <path d="M11.1102 15.9417C10.6507 15.4615 10.8393 14.6718 11.4692 14.4385C11.5273 14.417 11.67 14.4038 11.7862 14.4092C12.5812 14.4462 12.9417 15.3638 12.3858 15.9356C12.0186 16.3132 11.4681 16.3158 11.1102 15.9417Z" fill="white"/>
+                                                      </svg>
+                                                </span>
+                                            </div>
+
+                                            <div class="w-full flex bg-[#F0F7FA] rounded-[10px] p-5">
+                                                <input type="text" name="end_with" class="w-full bg-transparent focus:outline-none placeholder:text-sm" placeholder="End With" value="">
+                                                <span class="formQuestionMark-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="input-icon">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1521 3.02155C9.04839 3.23734 7.13401 4.14358 5.64585 5.62818C2.11805 9.14749 2.11805 14.8569 5.64585 18.3762C7.07804 19.8049 8.81918 20.6589 10.9056 20.9559C11.324 21.0155 12.7079 21.0145 13.1424 20.9543C15.1849 20.6716 16.9793 19.7891 18.3864 18.3751C20.0231 16.7305 20.9335 14.6377 21.0208 12.3192C21.1151 9.81628 20.1686 7.41395 18.3835 5.62515C16.9994 4.23812 15.2458 3.36232 13.2657 3.06914C12.8349 3.00535 11.5846 2.9772 11.1521 3.02155ZM13.3185 4.35429C14.9544 4.65226 16.3457 5.37551 17.4927 6.52406C18.9688 8.00221 19.7647 9.92135 19.7647 12.0022C19.7647 14.0832 18.9677 16.0047 17.4927 17.4797C16.0177 18.9547 14.0962 19.7517 12.0152 19.7517C9.93564 19.7517 8.01161 18.9537 6.53765 17.4797C5.373 16.315 4.64968 14.907 4.34816 13.2174C4.25847 12.7148 4.25847 11.2895 4.34816 10.7869C4.64968 9.09736 5.373 7.68931 6.53765 6.52466C7.79504 5.26726 9.31561 4.53074 11.1521 4.28948C11.5864 4.23245 12.8585 4.27049 13.3185 4.35429ZM11.5463 7.49687C10.9415 7.54784 10.3905 7.7829 10.0165 8.14945C9.48656 8.66896 9.4197 9.33594 9.86963 9.61521C10.2252 9.8359 10.5089 9.77302 10.7635 9.41714C11.0691 8.98989 11.2853 8.8647 11.7623 8.83874C12.5066 8.79827 12.9671 9.13636 12.9226 9.6907C12.8915 10.0781 12.7441 10.2809 12.1386 10.7692C11.5172 11.2703 11.3052 11.5606 11.1675 12.0993C11.0732 12.4679 11.0733 13.0864 11.1677 13.2944C11.2618 13.5016 11.3978 13.5646 11.7529 13.5655C12.2658 13.5667 12.4377 13.4039 12.4378 12.9166C12.4379 12.3197 12.5982 12.0222 13.1785 11.5419C14.1003 10.779 14.5191 9.98617 14.4094 9.21178C14.2463 8.06044 13.0884 7.36689 11.5463 7.49687ZM11.4692 14.4385C10.8393 14.6718 10.6507 15.4615 11.1101 15.9417C11.4681 16.3158 12.0186 16.3132 12.3858 15.9356C12.9417 15.3638 12.5812 14.4461 11.7862 14.4092C11.67 14.4038 11.5273 14.417 11.4692 14.4385Z" fill="#007BFF" fill-opacity="0.5"/>
+                                                      </svg>
+
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hover-icon">
+                                                        <circle cx="12" cy="12" r="9" fill="#007BFF"/>
+                                                        <path d="M10.0166 8.14948C10.3905 7.78292 10.9415 7.54787 11.5463 7.49689C13.0884 7.36691 14.2463 8.06046 14.4094 9.2118C14.5191 9.98619 14.1004 10.779 13.1785 11.5419C12.5983 12.0222 12.438 12.3198 12.4378 12.9166C12.4378 13.4039 12.2659 13.5668 11.7529 13.5655C11.3979 13.5646 11.2619 13.5016 11.1678 13.2944C11.0733 13.0864 11.0732 12.4679 11.1675 12.0993C11.3053 11.5606 11.5172 11.2703 12.1386 10.7692C12.7441 10.281 12.8916 10.0781 12.9227 9.69072C12.9672 9.13638 12.5067 8.79829 11.7623 8.83876C11.2853 8.86472 11.0691 8.98991 10.7635 9.41716C10.5089 9.77304 10.2252 9.83592 9.86967 9.61523C9.41974 9.33597 9.48659 8.66898 10.0166 8.14948Z" fill="white"/>
+                                                        <path d="M11.1102 15.9417C10.6507 15.4615 10.8393 14.6718 11.4692 14.4385C11.5273 14.417 11.67 14.4038 11.7862 14.4092C12.5812 14.4462 12.9417 15.3638 12.3858 15.9356C12.0186 16.3132 11.4681 16.3158 11.1102 15.9417Z" fill="white"/>
+                                                      </svg>
+                                                </span>
+                                            </div>
+
+                                            <div class="w-full flex bg-[#F0F7FA] rounded-[10px] p-5">
+                                                <input type="text" name="contains" class="w-full bg-transparent focus:outline-none placeholder:text-sm" placeholder="Contains" value="">
+                                                <span class="formQuestionMark-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="input-icon">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1521 3.02155C9.04839 3.23734 7.13401 4.14358 5.64585 5.62818C2.11805 9.14749 2.11805 14.8569 5.64585 18.3762C7.07804 19.8049 8.81918 20.6589 10.9056 20.9559C11.324 21.0155 12.7079 21.0145 13.1424 20.9543C15.1849 20.6716 16.9793 19.7891 18.3864 18.3751C20.0231 16.7305 20.9335 14.6377 21.0208 12.3192C21.1151 9.81628 20.1686 7.41395 18.3835 5.62515C16.9994 4.23812 15.2458 3.36232 13.2657 3.06914C12.8349 3.00535 11.5846 2.9772 11.1521 3.02155ZM13.3185 4.35429C14.9544 4.65226 16.3457 5.37551 17.4927 6.52406C18.9688 8.00221 19.7647 9.92135 19.7647 12.0022C19.7647 14.0832 18.9677 16.0047 17.4927 17.4797C16.0177 18.9547 14.0962 19.7517 12.0152 19.7517C9.93564 19.7517 8.01161 18.9537 6.53765 17.4797C5.373 16.315 4.64968 14.907 4.34816 13.2174C4.25847 12.7148 4.25847 11.2895 4.34816 10.7869C4.64968 9.09736 5.373 7.68931 6.53765 6.52466C7.79504 5.26726 9.31561 4.53074 11.1521 4.28948C11.5864 4.23245 12.8585 4.27049 13.3185 4.35429ZM11.5463 7.49687C10.9415 7.54784 10.3905 7.7829 10.0165 8.14945C9.48656 8.66896 9.4197 9.33594 9.86963 9.61521C10.2252 9.8359 10.5089 9.77302 10.7635 9.41714C11.0691 8.98989 11.2853 8.8647 11.7623 8.83874C12.5066 8.79827 12.9671 9.13636 12.9226 9.6907C12.8915 10.0781 12.7441 10.2809 12.1386 10.7692C11.5172 11.2703 11.3052 11.5606 11.1675 12.0993C11.0732 12.4679 11.0733 13.0864 11.1677 13.2944C11.2618 13.5016 11.3978 13.5646 11.7529 13.5655C12.2658 13.5667 12.4377 13.4039 12.4378 12.9166C12.4379 12.3197 12.5982 12.0222 13.1785 11.5419C14.1003 10.779 14.5191 9.98617 14.4094 9.21178C14.2463 8.06044 13.0884 7.36689 11.5463 7.49687ZM11.4692 14.4385C10.8393 14.6718 10.6507 15.4615 11.1101 15.9417C11.4681 16.3158 12.0186 16.3132 12.3858 15.9356C12.9417 15.3638 12.5812 14.4461 11.7862 14.4092C11.67 14.4038 11.5273 14.417 11.4692 14.4385Z" fill="#007BFF" fill-opacity="0.5"/>
+                                                      </svg>
+
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hover-icon">
+                                                        <circle cx="12" cy="12" r="9" fill="#007BFF"/>
+                                                        <path d="M10.0166 8.14948C10.3905 7.78292 10.9415 7.54787 11.5463 7.49689C13.0884 7.36691 14.2463 8.06046 14.4094 9.2118C14.5191 9.98619 14.1004 10.779 13.1785 11.5419C12.5983 12.0222 12.438 12.3198 12.4378 12.9166C12.4378 13.4039 12.2659 13.5668 11.7529 13.5655C11.3979 13.5646 11.2619 13.5016 11.1678 13.2944C11.0733 13.0864 11.0732 12.4679 11.1675 12.0993C11.3053 11.5606 11.5172 11.2703 12.1386 10.7692C12.7441 10.281 12.8916 10.0781 12.9227 9.69072C12.9672 9.13638 12.5067 8.79829 11.7623 8.83876C11.2853 8.86472 11.0691 8.98991 10.7635 9.41716C10.5089 9.77304 10.2252 9.83592 9.86967 9.61523C9.41974 9.33597 9.48659 8.66898 10.0166 8.14948Z" fill="white"/>
+                                                        <path d="M11.1102 15.9417C10.6507 15.4615 10.8393 14.6718 11.4692 14.4385C11.5273 14.417 11.67 14.4038 11.7862 14.4092C12.5812 14.4462 12.9417 15.3638 12.3858 15.9356C12.0186 16.3132 11.4681 16.3158 11.1102 15.9417Z" fill="white"/>
+                                                      </svg>
+                                                </span>
+                                            </div>
+
+                                            <div class="w-full flex bg-[#F0F7FA] rounded-[10px] p-5">
+                                                <input type="text" name="length" class="w-full bg-transparent focus:outline-none placeholder:text-sm" placeholder="Length" value="">
+                                                <span class="formQuestionMark-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="input-icon">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1521 3.02155C9.04839 3.23734 7.13401 4.14358 5.64585 5.62818C2.11805 9.14749 2.11805 14.8569 5.64585 18.3762C7.07804 19.8049 8.81918 20.6589 10.9056 20.9559C11.324 21.0155 12.7079 21.0145 13.1424 20.9543C15.1849 20.6716 16.9793 19.7891 18.3864 18.3751C20.0231 16.7305 20.9335 14.6377 21.0208 12.3192C21.1151 9.81628 20.1686 7.41395 18.3835 5.62515C16.9994 4.23812 15.2458 3.36232 13.2657 3.06914C12.8349 3.00535 11.5846 2.9772 11.1521 3.02155ZM13.3185 4.35429C14.9544 4.65226 16.3457 5.37551 17.4927 6.52406C18.9688 8.00221 19.7647 9.92135 19.7647 12.0022C19.7647 14.0832 18.9677 16.0047 17.4927 17.4797C16.0177 18.9547 14.0962 19.7517 12.0152 19.7517C9.93564 19.7517 8.01161 18.9537 6.53765 17.4797C5.373 16.315 4.64968 14.907 4.34816 13.2174C4.25847 12.7148 4.25847 11.2895 4.34816 10.7869C4.64968 9.09736 5.373 7.68931 6.53765 6.52466C7.79504 5.26726 9.31561 4.53074 11.1521 4.28948C11.5864 4.23245 12.8585 4.27049 13.3185 4.35429ZM11.5463 7.49687C10.9415 7.54784 10.3905 7.7829 10.0165 8.14945C9.48656 8.66896 9.4197 9.33594 9.86963 9.61521C10.2252 9.8359 10.5089 9.77302 10.7635 9.41714C11.0691 8.98989 11.2853 8.8647 11.7623 8.83874C12.5066 8.79827 12.9671 9.13636 12.9226 9.6907C12.8915 10.0781 12.7441 10.2809 12.1386 10.7692C11.5172 11.2703 11.3052 11.5606 11.1675 12.0993C11.0732 12.4679 11.0733 13.0864 11.1677 13.2944C11.2618 13.5016 11.3978 13.5646 11.7529 13.5655C12.2658 13.5667 12.4377 13.4039 12.4378 12.9166C12.4379 12.3197 12.5982 12.0222 13.1785 11.5419C14.1003 10.779 14.5191 9.98617 14.4094 9.21178C14.2463 8.06044 13.0884 7.36689 11.5463 7.49687ZM11.4692 14.4385C10.8393 14.6718 10.6507 15.4615 11.1101 15.9417C11.4681 16.3158 12.0186 16.3132 12.3858 15.9356C12.9417 15.3638 12.5812 14.4461 11.7862 14.4092C11.67 14.4038 11.5273 14.417 11.4692 14.4385Z" fill="#007BFF" fill-opacity="0.5"/>
+                                                      </svg>
+
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hover-icon">
+                                                        <circle cx="12" cy="12" r="9" fill="#007BFF"/>
+                                                        <path d="M10.0166 8.14948C10.3905 7.78292 10.9415 7.54787 11.5463 7.49689C13.0884 7.36691 14.2463 8.06046 14.4094 9.2118C14.5191 9.98619 14.1004 10.779 13.1785 11.5419C12.5983 12.0222 12.438 12.3198 12.4378 12.9166C12.4378 13.4039 12.2659 13.5668 11.7529 13.5655C11.3979 13.5646 11.2619 13.5016 11.1678 13.2944C11.0733 13.0864 11.0732 12.4679 11.1675 12.0993C11.3053 11.5606 11.5172 11.2703 12.1386 10.7692C12.7441 10.281 12.8916 10.0781 12.9227 9.69072C12.9672 9.13638 12.5067 8.79829 11.7623 8.83876C11.2853 8.86472 11.0691 8.98991 10.7635 9.41716C10.5089 9.77304 10.2252 9.83592 9.86967 9.61523C9.41974 9.33597 9.48659 8.66898 10.0166 8.14948Z" fill="white"/>
+                                                        <path d="M11.1102 15.9417C10.6507 15.4615 10.8393 14.6718 11.4692 14.4385C11.5273 14.417 11.67 14.4038 11.7862 14.4092C12.5812 14.4462 12.9417 15.3638 12.3858 15.9356C12.0186 16.3132 11.4681 16.3158 11.1102 15.9417Z" fill="white"/>
+                                                      </svg>
+                                                </span>
+                                            </div>
+
+                                            <div class="w-full flex bg-[#F0F7FA] rounded-[10px] p-5">
+                                                <input type="text" name="include" class="w-full bg-transparent focus:outline-none placeholder:text-sm" placeholder="Include" value="">
+                                                <span class="formQuestionMark-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="input-icon">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1521 3.02155C9.04839 3.23734 7.13401 4.14358 5.64585 5.62818C2.11805 9.14749 2.11805 14.8569 5.64585 18.3762C7.07804 19.8049 8.81918 20.6589 10.9056 20.9559C11.324 21.0155 12.7079 21.0145 13.1424 20.9543C15.1849 20.6716 16.9793 19.7891 18.3864 18.3751C20.0231 16.7305 20.9335 14.6377 21.0208 12.3192C21.1151 9.81628 20.1686 7.41395 18.3835 5.62515C16.9994 4.23812 15.2458 3.36232 13.2657 3.06914C12.8349 3.00535 11.5846 2.9772 11.1521 3.02155ZM13.3185 4.35429C14.9544 4.65226 16.3457 5.37551 17.4927 6.52406C18.9688 8.00221 19.7647 9.92135 19.7647 12.0022C19.7647 14.0832 18.9677 16.0047 17.4927 17.4797C16.0177 18.9547 14.0962 19.7517 12.0152 19.7517C9.93564 19.7517 8.01161 18.9537 6.53765 17.4797C5.373 16.315 4.64968 14.907 4.34816 13.2174C4.25847 12.7148 4.25847 11.2895 4.34816 10.7869C4.64968 9.09736 5.373 7.68931 6.53765 6.52466C7.79504 5.26726 9.31561 4.53074 11.1521 4.28948C11.5864 4.23245 12.8585 4.27049 13.3185 4.35429ZM11.5463 7.49687C10.9415 7.54784 10.3905 7.7829 10.0165 8.14945C9.48656 8.66896 9.4197 9.33594 9.86963 9.61521C10.2252 9.8359 10.5089 9.77302 10.7635 9.41714C11.0691 8.98989 11.2853 8.8647 11.7623 8.83874C12.5066 8.79827 12.9671 9.13636 12.9226 9.6907C12.8915 10.0781 12.7441 10.2809 12.1386 10.7692C11.5172 11.2703 11.3052 11.5606 11.1675 12.0993C11.0732 12.4679 11.0733 13.0864 11.1677 13.2944C11.2618 13.5016 11.3978 13.5646 11.7529 13.5655C12.2658 13.5667 12.4377 13.4039 12.4378 12.9166C12.4379 12.3197 12.5982 12.0222 13.1785 11.5419C14.1003 10.779 14.5191 9.98617 14.4094 9.21178C14.2463 8.06044 13.0884 7.36689 11.5463 7.49687ZM11.4692 14.4385C10.8393 14.6718 10.6507 15.4615 11.1101 15.9417C11.4681 16.3158 12.0186 16.3132 12.3858 15.9356C12.9417 15.3638 12.5812 14.4461 11.7862 14.4092C11.67 14.4038 11.5273 14.417 11.4692 14.4385Z" fill="#007BFF" fill-opacity="0.5"/>
+                                                      </svg>
+
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hover-icon">
+                                                        <circle cx="12" cy="12" r="9" fill="#007BFF"/>
+                                                        <path d="M10.0166 8.14948C10.3905 7.78292 10.9415 7.54787 11.5463 7.49689C13.0884 7.36691 14.2463 8.06046 14.4094 9.2118C14.5191 9.98619 14.1004 10.779 13.1785 11.5419C12.5983 12.0222 12.438 12.3198 12.4378 12.9166C12.4378 13.4039 12.2659 13.5668 11.7529 13.5655C11.3979 13.5646 11.2619 13.5016 11.1678 13.2944C11.0733 13.0864 11.0732 12.4679 11.1675 12.0993C11.3053 11.5606 11.5172 11.2703 12.1386 10.7692C12.7441 10.281 12.8916 10.0781 12.9227 9.69072C12.9672 9.13638 12.5067 8.79829 11.7623 8.83876C11.2853 8.86472 11.0691 8.98991 10.7635 9.41716C10.5089 9.77304 10.2252 9.83592 9.86967 9.61523C9.41974 9.33597 9.48659 8.66898 10.0166 8.14948Z" fill="white"/>
+                                                        <path d="M11.1102 15.9417C10.6507 15.4615 10.8393 14.6718 11.4692 14.4385C11.5273 14.417 11.67 14.4038 11.7862 14.4092C12.5812 14.4462 12.9417 15.3638 12.3858 15.9356C12.0186 16.3132 11.4681 16.3158 11.1102 15.9417Z" fill="white"/>
+                                                      </svg>
+                                                </span>
+                                            </div>
+
+                                            <div class="w-full flex bg-[#F0F7FA] rounded-[10px] p-5">
+                                                <input type="text" name="exclude" class="w-full bg-transparent focus:outline-none placeholder:text-sm" placeholder="Exclude" value="">
+                                                <span class="formQuestionMark-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="input-icon">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1521 3.02155C9.04839 3.23734 7.13401 4.14358 5.64585 5.62818C2.11805 9.14749 2.11805 14.8569 5.64585 18.3762C7.07804 19.8049 8.81918 20.6589 10.9056 20.9559C11.324 21.0155 12.7079 21.0145 13.1424 20.9543C15.1849 20.6716 16.9793 19.7891 18.3864 18.3751C20.0231 16.7305 20.9335 14.6377 21.0208 12.3192C21.1151 9.81628 20.1686 7.41395 18.3835 5.62515C16.9994 4.23812 15.2458 3.36232 13.2657 3.06914C12.8349 3.00535 11.5846 2.9772 11.1521 3.02155ZM13.3185 4.35429C14.9544 4.65226 16.3457 5.37551 17.4927 6.52406C18.9688 8.00221 19.7647 9.92135 19.7647 12.0022C19.7647 14.0832 18.9677 16.0047 17.4927 17.4797C16.0177 18.9547 14.0962 19.7517 12.0152 19.7517C9.93564 19.7517 8.01161 18.9537 6.53765 17.4797C5.373 16.315 4.64968 14.907 4.34816 13.2174C4.25847 12.7148 4.25847 11.2895 4.34816 10.7869C4.64968 9.09736 5.373 7.68931 6.53765 6.52466C7.79504 5.26726 9.31561 4.53074 11.1521 4.28948C11.5864 4.23245 12.8585 4.27049 13.3185 4.35429ZM11.5463 7.49687C10.9415 7.54784 10.3905 7.7829 10.0165 8.14945C9.48656 8.66896 9.4197 9.33594 9.86963 9.61521C10.2252 9.8359 10.5089 9.77302 10.7635 9.41714C11.0691 8.98989 11.2853 8.8647 11.7623 8.83874C12.5066 8.79827 12.9671 9.13636 12.9226 9.6907C12.8915 10.0781 12.7441 10.2809 12.1386 10.7692C11.5172 11.2703 11.3052 11.5606 11.1675 12.0993C11.0732 12.4679 11.0733 13.0864 11.1677 13.2944C11.2618 13.5016 11.3978 13.5646 11.7529 13.5655C12.2658 13.5667 12.4377 13.4039 12.4378 12.9166C12.4379 12.3197 12.5982 12.0222 13.1785 11.5419C14.1003 10.779 14.5191 9.98617 14.4094 9.21178C14.2463 8.06044 13.0884 7.36689 11.5463 7.49687ZM11.4692 14.4385C10.8393 14.6718 10.6507 15.4615 11.1101 15.9417C11.4681 16.3158 12.0186 16.3132 12.3858 15.9356C12.9417 15.3638 12.5812 14.4461 11.7862 14.4092C11.67 14.4038 11.5273 14.417 11.4692 14.4385Z" fill="#007BFF" fill-opacity="0.5"/>
+                                                      </svg>
+
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hover-icon">
+                                                        <circle cx="12" cy="12" r="9" fill="#007BFF"/>
+                                                        <path d="M10.0166 8.14948C10.3905 7.78292 10.9415 7.54787 11.5463 7.49689C13.0884 7.36691 14.2463 8.06046 14.4094 9.2118C14.5191 9.98619 14.1004 10.779 13.1785 11.5419C12.5983 12.0222 12.438 12.3198 12.4378 12.9166C12.4378 13.4039 12.2659 13.5668 11.7529 13.5655C11.3979 13.5646 11.2619 13.5016 11.1678 13.2944C11.0733 13.0864 11.0732 12.4679 11.1675 12.0993C11.3053 11.5606 11.5172 11.2703 12.1386 10.7692C12.7441 10.281 12.8916 10.0781 12.9227 9.69072C12.9672 9.13638 12.5067 8.79829 11.7623 8.83876C11.2853 8.86472 11.0691 8.98991 10.7635 9.41716C10.5089 9.77304 10.2252 9.83592 9.86967 9.61523C9.41974 9.33597 9.48659 8.66898 10.0166 8.14948Z" fill="white"/>
+                                                        <path d="M11.1102 15.9417C10.6507 15.4615 10.8393 14.6718 11.4692 14.4385C11.5273 14.417 11.67 14.4038 11.7862 14.4092C12.5812 14.4462 12.9417 15.3638 12.3858 15.9356C12.0186 16.3132 11.4681 16.3158 11.1102 15.9417Z" fill="white"/>
+                                                      </svg>
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-buttonPrimary rounded-[10px] text-white hover:opacity-50">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- content section start -->
+    <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-20">
+        <div class="container">
+            <div class="flex flex-col gap-8 md:flex-row">
+                <!-- left col start -->
+                <div class="w-full md:w-2/3">
+                    <!-- box 1 start -->
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <p>
+                            Word Finder is the perfect help when your vocabulary fails you. It's a unique word search tool, which finds all possible words made up of the letters you input. People use Word Finder for various reasons, but the primary one is to win games such as
+                            <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a> and <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words With Friends</a>.
+                        </p>
+                        <div class="my-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="209" height="71" viewBox="0 0 209 71" fill="none">
+                                <rect width="71" height="71" rx="35.5" fill="#007BFF"/>
+                                <path d="M102.522 33.3983L98.4734 47.8916H95.0474L92.3273 37.5719L89.4826 47.8916L86.0772 47.9124L82.1736 33.3983H85.2882L87.8422 44.6524L90.7907 33.3983H94.0299L96.8123 44.5901L99.3871 33.3983H102.522Z" fill="#283551"/>
+                                <path d="M109.529 48.0785C108.421 48.0785 107.424 47.8363 106.539 47.3518C105.653 46.8534 104.954 46.1544 104.441 45.2546C103.943 44.3548 103.694 43.3166 103.694 42.14C103.694 40.9633 103.95 39.9251 104.462 39.0254C104.988 38.1256 105.701 37.4334 106.601 36.9489C107.501 36.4506 108.504 36.2014 109.612 36.2014C110.719 36.2014 111.723 36.4506 112.622 36.9489C113.522 37.4334 114.228 38.1256 114.74 39.0254C115.266 39.9251 115.529 40.9633 115.529 42.14C115.529 43.3166 115.259 44.3548 114.72 45.2546C114.194 46.1544 113.474 46.8534 112.56 47.3518C111.66 47.8363 110.65 48.0785 109.529 48.0785ZM109.529 45.5453C110.055 45.5453 110.546 45.4207 111.003 45.1715C111.473 44.9085 111.847 44.5209 112.124 44.0087C112.401 43.4966 112.539 42.8736 112.539 42.14C112.539 41.0464 112.249 40.2089 111.667 39.6275C111.1 39.0323 110.401 38.7347 109.57 38.7347C108.74 38.7347 108.04 39.0323 107.473 39.6275C106.919 40.2089 106.642 41.0464 106.642 42.14C106.642 43.2336 106.912 44.078 107.452 44.6732C108.006 45.2546 108.698 45.5453 109.529 45.5453Z" fill="#283551"/>
+                                <path d="M120.569 38.174C120.943 37.5649 121.427 37.0874 122.022 36.7413C122.631 36.3952 123.323 36.2222 124.099 36.2222V39.2745H123.33C122.417 39.2745 121.725 39.4891 121.254 39.9182C120.797 40.3473 120.569 41.0948 120.569 42.1607V47.8916H117.662V36.3883H120.569V38.174Z" fill="#283551"/>
+                                <path d="M125.309 42.0984C125.309 40.9357 125.538 39.9044 125.994 39.0046C126.465 38.1048 127.102 37.4127 127.905 36.9282C128.708 36.4437 129.6 36.2014 130.583 36.2014C131.331 36.2014 132.044 36.3675 132.722 36.6998C133.4 37.0181 133.94 37.4473 134.342 37.9871V32.5262H137.29V47.8916H134.342V46.189C133.982 46.7565 133.476 47.2133 132.826 47.5594C132.175 47.9055 131.421 48.0785 130.562 48.0785C129.593 48.0785 128.708 47.8294 127.905 47.331C127.102 46.8327 126.465 46.1336 125.994 45.2338C125.538 44.3202 125.309 43.2751 125.309 42.0984ZM134.362 42.14C134.362 41.434 134.224 40.8318 133.947 40.3335C133.67 39.8213 133.296 39.4337 132.826 39.1707C132.355 38.8938 131.85 38.7554 131.31 38.7554C130.77 38.7554 130.272 38.8869 129.815 39.1499C129.358 39.4129 128.984 39.8005 128.694 40.3127C128.417 40.8111 128.278 41.4063 128.278 42.0984C128.278 42.7906 128.417 43.3997 128.694 43.9257C128.984 44.4379 129.358 44.8324 129.815 45.1092C130.286 45.3861 130.784 45.5245 131.31 45.5245C131.85 45.5245 132.355 45.393 132.826 45.13C133.296 44.8532 133.67 44.4656 133.947 43.9672C134.224 43.455 134.362 42.846 134.362 42.14Z" fill="#283551"/>
+                                <path d="M154.026 33.3983V35.7446H147.984V39.4614H152.614V41.7662H147.984V47.8916H145.077V33.3983H154.026Z" fill="#283551"/>
+                                <path d="M157.562 35.0179C157.05 35.0179 156.621 34.8587 156.275 34.5403C155.942 34.2081 155.776 33.7997 155.776 33.3152C155.776 32.8307 155.942 32.4293 156.275 32.1109C156.621 31.7787 157.05 31.6125 157.562 31.6125C158.074 31.6125 158.496 31.7787 158.829 32.1109C159.175 32.4293 159.348 32.8307 159.348 33.3152C159.348 33.7997 159.175 34.2081 158.829 34.5403C158.496 34.8587 158.074 35.0179 157.562 35.0179ZM158.995 36.3883V47.8916H156.088V36.3883H158.995Z" fill="#283551"/>
+                                <path d="M168.241 36.2222C169.612 36.2222 170.719 36.6582 171.564 37.5303C172.408 38.3886 172.83 39.5929 172.83 41.1433V47.8916H169.923V41.5378C169.923 40.6242 169.695 39.9251 169.238 39.4406C168.781 38.9423 168.158 38.6931 167.369 38.6931C166.566 38.6931 165.93 38.9423 165.459 39.4406C165.002 39.9251 164.774 40.6242 164.774 41.5378V47.8916H161.867V36.3883H164.774V37.821C165.161 37.3227 165.653 36.9351 166.248 36.6582C166.857 36.3675 167.521 36.2222 168.241 36.2222Z" fill="#283551"/>
+                                <path d="M174.847 42.0984C174.847 40.9357 175.075 39.9044 175.532 39.0046C176.003 38.1048 176.64 37.4127 177.443 36.9282C178.245 36.4437 179.138 36.2014 180.121 36.2014C180.869 36.2014 181.582 36.3675 182.26 36.6998C182.938 37.0181 183.478 37.4473 183.879 37.9871V32.5262H186.828V47.8916H183.879V46.189C183.52 46.7565 183.014 47.2133 182.364 47.5594C181.713 47.9055 180.959 48.0785 180.1 48.0785C179.131 48.0785 178.245 47.8294 177.443 47.331C176.64 46.8327 176.003 46.1336 175.532 45.2338C175.075 44.3202 174.847 43.2751 174.847 42.0984ZM183.9 42.14C183.9 41.434 183.762 40.8318 183.485 40.3335C183.208 39.8213 182.834 39.4337 182.364 39.1707C181.893 38.8938 181.388 38.7554 180.848 38.7554C180.308 38.7554 179.81 38.8869 179.353 39.1499C178.896 39.4129 178.522 39.8005 178.232 40.3127C177.955 40.8111 177.816 41.4063 177.816 42.0984C177.816 42.7906 177.955 43.3997 178.232 43.9257C178.522 44.4379 178.896 44.8324 179.353 45.1092C179.824 45.3861 180.322 45.5245 180.848 45.5245C181.388 45.5245 181.893 45.393 182.364 45.13C182.834 44.8532 183.208 44.4656 183.485 43.9672C183.762 43.455 183.9 42.846 183.9 42.14Z" fill="#283551"/>
+                                <path d="M200.361 41.8908C200.361 42.3061 200.333 42.6798 200.278 43.0121H191.868C191.937 43.8426 192.228 44.4932 192.74 44.9639C193.252 45.4346 193.882 45.6699 194.63 45.6699C195.71 45.6699 196.478 45.2061 196.935 44.2787H200.07C199.738 45.3861 199.101 46.2997 198.16 47.0196C197.218 47.7255 196.063 48.0785 194.692 48.0785C193.585 48.0785 192.588 47.8363 191.702 47.3518C190.83 46.8534 190.145 46.1544 189.646 45.2546C189.162 44.3548 188.92 43.3166 188.92 42.14C188.92 40.9495 189.162 39.9044 189.646 39.0046C190.131 38.1048 190.809 37.4127 191.681 36.9282C192.553 36.4437 193.557 36.2014 194.692 36.2014C195.786 36.2014 196.762 36.4368 197.62 36.9074C198.492 37.3781 199.163 38.0494 199.634 38.9215C200.118 39.7798 200.361 40.7695 200.361 41.8908ZM197.35 41.0602C197.336 40.3127 197.066 39.7175 196.54 39.2745C196.014 38.8177 195.37 38.5893 194.609 38.5893C193.889 38.5893 193.28 38.8108 192.782 39.2538C192.297 39.6829 192 40.285 191.889 41.0602H197.35Z" fill="#283551"/>
+                                <path d="M205.39 38.174C205.763 37.5649 206.248 37.0874 206.843 36.7413C207.452 36.3952 208.144 36.2222 208.919 36.2222V39.2745H208.151C207.238 39.2745 206.545 39.4891 206.075 39.9182C205.618 40.3473 205.39 41.0948 205.39 42.1607V47.8916H202.483V36.3883H205.39V38.174Z" fill="#283551"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M45.8822 23.095C44.3937 24.5781 45.1785 25.9114 48.9303 28.2726C53.0941 30.8921 58.0764 35.8232 59.678 38.9092C61.337 42.1054 61.1381 45.0157 59.1175 47.1174C56.7323 49.5971 52.9426 50.9487 49.7678 50.4516C46.2202 49.8955 41.3213 46.4929 39.2557 43.1492C36.3976 38.5235 35.7157 37.7457 34.1875 37.3636C31.7443 36.7526 29.5864 38.1131 27.5095 41.5723C26.4448 43.3456 25.3747 44.7963 25.1308 44.7963C24.887 44.7963 24.3496 42.7907 23.9358 40.3398C23.2144 36.0603 20.1372 28.9059 18.834 28.4772C18.4564 28.3534 18.3108 30.5772 18.4321 34.6232C18.544 38.3696 18.2451 43.4547 17.7005 47.0537C16.8814 52.4714 16.8778 53.3329 17.665 54.8497C19.9934 59.3368 24.4508 58.5996 31.0122 52.643L32.5374 51.2589L33.6756 52.5268C37.0036 56.2331 43.9829 58.9523 50.1478 58.9434C55.0975 58.9369 59.0246 57.3807 62.9054 53.8867C69.7622 47.7148 69.4207 39.8675 61.9448 31.8227L58.7949 28.4324L67.2243 28.1358C71.8597 27.9718 77.1179 27.4771 78.9083 27.0354C82.1037 26.2464 81.9581 26.2251 70.9181 25.856C60.5308 25.5086 55.6302 24.86 49.3191 22.9976C46.7422 22.2369 46.7434 22.2369 45.8822 23.095Z" fill="white"/>
+                            </svg>
+                        </div>
+
+                        <p>
+                            Are you someone who loves finding and discovering new words? Are you a board game enthusiast? If you are, then this Word Finder is a tool you can't afford not to have. Whether you are into playing <a href="javascript:void(0);"
+                                class="text-[#007BFF] font-medium">Scrabble</a>, <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a> or any other word game, Word Finder will prove to be useful. It will help you both with
+                            word discovery, and as a reference tool, you and your playmates can use as a way to settle disputes about the validity of any particular word.
+                            <br />
+                            <br /> Do you love boosting your vocabulary? Do word games help ignite your brain cells? Do you enjoy the thrill of trying to outwit an opponent with your encyclopedic mind? Then, our <a href="javascript:void(0);" class="text-[#007BFF] font-medium">word generator</a>                            is a tool that you simply can't live without!
+                        </p>
+
+                        <div class="flex flex-col gap-8 mt-8 lg:flex-row">
+                            <div class="w-full">
+                                <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                                    Play Games
+
+                                    <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                                <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                            </svg>
+
+                                    <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                                <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                            </svg>
+                                </div>
+                                <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px]">
+                                    <ol class="space-y-3 font-medium list-decimal">
+                                        <li>Word Wipe</li>
+                                        <li>Crossword Puzzles</li>
+                                        <li>Outspell</li>
+                                        <li>Codeword</li>
+                                        <li>Scramble Words</li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="w-full">
+                                <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                                    Words by Length
+
+                                    <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                                <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                            </svg>
+
+                                    <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                                <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                            </svg>
+                                </div>
+                                <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px]">
+                                    <ol class="space-y-3 font-medium list-decimal">
+                                        <li>Letter Words</li>
+                                        <li>Letter Words</li>
+                                        <li>Letter Words</li>
+                                        <li>Letter Words</li>
+                                        <li>Letter Words</li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- box 2 start -->
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <h2 class="mb-4 text-4xl font-semibold">What is WordTips Word Finder?</h2>
+                        <p>
+                            If you haven’t had a chance to use Word Finder yet, then you’re in for a treat. This easy to work with online <a href="javascript:void(0);" class="text-[#007BFF] font-medium">word generator</a> will quickly and efficiently
+                            create a wide variety of words using the letters that you enter. Your excitement will grow as you watch it unscrambling the inputs you provide to make words out of letters as an expert. It will make <a href="javascript:void(0);"
+                                class="text-[#007BFF] font-medium">Scrabble</a> words and create interesting and unique combinations of letters.
+                            <br />
+                            <br /> When compared with the range of online word generators, word find and <a href="javascript:void(0);" class="text-[#007BFF] font-medium">word solver</a> devices, Word Finder is among the most intuitive and simple to use.
+                            As you learn more about how using Word Finder can assist you in improving your language skills, spelling words properly and come up with new words from a <a href="javascript:void(0);" class="text-[#007BFF] font-medium">jumble</a>                            of letters, you’ll wonder how you ever managed without it.
+                        </p>
+
+                        <div class="flex flex-col gap-8 mt-8 lg:flex-row">
+                            <div class="w-full">
+                                <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                                    Dictionaries
+
+                                    <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                                <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                            </svg>
+
+                                    <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                                <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                            </svg>
+                                </div>
+                                <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px]">
+                                    <ol class="space-y-3 font-medium list-decimal">
+                                        <li>Scrabble Dictionary</li>
+                                        <li>Words With Friends Dictionary</li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="w-full">
+                                <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                                    Word Finders
+
+                                    <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                                <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                            </svg>
+
+                                    <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                                <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                            </svg>
+                                </div>
+                                <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px]">
+                                    <ol class="space-y-3 font-medium list-decimal">
+                                        <li>Word Finder</li>
+                                        <li>Scrabble Word Finder</li>
+                                        <li>Words With Friends Cheat</li>
+                                        <li>Word Unscrambler</li>
+                                        <li>Anagram Solver</li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- box 3 start -->
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <h2 class="mb-4 text-4xl font-semibold">How to Use a Word Finder</h2>
+                        <p>
+                            Once you’ve decided on the game you’re going to play and who is going to participate, set your board up and then, go online to make sure Word Finder is readily accessible. Take care that everyone can use the tool privately without disclosing to other
+                            players what letters or tiles they have.
+                            <br />
+                            <br /> When each person has her turn, first give them the time that they need to ask themselves: What words can I make with these letters? Providing players with the opportunity to come up on their own with word examples containing
+                            the vowels and consonants they have at the ready will strengthen their ability to play the game and acquire points on their own. Then, allow some time for the player to try to make works with their letters using Word Finder.
+                        </p>
+
+                        <div class="mt-8">
+                            <h2 class="mb-4 text-xl font-semibold">Latest Article</h2>
+                            <div class="grid gap-8 mb-8 md:grid-cols-2 lg:grid-cols-3">
+                                <div class="w-full border border-[#007BFF4D] rounded-lg overflow-hidden  hover:text-[#007BFF]">
+                                    <a href="article-details.html"><img src="images/article-img1.svg" alt="#" class="w-full" /></a>
+                                    <div class="p-4">
+                                        <h3 class="text-lg font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">An Easy Guide To Gender-Inclusive Language</a></h3>
+                                    </div>
+                                </div>
+
+                                <div class="w-full border border-[#007BFF4D] rounded-lg overflow-hidden hover:text-[#007BFF]">
+                                    <a href="article-details.html"><img src="images/article-img2.svg" alt="#" class="w-full" /></a>
+                                    <div class="p-4">
+                                        <h3 class="text-lg font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">Japanese Learning Resources - The Ultimate Guide</a></h3>
+                                    </div>
+                                </div>
+
+                                <div class="w-full border border-[#007BFF4D] rounded-lg overflow-hidden hover:text-[#007BFF]">
+                                    <a href="article-details.html"><img src="images/article-img3.svg" alt="#" class="w-full" /></a>
+                                    <div class="p-4">
+                                        <h3 class="text-lg font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">Is _____ a Word?</a></h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- view more content -->
+                            <div id="hs-show-hide-collapse-heading2" class="hs-collapse hidden w-full transition-[height] duration-300 overflow-hidden" aria-labelledby="hs-show-hide-collapse">
+                                <div class="grid gap-8 mb-8 md:grid-cols-2 lg:grid-cols-3">
+                                    <div class="w-full border border-[#007BFF4D] rounded-lg overflow-hidden hover:text-[#007BFF]">
+                                        <a href="article-details.html"><img src="images/article-img9.svg" alt="#" class="w-full" /></a>
+                                        <div class="p-4">
+                                            <h3 class="text-lg font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">School Choice</a></h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 text-center">
+                                <a href="javascript:void(0);" class="hs-collapse-toggle text-white bg-[#007BFF] rounded-[10px] py-4 px-6 hover:opacity-50 inline-block" id="hs-show-hide-collapse" data-hs-collapse="#hs-show-hide-collapse-heading2">
+                                    <span class="hs-collapse-open:hidden">View More</span>
+                                    <span class="hidden hs-collapse-open:block">View less</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- box 4 start -->
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <h2 class="mb-4 text-4xl font-semibold">When You Need to Up Your Game With a Word Game Helper</h2>
+                        <p>
+                            A word game helper can be invaluable for playing any word game that you can think of. Whether you are playing <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a>, <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a>,
+                            <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Crossword Puzzles</a> or any other word game, Word tips' extensive search engine will help you make words from letters that you've randomly picked. Games will
+                            get interminable when players are stuck and can’t imagine where they can place the bunch of vowels and consonants that they have available on the board.
+                            <br />
+                            <br /> Maybe you have a regular evening game with your partner where a <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble word generator</a> has been indispensable. Also, you may be one of the many families
+                            that usually play word board games on holidays and at gatherings with friends. If the latter is the case, then there’s more than likely players of different skill levels and ages involved. This is where a word game helper can
+                            assist in leveling the playing field. What’s more, you may have someone in your midst who likes to cheat a bit. Whether it’s done to tease other players or innocently by someone inexperienced with the game, an invention like
+                            Word Finder can be used to find words with the letters on hand.
+                            <br/>
+                            <br/> By searching the official <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a> US, <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a> UK and playable <a href="javascript:void(0);"
+                                class="text-[#007BFF] font-medium">Words with Friends</a> dictionaries, Word Finder will intuitively display your highest scoring option with the letters provided. Don't look at it as a <a href="javascript:void(0);" class="text-[#007BFF] font-medium">word cheat</a>,
+                            more of a reference tool you and your playmates can use to settle disputes about the validity of any particular word.
+
+                        </p>
+
+                        <div class="flex flex-col gap-8 mt-8 lg:flex-row">
+                            <div class="w-full">
+                                <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                                    Tools
+
+                                    <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                                <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                            </svg>
+
+                                    <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                                <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                            </svg>
+                                </div>
+                                <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px]">
+                                    <ol class="space-y-3 font-medium list-decimal">
+                                        <li>Word Counter</li>
+                                        <li>Random Word Generator</li>
+                                        <li>Username Generator</li>
+                                        <li>Password Generator</li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="w-full">
+                                <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                                    Lists of Words
+
+                                    <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                                <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                            </svg>
+
+                                    <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                                <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                                <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                            </svg>
+                                </div>
+                                <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px]">
+                                    <ol class="space-y-3 font-medium list-decimal">
+                                        <li>Words With Letters</li>
+                                        <li>Words Start With</li>
+                                        <li>Words Ending In</li>
+                                        <li>Words By Length</li>
+                                        <li>Vowel Words</li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- box 5 start -->
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <h2 class="mb-4 text-4xl font-semibold">Beat the Brain Freeze</h2>
+                        <p>
+                            Everyone needs a helping hand from time to time. We've all had those moments when a seemingly random mixture of tiles appears, making you ask, 'How do I make words with these letters'? The problem is now solved.
+                            <br>
+                            <br> With WordTips, there's no excuse in having leftover tiles stopping you from reaching your full potential. We'll show you how to make the best of those lingering letters, be it by creating a surprising two-letter combo
+                            or an impressive fifteen-letter giant!
+                            <br>
+                            <br> Be you a beginner or a pro, our intuitive database will always have the answer to your query. So, save the brain drain, frustration and arguments with fellow players, let our word finder be your constant companion.
+                        </p>
+                        <h4 class="text-[22px] font-medium my-4">Two Useful Word Finding Examples</h4>
+                        <ul class="space-y-5 list-decimal ps-5 text-black/[.54]">
+                            <li>
+                                <b>Player A has pulled the following letters in a game of</b> <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a> - SNEOHYT. They’re able to swiftly <a href="javascript:void(0);" class="text-[#007BFF] font-medium">unscramble</a>                                the letters to make the word TONE. However, Word Finder comes up with a much bigger choice, including STONEY, HONEY, ETHNOS, HONEST, HONEYS AND HONESTY. As you can see, by laying down letters for the word HONESTY, Player
+                                A has a bonus of 50 points for using all seven tiles at once in addition to the regular score for the play!
+                            </li>
+                            <li>
+                                <b>Player B is a child learning how to play <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a> and still growing their vocabulary.</b><br> the letters to make the word TONE. However,
+                                Word Finder comes up with a much bigger choice, including STONEY, HONEY, ETHNOS, HONEST, HONEYS AND HONESTY. As you can see, by laying down letters for the word HONESTY, Player A has a bonus of 50 points for using all seven
+                                tiles at once in addition to the regular score for the play!
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- box 6 start -->
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <h2 class="mb-4 text-4xl font-semibold">Scrabble Words vs. Traditional Dictionaries</h2>
+                        <p>
+                            The two traditional English-language dictionaries are the Merriam-Webster dictionary used in the United States and the Oxford English Dictionary published in the United Kingdom. Dictionaries typically add new words each year. For instance, in 2018, the
+                            Merriam-Webster dictionary added 840 new words while the Oxford English dictionary expanded by 1,100 words. Having said that, word games rely on their own dictionaries that are tailored to the specific game and updated from
+                            time to time.
+                            <br>
+                            <br> Therefore, it’s critical to know what dictionary to refer to when you’re playing different word games so that you don’t inadvertently cheat! If you’ve played both <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a>                            and <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a>, you’ll be aware that they have quite different rules when it comes to what words are acceptable for players to use. One example is
+                            that <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a> allows players to lay down tiles that spell many acronyms while <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a>                            doesn’t permit such abbreviations. By using the <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble Word Finder</a> or <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a>                            Cheat, you can be certain that you won’t go wrong!
+                        </p>
+                        <h4 class="text-[22px] font-medium my-4">The Wordfinder Example</h4>
+                        <p>
+                            Let’s take the word “wordfinder”. It is accepted in some online dictionaries and defined as “a list of vocabulary”, but not recognized by Meriam-Webster. It is acceptable when playing <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a>                            but not when playing <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a>.
+                        </p>
+                    </div>
+
+                </div>
+                <!-- left col end -->
+
+                <!-- right col start -->
+                <div class="w-full md:w-1/3">
+                    <!-- Word Finders -->
+                    <div class="mb-6">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                            Word Finders
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px]">
+                            <ol class="space-y-3 font-medium list-decimal">
+                                <li>Word Finder</li>
+                                <li>Scrabble Word Finder</li>
+                                <li>Words With Friends Cheat</li>
+                                <li>Word Unscrambler</li>
+                                <li>Anagram Solver</li>
+                                <li>Word Scramble</li>
+                                <li>Jumble Solver</li>
+                                <li>Word Generator</li>
+                                <li>Scrabble Cheat</li>
+                                <li>Word Solver</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Play Games -->
+                    <div class="mb-6">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                            Play Games
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px]">
+                            <ol class="space-y-3 font-medium list-decimal">
+                                <li>Scramble Words</li>
+                                <li>Codeword</li>
+                                <li>Outspell</li>
+                                <li>Crossword Puzzles</li>
+                                <li>Word Wipe</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Dictionaries -->
+                    <div class="mb-6">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                            Dictionaries
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px]">
+                            <ol class="space-y-3 font-medium list-decimal">
+                                <li>Words With Friends Dictionary</li>
+                                <li>Scrabble Dictionary</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- List of Words -->
+                    <div class="mb-6">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                            List of Words
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px]">
+                            <ol class="space-y-3 font-medium list-decimal">
+                                <li>All Consonant Words</li>
+                                <li>Vowel Words</li>
+                                <li>Words By Length</li>
+                                <li>Words Ending In</li>
+                                <li>Words Start With</li>
+                                <li>Words With Letters</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Words By Length -->
+                    <div class="mb-6">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                            Words By Length
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px]">
+                            <ol class="space-y-3 font-medium list-decimal">
+                                <li>Letter Words</li>
+                                <li>Letter Words</li>
+                                <li>Letter Words</li>
+                                <li>Letter Words</li>
+                                <li>Letter Words</li>
+                                <li>Letter Words</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Latest Article -->
+                    <div class="mb-6">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                            Latest Article
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px]">
+                            <div class="border border-[#007BFF4D] rounded-[20px] bg-white mb-6 overflow-hidden hover:text-[#007BFF]">
+                                <a href="article-details.html"><img src="images/article-img1.svg" alt="#" class="w-full"></a>
+                                <div class="p-4">
+                                    <h3 class="text-lg font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">An Easy Guide To Gender-Inclusive Language</a></h3>
+                                </div>
+                            </div>
+                            <div class="border border-[#007BFF4D] rounded-[20px] bg-white mb-6 overflow-hidden hover:text-[#007BFF]">
+                                <a href="article-details.html"><img src="images/article-img2.svg" alt="#" class="w-full"></a>
+                                <div class="p-4">
+                                    <h3 class="text-lg font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">Japanese Learning Resources - The Ultimate Guide</a></h3>
+                                </div>
+                            </div>
+                            <div class="border border-[#007BFF4D] rounded-[20px] bg-white mb-6 overflow-hidden hover:text-[#007BFF]">
+                                <a href="article-details.html"><img src="images/article-img3.svg" alt="#" class="w-full"></a>
+                                <div class="p-4">
+                                    <h3 class="text-lg font-semibold leading-6"><a href="article-details.html" class="hover:text-[#007BFF]">Is _____ a Word?</a></h3>
+                                </div>
+                            </div>
+                            <!-- view more content -->
+                            <div id="hs-show-hide-collapse-heading" class="hs-collapse hidden w-full transition-[height] duration-300 gap-3 flex flex-wrap overflow-hidden" aria-labelledby="hs-show-hide-collapse">
+                                <div class="border border-[#007BFF4D] rounded-[20px] bg-white mb-6 overflow-hidden hover:text-[#007BFF]">
+                                    <a href="article-details.html"><img src="images/article-img6.svg " alt="# " class="w-full "></a>
+                                    <div class="p-4 ">
+                                        <h3 class="text-lg font-semibold leading-6 "><a href="article-details.html" class="hover:text-[#007BFF]">Handy Activities To Teach Your Kids About Environmental Issues</a>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 text-center">
+                                <a href="javascript:void(0);" class="hs-collapse-toggle text-white bg-[#007BFF] rounded-[10px] py-4 px-6 hover:opacity-50 inline-block" id="hs-show-hide-collapse" data-hs-collapse="#hs-show-hide-collapse-heading">
+                                    <span class="hs-collapse-open:hidden">View More</span>
+                                    <span class="hidden hs-collapse-open:block">View less</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- right col end -->
+            </div>
+        </div>
+    </div>
+    <!-- content section end -->
+
+    <!-- footer start -->
+    <footer class="bg-[#393939] md:pt-20">
+        <div class="container">
+            <div class="flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
+                <div class="lg:w-1/3">
+                    <a href="index.html" class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="152" height="52" viewBox="0 0 152 52" fill="none">
+                            <rect width="51.6562" height="51.6562" rx="25.8281" fill="#007BFF"/>
+                            <path d="M74.5905 24.2987L71.6447 34.8434H69.152L67.173 27.3352L65.1033 34.8434L62.6258 34.8585L59.7856 24.2987H62.0517L63.9099 32.4867L66.0551 24.2987H68.4118L70.4361 32.4414L72.3094 24.2987H74.5905Z" fill="white"/>
+                            <path d="M79.6878 34.9794C78.8821 34.9794 78.157 34.8031 77.5124 34.4506C76.8679 34.0881 76.3593 33.5795 75.9866 32.9248C75.6241 32.2702 75.4428 31.5148 75.4428 30.6588C75.4428 29.8027 75.6291 29.0474 76.0017 28.3927C76.3844 27.7381 76.9031 27.2345 77.5577 26.882C78.2124 26.5194 78.9426 26.3382 79.7483 26.3382C80.554 26.3382 81.2841 26.5194 81.9388 26.882C82.5934 27.2345 83.1071 27.7381 83.4797 28.3927C83.8624 29.0474 84.0538 29.8027 84.0538 30.6588C84.0538 31.5148 83.8574 32.2702 83.4646 32.9248C83.0819 33.5795 82.5582 34.0881 81.8935 34.4506C81.2388 34.8031 80.5036 34.9794 79.6878 34.9794ZM79.6878 33.1363C80.0705 33.1363 80.4281 33.0457 80.7604 32.8644C81.1029 32.673 81.3748 32.391 81.5762 32.0184C81.7776 31.6458 81.8784 31.1925 81.8784 30.6588C81.8784 29.8631 81.6669 29.2538 81.2439 28.8308C80.8309 28.3978 80.3223 28.1812 79.7181 28.1812C79.1138 28.1812 78.6052 28.3978 78.1922 28.8308C77.7894 29.2538 77.588 29.8631 77.588 30.6588C77.588 31.4544 77.7844 32.0688 78.1771 32.5018C78.58 32.9248 79.0836 33.1363 79.6878 33.1363Z" fill="white"/>
+                            <path d="M87.7202 27.7733C87.9921 27.3302 88.3446 26.9827 88.7777 26.7309C89.2208 26.4792 89.7244 26.3533 90.2884 26.3533V28.574H89.7294C89.0647 28.574 88.5611 28.7301 88.2187 29.0423C87.8863 29.3545 87.7202 29.8984 87.7202 30.6739V34.8434H85.6052V26.4741H87.7202V27.7733Z" fill="white"/>
+                            <path d="M91.1691 30.6286C91.1691 29.7826 91.3352 29.0322 91.6676 28.3776C92.01 27.723 92.4733 27.2194 93.0574 26.8669C93.6416 26.5144 94.2912 26.3382 95.0062 26.3382C95.5501 26.3382 96.0688 26.459 96.5623 26.7007C97.0557 26.9324 97.4485 27.2446 97.7406 27.6374V23.6642H99.8858V34.8434H97.7406V33.6046C97.4787 34.0176 97.1111 34.3499 96.6378 34.6017C96.1644 34.8535 95.6155 34.9794 94.9911 34.9794C94.2861 34.9794 93.6416 34.7981 93.0574 34.4355C92.4733 34.073 92.01 33.5644 91.6676 32.9097C91.3352 32.245 91.1691 31.4846 91.1691 30.6286ZM97.7557 30.6588C97.7557 30.1451 97.655 29.707 97.4536 29.3445C97.2521 28.9718 96.9802 28.6898 96.6378 28.4985C96.2954 28.297 95.9278 28.1963 95.535 28.1963C95.1422 28.1963 94.7796 28.292 94.4473 28.4834C94.1149 28.6747 93.843 28.9567 93.6315 29.3294C93.4301 29.6919 93.3294 30.125 93.3294 30.6286C93.3294 31.1321 93.4301 31.5753 93.6315 31.958C93.843 32.3306 94.1149 32.6176 94.4473 32.8191C94.7897 33.0205 95.1523 33.1212 95.535 33.1212C95.9278 33.1212 96.2954 33.0255 96.6378 32.8342C96.9802 32.6328 97.2521 32.3508 97.4536 31.9882C97.655 31.6155 97.7557 31.1724 97.7557 30.6588Z" fill="white"/>
+                            <path d="M112.062 24.2987V26.0058H107.666V28.71H111.035V30.3868H107.666V34.8434H105.551V24.2987H112.062Z" fill="white"/>
+                            <path d="M114.635 25.4771C114.262 25.4771 113.95 25.3612 113.698 25.1296C113.456 24.8879 113.335 24.5908 113.335 24.2383C113.335 23.8858 113.456 23.5937 113.698 23.3621C113.95 23.1204 114.262 22.9995 114.635 22.9995C115.007 22.9995 115.314 23.1204 115.556 23.3621C115.808 23.5937 115.934 23.8858 115.934 24.2383C115.934 24.5908 115.808 24.8879 115.556 25.1296C115.314 25.3612 115.007 25.4771 114.635 25.4771ZM115.677 26.4741V34.8434H113.562V26.4741H115.677Z" fill="white"/>
+                            <path d="M122.404 26.3533C123.402 26.3533 124.207 26.6705 124.822 27.305C125.436 27.9294 125.743 28.8056 125.743 29.9336V34.8434H123.628V30.2207C123.628 29.556 123.462 29.0474 123.13 28.6949C122.797 28.3323 122.344 28.151 121.77 28.151C121.186 28.151 120.723 28.3323 120.38 28.6949C120.048 29.0474 119.882 29.556 119.882 30.2207V34.8434H117.767V26.4741H119.882V27.5165C120.164 27.1539 120.521 26.8719 120.954 26.6705C121.397 26.459 121.881 26.3533 122.404 26.3533Z" fill="white"/>
+                            <path d="M127.21 30.6286C127.21 29.7826 127.377 29.0322 127.709 28.3776C128.051 27.723 128.515 27.2194 129.099 26.8669C129.683 26.5144 130.333 26.3382 131.048 26.3382C131.592 26.3382 132.11 26.459 132.604 26.7007C133.097 26.9324 133.49 27.2446 133.782 27.6374V23.6642H135.927V34.8434H133.782V33.6046C133.52 34.0176 133.153 34.3499 132.679 34.6017C132.206 34.8535 131.657 34.9794 131.033 34.9794C130.328 34.9794 129.683 34.7981 129.099 34.4355C128.515 34.073 128.051 33.5644 127.709 32.9097C127.377 32.245 127.21 31.4846 127.21 30.6286ZM133.797 30.6588C133.797 30.1451 133.696 29.707 133.495 29.3445C133.294 28.9718 133.022 28.6898 132.679 28.4985C132.337 28.297 131.969 28.1963 131.576 28.1963C131.184 28.1963 130.821 28.292 130.489 28.4834C130.156 28.6747 129.884 28.9567 129.673 29.3294C129.472 29.6919 129.371 30.125 129.371 30.6286C129.371 31.1321 129.472 31.5753 129.673 31.958C129.884 32.3306 130.156 32.6176 130.489 32.8191C130.831 33.0205 131.194 33.1212 131.576 33.1212C131.969 33.1212 132.337 33.0255 132.679 32.8342C133.022 32.6328 133.294 32.3508 133.495 31.9882C133.696 31.6155 133.797 31.1724 133.797 30.6588Z" fill="white"/>
+                            <path d="M145.773 30.4775C145.773 30.7796 145.753 31.0516 145.713 31.2933H139.594C139.645 31.8975 139.856 32.3709 140.229 32.7133C140.601 33.0557 141.06 33.227 141.603 33.227C142.389 33.227 142.948 32.8896 143.28 32.2148H145.562C145.32 33.0205 144.857 33.6852 144.172 34.2089C143.487 34.7226 142.646 34.9794 141.649 34.9794C140.843 34.9794 140.118 34.8031 139.473 34.4506C138.839 34.0881 138.34 33.5795 137.978 32.9248C137.625 32.2702 137.449 31.5148 137.449 30.6588C137.449 29.7926 137.625 29.0322 137.978 28.3776C138.33 27.723 138.824 27.2194 139.458 26.8669C140.093 26.5144 140.823 26.3382 141.649 26.3382C142.444 26.3382 143.154 26.5094 143.779 26.8518C144.413 27.1942 144.902 27.6827 145.244 28.3172C145.597 28.9416 145.773 29.6617 145.773 30.4775ZM143.582 29.8732C143.572 29.3294 143.376 28.8963 142.993 28.574C142.611 28.2416 142.142 28.0755 141.588 28.0755C141.065 28.0755 140.622 28.2366 140.259 28.5589C139.906 28.8711 139.69 29.3092 139.609 29.8732H143.582Z" fill="white"/>
+                            <path d="M149.432 27.7733C149.704 27.3302 150.056 26.9827 150.489 26.7309C150.932 26.4792 151.436 26.3533 152 26.3533V28.574H151.441C150.776 28.574 150.273 28.7301 149.93 29.0423C149.598 29.3545 149.432 29.8984 149.432 30.6739V34.8434H147.317V26.4741H149.432V27.7733Z" fill="white"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M33.3814 16.8026C32.2984 17.8817 32.8694 18.8518 35.5991 20.5697C38.6284 22.4755 42.2533 26.0631 43.4185 28.3083C44.6256 30.6338 44.4809 32.7511 43.0108 34.2802C41.2754 36.0844 38.5182 37.0677 36.2084 36.706C33.6273 36.3014 30.0631 33.8259 28.5602 31.3932C26.4808 28.0277 25.9848 27.4618 24.8729 27.1838C23.0953 26.7393 21.5253 27.7291 20.0143 30.2459C19.2396 31.536 18.4611 32.5915 18.2837 32.5915C18.1063 32.5915 17.7153 31.1323 17.4143 29.3492C16.8893 26.2356 14.6506 21.0304 13.7024 20.7185C13.4276 20.6284 13.3217 22.2464 13.41 25.19C13.4914 27.9158 13.2739 31.6154 12.8778 34.2339C12.2818 38.1755 12.2792 38.8024 12.8519 39.9059C14.5459 43.1705 17.7889 42.6342 22.5627 38.3004L23.6724 37.2934L24.5004 38.2159C26.9218 40.9124 31.9996 42.8907 36.4848 42.8843C40.086 42.8796 42.9432 41.7473 45.7667 39.2052C50.7553 34.7148 50.5069 29.0055 45.0678 23.1525L42.7761 20.6859L48.9089 20.4701C52.2814 20.3508 56.107 19.9909 57.4096 19.6695C59.7345 19.0954 59.6285 19.08 51.5963 18.8114C44.0391 18.5587 40.4736 18.0868 35.882 16.7318C34.0071 16.1784 34.0079 16.1784 33.3814 16.8026Z" fill="white"/>
+                          </svg>
+                    </a>
+                </div>
+                <div class="grid text-sm grid-cols gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
+                    <div class="space-y-3">
+                        <h3 class="text-lg font-normal text-white">Resources</h3>
+                        <ul class="space-y-2">
+                            <li>
+                                <a class="text-white text-[13px]" href="articles.html">Articles</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">Popular Pages</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">Top Searches</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">External Resources</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">Tools</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">Definitions</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h3 class="text-lg font-normal text-white">About</h3>
+                        <ul class="space-y-2">
+                            <li>
+                                <a class="text-white text-[13px]" href="contact.html">Contact</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="privacy-policy.html">Privacy</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">Terms</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">FAQ</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h3 class="text-lg font-normal text-white">Links</h3>
+                        <ul class="space-y-2">
+                            <li>
+                                <a class="text-white text-[13px]" href="#">Anagram Solver</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">WordFinderX</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">Letter Solver</a>
+                            </li>
+                            <li>
+                                <a class="text-white text-[13px]" href="#">Free Games</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h3 class="text-lg font-normal text-white">Share Your Thoughts</h3>
+                        <p class="text-white">
+                            Do you have suggestions or want to report a missing word?
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="py-8 text-sm text-center text-white">© 2022 Copyright: Word Finder</div>
+    </footer>
+    <!-- footer end -->
+    <script src="js/jquery.min.js " type="text/javascript "></script>
+    <script src="../node_modules/preline/dist/preline.js"></script>
+</body>
+
+</html>
