@@ -1,0 +1,798 @@
+<%- (include('../views/head/head.ejs')) %>
+<body class="font-custom">
+    <!-- header start here -->
+    <%- (include('../views/head/header.ejs')) %>
+    <!-- header end here -->
+
+    <!-- main advance search form start -->
+    <div class="bg-[#DBF4FF]">
+        <div class="container">
+            <div class="flex flex-wrap max-w-screen-md pt-10 pb-10 mx-auto md:pt-20 md:pb-20">
+                <div class="flex flex-wrap items-center justify-center w-full align-middle">
+                    <h1 class="block text-[#393939] text-2xl sm:text3xl font-semibold mb-3 text-center"> Word Finder</h1>
+                    <p class="block w-full text-center">
+                        Enter up to 15 letters and up to 2 wildcards (? or space).
+                    </p>
+                    <form id="search-main" class="w-full mt-8 mb-6" action="javascript:void(0);" method="post">
+                        <div class="input-group MainSearch border rounded-[10px] border-[#007BFF] overflow-hidden bg-white py-2 text-center">
+                            <input type="text" name="letters" class="w-2/5 border-0 sm:w-4/6 md:w-2/3 main-search-input sm:text-lg focus:outline-none" placeholder="Type Letters ..." aria-label="Letters" aria-describedby="dictionary-select-field">
+                            <span class="p-0 border-0 input-group-text" id="dictionary-select-field">
+                                <select class="py-2 text-sm bg-white border-0 ps-2 pe-[30px] sm:text-lg focus:outline-none" aria-label="Default select example" name="scrabble_type">
+                                    <option value="wwf" selected="">Words With Friends</option>
+                                    <option value="us">Scrabble US</option>
+                                    <option value="uk">Scrabble UK</option>
+                                    <option value="all_en">All Dictionaries</option>
+                                </select>
+                            </span>
+                        </div>
+
+                        <div class="w-full mb-4 hs-accordion-group">
+                            <div class="w-full hs-accordion active" id="hs-basic-advance-search">
+                                <button type="button" class="hs-accordion-toggle hs-accordion-active:text-blue-600 py-3 items-center gap-x-3 w-full font-medium text-center text-[#393939] text-lg mt-2 disabled:opacity-50 disabled:pointer-events-none" aria-controls="hs-basic-collapse-two">
+                                    Advanced Search
+
+                                    <svg class="inline-block transition duration-500 hs-accordion-active:rotate-180" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+
+                                </button>
+                                <div id="hs-basic-collapse-two" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-basic-advance-search">
+                                    <div class="advanceSearchBox md:border-0 border rounded-[20px] border-[#007BFF4D] md:p-0 p-7 md:bg-transparent bg-white mb-4">
+                                        <h2 class="mb-3 text-lg font-medium md:hidden">Advanced Search</h2>
+                                        <div class="grid sm:justify-between gap-4 sm:grid-cols-2">
+                                            <div class="w-full flex md:bg-white bg-[#F0F7FA] rounded-[10px] p-5">
+                                                <input type="text" name="starts_with" class="w-full bg-transparent focus:outline-none placeholder:text-sm" placeholder="G" value="">
+                                                <span class="formQuestionMark-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="input-icon">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1521 3.02155C9.04839 3.23734 7.13401 4.14358 5.64585 5.62818C2.11805 9.14749 2.11805 14.8569 5.64585 18.3762C7.07804 19.8049 8.81918 20.6589 10.9056 20.9559C11.324 21.0155 12.7079 21.0145 13.1424 20.9543C15.1849 20.6716 16.9793 19.7891 18.3864 18.3751C20.0231 16.7305 20.9335 14.6377 21.0208 12.3192C21.1151 9.81628 20.1686 7.41395 18.3835 5.62515C16.9994 4.23812 15.2458 3.36232 13.2657 3.06914C12.8349 3.00535 11.5846 2.9772 11.1521 3.02155ZM13.3185 4.35429C14.9544 4.65226 16.3457 5.37551 17.4927 6.52406C18.9688 8.00221 19.7647 9.92135 19.7647 12.0022C19.7647 14.0832 18.9677 16.0047 17.4927 17.4797C16.0177 18.9547 14.0962 19.7517 12.0152 19.7517C9.93564 19.7517 8.01161 18.9537 6.53765 17.4797C5.373 16.315 4.64968 14.907 4.34816 13.2174C4.25847 12.7148 4.25847 11.2895 4.34816 10.7869C4.64968 9.09736 5.373 7.68931 6.53765 6.52466C7.79504 5.26726 9.31561 4.53074 11.1521 4.28948C11.5864 4.23245 12.8585 4.27049 13.3185 4.35429ZM11.5463 7.49687C10.9415 7.54784 10.3905 7.7829 10.0165 8.14945C9.48656 8.66896 9.4197 9.33594 9.86963 9.61521C10.2252 9.8359 10.5089 9.77302 10.7635 9.41714C11.0691 8.98989 11.2853 8.8647 11.7623 8.83874C12.5066 8.79827 12.9671 9.13636 12.9226 9.6907C12.8915 10.0781 12.7441 10.2809 12.1386 10.7692C11.5172 11.2703 11.3052 11.5606 11.1675 12.0993C11.0732 12.4679 11.0733 13.0864 11.1677 13.2944C11.2618 13.5016 11.3978 13.5646 11.7529 13.5655C12.2658 13.5667 12.4377 13.4039 12.4378 12.9166C12.4379 12.3197 12.5982 12.0222 13.1785 11.5419C14.1003 10.779 14.5191 9.98617 14.4094 9.21178C14.2463 8.06044 13.0884 7.36689 11.5463 7.49687ZM11.4692 14.4385C10.8393 14.6718 10.6507 15.4615 11.1101 15.9417C11.4681 16.3158 12.0186 16.3132 12.3858 15.9356C12.9417 15.3638 12.5812 14.4461 11.7862 14.4092C11.67 14.4038 11.5273 14.417 11.4692 14.4385Z" fill="#007BFF" fill-opacity="0.5"/>
+                                                      </svg>
+
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hover-icon">
+                                                        <circle cx="12" cy="12" r="9" fill="#007BFF"/>
+                                                        <path d="M10.0166 8.14948C10.3905 7.78292 10.9415 7.54787 11.5463 7.49689C13.0884 7.36691 14.2463 8.06046 14.4094 9.2118C14.5191 9.98619 14.1004 10.779 13.1785 11.5419C12.5983 12.0222 12.438 12.3198 12.4378 12.9166C12.4378 13.4039 12.2659 13.5668 11.7529 13.5655C11.3979 13.5646 11.2619 13.5016 11.1678 13.2944C11.0733 13.0864 11.0732 12.4679 11.1675 12.0993C11.3053 11.5606 11.5172 11.2703 12.1386 10.7692C12.7441 10.281 12.8916 10.0781 12.9227 9.69072C12.9672 9.13638 12.5067 8.79829 11.7623 8.83876C11.2853 8.86472 11.0691 8.98991 10.7635 9.41716C10.5089 9.77304 10.2252 9.83592 9.86967 9.61523C9.41974 9.33597 9.48659 8.66898 10.0166 8.14948Z" fill="white"/>
+                                                        <path d="M11.1102 15.9417C10.6507 15.4615 10.8393 14.6718 11.4692 14.4385C11.5273 14.417 11.67 14.4038 11.7862 14.4092C12.5812 14.4462 12.9417 15.3638 12.3858 15.9356C12.0186 16.3132 11.4681 16.3158 11.1102 15.9417Z" fill="white"/>
+                                                      </svg>
+                                                </span>
+                                            </div>
+
+                                            <div class="w-full flex md:bg-white bg-[#F0F7FA] rounded-[10px] p-5">
+                                                <input type="text" name="end_with" class="w-full bg-transparent focus:outline-none placeholder:text-sm" placeholder="End With" value="">
+                                                <span class="formQuestionMark-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="input-icon">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1521 3.02155C9.04839 3.23734 7.13401 4.14358 5.64585 5.62818C2.11805 9.14749 2.11805 14.8569 5.64585 18.3762C7.07804 19.8049 8.81918 20.6589 10.9056 20.9559C11.324 21.0155 12.7079 21.0145 13.1424 20.9543C15.1849 20.6716 16.9793 19.7891 18.3864 18.3751C20.0231 16.7305 20.9335 14.6377 21.0208 12.3192C21.1151 9.81628 20.1686 7.41395 18.3835 5.62515C16.9994 4.23812 15.2458 3.36232 13.2657 3.06914C12.8349 3.00535 11.5846 2.9772 11.1521 3.02155ZM13.3185 4.35429C14.9544 4.65226 16.3457 5.37551 17.4927 6.52406C18.9688 8.00221 19.7647 9.92135 19.7647 12.0022C19.7647 14.0832 18.9677 16.0047 17.4927 17.4797C16.0177 18.9547 14.0962 19.7517 12.0152 19.7517C9.93564 19.7517 8.01161 18.9537 6.53765 17.4797C5.373 16.315 4.64968 14.907 4.34816 13.2174C4.25847 12.7148 4.25847 11.2895 4.34816 10.7869C4.64968 9.09736 5.373 7.68931 6.53765 6.52466C7.79504 5.26726 9.31561 4.53074 11.1521 4.28948C11.5864 4.23245 12.8585 4.27049 13.3185 4.35429ZM11.5463 7.49687C10.9415 7.54784 10.3905 7.7829 10.0165 8.14945C9.48656 8.66896 9.4197 9.33594 9.86963 9.61521C10.2252 9.8359 10.5089 9.77302 10.7635 9.41714C11.0691 8.98989 11.2853 8.8647 11.7623 8.83874C12.5066 8.79827 12.9671 9.13636 12.9226 9.6907C12.8915 10.0781 12.7441 10.2809 12.1386 10.7692C11.5172 11.2703 11.3052 11.5606 11.1675 12.0993C11.0732 12.4679 11.0733 13.0864 11.1677 13.2944C11.2618 13.5016 11.3978 13.5646 11.7529 13.5655C12.2658 13.5667 12.4377 13.4039 12.4378 12.9166C12.4379 12.3197 12.5982 12.0222 13.1785 11.5419C14.1003 10.779 14.5191 9.98617 14.4094 9.21178C14.2463 8.06044 13.0884 7.36689 11.5463 7.49687ZM11.4692 14.4385C10.8393 14.6718 10.6507 15.4615 11.1101 15.9417C11.4681 16.3158 12.0186 16.3132 12.3858 15.9356C12.9417 15.3638 12.5812 14.4461 11.7862 14.4092C11.67 14.4038 11.5273 14.417 11.4692 14.4385Z" fill="#007BFF" fill-opacity="0.5"/>
+                                                      </svg>
+
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hover-icon">
+                                                        <circle cx="12" cy="12" r="9" fill="#007BFF"/>
+                                                        <path d="M10.0166 8.14948C10.3905 7.78292 10.9415 7.54787 11.5463 7.49689C13.0884 7.36691 14.2463 8.06046 14.4094 9.2118C14.5191 9.98619 14.1004 10.779 13.1785 11.5419C12.5983 12.0222 12.438 12.3198 12.4378 12.9166C12.4378 13.4039 12.2659 13.5668 11.7529 13.5655C11.3979 13.5646 11.2619 13.5016 11.1678 13.2944C11.0733 13.0864 11.0732 12.4679 11.1675 12.0993C11.3053 11.5606 11.5172 11.2703 12.1386 10.7692C12.7441 10.281 12.8916 10.0781 12.9227 9.69072C12.9672 9.13638 12.5067 8.79829 11.7623 8.83876C11.2853 8.86472 11.0691 8.98991 10.7635 9.41716C10.5089 9.77304 10.2252 9.83592 9.86967 9.61523C9.41974 9.33597 9.48659 8.66898 10.0166 8.14948Z" fill="white"/>
+                                                        <path d="M11.1102 15.9417C10.6507 15.4615 10.8393 14.6718 11.4692 14.4385C11.5273 14.417 11.67 14.4038 11.7862 14.4092C12.5812 14.4462 12.9417 15.3638 12.3858 15.9356C12.0186 16.3132 11.4681 16.3158 11.1102 15.9417Z" fill="white"/>
+                                                      </svg>
+                                                </span>
+                                            </div>
+
+                                            <div class="w-full flex md:bg-white bg-[#F0F7FA] rounded-[10px] p-5">
+                                                <input type="text" name="contains" class="w-full bg-transparent focus:outline-none placeholder:text-sm" placeholder="Contains" value="">
+                                                <span class="formQuestionMark-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="input-icon">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1521 3.02155C9.04839 3.23734 7.13401 4.14358 5.64585 5.62818C2.11805 9.14749 2.11805 14.8569 5.64585 18.3762C7.07804 19.8049 8.81918 20.6589 10.9056 20.9559C11.324 21.0155 12.7079 21.0145 13.1424 20.9543C15.1849 20.6716 16.9793 19.7891 18.3864 18.3751C20.0231 16.7305 20.9335 14.6377 21.0208 12.3192C21.1151 9.81628 20.1686 7.41395 18.3835 5.62515C16.9994 4.23812 15.2458 3.36232 13.2657 3.06914C12.8349 3.00535 11.5846 2.9772 11.1521 3.02155ZM13.3185 4.35429C14.9544 4.65226 16.3457 5.37551 17.4927 6.52406C18.9688 8.00221 19.7647 9.92135 19.7647 12.0022C19.7647 14.0832 18.9677 16.0047 17.4927 17.4797C16.0177 18.9547 14.0962 19.7517 12.0152 19.7517C9.93564 19.7517 8.01161 18.9537 6.53765 17.4797C5.373 16.315 4.64968 14.907 4.34816 13.2174C4.25847 12.7148 4.25847 11.2895 4.34816 10.7869C4.64968 9.09736 5.373 7.68931 6.53765 6.52466C7.79504 5.26726 9.31561 4.53074 11.1521 4.28948C11.5864 4.23245 12.8585 4.27049 13.3185 4.35429ZM11.5463 7.49687C10.9415 7.54784 10.3905 7.7829 10.0165 8.14945C9.48656 8.66896 9.4197 9.33594 9.86963 9.61521C10.2252 9.8359 10.5089 9.77302 10.7635 9.41714C11.0691 8.98989 11.2853 8.8647 11.7623 8.83874C12.5066 8.79827 12.9671 9.13636 12.9226 9.6907C12.8915 10.0781 12.7441 10.2809 12.1386 10.7692C11.5172 11.2703 11.3052 11.5606 11.1675 12.0993C11.0732 12.4679 11.0733 13.0864 11.1677 13.2944C11.2618 13.5016 11.3978 13.5646 11.7529 13.5655C12.2658 13.5667 12.4377 13.4039 12.4378 12.9166C12.4379 12.3197 12.5982 12.0222 13.1785 11.5419C14.1003 10.779 14.5191 9.98617 14.4094 9.21178C14.2463 8.06044 13.0884 7.36689 11.5463 7.49687ZM11.4692 14.4385C10.8393 14.6718 10.6507 15.4615 11.1101 15.9417C11.4681 16.3158 12.0186 16.3132 12.3858 15.9356C12.9417 15.3638 12.5812 14.4461 11.7862 14.4092C11.67 14.4038 11.5273 14.417 11.4692 14.4385Z" fill="#007BFF" fill-opacity="0.5"/>
+                                                      </svg>
+
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hover-icon">
+                                                        <circle cx="12" cy="12" r="9" fill="#007BFF"/>
+                                                        <path d="M10.0166 8.14948C10.3905 7.78292 10.9415 7.54787 11.5463 7.49689C13.0884 7.36691 14.2463 8.06046 14.4094 9.2118C14.5191 9.98619 14.1004 10.779 13.1785 11.5419C12.5983 12.0222 12.438 12.3198 12.4378 12.9166C12.4378 13.4039 12.2659 13.5668 11.7529 13.5655C11.3979 13.5646 11.2619 13.5016 11.1678 13.2944C11.0733 13.0864 11.0732 12.4679 11.1675 12.0993C11.3053 11.5606 11.5172 11.2703 12.1386 10.7692C12.7441 10.281 12.8916 10.0781 12.9227 9.69072C12.9672 9.13638 12.5067 8.79829 11.7623 8.83876C11.2853 8.86472 11.0691 8.98991 10.7635 9.41716C10.5089 9.77304 10.2252 9.83592 9.86967 9.61523C9.41974 9.33597 9.48659 8.66898 10.0166 8.14948Z" fill="white"/>
+                                                        <path d="M11.1102 15.9417C10.6507 15.4615 10.8393 14.6718 11.4692 14.4385C11.5273 14.417 11.67 14.4038 11.7862 14.4092C12.5812 14.4462 12.9417 15.3638 12.3858 15.9356C12.0186 16.3132 11.4681 16.3158 11.1102 15.9417Z" fill="white"/>
+                                                      </svg>
+                                                </span>
+                                            </div>
+
+                                            <div class="w-full flex md:bg-white bg-[#F0F7FA] rounded-[10px] p-5">
+                                                <input type="text" name="length" class="w-full bg-transparent focus:outline-none placeholder:text-sm" placeholder="Length" value="">
+                                                <span class="formQuestionMark-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="input-icon">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1521 3.02155C9.04839 3.23734 7.13401 4.14358 5.64585 5.62818C2.11805 9.14749 2.11805 14.8569 5.64585 18.3762C7.07804 19.8049 8.81918 20.6589 10.9056 20.9559C11.324 21.0155 12.7079 21.0145 13.1424 20.9543C15.1849 20.6716 16.9793 19.7891 18.3864 18.3751C20.0231 16.7305 20.9335 14.6377 21.0208 12.3192C21.1151 9.81628 20.1686 7.41395 18.3835 5.62515C16.9994 4.23812 15.2458 3.36232 13.2657 3.06914C12.8349 3.00535 11.5846 2.9772 11.1521 3.02155ZM13.3185 4.35429C14.9544 4.65226 16.3457 5.37551 17.4927 6.52406C18.9688 8.00221 19.7647 9.92135 19.7647 12.0022C19.7647 14.0832 18.9677 16.0047 17.4927 17.4797C16.0177 18.9547 14.0962 19.7517 12.0152 19.7517C9.93564 19.7517 8.01161 18.9537 6.53765 17.4797C5.373 16.315 4.64968 14.907 4.34816 13.2174C4.25847 12.7148 4.25847 11.2895 4.34816 10.7869C4.64968 9.09736 5.373 7.68931 6.53765 6.52466C7.79504 5.26726 9.31561 4.53074 11.1521 4.28948C11.5864 4.23245 12.8585 4.27049 13.3185 4.35429ZM11.5463 7.49687C10.9415 7.54784 10.3905 7.7829 10.0165 8.14945C9.48656 8.66896 9.4197 9.33594 9.86963 9.61521C10.2252 9.8359 10.5089 9.77302 10.7635 9.41714C11.0691 8.98989 11.2853 8.8647 11.7623 8.83874C12.5066 8.79827 12.9671 9.13636 12.9226 9.6907C12.8915 10.0781 12.7441 10.2809 12.1386 10.7692C11.5172 11.2703 11.3052 11.5606 11.1675 12.0993C11.0732 12.4679 11.0733 13.0864 11.1677 13.2944C11.2618 13.5016 11.3978 13.5646 11.7529 13.5655C12.2658 13.5667 12.4377 13.4039 12.4378 12.9166C12.4379 12.3197 12.5982 12.0222 13.1785 11.5419C14.1003 10.779 14.5191 9.98617 14.4094 9.21178C14.2463 8.06044 13.0884 7.36689 11.5463 7.49687ZM11.4692 14.4385C10.8393 14.6718 10.6507 15.4615 11.1101 15.9417C11.4681 16.3158 12.0186 16.3132 12.3858 15.9356C12.9417 15.3638 12.5812 14.4461 11.7862 14.4092C11.67 14.4038 11.5273 14.417 11.4692 14.4385Z" fill="#007BFF" fill-opacity="0.5"/>
+                                                      </svg>
+
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hover-icon">
+                                                        <circle cx="12" cy="12" r="9" fill="#007BFF"/>
+                                                        <path d="M10.0166 8.14948C10.3905 7.78292 10.9415 7.54787 11.5463 7.49689C13.0884 7.36691 14.2463 8.06046 14.4094 9.2118C14.5191 9.98619 14.1004 10.779 13.1785 11.5419C12.5983 12.0222 12.438 12.3198 12.4378 12.9166C12.4378 13.4039 12.2659 13.5668 11.7529 13.5655C11.3979 13.5646 11.2619 13.5016 11.1678 13.2944C11.0733 13.0864 11.0732 12.4679 11.1675 12.0993C11.3053 11.5606 11.5172 11.2703 12.1386 10.7692C12.7441 10.281 12.8916 10.0781 12.9227 9.69072C12.9672 9.13638 12.5067 8.79829 11.7623 8.83876C11.2853 8.86472 11.0691 8.98991 10.7635 9.41716C10.5089 9.77304 10.2252 9.83592 9.86967 9.61523C9.41974 9.33597 9.48659 8.66898 10.0166 8.14948Z" fill="white"/>
+                                                        <path d="M11.1102 15.9417C10.6507 15.4615 10.8393 14.6718 11.4692 14.4385C11.5273 14.417 11.67 14.4038 11.7862 14.4092C12.5812 14.4462 12.9417 15.3638 12.3858 15.9356C12.0186 16.3132 11.4681 16.3158 11.1102 15.9417Z" fill="white"/>
+                                                      </svg>
+                                                </span>
+                                            </div>
+
+                                            <div class="w-full flex md:bg-white bg-[#F0F7FA] rounded-[10px] p-5">
+                                                <input type="text" name="include" class="w-full bg-transparent focus:outline-none placeholder:text-sm" placeholder="Include" value="">
+                                                <span class="formQuestionMark-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="input-icon">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1521 3.02155C9.04839 3.23734 7.13401 4.14358 5.64585 5.62818C2.11805 9.14749 2.11805 14.8569 5.64585 18.3762C7.07804 19.8049 8.81918 20.6589 10.9056 20.9559C11.324 21.0155 12.7079 21.0145 13.1424 20.9543C15.1849 20.6716 16.9793 19.7891 18.3864 18.3751C20.0231 16.7305 20.9335 14.6377 21.0208 12.3192C21.1151 9.81628 20.1686 7.41395 18.3835 5.62515C16.9994 4.23812 15.2458 3.36232 13.2657 3.06914C12.8349 3.00535 11.5846 2.9772 11.1521 3.02155ZM13.3185 4.35429C14.9544 4.65226 16.3457 5.37551 17.4927 6.52406C18.9688 8.00221 19.7647 9.92135 19.7647 12.0022C19.7647 14.0832 18.9677 16.0047 17.4927 17.4797C16.0177 18.9547 14.0962 19.7517 12.0152 19.7517C9.93564 19.7517 8.01161 18.9537 6.53765 17.4797C5.373 16.315 4.64968 14.907 4.34816 13.2174C4.25847 12.7148 4.25847 11.2895 4.34816 10.7869C4.64968 9.09736 5.373 7.68931 6.53765 6.52466C7.79504 5.26726 9.31561 4.53074 11.1521 4.28948C11.5864 4.23245 12.8585 4.27049 13.3185 4.35429ZM11.5463 7.49687C10.9415 7.54784 10.3905 7.7829 10.0165 8.14945C9.48656 8.66896 9.4197 9.33594 9.86963 9.61521C10.2252 9.8359 10.5089 9.77302 10.7635 9.41714C11.0691 8.98989 11.2853 8.8647 11.7623 8.83874C12.5066 8.79827 12.9671 9.13636 12.9226 9.6907C12.8915 10.0781 12.7441 10.2809 12.1386 10.7692C11.5172 11.2703 11.3052 11.5606 11.1675 12.0993C11.0732 12.4679 11.0733 13.0864 11.1677 13.2944C11.2618 13.5016 11.3978 13.5646 11.7529 13.5655C12.2658 13.5667 12.4377 13.4039 12.4378 12.9166C12.4379 12.3197 12.5982 12.0222 13.1785 11.5419C14.1003 10.779 14.5191 9.98617 14.4094 9.21178C14.2463 8.06044 13.0884 7.36689 11.5463 7.49687ZM11.4692 14.4385C10.8393 14.6718 10.6507 15.4615 11.1101 15.9417C11.4681 16.3158 12.0186 16.3132 12.3858 15.9356C12.9417 15.3638 12.5812 14.4461 11.7862 14.4092C11.67 14.4038 11.5273 14.417 11.4692 14.4385Z" fill="#007BFF" fill-opacity="0.5"/>
+                                                      </svg>
+
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hover-icon">
+                                                        <circle cx="12" cy="12" r="9" fill="#007BFF"/>
+                                                        <path d="M10.0166 8.14948C10.3905 7.78292 10.9415 7.54787 11.5463 7.49689C13.0884 7.36691 14.2463 8.06046 14.4094 9.2118C14.5191 9.98619 14.1004 10.779 13.1785 11.5419C12.5983 12.0222 12.438 12.3198 12.4378 12.9166C12.4378 13.4039 12.2659 13.5668 11.7529 13.5655C11.3979 13.5646 11.2619 13.5016 11.1678 13.2944C11.0733 13.0864 11.0732 12.4679 11.1675 12.0993C11.3053 11.5606 11.5172 11.2703 12.1386 10.7692C12.7441 10.281 12.8916 10.0781 12.9227 9.69072C12.9672 9.13638 12.5067 8.79829 11.7623 8.83876C11.2853 8.86472 11.0691 8.98991 10.7635 9.41716C10.5089 9.77304 10.2252 9.83592 9.86967 9.61523C9.41974 9.33597 9.48659 8.66898 10.0166 8.14948Z" fill="white"/>
+                                                        <path d="M11.1102 15.9417C10.6507 15.4615 10.8393 14.6718 11.4692 14.4385C11.5273 14.417 11.67 14.4038 11.7862 14.4092C12.5812 14.4462 12.9417 15.3638 12.3858 15.9356C12.0186 16.3132 11.4681 16.3158 11.1102 15.9417Z" fill="white"/>
+                                                      </svg>
+                                                </span>
+                                            </div>
+
+                                            <div class="w-full flex md:bg-white bg-[#F0F7FA] rounded-[10px] p-5">
+                                                <input type="text" name="exclude" class="w-full bg-transparent focus:outline-none placeholder:text-sm" placeholder="Exclude" value="">
+                                                <span class="formQuestionMark-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="input-icon">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.1521 3.02155C9.04839 3.23734 7.13401 4.14358 5.64585 5.62818C2.11805 9.14749 2.11805 14.8569 5.64585 18.3762C7.07804 19.8049 8.81918 20.6589 10.9056 20.9559C11.324 21.0155 12.7079 21.0145 13.1424 20.9543C15.1849 20.6716 16.9793 19.7891 18.3864 18.3751C20.0231 16.7305 20.9335 14.6377 21.0208 12.3192C21.1151 9.81628 20.1686 7.41395 18.3835 5.62515C16.9994 4.23812 15.2458 3.36232 13.2657 3.06914C12.8349 3.00535 11.5846 2.9772 11.1521 3.02155ZM13.3185 4.35429C14.9544 4.65226 16.3457 5.37551 17.4927 6.52406C18.9688 8.00221 19.7647 9.92135 19.7647 12.0022C19.7647 14.0832 18.9677 16.0047 17.4927 17.4797C16.0177 18.9547 14.0962 19.7517 12.0152 19.7517C9.93564 19.7517 8.01161 18.9537 6.53765 17.4797C5.373 16.315 4.64968 14.907 4.34816 13.2174C4.25847 12.7148 4.25847 11.2895 4.34816 10.7869C4.64968 9.09736 5.373 7.68931 6.53765 6.52466C7.79504 5.26726 9.31561 4.53074 11.1521 4.28948C11.5864 4.23245 12.8585 4.27049 13.3185 4.35429ZM11.5463 7.49687C10.9415 7.54784 10.3905 7.7829 10.0165 8.14945C9.48656 8.66896 9.4197 9.33594 9.86963 9.61521C10.2252 9.8359 10.5089 9.77302 10.7635 9.41714C11.0691 8.98989 11.2853 8.8647 11.7623 8.83874C12.5066 8.79827 12.9671 9.13636 12.9226 9.6907C12.8915 10.0781 12.7441 10.2809 12.1386 10.7692C11.5172 11.2703 11.3052 11.5606 11.1675 12.0993C11.0732 12.4679 11.0733 13.0864 11.1677 13.2944C11.2618 13.5016 11.3978 13.5646 11.7529 13.5655C12.2658 13.5667 12.4377 13.4039 12.4378 12.9166C12.4379 12.3197 12.5982 12.0222 13.1785 11.5419C14.1003 10.779 14.5191 9.98617 14.4094 9.21178C14.2463 8.06044 13.0884 7.36689 11.5463 7.49687ZM11.4692 14.4385C10.8393 14.6718 10.6507 15.4615 11.1101 15.9417C11.4681 16.3158 12.0186 16.3132 12.3858 15.9356C12.9417 15.3638 12.5812 14.4461 11.7862 14.4092C11.67 14.4038 11.5273 14.417 11.4692 14.4385Z" fill="#007BFF" fill-opacity="0.5"/>
+                                                      </svg>
+
+                                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hover-icon">
+                                                        <circle cx="12" cy="12" r="9" fill="#007BFF"/>
+                                                        <path d="M10.0166 8.14948C10.3905 7.78292 10.9415 7.54787 11.5463 7.49689C13.0884 7.36691 14.2463 8.06046 14.4094 9.2118C14.5191 9.98619 14.1004 10.779 13.1785 11.5419C12.5983 12.0222 12.438 12.3198 12.4378 12.9166C12.4378 13.4039 12.2659 13.5668 11.7529 13.5655C11.3979 13.5646 11.2619 13.5016 11.1678 13.2944C11.0733 13.0864 11.0732 12.4679 11.1675 12.0993C11.3053 11.5606 11.5172 11.2703 12.1386 10.7692C12.7441 10.281 12.8916 10.0781 12.9227 9.69072C12.9672 9.13638 12.5067 8.79829 11.7623 8.83876C11.2853 8.86472 11.0691 8.98991 10.7635 9.41716C10.5089 9.77304 10.2252 9.83592 9.86967 9.61523C9.41974 9.33597 9.48659 8.66898 10.0166 8.14948Z" fill="white"/>
+                                                        <path d="M11.1102 15.9417C10.6507 15.4615 10.8393 14.6718 11.4692 14.4385C11.5273 14.417 11.67 14.4038 11.7862 14.4092C12.5812 14.4462 12.9417 15.3638 12.3858 15.9356C12.0186 16.3132 11.4681 16.3158 11.1102 15.9417Z" fill="white"/>
+                                                      </svg>
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-buttonPrimary rounded-[10px] text-white hover:opacity-50">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- main advance search form end -->
+
+    <!-- content section start -->
+    <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-20">
+        <div class="container">
+            <div class="flex flex-col gap-8 md:flex-row">
+                <!-- left col start -->
+                <div class="w-full md:w-2/3">
+
+                    <!-- letters is playable! box start -->
+                    <div class="flex items-center border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="38" height="27" viewBox="0 0 38 27" fill="none">
+                            <path d="M34.364 0.00011484C28.0751 6.2955 20.7692 13.5711 14.3051 20.0356L3.31663 10.7161L0 14.6074L12.7866 25.4632L14.5847 27L16.2628 25.3238C23.0779 18.502 31.1763 10.4426 38 3.61209L34.3636 0L34.364 0.00011484Z" fill="#007BFF"/>
+                          </svg>
+                        <h2 class="text-3xl font-semibold sm:text-4xl ms-5">letters is playable!</h2>
+                    </div>
+
+                    <!-- 7 Letter Words box start -->
+                    <div class="w-full mb-8">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                            7 Letter Words
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px]">
+                            <div class="flex flex-wrap gap-3 tagsMain" id="words_card_5">
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    letters
+                                    <span class="text-[#6C757D] text-xs font-medium">8</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    settler
+                                    <span class="text-[#6C757D] text-xs font-medium">8</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    sterlet
+                                    <span class="text-[#6C757D] text-xs font-medium">8</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    trestle
+                                    <span class="text-[#6C757D] text-xs font-medium">8</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6 Letter Words box start -->
+                    <div class="w-full mb-8">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                            6 Letter Words
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px]">
+                            <div class="flex flex-wrap gap-3 tagsMain" id="words_card_5">
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    letter
+                                    <span class="text-[#6C757D] text-xs font-medium">7</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    relets
+                                    <span class="text-[#6C757D] text-xs font-medium">7</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    settle
+                                    <span class="text-[#6C757D] text-xs font-medium">7</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    streel
+                                    <span class="text-[#6C757D] text-xs font-medium">7</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    retest
+                                    <span class="text-[#6C757D] text-xs font-medium">6</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    setter
+                                    <span class="text-[#6C757D] text-xs font-medium">6</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    street
+                                    <span class="text-[#6C757D] text-xs font-medium">6</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    tester
+                                    <span class="text-[#6C757D] text-xs font-medium">6</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5 Letter Words box start -->
+                    <div class="w-full mb-8">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                            5 Letter Words
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px]">
+                            <div class="flex flex-wrap gap-3 tagsMain" id="words_card_5">
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    leers
+                                    <span class="text-[#6C757D] text-xs font-medium">6</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    leets
+                                    <span class="text-[#6C757D] text-xs font-medium">6</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    reels
+                                    <span class="text-[#6C757D] text-xs font-medium">6</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    relet
+                                    <span class="text-[#6C757D] text-xs font-medium">6</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    sleet
+                                    <span class="text-[#6C757D] text-xs font-medium">6</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    steel
+                                    <span class="text-[#6C757D] text-xs font-medium">6</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    stele
+                                    <span class="text-[#6C757D] text-xs font-medium">6</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    teels
+                                    <span class="text-[#6C757D] text-xs font-medium">6</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    teles
+                                    <span class="text-[#6C757D] text-xs font-medium">6</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    ester
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    reest
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    reset
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    steer
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    stere
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    teres
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    terse
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    terse
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    trees
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    trets
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4 Letter Words box start -->
+                    <div class="w-full mb-8">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                            4 Letter Words
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px]">
+                            <div class="flex flex-wrap gap-3 tagsMain" id="words_card_5">
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    eels
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    else
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    leer
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    lees
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    leet
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    lest
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    lets
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    reel
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    seel
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    teel
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    tele
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    tels
+                                    <span class="text-[#6C757D] text-xs font-medium">5</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    erst
+                                    <span class="text-[#6C757D] text-xs font-medium">4</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    etre
+                                    <span class="text-[#6C757D] text-xs font-medium">4</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    rees
+                                    <span class="text-[#6C757D] text-xs font-medium">4</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    rest
+                                    <span class="text-[#6C757D] text-xs font-medium">4</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    rete
+                                    <span class="text-[#6C757D] text-xs font-medium">4</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    rets
+                                    <span class="text-[#6C757D] text-xs font-medium">4</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    seer
+                                    <span class="text-[#6C757D] text-xs font-medium">4</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    sere
+                                    <span class="text-[#6C757D] text-xs font-medium">4</span>
+                                </button>
+
+                                <!-- view more content -->
+                                <div id="hs-show-hide-collapse-heading" class="hs-collapse hidden w-full overflow-hidden transition-[height] duration-300 gap-3 flex flex-wrap" aria-labelledby="hs-show-hide-collapse">
+                                    <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                        sere
+                                        <span class="text-[#6C757D] text-xs font-medium">4</span>
+                                     </button>
+                                    <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                        sere
+                                        <span class="text-[#6C757D] text-xs font-medium">4</span>
+                                     </button>
+                                    <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                        sere
+                                        <span class="text-[#6C757D] text-xs font-medium">4</span>
+                                     </button>
+                                </div>
+
+                            </div>
+
+                            <div class="mt-6 text-center">
+                                <a href="javascript:void(0);" class="hs-collapse-toggle text-white bg-[#007BFF] rounded-[10px] py-4 px-6 hover:opacity-50 inline-block" id="hs-show-hide-collapse" data-hs-collapse="#hs-show-hide-collapse-heading">
+                                    <span class="hs-collapse-open:hidden">View More</span>
+                                    <span class="hidden hs-collapse-open:block">View less</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3 Letter Words box start -->
+                    <div class="w-full mb-8">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                            3 Letter Words
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px]">
+                            <div class="flex flex-wrap gap-3 tagsMain" id="words_card_5">
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    eel
+                                    <span class="text-[#6C757D] text-xs font-medium">4</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    els
+                                    <span class="text-[#6C757D] text-xs font-medium">4</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    lee
+                                    <span class="text-[#6C757D] text-xs font-medium">4</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    let
+                                    <span class="text-[#6C757D] text-xs font-medium">4</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    sel
+                                    <span class="text-[#6C757D] text-xs font-medium">4</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    tel
+                                    <span class="text-[#6C757D] text-xs font-medium">4</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    ere
+                                    <span class="text-[#6C757D] text-xs font-medium">3</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    ers
+                                    <span class="text-[#6C757D] text-xs font-medium">3</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    ese
+                                    <span class="text-[#6C757D] text-xs font-medium">3</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    ree
+                                    <span class="text-[#6C757D] text-xs font-medium">3</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    res
+                                    <span class="text-[#6C757D] text-xs font-medium">3</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    ret
+                                    <span class="text-[#6C757D] text-xs font-medium">3</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    see
+                                    <span class="text-[#6C757D] text-xs font-medium">3</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    ser
+                                    <span class="text-[#6C757D] text-xs font-medium">3</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    set
+                                    <span class="text-[#6C757D] text-xs font-medium">3</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    tee
+                                    <span class="text-[#6C757D] text-xs font-medium">3</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    tet
+                                    <span class="text-[#6C757D] text-xs font-medium">3</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2 Letter Words box start -->
+                    <div class="w-full mb-8">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                            2 Letter Words
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px]">
+                            <div class="flex flex-wrap gap-3 tagsMain" id="words_card_5">
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    el
+                                    <span class="text-[#6C757D] text-xs font-medium">3</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    ee
+                                    <span class="text-[#6C757D] text-xs font-medium">2</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    er
+                                    <span class="text-[#6C757D] text-xs font-medium">2</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    et
+                                    <span class="text-[#6C757D] text-xs font-medium">2</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    re
+                                    <span class="text-[#6C757D] text-xs font-medium">2</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    te
+                                    <span class="text-[#6C757D] text-xs font-medium">2</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- left col end -->
+
+                <!-- right col start -->
+                <div class="w-full md:w-1/3">
+                    <!-- Word Finders -->
+                    <div class="mb-6">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                            Word Finders
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px]">
+                            <ol class="space-y-3 font-medium list-decimal">
+                                <li>Word Finder</li>
+                                <li>Scrabble Word Finder</li>
+                                <li>Words With Friends Cheat</li>
+                                <li>Word Unscrambler</li>
+                                <li>Anagram Solver</li>
+                                <li>Word Scramble</li>
+                                <li>Jumble Solver</li>
+                                <li>Word Generator</li>
+                                <li>Scrabble Cheat</li>
+                                <li>Word Solver</li>
+                                <li>Apalabrados Trucos</li>
+                                <li>Wordfeud</li>
+                                <li>Word Cookies Answers</li>
+                                <li>Cody Cross</li>
+                                <li>Text Twist</li>
+                                <li>4 Pics 1 Word</li>
+                                <li>Word Descrambler</li>
+                                <li>Words Of Wonders</li>
+                                <li>Wordscapes Answers</li>
+                                <li>Scrabble Go Word Finder</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Dictionaries -->
+                    <div class="mb-6">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                            Dictionaries
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px]">
+                            <ol class="space-y-3 font-medium list-decimal">
+                                <li>Words With Friends Dictionary</li>
+                                <li>Scrabble Dictionary</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- List of Words -->
+                    <div class="mb-6">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                            List of Words
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px]">
+                            <ol class="space-y-3 font-medium list-decimal">
+                                <li>All Consonant Words</li>
+                                <li>Vowel Words</li>
+                                <li>Words By Length</li>
+                                <li>Words Ending In</li>
+                                <li>Words Start With</li>
+                                <li>Words With Letters</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- right col end -->
+            </div>
+        </div>
+    </div>
+    <!-- content section end -->
+
+    <!-- footer start  -->
+    <%- (include('../views/footer/footer.ejs')) %>
+<!-- footer end  -->
+
+<%- (include('../views/script/script.ejs')) %>
