@@ -1,0 +1,177 @@
+<%- (include('../views/head/head.ejs')) %>
+
+    <body class="font-custom">
+        <!-- header start here -->
+        <%- (include('../views/head/header.ejs')) %>
+            <!-- header end here -->
+
+            <!-- main advance search form start -->
+            <div class="bg-[#DBF4FF]">
+                <div class="container">
+                    <div class="flex flex-wrap max-w-screen-md pt-10 pb-10 mx-auto md:pt-20 md:pb-20">
+                        <div class="flex flex-wrap items-center justify-center w-full align-middle">
+                            <h1 class="block text-[#393939] text-2xl sm:text3xl font-semibold mb-3 text-center"> Word
+                                Finder</h1>
+                            <p class="block w-full text-center">
+                                Enter up to 15 letters and up to 2 wildcards (? or space).
+                            </p>
+                            <form id="search-main" class="w-full mt-8 mb-6" action="/search" method="post">
+                                <div
+                                    class="input-group MainSearch border rounded-[10px] border-[#007BFF] overflow-hidden bg-white py-2 text-center">
+                                    <input type="text" name="letters"
+                                        class="w-2/5 border-0 sm:w-4/6 md:w-2/3 main-search-input sm:text-lg focus:outline-none"
+                                        placeholder="Type Letters ..." aria-label="Letters"
+                                        aria-describedby="dictionary-select-field">
+                                    <span class="p-0 border-0 input-group-text" id="dictionary-select-field">
+                                        <select
+                                            class="py-2 text-sm bg-white border-0 ps-2 pe-[30px] sm:text-lg focus:outline-none"
+                                            aria-label="Default select example" name="scrabble_type">
+                                            <option value="wwf" selected="">Words With Friends</option>
+                                            <option value="us">Scrabble US</option>
+                                            <option value="uk">Scrabble UK</option>
+                                            <option value="all_en">All Dictionaries</option>
+                                        </select>
+                                    </span>
+                                </div>
+
+                                <div class="w-full mb-4 hs-accordion-group">
+                                    <%- (include('../views/search/advance_search.ejs')) %>
+                                </div>
+                                <button type="submit"
+                                    class="w-full py-4 bg-buttonPrimary rounded-[10px] text-white hover:opacity-50">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- main advance search form end -->
+
+            <!-- content section start -->
+            <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-20">
+                <div class="container">
+                    <div class="flex flex-col gap-8 md:flex-row">
+                        <!-- left col start -->
+                        <div class="w-full md:w-2/3">
+                            <!-- Words with X and Q box start -->
+                            <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                                <h2 class="mb-4 text-3xl font-semibold md:text-4xl">Words with X and Q</h2>
+                                <p>
+                                    Words with X and Q are commonly used for word games like Scrabble and Words with
+                                    Friends. This list will help you to find the top scoring words to beat the opponent.
+                                    You can also find a list of all <a href="javascript:void(0);"
+                                        class="text-[#007BFF] font-medium">words with X</a> and <a
+                                        href="javascript:void(0);" class="text-[#007BFF] font-medium">words with Q</a>.
+                                </p>
+                            </div>
+
+                            <div class="mb-8">
+                                <form id="search-main" class="w-full mt-8 mb-6" action="/modify-search"
+                                    method="post">
+                                    <div class="">
+                                        <label class="block w-full mb-3" for="Dictionary">Choose Dictionary</label>
+                                        <select
+                                            class="w-full flex bg-[#F0F7FA] rounded-[10px] p-5 appearance-none focus:outline-none"
+                                            id="Dictionary" name="Dictionary">
+                                            <option value="wwf" selected="">Words With Friends</option>
+                                            <option value="us">Scrabble US</option>
+                                            <option value="uk">Scrabble UK</option>
+                                            <option value="all_en">All Dictionaries</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="w-full mb-4 hs-accordion-group">
+                                        <%- (include('../views/search/advance_search.ejs')) %>
+                                    </div>
+                                    <button type="submit"
+                                        class="w-full py-4 bg-buttonPrimary rounded-[10px] text-white hover:opacity-50">Modify
+                                        Search</button>
+                                </form>
+                            </div>
+
+
+<!-- show--scarabble -->
+
+<% if (specifiedLength) { %>
+    <% if (wordsByLength[specifiedLength] && wordsByLength[specifiedLength].length > 0) { %>
+        <% const uniqueWords = new Set(); %>
+        <div class="w-full mb-8">
+            <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                Length <%= specifiedLength %>
+                <% console.log(`Total words of length ${specifiedLength}:`, wordsByLength[specifiedLength].length); %> <!-- Log total words for this length -->
+            </div>
+            <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px]">
+                <div class="flex flex-wrap gap-3 tagsMain" id="words_card_<%= specifiedLength %>">
+                    <% wordsByLength[specifiedLength].forEach(word => { %>
+                        <% if ((!startsWith || word.startsWith(startsWith)) && (!endsWith || word.endsWith(endsWith)) && (!contains || word.includes(contains))) { %> <!-- Check if startsWith, endsWith, and contains are provided and word meets all criteria -->
+                            <% uniqueWords.add(word); %>
+                        <% } %>
+                    <% }); %>
+                    <% uniqueWords.forEach(word => { %>
+                        <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]" onclick="fetchWordDefinition('<%= word %>')">
+                            <%= word %>
+                        </button>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    <% } %>
+    <% } else { %>
+        <% Object.keys(wordsByLength).forEach(length => { %>
+            <% if (wordsByLength[length].some(word => ((!startsWith || word.startsWith(startsWith)) && (!endsWith || word.endsWith(endsWith)) && (!contains || word.includes(contains))))) { %> <!-- Check if there are words available for the current length -->
+                <% const uniqueWords = new Set(); %>
+                <div class="w-full mb-8">
+                    <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                        Length <%= length %>
+                    </div>
+                    <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px]">
+                        <div class="flex flex-wrap gap-3 tagsMain" id="words_card_<%= length %>">
+                            <% wordsByLength[length].forEach(word => { %>
+                                <% if ((!startsWith || word.startsWith(startsWith)) && (!endsWith || word.endsWith(endsWith)) && (!contains || word.includes(contains))) { %> <!-- Check if startsWith, endsWith, and contains are provided and word meets all criteria -->
+                                    <% uniqueWords.add(word); %>
+                                <% } %>
+                            <% }); %>
+                            <% uniqueWords.forEach(word => { %>
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]" onclick="fetchWordDefinition('<%= word %>')">
+                                    <%= word %>
+                                </button>
+                            <% }); %>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        <% }); %>
+    <% } %>    
+
+                        <!-- left col end -->
+
+                        <!-- right col start -->
+                        <div class="w-full md:w-1/3">
+                            <!-- Word Finders box -->
+                            <%- (include('../views/right_col/word_finder.ejs')) %>
+
+                                <!-- Dictionaries box  -->
+                                <%- (include('../views/right_col/Dictionaries.ejs')) %>
+
+                                    <!-- List of Words box -->
+                                    <%- (include('../views/right_col/list_of_words.ejs')) %>
+
+                                        <!-- Popular Searches box -->
+                                        <%- (include('../views/right_col/Popular_Searches_box.ejs')) %>
+
+                                            <!-- Frequent Searches box -->
+                                            <%- (include('../views/right_col/Frequent_Searches_box.ejs')) %>
+
+                                                <!-- Latest Article box -->
+                                                <%- (include('../views/right_col/latest_article.ejs')) %>
+
+                        </div>
+                        <!-- right col end -->
+                    </div>
+                </div>
+            </div>
+            <!-- content section end -->
+            <div id="definitionModalContainer"></div>
+            <!-- footer start  -->
+            <%- (include('../views/footer/footer.ejs')) %>
+                <!-- footer end  -->
+                <%- (include('../views/script/script.ejs')) %>

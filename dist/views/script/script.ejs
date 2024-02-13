@@ -1,0 +1,49 @@
+<script>
+function fetchWordDefinition(word) {
+    fetch(`/word-definition?word=${word}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+    console.log(data); 
+    if (data && data.definition && data.definition.hasOwnProperty('category')) {
+        displayDefinitionModal(data.word, data.definition.category, data.definition.definition);
+    } else {
+        console.error(`Definition not found for '${word}'`);
+    }
+})
+
+
+        .catch(error => {
+            console.error('Error fetching word definition:', error);
+        });
+}
+
+function displayDefinitionModal(word, category, definition) {
+    // Create a modal element
+    const modalContainer = document.getElementById('definitionModalContainer');
+    const modalContent = `
+        <div id="hs-medium-modal" class="hs-overlay w-full h-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none">
+            <div class="p-4 sm:p-6 modal-body">
+                <h3 class="text-[22px] font-semibold text-black mb-3">Definition for ${category} ${word}</h3>
+                <div class="mt-4 text-base italic font-normal">${definition}</div>
+            </div>
+        </div>`;
+
+    // Set modal content in the container
+    modalContainer.innerHTML = modalContent;
+
+    // Show the modal
+    const modal = document.getElementById('hs-medium-modal');
+    modal.classList.remove('hidden');
+}
+
+</script>
+
+<script src="/node_modules/preline/dist/preline.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</body>
+</html>
