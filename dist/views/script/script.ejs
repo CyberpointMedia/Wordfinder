@@ -37,7 +37,7 @@
                         </button>
                     </div>
                     <div class="p-4 sm:p-6 modal-body">
-                        <div class="mt-4 text-base italic font-normal">${definition}</div>
+                        <div class="mb-4 text-base italic font-normal">${definition}</div>
                     </div>
                 </div>
             </div>`;
@@ -48,6 +48,15 @@
         // Show the modal
         const modal = document.getElementById('hs-medium-modal');
         modal.classList.remove('hidden');
+
+        const myDiv = document.getElementById('hs-medium-modal-backdrop');
+        const closeDiv = document.getElementById('closeBtn');
+
+        closeDiv.addEventListener('click', function() {
+            // Set the display property of the div to 'none' to hide it
+            myDiv.remove();
+            modal.classList.add('hidden');
+        });
 
     }
 </script>
