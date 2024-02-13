@@ -24,7 +24,7 @@
 
     function displayDefinitionModal(word, category, definition) {
         // Create a modal element
-        const modalContainer = document.getElementById('definitionModalContainer');
+        const modalContainer = document.getElementById('hs-medium-modal');
         const modalContent = `
             <div class="m-3 mt-0 transition-all ease-out hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 md:max-w-[740px] md:w-full md:mx-auto">
                 <div class="flex flex-col overflow-hidden bg-white pointer-events-auto rounded-[20px]">
@@ -32,7 +32,7 @@
                         <h3 class="flex items-center text-2xl font-semibold text-white sm:text-3xl">
                             Definition for ${category} ${word}
                         </h3>
-                        <button type="button" class="flex items-center justify-center text-sm font-semibold text-gray-800 border border-transparent rounded-full w-7 h-7 hover:border hover:border-white disabled:opacity-50 disabled:pointer-events-none" data-hs-overlay="#definitionModalContainer">
+                        <button id="closeBtn" type="button" class="flex items-center justify-center text-sm font-semibold text-gray-800 border border-transparent rounded-full w-7 h-7 hover:border hover:border-white disabled:opacity-50 disabled:pointer-events-none" data-hs-overlay="#hs-medium-modal">
                             <svg class="flex-shrink-0 w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                         </button>
                     </div>
@@ -46,8 +46,9 @@
         modalContainer.innerHTML = modalContent;
 
         // Show the modal
-        const modal = document.getElementById('definitionModalContainer');
+        const modal = document.getElementById('hs-medium-modal');
         modal.classList.remove('hidden');
+
     }
 </script>
 

@@ -98,7 +98,7 @@
                                                                 <% } %>
                                                                     <% }); %>
                                                                         <% uniqueWords.forEach(word => { %>
-                                                                            <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]" data-hs-overlay="#displayDefinitionModal" onclick="fetchWordDefinition('<%= word %>')">
+                                                                            <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]" data-hs-overlay="#hs-medium-modal" onclick="fetchWordDefinition('<%= word %>')">
                             <%= word %>
                         </button>
                                                                             <% }); %>
@@ -125,7 +125,7 @@
                                                                                     <% } %>
                                                                                         <% }); %>
                                                                                             <% uniqueWords.forEach(word => { %>
-                                                                                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]" data-hs-overlay="#displayDefinitionModal" onclick="fetchWordDefinition('<%= word %>')">
+                                                                                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]" data-hs-overlay="#hs-medium-modal" onclick="fetchWordDefinition('<%= word %>')">
                                     <%= word %>
                                 </button>
                                                                                                 <% }); %>
@@ -165,7 +165,9 @@
                 </div>
             </div>
             <!-- content section end -->
-            <div id="definitionModalContainer" class="hs-overlay hidden w-full h-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"></div>
+            <div id="hs-medium-modal" class="hs-overlay hidden w-full h-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"></div>
+
+
             <!-- footer start  -->
             <%- (include('../views/footer/footer.ejs')) %>
                 <!-- footer end  -->
