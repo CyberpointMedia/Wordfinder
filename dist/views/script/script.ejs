@@ -1,49 +1,58 @@
 <script>
-function fetchWordDefinition(word) {
-    fetch(`/word-definition?word=${word}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-    console.log(data); 
-    if (data && data.definition && data.definition.hasOwnProperty('category')) {
-        displayDefinitionModal(data.word, data.definition.category, data.definition.definition);
-    } else {
-        console.error(`Definition not found for '${word}'`);
-    }
-})
+    function fetchWordDefinition(word) {
+        fetch(`/word-definition?word=${word}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                if (data && data.definition && data.definition.hasOwnProperty('category')) {
+                    displayDefinitionModal(data.word, data.definition.category, data.definition.definition);
+                } else {
+                    console.error(`Definition not found for '${word}'`);
+                }
+            })
 
 
         .catch(error => {
             console.error('Error fetching word definition:', error);
         });
-}
+    }
 
-function displayDefinitionModal(word, category, definition) {
-    // Create a modal element
-    const modalContainer = document.getElementById('definitionModalContainer');
-    const modalContent = `
-        <div id="hs-medium-modal" class="hs-overlay w-full h-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none">
-            <div class="p-4 sm:p-6 modal-body">
-                <h3 class="text-[22px] font-semibold text-black mb-3">Definition for ${category} ${word}</h3>
-                <div class="mt-4 text-base italic font-normal">${definition}</div>
-            </div>
-        </div>`;
+    function displayDefinitionModal(word, category, definition) {
+        // Create a modal element
+        const modalContainer = document.getElementById('definitionModalContainer');
+        const modalContent = `
+            <div class="m-3 mt-0 transition-all ease-out hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 md:max-w-[740px] md:w-full md:mx-auto">
+                <div class="flex flex-col overflow-hidden bg-white pointer-events-auto rounded-[20px]">
+                    <div class="flex items-center justify-between sm:p-6 p-4 border-b bg-[#007BFF]">
+                        <h3 class="flex items-center text-2xl font-semibold text-white sm:text-3xl">
+                            Definition for ${category} ${word}
+                        </h3>
+                        <button type="button" class="flex items-center justify-center text-sm font-semibold text-gray-800 border border-transparent rounded-full w-7 h-7 hover:border hover:border-white disabled:opacity-50 disabled:pointer-events-none" data-hs-overlay="#definitionModalContainer">
+                            <svg class="flex-shrink-0 w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                        </button>
+                    </div>
+                    <div class="p-4 sm:p-6 modal-body">
+                        <div class="mt-4 text-base italic font-normal">${definition}</div>
+                    </div>
+                </div>
+            </div>`;
 
-    // Set modal content in the container
-    modalContainer.innerHTML = modalContent;
+        // Set modal content in the container
+        modalContainer.innerHTML = modalContent;
 
-    // Show the modal
-    const modal = document.getElementById('hs-medium-modal');
-    modal.classList.remove('hidden');
-}
-
+        // Show the modal
+        const modal = document.getElementById('definitionModalContainer');
+        modal.classList.remove('hidden');
+    }
 </script>
 
 <script src="/node_modules/preline/dist/preline.js"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
+
 </html>
