@@ -51,11 +51,13 @@
 
         const myDiv = document.getElementById('hs-medium-modal-backdrop');
         const closeDiv = document.getElementById('closeBtn');
+        const body = document.body;
 
         closeDiv.addEventListener('click', function() {
             // Set the display property of the div to 'none' to hide it
             myDiv.remove();
             modal.classList.add('hidden');
+            body.style.overflow = '';
         });
 
     }
