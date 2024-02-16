@@ -1,0 +1,75 @@
+<!-- views/user/profile.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .profile-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+            margin: 8px 0;
+        }
+
+        .back-btn {
+            margin-top: 20px;
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .back-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <title>User Profile</title>
+</head>
+<body>
+
+<div class="profile-container">
+    <h1>User Profile</h1>
+    <% if (user.username) { %>
+        <p>Username: <%= user.username %></p>
+    <% } %>
+    <% if (user.bio) { %>
+        <p>Bio: <%= user.bio %></p>
+    <% } %>
+    <% if (user.portfolioLink) { %>
+        <p>Portfolio Link: <a href="<%= user.portfolioLink %>" target="_blank"><%= user.portfolioLink %></a></p>
+    <% } %>
+
+    <!-- Back Button -->
+    <a href="/user/dashboard" class="back-btn">Back to Dashboard</a>
+</div>
+
+</body>
+</html>

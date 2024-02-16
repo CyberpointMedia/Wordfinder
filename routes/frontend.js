@@ -1,0 +1,135 @@
+//route/frontend.js
+const express = require('express');
+const path = require('path');
+const https = require('https');
+const bodyParser = require('body-parser'); 
+const router = express.Router();
+const PORT = process.env.PORT || 8080;
+var wd = require("word-definition");
+const axios = require('axios');
+const wrapAsync = require('../middleware/wrapAsync');
+// Middleware to parse incoming request bodies
+router.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.json());
+
+// // Serve static files from the 'dist' directory
+router.use(express.static(path.join(__dirname, 'dist')));
+// Serve static files from the node_modules directory
+router.use('/node_modules', express.static(__dirname + '/node_modules'));
+
+// // Define routes
+
+router.get('/', (req, res) => {
+    console.log("hello sir ");
+    res.render(('frontend/index.ejs'));
+});
+router.get('/5-letter-words', (req, res) => {
+    res.render(('frontend/5-letter-words.ejs'));
+  });
+router.get('/article-details', (req, res) => {
+    res.render(('frontend/article-details.ejs'));
+  });
+router.get('/articles', (req, res) => {
+    res.render(('frontend/articles.ejs'));
+});
+router.get('/contact', (req, res) => {
+    res.render(('frontend/contact.ejs'));
+});
+router.get('/privacy-policy', (req, res) => {
+    res.render(('frontend/privacy-policy.ejs'));
+});
+router.get('/result', (req, res) => {
+    res.render(('frontend/result.ejs'));
+});
+router.get('/words-with-X-and-Q', (req, res) => {
+    res.render(('frontend/words-with-X-and-Q.ejs'));
+});
+
+// Handle POST request when search button is clicked
+
+// Handle POST request when search button is clicked
+router.post('/search', wrapAsync(async (req, res) => {
+  const letters = req.body.letters;
+  const startsWith = req.body.starts_with || '';
+  const endsWith = req.body.end_with || '';
+  const contains = req.body.contains || ''; 
+  const specifiedLength = req.body.length || ''; 
+  console.log("LEngth of the words",specifiedLength);
+  let url = `https://httpip.es/api/words?letters=${letters}`;
+  // If starts_with parameter is provided, modify the URL to include it
+  if (startsWith.trim() !== '') {
+      url += `&starts_with=${startsWith}`;
+  }
+  if (endsWith.trim() !== '') {
+      url += `&ends_with=${endsWith}`;
+  }
+  if (contains.trim() !== '') {
+      url += `&contains=${contains}`;
+  }
+  if (specifiedLength.trim() !== '') { 
+      url += `&length=${specifiedLength}`;
+  }
+  https.get(url, (response) => {
+      let data = '';
+
+      response.on('data', (chunk) => {
+          data += chunk;
+      });
+
+      response.on('end', () => {
+          const responseData = JSON.parse(data);
+          const words = responseData.data;
+
+          // Group words by their length
+          const wordsByLength = {};
+          words.forEach(word => {
+              const wordLength = word.length;
+              if (!wordsByLength[wordLength]) {
+                  wordsByLength[wordLength] = [];
+              }
+              wordsByLength[wordLength].push(word);
+          });
+          
+          // Calculate the total number of words for each length
+          const totalWordsByLength = {};
+          Object.keys(wordsByLength).forEach(length => {
+              totalWordsByLength[length] = wordsByLength[length].length;
+          });
+
+          // Render the words_with_x_and_q.ejs template with the grouped data
+          res.render('frontend/words-with-X-and-Q.ejs', { letters, wordsByLength ,startsWith ,endsWith, contains,specifiedLength,totalWordsByLength}); // Pass 'letters' and 'wordsByLength' variables here
+      });
+  }).on('error', (error) => {
+      console.error('Error:', error);
+      res.status(500).json({ error: 'Internal server error' });
+  });
+}));
+
+router.get('/word-definition', wrapAsync(async (req, res) => {
+  const word = req.query.word;
+
+  const options = {
+      method: 'GET',
+      url: `https://wordsapiv1.p.rapidapi.com/words/${word}`,
+      headers: {
+          'X-RapidAPI-Key': process.env.Key,
+          'X-RapidAPI-Host': process.env.Host
+      }
+  };
+  try {
+      const response = await axios.request(options);
+      console.log(response.data);
+      res.json(response.data); // Send the response back to the client
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' }); // Send an error response
+  }
+}));
+
+
+// Example route for serving input.css
+router.get('/input', (req, res) => {
+  res.sendFile(path.join(__dirname, 'src', 'input.css'));
+});
+
+module.exports = router;

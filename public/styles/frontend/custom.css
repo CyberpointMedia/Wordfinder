@@ -1,0 +1,81 @@
+body {
+    color: #393939;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+    color: rgba(57, 57, 57, 0.80);
+}
+
+.MainSearch {
+    border-color: rgba(0, 123, 255, 0.30);
+}
+
+.hover-icon {
+    display: none;
+}
+
+input:focus-visible+.formQuestionMark-icon .hover-icon {
+    display: block;
+}
+
+input:focus-visible+.formQuestionMark-icon .input-icon {
+    display: none;
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-right: var(--bs-gutter-x, 1.75rem);
+    padding-left: var(--bs-gutter-x, 1.75rem);
+}
+
+.cardHeader {
+    position: relative;
+    border-radius: 16px 16px 0 0;
+}
+
+.cardHeader .leftHandle {
+    position: absolute;
+    bottom: -22px;
+    left: 45px;
+}
+
+.cardHeader .rightHandle {
+    position: absolute;
+    bottom: -22px;
+    right: 45px;
+}
+
+select {
+    background-image: url(../images/select-arrow.svg);
+    background-repeat: no-repeat;
+    background-position: 98% 50%;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.tag {
+    background: rgba(0, 123, 255, .1);
+}
+
+.pagination button.active {
+    background: #F0F7FA;
+    color: #007BFF;
+}
+
+.pagination button:hover svg,
+.pagination button:focus svg {
+    fill: #007BFF;
+}
+
+.list-type-color ::marker {
+    color: #007BFF;
+}

@@ -1,0 +1,417 @@
+<%- (include('../frontend/head/head.ejs')) %>
+<body class="font-custom">
+    <!-- header start here -->
+    <%- (include('../frontend/head/header.ejs')) %>
+    <!-- header end here -->
+    
+    <!-- content section start -->
+    <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-20">
+        <div class="container">
+            <!-- breadcrumb start -->
+            <ol class="flex items-center whitespace-nowrap mb-10 hidden md:block" aria-label="Breadcrumb">
+                <li class="inline-flex items-center">
+                    <a class="flex items-center text-sm text-[#007BFF] hover:opacity-50 focus:outline-none focus:opacity-50" href="#">
+                    Home
+                  </a>
+                    <svg class="flex-shrink-0 h-5 w-5 opacity-50 text-[#393939]" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"/>
+                  </svg>
+                </li>
+                <li class="inline-flex items-center">
+                    <a class="flex items-center text-sm text-[#007BFF] hover:opacity-50 focus:outline-none focus:opacity-50" href="#">
+                    Articles 
+                    <svg class="flex-shrink-0 h-5 w-5 text-[#393939] opacity-50" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"/>
+                  </svg>
+                  </a>
+                </li>
+                <li class="inline-flex items-center text-sm text-[#393939] opacity-50 truncate" aria-current="page">
+                    An Easy Guide To Gender-Inclusive Language
+                </li>
+            </ol>
+            <!-- breadcrumb end -->
+            <div class="flex flex-col gap-8 md:flex-row">
+                <!-- left col start -->
+                <div class="w-full md:w-2/3">
+                    <div class="md:bg-white bg-[#DBF4FF] md:p-0 md:m-0 py-20 px-7 -mx-7 -mt-10">
+                        <p class="md:hidden text-center mb-4 text-black">Published January 13, 2021</p>
+                        <h1 class="sm:text-5xl font-semibold text-black text-3xl text-center md:text-left">An Easy Guide To Gender-Inclusive Language</h1>
+                        <div class="flex flex-col lg:flex-row lg:items-center lg:space-x-4 my-8">
+
+                            <div class="flex items-center hidden md:block">
+                                <img class="rounded-full flex-shrink-0 mr-4 inline-block" src="images/user-img.svg" alt="#">
+                                <span class="text-xs xl:text-sm">Written by
+                                <a href="javascript:void(0);" class="text-[#007BFF]">Rose Rally</a>
+                                <svg class="ms-2 inline-block invisible lg:visible" xmlns="http://www.w3.org/2000/svg" width="2" height="24" viewBox="0 0 2 24" fill="none">
+                                    <path d="M1 0L0.999999 24" stroke="#747474"/>
+                                  </svg>
+                            </span>
+                            </div>
+
+                            <div class="flex items-center hidden md:block">
+                                <svg class="inline-block me-2" xmlns="http://www.w3.org/2000/svg " width="16 " height="16 " viewBox="0 0 16 16 " fill="none ">
+                                <path d="M12.3325 3.0002H11.3323V2H10.6657V3.0002H5.33297V2H4.66638V3.0002H3.66679C2.74775 3.0002 2 3.74793 2 4.66699V12.3332C2 13.2522 2.74773 14 3.66679 14H12.3325C13.2516 14 13.9993 13.2523 13.9993 12.3332V4.66648C13.9987
+                                3.74744 13.251 3.0002 12.3325 3.0002ZM13.3321 12.3325C13.3321 12.8835 12.8835 13.3321 12.3325 13.3321H3.66679C3.11516 13.3321 2.66659 12.8835 2.66659 12.3325V6.33317H13.3321V12.3325ZM13.3321 5.66658H2.66659V4.66638C2.66659
+                                4.11474 3.11516 3.66618 3.66679 3.66618H4.66699V4.33278H5.333V3.66677H10.6658V4.33336H11.3324V3.66677H12.3325C12.8836 3.66677 13.3321 4.11474 13.3321 4.66635L13.3321 5.66658Z " fill="#007BFF " stroke="#007BFF
+                                " stroke-width="0.3 "/>
+                              </svg>
+                                <span class="text-xs xl:text-sm"><i class="italic ">Updated on January 13, 2021</i>
+                            </span>
+                                <svg class="ms-2 inline-block invisible lg:visible" xmlns="http://www.w3.org/2000/svg" width="2" height="24" viewBox="0 0 2 24" fill="none">
+                                <path d="M1 0L0.999999 24" stroke="#747474"/>
+                              </svg>
+                            </div>
+
+                            <div class="flex flex-wrap justify-center md:hidden gap-3 my-4">
+                                <a href="javascript:void(0)" class="bg-white text-[#007BFF] text-base rounded py-2.5 px-4 inline-block">Branding</a>
+                                <a href="javascript:void(0)" class="bg-white text-[#007BFF] text-base rounded py-2.5 px-4 inline-block">Communication</a>
+                                <a href="javascript:void(0)" class="bg-white text-[#007BFF] text-base rounded py-2.5 px-4 inline-block">Experience</a>
+                                <a href="javascript:void(0)" class="bg-white text-[#007BFF] text-base rounded py-2.5 px-4 inline-block">Identity</a>
+                            </div>
+
+                            <div class="flex items-center md:justify-start md:w-auto justify-center w-full mt-6 md:mt-0">
+                                <span class="text-xs xl:text-sm hidden md:block">Share on:
+                            </span>
+                                <ul class="flex items-center space-x-3 md:ms-4">
+                                    <li>
+                                        <a href="javascript:void(0);" class="w-7 h-7 bg-[#F0F7FA] hover:bg-[#DBF4FF] rounded-full inline-block text-center">
+                                            <svg class="mx-auto inline-block leading-5" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                            <path d="M9.00586 6.75L9.33914 4.57828H7.25531V3.16898C7.25531 2.57484 7.54641 1.9957 8.47969 1.9957H9.42703V0.146719C9.42703 0.146719 8.56734 0 7.74539 0C6.0293 0 4.90758 1.04016 4.90758 2.92313V4.57828H3V6.75H4.90758V12H7.25531V6.75H9.00586Z" fill="#007BFF"/>
+                                          </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="w-7 h-7 bg-[#F0F7FA] hover:bg-[#DBF4FF] rounded-full inline-block text-center">
+                                            <svg class="mx-auto inline-block leading-5" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                            <g clip-path="url(#clip0_620_127)">
+                                              <path d="M6.0041 3.30871C4.51348 3.30871 3.31113 4.51106 3.31113 6.00168C3.31113 7.49231 4.51348 8.69465 6.0041 8.69465C7.49473 8.69465 8.69707 7.49231 8.69707 6.00168C8.69707 4.51106 7.49473 3.30871 6.0041 3.30871ZM6.0041 7.75246C5.04082 7.75246 4.25332 6.96731 4.25332 6.00168C4.25332 5.03606 5.03848 4.2509 6.0041 4.2509C6.96973 4.2509 7.75488 5.03606 7.75488 6.00168C7.75488 6.96731 6.96738 7.75246 6.0041 7.75246ZM9.43535 3.19856C9.43535 3.54778 9.1541 3.82668 8.80723 3.82668C8.45801 3.82668 8.1791 3.54543 8.1791 3.19856C8.1791 2.85168 8.46035 2.57043 8.80723 2.57043C9.1541 2.57043 9.43535 2.85168 9.43535 3.19856ZM11.2189 3.83606C11.1791 2.99465 10.9869 2.24934 10.3705 1.63528C9.75644 1.02121 9.01113 0.829025 8.16973 0.786838C7.30254 0.737619 4.70332 0.737619 3.83613 0.786838C2.99707 0.826682 2.25176 1.01887 1.63535 1.63293C1.01895 2.24699 0.829102 2.99231 0.786914 3.83371C0.737695 4.7009 0.737695 7.30012 0.786914 8.16731C0.826758 9.00871 1.01895 9.75403 1.63535 10.3681C2.25176 10.9822 2.99473 11.1743 3.83613 11.2165C4.70332 11.2657 7.30254 11.2657 8.16973 11.2165C9.01113 11.1767 9.75644 10.9845 10.3705 10.3681C10.9846 9.75403 11.1768 9.00871 11.2189 8.16731C11.2682 7.30012 11.2682 4.70324 11.2189 3.83606ZM10.0986 9.09778C9.91582 9.55715 9.56191 9.91106 9.10019 10.0962C8.40879 10.3704 6.76816 10.3072 6.0041 10.3072C5.24004 10.3072 3.59707 10.3681 2.90801 10.0962C2.44863 9.9134 2.09473 9.55949 1.90957 9.09778C1.63535 8.40637 1.69863 6.76574 1.69863 6.00168C1.69863 5.23762 1.6377 3.59465 1.90957 2.90559C2.09238 2.44621 2.44629 2.09231 2.90801 1.90715C3.59941 1.63293 5.24004 1.69621 6.0041 1.69621C6.76816 1.69621 8.41113 1.63528 9.10019 1.90715C9.55957 2.08996 9.91348 2.44387 10.0986 2.90559C10.3729 3.59699 10.3096 5.23762 10.3096 6.00168C10.3096 6.76574 10.3729 8.40871 10.0986 9.09778Z" fill="#007BFF"/>
+                                            </g>
+                                            <defs>
+                                              <clipPath id="clip0_620_127">
+                                                <rect width="12" height="12" fill="white"/>
+                                              </clipPath>
+                                            </defs>
+                                          </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="w-7 h-7 bg-[#F0F7FA] hover:bg-[#DBF4FF] rounded-full inline-block text-center">
+                                            <svg class="mx-auto inline-block leading-5" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                            <path d="M10.7665 3.92901C10.7741 4.03561 10.7741 4.14222 10.7741 4.24882C10.7741 7.50007 8.2995 11.2463 3.77665 11.2463C2.38324 11.2463 1.08884 10.8427 0 10.1422C0.197977 10.1651 0.388312 10.1727 0.593906 10.1727C1.74363 10.1727 2.80202 9.78436 3.6472 9.12192C2.56598 9.09907 1.65989 8.39095 1.3477 7.41633C1.5 7.43915 1.65227 7.45439 1.81219 7.45439C2.03299 7.45439 2.25382 7.42392 2.45939 7.37065C1.33249 7.1422 0.487289 6.15236 0.487289 4.95693V4.92649C0.814687 5.10923 1.19543 5.22344 1.59895 5.23865C0.936516 4.79702 0.502523 4.04322 0.502523 3.19043C0.502523 2.73358 0.624328 2.3148 0.837539 1.94932C2.0482 3.4417 3.86801 4.4163 5.90859 4.52292C5.87053 4.34018 5.84768 4.14984 5.84768 3.95948C5.84768 2.60414 6.94413 1.50009 8.30707 1.50009C9.01519 1.50009 9.65477 1.79704 10.104 2.27674C10.6598 2.17015 11.1928 1.96455 11.6649 1.68283C11.4822 2.25391 11.0939 2.73361 10.5837 3.03815C11.0786 2.98488 11.5583 2.84779 12 2.65746C11.665 3.14475 11.2462 3.57874 10.7665 3.92901Z" fill="#007BFF"/>
+                                          </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="w-7 h-7 bg-[#F0F7FA] hover:bg-[#DBF4FF] rounded-full inline-block text-center">
+                                            <svg class="mx-auto inline-block leading-5" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                            <g clip-path="url(#clip0_620_129)">
+                                              <path d="M3.10031 11.2498H0.923438V4.23966H3.10031V11.2498ZM2.0107 3.28341C1.31461 3.28341 0.75 2.70684 0.75 2.01075C0.75 1.67639 0.882824 1.35572 1.11925 1.1193C1.35568 0.882869 1.67634 0.750046 2.0107 0.750046C2.34506 0.750046 2.66573 0.882869 2.90215 1.1193C3.13858 1.35572 3.27141 1.67639 3.27141 2.01075C3.27141 2.70684 2.70656 3.28341 2.0107 3.28341ZM11.2477 11.2498H9.07547V7.83731C9.07547 7.02403 9.05906 5.98106 7.94367 5.98106C6.81187 5.98106 6.63844 6.86465 6.63844 7.77872V11.2498H4.46391V4.23966H6.55172V5.19591H6.58219C6.87281 4.64512 7.58273 4.06387 8.64188 4.06387C10.845 4.06387 11.25 5.51466 11.25 7.39903V11.2498H11.2477Z" fill="#007BFF"/>
+                                            </g>
+                                            <defs>
+                                              <clipPath id="clip0_620_129">
+                                                <rect width="12" height="12" fill="white"/>
+                                              </clipPath>
+                                            </defs>
+                                          </svg>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rounded-lg -mt-20">
+                        <img src="images/article-detail-img1.svg" alt="#" class="rounded-lg" />
+                    </div>
+                    <h2 class="text-[22px] text-black font-semibold my-6">
+                        As society evolves and adapts, so does the terminology we utilize both in our personal lives and at work. There have been fast-growing changes in adopting gender-inclusive terms and language, especially in Western culture. While far from perfect, the
+                        world at large is working towards creating a fairer and more empathetic space for people of all backgrounds, genders, and sexualities.
+                    </h2>
+                    <p>
+                        These changes have come fast, many occurring in the past decade alone. For some, these modifications in accepted language have become confusing but can be quickly learned with our easy-to-understand guide below. After all, an inclusive world is a fairer
+                        and happier one.
+                    </p>
+                    <h3 class="text-2xl sm:text-3xl font-semibold text-black mt-8 mb-4">Growth of Gender Identity</h3>
+                    <p>
+                        When learning about gender inclusivity, understanding its meaning and where the movement came from is a great place to start. The difference between gender and sex is often confused but is broadly understood as sex being a biological term, while gender
+                        is sociological. Sex covers the biological and physiological characteristics of males and females, such as reproductive organs, chromosomes, hormones, and the like. Gender refers to the socially acknowledged attributes based on
+                        labels of masculinity and femininity, relationships between groups of women and men, and an <a href="javascript:void(0);" class="text-[#007BFF]">internal sense of self</a>. What someone identifies with is
+                        what gender they are - no matter what they were assigned at birth.
+                        <br>
+                        <br> The late 19th and early 20th centuries saw the world take its first steps towards gender equality and the lessening of a purely patriarchal society. While women had won the right to vote in several countries by the end of
+                        the 19th century, the British Women's Social and Political Union, formed by Emmeline Pankhurst in 1903, created a long-lasting legacy. The movement they spearheaded, The Suffragettes, resulted in the Representation of the People
+                        Act 1918 which gave the vote to women over the age of 30 who met certain property qualifications. Ten years later, women over 21 gained electoral equality with the Representation of the People (Equal Franchise) Act of 1928. This
+                        action <a href="javascript:void(0);" class="text-[#007BFF]">directly inspired</a> the US's path to The 19th Amendment, which guarantees that women throughout the United States have the right to vote on equal terms with men.
+                    </p>
+                    <div class="my-6">
+                        <img src="images/article-detail-img2.svg" alt="#" />
+                    </div>
+                    <p>
+                        Policy changes followed in more rapid succession. The 60s saw the US introduce the Equal Pay Act in 1963, and in 1967 Lyndon B. Johnson's Executive Order 11375 saw that affirmative action was taken "- to ensure that applicants are employed, and that employees
+                        are treated during employment, without regard to their race, color, religion, sex or national origin." Transgender people were also protected from employment discrimination by Title VII of the Civil Rights Act of 1964. The 70s
+                        saw further progression with the US introducing the Equal Employment Opportunity Act in 1972 and, for The EU, the European Council Equal Treatment Directive. More recent years have seen policies such as the UK's Gender Recognition
+                        Act of 2004 allow people who have gender dysphoria to change their legal gender. There’s still much work to be done globally, but <a href="javascript:void(0);" class="text-[#007BFF]">progress</a> is being
+                        made.
+                    </p>
+                    <h3 class="text-2xl sm:text-3xl font-semibold text-black mt-8 mb-4">Basic Terminology</h3>
+                    <p>
+                        Now, this is by no means a complete glossary of terms related to gender, sexuality, and more. We aim to provide a helpful starting guide for those who want to update and improve their understanding of the common terms we use today. For a more in-depth
+                        guide on all things sex and gender, we suggest diving deeper with the LGBTQIA Resource Center's <a href="javascript:void(0);" class="text-[#007BFF]">brilliant glossary</a>.
+                    </p>
+                    <ul class="space-y-1 my-6 list-disc ps-5 ms-1">
+                        <li>
+                            <b>Androgyne:</b> A person whose gender is both masculine and feminine or in between the two.
+                        </li>
+                        <li>
+                            <b>Asexual:</b> Asexuality is distinct from celibacy and is a broad spectrum. Some asexuals have sex and do experience levels of sexual attraction. Others do not experience sexual attraction but can experience other forms of
+                            attraction, such as emotional and romantic.
+                        </li>
+                        <li>
+                            <b>Bigender:</b> Exhibiting cultural characteristics of both the masculine and the feminine.
+                        </li>
+                        <li>
+                            <b>Cisgender:</b> A gender identity, or gender role, that society deems to match the person’s assigned sex at birth.
+                        </li>
+                        <li>
+                            <b>Gay:</b> A sexual orientation toward people of the same gender.
+                        </li>
+                        <li>
+                            <b>Gender Fluid/Genderfluid:</b> A person whose gender identification shifts in and outside of societal, gender-based expectations.
+                        </li>
+                        <li>
+                            <b>Heterosexuality:</b> A sexual orientation where a person feels physically and emotionally attracted to people of a gender other than their own.
+                        </li>
+                        <li>
+                            <b>LGBTQIA+:</b> Abbreviation for Lesbian, Gay, Bisexual, Transgender, Queer, Intersex, and Asexual. The plus may represent other sexual identities such as pansexual, gender fluid, queer, bi-curious and many more.
+                        </li>
+                        <li>
+                            <b>Non-binary:</b> For people who feel their gender cannot be defined within the margins of gender binary. Their gender goes beyond simply identifying as either a man or woman.
+                        </li>
+                        <li>
+                            <b>Polygender:</b> Displaying elements of multiple genders, deliberately renouncing the concept of only two genders.
+                        </li>
+                        <li>
+                            <b>Pronouns:</b> Tools used to refer to someone in the third person. Examples are they/them/theirs, ze/hir/hirs, she/her/hers, he/him/his.
+                        </li>
+                        <li>
+                            <b>Queer:</b> Queer is an umbrella term for people who are not heterosexual or are not cisgender. The term is often considered hostile when used by those who do not identify as LGBTQIA+.
+                        </li>
+                        <li>
+                            <b>Trans:</b> A more inclusive term than transgender for gender non-conforming and non-binary people. ‘Transsexual’ has become outdated.
+                        </li>
+                    </ul>
+                    <div class="flex gap-6 flex-col md:flex-row">
+                        <div class="">
+                            <img src="images/article-detail-img2.svg" alt="#" />
+                        </div>
+                        <div class="">
+                            <img src="images/article-detail-img2.svg" alt="#" />
+                        </div>
+                    </div>
+                    <h3 class="text-2xl sm:text-3xl font-semibold text-black mt-8 mb-4">Gender-Neutral Language</h3>
+                    <p>
+                        Now that we have covered what LGBTQIA+ stands for, and the progression of gender identity over the years, let's take a look at some gender-neutral language. ‘<a href="javascript:void(0);" class="text-[#007BFF]">Gender-neutral language</a>’
+                        is a form of language that avoids bias towards a particular sex or social gender. It is becoming an increasingly popular way to speak, write, and use language to avoid offense and prejudice. Here are some examples of how and where
+                        to use gender-neutral language.
+                    </p>
+                    <h2 class="text-[22px] text-black font-semibold mt-6 mb-4">Avoid Gender-Biased Expressions</h2>
+                    <p>
+                        Some expressions that we use that fall into this category could be: 'He throws like a girl,' 'That's women's work,' or, 'In a manly way.' Replacing these phrases without using gendered words and simply clarifying what you mean would be preferred.
+                    </p>
+                    <h2 class="text-[22px] text-black font-semibold mt-6 mb-4">Use Complete Titles </h2>
+                    <p>
+                        When referencing someone or specifically a pair of people with titles, such as; doctor, professor, or director, it is best to use their complete credentials when naming them. For example, 'Doctor Jones and Doctor Smith', rather than 'Doctor Smith and
+                        his wife,' or 'Doctor Jones and her husband'.
+                    </p>
+                    <h2 class="text-[22px] text-black font-semibold mt-6 mb-4">Grouping Words And Gender-Specific Exceptions</h2>
+                    <p>
+                        When referencing a group of people, it is best to avoid words such as 'guys' or more colloquially 'fellas' or 'lads.' Instead, terms like 'folks,' 'people,' or 'everyone' are deemed less biased. If gender is used to describe a group of people, then using
+                        full expressions like 'boys and girls,' 'ladies and gentlemen' should only be used if it is known that everyone identifies with those genders.
+                    </p>
+                    <h2 class="text-[22px] text-black font-semibold mt-6 mb-4">Gender-Neutral Pronouns</h2>
+                    <p>
+                        'He/him' and 'she/her' are not the only options for gendered pronouns anymore, with many people in the LGBTQIA+ community choosing to refer to themselves as 'they/their' or 'they/them.' As a practice, it is becoming increasingly popular to ask for someone's
+                        pronouns when meeting them to avoid offense and misgendering.
+                    </p>
+                    <h2 class="text-[22px] text-black font-semibold mt-6 mb-4">Gender Neutrality In General Language.</h2>
+                    <p>
+                        Some phrases that we have used for a long time are becoming less popular, and their gender-neutral counterparts are becoming the new standard for those words. Some you might want to note; 'mankind' becomes 'humankind,' 'manpower' becomes 'staffing' or
+                        'team power,' and 'manmade' becomes 'artificially made' or 'human-caused.'
+                    </p>
+                    <div class="mt-4">
+                        <img src="images/article-detail-img3.svg" alt="#" />
+                    </div>
+                    <h3 class="text-2xl sm:text-3xl font-semibold text-black mt-8 mb-4">Courtesy, Caution, And Reclaimed Words</h3>
+                    <p>
+                        As we talk about the importance of adapting our language to become less prejudiced, there are multiple movements in the LGBTQIA+ community to reclaim and redefine words that had once been used negatively towards specific gendered groups.
+                        <br>
+                        <br> The word 'bitch,' which has been understood to mean an 'unpleasant woman’ for quite a long time, is being transformed by women and redefined to mean 'strong/badass woman.' 'Slut' has been redefined similarly, usually referring
+                        to an 'over-sexually active woman' to become a 'sexually proud' woman. To some extent, the words 'gay,' 'queer,' and 'tranny' are also being reclaimed as words that celebrate a person's sexual orientation. As said by Paul Baker,
+                        writing as part of a language piece for <a href="javascript:void(0);" class="text-[#007BFF]">The Guardian</a>, 'Control language and you control the society,' and that is most certainly the attitude of people reclaiming these once
+                        offensive terms.
+                    </p>
+                    <h3 class="text-2xl sm:text-3xl font-semibold text-black mt-8 mb-4">Further Reading & Information</h3>
+                    <p>
+                        As a closing thought, we ask you to look at the language you use. Although we usually don't mean to offend people with what we say and do, the words that come out of our mouths and write down can sometimes have deeper, subtler meanings that might not
+                        sit well with some.
+                        <br>
+                        <br> If you are interested in reading more into gender rights, gender-neutral language, and the progression of identity politics, we recommend looking at the following titles.
+                    </p>
+                    <ul class="space-y-1 my-6 list-disc ps-5 ms-1">
+                        <li><a href="javascript:void(0);" class="text-[#007BFF]">Beyond Magenta: Transgender Teens Speak Out</a> by Susan Kuklin</li>
+                        <li>
+                            <a href="javascript:void(0);" class="text-[#007BFF]">The Female Brain</a> by Louann Brizendine M.D.
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="text-[#007BFF]">What's Your Pronoun?: Beyond He & She</a> by Dennis Baron
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="text-[#007BFF]">Gender and Our Brains</a> by Gina Rippon
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="text-[#007BFF]">Understanding Gender Dysphoria</a> by Mark A. Yarhouse
+                        </li>
+                    </ul>
+                    <p><b class="text-black">Resources:</b></p>
+                    <ol class="space-y-1 mt-2 mb-10 list-decimal ps-5">
+                        <li>
+                            UC Davis - LGBTQIA+ Glossary
+                            <a href="https://lgbtqia.ucdavis.edu/educated/glossary" target="_blank" class="text-[#007BFF] block truncate">https://lgbtqia.ucdavis.edu/educated/glossary</a>
+                        </li>
+                        <li>
+                            Mental Help - Development Of Gender Identity
+                            <a href="https://www.mentalhelp.net/adolescent-development/gender-identity/" target="_blank" class="text-[#007BFF] block truncate">https://www.mentalhelp.net/adolescent-development/gender-identity/</a>
+                        </li>
+                        <li>
+                            How the radical British suffragettes influenced America’s campaign for the women’s vote
+                            <a href="https://www.vox.com/21356259/19th-amendment-suffragists-alice-paul-pankhursts" class="text-[#007BFF] block truncate" target="_blank">https://www.vox.com/21356259/19th-amendment-suffragists-alice-paul-pankhursts</a>
+                        </li>
+                        <li>
+                            United Nations - Inclusive Language
+                            <a href="https://www.un.org/en/gender-inclusive-language/guidelines.shtml" class="text-[#007BFF] block truncate">https://www.un.org/en/gender-inclusive-language/guidelines.shtml</a>
+                        </li>
+                        <li>
+                            The Guardian - Reclaiming Words
+                            <a href="https://www.theguardian.com/media/mind-your-language/2015/oct/30/power-grab-reclaiming-words-can-be-such-a-bitch" class="text-[#007BFF] block truncate">https://www.theguardian.com/media/mind-your-language/2015/oct/30/power-grab-reclaiming-words-can-be-such-a-bitch</a>
+                        </li>
+                    </ol>
+                    <div class="flex flex-col sm:flex-row bg-[#F0F7FA] rounded-[10px] sm:py-12 py-8 px-8 sm:px-14 items-start">
+                        <img src="images/rose-rally-img.svg" alt="#" class="" />
+                        <div class="sm:ps-8 mt-6 sm:mt-0">
+                            <h2 class="text-[22px] text-black font-semibold">Rose Rally</h2>
+                            <small class="text-sm text-black opacity-75 my-2 font-medium block">Author</small>
+                            <p class="text-sm text-black opacity-75">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in dolor vel orci sodales eleifend interdum eget velit. Nullam eget lobortis augue, eu finibus felis. Proin molestie augue vitae ullamcorper efficitur. Aenean id urna sed diam condimentum
+                                congue. Duis at blandit turpis, non elementum massa. Sed dapibus placerat eros, nec euismod odio porta eget. Nulla facilisi. Suspendisse at odio ornare, varius ex id, feugiat purus. Quisque at dui lorem. Morbi sit amet
+                                aliquet mi. Nunc odio tortor, scelerisque eget tellus.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- left col end -->
+
+                <!-- right col start -->
+                <div class="w-full md:w-1/3 ">
+                    <!-- Word Finders box -->
+                    <div class="mb-6 ">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative ">
+                            Popular Categories
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px] ">
+                            <ol class="space-y-3 font-medium list-decimal ">
+                                <li>Word Finder</li>
+                                <li>Words with Letters</li>
+                                <li>Wordscapes Answers and Cheat</li>
+                                <li>Scrabble Dictionary</li>
+                                <li>Word Generator</li>
+                                <li>Words With Friends Cheat Tool</li>
+                                <li>Anagram Solver</li>
+                                <li>Wordle</li>
+                                <li>Scrabble Word Finder</li>
+                                <li>Jumble Solver</li>
+                                <li>Word Scramble - Word Finder</li>
+                                <li>Word Solver</li>
+                                <li>Word Unscrambler</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Latest Article box -->
+                    <div class="mb-6 ">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative ">
+                            Latest Article
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px] ">
+                            <div class="border border-[#007BFF4D] rounded-[20px] bg-white mb-6 overflow-hidden hover:text-[#007BFF]">
+                                <a href="/article-details"><img src="images/article-img4.svg " alt="# " class="w-full "></a>
+                                <div class="p-4 ">
+                                    <h3 class="text-lg font-semibold leading-6 "><a href="/article-details" class="hover:text-[#007BFF]">Which Singers Have the Biggest Vocabularies?</a></h3>
+                                </div>
+                            </div>
+                            <div class="border border-[#007BFF4D] rounded-[20px] bg-white mb-6 overflow-hidden hover:text-[#007BFF]">
+                                <a href="/article-details"><img src="images/article-img2.svg " alt="# " class="w-full "></a>
+                                <div class="p-4 ">
+                                    <h3 class="text-lg font-semibold leading-6 "><a href="/article-details" class="hover:text-[#007BFF]">Japanese Learning Resources - The Ultimate Guide</a></h3>
+                                </div>
+                            </div>
+                            <div class="border border-[#007BFF4D] rounded-[20px] bg-white mb-6 overflow-hidden hover:text-[#007BFF]">
+                                <a href="/article-details"><img src="images/article-img3.svg " alt="# " class="w-full "></a>
+                                <div class="p-4 ">
+                                    <h3 class="text-lg font-semibold leading-6 "><a href="/article-details" class="hover:text-[#007BFF]">Is _____ a Word?</a></h3>
+                                </div>
+                            </div>
+                            <!-- view more content -->
+                            <div id="hs-show-hide-collapse-heading" class="hs-collapse hidden w-full overflow-hidden transition-[height] duration-300 gap-3 flex flex-wrap" aria-labelledby="hs-show-hide-collapse">
+                                <div class="border border-[#007BFF4D] rounded-[20px] bg-white overflow-hidden hover:text-[#007BFF]">
+                                    <a href="/article-details"><img src="images/article-img6.svg " alt="# " class="w-full "></a>
+                                    <div class="p-4 ">
+                                        <h3 class="text-lg font-semibold leading-6 "><a href="/article-details" class="hover:text-[#007BFF]">Handy Activities To Teach Your Kids About Environmental Issues</a>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 text-center">
+                                <a href="javascript:void(0);" class="hs-collapse-toggle text-white bg-[#007BFF] rounded-[10px] py-4 px-6 hover:opacity-50 inline-block" id="hs-show-hide-collapse" data-hs-collapse="#hs-show-hide-collapse-heading">
+                                    <span class="hs-collapse-open:hidden">View More</span>
+                                    <span class="hidden hs-collapse-open:block">View less</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- right col end -->
+            </div>
+        </div>
+    </div>
+    <!-- content section end -->
+
+    <!-- footer start  -->
+    <%- (include('../frontend/footer/footer.ejs')) %>
+<!-- footer end  -->
+
+<%- (include('../frontend/script/script.ejs')) %>

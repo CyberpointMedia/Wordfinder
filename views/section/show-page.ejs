@@ -1,0 +1,26 @@
+<!-- views/section/show-page.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Page</title>
+    <!-- Add your stylesheets or other head elements here -->
+</head>
+<body>
+    <% if (page.sections && page.sections.length > 0) { %>
+        <ul>
+            <% page.sections.forEach((section) => { %>
+                <li>
+                    <h2><%= section.title %></h2>
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>No sections found for this page.</p>
+    <% } %>
+    <br>
+    <a href="/pages">Back to Pages</a>
+</body>
+</html>

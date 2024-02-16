@@ -1,0 +1,148 @@
+<!-- show-section.ejs -->
+
+<%- include('../header/head.ejs') %>
+
+    <body>
+        <!-- sidebar start here -->
+        <div class="flex overflow-hidden">
+            <%- include('../sidenav/sidenav.ejs') %>
+                <div class="page-content bg-white">
+
+                    <%- include('../header/header.ejs') %>
+
+                    <!-- main content start here -->
+                    
+   <main class="py-8 px-5">
+    <div class="mb-6 flex gap-3 sm:flex-row sm:items-center">
+        <h1 class="text-2xl font-bold text-black">Pages</h1>
+        <a href="/admin/pages/create" class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add New Page</a>
+    </div>
+
+    <!-- Dynamic content generation -->
+    <% if (pages.length > 0) { %>
+
+        <ul class="subsubsub flex flex-wrap space-x-2 mb-6">
+            <li class="all"><a href="all-pages.html" class="current text-black" aria-current="page">All <span class="count">(3)</span></a> |</li>
+            <li class="publish"><a href="published.html" class="text-black">Published <span class="count">(1)</span></a> |</li>
+            <li class="trash"><a href="trash.html" class="text-black">Trash <span class="count">(1)</span></a> |</li>
+            <li class="draft"><a href="draft.html" class="text-black">Draft <span class="count">(1)</span></a></li>
+        </ul>
+
+        <!-- table start here -->
+        <div class="bg-white overflow-x-auto">
+            <table class="w-full divide-y divide-gray-200 border" id="example">
+                <!-- Table header -->
+                <thead class="text-left bg-[#DBF4FF]">
+                    <tr>
+                        <th>
+                            <input type="checkbox" class="selectAll">
+                        </th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+
+                <!-- Table body -->
+                <tbody class="divide-y divide-gray-200">
+                    <% pages.forEach((page) => { %>
+                        <tr class="">
+                            <td>
+                                <input type="checkbox" value="<%= page._id %>" class="">
+                            </td>
+                            <td>
+                                <div class="">
+                                    <strong>
+                                        <a class="row-title text-[#2271b1] text-sm" href="javascript:void(0)">
+                                            <%= page.page_name %> <!-- Display the actual page name -->
+                                        </a>
+                                    </strong>
+                                </div>
+                                <div class="row-actions mt-1">
+                                    <!-- Add your row actions here -->
+                                </div>
+                            </td>
+                            <% function formatDate(date) { %>
+                                <% const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric', hour12: true }; %>
+                                <%= new Date(date).toLocaleString('en-US', options) %>
+                            <% } %>
+                            <td>Admin</td>
+                            <td>Published<br> <%= formatDate(page.date) %></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+
+                <!-- Table footer -->
+                <tfoot class="text-left bg-[#DBF4FF]">
+                    <tr>
+                        <th>
+                            <input type="checkbox" class="selectAll">
+                        </th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Date</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <!-- table end here -->
+    <% } else { %>
+        <p>No pages found.</p>
+    <% } %>
+</main>
+<!-- main content end here -->
+
+                </div>
+        </div>
+        <!-- sidebar end here -->
+        <%- include('../script/script.ejs') %>
+    </body>
+
+    </html>
+
+    <!-- <body>
+    <h1>All Pages</h1>
+
+    <% if (pages.length > 0) { %>
+        <ul>
+            <% pages.forEach((page) => { %>
+                <li>
+                    <h2><%= page.page_name %></h2>
+                    <button onclick="redirectTo('<%= page.page_name %>')">View Sections</button>
+                    <button onclick="deletePage('<%= page._id %>')" class="delete-button">Delete</button>
+
+                    <% if (page.sections.length > 0) { %>
+                        <ul>
+                            <% page.sections.forEach((section) => { %>
+                                <li><%= section.title %></li>
+                            <% }); %>
+                        </ul>
+                    <% } else { %>
+                        <p>No sections found for this page.</p>
+                    <% } %>
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>No pages found.</p>
+    <% } %>
+<br>
+    <a href="/pages/create" class="button">Create Pages</a><br>
+    <a href="/section/Show" class="button">View Sections</a>
+
+    <script>
+        function redirectTo(page) {
+            // Handle redirection for specific page_name
+            window.location.href = '/pages/' + page;
+        }
+
+        function deletePage(pageId) {
+            if (confirm("Are you sure you want to delete this page?")) {
+                // Handle the deletion logic, for example, make an AJAX request to the server
+                // The actual deletion logic should be handled in the server-side route
+                window.location.href = '/pages/delete/' + pageId;
+            }
+        }
+    </script>
+</body>
+</html> -->

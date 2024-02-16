@@ -1,0 +1,556 @@
+<%- (include('../frontend/head/head.ejs')) %>
+<body class="font-custom">
+    <!-- header start here -->
+    <%- (include('../frontend/head/header.ejs')) %>
+    <!-- header end here -->
+
+    <!-- main advance search form start -->
+    <div class="bg-[#DBF4FF]">
+        <div class="container">
+            <div class="flex flex-wrap max-w-screen-md pt-10 pb-10 mx-auto md:pt-20 md:pb-20">
+                <div class="flex flex-wrap items-center justify-center w-full align-middle">
+                    <h1 class="block text-[#393939] text-2xl sm:text3xl font-semibold mb-3 text-center"> Word Finder</h1>
+                    <p class="block w-full text-center">
+                        Enter up to 15 letters and up to 2 wildcards (? or space).
+                    </p>
+                    <form id="search-main" class="w-full mt-8 mb-6" action="javascript:void(0);" method="post">
+                        <div class="input-group MainSearch border rounded-[10px] border-[#007BFF] overflow-hidden bg-white py-2 text-center">
+                            <input type="text" name="letters" class="w-2/5 border-0 sm:w-4/6 md:w-2/3 main-search-input sm:text-lg focus:outline-none" placeholder="Type Letters ..." aria-label="Letters" aria-describedby="dictionary-select-field">
+                            <span class="p-0 border-0 input-group-text" id="dictionary-select-field">
+                                <select class="py-2 text-sm bg-white border-0 ps-2 pe-[30px] sm:text-lg focus:outline-none" aria-label="Default select example" name="scrabble_type">
+                                    <option value="wwf" selected="">Words With Friends</option>
+                                    <option value="us">Scrabble US</option>
+                                    <option value="uk">Scrabble UK</option>
+                                    <option value="all_en">All Dictionaries</option>
+                                </select>
+                            </span>
+                        </div>
+
+                        <div class="w-full mb-4 hs-accordion-group">
+                            <%- (include('../frontend/search/advance_search.ejs')) %>
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-buttonPrimary rounded-[10px] text-white hover:opacity-50">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- main advance search form end -->
+
+    <!-- content section start -->
+    <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-20">
+        <div class="container">
+            <!-- breadcrumb start -->
+            <ol class="flex items-center whitespace-nowrap mb-10" aria-label="Breadcrumb">
+                <li class="inline-flex items-center">
+                    <a class="flex items-center text-sm text-[#007BFF] hover:opacity-50 focus:outline-none focus:opacity-50" href="#">
+                        Word-Finder
+                  </a>
+                    <svg class="flex-shrink-0 h-5 w-5 opacity-50 text-[#393939]" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"></path>
+                  </svg>
+                </li>
+                <li class="inline-flex items-center">
+                    <a class="flex items-center text-sm text-[#007BFF] hover:opacity-50 focus:outline-none focus:opacity-50" href="#">
+                        Words of Length 
+                    <svg class="flex-shrink-0 h-5 w-5 text-[#393939] opacity-50" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"></path>
+                  </svg>
+                  </a>
+                </li>
+                <li class="inline-flex items-center text-sm text-[#393939] opacity-50 truncate" aria-current="page">
+                    Three letter words
+                </li>
+            </ol>
+            <!-- breadcrumb end -->
+            <div class="flex flex-col gap-8 md:flex-row">
+                <!-- left col start -->
+                <div class="w-full md:w-2/3">
+                    <!-- 5 letter words box start -->
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <h2 class="mb-4 text-3xl font-semibold md:text-4xl">5 Letter Words</h2>
+                        <p>
+                            Five letter words. Quick, there's a dizzy chuff serving pizza with glazy gyoza! Confused? Well, let us introduce to you the guide to words with five letters: Five letter words! Elevate your <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a>,
+                            <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a>, or Wordle ability to levels unseen by this world! Words containing five letters can be your bread and butter and are worth educating yourself
+                            about! Study our guide and check out these useful lists too: <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Four Letter Words beginning with Z</a> and <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Nine Letter Words</a>!
+                        </p>
+                    </div>
+
+                    <div class="mb-8">
+                        <form id="search-main" class="w-full mt-8 mb-6" action="javascript:void(0);" method="post">
+                            <div class="">
+                                <label class="block w-full mb-3 font-medium" for="Dictionary">Dictionary</label>
+                                <select class="w-full flex bg-[#F0F7FA] rounded-[10px] p-5 appearance-none focus:outline-none" id="Dictionary" name="Dictionary">
+                                    <option value="wwf" selected="">Words With Friends</option>
+                                     <option value="us">Scrabble US</option>
+                                    <option value="uk">Scrabble UK</option>
+                                    <option value="all_en">All Dictionaries</option>		
+                                </select>
+                            </div>
+
+                            <div class="w-full mb-4 hs-accordion-group">
+                                <div class="w-full hs-accordion active" id="hs-basic-advance-search">
+                                    <button type="button" class="hs-accordion-toggle hs-accordion-active:text-blue-600 py-3 items-center gap-x-3 w-full font-medium text-center text-[#393939] text-lg mt-2 disabled:opacity-50 disabled:pointer-events-none" aria-controls="hs-basic-collapse-two">
+                                        Advanced Search
+    
+                                        <svg class="inline-block transition duration-500 hs-accordion-active:rotate-180" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    
+                                    </button>
+                                    <div id="hs-basic-collapse-two" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300" aria-labelledby="hs-basic-advance-search">
+                                        <%- (include('../frontend/search/advance_search.ejs')) %>
+                                    </div>
+                            <button type="submit" class="w-full py-4 bg-buttonPrimary rounded-[10px] text-white hover:opacity-50">Modify Search</button>
+                        </form>
+                    </div>
+
+                    <!-- 5 Letter Words box 2 start -->
+                    <div class="w-full mb-8">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                            5 Letter Words
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px]">
+                            <div class="flex flex-wrap gap-3 tagsMain" id="words_card_5">
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]" data-hs-overlay="#hs-medium-modal">
+                                    pzazz
+                                    <span class="text-[#6C757D] text-xs font-medium">35</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jazzy
+                                    <span class="text-[#6C757D] text-xs font-medium">34</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    buzzy
+                                    <span class="text-[#6C757D] text-xs font-medium">29</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    fuzzy
+                                    <span class="text-[#6C757D] text-xs font-medium">29</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    muzzy
+                                    <span class="text-[#6C757D] text-xs font-medium">29</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    bezzy
+                                    <span class="text-[#6C757D] text-xs font-medium">28</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    fizzy
+                                    <span class="text-[#6C757D] text-xs font-medium">28</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    whizz
+                                    <span class="text-[#6C757D] text-xs font-medium">29</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    zhuzh
+                                    <span class="text-[#6C757D] text-xs font-medium">28</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    abuzz
+                                    <span class="text-[#6C757D] text-xs font-medium">27</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    scuzz
+                                    <span class="text-[#6C757D] text-xs font-medium">27</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    frizz
+                                    <span class="text-[#6C757D] text-xs font-medium">26</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    huzza
+                                    <span class="text-[#6C757D] text-xs font-medium">26</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    mezza
+                                    <span class="text-[#6C757D] text-xs font-medium">26</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    mezzo
+                                    <span class="text-[#6C757D] text-xs font-medium">26</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    pizza
+                                    <span class="text-[#6C757D] text-xs font-medium">26</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    swizz
+                                    <span class="text-[#6C757D] text-xs font-medium">26</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    hajji
+                                    <span class="text-[#6C757D] text-xs font-medium">26</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jujus
+                                    <span class="text-[#6C757D] text-xs font-medium">24</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    lezzo
+                                    <span class="text-[#6C757D] text-xs font-medium">24</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    squiz
+                                    <span class="text-[#6C757D] text-xs font-medium">24</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    zazen
+                                    <span class="text-[#6C757D] text-xs font-medium">25</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    izzat
+                                    <span class="text-[#6C757D] text-xs font-medium">23</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jacky
+                                    <span class="text-[#6C757D] text-xs font-medium">23</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jeeze
+                                    <span class="text-[#6C757D] text-xs font-medium">23</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jumpy
+                                    <span class="text-[#6C757D] text-xs font-medium">23</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    tazza
+                                    <span class="text-[#6C757D] text-xs font-medium">23</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    zazen
+                                    <span class="text-[#6C757D] text-xs font-medium">25</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    izzat
+                                    <span class="text-[#6C757D] text-xs font-medium">23</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jacky
+                                    <span class="text-[#6C757D] text-xs font-medium">23</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jeeze
+                                    <span class="text-[#6C757D] text-xs font-medium">23</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jumpy
+                                    <span class="text-[#6C757D] text-xs font-medium">23</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    tazza
+                                    <span class="text-[#6C757D] text-xs font-medium">23</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    zizit
+                                    <span class="text-[#6C757D] text-xs font-medium">23</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jammy
+                                    <span class="text-[#6C757D] text-xs font-medium">22</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jemmy
+                                    <span class="text-[#6C757D] text-xs font-medium">22</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jiffy
+                                    <span class="text-[#6C757D] text-xs font-medium">22</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jimmy
+                                    <span class="text-[#6C757D] text-xs font-medium">22</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jimpy
+                                    <span class="text-[#6C757D] text-xs font-medium">22</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    muzak
+                                    <span class="text-[#6C757D] text-xs font-medium">22</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    quack
+                                    <span class="text-[#6C757D] text-xs font-medium">22</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    quick
+                                    <span class="text-[#6C757D] text-xs font-medium">22</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    zappy
+                                    <span class="text-[#6C757D] text-xs font-medium">22</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    zippy
+                                    <span class="text-[#6C757D] text-xs font-medium">22</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jacks
+                                    <span class="text-[#6C757D] text-xs font-medium">21</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jocko
+                                    <span class="text-[#6C757D] text-xs font-medium">21</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jocks
+                                    <span class="text-[#6C757D] text-xs font-medium">21</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jugum   
+                                    <span class="text-[#6C757D] text-xs font-medium">21</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jumbo
+                                    <span class="text-[#6C757D] text-xs font-medium">21</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jumps
+                                    <span class="text-[#6C757D] text-xs font-medium">21</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    kopje
+                                    <span class="text-[#6C757D] text-xs font-medium">21</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    quaff
+                                    <span class="text-[#6C757D] text-xs font-medium">21</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    quaky
+                                    <span class="text-[#6C757D] text-xs font-medium">21</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    quiff
+                                    <span class="text-[#6C757D] text-xs font-medium">21</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    zaxes
+                                    <span class="text-[#6C757D] text-xs font-medium">21</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    zinky
+                                    <span class="text-[#6C757D] text-xs font-medium">21</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    zuppa
+                                    <span class="text-[#6C757D] text-xs font-medium">21</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    enzym
+                                    <span class="text-[#6C757D] text-xs font-medium">20</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    furzy
+                                    <span class="text-[#6C757D] text-xs font-medium">20</span>
+                                </button>
+
+                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]">
+                                    jaggy
+                                    <span class="text-[#6C757D] text-xs font-medium">20</span>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Most Popular Five-Letter Words box start -->
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <h2 class="mb-4 text-3xl font-semibold md:text-4xl">WHICH are the Most Popular Five-Letter Words?</h2>
+                        <p>
+                            <b>OTHER, WHICH</b> and <b>THERE</b> are the most common five-letter words. The word <b>WHICH</b>, in particular, is a fine word to ditch both Hs, a W, and a C for decent points and to get more bingo-like letters in your rack.
+                            Other and there, however, use up good bingo letters for not a lot of points and so should be avoided.
+                        </p>
+                        <h4 class="text-[22px] font-medium my-4">Strategy for 5-Letter Words</h4>
+                        <p>
+                            One of the chief strategies for 5 letter words is the use of the <b>S</b> tile to make two words by placing the <b>S</b> on a double or triple square of some sort. Remember, though, that keeping two great letters in your rack
+                            after playing a five-letter word is often more important than scoring the most points possible while leaving two troublesome letters in your rack.
+                            <br>
+                            <br> For example, if your rack is <b>S, C, O, W, S, A,</b> and T, you could hook scow onto an existing word and keep <b>S, A,</b> and T in your rack. Let's say you put scow on a double word score. It is certainly not worth
+                            the extra two points to play the second S because you will be left with three fantastic letters for making a bingo instead of just two. Other 5 letter words starting with S that form good hooks would be <b>SLOJD, STOOK,</b>                            and <b>SIZAR</b>.
+
+                            <br>
+                            <br> Another important group of words is <a href="javascript:void(0);" class="text-[#007BFF] font-medium">5 letter words starting with C</a>. There are only three Cs in the game, but they are important for five-letter words
+                            because they are a three-point tile that cannot be used in any two-letter words. <b>CHYME, CLOZE,</b> and <b>CIVVY</b> are great words to get rid of irritating consonants. <b>CLOZE,</b> specifically, is great because you can
+                            hook the <b>Z</b> to an <b>A</b> to make <b>ZA</b> and score at least 27 points even without a premium square.
+                            <br>
+                            <br> The <a href="javascript:void(0);" class="text-[#007BFF] font-medium">5 letter words starting with E</a> are useful in the end game because <b>E</b> is among the best letters for hooking, with <b>EX, EL, EH, EN, ER, ES, ET,</b>                            and EF all possibilities. <b>EERIE, EAGLE,</b> and <b>ETHER</b> are all good choices.
+                        </p>
+                    </div>
+
+                    <!-- Five-letter Words and Wordle start -->
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <h2 class="mb-4 text-3xl font-semibold md:text-4xl">Five-letter Words and Wordle</h2>
+                        <p>
+                            Mastering five-letter words is crucial for solving the daily <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Wordle</a> puzzle! You'll need to know how to spell 5-letter words correctly. Then you'll need to
+                            think of specific characters within those words. Finally, you'll need to find them in your <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Wordle words</a>. That's why we created the Word Tips <a href="javascript:void(0);"
+                                class="text-[#007BFF] font-medium">Wordle solver</a>!
+                        </p>
+                        <h4 class="text-[22px] font-medium my-4">5-Letter Words FAQ</h4>
+                        <p>
+                            How many five-letter words are there?<br> There are 8,996 five-letter words in the Office <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a> Player's Dictionary, Volume 6.
+                            <br>
+                            <br>
+                            <b>What are five-letter <a href="javascript:void(0);" class="text-[#007BFF] font-medium">words that start with</a> E?</b><br>
+                            <b>EAGLE, EVENS, EXTRA, ENURE,</b> and <b>ENEMY.</b>
+                            <br>
+                            <br>
+                            <b>What are <a href="javascript:void(0);" class="text-[#007BFF] font-medium">five-letter words that start with<a> S?</b> <br>
+                            <b>SHADY, SEXTS, SEVEN, SHEER,</b> and <b>SIZES.</b>
+                            <br>
+                            <br> A winning <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a> vocabulary focuses on bingos, but dealing with 5 letter words starting with C, along with 5 letter words starting with S, is essential
+                            for maintaining the necessary rack balance to get to those bingos. It should be borne in mind, too, that 5 letter words starting with E can get you out of tight fixes, especially in the end game.
+                        </p>
+                    </div>
+
+                    <!-- Related start -->
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px]">
+                        <h2 class="mb-6 text-3xl font-semibold md:text-4xl">Related</h2>
+                        <div class="flex flex-col sm:flex-row justify-start gap-y-3 gap-x-28 ps-6">
+                            <ul class="list-disc space-y-2 list-type-color">
+                                <li>
+                                    <a href="javascript:void(0);" class="font-normal text-[#007BFF] underline hover:opacity-75">2 Letter Words</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="font-normal text-[#007BFF] underline hover:opacity-75">3 Letter Words</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="font-normal text-[#007BFF] underline hover:opacity-75">4 Letter Words</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="font-normal text-[#007BFF] underline hover:opacity-75">5 Letter Words</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="font-normal text-[#007BFF] underline hover:opacity-75">6 Letter Words</a>
+                                </li>
+                            </ul>
+                            <ul class="list-disc space-y-2 list-type-color">
+                                <li>
+                                    <a href="javascript:void(0);" class="font-normal text-[#007BFF] underline hover:opacity-75">7 Letter Words</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="font-normal text-[#007BFF] underline hover:opacity-75">8 Letter Words</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="font-normal text-[#007BFF] underline hover:opacity-75">9 Letter Words</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="font-normal text-[#007BFF] underline hover:opacity-75">10 Letter Words</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="font-normal text-[#007BFF] underline hover:opacity-75">11 Letter Words</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- left col end -->
+
+                <!-- right col start -->
+                <div class="w-full md:w-1/3">
+                    <!-- Word Finders box -->
+                    <%- (include('../frontend/right_col/word_finder.ejs')) %>
+
+                     <!-- Dictionaries -->
+                    <%- (include('../frontend/right_col/Dictionaries.ejs')) %>
+
+                    <!-- List of Words -->
+                    <%- (include('../frontend/right_col/list_of_words.ejs')) %>
+
+                    <!-- Popular Searches box -->
+                    <%- (include('../frontend/right_col/Popular_Searches_box.ejs')) %>
+
+                    <!-- Frequent Searches box -->
+                    <%- (include('../frontend/right_col/Frequent_Searches_box.ejs')) %>
+
+                    <!-- Latest Article -->
+                    <%- (include('../frontend/right_col/latest_article.ejs')) %>
+
+                </div>
+                <!-- right col end -->
+            </div>
+        </div>
+    </div>
+    <!-- content section end -->
+<!-- footer start  -->
+    <%- (include('../frontend/footer/footer.ejs')) %>
+<!-- footer end  -->
+
+    <!-- 5 letter words Definition modal start -->
+    <%- (include('../frontend/search/dictonary.ejs')) %>
+    <!-- 5 letter words Definition modal end -->
+
+<%- include('../frontend/script/script.ejs') %>
