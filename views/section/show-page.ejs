@@ -1,26 +1,50 @@
 <!-- views/section/show-page.ejs -->
+<%- include('../header/head.ejs') %>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show Page</title>
-    <!-- Add your stylesheets or other head elements here -->
-</head>
-<body>
-    <% if (page.sections && page.sections.length > 0) { %>
-        <ul>
-            <% page.sections.forEach((section) => { %>
-                <li>
-                    <h2><%= section.title %></h2>
-                </li>
-            <% }); %>
-        </ul>
-    <% } else { %>
-        <p>No sections found for this page.</p>
-    <% } %>
-    <br>
-    <a href="/pages">Back to Pages</a>
+    <body>
+        <!-- sidebar start here -->
+        <div class="flex overflow-hidden">
+            <%- include('../sidenav/sidenav.ejs') %>
+                <div class="page-content bg-white">
+
+                    <%- include('../header/header.ejs') %>
+
+            <!-- main content start here -->
+            <main class="py-8 px-5">
+                <div class="mb-4">
+                    <h2 class="text-2xl font-bold text-black mb-2">
+                        Section Heading 
+                    </h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing.</p>
+                </div>
+                <!-- two coloumn section start -->
+                <div class="flex flex-col md:flex-row gap-6 mb-6">
+                    <div class="">
+                        <img src="/images/service-img.jpg" alt="#" />
+                    </div>
+                    <div class="">
+                        <img src="/images/service-img.jpg" alt="#" />
+                    </div>
+                </div>
+                <!-- two coloumn section end -->
+                <!-- single coloumn section start -->
+                <div class="mb-6">
+                    <div class="mb-4">
+                        <h2 class="text-2xl font-bold text-black mb-2">
+                            Section Heading 2
+                        </h2>
+                        <p>Lorem Ipsum is simply dummy text of the printing.</p>
+                    </div>
+                    <div class="">
+                        <img src="/images/service-img.jpg" alt="#" />
+                    </div>
+                </div>
+                <!-- single coloumn section end -->
+            </main>
+            <!-- main content end here -->
+        </div>
+    </div>
+    <!-- sidebar end here -->
+    <%- include('../script/script.ejs') %>
 </body>
 </html>

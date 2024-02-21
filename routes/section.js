@@ -72,13 +72,25 @@ router.route('/create')
 router.get('/show', wrapAsync(async (req, res) => {
     try {
         const sections = await Section.find();  // Assuming you want to fetch all sections
-        res.render('section/show-section', { sections });
+        res.render('section/section', { sections });
     } catch (error) {
         console.error('Error fetching pages:', error);
         res.status(500).send('Internal Server Error');
     }
 }));
 
+router.get('/show/:title', async (req, res) => {
+  try {
+      // Fetch the section from your database using req.params.title
+      const section = await Section.findOne({ title: req.params.title });
+
+      // Render the show-section.ejs view with the updated section
+      res.render('section/show-section', { section });
+  } catch (err) {
+      console.error(err);
+      res.status(500).send('Server Error');
+  }
+});
 
 router.get('/edit/:id', wrapAsync(async (req, res) => {
     try {

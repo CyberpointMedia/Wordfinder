@@ -1,125 +1,68 @@
-<!-- show-section.ejs -->
+<!-- views/section/show-page.ejs -->
 <%- include('../header/head.ejs') %>
 
-    <body>
-        <!-- sidebar start here -->
-        <div class="flex overflow-hidden">
-            <!-- Sidenav Menu Start  -->
-            <%- include('../Sidenav/Sidenav.ejs') %>
+<body>
+  <!-- sidebar start here -->
+  <div class="flex overflow-hidden">
+    <!-- Sidenav Menu Start  -->
+    <%- include('../Sidenav/Sidenav.ejs') %>
 
-                <div class="page-content bg-white">
-                    <!-- header Start -->
-                    <%- include('../header/header.ejs') %>
+    <div class="page-content bg-white">
+      <!-- header Start -->
+      <%- include('../header/header.ejs') %>
 
-                        <!-- main content start here -->
-                        <main class="py-8 px-5">
-                            <div class="mb-6 flex gap-3 sm:flex-row sm:items-center">
-                                <h1 class="text-2xl font-bold text-black">
-                                    All Sections
-                                </h1>
-                                <a href="/admin/section/create"
-                                    class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add
-                                    New Section</a>
-                            </div>
-                            <!-- table start here -->
-                            <div class="bg-white overflow-x-auto">
-                                <table class="w-full divide-y divide-gray-200 border" id="example">
-                                    <thead class="text-left bg-[#DBF4FF]">
-                                        <tr>
-                                            <th>
-                                                <input type="checkbox" class="selectAll">
-                                            </th>
-                                            <th>
-                                                Title
-                                            </th>
-                                            <th>
-                                                Author
-                                            </th>
-                                            <th>
-                                                Page
-                                            </th>
-                                            <th>
-                                                Date
-                                            </th>
-                                        </tr>
-                                    </thead>
+      <% if (section) { %>
 
-                                    <tbody class="divide-y divide-gray-200">
-                                        <% sections.forEach(section=> { %>
-                                            <tr>
-                                                <td>
-                                                    <input type="checkbox" value="<%= section._id %>" class="">
-                                                </td>
-                                                <td>
-                                                    <div>
-                                                        <strong><a class="row-title text-[#2271b1] text-sm"
-                                                                href="<%= `/section/edit/${section._id}` %>">
-                                                                <%= section.title %>
-                                                            </a></strong>
-                                                    </div>
-                                                    <div class="row-actions mt-1">
-                                                        <span class="edit">
-                                                            <a href="<%= `/section/edit/${section._id}` %>"
-                                                                class="text-[#2271b1] text-xs">Edit</a> |
-                                                        </span>
-                                                        <span class="trash">
-                                                            <a href="<%= `/section/delete/${section._id}` %>"
-                                                                class="trash text-[#b32d2e] text-xs">Trash</a> |
-                                                        </span>
-                                                        <span class="view">
-                                                            <a href="<%= `/section/show/${section._id}` %>"
-                                                                class="text-[#2271b1] text-xs">View</a>
-                                                        </span>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    Admin
-                                                </td>
-                                                <td><a href="javascript:void(0);" class="text-[#2271b1]">
-                                                        <%= section.page %>
-                                                    </a></td>
-                                                    <td>
-                                                        <%= section.status %><br>
-                                                        <% if (section.createdAt) { %>
-                                                          <%= section.createdAt.toLocaleString() %>
-                                                        <% } else { %>
-                                                          Unknown Date
-                                                        <% } %>
-                                                      </td>
-                                            </tr>
-                                            <% }); %>
-                                    </tbody>
-
-                                    <tfoot class="text-left bg-[#DBF4FF]">
-                                        <tr>
-                                            <th>
-                                                <input type="checkbox" class="selectAll">
-                                            </th>
-                                            <th>
-                                                Title
-                                            </th>
-                                            <th>
-                                                Author
-                                            </th>
-                                            <th>
-                                                Page
-                                            </th>
-                                            <th>
-                                                Date
-                                            </th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                            <!-- table end here -->
-                        </main>
-
-                        <!-- main content end here -->
-                </div>
+      <% if (section.imagePosition === 'center') { %>
+      <div class="mb-6 flex justify-center items-center">
+        <div class="mb-4">
+          <h2 class="text-2xl font-bold text-black mb-2">
+            Title :<%= section.title %>
+          </h2>
+          <h2 class="text-2xl font-bold text-black mb-2">
+            SubHeading : <%= section.subHeading %>
+          </h2>
+          <p> <%- section.content %></p>
         </div>
-        <!-- sidebar end here -->
+        <div class="">
+          <img src="data:image/jpeg;base64,<%= section.image %>" alt="Section Image" />
+        </div>
+      </div>
+      <% } else if (section.imagePosition === 'left') { %>
+      <div class="mb-6 flex">
+        <div class="mb-4">
+          <h2 class="text-2xl font-bold text-black mb-2">
+            Title :<%= section.title %>
+          </h2>
+          <h2 class="text-2xl font-bold text-black mb-2">
+            SubHeading : <%= section.subHeading %>
+          </h2>
+          <p> <%- section.content %></p>
+        </div>
+        <div class="">
+          <img src="data:image/jpeg;base64,<%= section.image %>" alt="Section Image" />
+        </div>
+      </div>
+      <% } else if (section.imagePosition === 'right') { %>
+      <div class="mb-6 flex">
+        <div class="mb-4">
+          <h2 class="text-2xl font-bold text-black mb-2">
+            Title :<%= section.title %>
+          </h2>
+          <h2 class="text-2xl font-bold text-black mb-2">
+            SubHeading : <%= section.subHeading %>
+          </h2>
+          <p><%- section.content %></p>
+        </div>
+        <div class="">
+          <img src="data:image/jpeg;base64,<%= section.image %>" alt="Section Image" />
+        </div>
+      </div>
+      <% } %>
+      <% } %>
+      <%- include('../script/script.ejs') %>
+    </div>
+  </div>
+</body>
 
-    </body>
-    <%- include('../script/script.ejs') %>
-
-        </html>
+</html>
