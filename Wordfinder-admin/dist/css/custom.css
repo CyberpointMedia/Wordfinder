@@ -301,6 +301,10 @@ button:hover {
     transform: rotate(180deg);
 }
 
+.notfound h1>span {
+    text-shadow: -8px 0 0 #fff;
+}
+
 @media(min-width:667px) and (max-width:767px) {
     .dataTables_wrapper .dataTables_info {
         float: left;

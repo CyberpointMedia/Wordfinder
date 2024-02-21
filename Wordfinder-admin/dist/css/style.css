@@ -754,6 +754,14 @@ video {
   margin-top: -1px;
 }
 
+.mt-\[-30px\] {
+  margin-top: -30px;
+}
+
+.mt-\[-50px\] {
+  margin-top: -50px;
+}
+
 .block {
   display: block;
 }
@@ -1299,6 +1307,11 @@ video {
   padding-bottom: 1px;
 }
 
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
 .pb-4 {
   padding-bottom: 1rem;
 }
@@ -1358,6 +1371,19 @@ video {
   line-height: 1rem;
 }
 
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.text-\[50px\] {
+  font-size: 50px;
+}
+
+.text-\[150px\] {
+  font-size: 150px;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -1408,6 +1434,14 @@ video {
 
 .tracking-wider {
   letter-spacing: 0.05em;
+}
+
+.tracking-\[-33px\] {
+  letter-spacing: -33px;
+}
+
+.tracking-\[-24px\] {
+  letter-spacing: -24px;
 }
 
 .text-\[\#007bff\] {
@@ -1572,6 +1606,10 @@ video {
   transition-duration: 0.1ms;
 }
 
+.duration-500 {
+  transition-duration: 500ms;
+}
+
 .\[--placement\:bottom-right\] {
   --placement: bottom-right;
 }
@@ -1636,6 +1674,14 @@ video {
 
 .hover\:opacity-50:hover {
   opacity: 0.5;
+}
+
+.hover\:opacity-75:hover {
+  opacity: 0.75;
+}
+
+.hover\:opacity-0:hover {
+  opacity: 0;
 }
 
 .focus\:border-blue-500:focus {
@@ -1820,6 +1866,23 @@ video {
   .md\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
+  }
+
+  .md\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .md\:text-\[50px\] {
+    font-size: 50px;
+  }
+
+  .md\:text-\[200px\] {
+    font-size: 200px;
+  }
+
+  .md\:tracking-\[-33px\] {
+    letter-spacing: -33px;
   }
 }
 
