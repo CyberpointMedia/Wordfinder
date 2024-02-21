@@ -1,119 +1,112 @@
-<!-- views/admin/all-users.ejs -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            margin: 20px;
-        }
+<!-- views/user/create-profile.ejs -->
+<%- include('../header/head.ejs') %>
 
-        h1 {
-            color: #007bff;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        li {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #007bff;
-            color: #fff;
-        }
-        .delete-button {
-            background-color: #dc3545;
-            color: #fff;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-    </style>
-
-    <title>All Users</title>
-</head>
 <body>
-    <h1>All Users</h1>
-    <a href="/admin/register">
-        <button class="add-user-button">Add User</button>
-    </a>
-    <ul>
-        <% users.forEach(user => { %>
-            <li>
-                <div>ID: <%= user._id %></div>
-                <div>Name: <%= user.name %></div>
-                <div>Email: <%= user.email %></div>
-                <!-- Display other user details as needed -->
-                <div>
-                    <label for="postLimit_<%= user._id %>">Post Limit:</label>
-                    <input type="number" id="postLimit_<%= user._id %>" name="postLimit" value="<%= user.postLimit %>" min="0">
-                </div>
+    <!-- sidebar start here -->
+    <div class="flex overflow-hidden">
+        <%- include('../Sidenav/Sidenav.ejs') %>
+        <div class="page-content bg-white relative">
+            <!-- header Start -->
+            <%- include('../header/header.ejs') %>
 
-                  <!-- Add Delete button with a form for each user -->
-                <form action="/admin/delete/<%= user._id %>" method="post" style="display: inline;">
-                    <button type="submit" class="delete-button">Delete</button>
-                </form>
-            </li>
-        <% }); %>
-    </ul>
+                                            <!-- main content start here -->
+                                            <main class="py-8 px-5">
+                                                <div class="mb-6 flex gap-3 sm:flex-row sm:items-center">
+                                                    <h1 class="text-2xl font-bold text-black">
+                                                        Users
+                                                    </h1>
+                                                    <a href="/admin/register" class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add New User</a>
+                                                </div>
+                                                <ul class="subsubsub flex flex-wrap space-x-2 mb-6">
+                                                    <li class="all"><a href="all-pages.html" class="current text-black" aria-current="page">All <span class="count">(1)</span></a> |</li>
+                                                    <li class="publish"><a href="published.html" class="text-black">Subscriber <span class="count">(<%= totalCount.subscriber %>)</span></a></li>
+                                                    <li class="publish"><a href="published.html" class="text-black">Contributor <span class="count">(<%= totalCount.contributor %>)</span></a></li>
+                                                    <li class="publish"><a href="published.html" class="text-black">Author <span class="count">(<%= totalCount.author %>)</span></a></li>
+                                                    <li class="publish"><a href="published.html" class="text-black">Editor <span class="count">(<%= totalCount.editor %>)</span></a></li>
+                                                    <li class="publish"><a href="published.html" class="text-black">Administrator <span class="count">(<%= totalCount.administrator %>)</span></a></li>
+                                                </ul>
 
-    <!-- Create a table to display user information -->
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Post limit</th>
-                <th>Action</th>
-                <!-- Add more columns as needed -->
-            </tr>
-        </thead>
-        <tbody>
-            <% users.forEach(user => { %>
-                <tr>
-                    <td><%= user.name %></td>
-                    <td><%= user.email %></td>
-                    <!-- Add more columns as needed -->
-                    <!-- Add a cell with the Delete button for each user -->
-                    <td>
-                        <form action="/admin/update-post-limit/<%= user._id %>" method="post">
-                            <input type="number" name="postLimit" value="<%= user.postLimit %>" min="0">
-                            <button type="submit">Update Post Limit</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="/admin/delete/<%= user._id %>" method="post" style="display: inline;">
-                            <button type="submit" class="delete-button">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            <% }); %>
-        </tbody>
-    </table>
+                                                <!-- table start here -->
+                                                <div class="bg-white overflow-x-auto">
+                                                    <table class="w-full divide-y divide-gray-200 border" id="example">
+                                                        <thead class="text-left bg-[#DBF4FF]">
+                                                            <tr>
+                                                                <th>
+                                                                    <input type="checkbox" class="selectAll">
+                                                                </th>
+                                                                <th>
+                                                                    Username
+                                                                </th>
+                                                                <th>
+                                                                    Name
+                                                                </th>
+                                                                <th>
+                                                                    Email
+                                                                </th>
+                                                                <th>
+                                                                    Role
+                                                                </th>
+                                                                <th>
+                                                                    Posts
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="divide-y divide-gray-200">
+                                                            <% users.forEach(function(user) { %>
+                                                            <tr class="">
+                                                                <td>
+                                                                    <input type="checkbox" value="<%= user._id %>" class="">
+                                                                </td>
+                                                                <td>
+                                                                    <div class="flex items-start">
+                                                                        <img alt="#" src="/images/admin.svg" class="avatar avatar-32 photo inline-block mr-2" height="32" width="32" loading="lazy" decoding="async">
+                                                                        <div class="">
+                                                                            <strong><a class="row-title text-[#2271b1] text-sm" href="javascript:void(0)"><%= user.username %></a></strong>
 
-</body>
-</html>
+                                                                            <div class="row-actions mt-1"><span class="edit"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">Edit</a> | </span>
+                                                                                <span class="view"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">View</a></span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td><%= user.username %></td>
+                                                                <td><a href="mailto:<%= user.email %>" class="text-[#2271b1] text-xs"><%= user.email %></a></td>
+                                                                <td><%= user.role %></td>
+                                                                <td><a href="javascript:void(0)" class="text-[#2271b1] text-xs hover:text-[#007BFF]"><%= user.posts %></a></td>
+                                                            </tr>
+                                                            <% }) %>
+                                                        </tbody>
+                                                        <tfoot class="text-left bg-[#DBF4FF]">
+                                                            <tr>
+                                                                <th>
+                                                                    <input type="checkbox" class="selectAll">
+                                                                </th>
+                                                                <th>
+                                                                    Username
+                                                                </th>
+                                                                <th>
+                                                                    Name
+                                                                </th>
+                                                                <th>
+                                                                    Email
+                                                                </th>
+                                                                <th>
+                                                                    Role
+                                                                </th>
+                                                                <th>
+                                                                    Posts
+                                                                </th>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                                <!-- table end here -->
+                                            </main>
+
+                                            <!-- main content end here -->
+                                        </div>
+                                    </div>
+                                    <!-- sidebar end here -->
+                                    <%- include('../script/script.ejs') %>
+                                </body>
+                                </html>

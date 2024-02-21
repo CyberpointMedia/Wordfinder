@@ -11,10 +11,8 @@ require('dotenv').config();
 console.log('PORT:', process.env.PORT);
 console.log('MONGO_URL:', process.env.MONGO_URL);
 
-
 // Import passport-config.js to configure Passport
 const passportConfig = require('../public/js/passport-config');  // Adjusted path
-
 const Section = require('../models/section');  // Adjusted path
 const User = require('../models/user.js');  // Adjusted path
 

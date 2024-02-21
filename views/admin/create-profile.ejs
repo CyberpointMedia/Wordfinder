@@ -1,0 +1,132 @@
+<!-- views/user/create-profile.ejs -->
+<%- include('../header/head.ejs') %>
+
+<body>
+    <!-- sidebar start here -->
+    <div class="flex overflow-hidden">
+        <%- include('../Sidenav/Sidenav.ejs') %>
+        <div class="page-content bg-white relative">
+            <!-- header Start -->
+            <%- include('../header/header.ejs') %>
+            <form action="/admin/create-profile" method="POST" enctype="application/x-www-form-urlencoded">
+                <!-- main content start here -->
+                <main class="py-8 px-5">
+                    <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+                        <h1 class="text-2xl font-bold text-black">
+                            Add New User
+                        </h1>
+                    </div>
+                    <div class="mb-6">
+                        <p>Create a new user and add them to this site.</p>
+                    </div>
+                    <!-- add user form start -->
+                    <div class="grid sm:grid-cols-3">
+                        <label class="mt-1 mb-2" for="userName1">Username<span class="text-danger">*</span></label>
+                        <div class="sm:col-span-2">
+                            <input type="text" required="" class="form-input bg-[#F0F7FA] border-0" id="userName1"
+                                name="username" placeholder="User Name">
+                        </div>
+                    </div>
+                    <div class="grid sm:grid-cols-3">
+                        <label class="mt-1 mb-2" for="inputEmail3">Email<span class="text-danger">*</span></label>
+                        <div class="sm:col-span-2">
+                            <input type="email" required="" class="form-input bg-[#F0F7FA] border-0" id="inputEmail3"
+                                name="email" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="grid sm:grid-cols-3">
+                        <label class="mt-1 mb-2" for="password1">Password<span class="text-danger">*</span></label>
+                        <div class="sm:col-span-2">
+                            <input id="password1" type="password" name="password" placeholder="Password" required=""
+                                class="form-input bg-[#F0F7FA] border-0">
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-3">
+                        <label class="mt-1 mb-2" for="password">Password</label>
+                        <div class="sm:col-span-2">
+                            <button type="button" class="py-2 w-40 text-black bg-[#DBF4FF] rounded-lg"
+                                id="generate-pw" aria-expanded="true">Generate Password</button>
+                            <div id="show-generate-pw" class="flex mt-4 hidden">
+                                <div class="relative w-full">
+                                    <input id="password" type="password" placeholder="********"
+                                        class="form-input bg-[#F0F7FA] border-0">
+                                    <div class="absolute right-[12px] bottom-[22px] cursor-pointer toggle-password">
+                                        <i data-lucide="eye" class="w-4 h-4 eyeOpen"></i>
+                                        <i data-lucide="eye-off" class="w-4 h-4 eyeOff"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid sm:grid-cols-3">
+                        <label class="mt-1 mb-2" for="webSite">Web Site<span class="text-danger">*</span></label>
+                        <div class="sm:col-span-2">
+                            <input type="url" required="" class="form-input bg-[#F0F7FA] border-0" id="webSite"
+                                name="website" placeholder="URL">
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-3">
+                        <label class="mt-1 mb-2">Send User Notification</label>
+                        <div class="sm:col-span-2">
+                            <div class="flex items-center">
+                                <input type="checkbox" name="sendNotification" class="form-checkbox rounded-sm text-primary"
+                                    id="customCheck1">
+                                <label class="ms-2 font-normal" for="customCheck1"> Send the new user an email about
+                                    their account.</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-3">
+                        <label class="mt-1 mb-2" for="role">Role</label>
+                        <div class="sm:col-span-2">
+                            <select class="form-select bg-[#F0F7FA] border-0" id="role" name="role">
+                                <option selected="selected" value="subscriber">Subscriber</option>
+                                <option value="contributor">Contributor</option>
+                                <option value="author">Author</option>
+                                <option value="editor">Editor</option>
+                                <option value="administrator">Administrator</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-3">
+                        <div></div>
+                        <div class="sm:col-span-2 flex items-center gap-2 mt-4">
+                            <button type="submit" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">
+                                Add New User
+                            </button>
+                            <button type="reset" class="py-2 w-28 text-black bg-[#DBF4FF] rounded-lg">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <!-- add user form end -->
+            </main>
+            <!-- main content end here -->
+            <script>
+                document.getElementById("generate-pw").addEventListener("click", function() {
+                    var passwordInput = document.getElementById("password");
+                    var randomPassword = generateRandomPassword();
+                    passwordInput.value = randomPassword;
+                });
+
+                function generateRandomPassword() {
+                    var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                    var passwordLength = 8;
+                    var randomPassword = "";
+                    for (var i = 0; i < passwordLength; i++) {
+                        var randomIndex = Math.floor(Math.random() * characters.length);
+                        randomPassword += characters.charAt(randomIndex);
+                    }
+                    return randomPassword;
+                }
+            </script>
+            <%- include('../script/script.ejs') %>
+        </div>
+    </div>
+</body>
+</html>

@@ -46,8 +46,6 @@ router.get('/words-with-X-and-Q', (req, res) => {
 });
 
 // Handle POST request when search button is clicked
-
-// Handle POST request when search button is clicked
 router.post('/search', wrapAsync(async (req, res) => {
   const letters = req.body.letters;
   const startsWith = req.body.starts_with || '';

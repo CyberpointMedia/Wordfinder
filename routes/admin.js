@@ -8,45 +8,72 @@ const wrapAsync = require('../middleware/wrapAsync');
 const router = express.Router();
 
 // Route to handle admin registration
-router.get('/register', (req, res) => {
+router.get('/register', isAdmin,(req, res) => {
     console.log("register get request call");
-    res.render('user/create-profile.ejs');
+    res.render('admin/create-profile.ejs');
 });
 
-router.post('/register', wrapAsync(async (req, res) => {
-    const { name, email, password } = req.body;
-    console.log("Register route called");
-        // Check if the email is already registered
-        const existingUser = await User.findOne({ email });
-        if (existingUser) {
-            return res.status(400).send('User with this email already exists');
+// Route to handle user profile creation
+router.post('/create-profile', isAdmin, async (req, res) => {
+    console.log("register post request call", req.body);
+    try {
+        if (!req.body.username) {
+            throw new Error('Username is required');
         }
-        // Hash the password before saving it to the database
-        const hashedPassword = await bcrypt.hash(password, 10);
-        // Create a new user and save it to the database
-        const newUser = new User({ name, email, password: hashedPassword, role: 'user' });
-        await newUser.save();
-        res.redirect('/admin/dashboard'); // Redirect to admin dashboard or wherever needed
 
-}));
+        // Check if the user's email is already registered
+        const existingUser = await User.findOne({ email: req.body.email });
+
+        if (existingUser) {
+            throw new Error('User with this email already exists');
+        }
+
+        const user = new User({
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password,
+            website: req.body.website,
+            role: req.body.role,
+            sendNotification: req.body.sendNotification === 'on'
+        });
+        await user.save();
+        res.render('admin/all-users');
+    } catch (err) {
+        res.render('admin/create-profile', { errorMessage: `Error creating User profile: ${err.message}` });
+    }
+});
 
 // Admin dashboard
 router.get('/dashboard', isAdmin, wrapAsync(async (req, res) => {
     // Fetch users
     const users = await User.find();
-  
     // Render dashboard
     res.render('admin/dashboard', { users });
   }));
 
 // View all users
-router.get('/all-users', isAdmin, wrapAsync(async (req, res) => {
-        // Fetch all users from MongoDB
+router.get('/all-users', async (req, res) => {
+    try {
         const users = await User.find();
+        const subscriberCount = await User.countDocuments({ role: 'subscriber' });
+        const contributorCount = await User.countDocuments({ role: 'contributor' });
+        const authorCount = await User.countDocuments({ role: 'author' });
+        const editorCount = await User.countDocuments({ role: 'editor' });
+        const administratorCount = await User.countDocuments({ role: 'administrator' });
 
-        // Render the all users view and pass the users data
-        res.render('admin/all-users', { users });
-}));
+        const totalCount = {
+            subscriber: subscriberCount,
+            contributor: contributorCount,
+            author: authorCount,
+            editor: editorCount,
+            administrator: administratorCount
+        };
+
+        res.render('admin/all-users', {users, totalCount });
+    } catch (err) {
+        res.status(500).send('Server Error');
+    }
+});
 
 // Logout route
 router.get('/logout', (req, res) => {
