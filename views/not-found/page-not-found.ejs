@@ -1,0 +1,40 @@
+<!-- show-section.ejs -->
+
+<%- include('../header/head.ejs') %>
+
+    <body>
+        <!-- sidebar start here -->
+        <div class="flex overflow-hidden">
+            <%- include('../sidenav/sidenav.ejs') %>
+                <div class="page-content bg-white">
+
+                    <%- include('../header/header.ejs') %>
+
+                        <!-- main content start here -->
+
+                        <main class="py-8 px-5">
+
+                            <div class="text-center notfound">
+                                <h1 class="font-bold tracking-[-24px] md:tracking-[-33px] text-[150px] md:text-[200px] text-black">
+                                    <span>4</span>
+                                    <span>0</span>
+                                    <span>4</span>
+                                </h1>
+                                <div class="mt-[-50px]">
+                                    <h2 class="mb-6 text-3xl font-medium text-black md:text-4xl">Page not Found</h2>
+                                    <p>
+                                        We are sorry, but the page you requested was not found
+                                    </p>
+                                    <a href="dashboard.html" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-6 inline-block">Back to Home</a>
+                                </div>
+                            </div>
+                        </main>
+                        <!-- main content end here -->
+
+                </div>
+        </div>
+        <!-- sidebar end here -->
+        <%- include('../script/script.ejs') %>
+    </body>
+
+    </html>

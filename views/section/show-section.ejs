@@ -1,68 +1,82 @@
 <!-- views/section/show-page.ejs -->
 <%- include('../header/head.ejs') %>
 
-<body>
-  <!-- sidebar start here -->
-  <div class="flex overflow-hidden">
-    <!-- Sidenav Menu Start  -->
-    <%- include('../Sidenav/Sidenav.ejs') %>
+    <body>
+        <!-- sidebar start here -->
+        <div class="flex overflow-hidden">
+            <!-- Sidenav Menu Start  -->
+            <%- include('../Sidenav/Sidenav.ejs') %>
 
-    <div class="page-content bg-white">
-      <!-- header Start -->
-      <%- include('../header/header.ejs') %>
+                <div class="page-content bg-white">
+                    <!-- header Start -->
+                    <%- include('../header/header.ejs') %>
 
-      <% if (section) { %>
+                        <% if (section) { %>
+                            <div class="relative px-5 py-8">
+                                <% if (section.imagePosition === 'center') { %>
+                                    <div class="mb-6">
+                                        <div class="mb-3">
+                                            <h2 class="text-2xl font-bold text-black mb-2">
+                                                <%= section.title %>
+                                            </h2>
+                                            <p class="text-lg">
+                                                <%= section.subHeading %>
+                                            </p>
+                                        </div>
+                                        <div class="mb-6">
+                                            <p>
+                                                <%- section.content %>
+                                            </p>
+                                        </div>
+                                        <div class="w-full text-center">
+                                            <img src="data:image/jpeg;base64,<%= section.image %>" alt="Section Image" class="mx-auto" />
+                                        </div>
+                                    </div>
+                                    <% } else if (section.imagePosition === 'left') { %>
 
-      <% if (section.imagePosition === 'center') { %>
-      <div class="mb-6 flex justify-center items-center">
-        <div class="mb-4">
-          <h2 class="text-2xl font-bold text-black mb-2">
-            Title :<%= section.title %>
-          </h2>
-          <h2 class="text-2xl font-bold text-black mb-2">
-            SubHeading : <%= section.subHeading %>
-          </h2>
-          <p> <%- section.content %></p>
+                                        <div class="mb-6 flex flex-col md:flex-row gap-6">
+                                            <div class="md:w-1/2 w-full">
+                                                <img src="data:image/jpeg;base64,<%= section.image %>" alt="Section Image" />
+                                            </div>
+                                            <div class="md:w-1/2 w-full">
+                                                <div class="mb-3">
+                                                    <h2 class="text-2xl font-bold text-black mb-2">
+                                                        <%= section.title %>
+                                                    </h2>
+                                                    <p class="text-lg">
+                                                        <%= section.subHeading %>
+                                                    </p>
+                                                </div>
+                                                <p>
+                                                    <%- section.content %>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <% } else if (section.imagePosition === 'right') { %>
+                                            <div class="mb-6 flex flex-col md:flex-row gap-6">
+                                                <div class="md:w-1/2 w-full">
+                                                    <div class="mb-3">
+                                                        <h2 class="text-2xl font-bold text-black mb-2">
+                                                            <%= section.title %>
+                                                        </h2>
+                                                        <p class="text-lg">
+                                                            <%= section.subHeading %>
+                                                        </p>
+                                                    </div>
+                                                    <p>
+                                                        <%- section.content %>
+                                                    </p>
+                                                </div>
+                                                <div class="md:w-1/2 w-full">
+                                                    <img src="data:image/jpeg;base64,<%= section.image %>" alt="Section Image" />
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                                <% } %>
+                            </div>
+                            <%- include('../script/script.ejs') %>
+                </div>
         </div>
-        <div class="">
-          <img src="data:image/jpeg;base64,<%= section.image %>" alt="Section Image" />
-        </div>
-      </div>
-      <% } else if (section.imagePosition === 'left') { %>
-      <div class="mb-6 flex">
-        <div class="mb-4">
-          <h2 class="text-2xl font-bold text-black mb-2">
-            Title :<%= section.title %>
-          </h2>
-          <h2 class="text-2xl font-bold text-black mb-2">
-            SubHeading : <%= section.subHeading %>
-          </h2>
-          <p> <%- section.content %></p>
-        </div>
-        <div class="">
-          <img src="data:image/jpeg;base64,<%= section.image %>" alt="Section Image" />
-        </div>
-      </div>
-      <% } else if (section.imagePosition === 'right') { %>
-      <div class="mb-6 flex">
-        <div class="mb-4">
-          <h2 class="text-2xl font-bold text-black mb-2">
-            Title :<%= section.title %>
-          </h2>
-          <h2 class="text-2xl font-bold text-black mb-2">
-            SubHeading : <%= section.subHeading %>
-          </h2>
-          <p><%- section.content %></p>
-        </div>
-        <div class="">
-          <img src="data:image/jpeg;base64,<%= section.image %>" alt="Section Image" />
-        </div>
-      </div>
-      <% } %>
-      <% } %>
-      <%- include('../script/script.ejs') %>
-    </div>
-  </div>
-</body>
+    </body>
 
-</html>
+    </html>
