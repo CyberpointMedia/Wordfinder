@@ -7,7 +7,7 @@
             <!-- Sidenav Menu Start  -->
             <%- include('../Sidenav/Sidenav.ejs') %>
 
-                <div class="page-content bg-white">
+                <div class="bg-white page-content">
                     <!-- header Start -->
                     <%- include('../header/header.ejs') %>
 
@@ -16,7 +16,7 @@
                                 <% if (section.imagePosition === 'center') { %>
                                     <div class="mb-6">
                                         <div class="mb-3">
-                                            <h2 class="text-2xl font-bold text-black mb-2">
+                                            <h2 class="mb-2 text-2xl font-bold text-black">
                                                 <%= section.title %>
                                             </h2>
                                             <p class="text-lg">
@@ -34,13 +34,13 @@
                                     </div>
                                     <% } else if (section.imagePosition === 'left') { %>
 
-                                        <div class="mb-6 flex flex-col md:flex-row gap-6">
-                                            <div class="md:w-1/2 w-full">
+                                        <div class="flex flex-col gap-6 mb-6 md:flex-row">
+                                            <div class="w-full md:w-1/2">
                                                 <img src="data:image/jpeg;base64,<%= section.image %>" alt="Section Image" />
                                             </div>
-                                            <div class="md:w-1/2 w-full">
+                                            <div class="w-full md:w-1/2">
                                                 <div class="mb-3">
-                                                    <h2 class="text-2xl font-bold text-black mb-2">
+                                                    <h2 class="mb-2 text-2xl font-bold text-black">
                                                         <%= section.title %>
                                                     </h2>
                                                     <p class="text-lg">
@@ -53,10 +53,10 @@
                                             </div>
                                         </div>
                                         <% } else if (section.imagePosition === 'right') { %>
-                                            <div class="mb-6 flex flex-col md:flex-row gap-6">
-                                                <div class="md:w-1/2 w-full">
+                                            <div class="flex flex-col gap-6 mb-6 md:flex-row">
+                                                <div class="w-full md:w-1/2">
                                                     <div class="mb-3">
-                                                        <h2 class="text-2xl font-bold text-black mb-2">
+                                                        <h2 class="mb-2 text-2xl font-bold text-black">
                                                             <%= section.title %>
                                                         </h2>
                                                         <p class="text-lg">
@@ -67,7 +67,7 @@
                                                         <%- section.content %>
                                                     </p>
                                                 </div>
-                                                <div class="md:w-1/2 w-full">
+                                                <div class="w-full md:w-1/2">
                                                     <img src="data:image/jpeg;base64,<%= section.image %>" alt="Section Image" />
                                                 </div>
                                             </div>
