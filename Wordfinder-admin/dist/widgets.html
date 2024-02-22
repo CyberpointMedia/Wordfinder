@@ -1,0 +1,787 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Word Finder Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/logo-sm.svg">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <link href="css/app.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- sidebar start here -->
+    <div class="flex overflow-hidden">
+        <!-- Sidenav Menu Start  -->
+        <div class="fixed app-menu">
+
+            <!-- Sidenav Brand Logo -->
+            <a href="dashboard.html" class="logo-box">
+                <!-- Dark Brand Logo -->
+                <div class="logo-dark">
+                    <img src="images/logo-lg.svg" class="logo-lg" alt="Word Finder">
+                    <img src="images/logo-sm.svg" class="logo-sm" alt="Word Finder">
+                </div>
+            </a>
+
+            <!--- Menu -->
+            <div data-simplebar>
+                <ul class="menu" data-hs-collapse="accordion">
+                    <li class="menu-item">
+                        <a href="dashboard.html" class="menu-link">
+                            <i data-lucide="home" class="menu-icon"></i>
+                            <span class="menu-text"> Dashboard </span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuPages">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="files" class="lucide lucide-files menu-icon"><path d="M15.5 2H8.6c-.4 0-.8.2-1.1.5-.3.3-.5.7-.5 1.1v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8c.4 0 .8-.2 1.1-.5.3-.3.5-.7.5-1.1V6.5L15.5 2z"></path><path d="M3 7.6v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8"></path><path d="M15 2v5h5"></path></svg>
+                            <span class="menu-text"> Pages </span>
+                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden active-Uparrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                        </a>
+
+                        <ul class="hidden sub-menu" id="menuPages">
+                            <li class="menu-item">
+                                <a href="all-pages.html" class="menu-link">
+                                    <span class="menu-text">All Pages</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="add-new-page.html" class="menu-link">
+                                    <span class="menu-text">Add New Page</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuSection">
+                            <i data-lucide="lightbulb" class="menu-icon"></i>
+                            <span class="menu-text"> Sections </span>
+                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden active-Uparrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                        </a>
+
+                        <ul class="hidden sub-menu" id="menuSection">
+                            <li class="menu-item">
+                                <a href="all-sections.html" class="menu-link">
+                                    <span class="menu-text">All Sections</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="add-new-section.html" class="menu-link">
+                                    <span class="menu-text">Add New Section</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuPosts">
+                            <i data-lucide="pen-square" class="menu-icon"></i>
+                            <span class="menu-text"> Posts </span>
+                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden active-Uparrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                        </a>
+
+                        <ul class="hidden sub-menu" id="menuPosts">
+                            <li class="menu-item">
+                                <a href="all-posts.html" class="menu-link">
+                                    <span class="menu-text">All Posts</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="add-new-post.html" class="menu-link">
+                                    <span class="menu-text">Add New Post</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="categories.html" class="menu-link">
+                                    <span class="menu-text">Categories</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="tags.html" class="menu-link">
+                                    <span class="menu-text">Tags</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle active" data-hs-collapse="#menuAppearance">
+                            <i data-lucide="pen-square" class="menu-icon"></i>
+                            <span class="menu-text"> Appearance </span>
+                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden active-Uparrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                        </a>
+
+                        <ul class="hidden sub-menu" id="menuAppearance">
+                            <li class="menu-item">
+                                <a href="#" class="menu-link active">
+                                    <span class="menu-text">Widgets</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0);" class="menu-link">
+                                    <span class="menu-text">Menu</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuUsers">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="user-circle" class="lucide lucide-user-circle menu-icon"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"></path></svg>
+                            <span class="menu-text"> Users </span>
+                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden active-Uparrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                        </a>
+
+                        <ul class="hidden sub-menu" id="menuUsers">
+                            <li class="menu-item">
+                                <a href="all-users.html" class="menu-link">
+                                    <span class="menu-text">All Users</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="javascript:void(0)" class="menu-link">
+                                    <span class="menu-text">Add New User</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="user-profile.html" class="menu-link">
+                                    <span class="menu-text">Profile</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuMyaccount">
+                            <i data-lucide="lightbulb" class="menu-icon"></i>
+                            <span class="menu-text"> My Account </span>
+                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden active-Uparrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                        </a>
+
+                        <ul class="hidden sub-menu" id="menuMyaccount">
+                            <li class="menu-item">
+                                <a href="javascript:void(0)" class="menu-link">
+                                    <span class="menu-text">Edit Profile</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="login.html" class="menu-link">
+                                    <span class="menu-text">Log Out</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Sidenav Menu End  -->
+        <div class="bg-white page-content">
+            <!-- header Start -->
+            <header class="bg-white border-b shadow-md app-header">
+                <div class="flex items-center justify-between w-full gap-3 px-3">
+                    <!-- Brand Logo -->
+                    <a href="dashboard.html" class="logo-box">
+
+                        <!-- Dark Brand Logo -->
+                        <div class="logo-dark">
+                            <img src="images/logo-lg.svg" class="logo-lg" alt="Word Finder">
+                            <img src="images/logo-lg.svg" class="logo-sm" alt="Word Finder">
+                        </div>
+                    </a>
+
+                    <!-- Sidenav Menu Toggle Button -->
+                    <button id="button-toggle-menu" class="p-2 nav-link">
+                        <span class="sr-only">Menu Toggle Button</span>
+                        <span class="flex items-center justify-center w-6 h-6">
+                            <i data-lucide="menu" class="w-6 h-6 text-xl"></i>
+                        </span>
+                    </button>
+
+                    <!-- Profile Dropdown Button -->
+                    <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
+                        <button id="hs-dropdown-default" type="button" class="flex items-center hs-dropdown-toggle nav-link">
+                            <img src="images/admin.svg" alt="user-image" class="w-8 h-8 rounded-full">
+                            <div class="hidden lg:flex">
+                                <span class="mx-2 text-sm">Admin</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden active-Uparrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </div>
+                        </button>
+
+                        <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] hs-dropdown-open:opacity-100 opacity-0 hidden z-10 mt-2 min-w-[10rem] bg-white border border-gray-200 shadow-md rounded py-2" aria-labelledby="hs-dropdown-default">
+                            <a class="flex items-center gap-x-3.5 py-2 px-5 text-sm hover:bg-gray-100" href="javascript:void(0);">
+                                <i data-lucide="user" class="w-4 h-4 me-2"></i>
+                                <span>My Account</span>
+                            </a>
+                            <a class="flex items-center gap-x-3.5 py-2 px-5 text-sm hover:bg-gray-100" href="javascript:void(0);">
+                                <i data-lucide="edit" class="w-4 h-4 me-2"></i>
+                                <span>Edit</span>
+                            </a>
+                            <hr class="my-2 border-gray-200">
+                            <a class="flex items-center gap-x-3.5 py-2 px-5 text-sm hover:bg-gray-100" href="login.html">
+                                <i data-lucide="log-out" class="w-4 h-4 me-2"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- header End -->
+
+            <!-- main content start here -->
+            <main class="px-5 py-8">
+                <div class="flex flex-col gap-3 mb-4 sm:flex-row sm:items-center">
+                    <h1 class="text-2xl font-bold text-black">
+                        Available Widgets
+                    </h1>
+                </div>
+                <!-- available widgets start -->
+                <div class="flex flex-col gap-6 mt-6 md:flex-row">
+                    <!-- footer col 1 -->
+                    <div class="w-full md:w-2/4 ">
+                        <div class="hs-accordion-group">
+                            <div class="hs-accordion" id="hs-basic-with-title-and-arrow-stretched-heading-one ">
+                                <div class="cardHeader hs-accordion-toggle inline-flex items-center justify-center gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none p-6 bg-[#007bff] text-center" aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-one ">
+                                    Footer Col 1
+                                    <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2 " stroke-linecap="round
+                                            " stroke-linejoin="round "><path d="m6 9 6 6 6-6 "/></svg>
+                                    <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2 " stroke-linecap="round
+                                            " stroke-linejoin="round "><path d="m18 15-6-6-6 6 "/></svg>
+                                </div>
+                                <div id="hs-basic-with-title-and-arrow-stretched-collapse-one " class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody " aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one ">
+                                    <div class="px-5 pt-8 pb-4">
+                                        <!-- text editor collaps start -->
+                                        <div class="mb-4 hs-accordion" id="hs-basic-always-open-heading-foot-menu1">
+                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-always-open-collapse-foot-menu1">
+                                            Text Editor
+                                            <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                
+                                            <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                          </button>
+                                            <div id="hs-basic-always-open-collapse-foot-menu1" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-always-open-heading-foot-menu1">
+                                                <div class="py-5">
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="title">Title</label>
+                                                        <input name="title" id="title" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                    </div>
+
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="Description">Description</label>
+                                                        <textarea id="Description" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                                    </div>
+
+                                                    <div class="flex items-center gap-2 flex-row">
+                                                        <button type="reset" class="py-2 w-20 text-white bg-[#dc3545] rounded-lg">
+                                                            Delete
+                                                        </button>
+                                                        <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
+                                                            Save
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- text editor collaps end -->
+
+                                        <!-- contact details collaps start -->
+                                        <div class="mb-4 hs-accordion" id="hs-basic-always-open-heading-foot-menu2">
+                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-always-open-collapse-foot-menu2">
+                                            Contact Details
+                                            <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                
+                                            <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                          </button>
+                                            <div id="hs-basic-always-open-collapse-foot-menu2" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-always-open-heading-foot-menu2">
+                                                <div class="py-5">
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="title">Title</label>
+                                                        <input name="title" id="title" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                    </div>
+
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="Description">Description</label>
+                                                        <textarea id="Description" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                                    </div>
+
+                                                    <div class="flex items-center gap-2 flex-row">
+                                                        <button type="reset" class="py-2 w-20 text-white bg-[#dc3545] rounded-lg">
+                                                            Delete
+                                                        </button>
+                                                        <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
+                                                            Save
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Contact details collaps end -->
+
+                                        <!-- Menu collaps start -->
+                                        <div class="mb-4 hs-accordion" id="hs-basic-always-open-heading-foot-menu3">
+                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-always-open-collapse-foot-menu3">
+                                            Menu
+                                            <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                
+                                            <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                          </button>
+                                            <div id="hs-basic-always-open-collapse-foot-menu3" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-always-open-heading-foot-menu3">
+                                                <div class="py-5">
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="title">Title</label>
+                                                        <input name="title" id="title" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                    </div>
+
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="Description">Description</label>
+                                                        <textarea id="Description" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                                    </div>
+
+                                                    <div class="flex items-center gap-2 flex-row">
+                                                        <button type="reset" class="py-2 w-20 text-white bg-[#dc3545] rounded-lg">
+                                                            Delete
+                                                        </button>
+                                                        <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
+                                                            Save
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Menu collaps end -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- footer col 2 -->
+                    <div class="w-full md:w-2/4">
+                        <div class="hs-accordion-group">
+                            <div class="hs-accordion" id="hs-basic-with-title-and-arrow-stretched-heading-one">
+                                <div class="cardHeader hs-accordion-toggle inline-flex items-center justify-center gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none p-6 bg-[#007bff] text-center" aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-one">
+                                    Footer Col 2
+                                    <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                    <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                </div>
+                                <div id="hs-basic-with-title-and-arrow-stretched-collapse-one" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody" aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one">
+                                    <div class="px-5 pt-8 pb-4">
+                                        <!-- text editor collaps start -->
+                                        <div class="mb-4 hs-accordion" id="hs-basic-always-open-heading-foot2-menu1">
+                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-always-open-collapse-foot2-menu1">
+                                            Text Editor
+                                            <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                
+                                            <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                          </button>
+                                            <div id="hs-basic-always-open-collapse-foot2-menu1" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-always-open-heading-foot2-menu1">
+                                                <div class="py-5">
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="title">Title</label>
+                                                        <input name="title" id="title" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                    </div>
+
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="Description">Description</label>
+                                                        <textarea id="Description" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                                    </div>
+
+                                                    <div class="flex items-center gap-2 flex-row">
+                                                        <button type="reset" class="py-2 w-20 text-white bg-[#dc3545] rounded-lg">
+                                                            Delete
+                                                        </button>
+                                                        <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
+                                                            Save
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- text editor collaps end -->
+
+                                        <!-- contact details collaps start -->
+                                        <div class="mb-4 hs-accordion" id="hs-basic-always-open-heading-foot2-menu2">
+                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-always-open-collapse-foot2-menu2">
+                                            Contact Details
+                                            <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                
+                                            <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                          </button>
+                                            <div id="hs-basic-always-open-collapse-foot2-menu2" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-always-open-heading-foot2-menu2">
+                                                <div class="py-5">
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="title">Title</label>
+                                                        <input name="title" id="title" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                    </div>
+
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="Description">Description</label>
+                                                        <textarea id="Description" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                                    </div>
+
+                                                    <div class="flex items-center gap-2 flex-row">
+                                                        <button type="reset" class="py-2 w-20 text-white bg-[#dc3545] rounded-lg">
+                                                            Delete
+                                                        </button>
+                                                        <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
+                                                            Save
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Contact details collaps end -->
+
+                                        <!-- Menu collaps start -->
+                                        <div class="mb-4 hs-accordion" id="hs-basic-always-open-heading-foot2-menu3">
+                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-always-open-collapse-foot2-menu3">
+                                            Menu
+                                            <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                
+                                            <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                          </button>
+                                            <div id="hs-basic-always-open-collapse-foot2-menu3" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-always-open-heading-foot2-menu3">
+                                                <div class="py-5">
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="title">Title</label>
+                                                        <input name="title" id="title" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                    </div>
+
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="Description">Description</label>
+                                                        <textarea id="Description" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                                    </div>
+
+                                                    <div class="flex items-center gap-2 flex-row">
+                                                        <button type="reset" class="py-2 w-20 text-white bg-[#dc3545] rounded-lg">
+                                                            Delete
+                                                        </button>
+                                                        <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
+                                                            Save
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Menu collaps end -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-6 mt-6 md:flex-row">
+                    <!-- footer col 3 -->
+                    <div class="w-full md:w-2/4 ">
+                        <div class="hs-accordion-group">
+                            <div class="hs-accordion" id="hs-basic-with-title-and-arrow-stretched-heading-one ">
+                                <div class="cardHeader hs-accordion-toggle inline-flex items-center justify-center gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none p-6 bg-[#007bff] text-center" aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-one ">
+                                    Footer Col 3
+                                    <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2 " stroke-linecap="round
+                                            " stroke-linejoin="round "><path d="m6 9 6 6 6-6 "/></svg>
+                                    <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2 " stroke-linecap="round
+                                            " stroke-linejoin="round "><path d="m18 15-6-6-6 6 "/></svg>
+                                </div>
+                                <div id="hs-basic-with-title-and-arrow-stretched-collapse-one " class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody " aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one ">
+                                    <div class="px-5 pt-8 pb-4">
+                                        <!-- text editor collaps start -->
+                                        <div class="mb-4 hs-accordion" id="hs-basic-always-open-heading-foot3-menu1">
+                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-always-open-collapse-foot3-menu1">
+                                            Text Editor
+                                            <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                
+                                            <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                          </button>
+                                            <div id="hs-basic-always-open-collapse-foot3-menu1" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-always-open-heading-foot3-menu1">
+                                                <div class="py-5">
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="title">Title</label>
+                                                        <input name="title" id="title" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                    </div>
+
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="Description">Description</label>
+                                                        <textarea id="Description" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                                    </div>
+
+                                                    <div class="flex items-center gap-2 flex-row">
+                                                        <button type="reset" class="py-2 w-20 text-white bg-[#dc3545] rounded-lg">
+                                                            Delete
+                                                        </button>
+                                                        <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
+                                                            Save
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- text editor collaps end -->
+
+                                        <!-- contact details collaps start -->
+                                        <div class="mb-4 hs-accordion" id="hs-basic-always-open-heading-foot3-menu2">
+                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-always-open-collapse-foot3-menu2">
+                                            Contact Details
+                                            <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                
+                                            <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                          </button>
+                                            <div id="hs-basic-always-open-collapse-foot3-menu2" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-always-open-heading-foot3-menu2">
+                                                <div class="py-5">
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="title">Title</label>
+                                                        <input name="title" id="title" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                    </div>
+
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="Description">Description</label>
+                                                        <textarea id="Description" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                                    </div>
+
+                                                    <div class="flex items-center gap-2 flex-row">
+                                                        <button type="reset" class="py-2 w-20 text-white bg-[#dc3545] rounded-lg">
+                                                            Delete
+                                                        </button>
+                                                        <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
+                                                            Save
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Contact details collaps end -->
+
+                                        <!-- Menu collaps start -->
+                                        <div class="mb-4 hs-accordion" id="hs-basic-always-open-heading-foot3-menu3">
+                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-always-open-collapse-foot3-menu3">
+                                            Menu
+                                            <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                
+                                            <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                          </button>
+                                            <div id="hs-basic-always-open-collapse-foot3-menu3" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-always-open-heading-foot3-menu3">
+                                                <div class="py-5">
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="title">Title</label>
+                                                        <input name="title" id="title" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                    </div>
+
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="Description">Description</label>
+                                                        <textarea id="Description" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                                    </div>
+
+                                                    <div class="flex items-center gap-2 flex-row">
+                                                        <button type="reset" class="py-2 w-20 text-white bg-[#dc3545] rounded-lg">
+                                                            Delete
+                                                        </button>
+                                                        <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
+                                                            Save
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Menu collaps end -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- footer col 4 -->
+                    <div class="w-full md:w-2/4">
+                        <div class="hs-accordion-group">
+                            <div class="hs-accordion" id="hs-basic-with-title-and-arrow-stretched-heading-one">
+                                <div class="cardHeader hs-accordion-toggle inline-flex items-center justify-center gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none p-6 bg-[#007bff] text-center" aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-one">
+                                    Footer Col 4
+                                    <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                    <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                </div>
+                                <div id="hs-basic-with-title-and-arrow-stretched-collapse-one" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody" aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one">
+                                    <div class="px-5 pt-8 pb-4">
+                                        <!-- text editor collaps start -->
+                                        <div class="mb-4 hs-accordion" id="hs-basic-always-open-heading-foot4-menu1">
+                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-always-open-collapse-foot4-menu1">
+                                            Text Editor
+                                            <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                
+                                            <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                          </button>
+                                            <div id="hs-basic-always-open-collapse-foot4-menu1" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-always-open-heading-foot4-menu1">
+                                                <div class="py-5">
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="title">Title</label>
+                                                        <input name="title" id="title" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                    </div>
+
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="Description">Description</label>
+                                                        <textarea id="Description" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                                    </div>
+
+                                                    <div class="flex items-center gap-2 flex-row">
+                                                        <button type="reset" class="py-2 w-20 text-white bg-[#dc3545] rounded-lg">
+                                                            Delete
+                                                        </button>
+                                                        <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
+                                                            Save
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- text editor collaps end -->
+
+                                        <!-- contact details collaps start -->
+                                        <div class="mb-4 hs-accordion" id="hs-basic-always-open-heading-foot4-menu2">
+                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-always-open-collapse-foot4-menu2">
+                                            Contact Details
+                                            <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                
+                                            <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                          </button>
+                                            <div id="hs-basic-always-open-collapse-foot4-menu2" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-always-open-heading-foot4-menu2">
+                                                <div class="py-5">
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="title">Title</label>
+                                                        <input name="title" id="title" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                    </div>
+
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="Description">Description</label>
+                                                        <textarea id="Description" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                                    </div>
+
+                                                    <div class="flex items-center gap-2 flex-row">
+                                                        <button type="reset" class="py-2 w-20 text-white bg-[#dc3545] rounded-lg">
+                                                            Delete
+                                                        </button>
+                                                        <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
+                                                            Save
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Contact details collaps end -->
+
+                                        <!-- Menu collaps start -->
+                                        <div class="mb-4 hs-accordion" id="hs-basic-always-open-heading-foot4-menu3">
+                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-always-open-collapse-foot4-menu3">
+                                            Menu
+                                            <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                
+                                            <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                          </button>
+                                            <div id="hs-basic-always-open-collapse-foot4-menu3" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-always-open-heading-foot4-menu3">
+                                                <div class="py-5">
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="title">Title</label>
+                                                        <input name="title" id="title" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                    </div>
+
+                                                    <div class="mb-6 form-group">
+                                                        <label class="mb-3 text-sm" for="Description">Description</label>
+                                                        <textarea id="Description" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                                    </div>
+
+                                                    <div class="flex items-center gap-2 flex-row">
+                                                        <button type="reset" class="py-2 w-20 text-white bg-[#dc3545] rounded-lg">
+                                                            Delete
+                                                        </button>
+                                                        <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
+                                                            Save
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Menu collaps end -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- available widgets end -->
+            </main>
+
+            <!-- main content end here -->
+        </div>
+    </div>
+    <!-- sidebar end here -->
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="js/config.js" type="text/javascript"></script>
+    <script src="../node_modules/simplebar/dist/simplebar.min.js" type="text/javascript"></script>
+    <script src="../node_modules/lucide/dist/umd/lucide.min.js" type="text/javascript"></script>
+    <script src="../node_modules/preline/dist/preline.js" type="text/javascript"></script>
+    <script src="js/app.js" type="text/javascript"></script>
+    <script src="js/custom.js" type="text/javascript"></script>
+</body>
+
+</html>

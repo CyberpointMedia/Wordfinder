@@ -754,10 +754,6 @@ video {
   margin-top: -1px;
 }
 
-.mt-\[-30px\] {
-  margin-top: -30px;
-}
-
 .mt-\[-50px\] {
   margin-top: -50px;
 }
@@ -844,6 +840,10 @@ video {
 
 .w-16 {
   width: 4rem;
+}
+
+.w-20 {
+  width: 5rem;
 }
 
 .w-28 {
@@ -957,6 +957,10 @@ video {
 
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.flex-row {
+  flex-direction: row;
 }
 
 .flex-col {
@@ -1149,9 +1153,18 @@ video {
   border-top-width: 1px;
 }
 
+.border-t-0 {
+  border-top-width: 0px;
+}
+
 .border-\[\#2271b1\] {
   --tw-border-opacity: 1;
   border-color: rgb(34 113 177 / var(--tw-border-opacity));
+}
+
+.border-\[\#DBF4FF\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(219 244 255 / var(--tw-border-opacity));
 }
 
 .border-gray-200 {
@@ -1177,6 +1190,11 @@ video {
 .bg-\[\#F0F7FA\] {
   --tw-bg-opacity: 1;
   background-color: rgb(240 247 250 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#dc3545\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 53 69 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#f0f7fa\] {
@@ -1307,11 +1325,6 @@ video {
   padding-bottom: 1px;
 }
 
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-
 .pb-4 {
   padding-bottom: 1rem;
 }
@@ -1346,6 +1359,10 @@ video {
   line-height: 2.25rem;
 }
 
+.text-\[150px\] {
+  font-size: 150px;
+}
+
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -1369,19 +1386,6 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
-}
-
-.text-\[50px\] {
-  font-size: 50px;
-}
-
-.text-\[150px\] {
-  font-size: 150px;
 }
 
 .font-bold {
@@ -1428,20 +1432,16 @@ video {
   line-height: 1;
 }
 
+.tracking-\[-24px\] {
+  letter-spacing: -24px;
+}
+
 .tracking-tight {
   letter-spacing: -0.025em;
 }
 
 .tracking-wider {
   letter-spacing: 0.05em;
-}
-
-.tracking-\[-33px\] {
-  letter-spacing: -33px;
-}
-
-.tracking-\[-24px\] {
-  letter-spacing: -24px;
 }
 
 .text-\[\#007bff\] {
@@ -1606,10 +1606,6 @@ video {
   transition-duration: 0.1ms;
 }
 
-.duration-500 {
-  transition-duration: 500ms;
-}
-
 .\[--placement\:bottom-right\] {
   --placement: bottom-right;
 }
@@ -1674,14 +1670,6 @@ video {
 
 .hover\:opacity-50:hover {
   opacity: 0.5;
-}
-
-.hover\:opacity-75:hover {
-  opacity: 0.75;
-}
-
-.hover\:opacity-0:hover {
-  opacity: 0;
 }
 
 .focus\:border-blue-500:focus {
@@ -1871,10 +1859,6 @@ video {
   .md\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
-  }
-
-  .md\:text-\[50px\] {
-    font-size: 50px;
   }
 
   .md\:text-\[200px\] {
