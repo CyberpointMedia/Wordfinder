@@ -276,10 +276,11 @@ button:hover {
     border-bottom: transparent;
 }
 
-.hs-accordion.active button.hs-accordion-toggle {
+
+/* .hs-accordion.active button.hs-accordion-toggle {
     color: #007bff;
     background-color: #DBF4FF;
-}
+} */
 
 .uploadImg-Preview {
     width: 100%;
