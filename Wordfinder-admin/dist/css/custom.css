@@ -276,6 +276,37 @@ button:hover {
     border-bottom: transparent;
 }
 
+.select-wedgets li {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+}
+
+.select-wedgets li::before {
+    position: absolute;
+    content: "";
+    top: 8px;
+    left: 8px;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.select-wedgets li.active,
+.select-wedgets li:hover {
+    background: #007BFF;
+    color: #fff;
+}
+
+.select-wedgets li.active::before {
+    background-image: url(../images/tick-white.svg);
+}
+
+.select-wedgets {
+    background: #f0f7fa;
+}
+
 
 /* .hs-accordion.active button.hs-accordion-toggle {
     color: #007bff;

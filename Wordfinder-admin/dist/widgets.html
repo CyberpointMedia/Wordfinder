@@ -282,218 +282,381 @@
 
             <!-- main content start here -->
             <main class="px-5 py-8">
-                <div class="flex flex-col gap-3 mb-4 sm:flex-row sm:items-center">
-                    <h1 class="text-2xl font-bold text-black">
-                        Available Widgets
-                    </h1>
-                </div>
-                <!-- available widgets start -->
                 <div class="flex flex-col gap-6 mt-6 md:flex-row">
-                    <!-- footer col 1 start -->
-                    <div class="w-full md:w-2/4 ">
-                        <div class="hs-accordion-group">
-                            <div class="hs-accordion" id="hs-basic-nested-heading-one">
-                                <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none p-6 bg-[#007bff] text-center" aria-controls="hs-basic-nested-collapse-one">
-                                    Footer Col 1
-                                    <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2 " stroke-linecap="round
-                                        " stroke-linejoin="round "><path d="m6 9 6 6 6-6 "/></svg>
-                                    <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2 " stroke-linecap="round
-                                        " stroke-linejoin="round "><path d="m18 15-6-6-6 6 "/></svg>
-                                </div>
+                    <!-- available widgets start -->
+                    <div class="w-full md:w-2/5 ">
+                        <h2 class="mb-4 text-xl font-bold text-black">
+                            Available Widgets
+                        </h2>
+                        <div class="px-5 pt-8 pb-4 bg-white border rounded shadow-sm cardBody">
+                            <div class="hs-accordion-group">
+                                <!-- text editor start -->
+                                <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-one">
+                                    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-one">
+                                        Text Editor
+                                        <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            
+                                        <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                    </button>
+                                    <div id="hs-basic-nested-sub-collapse-one" class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-one">
+                                        <div class="py-5">
+                                            <ul class="mb-6 select-wedgets">
+                                                <li class="px-3 py-2 active">Footer Col 1</li>
+                                                <li class="px-3 py-2">Footer Col 2</li>
+                                                <li class="px-3 py-2">Footer Col 3</li>
+                                                <li class="px-3 py-2">Footer Col 4</li>
+                                            </ul>
 
-                                <div id="hs-basic-nested-collapse-one" class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4" aria-labelledby="hs-basic-nested-heading-one">
-                                    <div class="hs-accordion-group">
-                                        <!-- text editor start -->
-                                        <div class="hs-accordion mb-4" id="hs-basic-nested-sub-heading-one">
-                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-one">
-                                                Text Editor
-                                                <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                    
-                                                <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
-                                            </button>
-                                            <div id="hs-basic-nested-sub-collapse-one" class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-one">
-                                                <div class="py-5">
-                                                    <div class="mb-6 form-group">
-                                                        <label class="mb-3 text-sm" for="title">Title</label>
-                                                        <input name="title" id="title" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3">
-                                                    </div>
-
-                                                    <div class="mb-6 form-group">
-                                                        <label class="mb-3 text-sm" for="Description">Description</label>
-                                                        <textarea id="Description" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
-                                                    </div>
-
-                                                    <div class="flex flex-col items-center gap-2 md:flex-row">
-                                                        <button type="reset" class="py-2 w-20 text-white bg-[#dc3545] rounded-lg">
-                                                            Delete
-                                                        </button>
-                                                        <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
-                                                            Save
-                                                        </button>
-                                                    </div>
-
-                                                </div>
+                                            <div class="flex flex-col items-center gap-2 md:flex-row">
+                                                <button type="reset" class="cancel-wedgets py-2 w-20 text-black bg-[#DBF4FF] rounded-lg" aria-controls="hs-basic-nested-sub-collapse-four">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
+                                                    Save
+                                                </button>
                                             </div>
+
                                         </div>
-                                        <!-- text editor end -->
-
-                                        <!-- custom HTML start -->
-                                        <div class="hs-accordion mb-4" id="hs-basic-nested-sub-heading-two">
-                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-two">
-                                                Custom HTML
-                                                <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                
-                                                <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
-                                            </button>
-                                            <div id="hs-basic-nested-sub-collapse-two" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-two">
-                                                <div class="py-5">
-                                                    <div class="mb-6 form-group">
-                                                        <label class="mb-3 text-sm" for="title">Title</label>
-                                                        <input name="title" id="title" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3">
-                                                    </div>
-
-                                                    <div class="mb-6 form-group">
-                                                        <label class="mb-3 text-sm" for="Description">Description</label>
-                                                        <textarea id="Description" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
-                                                    </div>
-
-                                                    <div class="flex flex-col items-center gap-2 md:flex-row">
-                                                        <button type="reset" class="py-2 w-20 text-white bg-[#dc3545] rounded-lg">
-                                                            Delete
-                                                        </button>
-                                                        <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
-                                                            Save
-                                                        </button>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- custom HTML end -->
-
-                                        <!-- custom HTML start -->
-                                        <div class="hs-accordion mb-4" id="hs-basic-nested-sub-heading-three">
-                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-three">
-                                                Contact Details
-                                                <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                
-                                                <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
-                                            </button>
-                                            <div id="hs-basic-nested-sub-collapse-three" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-three">
-                                                <div class="py-5">
-                                                    <div class="mb-6 form-group">
-                                                        <label class="mb-3 text-sm" for="title">Title</label>
-                                                        <input name="title" id="title" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3">
-                                                    </div>
-
-                                                    <div class="mb-6 form-group">
-                                                        <label class="mb-3 text-sm" for="Description">Description</label>
-                                                        <textarea id="Description" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
-                                                    </div>
-
-                                                    <div class="flex flex-col items-center gap-2 md:flex-row">
-                                                        <button type="reset" class="py-2 w-20 text-white bg-[#dc3545] rounded-lg">
-                                                            Delete
-                                                        </button>
-                                                        <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
-                                                            Save
-                                                        </button>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- custom HTML end -->
-
-                                        <!-- Image collapse start -->
-                                        <div class="hs-accordion mb-4" id="hs-basic-nested-sub-heading-four">
-                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-four">
-                                                Image
-                                                <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                
-                                                <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
-                                            </button>
-                                            <div id="hs-basic-nested-sub-collapse-four" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-four">
-                                                <div class="py-5">
-                                                    <div class="featuredImage mb-6">
-                                                        <label class="picture" for="picture__input" tabIndex="0">
-                                                            <span class="picture__image"></span>
-                                                        </label>
-                                                        <input type="file" name="picture__input" id="picture__input">
-                                                    </div>
-                                                    <div class="flex flex-col items-center gap-2 md:flex-row">
-                                                        <button type="reset" class="py-2 w-20 text-white bg-[#dc3545] rounded-lg">
-                                                            Delete
-                                                        </button>
-                                                        <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
-                                                            Save
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Image collaps end -->
                                     </div>
                                 </div>
+                                <!-- text editor end -->
+
+                                <!-- custom HTML start -->
+                                <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-two">
+                                    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-two">
+                                        Custom HTML
+                                        <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        
+                                        <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                    </button>
+                                    <div id="hs-basic-nested-sub-collapse-two" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-two">
+                                        <div class="py-5">
+                                            <ul class="mb-6 select-wedgets">
+                                                <li class="px-3 py-2 active">Footer Col 1</li>
+                                                <li class="px-3 py-2">Footer Col 2</li>
+                                                <li class="px-3 py-2">Footer Col 3</li>
+                                                <li class="px-3 py-2">Footer Col 4</li>
+                                            </ul>
+
+                                            <div class="flex flex-col items-center gap-2 md:flex-row">
+                                                <button type="reset" class="cancel-wedgets py-2 w-20 text-black bg-[#DBF4FF] rounded-lg" aria-controls="hs-basic-nested-sub-collapse-four">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
+                                                    Save
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- custom HTML end -->
+
+                                <!-- custom HTML start -->
+                                <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-three">
+                                    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-three">
+                                        Contact Details
+                                        <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        
+                                        <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                    </button>
+                                    <div id="hs-basic-nested-sub-collapse-three" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-three">
+                                        <div class="py-5">
+                                            <ul class="mb-6 select-wedgets">
+                                                <li class="px-3 py-2 active">Footer Col 1</li>
+                                                <li class="px-3 py-2">Footer Col 2</li>
+                                                <li class="px-3 py-2">Footer Col 3</li>
+                                                <li class="px-3 py-2">Footer Col 4</li>
+                                            </ul>
+
+                                            <div class="flex flex-col items-center gap-2 md:flex-row">
+                                                <button type="reset" class="cancel-wedgets py-2 w-20 text-black bg-[#DBF4FF] rounded-lg" aria-controls="hs-basic-nested-sub-collapse-four">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
+                                                    Save
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- custom HTML end -->
+
+                                <!-- Image collapse start -->
+                                <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-four">
+                                    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-four">
+                                        Image
+                                        <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        
+                                        <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                    </button>
+                                    <div id="hs-basic-nested-sub-collapse-four" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-four">
+                                        <div class="py-5">
+                                            <ul class="mb-6 select-wedgets">
+                                                <li class="px-3 py-2 active">Footer Col 1</li>
+                                                <li class="px-3 py-2">Footer Col 2</li>
+                                                <li class="px-3 py-2">Footer Col 3</li>
+                                                <li class="px-3 py-2">Footer Col 4</li>
+                                            </ul>
+                                            <div class="flex flex-col items-center gap-2 md:flex-row">
+                                                <button type="reset" class="cancel-wedgets py-2 w-20 text-black bg-[#DBF4FF] rounded-lg" aria-controls="hs-basic-nested-sub-collapse-four">
+                                                    Cancel
+                                                </button>
+                                                <button type=" submit " class="py-2 w-28 text-white bg-[#007BFF] rounded-lg ">
+                                                    Add widgets
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Image collaps end -->
                             </div>
                         </div>
                     </div>
-                    <!-- footer col 1 end -->
+                    <!-- available widgets end -->
 
-                    <!-- footer col 2 -->
-                    <div class="w-full md:w-2/4 ">
-                        <div class="hs-accordion-group">
-                            <div class="hs-accordion" id="hs-basic-nested-heading-Two">
-                                <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none p-6 bg-[#007bff] text-center" aria-controls="hs-basic-nested-collapse-Two">
-                                    Footer Col 2
-                                    <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2 " stroke-linecap="round
-                                        " stroke-linejoin="round "><path d="m6 9 6 6 6-6 "/></svg>
-                                    <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2 " stroke-linecap="round
-                                        " stroke-linejoin="round "><path d="m18 15-6-6-6 6 "/></svg>
-                                </div>
+                    <!-- active footer start -->
+                    <div class="w-full md:w-3/5 ">
+                        <h2 class="mb-4 text-xl font-bold text-black ">
+                            Active Footer
+                        </h2>
+                        <div class="grid gap-6 md:grid-cols-2 ">
+                            <!-- footer col 1 -->
+                            <div class="w-full mb-4">
+                                <div class="hs-accordion-group ">
+                                    <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
+                                        <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
+                                                    p-6 bg-[#007bff] text-center " aria-controls="hs-basic-nested-collapse-Two ">
+                                            Footer Col 1
+                                            <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round "><path d="m6 9 6 6 6-6 "/></svg>
+                                            <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round "><path d="m18 15-6-6-6 6 "/></svg>
+                                        </div>
 
-                                <div id="hs-basic-nested-collapse-Two" class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4" aria-labelledby="hs-basic-nested-heading-Two">
-                                    <div class="hs-accordion-group">
-                                        <!-- text editor start -->
-                                        <div class="hs-accordion mb-4" id="hs-basic-nested-sub-heading-Two">
-                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-Two">
-                                                Text Editor
-                                                <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                    
-                                                <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
-                                            </button>
-                                            <div id="hs-basic-nested-sub-collapse-Two" class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-Two">
-                                                <div class="py-5">
-                                                    <div class="mb-6 form-group">
-                                                        <label class="mb-3 text-sm" for="title">Title</label>
-                                                        <input name="title" id="title" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                        <div id="hs-basic-nested-collapse-Two " class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4 " aria-labelledby="hs-basic-nested-heading-Two ">
+                                            <div class="hs-accordion-group ">
+                                                <!-- text editor start -->
+                                                <div class="mb-4 hs-accordion " id="hs-basic-nested-sub-heading-colOne ">
+                                                    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]
+                                                    " aria-controls="hs-basic-nested-sub-collapse-colOne ">
+                                                        Text Editor
+                                                        <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round "><path d="m6 9 6 6 6-6 "/></svg>
+                            
+                                                        <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round "><path d="m18 15-6-6-6 6 "/></svg>
+                                                    </button>
+                                                    <div id="hs-basic-nested-sub-collapse-colOne " class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF] " aria-labelledby="hs-basic-nested-sub-heading-colOne ">
+                                                        <div class="py-5 ">
+                                                            <div class="mb-6 form-group ">
+                                                                <label class="mb-3 text-sm " for="title ">Title</label>
+                                                                <input name="title " id="title " type="text " class="form-input bg-[#F0F7FA] border-0 mb-3 ">
+                                                            </div>
+
+                                                            <div class="mb-6 form-group ">
+                                                                <label class="mb-3 text-sm " for="Description ">Description</label>
+                                                                <textarea id="Description " class="form-input bg-[#F0F7FA] border-0 mb-3 "></textarea>
+                                                            </div>
+
+                                                            <div class="flex flex-col items-center gap-2 md:flex-row ">
+                                                                <button type="reset " class="py-2 w-20 text-white bg-[#dc3545] rounded-lg ">
+                                                                    Delete
+                                                                </button>
+                                                                <button type="submit " class="py-2 w-20 text-white bg-[#007BFF] rounded-lg ">
+                                                                    Save
+                                                                </button>
+                                                            </div>
+
+                                                        </div>
                                                     </div>
-
-                                                    <div class="mb-6 form-group">
-                                                        <label class="mb-3 text-sm" for="Description">Description</label>
-                                                        <textarea id="Description" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
-                                                    </div>
-
-                                                    <div class="flex flex-col items-center gap-2 md:flex-row">
-                                                        <button type="reset" class="py-2 w-20 text-white bg-[#dc3545] rounded-lg">
-                                                            Delete
-                                                        </button>
-                                                        <button type="submit" class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
-                                                            Save
-                                                        </button>
-                                                    </div>
-
                                                 </div>
+                                                <!-- text editor end -->
+
                                             </div>
                                         </div>
-                                        <!-- text editor end -->
-
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- footer col 2 -->
+                            <div class="w-full mb-4">
+                                <div class="hs-accordion-group ">
+                                    <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
+                                        <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
+                                                    p-6 bg-[#007bff] text-center " aria-controls="hs-basic-nested-collapse-Two ">
+                                            Footer Col 2
+                                            <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round "><path d="m6 9 6 6 6-6 "/></svg>
+                                            <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round "><path d="m18 15-6-6-6 6 "/></svg>
+                                        </div>
+
+                                        <div id="hs-basic-nested-collapse-Two " class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4 " aria-labelledby="hs-basic-nested-heading-Two ">
+                                            <div class="hs-accordion-group ">
+                                                <!-- text editor start -->
+                                                <div class="mb-4 hs-accordion " id="hs-basic-nested-sub-heading-col2 ">
+                                                    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]
+                                                    " aria-controls="hs-basic-nested-sub-collapse-col2 ">
+                                                        Text Editor
+                                                        <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round "><path d="m6 9 6 6 6-6 "/></svg>
+                            
+                                                        <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round "><path d="m18 15-6-6-6 6 "/></svg>
+                                                    </button>
+                                                    <div id="hs-basic-nested-sub-collapse-colOne " class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF] " aria-labelledby="hs-basic-nested-sub-heading-colOne ">
+                                                        <div class="py-5 ">
+                                                            <div class="mb-6 form-group ">
+                                                                <label class="mb-3 text-sm " for="title ">Title</label>
+                                                                <input name="title " id="title " type="text " class="form-input bg-[#F0F7FA] border-0 mb-3 ">
+                                                            </div>
+
+                                                            <div class="mb-6 form-group ">
+                                                                <label class="mb-3 text-sm " for="Description ">Description</label>
+                                                                <textarea id="Description " class="form-input bg-[#F0F7FA] border-0 mb-3 "></textarea>
+                                                            </div>
+
+                                                            <div class="flex flex-col items-center gap-2 md:flex-row ">
+                                                                <button type="reset " class="py-2 w-20 text-white bg-[#dc3545] rounded-lg ">
+                                                                    Delete
+                                                                </button>
+                                                                <button type="submit " class="py-2 w-20 text-white bg-[#007BFF] rounded-lg ">
+                                                                    Save
+                                                                </button>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- text editor end -->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- footer col 3 -->
+                            <div class="w-full mb-4">
+                                <div class="hs-accordion-group ">
+                                    <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
+                                        <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
+                                                    p-6 bg-[#007bff] text-center " aria-controls="hs-basic-nested-collapse-Two ">
+                                            Footer Col 3
+                                            <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round "><path d="m6 9 6 6 6-6 "/></svg>
+                                            <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round "><path d="m18 15-6-6-6 6 "/></svg>
+                                        </div>
+
+                                        <div id="hs-basic-nested-collapse-Two " class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4 " aria-labelledby="hs-basic-nested-heading-Two ">
+                                            <div class="hs-accordion-group ">
+                                                <!-- text editor start -->
+                                                <div class="mb-4 hs-accordion " id="hs-basic-nested-sub-heading-col2 ">
+                                                    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]
+                                                    " aria-controls="hs-basic-nested-sub-collapse-col2 ">
+                                                        Text Editor
+                                                        <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round "><path d="m6 9 6 6 6-6 "/></svg>
+                            
+                                                        <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round "><path d="m18 15-6-6-6 6 "/></svg>
+                                                    </button>
+                                                    <div id="hs-basic-nested-sub-collapse-colOne " class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF] " aria-labelledby="hs-basic-nested-sub-heading-colOne ">
+                                                        <div class="py-5 ">
+                                                            <div class="mb-6 form-group ">
+                                                                <label class="mb-3 text-sm " for="title ">Title</label>
+                                                                <input name="title " id="title " type="text " class="form-input bg-[#F0F7FA] border-0 mb-3 ">
+                                                            </div>
+
+                                                            <div class="mb-6 form-group ">
+                                                                <label class="mb-3 text-sm " for="Description ">Description</label>
+                                                                <textarea id="Description " class="form-input bg-[#F0F7FA] border-0 mb-3 "></textarea>
+                                                            </div>
+
+                                                            <div class="flex flex-col items-center gap-2 md:flex-row ">
+                                                                <button type="reset " class="py-2 w-20 text-white bg-[#dc3545] rounded-lg ">
+                                                                    Delete
+                                                                </button>
+                                                                <button type="submit " class="py-2 w-20 text-white bg-[#007BFF] rounded-lg ">
+                                                                    Save
+                                                                </button>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- text editor end -->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- footer col 4 -->
+                            <div class="w-full mb-4">
+                                <div class="hs-accordion-group ">
+                                    <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
+                                        <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
+                                                    p-6 bg-[#007bff] text-center " aria-controls="hs-basic-nested-collapse-Two ">
+                                            Footer Col 4
+                                            <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round "><path d="m6 9 6 6 6-6 "/></svg>
+                                            <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round "><path d="m18 15-6-6-6 6 "/></svg>
+                                        </div>
+
+                                        <div id="hs-basic-nested-collapse-Two " class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4 " aria-labelledby="hs-basic-nested-heading-Two ">
+                                            <div class="hs-accordion-group ">
+                                                <!-- text editor start -->
+                                                <div class="mb-4 hs-accordion " id="hs-basic-nested-sub-heading-col2 ">
+                                                    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]
+                                                    " aria-controls="hs-basic-nested-sub-collapse-col2 ">
+                                                        Text Editor
+                                                        <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round "><path d="m6 9 6 6 6-6 "/></svg>
+                            
+                                                        <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round "><path d="m18 15-6-6-6 6 "/></svg>
+                                                    </button>
+                                                    <div id="hs-basic-nested-sub-collapse-colOne " class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF] " aria-labelledby="hs-basic-nested-sub-heading-colOne ">
+                                                        <div class="py-5 ">
+                                                            <div class="mb-6 form-group ">
+                                                                <label class="mb-3 text-sm " for="title ">Title</label>
+                                                                <input name="title " id="title " type="text " class="form-input bg-[#F0F7FA] border-0 mb-3 ">
+                                                            </div>
+
+                                                            <div class="mb-6 form-group ">
+                                                                <label class="mb-3 text-sm " for="Description ">Description</label>
+                                                                <textarea id="Description " class="form-input bg-[#F0F7FA] border-0 mb-3 "></textarea>
+                                                            </div>
+
+                                                            <div class="flex flex-col items-center gap-2 md:flex-row ">
+                                                                <button type="reset " class="py-2 w-20 text-white bg-[#dc3545] rounded-lg ">
+                                                                    Delete
+                                                                </button>
+                                                                <button type="submit " class="py-2 w-20 text-white bg-[#007BFF] rounded-lg ">
+                                                                    Save
+                                                                </button>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- text editor end -->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                    <!-- footer col 2 end -->
+                    <!-- active footer end -->
                 </div>
 
 
@@ -504,14 +667,27 @@
         </div>
     </div>
     <!-- sidebar end here -->
-    <script src="js/jquery.min.js" type="text/javascript"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-    <script src="js/config.js" type="text/javascript"></script>
-    <script src="../node_modules/simplebar/dist/simplebar.min.js" type="text/javascript"></script>
-    <script src="../node_modules/lucide/dist/umd/lucide.min.js" type="text/javascript"></script>
-    <script src="../node_modules/preline/dist/preline.js" type="text/javascript"></script>
-    <script src="js/app.js" type="text/javascript"></script>
-    <script src="js/custom.js" type="text/javascript"></script>
+    <script src="js/jquery.min.js " type="text/javascript "></script>
+    <script type="text/javascript " charset="utf8 " src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js "></script>
+    <script src="js/config.js " type="text/javascript "></script>
+    <script src="../node_modules/simplebar/dist/simplebar.min.js " type="text/javascript "></script>
+    <script src="../node_modules/lucide/dist/umd/lucide.min.js " type="text/javascript "></script>
+    <script src="../node_modules/preline/dist/preline.js " type="text/javascript "></script>
+    <script src="js/app.js " type="text/javascript "></script>
+    <script src="js/custom.js " type="text/javascript "></script>
+    <script>
+        $(document).ready(function() {
+            $('.select-wedgets li').click(function() {
+                $('.select-wedgets li').removeClass("active");
+                $(this).addClass("active");
+            });
+
+            $('.cancel-wedgets').click(function() {
+                $(this).parents('.hs-accordion').removeClass('active');
+                $(this).parents('.hs-accordion-content').hide();
+            });
+        });
+    </script>
 </body>
 
 </html>
