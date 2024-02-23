@@ -307,6 +307,11 @@ button:hover {
     background: #f0f7fa;
 }
 
+.disabled-Menu {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
 
 /* .hs-accordion.active button.hs-accordion-toggle {
     color: #007bff;

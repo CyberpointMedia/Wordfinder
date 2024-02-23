@@ -288,7 +288,7 @@
                         <h2 class="mb-4 text-xl font-bold text-black">
                             Add menu items
                         </h2>
-                        <div class="px-5 pt-8 pb-4 bg-white border rounded shadow-sm cardBody">
+                        <div class="px-5 pt-8 pb-4 bg-white border rounded shadow-sm cardBody disabled-Menu">
                             <div class="hs-accordion-group">
                                 <!-- text editor start -->
                                 <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-one">
@@ -401,66 +401,142 @@
                         <h2 class="mb-4 text-xl font-bold text-black ">
                             Menu structure
                         </h2>
-                        <div class="hs-accordion-group ">
-                            <div class="hs-accordion active" id="hs-basic-nested-heading-CreateMenu ">
-                                <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
-                                            p-6 bg-[#007bff] text-center " aria-controls="hs-basic-nested-collapse-CreateMenu ">
-                                    Create Menu
-                                    <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
-                                            " stroke-linecap="round " stroke-linejoin="round "><path d="m6 9 6 6 6-6 "/></svg>
-                                    <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
-                                            " stroke-linecap="round " stroke-linejoin="round "><path d="m18 15-6-6-6 6 "/></svg>
-                                </div>
-
-                                <div id="hs-basic-nested-collapse-CreateMenu " class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody" aria-labelledby="hs-basic-nested-heading-CreateMenu ">
-                                    <div class="px-5 pt-8 pb-4 ">
-                                        <div class="mb-6 ">
-                                            <label class="mb-2 text-sm font-normal" for="menu-name">Menu Name</label>
-                                            <div>
-                                                <input name="menu-name" id="menu-name" type="text" class="" required="required" value="" aria-describedby="menu-name-desc">
-                                                <p class="mt-3">
-                                                    Give your menu a name, then click Create Menu button.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="mb-4">
-                                            <h3 class="mb-4 text-lg font-bold text-black">Menu Settings</h3>
-                                            <div class="flex flex-col justify-start mb-6 sm:flex-row">
-                                                <div class="">Display location</div>
-                                                <div class="ml-5">
-                                                    <label class="mb-2 text-sm font-normal">
-                                                        <input type="checkbox" name="home" class="mr-1 checkbox"> Top Menu
-                                                    </label>
-                                                    <label class="mb-2 text-sm font-normal">
-                                                        <input type="checkbox" name="home" class="mr-1 checkbox"> Footer Menu
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="flex flex-row">
-                                                <div class="publishing-action">
-                                                    <button type="submit" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">
-                                                        Create Menu
-                                                    </button>
-                                                </div>
-                                                <!-- END .publishing-action -->
-
-                                                <span class="flex items-center cancel-action">
-                                                        <a class="ml-3 text-blue-600 underline" href="javascript:void(0);">Cancel</a>
-                                                    </span>
-                                                <!-- END .cancel-action -->
-
-                                            </div>
-                                        </div>
-
+                        <div id="menuWrapper" class="px-5 py-8 bg-white border rounded shadow-sm cardBody">
+                            <!-- Create menu start -->
+                            <div class="hidden ShowMenu">
+                                <div class="mb-6 ">
+                                    <label class="mb-2 text-sm font-normal" for="menu-name">Enter Menu Name</label>
+                                    <div>
+                                        <input name="menu-name" id="menu-name" type="text" class="w-72" required value="" aria-describedby="menu-name-desc">
+                                        <p class="mt-3">
+                                            Give your menu a name, then click save menu button.
+                                        </p>
                                     </div>
                                 </div>
+                                <div class="flex flex-row">
+                                    <div class="publishing-action">
+                                        <button type="submit" id="saveMenu" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">
+                                            Save Menu
+                                        </button>
+                                    </div>
+                                    <!-- END .publishing-action -->
+
+                                    <span class="flex items-center cancelMenu">
+                                            <a class="ml-3 text-blue-600 underline hover:text-blue-400" href="javascript:void(0);">Cancel</a>
+                                        </span>
+                                    <!-- END .cancel-action -->
+                                </div>
                             </div>
+                            <!-- Create menu end -->
+
+                            <!-- saved menu option start -->
+                            <div class="hidden savedMenuShows">
+                                <h3 class="mb-4 text-lg font-bold text-black">Menu Settings</h3>
+                                <div class="flex flex-col items-center justify-start mb-6 sm:flex-row">
+                                    <label class="text-sm font-normal">Select a menu to edit:</label>
+                                    <div class="ml-5">
+                                        <select name="menu" id="select-menu-to-edit" class="px-3 py-3 w-72">
+                                            <option value="7">Menu 1</option>
+                                            <option value="8" selected="selected">Menu 2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-6 hs-accordion-group">
+                                    <!-- added menu 1 start -->
+                                    <div class="mb-4 hs-accordion " id="hs-basic-nested-sub-heading-colOne ">
+                                        <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]
+                                        " aria-controls="hs-basic-nested-sub-collapse-colOne ">
+                                            Home
+                                            <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                        " stroke-linecap="round " stroke-linejoin="round "><path d="m6 9 6 6 6-6 "/></svg>
+                
+                                            <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                        " stroke-linecap="round " stroke-linejoin="round "><path d="m18 15-6-6-6 6 "/></svg>
+                                        </button>
+                                        <div id="hs-basic-nested-sub-collapse-colOne " class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF] " aria-labelledby="hs-basic-nested-sub-heading-colOne ">
+                                            <div class="py-5 ">
+                                                <div class="mb-6 form-group ">
+                                                    <label class="mb-2 text-sm font-normal" for="custom-menu-item-url1">URL</label>
+                                                    <input id="custom-menu-item-url1" name="menu-item-url1" type="text" class="w-72" placeholder="https://">
+                                                </div>
+
+                                                <div class="mb-4 form-group ">
+                                                    <label class="mb-2 text-sm font-normal" for="navigationLabel">Navigation Label</label>
+                                                    <input id="navigationLabel" name="navigationLabel" type="text" class="w-72" placeholder="Home" valid="Home">
+                                                </div>
+
+                                                <div class="flex flex-row items-center gap-2">
+                                                    <a class="text-red-500 item-remove" href="javascript:void(0);">Remove</a>
+                                                    <span class=""> | </span>
+                                                    <a class="item-cancel hover:text-blue-600" href="javascript:void(0);">Cancel</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- added menu 1 end -->
+
+                                    <!-- added menu 2 start -->
+                                    <div class="mb-4 hs-accordion " id="hs-basic-nested-sub-heading-colOne ">
+                                        <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]
+                                        " aria-controls="hs-basic-nested-sub-collapse-colOne ">
+                                            Contact
+                                            <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                        " stroke-linecap="round " stroke-linejoin="round "><path d="m6 9 6 6 6-6 "/></svg>
+                
+                                            <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                        " stroke-linecap="round " stroke-linejoin="round "><path d="m18 15-6-6-6 6 "/></svg>
+                                        </button>
+                                        <div id="hs-basic-nested-sub-collapse-colOne " class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF] " aria-labelledby="hs-basic-nested-sub-heading-colOne ">
+                                            <div class="py-5 ">
+                                                <div class="mb-6 form-group ">
+                                                    <label class="mb-2 text-sm font-normal" for="custom-menu-item-url1">URL</label>
+                                                    <input id="custom-menu-item-url1" name="menu-item-url1" type="text" class="w-72" placeholder="https://">
+                                                </div>
+
+                                                <div class="mb-4 form-group ">
+                                                    <label class="mb-2 text-sm font-normal" for="navigationLabel">Navigation Label</label>
+                                                    <input id="navigationLabel" name="navigationLabel" type="text" class="w-72" placeholder="Home" valid="Home">
+                                                </div>
+
+                                                <div class="flex flex-row items-center gap-2">
+                                                    <a class="text-red-500 item-remove" href="javascript:void(0);">Remove</a>
+                                                    <span class=""> | </span>
+                                                    <a class="item-cancel hover:text-blue-600" href="javascript:void(0);">Cancel</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- added menu 2 end -->
+
+                                </div>
+                                <div class="flex flex-row">
+                                    <div class="publishing-action">
+                                        <button type="submit" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">
+                                            Save Menu
+                                        </button>
+                                    </div>
+                                    <!-- END .publishing-action -->
+
+                                    <span class="flex items-center">
+                                            <a class="ml-3 text-red-600 underline hover:text-red-400" href="javascript:void(0);">Delete Menu</a>
+                                        </span>
+                                    <!-- END .cancel-action -->
+                                </div>
+                            </div>
+                            <!-- saved menu option end -->
+
+                            <!-- No menu available start -->
+                            <div class="py-12 text-center noMenu">
+                                <p class="mb-4 text-2xl">No menu available</p>
+                                <a href="javascript:void(0);" class="text-blue-600 underline hover:text-blue-400" id="createMenu">Create a new menu</a>
+                            </div>
+                            <!-- No menu available end -->
                         </div>
                     </div>
                     <!-- Menu structure end -->
                 </div>
-
-
                 <!-- available widgets end -->
             </main>
 
@@ -476,6 +552,26 @@
     <script src="../node_modules/preline/dist/preline.js " type="text/javascript "></script>
     <script src="js/app.js " type="text/javascript "></script>
     <script src="js/custom.js " type="text/javascript "></script>
+    <script>
+        $(document).ready(function() {
+            $('.item-cancel').click(function() {
+                $(this).parents('.hs-accordion').removeClass('active');
+                $(this).parents('.hs-accordion-content').hide();
+            });
+            $('#createMenu').click(function() {
+                $('.ShowMenu').removeClass('hidden');
+                $(this).parents('.noMenu').addClass('hidden');
+            });
+            $('.cancelMenu').click(function() {
+                $(this).parents('.ShowMenu').addClass('hidden');
+                $('.noMenu').removeClass('hidden');
+            });
+            $('#saveMenu').click(function() {
+                $('.savedMenuShows').removeClass('hidden');
+                $(this).parents('.ShowMenu').addClass('hidden');
+            });
+        });
+    </script>
 </body>
 
 </html>
