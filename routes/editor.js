@@ -5,6 +5,12 @@ const Editor = require('../models/editor');
 const wrapAsync = require('../middleware/wrapAsync');
 const router = express.Router();
 
+// Handle 404 - Page Not Found
+router.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(404).render('not-found/page-not-found.ejs');
+});
+
 // Display the login page for editors
 router.get('/login', (req, res) => {
     console.log("get editor login ");

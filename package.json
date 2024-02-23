@@ -21,6 +21,7 @@
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "express-sitemap-xml": "^3.0.1",
     "flatpickr": "^4.6.13",
     "jimp": "^0.3.5",
     "lucide": "^0.302.0",
@@ -39,6 +40,8 @@
     "raphael": "^2.3.0",
     "sanitize-html": "^2.11.0",
     "simplebar": "^6.2.5",
+    "sitemap": "^7.1.1",
+    "sitemap-generator": "^8.5.1",
     "word-definition": "^2.1.6",
     "xml2js": "^0.6.2"
   },

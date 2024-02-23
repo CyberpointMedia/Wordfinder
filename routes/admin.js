@@ -7,6 +7,12 @@ const bcrypt = require('bcrypt');
 const wrapAsync = require('../middleware/wrapAsync');
 const router = express.Router();
 
+// Error handling middleware
+router.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(404).render('not-found/page-not-found.ejs');
+});
+
 // Route to handle admin registration
 router.get('/register', isAdmin,(req, res) => {
     console.log("register get request call");
@@ -164,11 +170,5 @@ router.post('/update-post-limit/:userId', wrapAsync(async (req, res) => {
 
 }));
 
-
-// Error handling middleware
-router.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Something went wrong!');
-});
 
 module.exports = router;

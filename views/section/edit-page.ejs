@@ -1,0 +1,147 @@
+<%- include('../header/head.ejs') %>
+
+<body>
+    <!-- sidebar start here -->
+    <div class="flex overflow-hidden">
+        <%- include('../Sidenav/Sidenav.ejs') %>
+            <div class="page-content bg-white relative">
+                <!-- header Start -->
+                <%- include('../header/header.ejs') %>
+                    <form action="/admin/pages/edit/<%= page._id %>" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="_method" value="PUT">
+                        <!-- main content start here -->
+                        <div id="top-bttns" class="flex justify-end gap-2 py-5 bg-white border-b shadow-sm">
+                            <button type="button" aria-disabled="true"
+                                class="py-2 px-4 text-[#949494] cursor-not-allowed" aria-label="Save draft"
+                                onclick="setStatus('Draft')">Save draft</button>
+                            <button type="button" aria-disabled="true" aria-expanded="false"
+                                class="py-2 px-4 text-white bg-[#007BFF] rounded-lg cursor-not-allowed opacity-25"
+                                onclick="setStatus('Published')">Publish</button>
+
+                            <input type="hidden" name="status" id="status" value="<%= page.status %>">
+
+                            <%- include('../Sidenav/data-simplebar.ejs') %>
+                        </div>
+                        <div class="">
+                            <main class="py-8 px-5">
+                                <div class="max-w-3xl mx-auto">
+                                    <!-- add Page_name -->
+                                    <div class="form-group mb-6">
+                                        <label class="mb-3 text-sm" for="page_name">Page Name</label>
+                                        <input name="page_name" id="page_name" type="text"
+                                            class="form-input bg-[#F0F7FA] border-0 mb-3"
+                                            placeholder="Enter Page Name" value="<%= page.page_name %>">
+                                    </div>
+
+                                    <!-- add content -->
+                                    <div class="mb-6">
+                                        <label class="mb-3 text-lg" for="content">Add Content</label>
+                                        <textarea name="content" id="content"
+                                            class="form-input bg-[#F0F7FA] border-0" cols="30" rows="6"
+                                            placeholder="Add Content"><%= page.content %></textarea>
+
+                                    </div>
+                                    <!-- add section -->
+                                    <div class="flex flex-col gap-6 md:flex-row">
+                                        <div class="w-full groupSection md:w-2/4">
+                                            <div
+                                                class="cardHeader font-semibold text-white text-xl p-4 bg-[#007bff] text-center">
+                                                Choose Section
+                                            </div>
+                                            <div class="bg-[#f0f7fa] p-6">
+                                                <select id="mySelect" class="w-full py-5 border rounded"
+                                                    multiple="multiple" name="sections">
+                                                    <!-- Check if sections exist for the page -->
+                                                    <% if (sections && sections.length> 0) { %>
+                                                        <% sections.forEach((section)=> { %>
+                                                            <option value="<%= section._id %>"
+                                                                <%= page.sections.includes(section._id.toString()) ? 'selected' : '' %>>
+                                                                <%= section.title %>
+                                                            </option>
+                                                            <% }); %>
+                                                                <% } else { %>
+                                                                    <option disabled>No sections found</option>
+                                                                    <% } %>
+                                                </select>
+                                                <input type="hidden" name="sections" id="selectedSectionsInput">
+                                            </div>
+                                        </div>
+
+                                        <div class="w-full choosenSection md:w-2/4">
+                                            <div
+                                                class="cardHeader font-semibold text-white text-xl p-4 bg-[#007bff] text-center">
+                                                Chosen Section
+                                            </div>
+                                            <div class="bg-[#f0f7fa] p-6">
+                                                <ul id="selectedValuesList"></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- add sections end -->
+                                    <!-- seo tabs start -->
+                                    <!-- ... -->
+                                    <!-- seo tabs end -->
+                                </div>
+                            </main>
+                        </div>
+
+                        <!-- main content end here -->
+            </div>
+    </div>
+    </main>
+    </div>
+    <!-- main content end here -->
+    </form>
+    </div>
+    </div>
+    <!-- sidebar end here -->
+    <%- include('../script/script.ejs') %>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+        <script>
+            function setStatus(status) {
+                document.getElementById('status').value = status;
+                // Trigger form submission
+                document.querySelector('form').submit();
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                new FroalaEditor('#content');
+            });
+            var selectedSectionsList = document.getElementById('selectedValuesList');
+            var selectedSectionsInput = document.getElementById('selectedSectionsInput');
+
+            var sortable = new Sortable(selectedSectionsList, {
+                group: 'shared', // Set a group name to allow dragging between lists
+                animation: 150,
+                onEnd: function (evt) {
+                    updateSelectedSections();
+                },
+            });
+            // Listen for changes in the dropdown
+            $('#mySelect').change(function () {
+                // Clear the current list
+                $('#selectedValuesList').empty();
+
+                // Update the list with the selected sections
+                var selectedSections = $(this).val();
+
+                // Remove any nested arrays and flatten the array
+                selectedSections = selectedSections.flat().filter(section => typeof section === 'string');
+
+                // Update the hidden input field with cleaned sections
+                $('#selectedSectionsInput').val(JSON.stringify(selectedSections));
+
+                if (selectedSections) {
+                    // Append the section titles to the list
+                    selectedSections.forEach(function (sectionId) {
+                        // Use the "selectedSections" array to find the corresponding section
+                        var section = $('#mySelect option[value="' + sectionId + '"]');
+                        var sectionTitle = section.text(); // Get the section title
+                        $('#selectedValuesList').append('<li>' + sectionTitle + '</li>');
+                    });
+                }
+            });
+        </script>
+</body>
+</html>

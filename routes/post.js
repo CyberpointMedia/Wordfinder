@@ -6,6 +6,11 @@ const methodOverride = require('method-override');
 const Post = require('../models/post'); // Import the Post model
 const wrapAsync = require('../middleware/wrapAsync');
 
+router.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(404).render('not-found/page-not-found.ejs');
+});
+
 // Logic to handle post creation
 router.post('/create',wrapAsync(async (req, res) => {
     console.log("user----", req);

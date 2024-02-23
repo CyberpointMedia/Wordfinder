@@ -21,6 +21,15 @@
                                     class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add
                                     New Section</a>
                             </div>
+
+                            <!-- Dynamic content generation -->
+                            <ul class="subsubsub flex flex-wrap space-x-2 mb-6">
+                                <li class="all"><a href="/admin/section/all" class="current text-black" aria-current="page">All <span class="count">(3)</span></a> |</li>
+                                <li class="publish"><a href="/admin/section/published" class="text-black">Published <span class="count">(1)</span></a> |</li>
+                                <li class="trash"><a href="/admin/section/trash" class="text-black">Trash <span class="count">(1)</span></a> |</li>
+                                <li class="draft"><a href="/admin/section/draft" class="text-black">Draft <span class="count">(1)</span></a></li>            
+                            </ul>   
+                            
                             <!-- table start here -->
                             <div class="bg-white overflow-x-auto">
                                 <table class="w-full divide-y divide-gray-200 border" id="example">
@@ -59,13 +68,13 @@
                                                     </div>
                                                     <div class="row-actions mt-1">
                                                         <span class="edit">
-                                                            <a href="<%= `/section/edit/${section._id}` %>"
+                                                            <a href="<%= `edit/${section._id}` %>"
                                                                 class="text-[#2271b1] text-xs">Edit</a> |
                                                         </span>
                                                         <span class="trash">
-                                                            <a href="<%= `/section/delete/${section._id}` %>"
-                                                                class="trash text-[#b32d2e] text-xs">Trash</a> |
-                                                        </span>
+                                                            <a href="<%= `update-status/${section._id}` %>"
+                                                                class="trash text-[#b32d2e] text-xs" onclick="changePageStatus('<%= section._id %>')">Trash</a> |
+                                                            </span>
                                                         <span class="view">
                                                             <a href="<%= `show/${section.title}`%>"
                                                                 class="text-[#2271b1] text-xs">View</a>
@@ -118,5 +127,30 @@
         </div>
         <!-- sidebar end here -->
     </body>
+    <script>
+        // Add this function to your JavaScript
+function changePageStatus(sectionId) {
+// Make an AJAX request to update the page status
+fetch(`/admin/section/update-status/${sectionId}`, {
+    method: 'PUT',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ status: 'Trash' }) // Set the new status here
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Failed to update page status');
+    }
+    // Optionally, you can reload the page or update the UI here
+    // window.location.reload(); // Reload the page
+})
+.catch(error => {
+    console.error('Error:', error);
+    // Handle error
+});
+}
+    
+    </script>
     <%- include('../script/script.ejs') %>
 </html>

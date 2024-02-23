@@ -8,6 +8,13 @@ const router = express.Router();
 // Admin credentials
 const adminUsername = 'admin@gmail.com';
 const adminPassword = 'adminpassword';
+
+router.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(404).render('not-found/page-not-found.ejs');
+});
+
+// Handle 404 - Page Not Found
 // Middleware to check if the user is logged in
 // const checkLoggedIn = (req, res, next) => {
 //     if (req.session.user || req.session.isAdmin) {

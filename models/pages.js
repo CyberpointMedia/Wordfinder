@@ -51,5 +51,4 @@ const pageSchema = new mongoose.Schema({
 });
 
 const Page = mongoose.model('Page', pageSchema);
-
 module.exports = Page;

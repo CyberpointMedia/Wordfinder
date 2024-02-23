@@ -37,6 +37,7 @@ app.use(session({ secret: 'your-secret-key', resave: true, saveUninitialized: tr
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 app.use(cors({
     origin: '*',
 }))
@@ -53,6 +54,10 @@ app.use('/admin/node_modules', express.static(path.join(__dirname, '../node_modu
 // Use method-override middleware
 app.use(methodOverride('_method'));
 
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(404).render('not-found/page-not-found.ejs');
+});
 // MongoDB connection
 const mongoUrl = process.env.MONGO_URL;
 main()
@@ -66,6 +71,11 @@ main()
 async function main() {
     await mongoose.connect(mongoUrl);
 }
+
+// Start the server
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
 app.use('/', frontendRoutes);
 // Use the user and auth routes
 app.use('/user', userRoutes);
@@ -92,9 +102,4 @@ app.get('/user/dashboard', (req, res) => {
         // User not found in the session
         res.send('User not found');
     }
-});
-
-// Start the server
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
 });

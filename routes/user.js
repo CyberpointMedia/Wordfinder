@@ -7,6 +7,12 @@ const passport = require('passport');
 const router = express.Router();
 const wrapAsync = require('../middleware/wrapAsync');
 
+
+router.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(404).render('not-found/page-not-found.ejs');
+});
+
 // Route to render the user dashboard
 router.get('/dashboard', wrapAsync(async (req, res) => {
     try {
