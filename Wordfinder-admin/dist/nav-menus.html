@@ -288,7 +288,7 @@
                         <h2 class="mb-4 text-xl font-bold text-black">
                             Add menu items
                         </h2>
-                        <div class="px-5 pt-8 pb-4 bg-white border rounded shadow-sm cardBody disabled-Menu">
+                        <div id="addMenuItems" class="px-5 pt-8 pb-4 bg-white border rounded shadow-sm cardBody disabled-Menu">
                             <div class="hs-accordion-group">
                                 <!-- text editor start -->
                                 <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-one">
@@ -569,6 +569,7 @@
             $('#saveMenu').click(function() {
                 $('.savedMenuShows').removeClass('hidden');
                 $(this).parents('.ShowMenu').addClass('hidden');
+                $('#addMenuItems').removeClass('disabled-Menu');
             });
         });
     </script>
