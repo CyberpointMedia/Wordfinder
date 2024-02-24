@@ -3,7 +3,8 @@
 const express = require('express');
 const router = express.Router();
 const methodOverride = require('method-override');
-const Post = require('../models/post'); // Import the Post model
+const Post = require('../models/post'); 
+const multer = require('multer');
 const wrapAsync = require('../middleware/wrapAsync');
 
 router.use((err, req, res, next) => {
@@ -11,90 +12,110 @@ router.use((err, req, res, next) => {
     res.status(404).render('not-found/page-not-found.ejs');
 });
 
-// Logic to handle post creation
-router.post('/create',wrapAsync(async (req, res) => {
-    console.log("user----", req);
-    // Extract data from the request body
-    const { title, description, thumbnailUrl, features } = req.body;
-
-    try {
-        // Create a new post in the database
-        const newPost = new Post({
-            title,
-            description,
-            thumbnailUrl,
-            features,
-        });
-
-        // Get the currently logged-in user
-        const currentUser = req.user; // Assuming you are using a middleware to set the user in the request
-        if (currentUser) {
-            // Update the post count for the user
-            await User.findByIdAndUpdate(currentUser._id, { $inc: { postCount: 1 } });
-
-            // Save the post
-            await newPost.save();
-
-            // Redirect to the all posts page after successful creation
-            res.redirect('/post/all');
-        } else {
-            // Handle the case when no user is logged in
-            res.status(401).send('Unauthorized');
-        }
-    } catch (error) {
-        console.error('Error creating post:', error);
-        res.status(500).send('Internal Server Error');
+// Set up multer
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+      cb(null, './uploads/');
+    },
+    filename: function(req, file, cb) {
+      cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
     }
-}));
-// Show all posts
-router.get('/all', wrapAsync(async (req, res) => {
-    try {
-        // Fetch all posts from MongoDB
-        const posts = await Post.find();
-        res.render('post/all-posts', { posts , userRole: req.session.userRole});
-    } catch (error) {
-        console.error('Error fetching posts:', error);
-        res.status(500).send('Internal Server Error');
-    }
-}));
-
-// Create a new post
-router.get('/new', (req, res) => {
-    console.log('Reached /post/new route');
+  });
+  
+  const upload = multer({ storage: storage });
+  
+router.get('/create', (req, res) => {
     res.render('post/new-post');
 });
-// Display the edit form for a specific post
-router.get('/:id/edit', wrapAsync(async (req, res) => {
-    try {
-        const post = await Post.findById(req.params.id);
-        res.render('post/edit-post', { post });
-    } catch (error) {
-        console.error('Error fetching post:', error);
-        res.status(500).send('Internal Server Error');
-    }
-}));
-router.put('/:id', wrapAsync(async (req, res) => {
-    try {
-        const updatedPost = await Post.findByIdAndUpdate(
-            req.params.id,
-            {
-                $set: {
-                    title: req.body.title,
-                    description: req.body.description,
-                    thumbnailUrl:req.body.thumbnailUrl,
-                    features:req.body.features,
-                    // ... (update other fields as needed)
-                }
-            },
-            { new: true } // Return the updated document
-        );
 
-        res.redirect('/post/all');
-    } catch (error) {
-        console.error('Error updating post:', error);
-        res.status(500).send('Internal Server Error');
+// Logic to handle post creation
+router.post('/create', upload.single('picture__input'), (req, res) => {
+    if (!req.file) {
+        return res.status(400).json('No file uploaded');
     }
-}));
+
+    console.log(req.file);
+    const newPost = new Post({
+      title: req.body.title,
+      description: req.body.description,
+      features: req.body.features,
+      picture: req.file.path,
+      status: req.body.status
+    });
   
-
+    newPost.save()
+      .then(() => res.redirect('/post/all'))
+      .catch(err => res.status(400).json('Error: ' + err));
+});
+// Show all posts
+router.get('/all', async (req, res) => {
+    try {
+      const posts = await Post.find();
+      res.render('post/all-posts', { posts });
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+  
+  router.get('/published', async (req, res) => {
+    try {
+      const posts = await Post.find({ status: 'Published' });
+      res.render('post/all-posts', { posts });
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+  
+  router.get('/trash', async (req, res) => {
+    try {
+      const posts = await Post.find({ status: 'Trash' });
+      res.render('post/all-posts', { posts });
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+  
+  router.get('/draft', async (req, res) => {
+    try {
+      const posts = await Post.find({ status: 'Draft' });
+      res.render('post/all-posts', { posts });
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+  
+  router.get("/edit/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const post = await Post.findById(id);
+      res.render("post/edit-post", { post });
+    } catch (error) {
+      console.error("Error fetching post:", error);
+      res.status(500).send("Internal Server Error");
+    }
+  });
+  router.post('/edit/:id', upload.single('picture__input'), wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    const post = await Post.findById(id);
+    if (!post) {
+      return res.status(404).send('Post not found');
+    }
+  
+    post.title = req.body.title;
+    post.description = req.body.description;
+    post.features = req.body.features;
+    post.status = req.body.status;
+  
+    if (req.file) {
+      post.picture = req.file.path;
+    }
+  
+    await post.save();
+    res.redirect('/post/all');
+  }));
+  
 module.exports = router;

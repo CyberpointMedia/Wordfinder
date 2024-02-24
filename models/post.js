@@ -2,23 +2,31 @@
 const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-    },
-    description: {
-        type: String,
-        required: true,
-    },
-    thumbnailUrl: {
-        type: String,
-        required: true,
-    },
-    features: {
-        type: String,
-        required: true,
-    },
+  title: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  features: {
+    type: String,
+    required: true
+  },
+  picture: {
+    type: String,
+    required: false
+  },
+  status: {
+    type: String,
+    enum: ['Published', 'Trash', 'Draft'],
+    default: 'Draft', // Set the default status as Draft
+},
+  date: {
+    type: Date,
+    default: Date.now
+  }
 });
 
-const Post = mongoose.model('Post', postSchema);
-module.exports = Post;
+module.exports = mongoose.model('Post', postSchema);
