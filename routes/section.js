@@ -16,8 +16,8 @@ router.use(methodOverride('_method'));
 
 // Set up AWS S3
 const s3 = new S3Client({
-  region: 'ap-south-1',
-  credentials: {
+  region: process.env.AWS_REGION,
+    credentials: {
     accessKeyId: process.env.YOUR_AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.YOUR_AWS_SECRET_ACCESS_KEY
   }

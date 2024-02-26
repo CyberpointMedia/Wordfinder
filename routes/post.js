@@ -4,8 +4,19 @@ const express = require('express');
 const router = express.Router();
 const methodOverride = require('method-override');
 const Post = require('../models/post'); 
-const multer = require('multer');
 const wrapAsync = require('../middleware/wrapAsync');
+const { S3Client } = require("@aws-sdk/client-s3");
+const multer = require('multer');
+const multerS3 = require('multer-s3');
+
+// Set up AWS S3
+const s3 = new S3Client({
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.YOUR_AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.YOUR_AWS_SECRET_ACCESS_KEY
+  }
+});
 
 router.use((err, req, res, next) => {
     console.error(err.stack);
@@ -13,16 +24,19 @@ router.use((err, req, res, next) => {
 });
 
 // Set up multer
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-      cb(null, './uploads/');
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: process.env.YOUR_BUCKET_NAME,
+    //acl: 'public-read', // files in the bucket are public
+    metadata: function (req, file, cb) {
+      cb(null, {fieldName: file.fieldname});
     },
-    filename: function(req, file, cb) {
-      cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
+    key: function (req, file, cb) {
+      cb(null, Date.now().toString())
     }
-  });
-  
-  const upload = multer({ storage: storage });
+  })
+});
   
 router.get('/create', (req, res) => {
     res.render('post/new-post');
@@ -39,7 +53,7 @@ router.post('/create', upload.single('picture__input'), (req, res) => {
       title: req.body.title,
       description: req.body.description,
       features: req.body.features,
-      picture: req.file.path,
+      picture: req.file.location, // URL of the uploaded file on S3
       status: req.body.status
     });
   
@@ -111,7 +125,7 @@ router.get('/all', async (req, res) => {
     post.status = req.body.status;
   
     if (req.file) {
-      post.picture = req.file.path;
+      post.picture = req.file.location; 
     }
   
     await post.save();
