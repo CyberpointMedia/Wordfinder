@@ -29,14 +29,14 @@
                                             </p>
                                         </div>
                                         <div class="w-full text-center">
-                                            <img src="/uploads/<%= section.image %>" alt="Section Image" class="mx-auto" />
+                                            <img src="<%= section.image %>" alt="Section Image" class="mx-auto" />
                                         </div>
                                     </div>
                                     <% } else if (section.imagePosition === 'left') { %>
 
                                         <div class="flex flex-col gap-6 mb-6 md:flex-row">
                                             <div class="w-full md:w-1/2">
-                                                <img src="/uploads/<%= section.image %>" alt="Section Image" class="mx-auto" />
+                                                <img src="<%= section.image %>" alt="Section Image" class="mx-auto" />
                                             </div>
                                             <div class="w-full md:w-1/2">
                                                 <div class="mb-3">
@@ -68,7 +68,7 @@
                                                     </p>
                                                 </div>
                                                 <div class="w-full md:w-1/2 flex justify-end"> <!-- Add flex and justify-end classes -->
-                                                    <img src="/uploads/<%= section.image %>" alt="Section Image" />
+                                                    <img src="<%= section.image %>" alt="Section Image" />
                                                 </div>
                                             </div>
                                         <% } %>

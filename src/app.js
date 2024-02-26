@@ -37,7 +37,6 @@ app.use(session({ secret: 'your-secret-key', resave: true, saveUninitialized: tr
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 app.use(cors({
     origin: '*',
 }))
@@ -51,7 +50,7 @@ app.set('views', path.join(__dirname, '../views'));  // Adjusted path
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, '../public')));  // Adjusted path
 app.use('/admin/node_modules', express.static(path.join(__dirname, '../node_modules')));  // Adjusted path
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+// app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 // Use method-override middleware
 app.use(methodOverride('_method'));
 

@@ -1,33 +1,41 @@
 //routes/section.js
 const express = require('express');
-const multer = require('multer');
 const Jimp = require('jimp');
 const Section = require('../models/section');
 const Page = require('../models/pages');
 const { parse } = require('node-html-parser');
 const wrapAsync = require('../middleware/wrapAsync');
 const router = express.Router();
+const { S3Client } = require("@aws-sdk/client-s3");
+const multer = require('multer');
+const multerS3 = require('multer-s3');
+require('dotenv').config();
 
 const methodOverride = require('method-override');
 router.use(methodOverride('_method'));
-// const path = require('path');
-// router.use('/uploads', express.static(path.join(__dirname, 'uploads')));// Configure multer for file uploads
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // Specify the destination folder for uploaded files
-  },
-  filename: function (req, file, cb) {
-    const filename = Date.now() + '-' + file.originalname.replace(/\s/g, '_'); // Replace spaces with underscores
-    cb(null, filename); // Generate a unique filename for the uploaded file
+
+// Set up AWS S3
+const s3 = new S3Client({
+  region: 'ap-south-1',
+  credentials: {
+    accessKeyId: process.env.YOUR_AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.YOUR_AWS_SECRET_ACCESS_KEY
   }
 });
 
 const upload = multer({
-  storage: storage,
-  limits: {
-    fileSize: 2 * 1024 * 1024, // Limit file size to 2 MB
-  },
-}).single('picture__input');
+  storage: multerS3({
+    s3: s3,
+    bucket: process.env.YOUR_BUCKET_NAME,
+    // acl: 'public-read', // files in the bucket are public
+    metadata: function (req, file, cb) {
+      cb(null, {fieldName: file.fieldname});
+    },
+    key: function (req, file, cb) {
+      cb(null, Date.now().toString())
+    }
+  })
+});
 
 router.route('/create')
   .get(wrapAsync(async (req, res) => {
@@ -39,30 +47,22 @@ router.route('/create')
       res.status(500).send('Internal Server Error');
     }
   }))
-  .post(upload, wrapAsync(async (req, res) => {
+  .post(upload.single('picture__input'), wrapAsync(async (req, res) => {
     try {
-      const { title, subHeading, image, imagePosition, content, status } = req.body;
-
-      // Check if an image was uploaded
-      console.log(req.body); // Log the uploaded file
-      if (!req.file) {
-        res.status(400).send('No image uploaded');
-        return;
-      }
-      // Get the path of the uploaded file
-      const imagePath = req.file.filename;
+      const { title, subHeading, imagePosition, content, status } = req.body;
+      console.log(req.body);
+      // req.file.location contains the image URL
       const newSection = new Section({
         title,
         subHeading,
-        image: imagePath,
+        image: req.file.location,
         imagePosition,
         content,
         status,
       });
-
-      // Save the section to the database
+      console.log("newsection",newSection);
       await newSection.save();
-
+  
       res.redirect('/admin/section/create');
     } catch (error) {
       console.error('Error creating section:', error);
@@ -166,8 +166,9 @@ router.get("/edit/:id", wrapAsync(async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 }));
+
 // Update a section
-router.post("/edit/:id", upload, wrapAsync(async (req, res) => {
+router.post("/edit/:id", upload.single('picture__input'), wrapAsync(async (req, res) => {
   const { id } = req.params;
   console.log("Form Data:", req.body);
   try {
@@ -182,14 +183,14 @@ router.post("/edit/:id", upload, wrapAsync(async (req, res) => {
     // Check if an image was uploaded
     let imagePath;
     if (req.file) {
-      imagePath = req.file.filename; // Get the path of the uploaded file
+      imagePath = req.file.location; // Get the URL of the uploaded file
     }
 
     // Update the section
     const updatedSection = await Section.findByIdAndUpdate(id, {
       title,
       subHeading,
-      image: imagePath, // Update the image field with the path of the uploaded file
+      image: imagePath, // Update the image field with the URL of the uploaded file
       imagePosition,
       content,
       status
@@ -203,7 +204,5 @@ router.post("/edit/:id", upload, wrapAsync(async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 }));
-
-
 
 module.exports = router;
