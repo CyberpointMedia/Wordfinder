@@ -17,17 +17,18 @@ const sectionSchema = new Schema({
         required: true,
     },
     image: {
-        type: String, // Assuming you store the image URL as a string
+        type: String, 
+        ref: 'Image',
     },
     imagePosition: {
-        type: String, // Assuming the position is stored as a string
-        enum: ['center', 'right', 'left'], // You can customize the values based on your requirements
+        type: String,
+        enum: ['center', 'right', 'left'],
         required: true,
     },
     status: {
         type: String,
         enum: ['Published', 'Trash', 'Draft'],
-        default: 'Draft', // Set the default status as Draft
+        default: 'Draft',
     },
 });
 

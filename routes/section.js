@@ -2,7 +2,6 @@
 const express = require('express');
 const multer = require('multer');
 const Jimp = require('jimp');
-const sharp = require('sharp');
 const Section = require('../models/section');
 const Page = require('../models/pages');
 const { parse } = require('node-html-parser');
@@ -11,9 +10,18 @@ const router = express.Router();
 
 const methodOverride = require('method-override');
 router.use(methodOverride('_method'));
+// const path = require('path');
+// router.use('/uploads', express.static(path.join(__dirname, 'uploads')));// Configure multer for file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); // Specify the destination folder for uploaded files
+  },
+  filename: function (req, file, cb) {
+    const filename = Date.now() + '-' + file.originalname.replace(/\s/g, '_'); // Replace spaces with underscores
+    cb(null, filename); // Generate a unique filename for the uploaded file
+  }
+});
 
-// Configure multer for file uploads
-const storage = multer.memoryStorage(); // Store the image in memory
 const upload = multer({
   storage: storage,
   limits: {
@@ -31,7 +39,7 @@ router.route('/create')
       res.status(500).send('Internal Server Error');
     }
   }))
-  .post(upload, wrapAsync(async (req, res) => {  // <-- Adjusted this line
+  .post(upload, wrapAsync(async (req, res) => {
     try {
       const { title, subHeading, image, imagePosition, content, status } = req.body;
 
@@ -41,20 +49,12 @@ router.route('/create')
         res.status(400).send('No image uploaded');
         return;
       }
-
-      // Assuming you want to use the uploaded file
-      const uploadedFile = req.file;
-
-      // Use sharp to resize and convert the image to WebP format
-      const resizedImageBuffer = await sharp(uploadedFile.buffer)
-        .resize({ width: 800, height: 600 })
-        .webp({ quality: 80 })
-        .toBuffer();
-
+      // Get the path of the uploaded file
+      const imagePath = req.file.filename;
       const newSection = new Section({
         title,
         subHeading,
-        image: resizedImageBuffer.toString('base64'),
+        image: imagePath,
         imagePosition,
         content,
         status,
@@ -69,9 +69,6 @@ router.route('/create')
       res.status(500).send('Internal Server Error');
     }
   }));
-
-
-
 // Display all pages with associated sections
 router.get('/show', wrapAsync(async (req, res) => {
     try {
@@ -82,12 +79,12 @@ router.get('/show', wrapAsync(async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 }));
-
 router.get('/show/:title', async (req, res) => {
   try {
       // Fetch the section from your database using req.params.title
       const section = await Section.findOne({ title: req.params.title });
       // Render the show-section.ejs view with the updated section
+      console.log(section);
       res.render('section/show-section', { section });
   } catch (err) {
       console.error(err);
@@ -169,7 +166,6 @@ router.get("/edit/:id", wrapAsync(async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 }));
-
 // Update a section
 router.post("/edit/:id", upload, wrapAsync(async (req, res) => {
   const { id } = req.params;
@@ -184,22 +180,16 @@ router.post("/edit/:id", upload, wrapAsync(async (req, res) => {
     } = req.body;
 
     // Check if an image was uploaded
-    let picture__input;
+    let imagePath;
     if (req.file) {
-      // Use sharp to resize and convert the image to WebP format
-      const resizedImageBuffer = await sharp(req.file.buffer)
-        .resize({ width: 800, height: 600 })
-        .webp({ quality: 80 })
-        .toBuffer();
-
-      picture__input = resizedImageBuffer.toString('base64');
+      imagePath = req.file.filename; // Get the path of the uploaded file
     }
 
     // Update the section
     const updatedSection = await Section.findByIdAndUpdate(id, {
       title,
       subHeading,
-      picture__input,
+      image: imagePath, // Update the image field with the path of the uploaded file
       imagePosition,
       content,
       status
@@ -214,29 +204,6 @@ router.post("/edit/:id", upload, wrapAsync(async (req, res) => {
   }
 }));
 
+
+
 module.exports = router;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

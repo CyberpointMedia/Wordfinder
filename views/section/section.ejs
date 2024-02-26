@@ -62,14 +62,13 @@
                                                 <td>
                                                     <div>
                                                         <strong><a class="row-title text-[#2271b1] text-sm"
-                                                                href="<%= `/section/edit/${section._id}` %>">
+                                                                href="<%= `show/${section.title}` %>">
                                                                 <%= section.title %>
                                                             </a></strong>
                                                     </div>
                                                     <div class="row-actions mt-1">
                                                         <span class="edit">
-                                                            <a href="<%= `edit/${section._id}` %>"
-                                                                class="text-[#2271b1] text-xs">Edit</a> |
+                                                            <a href="<%= `/admin/section/edit/${section._id}` %>" class="text-[#2271b1] text-xs">Edit</a>|
                                                         </span>
                                                         <span class="trash">
                                                             <a href="<%= `update-status/${section._id}` %>"

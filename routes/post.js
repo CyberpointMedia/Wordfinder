@@ -117,5 +117,22 @@ router.get('/all', async (req, res) => {
     await post.save();
     res.redirect('/post/all');
   }));
+  router.get('/categories', wrapAsync(async (req, res) => {
+    try {
+        res.render('post/categories');
+    } catch (error) {
+        console.error('Error fetching pages:', error);
+        res.status(500).send('Internal Server Error');
+    }
+  }));
+  
+  router.get('/tags', wrapAsync(async (req, res) => {
+    try {
+        res.render('post/tags');
+    } catch (error) {
+        console.error('Error fetching pages:', error);
+        res.status(500).send('Internal Server Error');
+    }
+  }));
   
 module.exports = router;
