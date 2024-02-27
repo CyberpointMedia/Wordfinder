@@ -11,12 +11,8 @@
                         <form action="/admin/pages/create" method="POST" enctype="application/x-www-form-urlencoded">
                             <!-- main content start here -->
                             <div id="top-bttns" class="flex justify-end gap-2 py-5 bg-white border-b shadow-sm">
-                                <button type="button" aria-disabled="true"
-                                    class="py-2 px-4 text-[#949494] cursor-not-allowed" aria-label="Save draft"
-                                    onclick="setStatus('Draft')">Save draft</button>
-                                <button type="button" aria-disabled="true" aria-expanded="false"
-                                    class="py-2 px-4 text-white bg-[#007BFF] rounded-lg cursor-not-allowed opacity-25"
-                                    onclick="setStatus('Published')">Publish</button>
+                                <button type="button" aria-disabled="true" class="py-2 px-4 text-[#949494] cursor-not-allowed" aria-label="Save draft" onclick="setStatus('Draft')">Save draft</button>
+                                <button type="button" aria-disabled="true" aria-expanded="false" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg cursor-not-allowed opacity-25" onclick="setStatus('Published')">Publish</button>
 
                                 <input type="hidden" name="status" id="status" value="">
 
@@ -27,30 +23,24 @@
                                     <div class="max-w-3xl mx-auto">
                                         <!-- add Page_name -->
                                         <div class="form-group mb-6">
-                                            <label class="mb-3 text-sm" for="page_name">Page Name</label>
-                                            <input name="page_name" id="page_name" type="text"
-                                                class="form-input bg-[#F0F7FA] border-0 mb-3"
-                                                placeholder="Enter Page Name">
+                                            <label class="mb-3 text-lg" for="page_name">Page Name</label>
+                                            <input name="page_name" id="page_name" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3" placeholder="Enter Page Name">
                                         </div>
 
                                         <!-- add content -->
                                         <div class="mb-6">
                                             <label class="mb-3 text-lg" for="content">Add Content</label>
-                                            <textarea name="content" id="content"
-                                                class="form-input bg-[#F0F7FA] border-0" cols="30" rows="6"
-                                                placeholder="Add Content"></textarea>
+                                            <textarea name="content" id="content" class="form-input bg-[#F0F7FA] border-0" cols="30" rows="6" placeholder="Add Content"></textarea>
 
                                         </div>
                                         <!-- add section -->
                                         <div class="flex flex-col gap-6 md:flex-row">
                                             <div class="w-full groupSection md:w-2/4">
-                                                <div
-                                                    class="cardHeader font-semibold text-white text-xl p-4 bg-[#007bff] text-center">
+                                                <div class="cardHeader font-semibold text-white text-xl p-4 bg-[#007bff] text-center">
                                                     Choose Section
                                                 </div>
                                                 <div class="bg-[#f0f7fa] p-6">
-                                                    <select id="mySelect" class="w-full py-5 border rounded"
-                                                        multiple="multiple" name="sections">
+                                                    <select id="mySelect" class="w-full py-5 border rounded" multiple="multiple" name="sections">
                                                         <!-- Check if sections exist for the page -->
                                                         <% if (sections && sections.length> 0) { %>
                                                             <% sections.forEach((section)=> { %>
@@ -67,8 +57,7 @@
                                             </div>
 
                                             <div class="w-full choosenSection md:w-2/4">
-                                                <div
-                                                    class="cardHeader font-semibold text-white text-xl p-4 bg-[#007bff] text-center">
+                                                <div class="cardHeader font-semibold text-white text-xl p-4 bg-[#007bff] text-center">
                                                     Chosen Section
                                                 </div>
                                                 <div class="bg-[#f0f7fa] p-6">
@@ -78,18 +67,13 @@
                                         </div>
                                         <!-- add sections end -->
                                         <!-- seo tabs start -->
-                                        <nav id="seoTabs" class="flex md:pl-3 md:ml-4 ml-2 mt-8" aria-label="Tabs"
-                                            role="tablist">
-                                            <button type="button"
-                                                class="hs-tabs bg-white py-2 md:px-5 px-4 inline-flex items-center gap-2 border transition-all whitespace-nowrap hover:text-[#007bff] text-lg rounded-tl-[5px] active"
-                                                id="home-item-3" data-hs-tab="#home-3" aria-controls="home-3"
+                                        <nav id="seoTabs" class="flex md:pl-3 md:ml-4 ml-2 mt-8" aria-label="Tabs" role="tablist">
+                                            <button type="button" class="hs-tabs bg-white py-2 md:px-5 px-4 inline-flex items-center gap-2 border transition-all whitespace-nowrap hover:text-[#007bff] text-lg rounded-tl-[5px] active" id="home-item-3" data-hs-tab="#home-3" aria-controls="home-3"
                                                 role="tab">
                                                 <span class="">SEO</span>
                                             </button>
-                                            <button type="button"
-                                                class="hs-tabs bg-white py-2 md:px-5 px-4 inline-flex items-center gap-2 border transition-all whitespace-nowrap hover:text-[#007bff] text-lg rounded-tr-[5px]"
-                                                id="settings-item-3" data-hs-tab="#settings-3"
-                                                aria-controls="settings-3" role="tab">
+                                            <button type="button" class="hs-tabs bg-white py-2 md:px-5 px-4 inline-flex items-center gap-2 border transition-all whitespace-nowrap hover:text-[#007bff] text-lg rounded-tr-[5px]" id="settings-item-3" data-hs-tab="#settings-3" aria-controls="settings-3"
+                                                role="tab">
                                                 <span class="">Social</span>
                                             </button>
                                         </nav>
@@ -98,30 +82,25 @@
                                             <div id="home-3" class="p-6" role="tabpanel" aria-labelledby="home-item-3">
                                                 <div class="form-group mb-6">
                                                     <label class="mb-3 text-sm" for="seoTitle">SEO Title</label>
-                                                    <input name="seoTitle" id="seoTitle" type="text"
-                                                        class="form-input bg-[#F0F7FA] border-0 mb-3"
-                                                        placeholder="Enter SEO Title">
+                                                    <input name="seoTitle" id="seoTitle" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3" placeholder="Enter SEO Title">
                                                 </div>
 
                                                 <div class="form-group mb-6">
                                                     <label class="mb-3 text-sm" for="seoslug">Slug</label>
-                                                    <input name="seoslug" id="seoslug" type="text" value="About"
-                                                        class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                    <input name="seoslug" id="seoslug" type="text" value="About" class="form-input bg-[#F0F7FA] border-0 mb-3">
                                                 </div>
 
                                                 <div class="form-group mb-6">
                                                     <label class="mb-3 text-sm" for="seoMetaDescription">Meta
                                                         description</label>
-                                                    <textarea id="seoMetaDescription"
-                                                        class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                                    <textarea id="seoMetaDescription" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
                                                 </div>
                                                 <div class="form-group mb-6">
                                                     <label class="mb-3 text-sm" for="searchEngines">Allow search engines
                                                         to
                                                         show this content in search results?
                                                     </label>
-                                                    <select class="form-select bg-[#F0F7FA] border-0 mb-3"
-                                                        id="searchEngines" name="searchEngines">
+                                                    <select class="form-select bg-[#F0F7FA] border-0 mb-3" id="searchEngines" name="searchEngines">
                                                         <option selected="selected" value="0">Yes (current default for
                                                             Pages)</option>
                                                         <option value="1">No</option>
@@ -136,18 +115,12 @@
                                                     </label>
                                                     <div class="flex gap-x-6">
                                                         <div class="flex items-center">
-                                                            <input type="radio" name="hs-radio-group"
-                                                                class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                                                id="hs-radio-group-1" checked>
-                                                            <label for="hs-radio-group-1"
-                                                                class="text-sm text-gray-500 ms-2">Yes</label>
+                                                            <input type="radio" name="hs-radio-group" class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-group-1" checked>
+                                                            <label for="hs-radio-group-1" class="text-sm text-gray-500 ms-2">Yes</label>
                                                         </div>
                                                         <div class="flex items-center">
-                                                            <input type="radio" name="hs-radio-group"
-                                                                class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                                                id="hs-radio-group-2">
-                                                            <label for="hs-radio-group-2"
-                                                                class="text-sm text-gray-500 ms-2">No</label>
+                                                            <input type="radio" name="hs-radio-group" class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-radio-group-2">
+                                                            <label for="hs-radio-group-2" class="text-sm text-gray-500 ms-2">No</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -155,8 +128,7 @@
                                                     <label class="mb-3 text-sm" for="metaRobots">
                                                         Meta robots advanced
                                                     </label>
-                                                    <select class="form-select bg-[#F0F7FA] border-0 mb-3"
-                                                        id="metaRobots" name="metaRobots">
+                                                    <select class="form-select bg-[#F0F7FA] border-0 mb-3" id="metaRobots" name="metaRobots">
                                                         <option value="0">No Image Index</option>
                                                         <option value="1">No Archive</option>
                                                         <option value="2">No Snippet</option>
@@ -165,25 +137,19 @@
                                                 <div class="form-group mb-6">
                                                     <label class="mb-3 text-sm" for="breadcrumbsTitle">Breadcrumbs
                                                         Title</label>
-                                                    <input name="breadcrumbsTitle" id="breadcrumbsTitle" type="text"
-                                                        value="" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                    <input name="breadcrumbsTitle" id="breadcrumbsTitle" type="text" value="" class="form-input bg-[#F0F7FA] border-0 mb-3">
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="mb-3 text-sm" for="canonicalURL">Canonical URL</label>
-                                                    <input name="canonicalURL" id="canonicalURL" type="text" value=""
-                                                        class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                    <input name="canonicalURL" id="canonicalURL" type="text" value="" class="form-input bg-[#F0F7FA] border-0 mb-3">
                                                 </div>
                                             </div>
-                                            <div id="settings-3" class="hidden" role="tabpanel"
-                                                aria-labelledby="settings-item-3">
+                                            <div id="settings-3" class="hidden" role="tabpanel" aria-labelledby="settings-item-3">
                                                 <div class="hs-accordion-group" data-hs-accordion-always-open="">
                                                     <!-- social appearance start -->
-                                                    <div class="hs-accordion active"
-                                                        id="hs-basic-always-open-heading-socialAppearance">
-                                                        <button
-                                                            class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-4 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium hover:bg-[#DBF4FF] border-t"
-                                                            aria-controls="hs-basic-always-open-collapse-socialAppearance">
+                                                    <div class="hs-accordion active" id="hs-basic-always-open-heading-socialAppearance">
+                                                        <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-4 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium hover:bg-[#DBF4FF] border-t" aria-controls="hs-basic-always-open-collapse-socialAppearance">
                                                             Social media appearance
                                                             <svg class="block w-4 h-4 hs-accordion-active:hidden"
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"
@@ -201,40 +167,28 @@
                                                                 <path d="m18 15-6-6-6 6"></path>
                                                             </svg>
                                                         </button>
-                                                        <div id="hs-basic-always-open-collapse-socialAppearance"
-                                                            class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 px-4"
-                                                            aria-labelledby="hs-basic-always-open-heading-socialAppearance">
+                                                        <div id="hs-basic-always-open-collapse-socialAppearance" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 px-4" aria-labelledby="hs-basic-always-open-heading-socialAppearance">
                                                             <div class="py-3">
                                                                 <div class="mb-6 form-group">
-                                                                    <label class="mb-3 text-sm"
-                                                                        for="socialPicture2">Social image</label>
-                                                                    <img id='preview_img'
-                                                                        class="object-cover w-16 h-16 mb-4"
-                                                                        src="/images/no-image.svg"
-                                                                        alt="Current profile photo" />
+                                                                    <label class="mb-3 text-sm" for="socialPicture2">Social image</label>
+                                                                    <img id='preview_img' class="object-cover w-16 h-16 mb-4" src="/images/no-image.svg" alt="Current profile photo" />
                                                                     <div class="relative block">
-                                                                        <span
-                                                                            class="absolute inset-0 opacity-100 w-40 h-12 leading-[48px] top-0 text-black bg-[#DBF4FF] rounded-lg text-center cursor-pointer">Select
+                                                                        <span class="absolute inset-0 opacity-100 w-40 h-12 leading-[48px] top-0 text-black bg-[#DBF4FF] rounded-lg text-center cursor-pointer">Select
                                                                             Image</span>
-                                                                        <input type="file" onchange="loadFile(event)"
-                                                                            class="block w-40 h-12 opacity-0 file:text-sm file:bg-white file:px-0 file:mt-2" />
+                                                                        <input type="file" onchange="loadFile(event)" class="block w-40 h-12 opacity-0 file:text-sm file:bg-white file:px-0 file:mt-2" />
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="mb-6 form-group">
                                                                     <label class="mb-3 text-sm" for="Socialtitle">Social
                                                                         title</label>
-                                                                    <input name="Twittertitle" id="Socialitle"
-                                                                        type="text" value=""
-                                                                        class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                                    <input name="Twittertitle" id="Socialitle" type="text" value="" class="form-input bg-[#F0F7FA] border-0 mb-3">
                                                                 </div>
 
                                                                 <div class="mb-6 form-group">
-                                                                    <label class="mb-3 text-sm"
-                                                                        for="Socialdescription">Social
+                                                                    <label class="mb-3 text-sm" for="Socialdescription">Social
                                                                         description</label>
-                                                                    <textarea id="Socialdescription"
-                                                                        class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                                                    <textarea id="Socialdescription" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -243,9 +197,7 @@
 
                                                     <!-- twitter appearance start -->
                                                     <div class="hs-accordion" id="hs-basic-always-open-heading-twitter">
-                                                        <button
-                                                            class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-4 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium hover:bg-[#DBF4FF] border-t"
-                                                            aria-controls="hs-basic-always-open-collapse-twitter">
+                                                        <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-4 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium hover:bg-[#DBF4FF] border-t" aria-controls="hs-basic-always-open-collapse-twitter">
                                                             Twitter appearance
                                                             <svg class="block w-4 h-4 hs-accordion-active:hidden"
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"
@@ -263,40 +215,27 @@
                                                                 <path d="m18 15-6-6-6 6"></path>
                                                             </svg>
                                                         </button>
-                                                        <div id="hs-basic-always-open-collapse-twitter"
-                                                            class="hs-accordion-content w-full overflow-hidden transition-[height] hidden duration-300 px-4"
-                                                            aria-labelledby="hs-basic-always-open-heading-twitter">
+                                                        <div id="hs-basic-always-open-collapse-twitter" class="hs-accordion-content w-full overflow-hidden transition-[height] hidden duration-300 px-4" aria-labelledby="hs-basic-always-open-heading-twitter">
                                                             <div class="py-3">
                                                                 <div class="mb-6 form-group">
-                                                                    <label class="mb-3 text-sm"
-                                                                        for="socialPicture1">Twitter Image</label>
-                                                                    <img id='preview_img'
-                                                                        class="object-cover w-16 h-16 mb-4"
-                                                                        src="/images/no-image.svg"
-                                                                        alt="Current profile photo" />
+                                                                    <label class="mb-3 text-sm" for="socialPicture1">Twitter Image</label>
+                                                                    <img id='preview_img' class="object-cover w-16 h-16 mb-4" src="/images/no-image.svg" alt="Current profile photo" />
                                                                     <div class="relative block">
-                                                                        <span
-                                                                            class="absolute inset-0 opacity-100 w-40 h-12 leading-[48px] top-0 text-black bg-[#DBF4FF] rounded-lg text-center cursor-pointer">Select
+                                                                        <span class="absolute inset-0 opacity-100 w-40 h-12 leading-[48px] top-0 text-black bg-[#DBF4FF] rounded-lg text-center cursor-pointer">Select
                                                                             Image</span>
-                                                                        <input type="file" onchange="loadFile(event)"
-                                                                            class="block w-40 h-12 opacity-0 file:text-sm file:bg-white file:px-0 file:mt-2" />
+                                                                        <input type="file" onchange="loadFile(event)" class="block w-40 h-12 opacity-0 file:text-sm file:bg-white file:px-0 file:mt-2" />
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="mb-6 form-group">
-                                                                    <label class="mb-3 text-sm"
-                                                                        for="Twittertitle">Twitter title</label>
-                                                                    <input name="Twittertitle" id="Twittertitle"
-                                                                        type="text" value=""
-                                                                        class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                                    <label class="mb-3 text-sm" for="Twittertitle">Twitter title</label>
+                                                                    <input name="Twittertitle" id="Twittertitle" type="text" value="" class="form-input bg-[#F0F7FA] border-0 mb-3">
                                                                 </div>
 
                                                                 <div class="mb-6 form-group">
-                                                                    <label class="mb-3 text-sm"
-                                                                        for="Twitterdescription">Twitter
+                                                                    <label class="mb-3 text-sm" for="Twitterdescription">Twitter
                                                                         description</label>
-                                                                    <textarea id="Twitterdescription"
-                                                                        class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                                                    <textarea id="Twitterdescription" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -330,7 +269,7 @@
                     document.querySelector('form').submit();
                 }
 
-                document.addEventListener('DOMContentLoaded', function () {
+                document.addEventListener('DOMContentLoaded', function() {
                     new FroalaEditor('#content');
                 });
                 var selectedSectionsList = document.getElementById('selectedValuesList');
@@ -339,12 +278,12 @@
                 var sortable = new Sortable(selectedSectionsList, {
                     group: 'shared', // Set a group name to allow dragging between lists
                     animation: 150,
-                    onEnd: function (evt) {
+                    onEnd: function(evt) {
                         updateSelectedSections();
                     },
                 });
                 // Listen for changes in the dropdown
-                $('#mySelect').change(function () {
+                $('#mySelect').change(function() {
                     // Clear the current list
                     $('#selectedValuesList').empty();
 
@@ -359,7 +298,7 @@
 
                     if (selectedSections) {
                         // Append the section titles to the list
-                        selectedSections.forEach(function (sectionId) {
+                        selectedSections.forEach(function(sectionId) {
                             // Use the "selectedSections" array to find the corresponding section
                             var section = $('#mySelect option[value="' + sectionId + '"]');
                             var sectionTitle = section.text(); // Get the section title
@@ -369,5 +308,4 @@
                 });
             </script>
     </body>
-
     </html>

@@ -160,10 +160,18 @@ button:hover {
 
 #title {
     width: 100%;
+    border-radius: 0.625rem;
 }
 
 #title:focus-visible {
     outline: none;
+}
+
+#title::placeholder {
+    color: #555;
+    opacity: 0.5;
+    font-size: 1.5rem;
+    line-height: 2rem;
 }
 
 #title[placeholder]:empty:before {

@@ -1,0 +1,82 @@
+<%- include('../header/head.ejs') %>
+  <body>
+    <!-- sidebar start here -->
+    <div class="flex overflow-hidden">
+      <!-- Sidenav Menu Start  -->
+      <%- include('../Sidenav/Sidenav.ejs') %>
+
+        <div class="page-content bg-white">
+          <!-- header Start -->
+          <%- include('../header/header.ejs') %> 
+            <!-- main content start here -->
+            <main class="py-8 px-5">
+              <h1 class="text-center text-2xl font-bold mb-6">Image Library</h1>
+              <div id="imageContainer">
+                <% imageUrls.forEach((url, index) => { %>
+                  <div class="w-full h-64 overflow-hidden">
+                    <img class="w-full h-full object-cover" src="<%= url %>" />
+                  </div>
+                <% }); %>
+              </div>
+            </main>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <style>
+    /* Add your custom CSS styles here */
+    /* For example: */
+    #imageContainer {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .w-full {
+      width: 100%;
+    }
+
+    .h-64 {
+      height: 16rem;
+    }
+
+    .overflow-hidden {
+      overflow: hidden;
+    }
+
+    .object-cover {
+      object-fit: cover;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-2xl {
+      font-size: 1.5rem;
+    }
+
+    .font-bold {
+      font-weight: bold;
+    }
+
+    .mb-6 {
+      margin-bottom: 1.5rem;
+    }
+
+    .py-8 {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .px-5 {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+
+    .bg-white {
+      background-color: #fff;
+    }
+  </style>
+</html>

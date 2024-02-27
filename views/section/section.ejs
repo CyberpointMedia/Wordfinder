@@ -71,9 +71,7 @@
                                                             <a href="<%= `/admin/section/edit/${section._id}` %>" class="text-[#2271b1] text-xs">Edit</a>|
                                                         </span>
                                                         <span class="trash">
-                                                            <a href="<%= `update-status/${section._id}` %>"
-                                                                class="trash text-[#b32d2e] text-xs" onclick="changePageStatus('<%= section._id %>')">Trash</a> |
-                                                            </span>
+                                                            <a href="#" class="text-[#2271b1] text-xs" onclick="trashSection('<%= section._id %>')">Trash</a>                                                            </span>
                                                         <span class="view">
                                                             <a href="<%= `show/${section.title}`%>"
                                                                 class="text-[#2271b1] text-xs">View</a>
@@ -128,28 +126,26 @@
     </body>
     <script>
         // Add this function to your JavaScript
-function changePageStatus(sectionId) {
-// Make an AJAX request to update the page status
-fetch(`/admin/section/update-status/${sectionId}`, {
+function trashSection(id) {
+  fetch(`/update-status/${id}`, {
     method: 'PUT',
     headers: {
-        'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ status: 'Trash' }) // Set the new status here
-})
-.then(response => {
-    if (!response.ok) {
-        throw new Error('Failed to update page status');
+    body: JSON.stringify({ status: 'Trash' }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.message) {
+      alert(data.message);
+    } else {
+      alert('Error updating section status');
     }
-    // Optionally, you can reload the page or update the UI here
-    // window.location.reload(); // Reload the page
-})
-.catch(error => {
+  })
+  .catch((error) => {
     console.error('Error:', error);
-    // Handle error
-});
+  });
 }
-    
-    </script>
+</script>
     <%- include('../script/script.ejs') %>
 </html>

@@ -28,6 +28,7 @@ const adminRoutes = require('../routes/admin');
 const editorRoutes = require('../routes/editor'); 
 const pagesRoutes = require('../routes/pages');  
 const frontendRoutes = require('../routes/frontend'); 
+const libraryRoutes = require('../routes/library'); 
 
 const app = express();
 const port = process.env.PORT;
@@ -91,6 +92,8 @@ app.use('/admin', adminRoutes);
 app.use('/editor', editorRoutes);
 // Pages
 app.use('/admin/pages', pagesRoutes);
+// Library
+app.use('/library', libraryRoutes);
 
 // Dashboard route
 app.get('/user/dashboard', (req, res) => {
