@@ -24,7 +24,7 @@
             });
     }
 
-    function displayDefinitionModal(word,definition,partOfSpeech,synonyms,typeOf,examples) {
+    function displayDefinitionModal(word, definition, partOfSpeech, synonyms, typeOf, examples) {
         // Create a modal element
         const modalContainer = document.getElementById('hs-medium-modal');
         const modalContent = `
@@ -39,12 +39,23 @@
                         </button>
                     </div>
                     <div class="p-4 sm:p-6 modal-body">
-                        <div class="mb-4 text-base italic font-normal">Defination : - ${definition}</div>
-                        <div class="mb-4 text-base italic font-normal">Part of speech : - ${partOfSpeech}</div>
-                        <div class="mb-4 text-base italic font-normal">synonyms : - ${synonyms}</div> 
-                        <div class="mb-4 text-base italic font-normal">typeOf : - ${typeOf}</div>
-                        <div class="mb-4 text-base italic font-normal">examples : - ${examples}</div>
-
+                        <h3 class="text-[22px] font-semibold text-black mb-4">TypeOf : - ${typeOf}</h3>
+                        <div class="sidecard rounded-[10px] overflow-hidden mt-8">
+                            <div class="sidecard-header bg-[#007BFF] py-4 text-center"><h2 class="text-[22px] font-semibold text-white">Part of speech : - ${partOfSpeech}</h2></div>
+                            
+                            <div class="sidecard-body bg-[#F0F7FA] p-4">
+                                <span class="text-[#007BFF] text-xs font-bold bg-white py-2 px-3 rounded-[5px]">Definitions</span>
+                                <h3 class="my-4 font-semibold">${definition}</h3>
+                                <span class="text-white text-xs font-bold bg-[#007BFF] py-2 px-3 rounded-[5px]">Synonyms</span>
+                                <div class="flex flex-wrap gap-3 mt-4 mb-6 tagsMain">
+                                    <button type="button" class="border border-[#007BFF] rounded-[5px] py-2 font-normal px-3 tag text-[#007bff] text-base">
+                                        ${synonyms}
+                                    </button>
+                                </div>
+                                <span class="text-[#007BFF] text-xs font-bold bg-[#DBF4FF] rounded-[5px] py-2 px-3">Examples</span> 
+                                <div class="mt-4 text-base italic font-normal">${examples}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>`;
@@ -59,7 +70,7 @@
         const myDiv = document.getElementById('hs-medium-modal-backdrop');
         const closeDiv = document.getElementById('closeBtn');
         const body = document.body;
-        closeDiv.addEventListener('click', function () {
+        closeDiv.addEventListener('click', function() {
             // Set the display property of the div to 'none' to hide it
             myDiv.remove();
             modal.classList.add('hidden');

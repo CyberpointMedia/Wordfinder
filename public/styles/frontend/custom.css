@@ -54,7 +54,7 @@ input:focus-visible+.formQuestionMark-icon .input-icon {
 }
 
 select {
-    background-image: url(../images/select-arrow.svg);
+    background-image: url(../../images/select-arrow.svg);
     background-repeat: no-repeat;
     background-position: 98% 50%;
     -moz-appearance: none;
