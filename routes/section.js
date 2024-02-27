@@ -106,8 +106,7 @@ router.get('/show/:title', async (req, res) => {
       section.status = status;
       await section.save();
   
-      console.log({ message: 'Section status updated successfully' });
-      res.redirect("/admin/section/show");
+      res.json({ message: 'Section status updated successfully' });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
