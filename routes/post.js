@@ -2,12 +2,17 @@
 
 const express = require('express');
 const router = express.Router();
-const methodOverride = require('method-override');
 const Post = require('../models/post'); 
 const wrapAsync = require('../middleware/wrapAsync');
 const { S3Client } = require("@aws-sdk/client-s3");
 const multer = require('multer');
 const multerS3 = require('multer-s3');
+const Category = require('../models/categories'); 
+
+// Set up method-override
+const methodOverride = require('method-override');
+router.use(methodOverride('_method'));
+router.use(express.urlencoded({ extended: true }));
 
 // Set up AWS S3
 const s3 = new S3Client({
@@ -131,14 +136,55 @@ router.get('/all', async (req, res) => {
     await post.save();
     res.redirect('/post/all');
   }));
+
+
+  ///categories routes 
   router.get('/categories', wrapAsync(async (req, res) => {
     try {
-        res.render('post/categories');
+        // Fetch categories
+        const categories = await Category.find();
+        // Render categories view
+        console.log('Get categories:', categories);
+        res.render('post/categories', { categories });
     } catch (error) {
-        console.error('Error fetching pages:', error);
+        console.error('Error fetching categories:', error);
         res.status(500).send('Internal Server Error');
     }
-  }));
+}));
+// Handle category creation
+router.post('/categories', wrapAsync(async (req, res) => {
+    let { catName, slugName, ParentCatName, DescriptionName } = req.body;
+    console.log('DescriptionName:', DescriptionName); // Add this line
+    // Check if the category's name is already registered
+    const existingCategory = await Category.findOne({ name: catName });
+
+    if (existingCategory) {
+        return res.status(400).send('Category with this name already exists');
+    }
+
+    // If ParentCatName is an empty string, set it to null
+    if (ParentCatName === '') {
+        ParentCatName = null;
+    }
+
+    // Create a new category and save it to the database
+    const newCategory = new Category({ 
+        name: catName, 
+        slug: slugName, 
+        parentCategory: ParentCatName, 
+        description: DescriptionName 
+    });
+    await newCategory.save();
+    console.log('New category:', newCategory);
+
+    res.redirect('/post/categories'); // Redirect to the categories page
+}));
+
+router.delete('/categories/:id', wrapAsync(async (req, res) => {
+  const { id } = req.params;
+  await Category.findByIdAndDelete(id);
+  res.redirect('/post/categories');
+}));
   
   router.get('/tags', wrapAsync(async (req, res) => {
     try {

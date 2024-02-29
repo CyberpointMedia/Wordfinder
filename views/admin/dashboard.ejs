@@ -168,8 +168,8 @@
                                 <div id="hs-basic-with-title-and-arrow-stretched-collapse-one" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 bg-[#f0f7fa] cardBody" aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one">
                                     <div class="p-8">
                                         <ul class="grid grid-cols-1 gap-6 md:grid-cols-2 justify-between ">
-                                            <li><i data-lucide="pin" class="menu-icon inline-block mx-2 w-[18px] h-[18px] "></i><a href="all-posts.html" class="text-[#007bff] ">1 Post</a></li>
-                                            <li><i data-lucide="files" class="menu-icon inline-block mx-2 w-[18px] h-[18px] "></i><a href="all-pages.html" class="text-[#007bff] ">3 Pages</a></li>
+                                            <li><i data-lucide="pin" class="menu-icon inline-block mx-2 w-[18px] h-[18px] "></i><a href="/post/all" class="text-[#007bff] "><%= totalPosts %> Posts</a></li>
+                                            <li><i data-lucide="files" class="menu-icon inline-block mx-2 w-[18px] h-[18px] "></i><a href="all-pages.html" class="text-[#007bff] "><%= totalPages %> Pages</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -186,19 +186,4 @@
     <!-- sidebar end here -->
   <%- include('../script/script.ejs') %>
 </body>
-<!-- <body>
-    <h1>Admin dashboard</h1>
-        <nav>
-            <ul>
-                <li><a href="/admin">Home</a></li>
-                <li><a href="/admin/all-users">Users</a></li>
-                <li><a href="/admin/all-editors">Editor</a></li>
-                <li><a href="/pages">Pages</a></li>
-                <li><a href="/post/all">Posts</a></li>
-                <li><a href="/login">Logout</a></li>
-            </ul>
-        </nav>
-        
-    </div>
-</body> -->
 </html>
