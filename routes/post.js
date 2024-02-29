@@ -44,7 +44,7 @@ const upload = multer({
 });
   
 router.get('/create', (req, res) => {
-    res.render('post/new-post');
+    res.render('post/new-post', {user: req.user});
 });
 
 // Logic to handle post creation
@@ -70,7 +70,7 @@ router.post('/create', upload.single('picture__input'), (req, res) => {
 router.get('/all', async (req, res) => {
     try {
       const posts = await Post.find();
-      res.render('post/all-posts', { posts });
+      res.render('post/all-posts', { posts , user: req.user});
     } catch (error) {
       console.error('Error fetching posts:', error);
       res.status(500).send('Internal Server Error');
@@ -80,7 +80,7 @@ router.get('/all', async (req, res) => {
   router.get('/published', async (req, res) => {
     try {
       const posts = await Post.find({ status: 'Published' });
-      res.render('post/all-posts', { posts });
+      res.render('post/all-posts', { posts ,user: req.user });
     } catch (error) {
       console.error('Error fetching posts:', error);
       res.status(500).send('Internal Server Error');
@@ -100,7 +100,7 @@ router.get('/all', async (req, res) => {
   router.get('/draft', async (req, res) => {
     try {
       const posts = await Post.find({ status: 'Draft' });
-      res.render('post/all-posts', { posts });
+      res.render('post/all-posts', { posts ,user: req.user });
     } catch (error) {
       console.error('Error fetching posts:', error);
       res.status(500).send('Internal Server Error');
@@ -111,7 +111,7 @@ router.get('/all', async (req, res) => {
     try {
       const { id } = req.params;
       const post = await Post.findById(id);
-      res.render("post/edit-post", { post });
+      res.render("post/edit-post", { post , user: req.user});
     } catch (error) {
       console.error("Error fetching post:", error);
       res.status(500).send("Internal Server Error");
@@ -145,7 +145,7 @@ router.get('/all', async (req, res) => {
         const categories = await Category.find();
         // Render categories view
         console.log('Get categories:', categories);
-        res.render('post/categories', { categories });
+        res.render('post/categories', { categories ,user: req.user});
     } catch (error) {
         console.error('Error fetching categories:', error);
         res.status(500).send('Internal Server Error');
@@ -188,7 +188,7 @@ router.delete('/categories/:id', wrapAsync(async (req, res) => {
   
   router.get('/tags', wrapAsync(async (req, res) => {
     try {
-        res.render('post/tags');
+        res.render('post/tags',{user: req.user});
     } catch (error) {
         console.error('Error fetching pages:', error);
         res.status(500).send('Internal Server Error');

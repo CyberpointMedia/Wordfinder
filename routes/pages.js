@@ -28,7 +28,7 @@ router.get("/", wrapAsync(async (req, res) => {
       })
     );
     // Render the pages.ejs file and pass the "pages" variable
-    res.render("section/pages", { pages: pagesWithSections });
+    res.render("section/pages", { pages: pagesWithSections, user: req.user });
   } catch (error) {
     console.error("Error fetching pages:", error);
     res.status(500).send("Internal Server Error");
@@ -43,7 +43,7 @@ router.get("/create", wrapAsync(async (req, res) => {
     // Fetch pages for any additional data you might need
     const pages = await Page.find();
 
-    res.render("section/create-pages.ejs", { page: {}, sections, pages });
+    res.render("section/create-pages.ejs", { page: {}, sections, pages, user: req.user });
   } catch (error) {
     console.error("Error fetching data:", error);
     res.status(500).send("Internal Server Error");
@@ -150,7 +150,7 @@ router.get("/edit/:id", wrapAsync(async (req, res) => {
     const sections = await Section.find();
 
     // Render the edit-page.ejs file and pass the page and sections
-    res.render("section/edit-page.ejs", { page, sections });
+    res.render("section/edit-page.ejs", { page, sections ,user: req.user });
   } catch (error) {
     console.error("Error fetching data:", error);
     res.status(500).send("Internal Server Error");
@@ -226,7 +226,7 @@ router.post("/edit/:id", wrapAsync(async (req, res) => {
 router.get('/all', async (req, res) => {
   try {
       const pages = await Page.find();
-      res.render('section/pages', { pages });
+      res.render('section/pages', { pages  ,user: req.user});
   } catch (error) {
       console.error(error);
       res.status(500).send('Internal Server Error');
@@ -237,7 +237,7 @@ router.get('/all', async (req, res) => {
 router.get('/published', async (req, res) => {
   try {
       const pages = await Page.find({ status: 'Published' });
-      res.render('section/pages', { pages });
+      res.render('section/pages', { pages  ,user: req.user});
   } catch (error) {
       console.error(error);
       res.status(500).send('Internal Server Error');
@@ -248,7 +248,7 @@ router.get('/published', async (req, res) => {
 router.get('/trash', async (req, res) => {
   try {
       const pages = await Page.find({ status: 'Trash' });
-      res.render('section/pages', { pages });
+      res.render('section/pages', { pages  ,user: req.user});
   } catch (error) {
       console.error(error);
       res.status(500).send('Internal Server Error');
@@ -259,7 +259,7 @@ router.get('/trash', async (req, res) => {
 router.get('/draft', async (req, res) => {
   try {
       const pages = await Page.find({ status: 'Draft' });
-      res.render('section/pages', { pages });
+      res.render('section/pages', { pages  ,user: req.user});
   } catch (error) {
       console.error(error);
       res.status(500).send('Internal Server Error');
@@ -268,6 +268,6 @@ router.get('/draft', async (req, res) => {
 
 router.get('/:page_name', wrapAsync(async (req, res) => {
   const page = await Page.findOne({ page_name: req.params.page_name }).populate('sections');
-  res.render('section/show-page.ejs', { page });
+  res.render('section/show-page.ejs', { page ,user: req.user});
 }));
 module.exports = router;

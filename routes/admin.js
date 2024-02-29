@@ -17,16 +17,16 @@ router.use((err, req, res, next) => {
 });
 
 // Route to handle admin registration
-router.get('/register', (req, res) => {
-    if (req.isAuthenticated() && req.user.role === 'admin') {
-        res.render('admin/create-profile.ejs');
+router.get('/register', ensureAdmin ,(req, res) => {
+    if (req.isAuthenticated() && (req.user.role === 'admin' || req.user.role === 'administrator')) {
+        res.render('admin/create-profile.ejs', { user: req.user });
     } else {
         res.status(403).send('Forbidden');
     }
 });
 
 // Route to handle user profile creation
-router.post('/create-profile', async (req, res) => {
+router.post('/create-profile', ensureAdmin , async (req, res) => {
     console.log("register post request call", req.body);
     try {
         if (!req.body.username) {
@@ -65,13 +65,14 @@ router.post('/create-profile', async (req, res) => {
 
         const users = await User.find();
 
-        res.render('admin/all-users', {users, totalCount});
+        res.render('admin/all-users', {users, totalCount,user: req.user});
     } catch (err) {
         res.render('admin/create-profile.ejs', { errorMessage: `Error creating User profile: ${err.message}` });
     }
 });
 
 // Admin dashboard
+
 router.get('/dashboard', wrapAsync(async (req, res) => {
     // Fetch users
     const users = await User.find();
@@ -80,13 +81,13 @@ router.get('/dashboard', wrapAsync(async (req, res) => {
     const totalPages = await Page.countDocuments();
 
     // Render dashboard
-    res.render('admin/dashboard', { users, totalPosts ,totalPages});
+    res.render('admin/dashboard', { users, totalPosts ,totalPages, user: req.user });
 }));
 
 // View all users
-router.get('/all-users', async (req, res) => {
+router.get('/all-users', ensureAdmin, async (req, res) => {
     let users, subscriberCount, authorCount, editorCount, administratorCount;
-
+    
     try {
         users = await User.find();
         subscriberCount = await User.countDocuments({ role: 'subscriber' });
@@ -104,7 +105,7 @@ router.get('/all-users', async (req, res) => {
         administrator: administratorCount || 0
     };
 
-    res.render('admin/all-users', {users: users || [], totalCount });
+    res.render('admin/all-users', {users: users || [], totalCount ,user: req.user});
 });
 
 // Logout route

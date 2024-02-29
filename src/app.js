@@ -132,12 +132,18 @@ app.listen(port, () => {
 });
 
 app.use('/', frontendRoutes);
-app.use('/user', ensureAdmin ,ensureAuthor,ensureEditor, userRoutes);
 app.use('/auth', authRoutes);
-app.use('/post', ensureAdminOrEditor, postRoutes);
-app.use('/admin/section', ensureAdminOrEditor, sectionRoutes);
+app.use('/user', userRoutes);
 app.use('/admin', ensureAdminOrEditor, adminRoutes);
-app.use('/editor', ensureEditor, editorRoutes);
-app.use('/admin/pages', ensureAdminOrEditor, pagesRoutes);
-app.use('/library', ensureAdmin, ensureAuthor, ensureEditor, libraryRoutes);
+app.use('/post', ensureAdminOrEditor, postRoutes);
+app.use('/library', ensureAdminOrEditor, libraryRoutes);
+
+// Editor can access these routes
+app.use('/admin/section', ensureEditor, sectionRoutes);
+app.use('/admin/pages', ensureEditor, pagesRoutes);
+
+// Admin and Administrator can access all routes
+app.use('/admin/section', ensureAdmin, sectionRoutes);
+app.use('/admin/pages', ensureAdmin, pagesRoutes);
+
 
