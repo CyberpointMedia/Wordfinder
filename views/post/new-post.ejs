@@ -44,8 +44,17 @@
                     </div>
                 </div>
         
-                <label for="features" class="block font-semibold mt-4">Features:</label>
-                <textarea id="editor" name="features" required class="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                <div class="mb-6">
+                    <label class="mb-3 text-lg" for="uploadImage1">Feature image</label>
+                    <div class="uploadImg-Preview mb-6">
+                        <img id="feature_img" class="object-cover" src="/images/no-image.svg" alt="Upload Image">
+                    </div>
+
+                    <div class="block relative">
+                        <span class="absolute inset-0 opacity-100 w-40 h-12 leading-[48px] top-0 text-black bg-[#DBF4FF] rounded-lg text-center cursor-pointer">Select Image</span>
+                        <input type="file" name="feature_img" id="feature_img" onchange="loadFile(event)" class="block w-40 h-12 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0">
+                    </div>
+                </div>
         <br>
             </form>
         </div>
@@ -63,6 +72,34 @@
         }
          // Initialize Froala Editor
          new FroalaEditor('#editor');
+         function loadFile(event) {
+        // Get the file input element that triggered the event
+        var input = event.target;
+
+        // Check if a file was selected
+        if (input.files && input.files[0]) {
+            // Create a new FileReader object
+            var reader = new FileReader();
+
+            // Define the onload event for the FileReader object
+            reader.onload = function(e) {
+                // Get the id of the file input element
+                var id = input.id;
+
+                // Determine the id of the img tag where the image should be displayed
+                var imgId = (id === 'picture__input') ? 'preview_img' : 'feature_img';
+
+                // Get the img tag
+                var img = document.getElementById(imgId);
+
+                // Set the src attribute of the img tag to the data URL of the selected image
+                img.src = e.target.result;
+            }
+
+            // Read the selected file as a data URL
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
      </script>     
     <%- include('../script/script.ejs') %>
 </html>

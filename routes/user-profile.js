@@ -32,7 +32,7 @@ router.get('/user-profile', (req, res) => {
     if (req.isAuthenticated()) {
         res.render('user/user-profile', { user: req.user });
     } else {
-        res.redirect('/login');
+        res.redirect('/auth/login');
     }
 });
 router.post('/user-profile', upload.single('image'), async (req, res) => {

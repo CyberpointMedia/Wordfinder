@@ -46,25 +46,25 @@ const upload = multer({
 router.get('/create', (req, res) => {
     res.render('post/new-post', {user: req.user});
 });
-
 // Logic to handle post creation
-router.post('/create', upload.single('picture__input'), (req, res) => {
-    if (!req.file) {
-        return res.status(400).json('No file uploaded');
-    }
+router.post('/create', upload.fields([{ name: 'picture__input', maxCount: 1 }, { name: 'feature_img', maxCount: 1 }]), (req, res) => {
+  if (!req.files) {
+      return res.status(400).json('No files uploaded');
+  }
 
-    console.log(req.file);
-    const newPost = new Post({
-      title: req.body.title,
-      description: req.body.description,
-      features: req.body.features,
-      picture: req.file.location, // URL of the uploaded file on S3
-      status: req.body.status
-    });
-  
-    newPost.save()
-      .then(() => res.redirect('/post/all'))
-      .catch(err => res.status(400).json('Error: ' + err));
+  console.log(req.files);
+  const newPost = new Post({
+    title: req.body.title,
+    description: req.body.description,
+    features: req.body.features,
+    picture: req.files['picture__input'][0].location, // URL of the uploaded thumbnail file on S3
+    featureImage: req.files['feature_img'][0].location, // URL of the uploaded feature file on S3
+    status: req.body.status
+  });
+
+  newPost.save()
+    .then(() => res.redirect('/post/all'))
+    .catch(err => res.status(400).json('Error: ' + err));
 });
 // Show all posts
 router.get('/all', async (req, res) => {
@@ -90,7 +90,7 @@ router.get('/all', async (req, res) => {
   router.get('/trash', async (req, res) => {
     try {
       const posts = await Post.find({ status: 'Trash' });
-      res.render('post/all-posts', { posts });
+      res.render('post/all-posts', { posts ,user: req.user});
     } catch (error) {
       console.error('Error fetching posts:', error);
       res.status(500).send('Internal Server Error');
@@ -117,7 +117,7 @@ router.get('/all', async (req, res) => {
       res.status(500).send("Internal Server Error");
     }
   });
-  router.post('/edit/:id', upload.single('picture__input'), wrapAsync(async (req, res) => {
+  router.post('/edit/:id', upload.fields([{ name: 'picture__input', maxCount: 1 }, { name: 'feature_img', maxCount: 1 }]), wrapAsync(async (req, res) => {
     const { id } = req.params;
     const post = await Post.findById(id);
     if (!post) {
@@ -129,13 +129,18 @@ router.get('/all', async (req, res) => {
     post.features = req.body.features;
     post.status = req.body.status;
   
-    if (req.file) {
-      post.picture = req.file.location; 
+    if (req.files) {
+      if (req.files['picture__input']) {
+        post.picture = req.files['picture__input'][0].location;
+      }
+      if (req.files['feature_img']) {
+        post.featureImage = req.files['feature_img'][0].location;
+      }
     }
   
     await post.save();
     res.redirect('/post/all');
-  }));
+}));
 
 
   ///categories routes 
