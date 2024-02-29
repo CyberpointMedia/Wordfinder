@@ -40,7 +40,6 @@ router.post('/create-profile', async (req, res) => {
             alert('User with this email already exists');
             throw new Error('User with this email already exists');
         }
-
         const user = new User({
             username: req.body.username,
             email: req.body.email,

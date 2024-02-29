@@ -63,5 +63,4 @@ router.post('/user-profile', upload.single('image'), async (req, res) => {
         res.redirect('/user/user-profile');
     }
 });
-
 module.exports = router;

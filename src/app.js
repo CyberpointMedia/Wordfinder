@@ -25,7 +25,7 @@ const editorRoutes = require('../routes/editor');
 const pagesRoutes = require('../routes/pages');  
 const frontendRoutes = require('../routes/frontend'); 
 const libraryRoutes = require('../routes/library'); 
-const { ensureAdmin, ensureEditor, ensureAuthor } = require('../middleware/authMiddleware');
+const { ensureAdminOrEditor , ensureAdmin, ensureEditor, ensureAuthor } = require('../middleware/authMiddleware');
 const app = express();
 const port = process.env.PORT;
 
@@ -65,17 +65,17 @@ passport.use(new LocalStrategy({
     // Check for regular users
     const user = await User.findOne({ email });
     if (user) {
+        console.log("user role", user.role);
         const isValidPassword = await bcrypt.compare(password, user.password);
         if (!isValidPassword) {
             return done(null, false, { message: 'Invalid credentials.\n' });
         }
         return done(null, user);
     }
-
     // Check for editor credentials
     const editor = await Editor.findOne({ email });
     if (editor) {
-        console.log("editor", editor);
+        console.log("editor role", editor.role);
         const isValidPassword = await bcrypt.compare(password, editor.password);
         if (!isValidPassword) {
             return done(null, false, { message: 'Invalid credentials.\n' });
@@ -97,6 +97,7 @@ passport.deserializeUser(async (id, done) => {
     try {
         const user = await User.findById(id);
         if (user) {
+            console.log("deserializeUser", user);
             done(null, user);
         } else {
             const editor = await Editor.findById(id);
@@ -131,12 +132,12 @@ app.listen(port, () => {
 });
 
 app.use('/', frontendRoutes);
-app.use('/user', ensureAdmin,ensureAuthor,ensureEditor, userRoutes);
+app.use('/user', ensureAdmin ,ensureAuthor,ensureEditor, userRoutes);
 app.use('/auth', authRoutes);
-app.use('/post', ensureAdmin, ensureAuthor, ensureEditor, postRoutes);
-app.use('/admin/section', ensureAdmin, ensureEditor, sectionRoutes);
-app.use('/admin',ensureAdmin ,ensureEditor ,ensureAuthor , adminRoutes);
+app.use('/post', ensureAdminOrEditor, postRoutes);
+app.use('/admin/section', ensureAdminOrEditor, sectionRoutes);
+app.use('/admin', ensureAdminOrEditor, adminRoutes);
 app.use('/editor', ensureEditor, editorRoutes);
-app.use('/admin/pages', ensureAdmin, ensureEditor, pagesRoutes);
+app.use('/admin/pages', ensureAdminOrEditor, pagesRoutes);
 app.use('/library', ensureAdmin, ensureAuthor, ensureEditor, libraryRoutes);
 
