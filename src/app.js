@@ -50,6 +50,13 @@ app.use(session({
     saveUninitialized: false
 }));
 app.use(flash());
+
+// Add the middleware here
+app.use((req, res, next) => {
+    res.locals.messages = req.flash();
+    next();
+});
+
 app.use(passport.initialize());
 app.use(passport.session());
 

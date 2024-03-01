@@ -54,6 +54,11 @@
             </div>
         </div>
     </div>
+    <% if (messages.error) { %>
+    <script>
+      alert("<%= messages.error %>");
+    </script>
+<% } %>
     <%- include('../script/script.ejs') %>
 </body>
 </html>

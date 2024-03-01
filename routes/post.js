@@ -43,8 +43,14 @@ const upload = multer({
   })
 });
   
-router.get('/create', (req, res) => {
-    res.render('post/new-post', {user: req.user});
+router.get('/create', async (req, res) => {
+  try {
+      const categories = await Category.find();
+      res.render('post/new-post', { user: req.user, categories });
+  } catch (error) {
+      console.error('Error fetching categories:', error);
+      res.status(500).send('Internal Server Error');
+  }
 });
 // Logic to handle post creation
 router.post('/create', upload.fields([{ name: 'picture__input', maxCount: 1 }, { name: 'feature_img', maxCount: 1 }]), (req, res) => {
@@ -56,10 +62,10 @@ router.post('/create', upload.fields([{ name: 'picture__input', maxCount: 1 }, {
   const newPost = new Post({
     title: req.body.title,
     description: req.body.description,
-    features: req.body.features,
     picture: req.files['picture__input'][0].location, // URL of the uploaded thumbnail file on S3
-    featureImage: req.files['feature_img'][0].location, // URL of the uploaded feature file on S3
-    status: req.body.status
+    feature_img: req.files['feature_img'][0].location, // URL of the uploaded feature file on S3
+    status: req.body.status,
+    category: req.body.category // Save the category ID
   });
 
   newPost.save()
@@ -69,55 +75,83 @@ router.post('/create', upload.fields([{ name: 'picture__input', maxCount: 1 }, {
 
 // Show all posts
 router.get('/all', async (req, res) => {
-    try {
-      const posts = await Post.find();
-      res.render('post/all-posts', { posts , user: req.user});
-    } catch (error) {
+  try {
+      const allCount = await Post.countDocuments();
+      const publishedCount = await Post.countDocuments({ status: 'Published' });
+      const trashCount = await Post.countDocuments({ status: 'Trash' });
+      const draftCount = await Post.countDocuments({ status: 'Draft' });
+      const posts = await Post.find({ status: { $in: ['Published', 'Draft'] } }).populate('category');
+      res.render('post/all-posts', { allCount, publishedCount, trashCount, draftCount ,posts , user: req.user});
+  } catch (error) {
       console.error('Error fetching posts:', error);
       res.status(500).send('Internal Server Error');
-    }
-  });
+  }
+});
   
   router.get('/published', async (req, res) => {
     try {
-      const posts = await Post.find({ status: 'Published' });
-      res.render('post/all-posts', { posts ,user: req.user });
+        const posts = await Post.find({ status: 'Published' });
+        const allCount = await Post.countDocuments();
+        const publishedCount = await Post.countDocuments({ status: 'Published' });
+        const trashCount = await Post.countDocuments({ status: 'Trash' });
+        const draftCount = await Post.countDocuments({ status: 'Draft' });
+        res.render('post/all-posts', { posts, user: req.user, allCount, publishedCount, trashCount, draftCount });
     } catch (error) {
-      console.error('Error fetching posts:', error);
-      res.status(500).send('Internal Server Error');
+        console.error('Error fetching posts:', error);
+        res.status(500).send('Internal Server Error');
     }
-  });
-  
-  router.get('/trash', async (req, res) => {
+});
+
+router.get('/trash', async (req, res) => {
     try {
-      const posts = await Post.find({ status: 'Trash' });
-      res.render('post/all-posts', { posts ,user: req.user});
+        const posts = await Post.find({ status: 'Trash' });
+        const allCount = await Post.countDocuments();
+        const publishedCount = await Post.countDocuments({ status: 'Published' });
+        const trashCount = await Post.countDocuments({ status: 'Trash' });
+        const draftCount = await Post.countDocuments({ status: 'Draft' });
+        res.render('post/all-posts', { posts, user: req.user, allCount, publishedCount, trashCount, draftCount });
     } catch (error) {
-      console.error('Error fetching posts:', error);
-      res.status(500).send('Internal Server Error');
+        console.error('Error fetching posts:', error);
+        res.status(500).send('Internal Server Error');
     }
-  });
-  
-  router.get('/draft', async (req, res) => {
+});
+router.delete('/delete/:id', async (req, res) => {
+  try {
+      console.log('Delete post:', req.params.id);
+      await Post.findByIdAndDelete(req.params.id);
+      res.redirect('post/trash');
+  } catch (error) {
+      console.error('Error deleting post:', error);
+      res.status(500).send('Internal Server Error');
+  }
+});
+
+router.get('/draft', async (req, res) => {
     try {
-      const posts = await Post.find({ status: 'Draft' });
-      res.render('post/all-posts', { posts ,user: req.user });
+        const posts = await Post.find({ status: 'Draft' });
+        const allCount = await Post.countDocuments();
+        const publishedCount = await Post.countDocuments({ status: 'Published' });
+        const trashCount = await Post.countDocuments({ status: 'Trash' });
+        const draftCount = await Post.countDocuments({ status: 'Draft' });
+        res.render('post/all-posts', { posts, user: req.user, allCount, publishedCount, trashCount, draftCount });
     } catch (error) {
-      console.error('Error fetching posts:', error);
-      res.status(500).send('Internal Server Error');
+        console.error('Error fetching posts:', error);
+        res.status(500).send('Internal Server Error');
     }
-  });
+});
   
   router.get("/edit/:id", async (req, res) => {
     try {
       const { id } = req.params;
       const post = await Post.findById(id);
-      res.render("post/edit-post", { post , user: req.user});
+      const categories = await Category.find();
+      res.render("post/edit-post", { post , user: req.user,categories});
     } catch (error) {
       console.error("Error fetching post:", error);
       res.status(500).send("Internal Server Error");
     }
   });
+
   router.post('/edit/:id', upload.fields([{ name: 'picture__input', maxCount: 1 }, { name: 'feature_img', maxCount: 1 }]), wrapAsync(async (req, res) => {
     const { id } = req.params;
     const post = await Post.findById(id);
@@ -127,22 +161,32 @@ router.get('/all', async (req, res) => {
   
     post.title = req.body.title;
     post.description = req.body.description;
-    post.features = req.body.features;
     post.status = req.body.status;
-  
+    post.category = req.body.category;
     if (req.files) {
       if (req.files['picture__input']) {
         post.picture = req.files['picture__input'][0].location;
       }
       if (req.files['feature_img']) {
-        post.featureImage = req.files['feature_img'][0].location;
+        post.feature_img = req.files['feature_img'][0].location;
       }
     }
   
     await post.save();
     res.redirect('/post/all');
 }));
-
+//change the status of the post
+router.put('/updateStatus/:id', async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        post.status = req.body.status;
+        await post.save();
+        res.json({ message: 'Post status updated successfully' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
 
   ///categories routes 
   router.get('/categories', wrapAsync(async (req, res) => {

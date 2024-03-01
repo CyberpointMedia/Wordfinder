@@ -10,13 +10,13 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  features: {
+  feature_img: {
     type: String,
     required: true
   },
   picture: {
     type: String,
-    required: false
+    required: true
   },
   status: {
     type: String,
@@ -26,6 +26,10 @@ const postSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category'
   }
 });
 

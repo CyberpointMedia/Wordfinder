@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 8080;
 var wd = require("word-definition");
 const axios = require('axios');
 const wrapAsync = require('../middleware/wrapAsync');
+const Post = require('../models/post');
 
 router.use((err, req, res, next) => {
     console.error(err.stack);
@@ -31,9 +32,18 @@ router.get('/', (req, res) => {
 router.get('/5-letter-words', (req, res) => {
     res.render(('frontend/5-letter-words.ejs'));
   });
-router.get('/article-details', (req, res) => {
-    res.render(('post/article-details.ejs'));
-  });
+router.get('/:title', async (req, res) => {
+    try {
+        const post = await Post.findOne({ title: req.params.title });
+        if (!post) {
+            return res.status(404).send('Post not found');
+        }
+        res.render('post/article-details', { post });
+    } catch (error) {
+        console.error('Error fetching post:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
 router.get('/articles', (req, res) => {
     res.render(('frontend/articles.ejs'));
 });
