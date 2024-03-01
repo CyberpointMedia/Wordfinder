@@ -32,7 +32,7 @@ router.get('/5-letter-words', (req, res) => {
     res.render(('frontend/5-letter-words.ejs'));
   });
 router.get('/article-details', (req, res) => {
-    res.render(('frontend/article-details.ejs'));
+    res.render(('post/article-details.ejs'));
   });
 router.get('/articles', (req, res) => {
     res.render(('frontend/articles.ejs'));

@@ -66,6 +66,7 @@ router.post('/create', upload.fields([{ name: 'picture__input', maxCount: 1 }, {
     .then(() => res.redirect('/post/all'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
 // Show all posts
 router.get('/all', async (req, res) => {
     try {
