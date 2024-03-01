@@ -341,6 +341,86 @@ button:hover {
 .notfound h1>span {
     text-shadow: -8px 0 0 #fff;
 }
+#modal-img1{
+    display: block;
+    margin: 0 auto 16px;
+    max-width: 100%;
+    max-height: 90%;
+    max-height: calc(100% - 42px);
+    background-image: linear-gradient(45deg, #C3C4C7 25%, transparent 25%, transparent 75%, #C3C4C7 75%, #C3C4C7), linear-gradient(45deg, #C3C4C7 25%, transparent 25%, transparent 75%, #C3C4C7 75%, #C3C4C7);
+    background-position: 0 0, 10px 10px;
+    background-size: 20px 20px;
+}
+
+.imgSettings input, .imgSettings textarea {
+    border-color: #ddd;
+    border-radius: 4px;
+}
+  input[type="file"] {
+    display: block;
+  }
+  .mediaUploader{
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+    border: 3px dashed rgb(218, 223, 227);
+    background: transparent;
+  }
+  .closeBtn{
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    right: 2px;
+    top: 2px;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+    z-index: 1;
+  }
+  .chooseImage {
+    font-size: 14px;
+    padding: 14px 30px;
+    color: #2271b1;
+    background-color: #f6f7f7;
+    display: inline-block;
+    border-radius: 3px;
+    border: 1px solid #2271b1;
+    margin: 20px 0px;
+}
+.filter-buttons a img {
+    width: 18px;
+}
+.filter-buttons .active, .filter-buttons a:hover{
+    border-color: rgb(15, 160, 244);
+}
+.mediaUploader input {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background: red;
+    opacity: 0;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.mediaUploader h2{
+    color: rgb(142, 153, 165);
+    font-size: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 @media(min-width:667px) and (max-width:767px) {
     .dataTables_wrapper .dataTables_info {
