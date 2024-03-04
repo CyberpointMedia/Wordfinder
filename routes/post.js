@@ -61,6 +61,7 @@ router.post('/create', upload.fields([{ name: 'picture__input', maxCount: 1 }, {
   console.log(req.files);
   const newPost = new Post({
     title: req.body.title,
+    heading: req.body.heading,
     description: req.body.description,
     picture: req.files['picture__input'][0].location, // URL of the uploaded thumbnail file on S3
     feature_img: req.files['feature_img'][0].location, // URL of the uploaded feature file on S3
@@ -160,6 +161,7 @@ router.get('/draft', async (req, res) => {
     }
   
     post.title = req.body.title;
+    post.heading = req.body.heading;
     post.description = req.body.description;
     post.status = req.body.status;
     post.category = req.body.category;

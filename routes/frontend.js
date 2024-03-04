@@ -9,7 +9,7 @@ var wd = require("word-definition");
 const axios = require('axios');
 const wrapAsync = require('../middleware/wrapAsync');
 const Post = require('../models/post');
-
+const Category = require('../models/categories'); 
 router.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(404).render('not-found/page-not-found.ejs');
@@ -32,20 +32,29 @@ router.get('/', (req, res) => {
 router.get('/5-letter-words', (req, res) => {
     res.render(('frontend/5-letter-words.ejs'));
   });
-router.get('/:title', async (req, res) => {
+
+  router.get('/articles/:title', async (req, res) => {
     try {
         const post = await Post.findOne({ title: req.params.title });
         if (!post) {
             return res.status(404).send('Post not found');
         }
-        res.render('post/article-details', { post });
+        const categories = await Category.find(); // Fetch the categories
+        const morePosts = await Post.find({ _id: { $ne: post._id } }).limit(3); // Fetch 3 more posts excluding the current one
+        res.render('post/article-details', { post, categories, morePosts}); // Pass the categories and morePosts to the template
     } catch (error) {
         console.error('Error fetching post:', error);
         res.status(500).send('Internal Server Error');
     }
 });
-router.get('/articles', (req, res) => {
-    res.render(('frontend/articles.ejs'));
+router.get('/articles', async (req, res) => {
+    try {
+        const posts = await Post.find(); // Fetch all posts from the database
+        res.render('post/articles', { morePosts: posts }); // Render the articles.ejs view with the posts data
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
 });
 router.get('/contact', (req, res) => {
     res.render(('frontend/contact.ejs'));

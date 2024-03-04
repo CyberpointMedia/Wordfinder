@@ -26,15 +26,20 @@
                         <div class="">
                             <main class="py-8 px-5">
                                 <div class="max-w-3xl mx-auto">
-
-                                    <label for="title" class="block font-semibold">Title:</label>
-                                    <input type="text" id="title" name="title" required class="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-
-<label for="description" class="block font-semibold mt-4">Description:</label>
-                <textarea id="editor" name="description" required class="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                <div class="mb-6">
-                    <label class="mb-3 text-lg" for="uploadImage1">Thumbnail Photo image</label>
-                    <div class="uploadImg-Preview mb-6">
+                                    <div class="mb-6">
+                                        <label for="title" class="mb-3 text-sm">Title:</label>
+                                        <input type="text" id="title" name="title" required class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                    </div>
+                                    <div class="mb-6">
+                                        <label for="heading" class="mb-3 text-sm">Heading:</label>
+                                        <input type="text" id="heading" name="heading" required class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                    </div>
+                                    <div class="mb-6">
+                                        <label for="description" class="mb-3 text-sm">Description:</label>
+                                        <textarea id="editor" name="description" required class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                    </div>
+                                      <div class="mb-6">
+                                        <label class="mb-3 text-sm" for="uploadImage1">Thumbnail Photo image</label>                    <div class="uploadImg-Preview mb-6">
                         <img id="preview_img" class="object-cover" src="/images/no-image.svg" alt="Upload Image">
                     </div>
                 
@@ -54,8 +59,8 @@
                     </select>
                 </div>
                 <div class="mb-6">
-                    <label class="mb-3 text-lg" for="uploadImage1">Feature image</label>
-                    <div class="uploadImg-Preview mb-6">
+                    <label class="mb-3 text-sm" for="uploadImage1">Feature image</label>
+                                        <div class="uploadImg-Preview mb-6">
                         <img id="feature_img" class="object-cover" src="/images/no-image.svg" alt="Upload Image">
                     </div>
                     <div class="block relative">

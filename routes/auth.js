@@ -43,6 +43,7 @@ router.post('/login', function(req, res, next) {
         return next(err); 
       }
       if (!user) { 
+        console.log("wrong email or password");
         req.flash('error', 'Wrong email or password');
         return res.redirect('/auth/login'); 
       }

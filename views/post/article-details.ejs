@@ -1,5 +1,14 @@
-<%- (include('../frontend/head/head.ejs')) %>
-<body class="font-custom">
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Word Finder</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/logo-sm.svg">
+    <link href="/styles/style.css" rel="stylesheet">
+    <link href="/styles/frontend/custom.css" rel="stylesheet">
+    </head><body class="font-custom">
     <!-- header start here -->
     <%- (include('../frontend/head/header.ejs')) %>
     <!-- header end here -->
@@ -34,11 +43,11 @@
                 <div class="w-full md:w-2/3">
                     <div class="md:bg-white bg-[#DBF4FF] md:p-0 md:m-0 py-20 px-7 -mx-7 -mt-10">
                         <p class="md:hidden text-center mb-4 text-black">Published January 13, 2021</p>
-                        <h1 class="sm:text-5xl font-semibold text-black text-3xl text-center md:text-left">An Easy Guide To Gender-Inclusive Language</h1>
+                        <h1 class="sm:text-5xl font-semibold text-black text-3xl text-center md:text-left"><%= post.heading %></h1>
                         <div class="flex flex-col lg:flex-row lg:items-center lg:space-x-4 my-8">
 
                             <div class="flex items-center hidden md:block">
-                                <img class="rounded-full flex-shrink-0 mr-4 inline-block" src="images/user-img.svg" alt="#">
+                                <img class="rounded-full flex-shrink-0 mr-4 inline-block" src="/images/user-img.svg" alt="#">
                                 <span class="text-xs xl:text-sm">Written by
                                 <a href="javascript:void(0);" class="text-[#007BFF]">Rose Rally</a>
                                 <svg class="ms-2 inline-block invisible lg:visible" xmlns="http://www.w3.org/2000/svg" width="2" height="24" viewBox="0 0 2 24" fill="none">
@@ -54,8 +63,9 @@
                                 4.11474 3.11516 3.66618 3.66679 3.66618H4.66699V4.33278H5.333V3.66677H10.6658V4.33336H11.3324V3.66677H12.3325C12.8836 3.66677 13.3321 4.11474 13.3321 4.66635L13.3321 5.66658Z " fill="#007BFF " stroke="#007BFF
                                 " stroke-width="0.3 "/>
                               </svg>
-                                <span class="text-xs xl:text-sm"><i class="italic ">Updated on <%= post.picture %></i>
-                            </span>
+                              <span class="text-xs xl:text-sm"><i class="italic ">Updated on 
+                                <%= new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></i>
+                                </span>                            </span>
                                 <svg class="ms-2 inline-block invisible lg:visible" xmlns="http://www.w3.org/2000/svg" width="2" height="24" viewBox="0 0 2 24" fill="none">
                                 <path d="M1 0L0.999999 24" stroke="#747474"/>
                               </svg>
@@ -118,25 +128,13 @@
                             </div>
                         </div>
                     </div>
-
+<br><br>
                     <div class="rounded-lg -mt-20">
                         <img src="<%= post.picture %>" alt="images/article-detail-img1.svg" class="rounded-lg" />
                     </div>
                     <p>
                         <%- post.description %>
                     </p>
-                    <div class="flex flex-col sm:flex-row bg-[#F0F7FA] rounded-[10px] sm:py-12 py-8 px-8 sm:px-14 items-start">
-                        <img src="images/rose-rally-img.svg" alt="#" class="" />
-                        <div class="sm:ps-8 mt-6 sm:mt-0">
-                            <h2 class="text-[22px] text-black font-semibold">Rose Rally</h2>
-                            <small class="text-sm text-black opacity-75 my-2 font-medium block">Author</small>
-                            <p class="text-sm text-black opacity-75">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in dolor vel orci sodales eleifend interdum eget velit. Nullam eget lobortis augue, eu finibus felis. Proin molestie augue vitae ullamcorper efficitur. Aenean id urna sed diam condimentum
-                                congue. Duis at blandit turpis, non elementum massa. Sed dapibus placerat eros, nec euismod odio porta eget. Nulla facilisi. Suspendisse at odio ornare, varius ex id, feugiat purus. Quisque at dui lorem. Morbi sit amet
-                                aliquet mi. Nunc odio tortor, scelerisque eget tellus.
-                            </p>
-                        </div>
-                    </div>
                 </div>
                 <!-- left col end -->
 
@@ -161,19 +159,9 @@
                         </div>
                         <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px] ">
                             <ol class="space-y-3 font-medium list-decimal ">
-                                <li>Word Finder</li>
-                                <li>Words with Letters</li>
-                                <li>Wordscapes Answers and Cheat</li>
-                                <li>Scrabble Dictionary</li>
-                                <li>Word Generator</li>
-                                <li>Words With Friends Cheat Tool</li>
-                                <li>Anagram Solver</li>
-                                <li>Wordle</li>
-                                <li>Scrabble Word Finder</li>
-                                <li>Jumble Solver</li>
-                                <li>Word Scramble - Word Finder</li>
-                                <li>Word Solver</li>
-                                <li>Word Unscrambler</li>
+                                <% categories.forEach(category => { %>
+                                    <li><%= category.name %></li>
+                                  <% }) %>
                             </ol>
                         </div>
                     </div>
@@ -196,43 +184,22 @@
                                     </svg>
                         </div>
                         <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px] ">
+                            <% morePosts.forEach(post => { %>
                             <div class="border border-[#007BFF4D] rounded-[20px] bg-white mb-6 overflow-hidden hover:text-[#007BFF]">
-                                <a href="/article-details"><img src="images/article-img4.svg " alt="# " class="w-full "></a>
+                                <a href="/articles/<%= post.title %>"><img src="<%= post.feature_img %>" alt="# " class="w-full "></a>
                                 <div class="p-4 ">
-                                    <h3 class="text-lg font-semibold leading-6 "><a href="/article-details" class="hover:text-[#007BFF]">Which Singers Have the Biggest Vocabularies?</a></h3>
+                                    <h3 class="text-lg font-semibold leading-6 "><a href="/articles/<%= post.title %>" class="hover:text-[#007BFF]"><%= post.heading %></a></h3>
                                 </div>
                             </div>
-                            <div class="border border-[#007BFF4D] rounded-[20px] bg-white mb-6 overflow-hidden hover:text-[#007BFF]">
-                                <a href="/article-details"><img src="images/article-img2.svg " alt="# " class="w-full "></a>
-                                <div class="p-4 ">
-                                    <h3 class="text-lg font-semibold leading-6 "><a href="/article-details" class="hover:text-[#007BFF]">Japanese Learning Resources - The Ultimate Guide</a></h3>
-                                </div>
-                            </div>
-                            <div class="border border-[#007BFF4D] rounded-[20px] bg-white mb-6 overflow-hidden hover:text-[#007BFF]">
-                                <a href="/article-details"><img src="images/article-img3.svg " alt="# " class="w-full "></a>
-                                <div class="p-4 ">
-                                    <h3 class="text-lg font-semibold leading-6 "><a href="/article-details" class="hover:text-[#007BFF]">Is _____ a Word?</a></h3>
-                                </div>
-                            </div>
-                            <!-- view more content -->
-                            <div id="hs-show-hide-collapse-heading" class="hs-collapse hidden w-full overflow-hidden transition-[height] duration-300 gap-3 flex flex-wrap" aria-labelledby="hs-show-hide-collapse">
-                                <div class="border border-[#007BFF4D] rounded-[20px] bg-white overflow-hidden hover:text-[#007BFF]">
-                                    <a href="/article-details"><img src="images/article-img6.svg " alt="# " class="w-full "></a>
-                                    <div class="p-4 ">
-                                        <h3 class="text-lg font-semibold leading-6 "><a href="/article-details" class="hover:text-[#007BFF]">Handy Activities To Teach Your Kids About Environmental Issues</a>
-                                        </h3>
-                                    </div>
-                                </div>
-                            </div>
+                            <% }) %>
                             <div class="mt-6 text-center">
-                                <a href="javascript:void(0);" class="hs-collapse-toggle text-white bg-[#007BFF] rounded-[10px] py-4 px-6 hover:opacity-50 inline-block" id="hs-show-hide-collapse" data-hs-collapse="#hs-show-hide-collapse-heading">
+                                <a href="/articles" class="hs-collapse-toggle text-white bg-[#007BFF] rounded-[10px] py-4 px-6 hover:opacity-50 inline-block" id="hs-show-hide-collapse" data-hs-collapse="#hs-show-hide-collapse-heading">
                                     <span class="hs-collapse-open:hidden">View More</span>
                                     <span class="hidden hs-collapse-open:block">View less</span>
                                 </a>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- right col end -->
             </div>
@@ -243,5 +210,4 @@
     <!-- footer start  -->
     <%- (include('../frontend/footer/footer.ejs')) %>
 <!-- footer end  -->
-
 <%- (include('../frontend/script/script.ejs')) %>

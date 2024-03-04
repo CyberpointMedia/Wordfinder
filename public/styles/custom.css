@@ -293,6 +293,12 @@ button:hover {
     color: #007bff;
     background-color: #DBF4FF;
 }
+.h-screen{
+    height: 100vh;
+}
+.m-auto {
+    margin: auto;
+}
 
 @media(min-width:667px) and (max-width:767px) {
     .dataTables_wrapper .dataTables_info {

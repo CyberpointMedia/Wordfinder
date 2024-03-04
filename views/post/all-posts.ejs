@@ -66,7 +66,7 @@
                                             <span class="trash"><a href="javascript:void(0)" class="trash text-[#b32d2e] text-xs" onclick="updateStatus('<%= post._id %>')">Trash</a> | </span>
                                         <% } %>
                                         
-                                        <span class="view"><a href="/<%= post.title %>" class="text-[#2271b1] text-xs">View</a></span>                                    </div>
+                                        <span class="view"><a href="/articles/<%= post.title %>" class="text-[#2271b1] text-xs">View</a></span>                                    </div>
                                 </td>
                                 <td>Admin<%= post.author %></td>
                                 <td><%= post.category ? post.category.name : 'Uncategorized' %></td>

@@ -2,56 +2,51 @@
 <%- include('../header/head.ejs') %>
 <body>
     <!-- login page start here -->
-    <div class="relative bg-cover bg-center">
-        <div class="relative flex flex-col my-12 pt-12">
-            <div class="flex justify-center">
-                <div class="px-4">
-                    <div class="bg-white max-w-md mx-auto overflow-hidden rounded-md">
-                        <div class="p-9">
+    <div class="relative max-w-md mx-auto bg-cover bg-center p-4">
+        <div class="h-screen flex">
+            <div class="bg-white w-full m-auto rounded-md">
+                <div class="p-9">
+                    <div class="mb-6 mt-2">
+                        <a href="javascript:void(0)">
+                            <img src="/images/logo-lg.svg" alt="Word Finder" class="h-10 mx-auto block">
+                        </a>
+                    </div>
 
-                            <div class="mb-6 mt-2">
-                                <a href="javascript:void(0)">
-                                    <img src="/images/logo-lg.svg" alt="Word Finder" class="h-10 mx-auto block">
-                                </a>
+                    <form action="/auth/login" method="POST" class="w-full sm:w-96 py-2">
+                        <div class="mb-4">
+                            <label class="mt-1 mb-2" for="email">Email address</label>
+                            <input class="form-input bg-[#F0F7FA] border-0" type="email" name="email" id="emailaddress" required="" placeholder="john@deo.com">
+                        </div>
+
+                        <div class="mb-4 relative">
+                            <div class="flex items-center justify-between">
+                                <label class="mt-1 mb-2" for="password">Password</label>
                             </div>
-
-                            <form action="/auth/login" method="POST" class="w-full sm:w-96 py-2">
-                                <div class="mb-4">
-                                    <label class="mt-1 mb-2" for="email">Email address</label>
-                                    <input class="form-input bg-[#F0F7FA] border-0" type="email" name="email" id="emailaddress" required="" placeholder="john@deo.com">
-                                </div>
-
-                                <div class="mb-4 relative">
-                                    <div class="flex items-center justify-between">
-                                        <label class="mt-1 mb-2" for="password">Password</label>
-                                    </div>
-                                    <input type="password" id="password" name="password" class="form-input bg-[#F0F7FA] border-0" placeholder="*********">
-                                    <div class="absolute right-[12px] bottom-[22px] cursor-pointer toggle-password">
-                                        <i data-lucide="eye" class="w-4 h-4 eyeOpen"></i>
-                                        <i data-lucide="eye-off" class="w-4 h-4 eyeOff"></i>
-                                    </div>
-                                </div>
+                            <input type="password" id="password" name="password" class="form-input bg-[#F0F7FA] border-0" placeholder="*********">
+                            <div class="absolute right-[12px] bottom-[22px] cursor-pointer toggle-password">
+                                <i data-lucide="eye" class="w-4 h-4 eyeOpen"></i>
+                                <i data-lucide="eye-off" class="w-4 h-4 eyeOff"></i>
+                            </div>
+                        </div>
 <!-- <input type="hidden" name="userType" value="admin"> -->
 
-                                <div class="mb-10">
-                                    <div class="flex items-center gap-2">
-                                        <input type="checkbox" class="form-checkbox rounded text-primary" id="checkbox-signin">
-                                        <label class="font-medium my-0" for="checkbox-signin">Remember me</label>
-                                    </div>
-                                </div>
-
-                                <div class="text-center mb-2">
-                                    <button class="py-3 w-full text-white bg-[#007BFF] rounded-lg" type="submit"> Sign In </button>
-                                </div>
-                            </form>
+                        <div class="mb-10">
+                            <div class="flex items-center gap-2">
+                                <input type="checkbox" class="form-checkbox rounded text-primary" id="checkbox-signin">
+                                <label class="font-medium my-0" for="checkbox-signin">Remember me</label>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <!-- <div class="text-center mt-6">
-                        <a href="forget-password.html" class="text-black">Forgot your password?</a>
-                    </div> -->
+
+                        <div class="text-center mb-2">
+                            <button class="py-3 w-full text-white bg-[#007BFF] rounded-lg" type="submit"> Sign In </button>
+                        </div>
+                    </form>
                 </div>
             </div>
+            
+            <!-- <div class="text-center mt-6">
+                <a href="forget-password.html" class="text-black">Forgot your password?</a>
+            </div> -->
         </div>
     </div>
     <% if (messages.error) { %>
