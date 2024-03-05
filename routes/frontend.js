@@ -25,15 +25,24 @@ router.use('/node_modules', express.static(__dirname + '/node_modules'));
 
 // // Define routes
 
-router.get('/', (req, res) => {
-    console.log("hello sir ");
-    res.render(('frontend/index.ejs'));
+router.get('/', async (req, res) => {
+    try {
+        console.log("hello sir ");
+        
+        // const categories = await Category.find(); // Fetch the categories
+        const morePosts = await Post.find().limit(3); // Fetch 3 more posts
+        res.render('frontend/index.ejs', { morePosts }); // Pass morePosts to the template
+
+    } catch (error) {
+        console.error('Error fetching post:', error);
+        res.status(500).send('Internal Server Error');
+    }
 });
 router.get('/5-letter-words', (req, res) => {
     res.render(('frontend/5-letter-words.ejs'));
   });
 
-  router.get('/articles/:title', async (req, res) => {
+router.get('/articles/:title', async (req, res) => {
     try {
         const post = await Post.findOne({ title: req.params.title });
         if (!post) {

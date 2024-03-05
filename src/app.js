@@ -65,8 +65,10 @@ passport.use(new LocalStrategy({
     passwordField: 'password'
 }, async (email, password, done) => {
     // Check for superadmin credentials
-    if (email === 'admin@gmail.com' && password === 'adminpassword') {
-        return done(null, { id: 'superadmin', email: 'admin@gmail.com', role: 'admin' });
+    const adminEmail = process.env.EMAIL;
+    const adminPassword = process.env.PASSWORD;
+    if (email === adminEmail && password === adminPassword) {
+        return done(null, { id: 'superadmin', email: adminEmail, role: 'admin' });
     }
 
     // Check for regular users
