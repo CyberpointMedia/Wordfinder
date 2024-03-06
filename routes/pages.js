@@ -18,8 +18,12 @@ router.use((err, req, res, next) => {
 
 router.get("/", wrapAsync(async (req, res) => {
   try {
+    const allCount = await Page.countDocuments();
+      const publishedCount = await Page.countDocuments({ status: 'Published' });
+      const trashCount = await Page.countDocuments({ status: 'Trash' });
+      const draftCount = await Page.countDocuments({ status: 'Draft' });
     // Fetch pages from the database
-    const pages = await Page.find();
+    const pages = await Page.find(({ status: { $in: ['Published', 'Draft'] } }));
     // Fetch sections for each page
     const pagesWithSections = await Promise.all(
       pages.map(async (page) => {
@@ -28,7 +32,7 @@ router.get("/", wrapAsync(async (req, res) => {
       })
     );
     // Render the pages.ejs file and pass the "pages" variable
-    res.render("section/pages", { pages: pagesWithSections, user: req.user });
+    res.render("section/pages", { pages: pagesWithSections, user: req.user ,allCount, publishedCount, trashCount, draftCount});
   } catch (error) {
     console.error("Error fetching pages:", error);
     res.status(500).send("Internal Server Error");
@@ -131,8 +135,8 @@ router.put('/update-status/:id', async (req, res) => {
       await page.save();
 
       console.log({ message: 'Page status updated successfully' });
-      res.redirect("/admin/pages/");
-  } catch (error) {
+      res.json({ message: 'page status updated successfully' });
+    } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
   }
@@ -225,8 +229,12 @@ router.post("/edit/:id", wrapAsync(async (req, res) => {
 // Route to render all pages
 router.get('/all', async (req, res) => {
   try {
-      const pages = await Page.find();
-      res.render('section/pages', { pages  ,user: req.user});
+    const allCount = await Page.countDocuments();
+      const publishedCount = await Page.countDocuments({ status: 'Published' });
+      const trashCount = await Page.countDocuments({ status: 'Trash' });
+      const draftCount = await Page.countDocuments({ status: 'Draft' });
+      const pages = await Page.find(({ status: { $in: ['Published', 'Draft'] } }));
+      res.render('section/pages', { pages  ,user: req.user ,allCount, publishedCount, trashCount, draftCount});
   } catch (error) {
       console.error(error);
       res.status(500).send('Internal Server Error');
@@ -237,7 +245,11 @@ router.get('/all', async (req, res) => {
 router.get('/published', async (req, res) => {
   try {
       const pages = await Page.find({ status: 'Published' });
-      res.render('section/pages', { pages  ,user: req.user});
+      const allCount = await Page.countDocuments();
+        const publishedCount = await Page.countDocuments({ status: 'Published' });
+        const trashCount = await Page.countDocuments({ status: 'Trash' });
+        const draftCount = await Page.countDocuments({ status: 'Draft' });
+      res.render('section/pages', { pages  ,user: req.user ,allCount, publishedCount, trashCount, draftCount});
   } catch (error) {
       console.error(error);
       res.status(500).send('Internal Server Error');
@@ -248,9 +260,23 @@ router.get('/published', async (req, res) => {
 router.get('/trash', async (req, res) => {
   try {
       const pages = await Page.find({ status: 'Trash' });
-      res.render('section/pages', { pages  ,user: req.user});
+      const allCount = await Page.countDocuments();
+      const publishedCount = await Page.countDocuments({ status: 'Published' });
+      const trashCount = await Page.countDocuments({ status: 'Trash' });
+      const draftCount = await Page.countDocuments({ status: 'Draft' });
+      res.render('section/pages', { pages  ,user: req.user ,allCount, publishedCount, trashCount, draftCount});
   } catch (error) {
       console.error(error);
+      res.status(500).send('Internal Server Error');
+  }
+});
+router.delete('/delete/:id', async (req, res) => {
+  try {
+      console.log('Delete Page:', req.params.id);
+      await Page.findByIdAndDelete(req.params.id);
+      res.redirect('/admin/pages/trash');
+  } catch (error) {
+      console.error('Error deleting post:', error);
       res.status(500).send('Internal Server Error');
   }
 });
@@ -259,7 +285,11 @@ router.get('/trash', async (req, res) => {
 router.get('/draft', async (req, res) => {
   try {
       const pages = await Page.find({ status: 'Draft' });
-      res.render('section/pages', { pages  ,user: req.user});
+      const allCount = await Page.countDocuments();
+      const publishedCount = await Page.countDocuments({ status: 'Published' });
+      const trashCount = await Page.countDocuments({ status: 'Trash' });
+      const draftCount = await Page.countDocuments({ status: 'Draft' });
+      res.render('section/pages', { pages  ,user: req.user, allCount, publishedCount, trashCount, draftCount});
   } catch (error) {
       console.error(error);
       res.status(500).send('Internal Server Error');
