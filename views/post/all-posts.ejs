@@ -68,7 +68,7 @@
                                         
                                         <span class="view"><a href="/articles/<%= post.title %>" class="text-[#2271b1] text-xs">View</a></span>                                    </div>
                                 </td>
-                                <td>Admin<%= post.author %></td>
+                                <td><%= post.author && post.author.username ? post.author.username : 'unknown' %></td>
                                 <td><%= post.category ? post.category.name : 'Uncategorized' %></td>
                                 <td>Published<br> <%= post.date.toISOString().split('T')[0] %> at <%= post.date.toISOString().split('T')[1].split('.')[0] %></td>
                             </tr>

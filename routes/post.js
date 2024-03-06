@@ -66,7 +66,8 @@ router.post('/create', upload.fields([{ name: 'picture__input', maxCount: 1 }, {
     picture: req.files['picture__input'][0].location, // URL of the uploaded thumbnail file on S3
     feature_img: req.files['feature_img'][0].location, // URL of the uploaded feature file on S3
     status: req.body.status,
-    category: req.body.category // Save the category ID
+    category: req.body.category,
+    author: req.user._id
   });
 
   newPost.save()
@@ -81,7 +82,7 @@ router.get('/all', async (req, res) => {
       const publishedCount = await Post.countDocuments({ status: 'Published' });
       const trashCount = await Post.countDocuments({ status: 'Trash' });
       const draftCount = await Post.countDocuments({ status: 'Draft' });
-      const posts = await Post.find({ status: { $in: ['Published', 'Draft'] } }).populate('category');
+      const posts = await Post.find({ status: { $in: ['Published', 'Draft'] } }).populate('category').populate('author');
       res.render('post/all-posts', { allCount, publishedCount, trashCount, draftCount ,posts , user: req.user});
   } catch (error) {
       console.error('Error fetching posts:', error);
@@ -91,8 +92,8 @@ router.get('/all', async (req, res) => {
   
   router.get('/published', async (req, res) => {
     try {
-        const posts = await Post.find({ status: 'Published' });
-        const allCount = await Post.countDocuments();
+      const posts = await Post.find({ status: 'Published' }).populate('author');
+      const allCount = await Post.countDocuments();
         const publishedCount = await Post.countDocuments({ status: 'Published' });
         const trashCount = await Post.countDocuments({ status: 'Trash' });
         const draftCount = await Post.countDocuments({ status: 'Draft' });
@@ -105,8 +106,8 @@ router.get('/all', async (req, res) => {
 
 router.get('/trash', async (req, res) => {
     try {
-        const posts = await Post.find({ status: 'Trash' });
-        const allCount = await Post.countDocuments();
+      const posts = await Post.find({ status: 'Trash' }).populate('author');
+      const allCount = await Post.countDocuments();
         const publishedCount = await Post.countDocuments({ status: 'Published' });
         const trashCount = await Post.countDocuments({ status: 'Trash' });
         const draftCount = await Post.countDocuments({ status: 'Draft' });
@@ -165,6 +166,7 @@ router.get('/draft', async (req, res) => {
     post.description = req.body.description;
     post.status = req.body.status;
     post.category = req.body.category;
+    post.author = req.user._id;
     if (req.files) {
       if (req.files['picture__input']) {
         post.picture = req.files['picture__input'][0].location;

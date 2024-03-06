@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Word Finder</title>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <meta property="og:title" content="<%= post.title %>" />
+    <meta property="og:description" content="Your Page Description" />
+    <meta property="og:image" content="<%= post.feature_img %>" />
+    <meta property="og:url" content="<%= postUrl %>" />
+    <meta name="twitter:image" content="<%= post.feature_img %>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="images/logo-sm.svg">
     <link href="/styles/style.css" rel="stylesheet">
@@ -47,9 +52,8 @@
                         <div class="flex flex-col lg:flex-row lg:items-center lg:space-x-4 my-8">
 
                             <div class="flex items-center hidden md:block">
-                                <img class="rounded-full flex-shrink-0 mr-4 inline-block" src="/images/user-img.svg" alt="#">
                                 <span class="text-xs xl:text-sm">Written by
-                                <a href="javascript:void(0);" class="text-[#007BFF]">Rose Rally</a>
+                                <a href="javascript:void(0);" class="text-[#007BFF]"><%= post.author.username ? post.author.username : 'unknown' %></a>
                                 <svg class="ms-2 inline-block invisible lg:visible" xmlns="http://www.w3.org/2000/svg" width="2" height="24" viewBox="0 0 2 24" fill="none">
                                     <path d="M1 0L0.999999 24" stroke="#747474"/>
                                   </svg>
@@ -83,35 +87,21 @@
                             </span>
                                 <ul class="flex items-center space-x-3 md:ms-4">
                                     <li>
-                                        <a href="javascript:void(0);" class="w-7 h-7 bg-[#F0F7FA] hover:bg-[#DBF4FF] rounded-full inline-block text-center">
-                                            <svg class="mx-auto inline-block leading-5" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                        <a href="<%= facebookShareUrl %>" class="facebook-share-button w-7 h-7 bg-[#F0F7FA] hover:bg-[#DBF4FF] rounded-full inline-block text-center">
+                                           <svg class="mx-auto inline-block leading-5" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
                                             <path d="M9.00586 6.75L9.33914 4.57828H7.25531V3.16898C7.25531 2.57484 7.54641 1.9957 8.47969 1.9957H9.42703V0.146719C9.42703 0.146719 8.56734 0 7.74539 0C6.0293 0 4.90758 1.04016 4.90758 2.92313V4.57828H3V6.75H4.90758V12H7.25531V6.75H9.00586Z" fill="#007BFF"/>
                                           </svg>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0);" class="w-7 h-7 bg-[#F0F7FA] hover:bg-[#DBF4FF] rounded-full inline-block text-center">
-                                            <svg class="mx-auto inline-block leading-5" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
-                                            <g clip-path="url(#clip0_620_127)">
-                                              <path d="M6.0041 3.30871C4.51348 3.30871 3.31113 4.51106 3.31113 6.00168C3.31113 7.49231 4.51348 8.69465 6.0041 8.69465C7.49473 8.69465 8.69707 7.49231 8.69707 6.00168C8.69707 4.51106 7.49473 3.30871 6.0041 3.30871ZM6.0041 7.75246C5.04082 7.75246 4.25332 6.96731 4.25332 6.00168C4.25332 5.03606 5.03848 4.2509 6.0041 4.2509C6.96973 4.2509 7.75488 5.03606 7.75488 6.00168C7.75488 6.96731 6.96738 7.75246 6.0041 7.75246ZM9.43535 3.19856C9.43535 3.54778 9.1541 3.82668 8.80723 3.82668C8.45801 3.82668 8.1791 3.54543 8.1791 3.19856C8.1791 2.85168 8.46035 2.57043 8.80723 2.57043C9.1541 2.57043 9.43535 2.85168 9.43535 3.19856ZM11.2189 3.83606C11.1791 2.99465 10.9869 2.24934 10.3705 1.63528C9.75644 1.02121 9.01113 0.829025 8.16973 0.786838C7.30254 0.737619 4.70332 0.737619 3.83613 0.786838C2.99707 0.826682 2.25176 1.01887 1.63535 1.63293C1.01895 2.24699 0.829102 2.99231 0.786914 3.83371C0.737695 4.7009 0.737695 7.30012 0.786914 8.16731C0.826758 9.00871 1.01895 9.75403 1.63535 10.3681C2.25176 10.9822 2.99473 11.1743 3.83613 11.2165C4.70332 11.2657 7.30254 11.2657 8.16973 11.2165C9.01113 11.1767 9.75644 10.9845 10.3705 10.3681C10.9846 9.75403 11.1768 9.00871 11.2189 8.16731C11.2682 7.30012 11.2682 4.70324 11.2189 3.83606ZM10.0986 9.09778C9.91582 9.55715 9.56191 9.91106 9.10019 10.0962C8.40879 10.3704 6.76816 10.3072 6.0041 10.3072C5.24004 10.3072 3.59707 10.3681 2.90801 10.0962C2.44863 9.9134 2.09473 9.55949 1.90957 9.09778C1.63535 8.40637 1.69863 6.76574 1.69863 6.00168C1.69863 5.23762 1.6377 3.59465 1.90957 2.90559C2.09238 2.44621 2.44629 2.09231 2.90801 1.90715C3.59941 1.63293 5.24004 1.69621 6.0041 1.69621C6.76816 1.69621 8.41113 1.63528 9.10019 1.90715C9.55957 2.08996 9.91348 2.44387 10.0986 2.90559C10.3729 3.59699 10.3096 5.23762 10.3096 6.00168C10.3096 6.76574 10.3729 8.40871 10.0986 9.09778Z" fill="#007BFF"/>
-                                            </g>
-                                            <defs>
-                                              <clipPath id="clip0_620_127">
-                                                <rect width="12" height="12" fill="white"/>
-                                              </clipPath>
-                                            </defs>
-                                          </svg>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);" class="w-7 h-7 bg-[#F0F7FA] hover:bg-[#DBF4FF] rounded-full inline-block text-center">
+                                        <a href="<%= twitterShareUrl %>" class="twitter-share-button w-7 h-7 bg-[#F0F7FA] hover:bg-[#DBF4FF] rounded-full inline-block text-center">
                                             <svg class="mx-auto inline-block leading-5" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
                                             <path d="M10.7665 3.92901C10.7741 4.03561 10.7741 4.14222 10.7741 4.24882C10.7741 7.50007 8.2995 11.2463 3.77665 11.2463C2.38324 11.2463 1.08884 10.8427 0 10.1422C0.197977 10.1651 0.388312 10.1727 0.593906 10.1727C1.74363 10.1727 2.80202 9.78436 3.6472 9.12192C2.56598 9.09907 1.65989 8.39095 1.3477 7.41633C1.5 7.43915 1.65227 7.45439 1.81219 7.45439C2.03299 7.45439 2.25382 7.42392 2.45939 7.37065C1.33249 7.1422 0.487289 6.15236 0.487289 4.95693V4.92649C0.814687 5.10923 1.19543 5.22344 1.59895 5.23865C0.936516 4.79702 0.502523 4.04322 0.502523 3.19043C0.502523 2.73358 0.624328 2.3148 0.837539 1.94932C2.0482 3.4417 3.86801 4.4163 5.90859 4.52292C5.87053 4.34018 5.84768 4.14984 5.84768 3.95948C5.84768 2.60414 6.94413 1.50009 8.30707 1.50009C9.01519 1.50009 9.65477 1.79704 10.104 2.27674C10.6598 2.17015 11.1928 1.96455 11.6649 1.68283C11.4822 2.25391 11.0939 2.73361 10.5837 3.03815C11.0786 2.98488 11.5583 2.84779 12 2.65746C11.665 3.14475 11.2462 3.57874 10.7665 3.92901Z" fill="#007BFF"/>
                                           </svg>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0);" class="w-7 h-7 bg-[#F0F7FA] hover:bg-[#DBF4FF] rounded-full inline-block text-center">
+                                        <a href="<%= linkedinShareUrl %>" class="linkedin-share-button w-7 h-7 bg-[#F0F7FA] hover:bg-[#DBF4FF] rounded-full inline-block text-center">
                                             <svg class="mx-auto inline-block leading-5" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
                                             <g clip-path="url(#clip0_620_129)">
                                               <path d="M3.10031 11.2498H0.923438V4.23966H3.10031V11.2498ZM2.0107 3.28341C1.31461 3.28341 0.75 2.70684 0.75 2.01075C0.75 1.67639 0.882824 1.35572 1.11925 1.1193C1.35568 0.882869 1.67634 0.750046 2.0107 0.750046C2.34506 0.750046 2.66573 0.882869 2.90215 1.1193C3.13858 1.35572 3.27141 1.67639 3.27141 2.01075C3.27141 2.70684 2.70656 3.28341 2.0107 3.28341ZM11.2477 11.2498H9.07547V7.83731C9.07547 7.02403 9.05906 5.98106 7.94367 5.98106C6.81187 5.98106 6.63844 6.86465 6.63844 7.77872V11.2498H4.46391V4.23966H6.55172V5.19591H6.58219C6.87281 4.64512 7.58273 4.06387 8.64188 4.06387C10.845 4.06387 11.25 5.51466 11.25 7.39903V11.2498H11.2477Z" fill="#007BFF"/>
@@ -137,7 +127,6 @@
                     </p>
                 </div>
                 <!-- left col end -->
-
                 <!-- right col start -->
                 <div class="w-full md:w-1/3 ">
                     <!-- Word Finders box -->
@@ -206,7 +195,19 @@
         </div>
     </div>
     <!-- content section end -->
-
+    <script>
+        // Get the post title and URL from the server-side code
+        const postTitle = '<%= postTitle %>';
+        const postUrl = '<%= postUrl %>';
+    
+        // Get the share URLs for all platforms
+        const shareUrls = shareButtons(postUrl, postTitle);
+    
+        // Now, you can set the href attribute of each share button to the corresponding URL
+        document.querySelector('.facebook-share-button').href = shareUrls.facebook;
+        document.querySelector('.twitter-share-button').href = shareUrls.twitter;
+        document.querySelector('.linkedin-share-button').href = shareUrls.linkedin;
+    </script>
     <!-- footer start  -->
     <%- (include('../frontend/footer/footer.ejs')) %>
 <!-- footer end  -->

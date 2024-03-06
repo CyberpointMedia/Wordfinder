@@ -34,6 +34,10 @@ const postSchema = new mongoose.Schema({
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category'
+  },
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }
 });
 

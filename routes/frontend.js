@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
         console.log("hello sir ");
         
         // const categories = await Category.find(); // Fetch the categories
-        const morePosts = await Post.find().limit(3); // Fetch 3 more posts
+        const morePosts = await Post.find({ status: 'Published' }).limit(3); // Fetch 3 more posts with a status of 'Published'
         res.render('frontend/index.ejs', { morePosts }); // Pass morePosts to the template
 
     } catch (error) {
@@ -44,13 +44,22 @@ router.get('/5-letter-words', (req, res) => {
 
 router.get('/articles/:title', async (req, res) => {
     try {
-        const post = await Post.findOne({ title: req.params.title });
+        const post = await Post.findOne({ title: req.params.title }).populate('author');
         if (!post) {
             return res.status(404).send('Post not found');
         }
         const categories = await Category.find(); // Fetch the categories
-        const morePosts = await Post.find({ _id: { $ne: post._id } }).limit(3); // Fetch 3 more posts excluding the current one
-        res.render('post/article-details', { post, categories, morePosts}); // Pass the categories and morePosts to the template
+        const morePosts = await Post.find({ status: 'Published' }).limit(3); // Fetch 3 more posts with a status of 'Published'
+        const postUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+
+        // Generate the share URLs for all platforms
+        const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;
+        const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=${encodeURIComponent(post.title)}`;
+        const linkedinShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(postUrl)}&title=${encodeURIComponent(post.title)}`;
+
+        console.log(post.author ? post.author.username : 'unknown'); // Prints the username of the author or 'unknown' if the author doesn't exist
+
+        res.render('post/article-details', { post, categories, morePosts, postTitle: post.title, postUrl, facebookShareUrl, twitterShareUrl, linkedinShareUrl }); // Pass the categories and morePosts to the template
     } catch (error) {
         console.error('Error fetching post:', error);
         res.status(500).send('Internal Server Error');
@@ -58,13 +67,14 @@ router.get('/articles/:title', async (req, res) => {
 });
 router.get('/articles', async (req, res) => {
     try {
-        const posts = await Post.find(); // Fetch all posts from the database
+        const posts = await Post.find({ status: 'Published' }); // Fetch all posts from the database
         res.render('post/articles', { morePosts: posts }); // Render the articles.ejs view with the posts data
     } catch (err) {
         console.error(err);
         res.status(500).send('Server Error');
     }
 });
+
 router.get('/contact', (req, res) => {
     res.render(('frontend/contact.ejs'));
 });

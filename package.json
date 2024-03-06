@@ -44,6 +44,7 @@
     "raphael": "^2.3.0",
     "s3-upload-stream": "^1.0.7",
     "sanitize-html": "^2.11.0",
+    "share-buttons": "^1.9.0",
     "simplebar": "^6.2.5",
     "sitemap": "^7.1.1",
     "sitemap-generator": "^8.5.1",
