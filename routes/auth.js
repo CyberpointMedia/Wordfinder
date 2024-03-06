@@ -6,6 +6,7 @@ const passport = require('passport');
 const wrapAsync = require('../middleware/wrapAsync');
 const router = express.Router();
 const alert =require('alert-node');
+const logUserActivity = require('../middleware/user-activity'); 
 
 
 router.use((err, req, res, next) => {
@@ -32,34 +33,29 @@ router.get('/login', (req, res) => {
     // Render the admin login view
     res.render('auth/login',{ messages: req.flash()});
 });
-// router.post('/login', passport.authenticate('local', {
-//     successRedirect: '/admin/dashboard',
-//     failureRedirect: '/auth/login',
-//     failureFlash: 'Invalid username or password.'
-// }));
-router.post('/login', function(req, res, next) {
-    passport.authenticate('local', function(err, user, info) {
+router.post('/login', logUserActivity('Login'), function(req, res, next) { // Use the logUserActivity middleware in the login route
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { 
+      return next(err); 
+    }
+    if (!user) { 
+      console.log("wrong email or password");
+      req.flash('error', 'Wrong email or password');
+      return res.redirect('/auth/login'); 
+    }
+    req.logIn(user, function(err) {
       if (err) { 
         return next(err); 
       }
-      if (!user) { 
-        console.log("wrong email or password");
-        req.flash('error', 'Wrong email or password');
-        return res.redirect('/auth/login'); 
-      }
-      req.logIn(user, function(err) {
-        if (err) { 
-          return next(err); 
-        }
-        return res.redirect('/admin/dashboard');
-      });
-    })(req, res, next);
-  });
+      return res.redirect('/admin/dashboard');
+    });
+  })(req, res, next);
+});
 
 // Logout route
-router.get('/logout', (req, res) => {
-    req.logout(() => {
-        res.redirect('/'); // Redirect to the home page after logout
-    });
+router.get('/logout', logUserActivity('Logout'), (req, res) => { // Use the logUserActivity middleware in the logout route
+  req.logout(() => {
+      res.redirect('/'); // Redirect to the home page after logout
+  });
 });
 module.exports = router;
