@@ -79,9 +79,16 @@ router.get('/dashboard', wrapAsync(async (req, res) => {
     // Fetch total number of posts
     const totalPosts = await Post.countDocuments();
     const totalPages = await Page.countDocuments();
+    // Fetch posts based on user role
+    let posts;
+    if (req.user.role === 'admin' || req.user.role === 'administrator' || req.user.role === 'author') {
+        posts = await Post.find().populate('author').sort({date: -1}).limit(5);
+    } else if (req.user.role === 'editor') {
+        posts = await Post.find({ author: req.user._id }).populate('author').sort({date: -1}).limit(5);
+    }
 
     // Render dashboard
-    res.render('admin/dashboard', { users, totalPosts ,totalPages, user: req.user });
+    res.render('admin/dashboard', { users, totalPosts ,totalPages, posts, user: req.user });
 }));
 
 // View all users
@@ -102,10 +109,123 @@ router.get('/all-users', ensureAdmin, async (req, res) => {
         subscriber: subscriberCount || 0,
         author: authorCount || 0,
         editor: editorCount || 0,
-        administrator: administratorCount || 0
+        administrator: administratorCount || 0,
+        total: (subscriberCount || 0) + (authorCount || 0) + (editorCount || 0) + (administratorCount || 0)
+
     };
 
     res.render('admin/all-users', {users: users || [], totalCount ,user: req.user});
+});
+// Route for subscribers
+router.get('/all-users/subscriber', ensureAdmin, async (req, res) => {
+    let subscriberCount, authorCount, editorCount, administratorCount;
+    try {
+        const users = await User.find({ role: 'subscriber' });
+        subscriberCount = await User.countDocuments({ role: 'subscriber' });
+        authorCount = await User.countDocuments({ role: 'author' });
+        editorCount = await User.countDocuments({ role: 'editor' });
+        administratorCount = await User.countDocuments({ role: 'administrator' });
+        const totalCount = {
+            subscriber: subscriberCount || 0,
+            author: authorCount || 0,
+            editor: editorCount || 0,
+            administrator: administratorCount || 0,
+            total: (subscriberCount || 0) + (authorCount || 0) + (editorCount || 0) + (administratorCount || 0)
+        };
+        res.render('admin/all-users', { users, totalCount, user: req.user });
+    } catch (err) {
+        console.error(err);
+    }
+});
+
+// Route for editors
+router.get('/all-users/editor', ensureAdmin, async (req, res) => {
+    let subscriberCount, authorCount, editorCount, administratorCount;
+    try {
+        const users = await User.find({ role: 'editor' });
+        subscriberCount = await User.countDocuments({ role: 'subscriber' });
+        authorCount = await User.countDocuments({ role: 'author' });
+        editorCount = await User.countDocuments({ role: 'editor' });
+        administratorCount = await User.countDocuments({ role: 'administrator' });
+        const totalCount = {
+            subscriber: subscriberCount || 0,
+            author: authorCount || 0,
+            editor: editorCount || 0,
+            administrator: administratorCount || 0,
+            total: (subscriberCount || 0) + (authorCount || 0) + (editorCount || 0) + (administratorCount || 0)
+        };
+        res.render('admin/all-users', { users, totalCount, user: req.user });
+    } catch (err) {
+        console.error(err);
+    }
+});
+
+// Route for administrators
+router.get('/all-users/administrator', ensureAdmin, async (req, res) => {
+    let subscriberCount, authorCount, editorCount, administratorCount;
+    try {
+        const users = await User.find({ role: 'administrator' });
+        subscriberCount = await User.countDocuments({ role: 'subscriber' });
+        authorCount = await User.countDocuments({ role: 'author' });
+        editorCount = await User.countDocuments({ role: 'editor' });
+        administratorCount = await User.countDocuments({ role: 'administrator' });
+        const totalCount = {
+            subscriber: subscriberCount || 0,
+            author: authorCount || 0,
+            editor: editorCount || 0,
+            administrator: administratorCount || 0,
+            total: (subscriberCount || 0) + (authorCount || 0) + (editorCount || 0) + (administratorCount || 0)
+        };
+        res.render('admin/all-users', { users, totalCount, user: req.user });
+    } catch (err) {
+        console.error(err);
+    }
+});
+// Route for authors
+router.get('/all-users/author', ensureAdmin, async (req, res) => {
+    let authorCount, subscriberCount, editorCount, administratorCount;
+    try {
+        const users = await User.find({ role: 'author' });
+        subscriberCount = await User.countDocuments({ role: 'subscriber' });
+        authorCount = await User.countDocuments({ role: 'author' });
+        editorCount = await User.countDocuments({ role: 'editor' });
+        administratorCount = await User.countDocuments({ role: 'administrator' });
+        const totalCount = {
+            subscriber: subscriberCount || 0,
+            author: authorCount || 0,
+            editor: editorCount || 0,
+            administrator: administratorCount || 0,
+            total: (subscriberCount || 0) + (authorCount || 0) + (editorCount || 0) + (administratorCount || 0)
+        };
+        res.render('admin/all-users', { users, totalCount, user: req.user });
+    } catch (err) {
+        console.error(err);
+    }
+});
+
+// Route for editors
+router.get('/all-users/editor', ensureAdmin, async (req, res) => {
+    const users = await User.find({ role: 'editor' });
+    res.render('admin/all-users', { users, totalCount ,user: req.user });
+});
+
+// Route for administrators
+router.get('/all-users/administrator', ensureAdmin, async (req, res) => {
+    const users = await User.find({ role: 'administrator' });
+    res.render('admin/all-users', { users, totalCount ,user: req.user });
+});
+
+
+// Render widgets view
+router.get('/appearance/widgets', ensureAdmin, (req, res) => {
+    res.render('appearance/widgets', { user: req.user });
+});
+
+// Render nav-menu view
+router.get('/appearance/nav-menu', ensureAdmin, async (req, res) => {
+    const posts = await Post.find({ status: 'Published' });
+    const pages = await Page.find({ status: 'Published' });
+    res.render('appearance/nav-menus', { user: req.user, posts, pages });
 });
 
 // Logout route

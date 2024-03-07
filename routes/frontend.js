@@ -42,11 +42,11 @@ router.get('/5-letter-words', (req, res) => {
     res.render(('frontend/5-letter-words.ejs'));
   });
 
-router.get('/articles/:title', async (req, res) => {
+  router.get('/articles/:title', async (req, res) => {
     try {
         const post = await Post.findOne({ title: req.params.title }).populate('author');
-        if (!post) {
-            return res.status(404).send('Post not found');
+        if (!post || !post.author) {
+            return res.status(404).send('Post or author not found');
         }
         const categories = await Category.find(); // Fetch the categories
         const morePosts = await Post.find({ status: 'Published' }).limit(3); // Fetch 3 more posts with a status of 'Published'

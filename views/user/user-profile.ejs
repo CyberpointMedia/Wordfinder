@@ -44,9 +44,9 @@
                         <div class="sm:col-span-2">
                             <img id='preview_img' class="h-16 w-16 object-cover rounded-full" src="<%= user.image ? user.image : '/images/admin.svg' %>" alt="user image not found" />
                                                         <div class="block relative">
-                                                            <br>
-                                <span class="py-2 w-40 text-black bg-[#DBF4FF] rounded-lg">Choose profile photo</span>
-                                <input type="file" name="image" onchange="loadFile(event)" class="block w-28 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0" />                            </div>
+                                                    
+                                                            <span class="absolute inset-0 bg-white opacity-100 w-40 top-4 text-black">Choose profile photo</span>
+                                                            <input type="file" name="image" onchange="loadFile(event)" class="block w-28 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0" />                            </div>
                         </div>
                     </div>
 

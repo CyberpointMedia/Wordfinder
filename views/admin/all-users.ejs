@@ -18,12 +18,11 @@
                                                     <a href="/admin/register" class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add New User</a>
                                                 </div>
                                                 <ul class="subsubsub flex flex-wrap space-x-2 mb-6">
-                                                    <li class="all"><a href="all-pages.html" class="current text-black" aria-current="page">All <span class="count">(1)</span></a> |</li>
-                                                    <li class="publish"><a href="published.html" class="text-black">Subscriber <span class="count">(<%= totalCount.subscriber %>)</span></a></li>
-                                                    <li class="publish"><a href="published.html" class="text-black">Contributor <span class="count">(<%= totalCount.contributor %>)</span></a></li>
-                                                    <li class="publish"><a href="published.html" class="text-black">Author <span class="count">(<%= totalCount.author %>)</span></a></li>
-                                                    <li class="publish"><a href="published.html" class="text-black">Editor <span class="count">(<%= totalCount.editor %>)</span></a></li>
-                                                    <li class="publish"><a href="published.html" class="text-black">Administrator <span class="count">(<%= totalCount.administrator %>)</span></a></li>
+                                                    <li class="all"><a href="/admin/all-users" class="current text-black" aria-current="page">All <span class="count">(<%= totalCount.total %>)</span></a> |</li>
+                                                    <li class="publish"><a href="/admin/all-users/subscriber" class="text-black">Subscriber <span class="count">(<%= totalCount.subscriber %>)</span></a></li>
+                                                    <li class="publish"><a href="/admin/all-users/author" class="text-black">Author <span class="count">(<%= totalCount.author %>)</span></a></li>
+                                                    <li class="publish"><a href="/admin/all-users/editor" class="text-black">Editor <span class="count">(<%= totalCount.editor %>)</span></a></li>
+                                                    <li class="publish"><a href="/admin/all-users/administrator" class="text-black">Administrator <span class="count">(<%= totalCount.administrator %>)</span></a></li>
                                                 </ul>
 
                                                 <!-- table start here -->

@@ -104,42 +104,22 @@
                                 </div>
                                 <div id="hs-basic-with-title-and-arrow-stretched-collapse-one " class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 bg-[#f0f7fa] cardBody " aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one ">
                                     <div class="px-5 py-8 ">
-                                        <div class="flex justify-between gap-x-3 mb-5 pb-4 border-b">
-                                            <img class="inline-block h-9 w-9 rounded-full" src="/images/img1.jpg" alt="Image Description">
-                                            <div class="grow">
-                                                <div class="flex mb-2 justify-between">
-                                                    <p class="font-medium text-[#393939]">Admin
-                                                        <small class="text-gray-400">admin@gmail.com</small>
-                                                    </p>
-                                                </div>
-                                                <a href="javascript:void(0);" class="text-[#007bff] hover:opacity-50 underline hover:underline">Lorem Ipsum is simply dummy text of the printing and typesetting</a>                                                <div class="mt-2 text-sm text-gray-400 justify-start flex items-center"><i data-lucide="calendar" class="inline-block w-[14px] h-[14px] me-2"></i>02/01/2024</div>
-                                            </div>
-                                        </div>
-
-                                        <div class="flex justify-between gap-x-3 mb-5 pb-4 border-b">
-                                            <img class="inline-block h-9 w-9 rounded-full" src="/images/img2.jpg" alt="Image Description">
-                                            <div class="grow">
-                                                <div class="flex mb-2 justify-between">
-                                                    <p class="font-medium text-[#393939]">Admin
-                                                        <small class="text-gray-400">admin@gmail.com</small>
-                                                    </p>
-                                                </div>
-                                                <a href="javascript:void(0);" class="text-[#007bff] hover:opacity-50 underline hover:underline">Lorem Ipsum is simply dummy text of the printing and typesetting</a>
-                                                <div class="mt-2 text-sm text-gray-400 justify-start flex items-center"><i data-lucide="calendar" class="inline-block w-[14px] h-[14px] me-2"></i>25/12/2023</div>
-                                            </div>
-                                        </div>
-                                        <div class="flex justify-between gap-x-3">
-                                            <img class="inline-block h-9 w-9 rounded-full" src="/images/img3.jpg" alt="Image Description">
-                                            <div class="grow">
-                                                <div class="flex mb-2 justify-between">
-                                                    <p class="font-medium text-[#393939]">Admin
-                                                        <small class="text-gray-400">admin@gmail.com</small>
-                                                    </p>
-                                                </div>
-                                                <a href="javascript:void(0);" class="text-[#007bff] hover:opacity-50 underline hover:underline">Lorem Ipsum is simply dummy text of the printing and typesetting</a>
-                                                <div class="mt-2 text-sm text-gray-400 justify-start flex items-center"><i data-lucide="calendar" class="inline-block w-[14px] h-[14px] me-2"></i>28/12/2023</div>
-                                            </div>
-                                        </div>
+                                        <% posts.forEach(post => { %>
+    <% if (post.author) { %>
+        <div class="flex justify-between gap-x-3 mb-5 pb-4 border-b">
+            <img class="inline-block h-9 w-9 rounded-full" src="<%= user.image ? user.image : '/images/img1.jpg' %>" alt="Image Description">
+            <div class="grow">
+                <div class="flex mb-2 justify-between">
+                    <p class="font-medium text-[#393939]"><%= post.author.username %>
+                        <small class="text-gray-400"><%= post.author.email %></small>
+                    </p>
+                </div>
+                <a href="javascript:void(0);" class="text-[#007bff] hover:opacity-50 underline hover:underline"><%= post.title %></a>
+                <div class="mt-2 text-sm text-gray-400 justify-start flex items-center"><i data-lucide="calendar" class="inline-block w-[14px] h-[14px] me-2"></i><%= post.date.toDateString() %></div>
+            </div>
+        </div>
+    <% } %>
+<% }) %>
                                     </div>
                                 </div>
                             </div>
