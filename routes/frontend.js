@@ -91,6 +91,7 @@ router.get('/words-with-X-and-Q', (req, res) => {
 // Handle POST request when search button is clicked
 router.post('/search', wrapAsync(async (req, res) => {
   const letters = req.body.letters;
+ const morePosts = await Post.find({ status: 'Published' }).limit(3); 
   const startsWith = req.body.starts_with || '';
   const endsWith = req.body.end_with || '';
   const contains = req.body.contains || ''; 
@@ -138,7 +139,7 @@ router.post('/search', wrapAsync(async (req, res) => {
           });
 
           // Render the words_with_x_and_q.ejs template with the grouped data
-          res.render('frontend/words-with-X-and-Q.ejs', { letters, wordsByLength ,startsWith ,endsWith, contains,specifiedLength,totalWordsByLength}); // Pass 'letters' and 'wordsByLength' variables here
+          res.render('frontend/words-with-X-and-Q.ejs', { letters,morePosts, wordsByLength ,startsWith ,endsWith, contains,specifiedLength,totalWordsByLength}); // Pass 'letters' and 'wordsByLength' variables here
       });
   }).on('error', (error) => {
       console.error('Error:', error);

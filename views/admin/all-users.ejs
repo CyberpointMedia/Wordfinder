@@ -58,12 +58,19 @@
                                                                 </td>
                                                                 <td>
                                                                     <div class="flex items-start">
-                                                                        <img alt="#" src="/images/admin.svg" class="avatar avatar-32 photo inline-block mr-2" height="32" width="32" loading="lazy" decoding="async">
-                                                                        <div class="">
+                                                                        <img alt="#" src="<%= user && user.image ? user.image : '/images/admin.svg' %>" class="avatar avatar-32 photo inline-block mr-2" height="32" width="32" loading="lazy" decoding="async">                                                                        <div class="">
                                                                             <strong><a class="row-title text-[#2271b1] text-sm" href="javascript:void(0)"><%= user.username %></a></strong>
 
-                                                                            <div class="row-actions mt-1"><span class="edit"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">Edit</a> | </span>
-                                                                                <span class="view"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">View</a></span>
+                                                                            <div class="row-actions mt-1">
+                                                                                <span class="edit">
+                                                                                    <a href="/admin/edit-profile/<%= user._id %>" class="text-[#2271b1] text-xs">Edit</a> | 
+                                                                                </span>
+                                                                                <span class="view">
+                                                                                    <a href="/admin/edit-profile/<%= user._id %>" class="text-[#2271b1] text-xs">View</a> |
+                                                                                </span>
+                                                                                <span>
+                                                                                    <a href="/admin/delete-profile/<%= user._id %>" class="text-[#2271b1] text-xs">Delete</a>
+                                                                                </span>
                                                                             </div>
                                                                         </div>
                                                                     </div>

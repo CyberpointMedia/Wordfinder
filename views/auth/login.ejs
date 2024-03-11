@@ -11,7 +11,7 @@
                             <img src="/images/logo-lg.svg" alt="Word Finder" class="h-10 mx-auto block">
                         </a>
                     </div>
-
+<main>
                     <form action="/auth/login" method="POST" class="w-full sm:w-96 py-2">
                         <div class="mb-4">
                             <label class="mt-1 mb-2" for="email">Email address</label>
@@ -22,7 +22,7 @@
                             <div class="flex items-center justify-between">
                                 <label class="mt-1 mb-2" for="password">Password</label>
                             </div>
-                            <input type="password" id="password" name="password" class="form-input bg-[#F0F7FA] border-0" placeholder="*********">
+                            <input type="password" id="password" name="password" required="" class="form-input bg-[#F0F7FA] border-0" placeholder="*********">
                             <div class="absolute right-[12px] bottom-[22px] cursor-pointer toggle-password">
                                 <i data-lucide="eye" class="w-4 h-4 eyeOpen"></i>
                                 <i data-lucide="eye-off" class="w-4 h-4 eyeOff"></i>
@@ -41,19 +41,19 @@
                             <button class="py-3 w-full text-white bg-[#007BFF] rounded-lg" type="submit"> Sign In </button>
                         </div>
                     </form>
+                    <% if (error) { %>
+                        <script>
+                            alert("<%= error %>");
+                        </script>
+                        <% } %>
+                </main>
                 </div>
             </div>
-            
             <!-- <div class="text-center mt-6">
                 <a href="forget-password.html" class="text-black">Forgot your password?</a>
             </div> -->
         </div>
     </div>
-    <% if (messages.error) { %>
-    <script>
-      alert("<%= messages.error %>");
-    </script>
-<% } %>
     <%- include('../script/script.ejs') %>
 </body>
 </html>

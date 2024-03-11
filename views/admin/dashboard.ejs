@@ -114,7 +114,7 @@
                         <small class="text-gray-400"><%= post.author.email %></small>
                     </p>
                 </div>
-                <a href="javascript:void(0);" class="text-[#007bff] hover:opacity-50 underline hover:underline"><%= post.title %></a>
+                <a href="/articles/<%= post.title %>" class="text-[#007bff] hover:opacity-50 underline hover:underline"><%= post.title %></a>
                 <div class="mt-2 text-sm text-gray-400 justify-start flex items-center"><i data-lucide="calendar" class="inline-block w-[14px] h-[14px] me-2"></i><%= post.date.toDateString() %></div>
             </div>
         </div>

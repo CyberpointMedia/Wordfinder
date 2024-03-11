@@ -22,7 +22,8 @@
                     <div class="grid sm:grid-cols-3">
                         <label class="mt-1 mb-2" for="userName1">Username</label>
                         <div class="sm:col-span-2">
-                            <input type="text" disabled class="form-input bg-[#F0F7FA] border-0" id="userName1" name="Username" value="<%= user ? user.username : '' %>">                            <p class="mt-2">Username cannot be changed.</p>
+                            <input type="text" readonly class="form-input bg-[#F0F7FA] border-0" id="userName1" name="Username" value="<%= user.email === process.env.EMAIL ? 'Mr. Superadmin' : user.username %>">
+                      <p class="mt-2">Username cannot be changed.</p>
                         </div>
                     </div>
                     <div class="grid sm:grid-cols-3">
@@ -49,7 +50,6 @@
                                                             <input type="file" name="image" onchange="loadFile(event)" class="block w-28 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0" />                            </div>
                         </div>
                     </div>
-
                     <div class="grid sm:grid-cols-3">
                         <label class="mt-1 mb-2" for="password">New Password</label>
                         <div class="sm:col-span-2">

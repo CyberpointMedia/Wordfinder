@@ -7,10 +7,12 @@ const { ObjectId } = mongoose.Types;
 const router = express.Router();
 const { parse } = require('node-html-parser');
 const wrapAsync = require("../middleware/wrapAsync");
+const methodOverride = require('method-override');
 
 // Use middleware to parse JSON and URL-encoded form data
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
+router.use(methodOverride('_method'));
 router.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(404).render('not-found/page-not-found.ejs');
@@ -63,6 +65,7 @@ router.post("/create", wrapAsync(async (req, res) => {
       page_name,
       sections,
       content,
+      status,
       seoTitle,
       seoMetaDescription,
       searchEngines,
@@ -71,10 +74,14 @@ router.post("/create", wrapAsync(async (req, res) => {
       breadcrumbsTitle,
       canonicalURL,
     } = req.body;
+       // Check if a page with the same name already exists
+       const existingPage = await Page.findOne({ page_name: page_name });
+       if (existingPage) {
+         return res.status(400).send("A page with this name already exists");
+       }
 
     // Ensure that sections is an array before attempting to map over it
-    let cleanedSections = Array.isArray(sections) ? sections : [];
-
+    let cleanedSections = Array.isArray(sections) ? sections : [sections];
     // If sections is a string, attempt to parse it as JSON
     if (typeof sections === 'string') {
       try {
@@ -99,6 +106,7 @@ router.post("/create", wrapAsync(async (req, res) => {
     const newPage = new Page({
       page_name,
       content,
+      status,
       sections: sectionObjectIds,
       seoTitle,
       metaDescription: seoMetaDescription,
@@ -179,6 +187,12 @@ router.post("/edit/:id", wrapAsync(async (req, res) => {
       canonicalURL,
     } = req.body;
 
+     // Check if a page with the same name already exists
+     const existingPage = await Page.findOne({ page_name: page_name, _id: { $ne: id } });
+     if (existingPage) {
+       return res.status(400).send("A page with this name already exists");
+     }
+
     // Ensure that sections is an array before attempting to map over it
     let cleanedSections = Array.isArray(sections) ? sections : [];
 
@@ -215,31 +229,17 @@ router.post("/edit/:id", wrapAsync(async (req, res) => {
       metaRobots,
       breadcrumbsTitle,
       canonicalURL,
+
     }, { new: true });
 
     console.log("Updated Page:", updatedPage);
 
-    res.redirect("/admin/pages/"); // Redirect to the pages route after updating the page
+    res.redirect("/admin/pages"); // Redirect to the pages route after updating the page
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
   }
 }));
-
-// Route to render all pages
-router.get('/all', async (req, res) => {
-  try {
-    const allCount = await Page.countDocuments();
-      const publishedCount = await Page.countDocuments({ status: 'Published' });
-      const trashCount = await Page.countDocuments({ status: 'Trash' });
-      const draftCount = await Page.countDocuments({ status: 'Draft' });
-      const pages = await Page.find(({ status: { $in: ['Published', 'Draft'] } }));
-      res.render('section/pages', { pages  ,user: req.user ,allCount, publishedCount, trashCount, draftCount});
-  } catch (error) {
-      console.error(error);
-      res.status(500).send('Internal Server Error');
-  }
-});
 
 // Route to render published pages
 router.get('/published', async (req, res) => {

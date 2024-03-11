@@ -31,7 +31,9 @@ router.post('/register', wrapAsync(async (req, res) => {
 router.get('/login', (req, res) => {
     console.log("auth.js login get ");
     // Render the admin login view
-    res.render('auth/login',{ messages: req.flash()});
+    const error = req.query.error;
+
+    res.render('auth/login',{error});
 });
 router.post('/login', logUserActivity('Login'), function(req, res, next) { // Use the logUserActivity middleware in the login route
   passport.authenticate('local', function(err, user, info) {
@@ -40,8 +42,7 @@ router.post('/login', logUserActivity('Login'), function(req, res, next) { // Us
     }
     if (!user) { 
       console.log("wrong email or password");
-      req.flash('error', 'Wrong email or password');
-      return res.redirect('/auth/login'); 
+      return res.redirect('/auth/login?error=Wrong%20email%20or%20password'); 
     }
     req.logIn(user, function(err) {
       if (err) { 

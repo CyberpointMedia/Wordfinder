@@ -24,7 +24,6 @@ router.get('/register', ensureAdmin ,(req, res) => {
         res.status(403).send('Forbidden');
     }
 });
-
 // Route to handle user profile creation
 router.post('/create-profile', ensureAdmin , async (req, res) => {
     console.log("register post request call", req.body);
@@ -71,6 +70,52 @@ router.post('/create-profile', ensureAdmin , async (req, res) => {
     }
 });
 
+// Route to show the edit profile form
+router.get('/edit-profile/:id', ensureAdmin, async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        res.render('admin/edit-profile.ejs', { user });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('An error occurred');
+    }
+});
+
+// Route to handle profile updates
+router.post('/edit-profile/:id', ensureAdmin, async (req, res) => {
+    try {
+        const updates = {
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password,
+            website: req.body.website,
+            role: req.body.role,
+            sendNotification: req.body.sendNotification === 'on'
+        };
+
+        // Don't update the password if it wasn't provided
+        if (req.body.password) {
+            updates.password = await bcrypt.hash(req.body.password, 10);
+        }
+
+        await User.findByIdAndUpdate(req.params.id, updates);
+        res.redirect('/admin/all-users');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('An error occurred');
+    }
+});
+// Route to handle profile deletion
+// Route to handle profile deletion
+router.get('/delete-profile/:id', ensureAdmin, async (req, res) => {
+    try {
+        await User.findByIdAndDelete(req.params.id);
+        res.redirect('/admin/all-users');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('An error occurred');
+    }
+});
 // Admin dashboard
 
 router.get('/dashboard', wrapAsync(async (req, res) => {
@@ -213,19 +258,6 @@ router.get('/all-users/editor', ensureAdmin, async (req, res) => {
 router.get('/all-users/administrator', ensureAdmin, async (req, res) => {
     const users = await User.find({ role: 'administrator' });
     res.render('admin/all-users', { users, totalCount ,user: req.user });
-});
-
-
-// Render widgets view
-router.get('/appearance/widgets', ensureAdmin, (req, res) => {
-    res.render('appearance/widgets', { user: req.user });
-});
-
-// Render nav-menu view
-router.get('/appearance/nav-menu', ensureAdmin, async (req, res) => {
-    const posts = await Post.find({ status: 'Published' });
-    const pages = await Page.find({ status: 'Published' });
-    res.render('appearance/nav-menus', { user: req.user, posts, pages });
 });
 
 // Logout route

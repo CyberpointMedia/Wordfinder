@@ -25,6 +25,8 @@ const editorRoutes = require('../routes/editor');
 const pagesRoutes = require('../routes/pages');  
 const frontendRoutes = require('../routes/frontend'); 
 const libraryRoutes = require('../routes/library'); 
+const appearanceRoutes = require('../routes/appearance');
+
 const { ensureAdminOrEditor , ensureAdmin, ensureEditor, ensureAuthor } = require('../middleware/authMiddleware');
 const app = express();
 const port = process.env.PORT;
@@ -41,7 +43,6 @@ app.set('views', path.join(__dirname, '../views'));  // Adjusted path
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, '../public')));  // Adjusted path
 app.use('/admin/node_modules', express.static(path.join(__dirname, '../node_modules')));  // Adjusted path
-
 app.use(methodOverride('_method'));
 
 app.use(session({
@@ -68,7 +69,7 @@ passport.use(new LocalStrategy({
     const adminEmail = process.env.EMAIL;
     const adminPassword = process.env.PASSWORD;
     if (email === adminEmail && password === adminPassword) {
-        return done(null, { id: 'superadmin', email: adminEmail, role: 'admin' });
+        return done(null, { id: 'superadmin', email: adminEmail, role: 'admin', username: 'Mr. Superadmin' });
     }
 
     // Check for regular users
@@ -146,7 +147,7 @@ app.use('/user', userRoutes);
 app.use('/admin', ensureAdminOrEditor, adminRoutes);
 app.use('/post', ensureAdminOrEditor, postRoutes);
 app.use('/library', ensureAdminOrEditor, libraryRoutes);
-
+app.use('/appearance', appearanceRoutes);
 // Editor can access these routes
 app.use('/admin/section', ensureEditor, sectionRoutes);
 app.use('/admin/pages', ensureEditor, pagesRoutes);

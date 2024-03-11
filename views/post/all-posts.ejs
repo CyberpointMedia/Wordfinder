@@ -70,7 +70,7 @@
                                 </td>
                                 <td><%= post.author && post.author.username ? post.author.username : 'unknown' %></td>
                                 <td><%= post.category ? post.category.name : 'Uncategorized' %></td>
-                                <td>Published<br> <%= post.date.toISOString().split('T')[0] %> at <%= post.date.toISOString().split('T')[1].split('.')[0] %></td>
+                                <td><%= post.status %><br> <%= post.date.toISOString().split('T')[0] %> at <%= post.date.toISOString().split('T')[1].split('.')[0] %></td>
                             </tr>
                             <% }) %>
                         </tbody>

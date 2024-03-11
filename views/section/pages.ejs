@@ -20,7 +20,7 @@
 
 
         <ul class="subsubsub flex flex-wrap space-x-2 mb-6">
-            <li class="all"><a href="/admin/pages/all" class="current text-black" aria-current="page">All <span class="count">(<%= allCount %>)</span></a> |</li>
+            <li class="all"><a href="/admin/pages" class="current text-black" aria-current="page">All <span class="count">(<%= allCount %>)</span></a> |</li>
             <li class="publish"><a href="/admin/pages/published" class="text-black">Published <span class="count">(<%= publishedCount %>)</span></a> |</li>
             <li class="trash"><a href="/admin/pages/trash" class="text-black">Trash <span class="count">(<%= trashCount %>)</span></a> |</li>
             <li class="draft"><a href="/admin/pages/draft" class="text-black">Draft <span class="count">(<%= draftCount %>)</span></a></li>            
@@ -78,7 +78,7 @@
                                 <%= new Date(date).toLocaleString('en-US', options) %>
                             <% } %>
                             <td>Admin</td>
-                            <td>Published<br> <%= formatDate(page.date) %></td>
+                            <td><%= page.status %><br> <%= formatDate(page.date) %></td>
                         </tr>
                     <% }); %>
                 </tbody>
