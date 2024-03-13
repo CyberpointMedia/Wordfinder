@@ -26,7 +26,7 @@ const pagesRoutes = require('../routes/pages');
 const frontendRoutes = require('../routes/frontend'); 
 const libraryRoutes = require('../routes/library'); 
 const appearanceRoutes = require('../routes/appearance');
-
+const footerRoutes = require('../routes/footer');
 const { ensureAdminOrEditor , ensureAdmin, ensureEditor, ensureAuthor } = require('../middleware/authMiddleware');
 const app = express();
 const port = process.env.PORT;
@@ -148,6 +148,7 @@ app.use('/admin', ensureAdminOrEditor, adminRoutes);
 app.use('/post', ensureAdminOrEditor, postRoutes);
 app.use('/library', ensureAdminOrEditor, libraryRoutes);
 app.use('/appearance', appearanceRoutes);
+app.use('/footer', footerRoutes);
 // Editor can access these routes
 app.use('/admin/section', ensureEditor, sectionRoutes);
 app.use('/admin/pages', ensureEditor, pagesRoutes);

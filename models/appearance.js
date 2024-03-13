@@ -1,7 +1,6 @@
 // models/appearance.js
 
 const mongoose = require('mongoose');
-
 const AppearanceSchema = new mongoose.Schema({
     menuName: {
         type: String,
@@ -20,5 +19,4 @@ const AppearanceSchema = new mongoose.Schema({
         text: String
     }]
 });
-
 module.exports = mongoose.model('Appearance', AppearanceSchema);

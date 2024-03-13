@@ -24,6 +24,7 @@ router.get('/register', ensureAdmin ,(req, res) => {
         res.status(403).send('Forbidden');
     }
 });
+
 // Route to handle user profile creation
 router.post('/create-profile', ensureAdmin , async (req, res) => {
     console.log("register post request call", req.body);
@@ -105,7 +106,6 @@ router.post('/edit-profile/:id', ensureAdmin, async (req, res) => {
         res.status(500).send('An error occurred');
     }
 });
-// Route to handle profile deletion
 // Route to handle profile deletion
 router.get('/delete-profile/:id', ensureAdmin, async (req, res) => {
     try {
