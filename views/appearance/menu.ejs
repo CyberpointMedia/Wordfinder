@@ -4,28 +4,23 @@
         <!-- sidebar start here -->
         <div class="flex overflow-hidden">
             <%- include('../sidenav/sidenav.ejs') %>
-                <div class="page-content bg-white">
+                <div class="bg-white page-content">
                     <%- include('../header/header.ejs') %>
 
                         <!-- main content start here -->
-                        <main>
-                            
-                                    <form action="/appearance/save-menu" method="POST">
-                                        <div class="flex flex-col gap-6 mt-6 md:flex-row">
-                                            <!-- Add menu items start -->
-                                            <div class="w-full md:w-2/5 ">
-                                                <h2 class="mb-4 text-xl font-bold text-black">
-                                                    Add menu items
-                                                </h2>
-                                                <div id="addMenuItems"
-                                                    class="px-5 pt-8 pb-4 bg-white border rounded shadow-sm cardBody disabled-Menu">
-                                                    <div class="hs-accordion-group">
-                                                        <!-- text editor start -->
-                                                        <div class="mb-4 hs-accordion"
-                                                            id="hs-basic-nested-sub-heading-one">
-                                                            <button
-                                                                class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]"
-                                                                aria-controls="hs-basic-nested-sub-collapse-one">
+                        <main class="px-5 py-8">
+                            <form action="/appearance/save-menu" method="POST">
+                                <div class="flex flex-col gap-6 mt-6 md:flex-row">
+                                    <!-- Add menu items start -->
+                                    <div class="w-full md:w-2/5 ">
+                                        <h2 class="mb-4 text-xl font-bold text-black">
+                                            Add menu items
+                                        </h2>
+                                        <div id="addMenuItems" class="px-5 pt-8 pb-4 bg-white border rounded shadow-sm cardBody disabled-Menu">
+                                            <div class="hs-accordion-group">
+                                                <!-- text editor start -->
+                                                <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-one">
+                                                    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-one">
                                                                 Pages
                                                                 <svg class="block w-4 h-4 hs-accordion-active:hidden"
                                                                     xmlns="http://www.w3.org/2000/svg" width="24"
@@ -42,32 +37,27 @@
                                                                     <path d="m18 15-6-6-6 6" />
                                                                 </svg>
                                                             </button>
-                                                            <div id="hs-basic-nested-sub-collapse-one"
-                                                                class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]"
-                                                                aria-labelledby="hs-basic-nested-sub-heading-one">
-                                                                <div class="py-5">
-                                                                    <ul class="mb-6 menuChecklist bg-[#f0f7fa] py-2">
-                                                                        <% pages.forEach(page=> { %>
-                                                                            <li class="px-3 py-2">
-                                                                                <label class="text-sm font-normal">
+                                                    <div id="hs-basic-nested-sub-collapse-one" class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-one">
+                                                        <div class="py-5">
+                                                            <ul class="mb-6 menuChecklist bg-[#f0f7fa] py-2">
+                                                                <% pages.forEach(page=> { %>
+                                                                    <li class="px-3 py-2">
+                                                                        <label class="text-sm font-normal">
                                                                                     <input type="checkbox" name="pages"
                                                                                         class="mr-1 checkbox"
                                                                                         value="<%= page._id %>" />
                                                                                     <%= page.page_name %>
                                                                                 </label>
-                                                                            </li>
-                                                                            <% }) %>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
+                                                                    </li>
+                                                                    <% }) %>
+                                                            </ul>
                                                         </div>
-                                                        <!-- text editor end -->
-                                                        <!-- custom HTML start -->
-                                                        <div class="mb-4 hs-accordion"
-                                                            id="hs-basic-nested-sub-heading-two">
-                                                            <button
-                                                                class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]"
-                                                                aria-controls="hs-basic-nested-sub-collapse-two">
+                                                    </div>
+                                                </div>
+                                                <!-- text editor end -->
+                                                <!-- custom HTML start -->
+                                                <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-two">
+                                                    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-two">
                                                                 Posts
                                                                 <svg class="block w-4 h-4 hs-accordion-active:hidden"
                                                                     xmlns="http://www.w3.org/2000/svg" width="24"
@@ -84,32 +74,27 @@
                                                                     <path d="m18 15-6-6-6 6" />
                                                                 </svg>
                                                             </button>
-                                                            <div id="hs-basic-nested-sub-collapse-two"
-                                                                class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]"
-                                                                aria-labelledby="hs-basic-nested-sub-heading-two">
-                                                                <div class="py-5">
-                                                                    <ul class="mb-6 menuChecklist bg-[#f0f7fa] py-2">
-                                                                        <% posts.forEach(post=> { %>
-                                                                            <li class="px-3 py-2">
-                                                                                <label class="text-sm font-normal">
+                                                    <div id="hs-basic-nested-sub-collapse-two" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-two">
+                                                        <div class="py-5">
+                                                            <ul class="mb-6 menuChecklist bg-[#f0f7fa] py-2">
+                                                                <% posts.forEach(post=> { %>
+                                                                    <li class="px-3 py-2">
+                                                                        <label class="text-sm font-normal">
                                                                                     <input type="checkbox" name="posts"
                                                                                         class="mr-1 checkbox"
                                                                                         value="<%= post._id %>" />
                                                                                     <%= post.title %>
                                                                                 </label>
-                                                                            </li>
-                                                                            <% }) %>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
+                                                                    </li>
+                                                                    <% }) %>
+                                                            </ul>
                                                         </div>
-                                                        <!-- custom HTML end -->
-                                                        <!-- custom HTML start -->
-                                                        <div class="mb-4 hs-accordion"
-                                                            id="hs-basic-nested-sub-heading-three">
-                                                            <button
-                                                                class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]"
-                                                                aria-controls="hs-basic-nested-sub-collapse-three">
+                                                    </div>
+                                                </div>
+                                                <!-- custom HTML end -->
+                                                <!-- custom HTML start -->
+                                                <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-three">
+                                                    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-three">
                                                                 Custom Links
                                                                 <svg class="block w-4 h-4 hs-accordion-active:hidden"
                                                                     xmlns="http://www.w3.org/2000/svg" width="24"
@@ -127,88 +112,74 @@
                                                                     <path d="m18 15-6-6-6 6" />
                                                                 </svg>
                                                             </button>
-                                                            <div id="hs-basic-nested-sub-collapse-three"
-                                                                class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]"
-                                                                aria-labelledby="hs-basic-nested-sub-heading-three">
-                                                                <div class="py-5">
-                                                                    <ul class="mb-6 menuChecklist bg-[#f0f7fa] py-2">
-                                                                        <li class="flex flex-col px-3 py-2 sm:flex-row">
-                                                                            <label class="w-40 text-sm font-normal"
-                                                                                for="custom-menu-item-url">URL</label>
-                                                                            <input name="customLinks[][url]"
-                                                                                id="custom-menu-item-url" type="text"
-                                                                                class="sm:ml-3" placeholder="https://">
+                                                    <div id="hs-basic-nested-sub-collapse-three" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-three">
+                                                        <div class="py-5">
+                                                            <ul class="mb-6 menuChecklist bg-[#f0f7fa] py-2">
+                                                                <li class="flex flex-col px-3 py-2 sm:flex-row">
+                                                                    <label class="w-40 text-sm font-normal" for="custom-menu-item-url">URL</label>
+                                                                    <input name="customLinks[][url]" id="custom-menu-item-url" type="text" class="sm:ml-3" placeholder="https://">
 
-                                                                        </li>
-                                                                        <li class="flex flex-col px-3 py-2 sm:flex-row">
-                                                                            <label class="w-40 text-sm font-normal"
-                                                                                for="custom-menu-item-name">Link
+                                                                </li>
+                                                                <li class="flex flex-col px-3 py-2 sm:flex-row">
+                                                                    <label class="w-40 text-sm font-normal" for="custom-menu-item-name">Link
                                                                                 Text</label>
-                                                                            <input name="customLinks[][text]"
-                                                                                id="custom-menu-item-name" type="text"
-                                                                                class="sm:ml-3">
-                                                                        </li>
-                                                                    </ul>
+                                                                    <input name="customLinks[][text]" id="custom-menu-item-name" type="text" class="sm:ml-3">
+                                                                </li>
+                                                            </ul>
 
-                                                                </div>
-                                                            </div>
                                                         </div>
-                                                        <!-- custom HTML end -->
                                                     </div>
                                                 </div>
+                                                <!-- custom HTML end -->
                                             </div>
-                                            <!-- Add menu items end -->
-                                            <!-- Menu Structure start -->
-                                            <div class="w-full md:w-3/5 ">
-                                                <h2 class="mb-4 text-xl font-bold text-black ">
-                                                    Menu structure
-                                                </h2>
-                                                <div class="mb-6 ">
-                                                    <label class="mb-2 text-sm font-normal" for="menu-name">Enter Menu
+                                        </div>
+                                    </div>
+                                    <!-- Add menu items end -->
+                                    <!-- Menu Structure start -->
+                                    <div class="w-full md:w-3/5 ">
+                                        <h2 class="mb-4 text-xl font-bold text-black ">
+                                            Menu structure
+                                        </h2>
+                                        <div class="mb-6 ">
+                                            <label class="mb-2 text-sm font-normal" for="menu-name">Enter Menu
                                                         Name</label>
-                                                    <div>
-                                                        <input name="menuName" id="menu-name" type="text"
-                                                            class="md:w-72" aria-describedby="menu-name-desc">
-                                                        <p class="mt-3">
-                                                            Give your menu a name, then click save menu button.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <div class="flex flex-row">
-                                                    <div class="publishing-action">
-                                                        <button type="submit"
-                                                            class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">
+                                            <div>
+                                                <input name="menuName" id="menu-name" type="text" class="md:w-72" aria-describedby="menu-name-desc">
+                                                <p class="mt-3">
+                                                    Give your menu a name, then click save menu button.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row">
+                                            <div class="publishing-action">
+                                                <button type="submit" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">
                                                             create Menu
                                                         </button>
-                                                    </div>
-                                                    <!-- END .publishing-action -->
-                                                </div>
                                             </div>
-                                            <!-- Menu Structure end -->
+                                            <!-- END .publishing-action -->
                                         </div>
-                                        <div class="savedMenuShows">
-                                            <h3 class="mb-4 text-lg font-bold text-black">Menu Settings</h3>
-                                            <div class="flex flex-col justify-start mb-6 sm:items-center sm:flex-row">
-                                                <label class="mb-2 text-sm font-normal sm:mb-0">Select a menu to
+                                    </div>
+                                    <!-- Menu Structure end -->
+                                </div>
+                                <div class="savedMenuShows">
+                                    <h3 class="mb-4 text-lg font-bold text-black">Menu Settings</h3>
+                                    <div class="flex flex-col justify-start mb-6 sm:items-center sm:flex-row">
+                                        <label class="mb-2 text-sm font-normal sm:mb-0">Select a menu to
                                                     edit:</label>
-                                                <div class="sm:ml-5">
-                                                    <select name="menu" id="select-menu-to-edit"
-                                                        class="w-full px-3 py-3 sm:w-72">
+                                        <div class="sm:ml-5">
+                                            <select name="menu" id="select-menu-to-edit" class="w-full px-3 py-3 sm:w-72">
                                                         <% menus.forEach(menu=> { %>
                                                             <option value="<%= menu._id %>">
                                                                 <%= menu.menuName %>
                                                             </option>
                                                             <% }) %>
                                                     </select>
-                                                </div>
-                                            </div>
-                                            <div class="mb-6  hs-accordion-group">
-                                                <!-- added menu 1 start -->
-                                                <div class="mb-4 hs-accordion "
-                                                    id="hs-basic-nested-sub-heading-colOne ">
-                                                    <button id="menu-button"
-                                                        class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]"
-                                                        aria-controls="hs-basic-nested-sub-collapse-colOne ">
+                                        </div>
+                                    </div>
+                                    <div class="mb-6 hs-accordion-group">
+                                        <!-- added menu 1 start -->
+                                        <div class="mb-4 hs-accordion " id="hs-basic-nested-sub-heading-colOne ">
+                                            <button id="menu-button" class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-colOne ">
                                                         select the menu
                                                         <svg class="block w-4 h-4 hs-accordion-active:hidden "
                                                             xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
@@ -225,36 +196,32 @@
                                                             <path d="m18 15-6-6-6 6 " />
                                                         </svg>
                                                     </button>
-                                                    <div id="flex-hs-basic-nested-sub-collapse-colOne"
-                                                        class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF] bg-white shadow-md rounded-lg p-6"
-                                                        aria-labelledby="hs-basic-nested-sub-heading-colOne ">
-                                                        <div class="text-lg font-bold text-blue-500 mb-2">
-                                                            Page
-                                                        </div>
-                                                        <div class="text-lg font-bold text-green-500 mb-2">
-                                                            Post
-                                                        </div>
-                                                        <div class="text-lg font-bold text-red-500 mb-2">
-                                                            Custom Links
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="flex flex-row items-center gap-2">
-                                                        <a id="remove-button" class="text-red-500 item-remove"
-                                                            href="javascript:void(0);">Remove</a>
-                                                    </div>
-                                                    <div class="flex flex-row items-center gap-2">
-                                                        <a id="edit-button" class="text-red-500 item-remove"
-                                                            href="javascript:void(0);">Edit</a>
-                                                    </div>
+                                            <div id="flex-hs-basic-nested-sub-collapse-colOne" class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF] bg-white shadow-md rounded-lg p-6" aria-labelledby="hs-basic-nested-sub-heading-colOne ">
+                                                <div class="mb-2 text-lg font-bold text-blue-500">
+                                                    Page
                                                 </div>
+                                                <div class="mb-2 text-lg font-bold text-green-500">
+                                                    Post
+                                                </div>
+                                                <div class="mb-2 text-lg font-bold text-red-500">
+                                                    Custom Links
+                                                </div>
+
                                             </div>
-                                    </form>
-                                    <% if (error) { %>
-                                        <script>
-                                            alert("<%= error %>");
-                                        </script>
-                                        <% } %>
+                                            <div class="flex flex-row items-center gap-2">
+                                                <a id="remove-button" class="text-red-500 item-remove" href="javascript:void(0);">Remove</a>
+                                            </div>
+                                            <div class="flex flex-row items-center gap-2">
+                                                <a id="edit-button" class="text-red-500 item-remove" href="javascript:void(0);">Edit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </form>
+                            <% if (error) { %>
+                                <script>
+                                    alert("<%= error %>");
+                                </script>
+                                <% } %>
                         </main>
                         <!-- main content end here -->
                         <%- include('../script/script.ejs') %>
@@ -273,7 +240,7 @@
                                 });
 
 
-                                document.getElementById('select-menu-to-edit').addEventListener('change', function () {
+                                document.getElementById('select-menu-to-edit').addEventListener('change', function() {
                                     console.log("Select menu changed");
                                     var menuId = this.value;
                                     fetch('/appearance/get-menu-details/' + menuId)
@@ -291,11 +258,11 @@
                                         .catch(error => console.error('Error:', error));
                                 });
 
-                                document.getElementById('remove-button').addEventListener('click', function () {
+                                document.getElementById('remove-button').addEventListener('click', function() {
                                     var menuId = document.getElementById('select-menu-to-edit').value;
                                     fetch('/appearance/delete-menu/' + menuId, {
-                                        method: 'DELETE',
-                                    })
+                                            method: 'DELETE',
+                                        })
                                         .then(response => response.json())
                                         .then(data => {
                                             console.log(data.message);
@@ -312,10 +279,11 @@
                                         .catch(error => console.error('Error:', error));
                                 });
                                 document.getElementById('select-menu-to-edit').addEventListener('change', function() {
-    var menuId = this.value;
-    // Set the href attribute of the "Edit" button
-    document.getElementById('edit-button').href = '/appearance/edit-menu/' + menuId;
-});
+                                    var menuId = this.value;
+                                    // Set the href attribute of the "Edit" button
+                                    document.getElementById('edit-button').href = '/appearance/edit-menu/' + menuId;
+                                });
                             </script>
     </body>
+
     </html>
