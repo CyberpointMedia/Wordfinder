@@ -294,6 +294,10 @@ button:hover {
     background-color: #DBF4FF;
 }
 
+.UserActivitiyDetails thead {
+    background-color: #f9fafb;
+}
+
 @media(min-width:667px) and (max-width:767px) {
     .dataTables_wrapper .dataTables_info {
         float: left;
