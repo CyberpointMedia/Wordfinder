@@ -5,9 +5,7 @@
         <div class="flex overflow-hidden">
             <%- include('../sidenav/sidenav.ejs') %>
                 <div class="page-content bg-white">
-
                     <%- include('../header/header.ejs') %>
-
                         <!-- main content start here -->
                         <main class="px-5 py-8">
                             <div class="flex flex-col gap-6 mt-6 md:flex-row">
@@ -19,7 +17,8 @@
                                     <div class="px-5 pt-8 pb-4 bg-white border rounded shadow-sm cardBody">
                                         <div class="hs-accordion-group">
                                             <!-- text editor start -->
-                                            <div class="draggable mb-4 hs-accordion" id="hs-basic-nested-sub-heading-one">
+                                            <div class="draggable mb-4 hs-accordion"
+                                                id="hs-basic-nested-sub-heading-one">
                                                 <button
                                                     class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]"
                                                     aria-controls="hs-basic-nested-sub-collapse-one">
@@ -43,39 +42,35 @@
                                                     aria-labelledby="hs-basic-nested-sub-heading-one">
                                                     <div class="py-5">
                                                         <form action="/footer/create" method="POST">
-                                                            <label for="footerName">Footer Name:</label>
-                                                            <input type="text" id="footerName" name="name" required>
-                                                            <button type="submit"
-                                                                class="create-btn py-2 px-4 mt-4 text-white bg-[#007BFF] rounded-lg">
-                                                                Create
-                                                            </button>
+                                                            <label for="widgetName">Widget Name:</label>
+                                                            <textarea type="text" id="widgetName" name="name" required></textarea>
+                                                            <label for="columnSelect">Select Column:</label>
+                                                            <select id="columnSelect" name="column">
+                                                                <% columns.forEach(column => { %>
+                                                                    <option value="<%= column %>"><%= column %></option>
+                                                                <% }) %>
+                                                            </select>
+                                                            <button type="submit" class="create-btn py-2 px-4 mt-4 text-white bg-[#007BFF] rounded-lg">Create</button>
                                                         </form>
 
-
                                                         <ul class="mb-6 select-wedgets">
-                                                            <% footers.forEach(footer => { %>
-                                                                <li class="px-3 py-2"><%= footer.name %></li>
+                                                            <% widgets.forEach(widget => { %>
+                                                                <li class="px-3 py-2">
+                                                                    <%- widget.name %>
+                                                                    <form action="/footer/delete/<%= widget._id %>" method="POST">
+                                                                        <button type="submit">Delete</button>
+                                                                    </form>
+                                                                </li>
                                                             <% }) %>
                                                         </ul>
 
-                                                        <div class="flex flex-col items-center gap-2 md:flex-row">
-                                                            <button type="reset"
-                                                                class="cancel-wedgets py-2 w-20 text-black bg-[#DBF4FF] rounded-lg"
-                                                                aria-controls="hs-basic-nested-sub-collapse-four">
-                                                                Cancel
-                                                            </button>
-                                                            <button type="submit"
-                                                                class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
-                                                                Save
-                                                            </button>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- text editor end -->
-
                                             <!-- custom HTML start -->
-                                            <div class="draggable mb-4 hs-accordion" id="hs-basic-nested-sub-heading-two">
+                                            <div class="draggable mb-4 hs-accordion"
+                                                id="hs-basic-nested-sub-heading-two">
                                                 <button
                                                     class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]"
                                                     aria-controls="hs-basic-nested-sub-collapse-two">
@@ -98,39 +93,34 @@
                                                     class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]"
                                                     aria-labelledby="hs-basic-nested-sub-heading-two">
                                                     <div class="py-5">
-                                                        <form action="/footer/Customhtml" method="POST">
-                                                            <label for="Customhtml">Customhtml:</label>
-                                                            <input type="text" id="Customhtml" name="Customhtml" required>
-                                                            <button type="submit"
-                                                                class="create-btn py-2 px-4 mt-4 text-white bg-[#007BFF] rounded-lg">
-                                                                Create
-                                                            </button>
-                                                        </form>
-                                                        <ul class="mb-6 select-wedgets">
-                                                            <% footers.forEach(footer => { %>
-                                                                <li class="px-3 py-2"><%= footer.Customhtml %></li>
-                                                            <% }) %>
-                                                        </ul>
-
-                                                        <div class="flex flex-col items-center gap-2 md:flex-row">
-                                                            <button type="reset"
-                                                                class="cancel-wedgets py-2 w-20 text-black bg-[#DBF4FF] rounded-lg"
-                                                                aria-controls="hs-basic-nested-sub-collapse-four">
-                                                                Cancel
-                                                            </button>
-                                                            <button type="submit"
-                                                                class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
-                                                                Save
-                                                            </button>
-                                                        </div>
-
-                                                    </div>
+                                                                <form action="/footer/Customhtml" method="POST">
+                                                                    <label for="Customhtml">Customhtml:</label>
+                                                                    <textarea type="text" id="Customhtml" name="Customhtml" required></textarea>
+                                                                    <label for="columnSelect">Select Column:</label>
+                                                                    <select id="columnSelect" name="column">
+                                                                        <% columns.forEach(column => { %>
+                                                                            <option value="<%= column %>"><%= column %></option>
+                                                                        <% }) %>
+                                                                    </select>
+                                                                    <button type="submit" class="create-btn py-2 px-4 mt-4 text-white bg-[#007BFF] rounded-lg">Create</button>
+                                                                </form>
+                                                                <ul class="mb-6 select-wedgets">
+                                                                    <% widgets.forEach(widget => { %>
+                                                                        <li class="px-3 py-2">
+                                                                            <%- widget.Customhtml %>
+                                                                            <form action="/footer/delete/<%= widget._id %>" method="POST">
+                                                                                <button type="submit">Delete</button>
+                                                                            </form>
+                                                                        </li>
+                                                                    <% }) %>
+                                                                </ul>
+                                                            </div>
                                                 </div>
                                             </div>
                                             <!-- custom HTML end -->
-
                                             <!-- custom Details start -->
-                                            <div class="draggable mb-4 hs-accordion" id="hs-basic-nested-sub-heading-three">
+                                            <div class="draggable mb-4 hs-accordion"
+                                                id="hs-basic-nested-sub-heading-three">
                                                 <button
                                                     class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]"
                                                     aria-controls="hs-basic-nested-sub-collapse-three">
@@ -153,40 +143,34 @@
                                                     class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]"
                                                     aria-labelledby="hs-basic-nested-sub-heading-three">
                                                     <div class="py-5">
-
                                                         <form action="/footer/contactdetails" method="POST">
-                                                            <label for="contactdetails">contactdetails:</label>
-                                                            <input type="text" id="contactdetails" name="contactdetails" required>
-                                                            <button type="submit"
-                                                                class="create-btn py-2 px-4 mt-4 text-white bg-[#007BFF] rounded-lg">
-                                                                Create
-                                                            </button>
+                                                            <label for="contactdetails">Contact Details:</label>
+                                                            <textarea type="text" id="contactdetails" name="contactdetails" required ></textarea>
+                                                            <label for="columnSelect">Select Column:</label>
+                                                            <select id="columnSelect" name="column">
+                                                                <% columns.forEach(column => { %>
+                                                                    <option value="<%= column %>"><%= column %></option>
+                                                                <% }) %>
+                                                            </select>
+                                                            <button type="submit" class="create-btn py-2 px-4 mt-4 text-white bg-[#007BFF] rounded-lg">Create</button>
                                                         </form>
-
                                                         <ul class="mb-6 select-wedgets">
-                                                            <% footers.forEach(footer => { %>
-                                                                <li class="px-3 py-2"><%= footer.contactdetails %></li>
+                                                            <% widgets.forEach(widget => { %>
+                                                                <li class="px-3 py-2">
+                                                                    <%- widget.contactdetails %>
+                                                                    <form action="/footer/delete/<%= widget._id %>" method="POST">
+                                                                        <button type="submit">Delete</button>
+                                                                    </form>
+                                                                </li>
                                                             <% }) %>
                                                         </ul>
-
-                                                        <div class="flex flex-col items-center gap-2 md:flex-row">
-                                                            <button type="reset"
-                                                                class="cancel-wedgets py-2 w-20 text-black bg-[#DBF4FF] rounded-lg"
-                                                                aria-controls="hs-basic-nested-sub-collapse-four">
-                                                                Cancel
-                                                            </button>
-                                                            <button type="submit"
-                                                                class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
-                                                                Save
-                                                            </button>
-                                                        </div>
-
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- custom HTML end -->
                                             <!-- Image collapse start -->
-                                            <div class="draggable mb-4 hs-accordion" id="hs-basic-nested-sub-heading-four">
+                                            <div class="draggable mb-4 hs-accordion"
+                                                id="hs-basic-nested-sub-heading-four">
                                                 <button
                                                     class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]"
                                                     aria-controls="hs-basic-nested-sub-collapse-four">
@@ -212,26 +196,24 @@
                                                         <form action="/footer/image" method="POST" enctype="multipart/form-data">
                                                             <label for="image">Image:</label>
                                                             <input type="file" id="image" name="image" required>
-                                                            <button type="submit" class="create-btn py-2 px-4 mt-4 text-white bg-[#007BFF] rounded-lg">
-                                                                Create
-                                                            </button>
-                                                        </form>
-                                                            <ul class="mb-6 select-wedgets">
-                                                                <% footers.forEach(footer => { %>
-                                                                    <li class="px-3 py-2"><img src="<%= footer.image %>" alt="Footer image"></li>
+                                                            <label for="columnSelect">Select Column:</label>
+                                                            <select id="columnSelect" name="column">
+                                                                <% columns.forEach(column => { %>
+                                                                    <option value="<%= column %>"><%= column %></option>
                                                                 <% }) %>
-                                                            </ul>
-                                                        <div class="flex flex-col items-center gap-2 md:flex-row">
-                                                            <button type="reset"
-                                                                class="cancel-wedgets py-2 w-20 text-black bg-[#DBF4FF] rounded-lg"
-                                                                aria-controls="hs-basic-nested-sub-collapse-four">
-                                                                Cancel
-                                                            </button>
-                                                            <button type=" submit "
-                                                                class="py-2 w-28 text-white bg-[#007BFF] rounded-lg ">
-                                                                Add widgets
-                                                            </button>
-                                                        </div>
+                                                            </select>
+                                                            <button type="submit" class="create-btn py-2 px-4 mt-4 text-white bg-[#007BFF] rounded-lg">Create</button>
+                                                        </form>
+                                                        <ul class="mb-6 select-wedgets">
+                                                            <% widgets.forEach(widget => { %>
+                                                                <li class="px-3 py-2">
+                                                                    <img src="<%= widget.image %>" alt="Widget image">
+                                                                    <form action="/footer/delete/<%= widget._id %>" method="POST">
+                                                                        <button type="submit">Delete</button>
+                                                                    </form>
+                                                                </li>
+                                                            <% }) %>
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
@@ -241,163 +223,228 @@
                                 </div>
                                 <!-- available widgets end -->
                                 <!-- active footer start -->
-                                <form action="/footer/saveWidgets" method="POST">
-                                <div class="w-full md:w-3/5 ">
-                                    <h2 class="mb-4 text-xl font-bold text-black ">
-                                        Active Footer
-                                    </h2>
-                                    <div class="grid gap-6 md:grid-cols-2 ">
-                                        <!-- footer col 1 -->
-                                        <div id="footerCol1" class="droppable w-full mb-4">
-                                            <div class="hs-accordion-group ">
-                                                <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
-                                                    <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
+                                    <div class="w-full md:w-3/5 ">
+                                        <h2 class="mb-4 text-xl font-bold text-black ">
+                                            Active Footer
+                                        </h2>
+                                        <div class="grid gap-6 md:grid-cols-2 ">
+                                            <!-- footer col 1 -->
+                                            <div id="footerCol1" class="droppable w-full mb-4">
+                                                <div class="hs-accordion-group ">
+                                                    <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
+                                                        <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
                                                     p-6 bg-[#007bff] text-center "
-                                                        aria-controls="hs-basic-nested-collapse-Two ">
-                                                        Footer Col 1
-                                                        <svg class="block w-4 h-4 hs-accordion-active:hidden "
-                                                            xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
-                                                            viewBox="0 0 24 24 " fill="none " stroke="currentColor "
-                                                            stroke-width="2
+                                                            aria-controls="hs-basic-nested-collapse-Two ">
+                                                            Footer Col 1
+                                                            <svg class="block w-4 h-4 hs-accordion-active:hidden "
+                                                                xmlns="http://www.w3.org/2000/svg " width="24 "
+                                                                height="24 " viewBox="0 0 24 24 " fill="none "
+                                                                stroke="currentColor " stroke-width="2
                                                     " stroke-linecap="round " stroke-linejoin="round ">
-                                                            <path d="m6 9 6 6 6-6 " />
-                                                        </svg>
-                                                        <svg class="hidden w-4 h-4 hs-accordion-active:block "
-                                                            xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
-                                                            viewBox="0 0 24 24 " fill="none " stroke="currentColor "
-                                                            stroke-width="2
+                                                                <path d="m6 9 6 6 6-6 " />
+                                                            </svg>
+                                                            <svg class="hidden w-4 h-4 hs-accordion-active:block "
+                                                                xmlns="http://www.w3.org/2000/svg " width="24 "
+                                                                height="24 " viewBox="0 0 24 24 " fill="none "
+                                                                stroke="currentColor " stroke-width="2
                                                     " stroke-linecap="round " stroke-linejoin="round ">
-                                                            <path d="m18 15-6-6-6 6 " />
-                                                        </svg>
-                                                    </div>
+                                                                <path d="m18 15-6-6-6 6 " />
+                                                            </svg>
+                                                        </div>
 
-                                                    <div id="hs-basic-nested-collapse-Two "
-                                                        class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4 "
-                                                        aria-labelledby="hs-basic-nested-heading-Two ">
-                                                        <div class="hs-accordion-group dropzone">
-                                                                        <!-- all the div that i drag show in this place  -->
+                                                        <div id="hs-basic-nested-collapse-Two "
+                                                            class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4 "
+                                                            aria-labelledby="hs-basic-nested-heading-Two ">
+                                                            <div class="hs-accordion-group dropzone">
+                                                                <!-- all the wedgits which select the footercol1  that i drag show in this place  -->
+                                                                <% footers.forEach(footer => { %>
+                                                                    <% footer.footerCol1.forEach(widget => { %>
+                                                                      <!-- Display the widget -->
+                                                                      <div class="widget">
+                                                                        <!-- Display widget details here -->
+                                                                        <% if (widget.name) { %>
+                                                                          <p><%- widget.name %></p>
+                                                                        <% } %>
+                                                                        <% if (widget.image) { %>
+                                                                          <img src="<%= widget.image %>" alt="Widget image">
+                                                                        <% } %>
+                                                                        <% if (widget.contactdetails) { %>
+                                                                          <p><%- widget.contactdetails %></p>
+                                                                        <% } %>
+                                                                        <% if (widget.Customhtml) { %>
+                                                                          <div><%- widget.Customhtml %></div>
+                                                                        <% } %>
+                                                                      </div>
+                                                                    <% }) %>
+                                                                  <% }) %>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- footer col 2 -->
-                                        <div id="footerCol2" class="droppable w-full mb-4">
-                                            <div class="hs-accordion-group ">
-                                                <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
-                                                    <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
+                                            <!-- footer col 2 -->
+                                            <div id="footerCol2" class="droppable w-full mb-4">
+                                                <div class="hs-accordion-group ">
+                                                    <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
+                                                        <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
                                                     p-6 bg-[#007bff] text-center "
-                                                        aria-controls="hs-basic-nested-collapse-Two ">
-                                                        Footer Col 2
-                                                        <svg class="block w-4 h-4 hs-accordion-active:hidden "
-                                                            xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
-                                                            viewBox="0 0 24 24 " fill="none " stroke="currentColor "
-                                                            stroke-width="2
+                                                            aria-controls="hs-basic-nested-collapse-Two ">
+                                                            Footer Col 2
+                                                            <svg class="block w-4 h-4 hs-accordion-active:hidden "
+                                                                xmlns="http://www.w3.org/2000/svg " width="24 "
+                                                                height="24 " viewBox="0 0 24 24 " fill="none "
+                                                                stroke="currentColor " stroke-width="2
                                                     " stroke-linecap="round " stroke-linejoin="round ">
-                                                            <path d="m6 9 6 6 6-6 " />
-                                                        </svg>
-                                                        <svg class="hidden w-4 h-4 hs-accordion-active:block "
-                                                            xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
-                                                            viewBox="0 0 24 24 " fill="none " stroke="currentColor "
-                                                            stroke-width="2
+                                                                <path d="m6 9 6 6 6-6 " />
+                                                            </svg>
+                                                            <svg class="hidden w-4 h-4 hs-accordion-active:block "
+                                                                xmlns="http://www.w3.org/2000/svg " width="24 "
+                                                                height="24 " viewBox="0 0 24 24 " fill="none "
+                                                                stroke="currentColor " stroke-width="2
                                                     " stroke-linecap="round " stroke-linejoin="round ">
-                                                            <path d="m18 15-6-6-6 6 " />
-                                                        </svg>
-                                                    </div>
+                                                                <path d="m18 15-6-6-6 6 " />
+                                                            </svg>
+                                                        </div>
 
-                                                    <div id="hs-basic-nested-collapse-Two "
-                                                        class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4 "
-                                                        aria-labelledby="hs-basic-nested-heading-Two ">
-                                                        <div class="hs-accordion-group dropzone">
-                                                                <!-- all the div that i drag show in this place  -->
+                                                        <div id="hs-basic-nested-collapse-Two "
+                                                            class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4 "
+                                                            aria-labelledby="hs-basic-nested-heading-Two ">
+                                                            <div class="hs-accordion-group dropzone">
+<!-- all the wedgits which select the footercol1  that i drag show in this place  -->
+<% footers.forEach(footer => { %>
+    <% footer.footerCol2.forEach(widget => { %>
+      <!-- Display the widget -->
+      <div class="widget">
+        <!-- Display widget details here -->
+        <% if (widget.name) { %>
+          <p><%- widget.name %></p>
+        <% } %>
+        <% if (widget.image) { %>
+          <img src="<%= widget.image %>" alt="Widget image">
+        <% } %>
+        <% if (widget.contactdetails) { %>
+          <p><%- widget.contactdetails %></p>
+        <% } %>
+        <% if (widget.Customhtml) { %>
+          <div><%- widget.Customhtml %></div>
+        <% } %>
+      </div>
+    <% }) %>
+  <% }) %>                                                           </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <!-- footer col 3 -->
-                                        <div id="footerCol3" class="droppable w-full mb-4">
-                                            <div class="hs-accordion-group ">
-                                                <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
-                                                    <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
+                                            <!-- footer col 3 -->
+                                            <div id="footerCol3" class="droppable w-full mb-4">
+                                                <div class="hs-accordion-group ">
+                                                    <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
+                                                        <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
                                                     p-6 bg-[#007bff] text-center "
-                                                        aria-controls="hs-basic-nested-collapse-Two ">
-                                                        Footer Col 3
-                                                        <svg class="block w-4 h-4 hs-accordion-active:hidden "
-                                                            xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
-                                                            viewBox="0 0 24 24 " fill="none " stroke="currentColor "
-                                                            stroke-width="2
+                                                            aria-controls="hs-basic-nested-collapse-Two ">
+                                                            Footer Col 3
+                                                            <svg class="block w-4 h-4 hs-accordion-active:hidden "
+                                                                xmlns="http://www.w3.org/2000/svg " width="24 "
+                                                                height="24 " viewBox="0 0 24 24 " fill="none "
+                                                                stroke="currentColor " stroke-width="2
                                                     " stroke-linecap="round " stroke-linejoin="round ">
-                                                            <path d="m6 9 6 6 6-6 " />
-                                                        </svg>
-                                                        <svg class="hidden w-4 h-4 hs-accordion-active:block "
-                                                            xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
-                                                            viewBox="0 0 24 24 " fill="none " stroke="currentColor "
-                                                            stroke-width="2
+                                                                <path d="m6 9 6 6 6-6 " />
+                                                            </svg>
+                                                            <svg class="hidden w-4 h-4 hs-accordion-active:block "
+                                                                xmlns="http://www.w3.org/2000/svg " width="24 "
+                                                                height="24 " viewBox="0 0 24 24 " fill="none "
+                                                                stroke="currentColor " stroke-width="2
                                                     " stroke-linecap="round " stroke-linejoin="round ">
-                                                            <path d="m18 15-6-6-6 6 " />
-                                                        </svg>
-                                                    </div>
+                                                                <path d="m18 15-6-6-6 6 " />
+                                                            </svg>
+                                                        </div>
 
-                                                    <div id="hs-basic-nested-collapse-Two "
-                                                        class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4 "
-                                                        aria-labelledby="hs-basic-nested-heading-Two ">
-                                                        <div class="hs-accordion-group dropzone">
-                                                                <!-- all the div that i drag show in this place  -->
+                                                        <div id="hs-basic-nested-collapse-Two "
+                                                            class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4 "
+                                                            aria-labelledby="hs-basic-nested-heading-Two ">
+                                                            <div class="hs-accordion-group dropzone">
+<!-- all the wedgits which select the footercol1  that i drag show in this place  -->
+<% footers.forEach(footer => { %>
+    <% footer.footerCol3.forEach(widget => { %>
+      <!-- Display the widget -->
+      <div class="widget">
+        <!-- Display widget details here -->
+        <% if (widget.name) { %>
+          <p><%- widget.name %></p>
+        <% } %>
+        <% if (widget.image) { %>
+          <img src="<%= widget.image %>" alt="Widget image">
+        <% } %>
+        <% if (widget.contactdetails) { %>
+          <p><%- widget.contactdetails %></p>
+        <% } %>
+        <% if (widget.Customhtml) { %>
+          <div><%- widget.Customhtml %></div>
+        <% } %>
+      </div>
+    <% }) %>
+  <% }) %>                                                           </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <!-- footer col 4 -->
-                                        <div id="footerCol4" class="w-full mb-4">
-                                            <div class="hs-accordion-group ">
-                                                <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
-                                                    <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
+                                            <!-- footer col 4 -->
+                                            <div id="footerCol4" class="w-full mb-4">
+                                                <div class="hs-accordion-group ">
+                                                    <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
+                                                        <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
                                                     p-6 bg-[#007bff] text-center "
-                                                        aria-controls="hs-basic-nested-collapse-Two ">
-                                                        Footer Col 4
-                                                        <svg class="block w-4 h-4 hs-accordion-active:hidden "
-                                                            xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
-                                                            viewBox="0 0 24 24 " fill="none " stroke="currentColor "
-                                                            stroke-width="2
+                                                            aria-controls="hs-basic-nested-collapse-Two ">
+                                                            Footer Col 4
+                                                            <svg class="block w-4 h-4 hs-accordion-active:hidden "
+                                                                xmlns="http://www.w3.org/2000/svg " width="24 "
+                                                                height="24 " viewBox="0 0 24 24 " fill="none "
+                                                                stroke="currentColor " stroke-width="2
                                                     " stroke-linecap="round " stroke-linejoin="round ">
-                                                            <path d="m6 9 6 6 6-6 " />
-                                                        </svg>
-                                                        <svg class="hidden w-4 h-4 hs-accordion-active:block "
-                                                            xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
-                                                            viewBox="0 0 24 24 " fill="none " stroke="currentColor "
-                                                            stroke-width="2
+                                                                <path d="m6 9 6 6 6-6 " />
+                                                            </svg>
+                                                            <svg class="hidden w-4 h-4 hs-accordion-active:block "
+                                                                xmlns="http://www.w3.org/2000/svg " width="24 "
+                                                                height="24 " viewBox="0 0 24 24 " fill="none "
+                                                                stroke="currentColor " stroke-width="2
                                                     " stroke-linecap="round " stroke-linejoin="round ">
-                                                            <path d="m18 15-6-6-6 6 " />
-                                                        </svg>
-                                                    </div>
+                                                                <path d="m18 15-6-6-6 6 " />
+                                                            </svg>
+                                                        </div>
 
-                                                    <div id="hs-basic-nested-collapse-Two "
-                                                        class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4 "
-                                                        aria-labelledby="hs-basic-nested-heading-Two ">
-                                                        <div class="hs-accordion-group dropzone">
-                                                                <!-- all the div that i drag show in this place  -->
+                                                        <div id="hs-basic-nested-collapse-Two "
+                                                            class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4 "
+                                                            aria-labelledby="hs-basic-nested-heading-Two ">
+                                                            <div class="hs-accordion-group dropzone">
+<!-- all the wedgits which select the footercol1  that i drag show in this place  -->
+<% footers.forEach(footer => { %>
+    <% footer.footerCol3.forEach(widget => { %>
+      <!-- Display the widget -->
+      <div class="widget">
+        <!-- Display widget details here -->
+        <% if (widget.name) { %>
+          <p><%- widget.name %></p>
+        <% } %>
+        <% if (widget.image) { %>
+          <img src="<%= widget.image %>" alt="Widget image">
+        <% } %>
+        <% if (widget.contactdetails) { %>
+          <p><%- widget.contactdetails %></p>
+        <% } %>
+        <% if (widget.Customhtml) { %>
+          <div><%- widget.Customhtml %></div>
+        <% } %>
+      </div>
+    <% }) %>
+  <% }) %>                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                  <!-- Hidden input fields for the footerCol data -->
-  <input type="hidden" id="footerCol1Input" name="footerCol1">
-  <input type="hidden" id="footerCol2Input" name="footerCol2">
-  <input type="hidden" id="footerCol3Input" name="footerCol3">
-  <input type="hidden" id="footerCol4Input" name="footerCol4">
-                                <button type="submit"
-                                                                class="py-2 w-20 text-white bg-[#007BFF] rounded-lg">
-                                                                Save
-                                                            </button>
-                            </form>
                                 <!-- active footer end -->
                             </div>
                             <!-- available widgets end -->
@@ -405,150 +452,28 @@
                         <!-- main content end here -->
                 </div>
         </div>
-        <!-- sidebar end here -->
-        <%- include('../script/script.ejs') %>
-            <script>
-                $(document).ready(function () {
-                    $('.select-wedgets li').click(function () {
-                        $('.select-wedgets li').removeClass("active");
-                        $(this).addClass("active");
-                    });
 
-                    $('.cancel-wedgets').click(function () {
-                        $(this).parents('.hs-accordion').removeClass('active');
-                        $(this).parents('.hs-accordion-content').hide();
-                    });
+    </body> <!-- Your HTML content here -->
+    <%- include('../script/script.ejs') %>
+        </body>
+        <script src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('.select-wedgets li').click(function () {
+                    $('.select-wedgets li').removeClass("active");
+                    $(this).addClass("active");
                 });
-                // This is just an example. Your actual code might look different.
 
-// Function to handle a widget being added, removed, or rearranged
-function handleWidgetChange() {
-  // Get the updated footerCol data
-  let footerCol1 = getUpdatedFooterCol1Data(); // Replace with your actual code
-  let footerCol2 = getUpdatedFooterCol2Data(); // Replace with your actual code
-  let footerCol3 = getUpdatedFooterCol3Data(); // Replace with your actual code
-  let footerCol4 = getUpdatedFooterCol4Data(); // Replace with your actual code
-
-  // Update the values of the hidden input fields
-  document.getElementById('footerCol1Input').value = JSON.stringify(footerCol1);
-  document.getElementById('footerCol2Input').value = JSON.stringify(footerCol2);
-  document.getElementById('footerCol3Input').value = JSON.stringify(footerCol3);
-  document.getElementById('footerCol4Input').value = JSON.stringify(footerCol4);
-}
-
-function getUpdatedFooterCol1Data() {
-  // Get the footerCol1 element
-  const footerCol1 = document.getElementById('footerCol1');
-  // Get all the widget elements inside footerCol1
-  const widgets = footerCol1.querySelectorAll('.draggable');
-  // Return an array of the widget IDs
-  return Array.from(widgets, widget => {
-    const form = widget.querySelector('form');
-    const nameInput = form.querySelector('input[name="name"]');
-    const customhtmlInput = form.querySelector('input[name="Customhtml"]');
-    const contactdetailsInput = form.querySelector('input[name="contactdetails"]');
-    const imageInput = form.querySelector('input[name="image"]');
-    return {
-      name: nameInput ? nameInput.value : null,
-      customhtml: customhtmlInput ? customhtmlInput.value : null,
-      contactdetails: contactdetailsInput ? contactdetailsInput.value : null,
-      image: imageInput ? imageInput.value : null
-    };
-  });
-}
-function getUpdatedFooterCol2Data() {
-  // Get the footerCol1 element
-  const footerCol2 = document.getElementById('footerCol2');
-  // Get all the widget elements inside footerCol2
-  const widgets = footerCol2.querySelectorAll('.draggable');
-  // Return an array of the widget IDs
-  return Array.from(widgets, widget => widget.id);
-}
-function getUpdatedFooterCol3Data() {
-  // Get the footerCol3 element
-  const footerCol3 = document.getElementById('footerCol3');
-  // Get all the widget elements inside footerCol3
-  const widgets = footerCol3.querySelectorAll('.draggable');
-  // Return an array of the widget IDs
-  return Array.from(widgets, widget => widget.id);
-}
-function getUpdatedFooterCol4Data() {
-  // Get the footerCol4 element
-  const footerCol4 = document.getElementById('footerCol4');
-  // Get all the widget elements inside footerCol4
-  const widgets = footerCol4.querySelectorAll('.draggable');
-  // Return an array of the widget IDs
-  return Array.from(widgets, widget => widget.id);
-}
-
-// Add event listeners to handle a widget being added, removed, or rearranged
-document.getElementById('footerCol1').addEventListener('change', handleWidgetChange);
-document.getElementById('footerCol2').addEventListener('change', handleWidgetChange);
-document.getElementById('footerCol3').addEventListener('change', handleWidgetChange);
-document.getElementById('footerCol4').addEventListener('change', handleWidgetChange);
-               // Make the divs draggable
-document.querySelectorAll('.draggable').forEach(elem => {
-  elem.setAttribute('draggable', 'true');
-  elem.addEventListener('dragstart', (event) => {
-    event.dataTransfer.setData('text/plain', event.target.id);
-  });
-});
- // Make the footers droppable
-document.querySelectorAll('.droppable').forEach(elem => {
-  elem.addEventListener('dragover', (event) => {
-    event.preventDefault();
-  });
-  elem.addEventListener('drop', (event) => {
-  let footerCol1 = getUpdatedFooterCol1Data();
-  let footerCol2 = getUpdatedFooterCol2Data();
-  let footerCol3 = getUpdatedFooterCol3Data();
-  let footerCol4 = getUpdatedFooterCol4Data();
-
-    event.preventDefault();
-    const draggableId = event.dataTransfer.getData('text/plain');
-    const droppableId = event.currentTarget.id;
-    const draggableElem = document.getElementById(draggableId);
-    const form = draggableElem.querySelector('form');
-    const nameInput = form.querySelector('input[name="name"]');
-    const customhtmlInput = form.querySelector('input[name="Customhtml"]');
-    const contactdetailsInput = form.querySelector('input[name="contactdetails"]');
-    const imageInput = form.querySelector('input[name="image"]');
-
-    const name = nameInput ? nameInput.value : null;
-    const customhtml = customhtmlInput ? customhtmlInput.value : null;
-    const contactdetails = contactdetailsInput ? contactdetailsInput.value : null;
-    const image = imageInput ? imageInput.value : null;
-
-    // Clone the draggable element
-    const clone = draggableElem.cloneNode(true);
-    // Append the clone to the dropzone div inside the droppable element
-    const dropzone = event.currentTarget.querySelector('.dropzone');
-    dropzone.appendChild(clone);
-
-    console.log("draggableId :", draggableId, "droppableId", droppableId);
-    // Send the data to the server
-    $.ajax({
-      url: '/footer/save',
-      method: 'POST',
-      data: {
-        footerCol1: JSON.stringify(footerCol1),
-      footerCol2: JSON.stringify(footerCol2),
-      footerCol3: JSON.stringify(footerCol3),
-      footerCol4: JSON.stringify(footerCol4),
-        draggableId,
-        droppableId,
-        name,
-        customhtml,
-        contactdetails,
-        image
-      },
-      success: function(response) {
-        // Handle the response from the server
-      }
+                $('.cancel-wedgets').click(function () {
+                    $(this).parents('.hs-accordion').removeClass('active');
+                    $(this).parents('.hs-accordion-content').hide();
+                });
+            });
+            document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('textarea').forEach(function(inputElement) {
+        new FroalaEditor(inputElement);
     });
-  });
 });
-            </script>
-    </body>
+        </script>
 
-    </html>
+        </html>

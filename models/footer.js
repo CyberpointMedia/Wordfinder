@@ -1,28 +1,23 @@
 const mongoose = require('mongoose');
 
-const widgetSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: false
-    },
-    Customhtml: {
-        type: String,
-        required: false
-    },
-    contactdetails: {
-        type: String,
-        required: false
-    },
-    image: {
-        type: String,
-        required: false
-    }
-});
 const footerSchema = new mongoose.Schema({
-    footerCol1: [widgetSchema],
-    footerCol2: [widgetSchema],
-    footerCol3: [widgetSchema],
-    footerCol4: [widgetSchema]
+  footerCol1: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Widget'
+  }],
+  footerCol2: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Widget'
+  }],
+  footerCol3: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Widget'
+  }],
+  footerCol4: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Widget'
+  }],
 });
 
-module.exports = mongoose.model('Footer', footerSchema);
+const Footer = mongoose.model('Footer', footerSchema);
+module.exports =Footer;
