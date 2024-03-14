@@ -1,51 +1,117 @@
 <!-- views/post/edit-post.ejs -->
 <%- include('../header/head.ejs') %>
+
 <body class="bg-gray-100">
-  <div class="flex overflow-hidden">
-    <%- include('../sidenav/sidenav.ejs') %>
-    <div class="page-content bg-white">
-      <%- include('../header/header.ejs') %>
-      <form action="/post/edit/<%= post._id %>" method="post" enctype="multipart/form-data">
-        <div id="top-bttns" class="flex justify-end gap-2 border-b py-5 shadow-sm bg-white">
-          <button type="button" class="py-2 px-4 text-[#949494] cursor-not-allowed" onclick="setStatus('Draft')">Save draft</button>
-          <button type="button" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg" onclick="setStatus('Published')">Publish</button>
-          <input type="hidden" name="status" id="status" value="<%= post.status %>">
-          <%- include('../Sidenav/data-simplebar.ejs') %>
-        </div>
-        <div class="">
-          <main class="py-8 px-5">
-            <div class="max-w-3xl mx-auto">
-              <label for="title" class="block font-semibold">Title:</label>
-              <input type="text" name="title" required value="<%= post.title %>" class="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-              <label for="description" class="block font-semibold mt-4">Description:</label>
-              <textarea id="editor" name="description" required class="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"><%= post.description %></textarea>
-              <label for="features" class="block font-semibold mt-4">Features:</label>
-              <textarea id="editor" name="features" required class="w-full px-4 py-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"><%= post.features %></textarea>
-              <div class="mb-6">
-                <label class="mb-3 text-lg" for="uploadImage1">Thumbnail Photo image</label>
-                <div class="uploadImg-Preview mb-6">
-                  <img id="preview_img" class="object-cover" src="<%= post.picture %>" alt="Upload Image">
-                </div>
-                <div class="block relative">
-                  <span class="absolute inset-0 opacity-100 w-40 h-12 leading-[48px] top-0 text-black bg-[#DBF4FF] rounded-lg text-center cursor-pointer">Select Image</span>
-                  <input type="file" name="picture__input" id="picture__input" onchange="loadFile(event)" class="block w-40 h-12 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0">
-                </div>
-              </div>
+    <!-- sidebar start here -->
+    <div class="flex overflow-hidden">
+        <%- include('../sidenav/sidenav.ejs') %>
+            <div class="page-content bg-white">
+
+                <%- include('../header/header.ejs') %>
+
+        <!-- main content start here -->
+        
+        <form action="/post/edit/<%= post._id %>" method="post" enctype="multipart/form-data">
+            <div id="top-bttns" class="flex justify-end gap-2 border-b py-5 shadow-sm bg-white">
+                <button type="button" aria-disabled="true" class="py-2 px-4 text-[#949494] cursor-not-allowed"
+                    aria-label="Save draft" onclick="setStatus('Draft')">Save draft</button>
+                <button type="button" aria-disabled="true" aria-expanded="false"
+                    class="py-2 px-4 text-white bg-[#007BFF] rounded-lg cursor-not-allowed opacity-25"
+                    onclick="setStatus('Published')">Publish</button>
+                <input type="hidden" name="status" id="status" value="<%= post.status %>">
+                
+                <!-- data-simplebar -->
+                <%- include('../sidenav/data-simplebar.ejs') %>
             </div>
-          </main>
-        </div>
-      </form>
+            <div class="">
+                <main class="py-8 px-5">
+                    <div class="max-w-3xl mx-auto">
+                        <div class="mb-6">
+                            <label for="title" class="mb-3 text-sm">Title:</label>
+                            <input type="text" id="title" name="title" required value="<%= post.title %>" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                        </div>
+                        <div class="mb-6">
+                            <label for="heading" class="mb-3 text-sm">Heading:</label>
+                            <input type="text" id="heading" name="heading" required value="<%= post.heading %>" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                        </div>
+                        <div class="mb-6">
+                            <label for="description" class="mb-3 text-sm">Description:</label>
+                            <textarea id="editor" name="description" required class="form-input bg-[#F0F7FA] border-0 mb-3"><%= post.description %></textarea>
+                        </div>
+                        <div class="mb-6">
+                            <label class="mb-3 text-sm" for="uploadImage1">Thumbnail Photo image</label>
+                            <div class="uploadImg-Preview mb-6">
+                                <img id="preview_img" class="object-cover" src="<%= post.picture %>" alt="Upload Image">
+                            </div>
+                            <div class="block relative">
+                                <span class="absolute inset-0 opacity-100 w-40 h-12 leading-[48px] top-0 text-black bg-[#DBF4FF] rounded-lg text-center cursor-pointer">Select Image</span>
+                                <input type="file" name="picture__input" id="picture__input" onchange="loadFile(event)" class="block w-40 h-12 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0">
+                            </div>
+                        </div>
+                        <div class="form-group mb-6">
+                            <label class="mb-3 text-sm" for="metaRobots">
+                                Categories
+                            </label>
+                            <select class="form-select bg-[#F0F7FA] border-0 mb-3" id="metaRobots" name="category">
+                                <% categories.forEach(category => { %>
+                                    <option value="<%= category._id %>" <%= category._id.equals(post.category) ? 'selected' : '' %>><%= category.name %></option>
+                                <% }); %>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label class="mb-3 text-sm" for="uploadImage1">Feature image</label>
+                            <div class="uploadImg-Preview mb-6">
+                                <img id="feature_img" class="object-cover" src="<%= post.feature_img %>" alt="Upload Image">
+                            </div>
+                            <div class="block relative">
+                                <span class="absolute inset-0 opacity-100 w-40 h-12 leading-[48px] top-0 text-black bg-[#DBF4FF] rounded-lg text-center cursor-pointer">Select Image</span>
+                                <input type="file" name="feature_img" id="feature_img" onchange="loadFile(event)" class="block w-40 h-12 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0">
+                            </div>
+                        </div>
+            </div>
+        </main>
     </div>
-  </div>
-  <!-- Include Froala Editor script. -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
-  <script>
-    function setStatus(status) {
-      document.getElementById('status').value = status;
-      document.querySelector('form').submit();
-    }
-    new FroalaEditor('#editor');
-  </script>
-  <%- include('../script/script.ejs') %>
+        </form>
+    </div>
 </body>
+ <!-- Include Froala Editor script. -->
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+ <script>
+    function setStatus(status) {
+        document.getElementById('status').value = status;
+        // Trigger form submission
+        document.querySelector('form').submit();
+    }
+     // Initialize Froala Editor
+     new FroalaEditor('#editor');
+     function loadFile(event) {
+    // Get the file input element that triggered the event
+    var input = event.target;
+
+    // Check if a file was selected
+    if (input.files && input.files[0]) {
+        // Create a new FileReader object
+        var reader = new FileReader();
+
+        // Define the onload event for the FileReader object
+        reader.onload = function(e) {
+            // Get the id of the file input element
+            var id = input.id;
+
+            // Determine the id of the img tag where the image should be displayed
+            var imgId = (id === 'picture__input') ? 'preview_img' : 'feature_img';
+
+            // Get the img tag
+            var img = document.getElementById(imgId);
+
+            // Set the src attribute of the img tag to the data URL of the selected image
+            img.src = e.target.result;
+        }
+
+        // Read the selected file as a data URL
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+ </script>     
+<%- include('../script/script.ejs') %>
 </html>

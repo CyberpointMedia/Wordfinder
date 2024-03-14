@@ -8,7 +8,8 @@ const PORT = process.env.PORT || 8080;
 var wd = require("word-definition");
 const axios = require('axios');
 const wrapAsync = require('../middleware/wrapAsync');
-
+const Post = require('../models/post');
+const Category = require('../models/categories'); 
 router.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(404).render('not-found/page-not-found.ejs');
@@ -24,19 +25,56 @@ router.use('/node_modules', express.static(__dirname + '/node_modules'));
 
 // // Define routes
 
-router.get('/', (req, res) => {
-    console.log("hello sir ");
-    res.render(('frontend/index.ejs'));
+router.get('/', async (req, res) => {
+    try {
+        console.log("hello sir ");
+        
+        // const categories = await Category.find(); // Fetch the categories
+        const morePosts = await Post.find({ status: 'Published' }).limit(3); // Fetch 3 more posts with a status of 'Published'
+        res.render('frontend/index.ejs', { morePosts }); // Pass morePosts to the template
+
+    } catch (error) {
+        console.error('Error fetching post:', error);
+        res.status(500).send('Internal Server Error');
+    }
 });
 router.get('/5-letter-words', (req, res) => {
     res.render(('frontend/5-letter-words.ejs'));
   });
-router.get('/article-details', (req, res) => {
-    res.render(('frontend/article-details.ejs'));
-  });
-router.get('/articles', (req, res) => {
-    res.render(('frontend/articles.ejs'));
+
+  router.get('/articles/:title', async (req, res) => {
+    try {
+        const post = await Post.findOne({ title: req.params.title }).populate('author');
+        if (!post || !post.author) {
+            return res.status(404).send('Post or author not found');
+        }
+        const categories = await Category.find(); // Fetch the categories
+        const morePosts = await Post.find({ status: 'Published' }).limit(3); // Fetch 3 more posts with a status of 'Published'
+        const postUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+
+        // Generate the share URLs for all platforms
+        const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;
+        const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=${encodeURIComponent(post.title)}`;
+        const linkedinShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(postUrl)}&title=${encodeURIComponent(post.title)}`;
+
+        console.log(post.author ? post.author.username : 'unknown'); // Prints the username of the author or 'unknown' if the author doesn't exist
+
+        res.render('post/article-details', { post, categories, morePosts, postTitle: post.title, postUrl, facebookShareUrl, twitterShareUrl, linkedinShareUrl }); // Pass the categories and morePosts to the template
+    } catch (error) {
+        console.error('Error fetching post:', error);
+        res.status(500).send('Internal Server Error');
+    }
 });
+router.get('/articles', async (req, res) => {
+    try {
+        const posts = await Post.find({ status: 'Published' }); // Fetch all posts from the database
+        res.render('post/articles', { morePosts: posts }); // Render the articles.ejs view with the posts data
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+});
+
 router.get('/contact', (req, res) => {
     res.render(('frontend/contact.ejs'));
 });
@@ -53,6 +91,7 @@ router.get('/words-with-X-and-Q', (req, res) => {
 // Handle POST request when search button is clicked
 router.post('/search', wrapAsync(async (req, res) => {
   const letters = req.body.letters;
+ const morePosts = await Post.find({ status: 'Published' }).limit(3); 
   const startsWith = req.body.starts_with || '';
   const endsWith = req.body.end_with || '';
   const contains = req.body.contains || ''; 
@@ -100,7 +139,7 @@ router.post('/search', wrapAsync(async (req, res) => {
           });
 
           // Render the words_with_x_and_q.ejs template with the grouped data
-          res.render('frontend/words-with-X-and-Q.ejs', { letters, wordsByLength ,startsWith ,endsWith, contains,specifiedLength,totalWordsByLength}); // Pass 'letters' and 'wordsByLength' variables here
+          res.render('frontend/words-with-X-and-Q.ejs', { letters,morePosts, wordsByLength ,startsWith ,endsWith, contains,specifiedLength,totalWordsByLength}); // Pass 'letters' and 'wordsByLength' variables here
       });
   }).on('error', (error) => {
       console.error('Error:', error);

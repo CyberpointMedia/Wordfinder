@@ -35,14 +35,14 @@
                                         </p>
                                     </div>
                                     <div class="w-full text-center">
-                                        <img src="data:image/jpeg;base64,<%= section.image %>" alt="Section Image" class="mx-auto" />
+                                        <img src="<%= section.image %>" alt="Section Image" class="mx-auto" />
                                     </div>
                                 </div>
                                 <% } else if (section.imagePosition === 'left') { %>
 
                                     <div class="mb-6 flex flex-col md:flex-row gap-6">
                                         <div class="md:w-1/2 w-full">
-                                            <img src="data:image/jpeg;base64,<%= section.image %>" alt="Section Image" />
+                                            <img src="<%= section.image %>" alt="Section Image" />
                                         </div>
                                         <div class="md:w-1/2 w-full">
                                             <div class="mb-3">
@@ -74,7 +74,7 @@
                                                 </p>
                                             </div>
                                             <div class="md:w-1/2 w-full">
-                                                <img src="data:image/jpeg;base64,<%= section.image %>" alt="Section Image" />
+                                                <img src="<%= section.image %>" alt="Section Image" />
                                             </div>
                                         </div>
                                         <% } %>

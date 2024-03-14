@@ -4,8 +4,8 @@
     <body>
         <!-- sidebar start here -->
         <div class="flex overflow-hidden">
-            <!-- Sidenav Menu Start  -->
-            <%- include('../Sidenav/Sidenav.ejs') %>
+            <!-- sidenav Menu Start  -->
+            <%- include('../sidenav/sidenav.ejs') %>
 
                 <div class="page-content bg-white">
                     <!-- header Start -->
@@ -24,10 +24,10 @@
 
                             <!-- Dynamic content generation -->
                             <ul class="subsubsub flex flex-wrap space-x-2 mb-6">
-                                <li class="all"><a href="/admin/section/all" class="current text-black" aria-current="page">All <span class="count">(3)</span></a> |</li>
-                                <li class="publish"><a href="/admin/section/published" class="text-black">Published <span class="count">(1)</span></a> |</li>
-                                <li class="trash"><a href="/admin/section/trash" class="text-black">Trash <span class="count">(1)</span></a> |</li>
-                                <li class="draft"><a href="/admin/section/draft" class="text-black">Draft <span class="count">(1)</span></a></li>            
+                                <li class="all"><a href="/admin/section/all" class="current text-black" aria-current="page">All <span class="count">(<%= allCount %>)</span></a> |</li>
+                                <li class="publish"><a href="/admin/section/published" class="text-black">Published <span class="count">(<%= publishedCount %>)</span></a> |</li>
+                                <li class="trash"><a href="/admin/section/trash" class="text-black">Trash <span class="count">(<%= trashCount %>)</span></a> |</li>
+                                <li class="draft"><a href="/admin/section/draft" class="text-black">Draft <span class="count">(<%= draftCount %>)</span></a></li>            
                             </ul>   
                             
                             <!-- table start here -->
@@ -70,8 +70,12 @@
                                                         <span class="edit">
                                                             <a href="<%= `/admin/section/edit/${section._id}` %>" class="text-[#2271b1] text-xs">Edit</a>|
                                                         </span>
-                                                        <span class="trash">
-                                                            <a href="#" class="text-[#2271b1] text-xs" onclick="trashSection('<%= section._id %>')">Trash</a>                                                            </span>
+                                                        <% if (section.status === 'Trash') { %>
+                                                            <span class="delete">
+                                                                <a href="javascript:void(0)" class="delete text-[#b32d2e] text-xs" onclick="deletePost('<%= section._id %>')">Delete</a> |
+                                                            </span>                                        <% } else { %>
+                                                            <span class="trash"><a href="javascript:void(0)" class="trash text-[#b32d2e] text-xs" onclick="trashSection('<%= section._id %>')">Trash</a> | </span>
+                                                        <% } %>
                                                         <span class="view">
                                                             <a href="<%= `show/${section.title}`%>"
                                                                 class="text-[#2271b1] text-xs">View</a>
@@ -127,25 +131,45 @@
     <script>
         // Add this function to your JavaScript
 function trashSection(id) {
-  fetch(`/update-status/${id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ status: 'Trash' }),
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.message) {
-      alert(data.message);
-    } else {
-      alert('Error updating section status');
-    }
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-}
+    fetch(`/admin/section/update-status/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ status: 'Trash' })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // For example, you can show a success message or refresh the page
+                console.log(data);
+            })
+            .catch(error => {
+                // Handle any errors that occurred during the request
+                console.error(error);
+            })
+            .finally(() => {
+                // Reload the page after the fetch request is completed, regardless of whether it succeeded or failed
+                location.reload();
+            });
+        }
+        function deletePost(id) {
+            fetch(`/admin/section/delete/${id}`, {
+                method: 'DELETE',
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .catch(error => {
+                // Handle any errors that occurred during the request
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                // Reload the page after the fetch request is completed, regardless of whether it succeeded or failed
+                location.reload();
+            });
+        }
 </script>
     <%- include('../script/script.ejs') %>
 </html>

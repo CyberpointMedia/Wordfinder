@@ -18,12 +18,12 @@
                     <a href="create" class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add New Posts</a>
                 </div>
                 <ul class="subsubsub flex flex-wrap space-x-2 mb-6">
-                    <li class="all"><a href="/post/all" class="current text-black" aria-current="page">All <span class="count">(3)</span></a> |</li>
-                    <li class="publish"><a href="/post/published" class="text-black">Published <span class="count">(1)</span></a> |</li>
-                    <li class="trash"><a href="/post/trash" class="text-black">Trash <span class="count">(1)</span></a> |</li>
-                    <li class="draft"><a href="/post/draft" class="text-black">Draft <span class="count">(1)</span></a></li>
+                    <li class="all"><a href="/post/all" class="current text-black" aria-current="page">All <span class="count">(<%= allCount %>)</span></a> |</li>
+                    <li class="publish"><a href="/post/published" class="text-black">Published <span class="count">(<%= publishedCount %>)</span></a> |</li>
+                    <li class="trash"><a href="/post/trash" class="text-black">Trash <span class="count">(<%= trashCount %>)</span></a> |</li>
+                    <li class="draft"><a href="/post/draft" class="text-black">Draft <span class="count">(<%= draftCount %>)</span></a></li>
                 </ul>
-
+                
                 <!-- table start here -->
                 <div class="bg-white overflow-x-auto">
                     <table class="w-full divide-y divide-gray-200 border" id="example">
@@ -58,13 +58,19 @@
                                     </div>
                                     <div class="row-actions mt-1">
                                         <span class="edit"><a href="/post/edit/<%= post._id %>" class="text-[#2271b1] text-xs">Edit</a> | </span>
-                                        <span class="trash"><a href="javascript:void(0)" class="trash text-[#b32d2e] text-xs" onclick="updateStatus('<%= post._id %>')">Trash</a> | </span>
-                                        <span class="view"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">View</a></span>
-                                    </div>
+                                        
+                                        <% if (post.status === 'Trash') { %>
+                                            <span class="delete">
+                                                <a href="javascript:void(0)" class="delete text-[#b32d2e] text-xs" onclick="deletePost('<%= post._id %>')">Delete</a> |
+                                            </span>                                        <% } else { %>
+                                            <span class="trash"><a href="javascript:void(0)" class="trash text-[#b32d2e] text-xs" onclick="updateStatus('<%= post._id %>')">Trash</a> | </span>
+                                        <% } %>
+                                        
+                                        <span class="view"><a href="/articles/<%= post.title %>" class="text-[#2271b1] text-xs">View</a></span>                                    </div>
                                 </td>
-                                <td>Admin<%= post.author %></td>
-                                <td>Uncategorized</td>
-                                <td>Published<br> <%= post.date.toISOString().split('T')[0] %> at <%= post.date.toISOString().split('T')[1].split('.')[0] %></td>
+                                <td><%= post.author && post.author.username ? post.author.username : 'unknown' %></td>
+                                <td><%= post.category ? post.category.name : 'Uncategorized' %></td>
+                                <td><%= post.status %><br> <%= post.date.toISOString().split('T')[0] %> at <%= post.date.toISOString().split('T')[1].split('.')[0] %></td>
                             </tr>
                             <% }) %>
                         </tbody>
@@ -97,7 +103,6 @@
     <!-- sidebar end here -->
     <script>
         function updateStatus(postId) {
-            
             fetch(`/post/updateStatus/${postId}`, {
                 method: 'PUT',
                 headers: {
@@ -105,19 +110,41 @@
                 },
                 body: JSON.stringify({ status: 'Trash' })
             })
-                .then(response => response.json())
-                .then(data => {
-                    // For example, you can show a success message or refresh the page
-                    console.log(data);
-                })
-                .catch(error => {
-                    // Handle any errors that occurred during the request
-                    console.error(error);
-                });
+            .then(response => response.json())
+            .then(data => {
+                // For example, you can show a success message or refresh the page
+                console.log(data);
+            })
+            .catch(error => {
+                // Handle any errors that occurred during the request
+                console.error(error);
+            })
+            .finally(() => {
+                // Reload the page after the fetch request is completed, regardless of whether it succeeded or failed
+                location.reload();
+            });
+        }
+
+        function deletePost(id) {
+            fetch(`/post/delete/${id}`, {
+                method: 'DELETE',
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .catch(error => {
+                // Handle any errors that occurred during the request
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                // Reload the page after the fetch request is completed, regardless of whether it succeeded or failed
+                location.reload();
+            });
         }
     </script>
     <%- include('../script/script.ejs') %>
-
 
 </body>
 </html>

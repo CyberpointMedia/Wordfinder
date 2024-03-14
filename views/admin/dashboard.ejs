@@ -1,12 +1,15 @@
 <%- include('../header/head.ejs') %>
 
     <body>
-        <!-- sidebar start here -->
-        <div class="flex overflow-hidden">
-            <%- include('../sidenav/sidenav.ejs') %>
-                <div class="bg-white page-content">
 
+        <div class="flex overflow-hidden">
+            <!-- sidebar start here -->
+            <%- include('../sidenav/sidenav.ejs') %>
+                <!-- sidebar end here -->
+                <div class="bg-white page-content">
+                    <!-- header start here -->
                     <%- include('../header/header.ejs') %>
+                        <!-- header end here -->
 
                         <!-- main content start here -->
                         <main class="px-5 py-8">
@@ -105,43 +108,27 @@
                                             </div>
                                             <div id="hs-basic-with-title-and-arrow-stretched-collapse-one " class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 bg-[#f0f7fa] cardBody " aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one ">
                                                 <div class="px-5 py-8 ">
-                                                    <div class="flex justify-between pb-4 mb-5 border-b gap-x-3">
-                                                        <img class="inline-block rounded-full h-9 w-9" src="/images/img1.jpg" alt="Image Description">
-                                                        <div class="grow">
-                                                            <div class="flex justify-between mb-2">
-                                                                <p class="font-medium text-[#393939]">Admin
-                                                                    <small class="text-gray-400">admin@gmail.com</small>
-                                                                </p>
+                                                    <% posts.forEach(post => { %>
+                                                        <% if (post.author) { %>
+                                                            <div class="flex justify-between gap-x-3 mb-5 pb-4 border-b">
+                                                                <img class="inline-block h-9 w-9 rounded-full" src="<%= user.image ? user.image : '/images/img1.jpg' %>" alt="Image Description">
+                                                                <div class="grow">
+                                                                    <div class="flex mb-2 justify-between">
+                                                                        <p class="font-medium text-[#393939]">
+                                                                            <%= post.author.username %>
+                                                                                <small class="text-gray-400"><%= post.author.email %></small>
+                                                                        </p>
+                                                                    </div>
+                                                                    <a href="/articles/<%= post.title %>" class="text-[#007bff] hover:opacity-50 underline hover:underline">
+                                                                        <%= post.title %>
+                                                                    </a>
+                                                                    <div class="mt-2 text-sm text-gray-400 justify-start flex items-center"><i data-lucide="calendar" class="inline-block w-[14px] h-[14px] me-2"></i>
+                                                                        <%= post.date.toDateString() %>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                            <a href="javascript:void(0);" class="text-[#007bff] hover:opacity-50 underline hover:underline truncate">Lorem Ipsum is simply dummy text of the printing and typesetting</a>
-                                                            <div class="flex items-center justify-start mt-2 text-sm text-gray-400"><i data-lucide="calendar" class="inline-block w-[14px] h-[14px] me-2"></i>02/01/2024</div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="flex justify-between pb-4 mb-5 border-b gap-x-3">
-                                                        <img class="inline-block rounded-full h-9 w-9" src="/images/img2.jpg" alt="Image Description">
-                                                        <div class="grow">
-                                                            <div class="flex justify-between mb-2">
-                                                                <p class="font-medium text-[#393939]">Admin
-                                                                    <small class="text-gray-400">admin@gmail.com</small>
-                                                                </p>
-                                                            </div>
-                                                            <a href="javascript:void(0);" class="text-[#007bff] hover:opacity-50 underline hover:underline truncate">Lorem Ipsum is simply dummy text of the printing and typesetting</a>
-                                                            <div class="flex items-center justify-start mt-2 text-sm text-gray-400"><i data-lucide="calendar" class="inline-block w-[14px] h-[14px] me-2"></i>25/12/2023</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="flex justify-between gap-x-3">
-                                                        <img class="inline-block rounded-full h-9 w-9" src="/images/img3.jpg" alt="Image Description">
-                                                        <div class="grow">
-                                                            <div class="flex justify-between mb-2">
-                                                                <p class="font-medium text-[#393939]">Admin
-                                                                    <small class="text-gray-400">admin@gmail.com</small>
-                                                                </p>
-                                                            </div>
-                                                            <a href="javascript:void(0);" class="text-[#007bff] hover:opacity-50 underline hover:underline truncate">Lorem Ipsum is simply dummy text of the printing and typesetting</a>
-                                                            <div class="flex items-center justify-start mt-2 text-sm text-gray-400"><i data-lucide="calendar" class="inline-block w-[14px] h-[14px] me-2"></i>28/12/2023</div>
-                                                        </div>
-                                                    </div>
+                                                            <% } %>
+                                                                <% }) %>
                                                 </div>
                                             </div>
                                         </div>
@@ -168,9 +155,15 @@
                                             </div>
                                             <div id="hs-basic-with-title-and-arrow-stretched-collapse-one" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 bg-[#f0f7fa] cardBody" aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one">
                                                 <div class="p-8">
-                                                    <ul class="grid justify-between grid-cols-1 gap-6 md:grid-cols-2 ">
-                                                        <li><i data-lucide="pin" class="menu-icon inline-block mx-2 w-[18px] h-[18px] "></i><a href="all-posts.html" class="text-[#007bff] ">1 Post</a></li>
-                                                        <li><i data-lucide="files" class="menu-icon inline-block mx-2 w-[18px] h-[18px] "></i><a href="all-pages.html" class="text-[#007bff] ">3 Pages</a></li>
+                                                    <ul class="grid grid-cols-1 gap-6 md:grid-cols-2 justify-between ">
+                                                        <li><i data-lucide="pin" class="menu-icon inline-block mx-2 w-[18px] h-[18px] "></i>
+                                                            <a href="/post/all" class="text-[#007bff] ">
+                                                                <%= totalPosts %> Posts</a>
+                                                        </li>
+                                                        <li><i data-lucide="files" class="menu-icon inline-block mx-2 w-[18px] h-[18px] "></i>
+                                                            <a href="all-pages.html" class="text-[#007bff] ">
+                                                                <%= totalPages %> Pages</a>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -243,23 +236,8 @@
                         <!-- main content end here -->
                 </div>
         </div>
-        <!-- sidebar end here -->
+
         <%- include('../script/script.ejs') %>
     </body>
-    <!-- <body>
-    <h1>Admin dashboard</h1>
-        <nav>
-            <ul>
-                <li><a href="/admin">Home</a></li>
-                <li><a href="/admin/all-users">Users</a></li>
-                <li><a href="/admin/all-editors">Editor</a></li>
-                <li><a href="/pages">Pages</a></li>
-                <li><a href="/post/all">Posts</a></li>
-                <li><a href="/login">Logout</a></li>
-            </ul>
-        </nav>
-        
-    </div>
-</body> -->
 
     </html>

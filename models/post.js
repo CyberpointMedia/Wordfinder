@@ -1,31 +1,42 @@
 // models/post.js
 const mongoose = require('mongoose');
-
 const postSchema = new mongoose.Schema({
-  title: {
+title: {
     type: String,
     required: true
   },
-  description: {
+heading: {
     type: String,
     required: true
   },
-  features: {
+description: {
     type: String,
     required: true
   },
-  picture: {
+feature_img: {
     type: String,
-    required: false
+    required: true
   },
-  status: {
+picture: {
+    type: String,
+    required: true
+  },
+status: {
     type: String,
     enum: ['Published', 'Trash', 'Draft'],
     default: 'Draft', // Set the default status as Draft
 },
-  date: {
+date: {
     type: Date,
     default: Date.now
+  },
+category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category'
+  },
+author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }
 });
 

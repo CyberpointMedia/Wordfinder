@@ -1,0 +1,111 @@
+<!-- views/user/edit-profile.ejs -->
+<%- include('../header/head.ejs') %>
+
+<body>
+    <!-- sidebar start here -->
+    <div class="flex overflow-hidden">
+        <%- include('../sidenav/sidenav.ejs') %>
+            <div class="page-content bg-white relative">
+                <!-- header Start -->
+                <%- include('../header/header.ejs') %>
+                    <!-- main content start here -->
+                    <main class="py-8 px-5">
+                        <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+                            <h1 class="text-2xl font-bold text-black">
+                                Edit Profile
+                            </h1>
+                        </div>
+                        <!-- edit profile form start -->
+                        <form action="/admin/edit-profile/<%= user._id %>" method="POST" enctype="application/x-www-form-urlencoded" class="space-y-4">
+                                                        <div class="grid sm:grid-cols-3">
+                                <label class="mt-1 mb-2" for="userName1">Username<span class="text-danger">*</span></label>
+                                <div class="sm:col-span-2">
+                                    <input type="text" required="" class="form-input bg-[#F0F7FA] border-0" id="userName1" name="username" placeholder="User Name" value="<%= user.username %>">
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-3">
+                                <label class="mt-1 mb-2" for="inputEmail3">Email<span class="text-danger">*</span></label>
+                                <div class="sm:col-span-2">
+                                    <input type="email" required="" class="form-input bg-[#F0F7FA] border-0" id="inputEmail3" name="email" placeholder="Email" value="<%= user.email %>">
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-3">
+                                <label class="mt-1 mb-2" for="password1">Password<span class="text-danger">*</span></label>
+                                <div class="sm:col-span-2">
+                                <input id="password1" type="password" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, one special character, and at least 8 or more characters" class="form-input bg-[#F0F7FA] border-0">                                    </div>
+                            </div>
+                            <div class="grid sm:grid-cols-3">
+                                <label class="mt-1 mb-2" for="password">Password</label>
+                                <div class="sm:col-span-2">
+                                    <button type="button" class="py-2 w-40 text-black bg-[#DBF4FF] rounded-lg" id="generate-pw" aria-expanded="true">Generate Password</button>
+                                    <div id="show-generate-pw" class="flex mt-4 hidden">
+                                        <div class="relative w-full">
+                                            <input id="password" type="password" placeholder="********" class="form-input bg-[#F0F7FA] border-0">
+                                            <div class="absolute right-[12px] bottom-[22px] cursor-pointer toggle-password">
+                                                <i data-lucide="eye" class="w-4 h-4 eyeOpen"></i>
+                                                <i data-lucide="eye-off" class="w-4 h-4 eyeOff"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="grid sm:grid-cols-3">
+                                <label class="mt-1 mb-2" for="webSite">Web Site<span class="text-danger"></span></label>
+                                <div class="sm:col-span-2">
+                                    <input type="url" class="form-input bg-[#F0F7FA] border-0" id="webSite" name="website" placeholder="URL" value="<%= user.website %>">
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-3">
+                                <label class="mt-1 mb-2" for="role">Role</label>
+                                <div class="sm:col-span-2">
+                                    <select class="form-select bg-[#F0F7FA] border-0" id="role" name="role">
+                                        <option value="subscriber" <%= user.role === 'subscriber' ? 'selected' : '' %>>Subscriber</option>
+                                        <option value="author" <%= user.role === 'author' ? 'selected' : '' %>>Author</option>
+                                        <option value="editor" <%= user.role === 'editor' ? 'selected' : '' %>>Editor</option>
+                                        <option value="administrator" <%= user.role === 'administrator' ? 'selected' : '' %>>Administrator</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="grid sm:grid-cols-3">
+                                <div></div>
+                                <div class="sm:col-span-2 flex items-center gap-2 mt-4">
+                                    <button type="submit" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">
+                                        Save Changes
+                                    </button>
+                                    <button type="reset" class="py-2 w-28 text-black bg-[#DBF4FF] rounded-lg">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- edit profile form end -->
+                    </main>
+                    <!-- main content end here -->
+                    <%- include('../script/script.ejs') %>
+                    <script>
+                        document.getElementById("generate-pw").addEventListener("click", function () {
+                            var passwordInput = document.getElementById("password");
+                            var randomPassword = generateRandomPassword();
+                            passwordInput.value = randomPassword;
+                        });
+
+                        function generateRandomPassword() {
+                            var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                            var passwordLength = 8;
+                            var randomPassword = "";
+                            for (var i = 0; i < passwordLength; i++) {
+                                var randomIndex = Math.floor(Math.random() * characters.length);
+                                randomPassword += characters.charAt(randomIndex);
+                            }
+                            return randomPassword;
+                        }
+                    </script>
+            </div>
+    </div>
+</body>
+</html>

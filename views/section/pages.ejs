@@ -18,14 +18,12 @@
         <a href="/admin/pages/create" class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add New Page</a>
     </div>
 
-    <!-- Dynamic content generation -->
-    <% if (pages.length > 0) { %>
 
         <ul class="subsubsub flex flex-wrap space-x-2 mb-6">
-            <li class="all"><a href="/admin/pages/all" class="current text-black" aria-current="page">All <span class="count">(3)</span></a> |</li>
-            <li class="publish"><a href="/admin/pages/published" class="text-black">Published <span class="count">(1)</span></a> |</li>
-            <li class="trash"><a href="/admin/pages/trash" class="text-black">Trash <span class="count">(1)</span></a> |</li>
-            <li class="draft"><a href="/admin/pages/draft" class="text-black">Draft <span class="count">(1)</span></a></li>            
+            <li class="all"><a href="/admin/pages" class="current text-black" aria-current="page">All <span class="count">(<%= allCount %>)</span></a> |</li>
+            <li class="publish"><a href="/admin/pages/published" class="text-black">Published <span class="count">(<%= publishedCount %>)</span></a> |</li>
+            <li class="trash"><a href="/admin/pages/trash" class="text-black">Trash <span class="count">(<%= trashCount %>)</span></a> |</li>
+            <li class="draft"><a href="/admin/pages/draft" class="text-black">Draft <span class="count">(<%= draftCount %>)</span></a></li>            
         </ul>        
 
         <!-- table start here -->
@@ -63,10 +61,12 @@
                                         <a href="<%= `pages/edit/${page._id}` %>"
                                             class="text-[#2271b1] text-xs">Edit</a> |
                                     </span>
-                                    <span class="trash">
-                                        <a href="<%= `pages/update-status/${page._id}` %>"
-                                            class="trash text-[#b32d2e] text-xs" onclick="changePageStatus('<%= page._id %>')">Trash</a> |
-                                    </span>                                    
+                                    <% if (page.status === 'Trash') { %>
+                                        <span class="delete">
+                                            <a href="javascript:void(0)" class="delete text-[#b32d2e] text-xs" onclick="deletePage('<%= page._id %>')">Delete</a>
+                                                                                </span>                                        <% } else { %>
+                                        <span class="trash"><a href="javascript:void(0)" class="trash text-[#b32d2e] text-xs" onclick="updateStatus('<%= page._id %>')">Trash</a> | </span>
+                                    <% } %>                                  
                                     <span class="view">
                                         <a href="pages/<%= page.page_name %>"
                                             class="text-[#2271b1] text-xs">View</a>
@@ -78,7 +78,7 @@
                                 <%= new Date(date).toLocaleString('en-US', options) %>
                             <% } %>
                             <td>Admin</td>
-                            <td>Published<br> <%= formatDate(page.date) %></td>
+                            <td><%= page.status %><br> <%= formatDate(page.date) %></td>
                         </tr>
                     <% }); %>
                 </tbody>
@@ -97,9 +97,6 @@
             </table>
         </div>
         <!-- table end here -->
-    <% } else { %>
-        <p>No pages found.</p>
-    <% } %>
 </main>
 <!-- main content end here -->
 
@@ -108,27 +105,46 @@
         <!-- sidebar end here -->
         <script>
             // Add this function to your JavaScript
-function changePageStatus(pageId) {
-    // Make an AJAX request to update the page status
+function updateStatus(pageId) {
     fetch(`/admin/pages/update-status/${pageId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ status: 'Trash' }) // Set the new status here
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to update page status');
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ status: 'Trash' })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // For example, you can show a success message or refresh the page
+                console.log(data);
+            })
+            .catch(error => {
+                // Handle any errors that occurred during the request
+                console.error(error);
+            })
+            .finally(() => {
+                // Reload the page after the fetch request is completed, regardless of whether it succeeded or failed
+                location.reload();
+            });
         }
-        // Optionally, you can reload the page or update the UI here
-        // window.location.reload(); // Reload the page
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        // Handle error
-    });
-}
+        function deletePage(pageId) {
+            fetch(`/admin/pages/delete/${pageId}`, {
+                method: 'DELETE',
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .catch(error => {
+                // Handle any errors that occurred during the request
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                // Reload the page after the fetch request is completed, regardless of whether it succeeded or failed
+                location.reload();
+            });
+        }
         </script>
         <%- include('../script/script.ejs') %>
     </body>

@@ -33,7 +33,7 @@ const pageSchema = new mongoose.Schema({
         default: "2",
     },
     hsRadioGroup: {
-        type: String, // Assuming this should be a string based on the values in the form
+        type: String,
     },
     metaRobots: {
         type: Number,
@@ -48,7 +48,11 @@ const pageSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-});
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+      }
+    });
 
 const Page = mongoose.model('Page', pageSchema);
 module.exports = Page;

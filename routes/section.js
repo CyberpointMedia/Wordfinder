@@ -41,7 +41,7 @@ router.route('/create')
   .get(wrapAsync(async (req, res) => {
     try {
       // Render the create-section.ejs view without passing a specific page
-      res.render('section/create-section.ejs');
+      res.render('section/create-section.ejs',{user: req.user});
     } catch (error) {
       console.error('Error rendering create-section view:', error);
       res.status(500).send('Internal Server Error');
@@ -72,8 +72,12 @@ router.route('/create')
 // Display all pages with associated sections
 router.get('/show', wrapAsync(async (req, res) => {
     try {
-        const sections = await Section.find();  // Assuming you want to fetch all sections
-        res.render('section/section', { sections });
+      const allCount = await Section.countDocuments();
+      const publishedCount = await Section.countDocuments({ status: 'Published' });
+      const trashCount = await Section.countDocuments({ status: 'Trash' });
+      const draftCount = await Section.countDocuments({ status: 'Draft' });
+        const sections = await Section.find({ status: { $in: ['Published', 'Draft'] } });  // Assuming you want to fetch all sections
+        res.render('section/section', { sections , user: req.user , allCount, publishedCount, trashCount, draftCount});
     } catch (error) {
         console.error('Error fetching pages:', error);
         res.status(500).send('Internal Server Error');
@@ -85,13 +89,65 @@ router.get('/show/:title', async (req, res) => {
       const section = await Section.findOne({ title: req.params.title });
       // Render the show-section.ejs view with the updated section
       console.log(section);
-      res.render('section/show-section', { section });
+      res.render('section/show-section', { section ,user: req.user});
   } catch (err) {
       console.error(err);
       res.status(500).send('Server Error');
   }
 });
 
+router.get('/all', wrapAsync(async (req, res) => {
+  try {
+    const allCount = await Section.countDocuments();
+    const publishedCount = await Section.countDocuments({ status: 'Published' });
+    const trashCount = await Section.countDocuments({ status: 'Trash' });
+    const draftCount = await Section.countDocuments({ status: 'Draft' });
+      const sections = await Section.find({ status: { $in: ['Published', 'Draft'] }});  // Assuming you want to fetch all sections
+      res.render('section/section', { sections ,user: req.user , allCount, publishedCount, trashCount, draftCount});
+  } catch (error) {
+      console.error('Error fetching pages:', error);
+      res.status(500).send('Internal Server Error');
+  }
+}));
+router.get('/published', wrapAsync(async (req, res) => {
+  try {
+    const allCount = await Section.countDocuments();
+    const publishedCount = await Section.countDocuments({ status: 'Published' });
+    const trashCount = await Section.countDocuments({ status: 'Trash' });
+    const draftCount = await Section.countDocuments({ status: 'Draft' });
+      const sections = await Section.find({ status: 'Published' });  // Assuming you want to fetch all sections
+      res.render('section/section', { sections ,user: req.user , allCount, publishedCount, trashCount, draftCount});
+  } catch (error) {
+      console.error('Error fetching pages:', error);
+      res.status(500).send('Internal Server Error');
+  }
+}));
+router.get('/trash', wrapAsync(async (req, res) => {
+  try {
+    const allCount = await Section.countDocuments();
+    const publishedCount = await Section.countDocuments({ status: 'Published' });
+    const trashCount = await Section.countDocuments({ status: 'Trash' });
+    const draftCount = await Section.countDocuments({ status: 'Draft' });
+      const sections = await Section.find({ status: 'Trash' });  // Assuming you want to fetch all sections
+      res.render('section/section', { sections ,user: req.user , allCount, publishedCount, trashCount, draftCount});
+  } catch (error) {
+      console.error('Error fetching pages:', error);
+      res.status(500).send('Internal Server Error');
+  }
+}));
+router.get('/draft', wrapAsync(async (req, res) => {
+  try {
+    const allCount = await Section.countDocuments();
+    const publishedCount = await Section.countDocuments({ status: 'Published' });
+    const trashCount = await Section.countDocuments({ status: 'Trash' });
+    const draftCount = await Section.countDocuments({ status: 'Draft' });
+      const sections = await Section.find({ status: 'Draft' });  // Assuming you want to fetch all sections
+      res.render('section/section', { sections ,user: req.user , allCount, publishedCount, trashCount, draftCount});
+  } catch (error) {
+      console.error('Error fetching pages:', error);
+      res.status(500).send('Internal Server Error');
+  }
+}));
   // Assuming you have an endpoint for updating the page status
   router.put('/update-status/:id', async (req, res) => {
     const { id } = req.params;
@@ -112,43 +168,16 @@ router.get('/show/:title', async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
-
-router.get('/all', wrapAsync(async (req, res) => {
-  try {
-      const sections = await Section.find();  // Assuming you want to fetch all sections
-      res.render('section/section', { sections });
-  } catch (error) {
-      console.error('Error fetching pages:', error);
-      res.status(500).send('Internal Server Error');
-  }
-}));
-router.get('/published', wrapAsync(async (req, res) => {
-  try {
-      const sections = await Section.find({ status: 'Published' });  // Assuming you want to fetch all sections
-      res.render('section/section', { sections });
-  } catch (error) {
-      console.error('Error fetching pages:', error);
-      res.status(500).send('Internal Server Error');
-  }
-}));
-router.get('/trash', wrapAsync(async (req, res) => {
-  try {
-      const sections = await Section.find({ status: 'Trash' });  // Assuming you want to fetch all sections
-      res.render('section/section', { sections });
-  } catch (error) {
-      console.error('Error fetching pages:', error);
-      res.status(500).send('Internal Server Error');
-  }
-}));
-router.get('/draft', wrapAsync(async (req, res) => {
-  try {
-      const sections = await Section.find({ status: 'Draft' });  // Assuming you want to fetch all sections
-      res.render('section/section', { sections });
-  } catch (error) {
-      console.error('Error fetching pages:', error);
-      res.status(500).send('Internal Server Error');
-  }
-}));
+  router.delete('/delete/:id', async (req, res) => {
+    try {
+        console.log('Delete Section:', req.params.id);
+        await Section.findByIdAndDelete(req.params.id);
+        res.redirect('/admin/section/trash');
+    } catch (error) {
+        console.error('Error deleting section:', error);
+        res.status(500).send('Internal Server Error');
+    }
+  });
 
 // Edit section
 router.get("/edit/:id", wrapAsync(async (req, res) => {
@@ -159,7 +188,7 @@ router.get("/edit/:id", wrapAsync(async (req, res) => {
     const section = await Section.findById(id);
 
     // Render the edit-section.ejs file and pass the section
-    res.render("section/edit-section.ejs", { section });
+    res.render("section/edit-section.ejs", { section , user: req.user});
   } catch (error) {
     console.error("Error fetching data:", error);
     res.status(500).send("Internal Server Error");

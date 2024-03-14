@@ -1,15 +1,7 @@
  <!-- header Start -->
  <header class="app-header bg-white border-b shadow-md">
     <div class="flex items-center justify-between px-3 gap-3 w-full">
-        <!-- Brand Logo -->
-        <a href="/admin/dashboard" class="logo-box">
-
-            <!-- Dark Brand Logo -->
-            <div class="logo-dark">
-                <img src="/images/logo-lg.svg" class="logo-lg" alt="Word Finder">
-                <img src="/images/logo-lg.svg" class="logo-sm" alt="Word Finder">
-            </div>
-        </a>
+     
 
         <!-- Sidenav Menu Toggle Button -->
         <button id="button-toggle-menu" class="nav-link p-2">
@@ -22,8 +14,8 @@
         <!-- Profile Dropdown Button -->
         <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
             <button id="hs-dropdown-default" type="button" class="hs-dropdown-toggle nav-link flex items-center">
-                <img src="/images/admin.svg" alt="user-image" class="rounded-full h-8 w-8">
-                <div class="lg:flex hidden">
+                <img src="<%= user && user.image ? user.image : '/images/admin.svg' %>" alt="user-image" class="rounded-full h-8 w-8">
+                    <div class="lg:flex hidden">
                     <span class="text-sm mx-2">Admin</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
@@ -35,16 +27,16 @@
             </button>
 
             <div class="hs-dropdown-menu transition-[opacity,margin] duration-[0.1ms] hs-dropdown-open:opacity-100 opacity-0 hidden z-10 mt-2 min-w-[10rem] bg-white border border-gray-200 shadow-md rounded py-2" aria-labelledby="hs-dropdown-default">
-                <a class="flex items-center gap-x-3.5 py-2 px-5 text-sm hover:bg-gray-100" href="javascript:void(0);">
+                <a class="flex items-center gap-x-3.5 py-2 px-5 text-sm hover:bg-gray-100" href="/user/user-profile">
                     <i data-lucide="user" class="w-4 h-4 me-2"></i>
                     <span>My Account</span>
                 </a>
-                <a class="flex items-center gap-x-3.5 py-2 px-5 text-sm hover:bg-gray-100" href="javascript:void(0);">
+                <a class="flex items-center gap-x-3.5 py-2 px-5 text-sm hover:bg-gray-100" href="/user/user-profile">
                     <i data-lucide="edit" class="w-4 h-4 me-2"></i>
                     <span>Edit</span>
                 </a>
                 <hr class="my-2 border-gray-200">
-                <a class="flex items-center gap-x-3.5 py-2 px-5 text-sm hover:bg-gray-100" href="login.html">
+                <a class="flex items-center gap-x-3.5 py-2 px-5 text-sm hover:bg-gray-100" href="/auth/logout">
                     <i data-lucide="log-out" class="w-4 h-4 me-2"></i>
                     <span>Logout</span>
                 </a>

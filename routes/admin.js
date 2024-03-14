@@ -6,6 +6,9 @@ const Editor = require('../models/editor');
 const bcrypt = require('bcrypt');
 const wrapAsync = require('../middleware/wrapAsync');
 const router = express.Router();
+const Post = require('../models/post'); 
+const Page = require('../models/pages');
+const { ensureAdmin, ensureEditor, ensureAuthor } = require('../middleware/authMiddleware');
 
 // Error handling middleware
 router.use((err, req, res, next) => {
@@ -14,13 +17,16 @@ router.use((err, req, res, next) => {
 });
 
 // Route to handle admin registration
-router.get('/register', isAdmin,(req, res) => {
-    console.log("register get request call");
-    res.render('admin/create-profile.ejs');
+router.get('/register', ensureAdmin ,(req, res) => {
+    if (req.isAuthenticated() && (req.user.role === 'admin' || req.user.role === 'administrator')) {
+        res.render('admin/create-profile.ejs', { user: req.user });
+    } else {
+        res.status(403).send('Forbidden');
+    }
 });
 
 // Route to handle user profile creation
-router.post('/create-profile', isAdmin, async (req, res) => {
+router.post('/create-profile', ensureAdmin , async (req, res) => {
     console.log("register post request call", req.body);
     try {
         if (!req.body.username) {
@@ -31,9 +37,9 @@ router.post('/create-profile', isAdmin, async (req, res) => {
         const existingUser = await User.findOne({ email: req.body.email });
 
         if (existingUser) {
+            alert('User with this email already exists');
             throw new Error('User with this email already exists');
         }
-
         const user = new User({
             username: req.body.username,
             email: req.body.email,
@@ -43,133 +49,222 @@ router.post('/create-profile', isAdmin, async (req, res) => {
             sendNotification: req.body.sendNotification === 'on'
         });
         await user.save();
-        res.render('admin/all-users');
-    } catch (err) {
-        res.render('admin/create-profile', { errorMessage: `Error creating User profile: ${err.message}` });
-    }
-});
 
-// Admin dashboard
-router.get('/dashboard', isAdmin, wrapAsync(async (req, res) => {
-    // Fetch users
-    const users = await User.find();
-    // Render dashboard
-    res.render('admin/dashboard', { users });
-  }));
-
-// View all users
-router.get('/all-users', async (req, res) => {
-    try {
-        const users = await User.find();
+        // Fetch the counts after saving the user
         const subscriberCount = await User.countDocuments({ role: 'subscriber' });
-        const contributorCount = await User.countDocuments({ role: 'contributor' });
         const authorCount = await User.countDocuments({ role: 'author' });
         const editorCount = await User.countDocuments({ role: 'editor' });
         const administratorCount = await User.countDocuments({ role: 'administrator' });
 
         const totalCount = {
-            subscriber: subscriberCount,
-            contributor: contributorCount,
-            author: authorCount,
-            editor: editorCount,
-            administrator: administratorCount
+            subscriber: subscriberCount || 0,
+            author: authorCount || 0,
+            editor: editorCount || 0,
+            administrator: administratorCount || 0
         };
 
-        res.render('admin/all-users', {users, totalCount });
+        const users = await User.find();
+
+        res.render('admin/all-users', {users, totalCount,user: req.user});
     } catch (err) {
-        res.status(500).send('Server Error');
+        res.render('admin/create-profile.ejs', { errorMessage: `Error creating User profile: ${err.message}` });
     }
+});
+
+// Route to show the edit profile form
+router.get('/edit-profile/:id', ensureAdmin, async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        res.render('admin/edit-profile.ejs', { user });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('An error occurred');
+    }
+});
+
+// Route to handle profile updates
+router.post('/edit-profile/:id', ensureAdmin, async (req, res) => {
+    try {
+        const updates = {
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password,
+            website: req.body.website,
+            role: req.body.role,
+            sendNotification: req.body.sendNotification === 'on'
+        };
+
+        // Don't update the password if it wasn't provided
+        if (req.body.password) {
+            updates.password = await bcrypt.hash(req.body.password, 10);
+        }
+
+        await User.findByIdAndUpdate(req.params.id, updates);
+        res.redirect('/admin/all-users');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('An error occurred');
+    }
+});
+// Route to handle profile deletion
+router.get('/delete-profile/:id', ensureAdmin, async (req, res) => {
+    try {
+        await User.findByIdAndDelete(req.params.id);
+        res.redirect('/admin/all-users');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('An error occurred');
+    }
+});
+// Admin dashboard
+
+router.get('/dashboard', wrapAsync(async (req, res) => {
+    // Fetch users
+    const users = await User.find();
+    // Fetch total number of posts
+    const totalPosts = await Post.countDocuments();
+    const totalPages = await Page.countDocuments();
+    // Fetch posts based on user role
+    let posts;
+    if (req.user.role === 'admin' || req.user.role === 'administrator' || req.user.role === 'author') {
+        posts = await Post.find().populate('author').sort({date: -1}).limit(5);
+    } else if (req.user.role === 'editor') {
+        posts = await Post.find({ author: req.user._id }).populate('author').sort({date: -1}).limit(5);
+    }
+
+    // Render dashboard
+    res.render('admin/dashboard', { users, totalPosts ,totalPages, posts, user: req.user });
+}));
+
+// View all users
+router.get('/all-users', ensureAdmin, async (req, res) => {
+    let users, subscriberCount, authorCount, editorCount, administratorCount;
+    
+    try {
+        users = await User.find();
+        subscriberCount = await User.countDocuments({ role: 'subscriber' });
+        authorCount = await User.countDocuments({ role: 'author' });
+        editorCount = await User.countDocuments({ role: 'editor' });
+        administratorCount = await User.countDocuments({ role: 'administrator' });
+    } catch (err) {
+        console.error(err);
+    }
+
+    const totalCount = {
+        subscriber: subscriberCount || 0,
+        author: authorCount || 0,
+        editor: editorCount || 0,
+        administrator: administratorCount || 0,
+        total: (subscriberCount || 0) + (authorCount || 0) + (editorCount || 0) + (administratorCount || 0)
+
+    };
+
+    res.render('admin/all-users', {users: users || [], totalCount ,user: req.user});
+});
+// Route for subscribers
+router.get('/all-users/subscriber', ensureAdmin, async (req, res) => {
+    let subscriberCount, authorCount, editorCount, administratorCount;
+    try {
+        const users = await User.find({ role: 'subscriber' });
+        subscriberCount = await User.countDocuments({ role: 'subscriber' });
+        authorCount = await User.countDocuments({ role: 'author' });
+        editorCount = await User.countDocuments({ role: 'editor' });
+        administratorCount = await User.countDocuments({ role: 'administrator' });
+        const totalCount = {
+            subscriber: subscriberCount || 0,
+            author: authorCount || 0,
+            editor: editorCount || 0,
+            administrator: administratorCount || 0,
+            total: (subscriberCount || 0) + (authorCount || 0) + (editorCount || 0) + (administratorCount || 0)
+        };
+        res.render('admin/all-users', { users, totalCount, user: req.user });
+    } catch (err) {
+        console.error(err);
+    }
+});
+
+// Route for editors
+router.get('/all-users/editor', ensureAdmin, async (req, res) => {
+    let subscriberCount, authorCount, editorCount, administratorCount;
+    try {
+        const users = await User.find({ role: 'editor' });
+        subscriberCount = await User.countDocuments({ role: 'subscriber' });
+        authorCount = await User.countDocuments({ role: 'author' });
+        editorCount = await User.countDocuments({ role: 'editor' });
+        administratorCount = await User.countDocuments({ role: 'administrator' });
+        const totalCount = {
+            subscriber: subscriberCount || 0,
+            author: authorCount || 0,
+            editor: editorCount || 0,
+            administrator: administratorCount || 0,
+            total: (subscriberCount || 0) + (authorCount || 0) + (editorCount || 0) + (administratorCount || 0)
+        };
+        res.render('admin/all-users', { users, totalCount, user: req.user });
+    } catch (err) {
+        console.error(err);
+    }
+});
+
+// Route for administrators
+router.get('/all-users/administrator', ensureAdmin, async (req, res) => {
+    let subscriberCount, authorCount, editorCount, administratorCount;
+    try {
+        const users = await User.find({ role: 'administrator' });
+        subscriberCount = await User.countDocuments({ role: 'subscriber' });
+        authorCount = await User.countDocuments({ role: 'author' });
+        editorCount = await User.countDocuments({ role: 'editor' });
+        administratorCount = await User.countDocuments({ role: 'administrator' });
+        const totalCount = {
+            subscriber: subscriberCount || 0,
+            author: authorCount || 0,
+            editor: editorCount || 0,
+            administrator: administratorCount || 0,
+            total: (subscriberCount || 0) + (authorCount || 0) + (editorCount || 0) + (administratorCount || 0)
+        };
+        res.render('admin/all-users', { users, totalCount, user: req.user });
+    } catch (err) {
+        console.error(err);
+    }
+});
+// Route for authors
+router.get('/all-users/author', ensureAdmin, async (req, res) => {
+    let authorCount, subscriberCount, editorCount, administratorCount;
+    try {
+        const users = await User.find({ role: 'author' });
+        subscriberCount = await User.countDocuments({ role: 'subscriber' });
+        authorCount = await User.countDocuments({ role: 'author' });
+        editorCount = await User.countDocuments({ role: 'editor' });
+        administratorCount = await User.countDocuments({ role: 'administrator' });
+        const totalCount = {
+            subscriber: subscriberCount || 0,
+            author: authorCount || 0,
+            editor: editorCount || 0,
+            administrator: administratorCount || 0,
+            total: (subscriberCount || 0) + (authorCount || 0) + (editorCount || 0) + (administratorCount || 0)
+        };
+        res.render('admin/all-users', { users, totalCount, user: req.user });
+    } catch (err) {
+        console.error(err);
+    }
+});
+
+// Route for editors
+router.get('/all-users/editor', ensureAdmin, async (req, res) => {
+    const users = await User.find({ role: 'editor' });
+    res.render('admin/all-users', { users, totalCount ,user: req.user });
+});
+
+// Route for administrators
+router.get('/all-users/administrator', ensureAdmin, async (req, res) => {
+    const users = await User.find({ role: 'administrator' });
+    res.render('admin/all-users', { users, totalCount ,user: req.user });
 });
 
 // Logout route
 router.get('/logout', (req, res) => {
     // Destroy the session to log the admin out
-    req.session.destroy((err) => {
-        if (err) {
-            console.error('Error destroying session:', err);
-            res.status(500).send('Internal Server Error');
-        } else {
-            // Redirect to the login page after successful logout
-            res.redirect('/admin/login');
-        }
-    });
+    req.logout();
+    res.redirect('/admin/login');
 });
-
-// Display all editors
-router.get('/all-editors', wrapAsync(async (req, res) => {
-        // Fetch all editors from MongoDB
-        const editors = await Editor.find();
-
-        // Render the all editors view and pass the editors data
-        res.render('editor/all-editor', { editors });
-}));
-
-// Render the create editor form
-router.get('/create-editor', (req, res) => {
-    res.render('editor/create');
-});
-// Handle the creation of a new editor
-router.post('/create-editor', wrapAsync(async (req, res) => {
-    const { name, email, password } = req.body;
-        // Check if the editor's email is already registered
-        const existingEditor = await Editor.findOne({ email });
-
-        if (existingEditor) {
-            return res.status(400).send('Editor with this email already exists');
-        }
-
-        // Hash the password before saving it to the database
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        // Create a new editor and save it to the database
-        const newEditor = new Editor({ name, email, password: hashedPassword });
-        await newEditor.save();
-
-        res.redirect('/admin/all-editors'); // Redirect to the all editors page
-}));
-// Route to handle the deletion of an editor
-router.get('/delete-editor/:editorId', wrapAsync(async (req, res) => {
-    const editorId = req.params.editorId;
-
-        // Find and delete the editor from the database
-        const deletedEditor = await Editor.findByIdAndDelete(editorId);
-
-        if (!deletedEditor) {
-            // Editor not found
-            return res.status(404).send('Editor not found');
-        }
-        // Redirect back to the all editors page
-        res.redirect('/admin/all-editors');
-}));
-
-// Handle user deletion
-router.post('/admin/delete/:userId', wrapAsync(async (req, res) => {
-    const userId = req.params.userId;
-        // Find the user by ID and delete it
-        const deletedUser = await User.findByIdAndDelete(userId);
-
-        if (!deletedUser) {
-            // If the user was not found
-            return res.status(404).send('User not found');
-        }
-
-        // Redirect or respond as needed after successful deletion
-        res.redirect('/admin/all-users'); // Redirect to the page showing all users
-
-}));
-// Update user post limit
-router.post('/update-post-limit/:userId', wrapAsync(async (req, res) => {
-    const { postLimit } = req.body;
-    const userId = req.params.userId;
-
-        // Find the user by ID and update the post limit
-        await User.findByIdAndUpdate(userId, { postLimit });
-
-        // Redirect back to the admin users page or any other desired page
-        res.redirect('/admin/all-users');
-
-}));
-
-
 
 module.exports = router;

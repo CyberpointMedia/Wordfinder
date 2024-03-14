@@ -1,17 +1,16 @@
 <!-- views/section/categories -->
 <%- include('../header/head.ejs') %>
 
-    <body>
-        <!-- sidebar start here -->
-        <div class="flex overflow-hidden">
-            <!-- Sidenav Menu Start  -->
-            <%- include('../Sidenav/Sidenav.ejs') %>
+<body>
+    <!-- sidebar start here -->
+    <div class="flex overflow-hidden">
+        <!-- sidenav Menu Start  -->
+        <%- include('../sidenav/sidenav.ejs') %>
 
-                <div class="page-content bg-white">
-                    <!-- header Start -->
-                    <%- include('../header/header.ejs') %>
-
-                        <!-- main content start here -->
+        <div class="page-content bg-white">
+            <!-- header Start -->
+            <%- include('../header/header.ejs') %>
+            <!-- main content start here -->
             <main class="py-8 px-5">
                 <div class="mb-6">
                     <h1 class="text-2xl font-bold text-black">
@@ -22,7 +21,7 @@
                 <div class="flex flex-col md:flex-row gap-6 justify-between">
                     <div class="add-category-sec w-full md:w-1/3">
                         <h2 class="text-xl font-normal text-black mb-6">Add New Category</h2>
-                        <form id="add_category">
+                        <form action="/post/categories" method="post" id="add_category" enctype="application/x-www-form-urlencoded">
                             <div class="form-group mb-6">
                                 <label class="mb-3" for="catName">Name</label>
                                 <input name="catName" id="catName" type="text" value="" class="form-input bg-[#F0F7FA] border-0 mb-3">
@@ -36,15 +35,16 @@
                             <div class="form-group mb-6">
                                 <label class="mb-3" for="ParentCatName">Parent Category</label>
                                 <select class="form-select bg-[#F0F7FA] border-0 mb-3" id="ParentCatName" name="ParentCatName">
-                                    <option selected="selected" value="None">None</option>
-                                    <option value="Categories01">Categories 01</option>
-                                    <option value="Categories02">Categories 02</option>			
+                                    <option selected="selected" value="">None</option>
+                                    <% categories.forEach(function(category) { %>
+                                        <option value="<%= category._id %>"><%= category.name %></option>
+                                    <% }) %>
                                 </select>
                                 <p id="ParentCat-description">Categories, unlike tags, can have a hierarchy. You might have a Jazz category, and under that have children categories for Bebop and Big Band. Totally optional.</p>
                             </div>
                             <div class="form-group mb-6">
                                 <label class="mb-3" for="DescriptionName">Description</label>
-                                <textarea id="DescriptionName" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                <textarea id="DescriptionName" name="DescriptionName" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
                                 <p id="slug-description">The description is not prominent by default; however, some themes may show it.</p>
                             </div>
                             <button type="submit" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">
@@ -75,23 +75,25 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200">
+                                <% categories.forEach(function(category) { %>
                                 <tr class="">
                                     <td>
-                                        <input type="checkbox" value="2" class="">
+                                        <input type="checkbox" value="<%= category._id %>" class="">
                                     </td>
                                     <td>
                                         <div class="">
-                                            <strong><a class="row-title text-[#2271b1] text-sm" href="javascript:void(0)">Uncategorized</a></strong>
+                                            <strong><a class="row-title text-[#2271b1] text-sm" href="javascript:void(0)"><%= category.name %></a></strong>
                                         </div>
                                         <div class="row-actions mt-1"><span class="edit"><a href="edit-categories.html" class="text-[#2271b1] text-xs">Edit</a> | </span>
-                                            <span class="trash"><a href="javascript:void(0)" class="trash text-[#b32d2e] text-xs">Delete</a> | </span>
+                                            <a href="/post/categories/<%= category._id %>?_method=DELETE" class="trash text-[#b32d2e] text-xs">Delete</a>
                                             <span class="view"><a href="javascript:void(0)" class="text-[#2271b1] text-xs">View</a></span>
                                         </div>
                                     </td>
-                                    <td>-</td>
-                                    <td>Uncategorized</td>
+                                    <td><%= category.description %></td>
+                                    <td><%= category.slug %></td>
                                     <td><a class="row-title text-[#2271b1] text-sm" href="javascript:void(0)">1</a></td>
                                 </tr>
+                                <% }) %>
                             </tbody>
                             <tfoot class="text-left bg-[#DBF4FF]">
                                 <tr>
@@ -116,9 +118,7 @@
                     </div>
                     <!-- table end here -->
                 </div>
-
             </main>
-
             <!-- main content end here -->
         </div>
     </div>

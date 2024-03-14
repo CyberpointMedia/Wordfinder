@@ -4,7 +4,7 @@
     <body>
         <!-- sidebar start here -->
         <div class="flex overflow-hidden">
-            <%- include('../Sidenav/Sidenav.ejs') %>
+            <%- include('../sidenav/sidenav.ejs') %>
                 <div class="page-content bg-white relative">
                     <!-- header Start -->
                     <%- include('../header/header.ejs') %>
@@ -15,30 +15,33 @@
                                     Add New User
                                 </h1>
                             </div>
-                            <div class="mb-6">
+                            <!-- <div class="mb-6">
                                 <p>Create a new user and add them to this site.</p>
-                            </div>
+                            </div> -->
                             <!-- add user form start -->
-
                             <form action="/admin/create-profile" method="POST" enctype="application/x-www-form-urlencoded" class="space-y-4">
                                 <div class="grid sm:grid-cols-3">
-                                    <label class="mt-1 mb-2" for="userName1">Username<span class="text-danger">*</span></label>
+                                    <label class="mt-1 mb-2" for="userName1">Username<span
+                                            class="text-danger">*</span></label>
                                     <div class="sm:col-span-2">
                                         <input type="text" required="" class="form-input bg-[#F0F7FA] border-0" id="userName1" name="username" placeholder="User Name">
                                     </div>
                                 </div>
 
                                 <div class="grid sm:grid-cols-3">
-                                    <label class="mt-1 mb-2" for="inputEmail3">Email<span class="text-danger">*</span></label>
+                                    <label class="mt-1 mb-2" for="inputEmail3">Email<span
+                                            class="text-danger">*</span></label>
                                     <div class="sm:col-span-2">
                                         <input type="email" required="" class="form-input bg-[#F0F7FA] border-0" id="inputEmail3" name="email" placeholder="Email">
                                     </div>
                                 </div>
 
                                 <div class="grid sm:grid-cols-3">
-                                    <label class="mt-1 mb-2" for="password1">Password<span class="text-danger">*</span></label>
+                                    <label class="mt-1 mb-2" for="password1">Password<span
+                                            class="text-danger">*</span></label>
                                     <div class="sm:col-span-2">
-                                        <input id="password1" type="password" name="password" placeholder="Password" required="" class="form-input bg-[#F0F7FA] border-0">
+                                        <input id="password1" type="password" name="password" placeholder="Password" required="" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, one special character, and at least 8 or more characters"
+                                            class="form-input bg-[#F0F7FA] border-0">
                                     </div>
                                 </div>
 
@@ -59,13 +62,14 @@
                                 </div>
 
                                 <div class="grid sm:grid-cols-3">
-                                    <label class="mt-1 mb-2" for="webSite">Web Site<span class="text-danger">*</span></label>
+                                    <label class="mt-1 mb-2" for="webSite">Web Site<span
+                                            class="text-danger"></span></label>
                                     <div class="sm:col-span-2">
-                                        <input type="url" required="" class="form-input bg-[#F0F7FA] border-0" id="webSite" name="website" placeholder="URL">
+                                        <input type="url" class="form-input bg-[#F0F7FA] border-0" id="webSite" name="website" placeholder="URL">
                                     </div>
                                 </div>
 
-                                <div class="grid sm:grid-cols-3">
+                                <!-- <div class="grid sm:grid-cols-3">
                                     <label class="mt-1 mb-2">Send User Notification</label>
                                     <div class="sm:col-span-2">
                                         <div class="flex items-center">
@@ -74,18 +78,17 @@
                                     their account.</label>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="grid sm:grid-cols-3">
                                     <label class="mt-1 mb-2" for="role">Role</label>
                                     <div class="sm:col-span-2">
                                         <select class="form-select bg-[#F0F7FA] border-0" id="role" name="role">
-                                <option selected="selected" value="subscriber">Subscriber</option>
-                                <option value="contributor">Contributor</option>
-                                <option value="author">Author</option>
-                                <option value="editor">Editor</option>
-                                <option value="administrator">Administrator</option>
-                            </select>
+                                            <option selected="selected" value="subscriber">Subscriber</option>
+                                            <option value="author">Author</option>
+                                            <option value="editor">Editor</option>
+                                            <option value="administrator">Administrator</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -93,11 +96,11 @@
                                     <div></div>
                                     <div class="sm:col-span-2 flex items-center gap-2 mt-4">
                                         <button type="submit" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">
-                                Add New User
-                            </button>
+                                            Add New User
+                                        </button>
                                         <button type="reset" class="py-2 w-28 text-black bg-[#DBF4FF] rounded-lg">
-                                Cancel
-                            </button>
+                                            Cancel
+                                        </button>
                                     </div>
                                 </div>
                             </form>
