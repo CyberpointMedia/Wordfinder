@@ -1,3 +1,12 @@
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 p {
     font-size: 1rem;
     line-height: 24px;
@@ -293,13 +302,16 @@ button:hover {
     color: #007bff;
     background-color: #DBF4FF;
 }
-.h-screen{
+
+.h-screen {
     height: 100vh;
 }
+
 .m-auto {
     margin: auto;
 }
-#modal-img1{
+
+#modal-img1 {
     display: block;
     margin: 0 auto 16px;
     max-width: 100%;
@@ -310,21 +322,25 @@ button:hover {
     background-size: 20px 20px;
 }
 
-.imgSettings input, .imgSettings textarea {
+.imgSettings input,
+.imgSettings textarea {
     border-color: #ddd;
     border-radius: 4px;
 }
-  input[type="file"] {
+
+input[type="file"] {
     display: block;
-  }
-  .mediaUploader{
+}
+
+.mediaUploader {
     -webkit-transition: all 0.5s ease-out;
     -moz-transition: all 0.5s ease-out;
     transition: all 0.5s ease-out;
     border: 3px dashed rgb(218, 223, 227);
     background: transparent;
-  }
-  .closeBtn{
+}
+
+.closeBtn {
     position: absolute;
     width: 48px;
     height: 48px;
@@ -334,8 +350,9 @@ button:hover {
     outline: none;
     cursor: pointer;
     z-index: 1;
-  }
-  .chooseImage {
+}
+
+.chooseImage {
     font-size: 14px;
     padding: 14px 30px;
     color: #2271b1;
@@ -345,12 +362,16 @@ button:hover {
     border: 1px solid #2271b1;
     margin: 20px 0px;
 }
+
 .filter-buttons a img {
     width: 18px;
 }
-.filter-buttons .active, .filter-buttons a:hover{
+
+.filter-buttons .active,
+.filter-buttons a:hover {
     border-color: rgb(15, 160, 244);
 }
+
 .mediaUploader input {
     width: 100%;
     height: 100%;
@@ -364,7 +385,8 @@ button:hover {
     bottom: 0;
     right: 0;
 }
-.mediaUploader h2{
+
+.mediaUploader h2 {
     color: rgb(142, 153, 165);
     font-size: 40px;
 }

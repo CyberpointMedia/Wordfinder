@@ -7,6 +7,31 @@ body {
     line-height: 27px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* Scrollbar Styling */
+
+
+/* ::-webkit-scrollbar-track {
+    background: #f2efef;
+} */
+
+::-webkit-scrollbar-thumb {
+    background: #BABABA;
+    border-radius: 10vh;
+    border: 1px solid #BABABA;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 4px;
 }
 
 p {
