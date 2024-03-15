@@ -316,13 +316,13 @@ video {
 select,
 textarea {
     background-color: #fff;
-    border-color: #6b7280;
+    border-color: #ddd;
     border-width: 1px;
-    border-radius: 0;
-    padding: .5rem .75rem;
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
     font-size: 1rem;
     line-height: 1.5rem;
-    --tw-shadow: 0 0 #0000
+    --tw-shadow: 0 0 #0000;
 }
 
 [multiple]:focus,
