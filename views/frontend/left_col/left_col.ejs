@@ -23,11 +23,11 @@
         </div>
 
         <p>
-            Are you someone who loves finding and discovering new words? Are you a board game enthusiast? If you are, then this Word Finder is a tool you can't afford not to have. Whether you are into playing <a href="javascript:void(0);"
-                class="text-[#007BFF] font-medium">Scrabble</a>, <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a> or any other word game, Word Finder will prove to be useful. It will help you both with
-            word discovery, and as a reference tool, you and your playmates can use as a way to settle disputes about the validity of any particular word.
+            Are you someone who loves finding and discovering new words? Are you a board game enthusiast? If you are, then this Word Finder is a tool you can't afford not to have. Whether you are into playing <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a>,
+            <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a> or any other word game, Word Finder will prove to be useful. It will help you both with word discovery, and as a reference tool, you and your playmates
+            can use as a way to settle disputes about the validity of any particular word.
             <br />
-            <br /> Do you love boosting your vocabulary? Do word games help ignite your brain cells? Do you enjoy the thrill of trying to outwit an opponent with your encyclopedic mind? Then, our <a href="javascript:void(0);" class="text-[#007BFF] font-medium">word generator</a>                            is a tool that you simply can't live without!
+            <br /> Do you love boosting your vocabulary? Do word games help ignite your brain cells? Do you enjoy the thrill of trying to outwit an opponent with your encyclopedic mind? Then, our <a href="javascript:void(0);" class="text-[#007BFF] font-medium">word generator</a>            is a tool that you simply can't live without!
         </p>
 
         <div class="flex flex-col gap-8 mt-8 lg:flex-row">
@@ -92,12 +92,12 @@
     <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
         <h2 class="mb-4 text-4xl font-semibold">What is WordTips Word Finder?</h2>
         <p>
-            If you haven’t had a chance to use Word Finder yet, then you’re in for a treat. This easy to work with online <a href="javascript:void(0);" class="text-[#007BFF] font-medium">word generator</a> will quickly and efficiently
-            create a wide variety of words using the letters that you enter. Your excitement will grow as you watch it unscrambling the inputs you provide to make words out of letters as an expert. It will make <a href="javascript:void(0);"
-                class="text-[#007BFF] font-medium">Scrabble</a> words and create interesting and unique combinations of letters.
+            If you haven’t had a chance to use Word Finder yet, then you’re in for a treat. This easy to work with online <a href="javascript:void(0);" class="text-[#007BFF] font-medium">word generator</a> will quickly and efficiently create a wide variety
+            of words using the letters that you enter. Your excitement will grow as you watch it unscrambling the inputs you provide to make words out of letters as an expert. It will make <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a>            words and create interesting and unique combinations of letters.
             <br />
-            <br /> When compared with the range of online word generators, word find and <a href="javascript:void(0);" class="text-[#007BFF] font-medium">word solver</a> devices, Word Finder is among the most intuitive and simple to use.
-            As you learn more about how using Word Finder can assist you in improving your language skills, spelling words properly and come up with new words from a <a href="javascript:void(0);" class="text-[#007BFF] font-medium">jumble</a>                            of letters, you’ll wonder how you ever managed without it.
+            <br /> When compared with the range of online word generators, word find and <a href="javascript:void(0);" class="text-[#007BFF] font-medium">word solver</a> devices, Word Finder is among the most intuitive and simple to use. As you learn
+            more about how using Word Finder can assist you in improving your language skills, spelling words properly and come up with new words from a <a href="javascript:void(0);" class="text-[#007BFF] font-medium">jumble</a> of letters, you’ll wonder
+            how you ever managed without it.
         </p>
 
         <div class="flex flex-col gap-8 mt-8 lg:flex-row">
@@ -161,21 +161,25 @@
             Once you’ve decided on the game you’re going to play and who is going to participate, set your board up and then, go online to make sure Word Finder is readily accessible. Take care that everyone can use the tool privately without disclosing to other
             players what letters or tiles they have.
             <br />
-            <br /> When each person has her turn, first give them the time that they need to ask themselves: What words can I make with these letters? Providing players with the opportunity to come up on their own with word examples containing
-            the vowels and consonants they have at the ready will strengthen their ability to play the game and acquire points on their own. Then, allow some time for the player to try to make works with their letters using Word Finder.
+            <br /> When each person has her turn, first give them the time that they need to ask themselves: What words can I make with these letters? Providing players with the opportunity to come up on their own with word examples containing the vowels
+            and consonants they have at the ready will strengthen their ability to play the game and acquire points on their own. Then, allow some time for the player to try to make works with their letters using Word Finder.
         </p>
 
         <div class="mt-8">
             <h2 class="mb-4 text-xl font-semibold">Latest Article</h2>
             <div class="grid gap-8 mb-8 md:grid-cols-2 lg:grid-cols-3">
                 <% morePosts.forEach(post => { %>
-                <div class="w-full border border-[#007BFF4D] rounded-lg overflow-hidden  hover:text-[#007BFF]">
-                    <a href="/articles/<%= post.title %>"><img src="<%= post.feature_img %>" alt="#" class="w-full" /></a>
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold leading-6"><a href="/articles/<%= post.title %>" class="hover:text-[#007BFF]"><%= post.heading %></a></h3>
+                    <div class="w-full border border-[#007BFF4D] rounded-lg overflow-hidden  hover:text-[#007BFF]">
+                        <a href="/articles/<%= post.title %>"><img src="<%= post.feature_img %>" alt="#" class="w-full" /></a>
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold leading-6">
+                                <a href="/articles/<%= post.title %>" class="hover:text-[#007BFF]">
+                                    <%= post.heading %>
+                                </a>
+                            </h3>
+                        </div>
                     </div>
-                </div>
-                <% }) %>
+                    <% }) %>
             </div>
 
             <div class="mt-6 text-center">
@@ -192,17 +196,16 @@
         <h2 class="mb-4 text-4xl font-semibold">When You Need to Up Your Game With a Word Game Helper</h2>
         <p>
             A word game helper can be invaluable for playing any word game that you can think of. Whether you are playing <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a>, <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a>,
-            <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Crossword Puzzles</a> or any other word game, Word tips' extensive search engine will help you make words from letters that you've randomly picked. Games will
-            get interminable when players are stuck and can’t imagine where they can place the bunch of vowels and consonants that they have available on the board.
+            <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Crossword Puzzles</a> or any other word game, Word tips' extensive search engine will help you make words from letters that you've randomly picked. Games will get interminable
+            when players are stuck and can’t imagine where they can place the bunch of vowels and consonants that they have available on the board.
             <br />
-            <br /> Maybe you have a regular evening game with your partner where a <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble word generator</a> has been indispensable. Also, you may be one of the many families
-            that usually play word board games on holidays and at gatherings with friends. If the latter is the case, then there’s more than likely players of different skill levels and ages involved. This is where a word game helper can
-            assist in leveling the playing field. What’s more, you may have someone in your midst who likes to cheat a bit. Whether it’s done to tease other players or innocently by someone inexperienced with the game, an invention like
-            Word Finder can be used to find words with the letters on hand.
+            <br /> Maybe you have a regular evening game with your partner where a <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble word generator</a> has been indispensable. Also, you may be one of the many families that usually
+            play word board games on holidays and at gatherings with friends. If the latter is the case, then there’s more than likely players of different skill levels and ages involved. This is where a word game helper can assist in leveling the playing
+            field. What’s more, you may have someone in your midst who likes to cheat a bit. Whether it’s done to tease other players or innocently by someone inexperienced with the game, an invention like Word Finder can be used to find words with the
+            letters on hand.
             <br/>
-            <br/> By searching the official <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a> US, <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a> UK and playable <a href="javascript:void(0);"
-                class="text-[#007BFF] font-medium">Words with Friends</a> dictionaries, Word Finder will intuitively display your highest scoring option with the letters provided. Don't look at it as a <a href="javascript:void(0);" class="text-[#007BFF] font-medium">word cheat</a>,
-            more of a reference tool you and your playmates can use to settle disputes about the validity of any particular word.
+            <br/> By searching the official <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a> US, <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a> UK and playable <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a>            dictionaries, Word Finder will intuitively display your highest scoring option with the letters provided. Don't look at it as a <a href="javascript:void(0);" class="text-[#007BFF] font-medium">word cheat</a>, more of a reference tool you and
+            your playmates can use to settle disputes about the validity of any particular word.
 
         </p>
 
@@ -264,45 +267,55 @@
     </div>
 
     <!-- box 5 start -->
-    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
-        <h2 class="mb-4 text-4xl font-semibold">Beat the Brain Freeze</h2>
-        <p>
-            Everyone needs a helping hand from time to time. We've all had those moments when a seemingly random mixture of tiles appears, making you ask, 'How do I make words with these letters'? The problem is now solved.
-            <br>
-            <br> With WordTips, there's no excuse in having leftover tiles stopping you from reaching your full potential. We'll show you how to make the best of those lingering letters, be it by creating a surprising two-letter combo
-            or an impressive fifteen-letter giant!
-            <br>
-            <br> Be you a beginner or a pro, our intuitive database will always have the answer to your query. So, save the brain drain, frustration and arguments with fellow players, let our word finder be your constant companion.
-        </p>
-        <h4 class="text-[22px] font-medium my-4">Two Useful Word Finding Examples</h4>
-        <ul class="space-y-5 list-decimal ps-5 text-black/[.54]">
-            <li>
-                <b>Player A has pulled the following letters in a game of</b> <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a> - SNEOHYT. They’re able to swiftly <a href="javascript:void(0);" class="text-[#007BFF] font-medium">unscramble</a>                                the letters to make the word TONE. However, Word Finder comes up with a much bigger choice, including STONEY, HONEY, ETHNOS, HONEST, HONEYS AND HONESTY. As you can see, by laying down letters for the word HONESTY, Player
-                A has a bonus of 50 points for using all seven tiles at once in addition to the regular score for the play!
-            </li>
-            <li>
-                <b>Player B is a child learning how to play <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a> and still growing their vocabulary.</b><br> the letters to make the word TONE. However,
-                Word Finder comes up with a much bigger choice, including STONEY, HONEY, ETHNOS, HONEST, HONEYS AND HONESTY. As you can see, by laying down letters for the word HONESTY, Player A has a bonus of 50 points for using all seven
-                tiles at once in addition to the regular score for the play!
-            </li>
-        </ul>
+    <div class="p-2 pb-6 border border-[#007BFF4D] rounded-[20px] mb-8">
+        <div class="overflow-y-auto overflow-hidden h-60">
+            <div class="md:pt-[20px] md:p-[40px] p-[30px]">
+                <h2 class="mb-4 text-4xl font-semibold">Beat the Brain Freeze</h2>
+                <p>
+                    Everyone needs a helping hand from time to time. We've all had those moments when a seemingly random mixture of tiles appears, making you ask, 'How do I make words with these letters'? The problem is now solved.
+                    <br>
+                    <br> With WordTips, there's no excuse in having leftover tiles stopping you from reaching your full potential. We'll show you how to make the best of those lingering letters, be it by creating a surprising two-letter combo or an impressive
+                    fifteen-letter giant!
+                    <br>
+                    <br> Be you a beginner or a pro, our intuitive database will always have the answer to your query. So, save the brain drain, frustration and arguments with fellow players, let our word finder be your constant companion.
+                </p>
+                <h4 class="text-[22px] font-medium my-4">Two Useful Word Finding Examples</h4>
+                <ul class="space-y-5 list-decimal ps-5 text-black/[.54]">
+                    <li>
+                        <b>Player A has pulled the following letters in a game of</b> <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a> - SNEOHYT. They’re able to swiftly <a href="javascript:void(0);" class="text-[#007BFF] font-medium">unscramble</a>                        the letters to make the word TONE. However, Word Finder comes up with a much bigger choice, including STONEY, HONEY, ETHNOS, HONEST, HONEYS AND HONESTY. As you can see, by laying down letters for the word HONESTY, Player A has
+                        a bonus of 50 points for using all seven tiles at once in addition to the regular score for the play!
+                    </li>
+                    <li>
+                        <b>Player B is a child learning how to play <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a> and still growing their vocabulary.</b><br> the letters to make the word TONE. However, Word Finder
+                        comes up with a much bigger choice, including STONEY, HONEY, ETHNOS, HONEST, HONEYS AND HONESTY. As you can see, by laying down letters for the word HONESTY, Player A has a bonus of 50 points for using all seven tiles at once in
+                        addition to the regular score for the play!
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <!-- box 6 start -->
-    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
-        <h2 class="mb-4 text-4xl font-semibold">Scrabble Words vs. Traditional Dictionaries</h2>
-        <p>
-            The two traditional English-language dictionaries are the Merriam-Webster dictionary used in the United States and the Oxford English Dictionary published in the United Kingdom. Dictionaries typically add new words each year. For instance, in 2018, the
-            Merriam-Webster dictionary added 840 new words while the Oxford English dictionary expanded by 1,100 words. Having said that, word games rely on their own dictionaries that are tailored to the specific game and updated from
-            time to time.
-            <br>
-            <br> Therefore, it’s critical to know what dictionary to refer to when you’re playing different word games so that you don’t inadvertently cheat! If you’ve played both <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a>                            and <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a>, you’ll be aware that they have quite different rules when it comes to what words are acceptable for players to use. One example is
-            that <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a> allows players to lay down tiles that spell many acronyms while <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a>                            doesn’t permit such abbreviations. By using the <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble Word Finder</a> or <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a>                            Cheat, you can be certain that you won’t go wrong!
-        </p>
-        <h4 class="text-[22px] font-medium my-4">The Wordfinder Example</h4>
-        <p>
-            Let’s take the word “wordfinder”. It is accepted in some online dictionaries and defined as “a list of vocabulary”, but not recognized by Meriam-Webster. It is acceptable when playing <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a>                            but not when playing <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a>.
-        </p>
+    <div class="p-2 pb-6 border border-[#007BFF4D] rounded-[20px] mb-8">
+        <div class="overflow-y-auto overflow-hidden h-60">
+            <div class="md:pt-[20px] md:p-[40px] p-[30px]">
+                <h2 class="mb-4 text-4xl font-semibold">Scrabble Words vs. Traditional Dictionaries</h2>
+                <p>
+                    The two traditional English-language dictionaries are the Merriam-Webster dictionary used in the United States and the Oxford English Dictionary published in the United Kingdom. Dictionaries typically add new words each year. For instance, in 2018, the
+                    Merriam-Webster dictionary added 840 new words while the Oxford English dictionary expanded by 1,100 words. Having said that, word games rely on their own dictionaries that are tailored to the specific game and updated from time to
+                    time.
+                    <br>
+                    <br> Therefore, it’s critical to know what dictionary to refer to when you’re playing different word games so that you don’t inadvertently cheat! If you’ve played both <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a>                    and <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a>, you’ll be aware that they have quite different rules when it comes to what words are acceptable for players to use. One example is that
+                    <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a> allows players to lay down tiles that spell many acronyms while <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a> doesn’t
+                    permit such abbreviations. By using the <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble Word Finder</a> or <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a> Cheat, you
+                    can be certain that you won’t go wrong!
+                </p>
+                <h4 class="text-[22px] font-medium my-4">The Wordfinder Example</h4>
+                <p>
+                    Let’s take the word “wordfinder”. It is accepted in some online dictionaries and defined as “a list of vocabulary”, but not recognized by Meriam-Webster. It is acceptable when playing <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Words with Friends</a>                    but not when playing <a href="javascript:void(0);" class="text-[#007BFF] font-medium">Scrabble</a>.
+                </p>
+            </div>
+        </div>
     </div>
 
 </div>
