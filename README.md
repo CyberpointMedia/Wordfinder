@@ -1,8 +1,3 @@
-It seems that the formatting of your README file is not rendering correctly on GitHub. GitHub does not support all HTML and CSS styling in README files, so it's possible that some of your styling is not being applied.
-
-To ensure your README looks good on GitHub, you should primarily use Markdown syntax for formatting. Markdown is supported by GitHub and provides a simple way to format text, add headers, lists, code blocks, and links.
-
-Here's how you can convert your HTML content into Markdown:
 
 ```markdown
 # WordFinder
@@ -16,7 +11,7 @@ Make sure you have Node.js version `20.3.0` installed on your machine.
 ## Installation
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/CyberpointMedia/Wordfinder.git
 cd wordfinder 
 npm install
 ```
