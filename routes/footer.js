@@ -44,118 +44,235 @@ router.use(bodyParser.urlencoded({ extended: true }));
 
 // Render widgets view
 router.get('/widgets', ensureAdmin, async (req, res) => { 
-  const footers = await Footer.find({}).populate('footerCol1 footerCol2 footerCol3 footerCol4');
+  const footers = await Footer.find({}).populate('footerCol1 footerCol2 footerCol3 footerCol4').populate('footerCol1.widgets footerCol2.widgets footerCol3.widgets footerCol4.widgets');
   console.log('Footers:', footers); // Log footers data
 
   const widgets = await Widget.find({});
   console.log('Widgets:', widgets); // Log widgets data
 
   const columns = ['footerCol1', 'footerCol2', 'footerCol3', 'footerCol4'];
-  res.render('appearance/widgets', { user: req.user, footers: footers, widgets: widgets, columns: columns }); 
+
+  // Create an array of widget objects that include the selected column
+  const widgetsWithColumn = widgets.map(widget => ({ ...widget._doc, column: widget.column }));
+
+  res.render('appearance/widgets', { user: req.user, footers: footers, widgets: widgetsWithColumn, columns: columns }); 
 });
 
-// Create a new widget and add it to a footer
-router.post('/create', async (req, res) => {
-  // Create a new widget
+
+router.post('/addtexteditor', async (req, res) => {
+  // The column where the widget should be added
+  const column = req.body.column;
+  
+  // Create the widget
   const widget = new Widget({
-      name: req.body.name,
-      column: req.body.column,
-      // add other properties of the widget
+    name: 'Text Editor',
+    column: column,
+    // Add other widget fields here
   });
+  await widget.save();
+  let footer = await Footer.findOne(); // try to find an existing footer
+  if (!footer) {
+      footer = new Footer(); // create a new footer if none exists
+  }
+  footer[column].push(widget._id);
+  await footer.save();
+
+  res.redirect('/footer/widgets');
+});
+
+router.post('/addcustomhtml', async (req, res) => {
+  // The column where the widget should be added
+  const column = req.body.column;
+  
+  // Create the widget
+  const widget = new Widget({
+    name: 'Custom HTML',
+    column: column,
+    // Add other widget fields here
+  });
+  await widget.save();
+  let footer = await Footer.findOne(); // try to find an existing footer
+  if (!footer) {
+      footer = new Footer(); // create a new footer if none exists
+  }
+  footer[column].push(widget._id);
+  await footer.save();
+
+  res.redirect('/footer/widgets');
+});
+router.post('/addcontactdetails', async (req, res) => {
+  // The column where the widget should be added
+  const column = req.body.column;
+  
+  // Create the widget
+  const widget = new Widget({
+    name: 'Contact Details',
+    column: column,
+    // Add other widget fields here
+  });
+  await widget.save();
+  let footer = await Footer.findOne(); // try to find an existing footer
+  if (!footer) {
+      footer = new Footer(); // create a new footer if none exists
+  }
+  footer[column].push(widget._id);
+  await footer.save();
+
+  res.redirect('/footer/widgets');
+});
+
+router.post('/addimage', async (req, res) => {
+  // The column where the widget should be added
+  const column = req.body.column;
+  
+  // Create the widget
+  const widget = new Widget({
+    name: 'Image',
+    column: column,
+    // Add other widget fields here
+  });
+  await widget.save();
+  let footer = await Footer.findOne(); // try to find an existing footer
+  if (!footer) {
+      footer = new Footer(); // create a new footer if none exists
+  }
+  footer[column].push(widget._id);
+  await footer.save();
+
+  res.redirect('/footer/widgets');
+});
+router.post('/texteditor', async (req, res) => {
+  // The _id of the widget to update
+  const widgetId = req.body.widgetId;
 
   try {
-      // Save the widget
+    // Update the widget
+    let widget = await Widget.findByIdAndUpdate(widgetId, {
+      texteditor: req.body.texteditor,
+    }, { new: true });
+
+    // If the widget does not exist, create a new one
+    if (!widget) {
+      widget = new Widget({
+        name: 'Text Editor',
+        texteditor: req.body.texteditor,
+        // Add other widget fields here
+      });
       await widget.save();
+    }
 
-      // Find the footer and add the widget to the selected column
-      let footer = await Footer.findOne(); // try to find an existing footer
-      if (!footer) {
-          footer = new Footer(); // create a new footer if none exists
-      }
-      footer[req.body.column].push(widget._id);
-      await footer.save();
-
-      res.redirect('/footer/widgets');
+    let footer = await Footer.findOne();
+    if (!footer) {
+        footer = new Footer();
+    }
+    footer[widget.column].push(widget._id);
+    await footer.save();
+    
+    res.redirect('/footer/widgets');
   } catch (err) {
-      res.status(500).send(err.message);
+    res.status(500).send(err.message);
   }
 });
 
-router.post('/Customhtml', async(req, res) => {
-  // Create a new widget
-  const widget = new Widget({
+router.post('/Customhtml', async (req, res) => {
+  // The _id of the widget to update
+  const widgetId = req.body.widgetId;
+
+  try {
+    // Update the widget
+    let widget = await Widget.findByIdAndUpdate(widgetId, {
       Customhtml: req.body.Customhtml,
-      // add other properties of the widget
-  });
+    }, { new: true });
 
-  try {
-      // Save the widget
+    // If the widget does not exist, create a new one
+    if (!widget) {
+      widget = new Widget({
+        name: 'Custom HTML',
+        Customhtml: req.body.Customhtml,
+        // Add other widget fields here
+      });
       await widget.save();
+    }
 
-      // Find the footer and add the widget to the selected column
-      const footer = await Footer.findOne(); // assuming there's only one footer
-      if (!footer) {
-          return res.status(404).send('Footer not found');
-      }
-      footer[req.body.column].push(widget._id);
-      await footer.save();
-
-      res.redirect('/footer/widgets');
+    let footer = await Footer.findOne();
+    if (!footer) {
+        footer = new Footer();
+    }
+    footer[widget.column].push(widget._id);
+    await footer.save();
+    
+    res.redirect('/footer/widgets');
   } catch (err) {
-      res.status(500).send(err.message);
+    res.status(500).send(err.message);
   }
 });
-// Create a new widget with contact details and add it to a footer
+
 router.post('/contactdetails', async (req, res) => {
-  // Create a new widget
-  const widget = new Widget({
-      contactdetails: req.body.contactdetails,
-      // add other properties of the widget
-  });
+  // The _id of the widget to update
+  const widgetId = req.body.widgetId;
 
   try {
-      // Save the widget
+    // Update the widget
+    let widget = await Widget.findByIdAndUpdate(widgetId, {
+      contactdetails: req.body.contactdetails,
+    }, { new: true });
+
+    // If the widget does not exist, create a new one
+    if (!widget) {
+      widget = new Widget({
+        name: 'Contact Details',
+        contactdetails: req.body.contactdetails,
+        // Add other widget fields here
+      });
       await widget.save();
+    }
 
-      // Find the footer and add the widget to the selected column
-      const footer = await Footer.findOne(); // assuming there's only one footer
-      if (!footer) {
-          return res.status(404).send('Footer not found');
-      }
-      footer[req.body.column].push(widget._id);
-      await footer.save();
-
-      res.redirect('/footer/widgets');
+    let footer = await Footer.findOne();
+    if (!footer) {
+        footer = new Footer();
+    }
+    footer[widget.column].push(widget._id);
+    await footer.save();
+    
+    res.redirect('/footer/widgets');
   } catch (err) {
-      res.status(500).send(err.message);
+    res.status(500).send(err.message);
   }
 });
 
 // Create a new footer with image URL
 router.post('/image', upload.single('image'), async (req, res) => {
-   // Create a new widget
-   const widget = new Widget({
-    image: req.file.location,
-    // add other properties of the widget
-});
+  // The _id of the widget to update
+  const widgetId = req.body.widgetId;
 
-try {
-    // Save the widget
-    await widget.save();
+  try {
+    // Update the widget
+    let widget = await Widget.findByIdAndUpdate(widgetId, {
+      image: req.file.location,
+    }, { new: true });
 
-    // Find the footer and add the widget to the selected column
-    const footer = await Footer.findOne(); // assuming there's only one footer
-    if (!footer) {
-        return res.status(404).send('Footer not found');
+    // If the widget does not exist, create a new one
+    if (!widget) {
+      widget = new Widget({
+        name: 'Image',
+        image: req.file.location,
+        // Add other widget fields here
+      });
+      await widget.save();
     }
-    footer[req.body.column].push(widget._id);
-    await footer.save();
 
+    let footer = await Footer.findOne();
+    if (!footer) {
+        footer = new Footer();
+    }
+    footer[widget.column].push(widget._id);
+    await footer.save();
+    
     res.redirect('/footer/widgets');
-} catch (err) {
+  } catch (err) {
     console.error(err);
-    res.redirect('/widgets');
-}
+    res.redirect('/footer/widgets');
+  }
 });
 
 router.post('/delete/:id', async (req, res) => {
