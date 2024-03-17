@@ -395,6 +395,37 @@ input[type="file"] {
     background-color: #f9fafb;
 }
 
+.select-wedgets li {
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+}
+
+.select-wedgets li::before {
+    position: absolute;
+    content: "";
+    top: 8px;
+    left: 8px;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.select-wedgets li.active,
+.select-wedgets li:hover {
+    background: #007BFF;
+    color: #fff;
+}
+
+.select-wedgets li.active::before {
+    background-image: url(../images/tick-white.svg);
+}
+
+.select-wedgets {
+    background: #f0f7fa;
+}
+
 @media(min-width:667px) and (max-width:767px) {
     .dataTables_wrapper .dataTables_info {
         float: left;
