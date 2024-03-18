@@ -421,11 +421,50 @@
                                 <!-- active footer end -->
                             </div>
                             <!-- available widgets end -->
+
+                            <div class="overlay" id="overlay"></div>
+
+                            <div class="sidebar" id="sidebar">
+                                Sidebar Content
+                            </div>
+                            <button class="toggle-btn" id="toggle-btn">Toggle Sidebar</button>
                         </main>
                         <!-- main content end here -->
                 </div>
         </div>
-
+        <style>
+            /* Styles for the sidebar */
+            
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -250px;
+                /* Adjust this value to hide the sidebar */
+                width: 250px;
+                height: 100vh;
+                background-color: #333;
+                color: #fff;
+                transition: left 0.3s ease;
+                z-index: 99999;
+            }
+            /* Styles for the button to toggle the sidebar */
+            /* Styles to dim the content when the sidebar is open */
+            
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+            
+            .sidebar.open {
+                left: 0;
+            }
+        </style>
     </body>
     <!-- Your HTML content here -->
     <%- include('../script/script.ejs') %>
@@ -447,6 +486,31 @@
                 document.querySelectorAll('#texteditor').forEach(function(inputElement) {
                     new FroalaEditor(inputElement);
                 });
+            });
+        </script>
+
+
+        <script>
+            // Get references to elements
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.getElementById('toggle-btn');
+            const overlay = document.getElementById('overlay');
+
+            // Toggle sidebar function
+            function toggleSidebar() {
+                sidebar.classList.toggle('open');
+                overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+            }
+
+            // Event listener for toggle button
+            toggleBtn.addEventListener('click', toggleSidebar);
+
+            // Event listener for clicking outside of the sidebar
+            document.addEventListener('click', function(e) {
+                if (!sidebar.contains(e.target) && e.target !== toggleBtn) {
+                    sidebar.classList.remove('open');
+                    overlay.style.display = 'none';
+                }
             });
         </script>
 

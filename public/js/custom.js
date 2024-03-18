@@ -1,5 +1,3 @@
-
-
 // dataTable
 $(document).ready(function() {
     $('#example').DataTable();
@@ -86,6 +84,31 @@ jQuery(function($) {
             element.empty();
         }
     });
+
+    // sidebar toggled
+    $('#button-toggle-menu').click(function() {
+        // Get the current value of the data-sidenav-view attribute
+        var currentValue = $('html').attr('data-sidenav-view');
+
+        // Toggle the value
+        if (currentValue === 'default') {
+            $('html').attr('data-sidenav-view', 'condensed');
+        } else {
+            $('html').attr('data-sidenav-view', 'default');
+        }
+    });
+
+    if ($(window).width() <= 1024) {
+        $('#button-toggle-menu2').click(function() {
+            var currentValue2 = $('html').attr('data-sidenav-view');
+            // Toggle the value
+            if (currentValue2 === 'mobile') {
+                $('html').attr('data-sidenav-view', 'default');
+            } else {
+                $('html').attr('data-sidenav-view', 'mobile');
+            }
+        });
+    }
 });
 
 $("#title").keypress(function(event) {
@@ -184,4 +207,5 @@ $(document).ready(function() {
             $('<li>').text('None').appendTo($selectedValuesList);
         }
     });
+
 });
