@@ -110,10 +110,10 @@
                                                 <div class="px-5 py-8 ">
                                                     <% posts.forEach(post => { %>
                                                         <% if (post.author) { %>
-                                                            <div class="flex justify-between gap-x-3 mb-5 pb-4 border-b">
-                                                                <img class="inline-block h-9 w-9 rounded-full" src="<%= user.image ? user.image : '/images/img1.jpg' %>" alt="Image Description">
+                                                            <div class="flex justify-between pb-4 mb-5 border-b gap-x-3">
+                                                                <img class="inline-block rounded-full h-9 w-9" src="<%= user.image ? user.image : '/images/img1.jpg' %>" alt="Image Description">
                                                                 <div class="grow">
-                                                                    <div class="flex mb-2 justify-between">
+                                                                    <div class="flex justify-between mb-2">
                                                                         <p class="font-medium text-[#393939]">
                                                                             <%= post.author.username %>
                                                                                 <small class="text-gray-400"><%= post.author.email %></small>
@@ -122,7 +122,7 @@
                                                                     <a href="/articles/<%= post.title %>" class="text-[#007bff] hover:opacity-50 underline hover:underline">
                                                                         <%= post.title %>
                                                                     </a>
-                                                                    <div class="mt-2 text-sm text-gray-400 justify-start flex items-center"><i data-lucide="calendar" class="inline-block w-[14px] h-[14px] me-2"></i>
+                                                                    <div class="flex items-center justify-start mt-2 text-sm text-gray-400"><i data-lucide="calendar" class="inline-block w-[14px] h-[14px] me-2"></i>
                                                                         <%= post.date.toDateString() %>
                                                                     </div>
                                                                 </div>
@@ -155,7 +155,7 @@
                                             </div>
                                             <div id="hs-basic-with-title-and-arrow-stretched-collapse-one" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 bg-[#f0f7fa] cardBody" aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one">
                                                 <div class="p-8">
-                                                    <ul class="grid grid-cols-1 gap-6 md:grid-cols-2 justify-between ">
+                                                    <ul class="grid justify-between grid-cols-1 gap-6 md:grid-cols-2 ">
                                                         <li><i data-lucide="pin" class="menu-icon inline-block mx-2 w-[18px] h-[18px] "></i>
                                                             <a href="/post/all" class="text-[#007bff] ">
                                                                 <%= totalPosts %> Posts</a>
@@ -169,75 +169,79 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <!-- user activity details start -->
-                            <div class="hs-accordion-group mt-10">
-                                <div class="hs-accordion active" id="hs-basic-with-title-and-arrow-stretched-heading-two">
-                                    <div class="cardHeader hs-accordion-toggle inline-flex items-center justify-center gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none p-6 bg-[#007bff] text-center" aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-two">
-                                        User Activity Details
-                                        <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                                        <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                    <div class="hs-accordion-group">
+                                        <div class="hs-accordion active" id="hs-basic-with-title-and-arrow-stretched-heading-two">
+                                            <div class="cardHeader hs-accordion-toggle inline-flex items-center justify-center gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none p-6 bg-[#007bff] text-center" aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-two">
+                                                User Activity Details
+                                                <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                                <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
 
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="44" viewBox="0 0 10 44" fill="none" class="leftHandle" onclick="themeCustomizer.toggleDropdown('hs-basic-with-title-and-arrow-stretched-collapse-two')">
-                                            <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39)" fill="#0656AC"></circle>
-                                            <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5)" fill="#0656AC"></circle>
-                                            <rect x="-0.5" y="-0.5" width="35" height="3" rx="1.5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5)" fill="white" stroke="#0656AC"></rect>
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="44" viewBox="0 0 10 44" fill="none" class="rightHandle" onclick="themeCustomizer.toggleDropdown('hs-basic-with-title-and-arrow-stretched-collapse-two')">
-                                            <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39)" fill="#0656AC"></circle>
-                                            <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5)" fill="#0656AC"></circle>
-                                            <rect x="-0.5" y="-0.5" width="35" height="3" rx="1.5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5)" fill="white" stroke="#0656AC"></rect>
-                                        </svg>
-                                    </div>
-                                    <div id="hs-basic-with-title-and-arrow-stretched-collapse-two" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 bg-[#f0f7fa] cardBody" aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-two">
-                                        <div class="p-8">
-                                            <div class="border rounded-lg overflow-hidden mt-4">
-                                                <table class="w-full min-w-full divide-y divide-gray-200 sm:rounded-lg UserActivitiyDetails">
-                                                    <thead class="text-left bg-[#f9fafb]">
-                                                        <tr class="">
-                                                            <th scope="col" class="px-4 py-3">Id</th>
-                                                            <th scope="col" class="px-4 py-3">User name</th>
-                                                            <th scope="col" class="px-4 py-3">Ip</th>
-                                                            <th scope="col" class="px-4 py-3">Location</th>
-                                                            <th scope="col" class="px-4 py-3">Action</th>
-                                                            <th scope="col" class="px-4 py-3">Times</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody class="divide-y divide-gray-200">
-                                                        <tr class="bg-white">
-                                                            <th scope="row" class="px-4 py-4 font-medium text-gray-900 whitespace-nowrap text-left">1</th>
-                                                            <td class="px-4 py-4">Ekansh</td>
-                                                            <td class="px-4 py-4">123</td>
-                                                            <td class="px-4 py-4">Unknown</td>
-                                                            <td class="px-4 py-4"><a href="javascript:void(0);" class="text-[#007bff] hover:opacity-50">Login</a></td>
-                                                            <td class="px-4 py-4">2023/12/27 at 7:00 am</td>
-                                                        </tr>
-                                                        <tr class="bg-white">
-                                                            <th scope="row" class="px-4 py-4 font-medium text-gray-900 whitespace-nowrap text-left">2</th>
-                                                            <td class="px-4 py-4">Mukesh</td>
-                                                            <td class="px-4 py-4">123</td>
-                                                            <td class="px-4 py-4">Unknown</td>
-                                                            <td class="px-4 py-4"><a href="javascript:void(0);" class="text-[#007bff] hover:opacity-50">Login</a></td>
-                                                            <td class="px-4 py-4">2023/12/27 at 7:00 am</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="44" viewBox="0 0 10 44" fill="none" class="leftHandle" onclick="themeCustomizer.toggleDropdown('hs-basic-with-title-and-arrow-stretched-collapse-two')">
+                                        <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39)" fill="#0656AC"></circle>
+                                        <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5)" fill="#0656AC"></circle>
+                                        <rect x="-0.5" y="-0.5" width="35" height="3" rx="1.5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5)" fill="white" stroke="#0656AC"></rect>
+                                    </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="44" viewBox="0 0 10 44" fill="none" class="rightHandle" onclick="themeCustomizer.toggleDropdown('hs-basic-with-title-and-arrow-stretched-collapse-two')">
+                                        <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39)" fill="#0656AC"></circle>
+                                        <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5)" fill="#0656AC"></circle>
+                                        <rect x="-0.5" y="-0.5" width="35" height="3" rx="1.5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5)" fill="white" stroke="#0656AC"></rect>
+                                    </svg>
+                                            </div>
+                                            <div id="hs-basic-with-title-and-arrow-stretched-collapse-two" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 bg-[#f0f7fa] cardBody" aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-two">
+                                                <div class="p-8">
+                                                    <div class="overflow-hidden border rounded-lg">
+                                                        <table class="w-full min-w-full divide-y divide-gray-200 sm:rounded-lg UserActivitiyDetails">
+                                                            <thead class="bg-[#f9fafb]">
+                                                                <tr class="">
+                                                                    <th scope="col" class="px-4 py-3">Id</th>
+                                                                    <th scope="col" class="px-4 py-3">User name</th>
+                                                                    <th scope="col" class="px-4 py-3">Ip</th>
+                                                                    <th scope="col" class="px-4 py-3">Location</th>
+                                                                    <th scope="col" class="px-4 py-3">Action</th>
+                                                                    <th scope="col" class="px-4 py-3">Timestamp</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody class="divide-y divide-gray-200">
+                                                                <% userActivities.forEach((activity, index) => { %>
+                                                                    <tr class="bg-white">
+                                                                        <th scope="row" class="px-4 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                                                            <%= index + 1 %>
+                                                                        </th>
+                                                                        <td class="px-4 py-4">
+                                                                            <%= activity.username %>
+                                                                        </td>
+                                                                        <td class="px-4 py-4">
+                                                                            <%= activity.ip %>
+                                                                        </td>
+                                                                        <td class="px-4 py-4">
+                                                                            <%= activity.location %>
+                                                                        </td>
+                                                                        <td class="px-4 py-4">
+                                                                            <a href="javascript:void(0);" class="text-[#007bff] hover:opacity-50">
+                                                                                <%= activity.action %>
+                                                                            </a>
+                                                                        </td>
+                                                                        <td class="px-4 py-4">
+                                                                            <%= new Date(activity.timestamp).toLocaleString().split(' GMT')[0] %>
+                                                                        </td>
+                                                                        <% }) %>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-
                                     </div>
+
                                 </div>
                             </div>
-                            <!-- user activity details end -->
-
                         </main>
 
                         <!-- main content end here -->
                 </div>
         </div>
-
+        <!-- sidebar end here -->
         <%- include('../script/script.ejs') %>
     </body>
 

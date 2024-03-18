@@ -1,0 +1,47 @@
+<!-- Image collapse start -->
+<div class="draggable mb-4 hs-accordion"
+id="hs-basic-nested-sub-heading-four">
+<button
+    class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]"
+    aria-controls="hs-basic-nested-sub-collapse-four">
+    Image
+    <svg class="block w-4 h-4 hs-accordion-active:hidden"
+        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m6 9 6 6 6-6" />
+    </svg>
+
+    <svg class="hidden w-4 h-4 hs-accordion-active:block"
+        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m18 15-6-6-6 6" />
+    </svg>
+</button>
+<div id="hs-basic-nested-sub-collapse-four"
+    class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]"
+    aria-labelledby="hs-basic-nested-sub-heading-four">
+    <div class="py-5">
+        <form action="/footer/image" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="widgetId" value="<%= widget._id %>">
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image" required>
+            <button type="submit" class="create-btn py-2 px-4 mt-4 text-white bg-[#007BFF] rounded-lg">Create</button>
+        </form>
+        <ul class="mb-6 select-wedgets">
+            <% widgets.forEach(widget => { %>
+                <% if (widget.name === 'Image') { %>
+                    <li class="px-3 py-2">
+                        <img src="<%= widget.image %>" alt="Widget image">
+                        <form action="/footer/delete/<%= widget._id %>" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </li>
+                <% } %>
+            <% }) %>
+        </ul>
+    </div>
+</div>
+</div>
+<!-- Image collaps end -->
