@@ -73,6 +73,7 @@ router.post("/create", wrapAsync(async (req, res) => {
       metaRobots,
       breadcrumbsTitle,
       canonicalURL,
+      show_search,
     } = req.body;
        // Check if a page with the same name already exists
        const existingPage = await Page.findOne({ page_name: page_name });
@@ -115,6 +116,7 @@ router.post("/create", wrapAsync(async (req, res) => {
       metaRobots,
       breadcrumbsTitle,
       canonicalURL,
+      show_search,
     });
 
     // Save the page to get its ID
@@ -185,6 +187,7 @@ router.post("/edit/:id", wrapAsync(async (req, res) => {
       metaRobots,
       breadcrumbsTitle,
       canonicalURL,
+      show_search,
     } = req.body;
 
      // Check if a page with the same name already exists
@@ -229,7 +232,7 @@ router.post("/edit/:id", wrapAsync(async (req, res) => {
       metaRobots,
       breadcrumbsTitle,
       canonicalURL,
-
+      show_search,
     }, { new: true });
 
     console.log("Updated Page:", updatedPage);
@@ -295,9 +298,4 @@ router.get('/draft', async (req, res) => {
       res.status(500).send('Internal Server Error');
   }
 });
-
-router.get('/:page_name', wrapAsync(async (req, res) => {
-  const page = await Page.findOne({ page_name: req.params.page_name }).populate('sections');
-  res.render('section/show-page.ejs', { page ,user: req.user});
-}));
 module.exports = router;
