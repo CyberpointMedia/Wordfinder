@@ -196,7 +196,7 @@
                                         <div class="p-8">
                                             <div class="overflow-hidden border rounded-lg">
                                                 <table class="w-full min-w-full divide-y divide-gray-200 sm:rounded-lg UserActivitiyDetails">
-                                                    <thead class="bg-[#f9fafb]">
+                                                    <thead class="text-left bg-[#f9fafb]">
                                                         <tr class="">
                                                             <th scope="col" class="px-4 py-3">Id</th>
                                                             <th scope="col" class="px-4 py-3">User name</th>
@@ -209,7 +209,7 @@
                                                     <tbody class="divide-y divide-gray-200">
                                                         <% userActivities.forEach((activity, index) => { %>
                                                             <tr class="bg-white">
-                                                                <th scope="row" class="px-4 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                                                <th scope="row" class="px-4 py-4 font-medium text-left text-gray-900 whitespace-nowrap">
                                                                     <%= index + 1 %>
                                                                 </th>
                                                                 <td class="px-4 py-4">
@@ -229,7 +229,8 @@
                                                                 <td class="px-4 py-4">
                                                                     <%= new Date(activity.timestamp).toLocaleString().split(' GMT')[0] %>
                                                                 </td>
-                                                                <% }) %>
+                                                            </tr>
+                                                            <% }) %>
                                                     </tbody>
                                                 </table>
                                             </div>
