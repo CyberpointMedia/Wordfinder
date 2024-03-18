@@ -30,6 +30,7 @@ const sectionSchema = new Schema({
         enum: ['Published', 'Trash', 'Draft'],
         default: 'Draft',
     },
+    
 });
 
 const Section = mongoose.model("Section", sectionSchema);

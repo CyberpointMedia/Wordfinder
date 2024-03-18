@@ -1,50 +1,66 @@
 <!-- views/section/show-page.ejs -->
-<%- include('../header/head.ejs') %>
-    <body>
-        <!-- sidebar start here -->
-        <div class="flex overflow-hidden">
-            <%- include('../sidenav/sidenav.ejs') %>
-                <div class="page-content bg-white">
+<%- (include('../frontend/head/head.ejs')) %>
 
-                    <%- include('../header/header.ejs') %>
-
-            <!-- main content start here -->
-            <main class="py-8 px-5">
-                <div class="mb-4">
-                    <h2 class="text-3xl font-bold text-black mb-2">
-                        <h1><%= page.page_name %></h1>
-                    </h2>
-                    <p class="text-lg"><%- page.content %></p>
+    <body class="font-custom">
+        <!-- header start here -->
+        <%- (include('../frontend/head/header.ejs')) %>
+            <% if (page.show_search) { %>
+                <!-- header end here -->
+                <div class="bg-[#DBF4FF]">
+                    <div class="container">
+                        <div class="flex flex-wrap max-w-screen-md pt-10 pb-10 mx-auto md:pt-20 md:pb-20">
+                            <div class="flex flex-wrap items-center justify-center w-full align-middle">
+                                <h1 class="block text-[#393939] text-5xl sm:text-7xl font-semibold mb-3 text-center">
+                                    Word Finder</h1>
+                                <p class="block w-full text-center">
+                                    Enter up to 15 letters and up to 2 wildcards (? or space).
+                                </p>
+                                <form id="search-main" class="w-full mt-8 mb-6" action="/search" method="post">
+                                    <div
+                                        class="input-group MainSearch border rounded-[20px] border-[#007BFF] overflow-hidden bg-white sm:py-4 py-2 text-center">
+                                        <input type="text" name="letters"
+                                            class="w-2/5 border-0 sm:w-4/6 md:w-2/3 main-search-input sm:text-lg focus:outline-none"
+                                            placeholder="Type Letters ..." aria-label="Letters"
+                                            aria-describedby="dictionary-select-field">
+                                        <span class="p-0 border-0 input-group-text" id="dictionary-select-field">
+                                            <select
+                                                class="py-2 text-sm bg-white border-0 ps-2 pe-[30px] sm:text-lg focus:outline-none"
+                                                aria-label="Default select example" name="scrabble_type">
+                                                <option value="wwf" selected="">Words With Friends</option>
+                                                <option value="us">Scrabble US</option>
+                                                <option value="uk">Scrabble UK</option>
+                                                <option value="all_en">All Dictionaries</option>
+                                            </select>
+                                        </span>
+                                    </div>
+                                    <div class="w-full mb-4 hs-accordion-group">
+                                        <%- (include('../frontend/search/advance_search.ejs')) %>
+                                    </div>
+                                    <button type="submit"
+                                        class="w-full py-4 bg-buttonPrimary rounded-[10px] text-white hover:opacity-50">Search</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <% page.sections.forEach(function(section) { %>
-                    <% if (section) { %>
-                        <div class="relative px-5 py-8">
-                            <% if (section.imagePosition === 'center') { %>
-                                <div class="mb-6">
-                                    <div class="mb-3">
-                                        <h2 class="text-2xl font-bold text-black mb-2">
-                                            <%= section.title %>
-                                        </h2>
-                                        <p class="text-lg">
-                                            <%= section.subHeading %>
-                                        </p>
-                                    </div>
-                                    <div class="mb-6">
-                                        <p>
-                                            <%- section.content %>
-                                        </p>
-                                    </div>
-                                    <div class="w-full text-center">
-                                        <img src="<%= section.image %>" alt="Section Image" class="mx-auto" />
-                                    </div>
-                                </div>
-                                <% } else if (section.imagePosition === 'left') { %>
+                <% } %>
 
-                                    <div class="mb-6 flex flex-col md:flex-row gap-6">
-                                        <div class="md:w-1/2 w-full">
-                                            <img src="<%= section.image %>" alt="Section Image" />
-                                        </div>
-                                        <div class="md:w-1/2 w-full">
+                    <!-- main content start here -->
+
+                    <main class="py-8 px-5">
+                        <div class="mb-4">
+                            <h2 class="text-3xl font-bold text-black mb-2">
+                                <h1>
+                                    <%= page.page_name %>
+                                </h1>
+                            </h2>
+                            <p class="text-lg"><%- page.content %></p>
+                        </div>
+                        <% page.sections.forEach(function(section) { %>
+                            <% if (section) { %>
+                                <div class="relative px-5 py-8">
+                                    <% if (section.imagePosition==='center' ) { %>
+                                        <div class="mb-6">
                                             <div class="mb-3">
                                                 <h2 class="text-2xl font-bold text-black mb-2">
                                                     <%= section.title %>
@@ -53,37 +69,62 @@
                                                     <%= section.subHeading %>
                                                 </p>
                                             </div>
-                                            <p>
-                                                <%- section.content %>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <% } else if (section.imagePosition === 'right') { %>
-                                        <div class="mb-6 flex flex-col md:flex-row gap-6">
-                                            <div class="md:w-1/2 w-full">
-                                                <div class="mb-3">
-                                                    <h2 class="text-2xl font-bold text-black mb-2">
-                                                        <%= section.title %>
-                                                    </h2>
-                                                    <p class="text-lg">
-                                                        <%= section.subHeading %>
-                                                    </p>
-                                                </div>
+                                            <div class="mb-6">
                                                 <p>
                                                     <%- section.content %>
                                                 </p>
                                             </div>
-                                            <div class="md:w-1/2 w-full">
-                                                <img src="<%= section.image %>" alt="Section Image" />
+                                            <div class="w-full text-center">
+                                                <img src="<%= section.image %>" alt="Section Image" class="mx-auto" />
                                             </div>
                                         </div>
-                                        <% } %>
-                                            <% } %>
-                  <% }); %>
-            </main>
-            <!-- main content end here -->
-        </div>
-    </div>
-    <%- include('../script/script.ejs') %>
-</body>
-</html>
+                                        <% } else if (section.imagePosition==='left' ) { %>
+
+                                            <div class="mb-6 flex flex-col md:flex-row gap-6">
+                                                <div class="md:w-1/2 w-full">
+                                                    <img src="<%= section.image %>" alt="Section Image" />
+                                                </div>
+                                                <div class="md:w-1/2 w-full">
+                                                    <div class="mb-3">
+                                                        <h2 class="text-2xl font-bold text-black mb-2">
+                                                            <%= section.title %>
+                                                        </h2>
+                                                        <p class="text-lg">
+                                                            <%= section.subHeading %>
+                                                        </p>
+                                                    </div>
+                                                    <p>
+                                                        <%- section.content %>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <% } else if (section.imagePosition==='right' ) { %>
+                                                <div class="mb-6 flex flex-col md:flex-row gap-6">
+                                                    <div class="md:w-1/2 w-full">
+                                                        <div class="mb-3">
+                                                            <h2 class="text-2xl font-bold text-black mb-2">
+                                                                <%= section.title %>
+                                                            </h2>
+                                                            <p class="text-lg">
+                                                                <%= section.subHeading %>
+                                                            </p>
+                                                        </div>
+                                                        <p>
+                                                            <%- section.content %>
+                                                        </p>
+                                                    </div>
+                                                    <div class="md:w-1/2 w-full">
+                                                        <img src="<%= section.image %>" alt="Section Image" />
+                                                    </div>
+                                                </div>
+                                                <% } %>
+                                                    <% } %>
+                                                        <% }); %>
+                    </main>
+                    <!-- main content end here -->
+                    </div>
+                    </div>
+                    <%- include('../script/script.ejs') %>
+    </body>
+
+    </html>

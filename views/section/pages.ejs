@@ -1,7 +1,6 @@
 <!-- show-pages.ejs -->
 
 <%- include('../header/head.ejs') %>
-
     <body>
         <!-- sidebar start here -->
         <div class="flex overflow-hidden">
@@ -68,7 +67,7 @@
                                         <span class="trash"><a href="javascript:void(0)" class="trash text-[#b32d2e] text-xs" onclick="updateStatus('<%= page._id %>')">Trash</a> | </span>
                                     <% } %>                                  
                                     <span class="view">
-                                        <a href="pages/<%= page.page_name %>"
+                                        <a href="/pages/<%= page.page_name %>"
                                             class="text-[#2271b1] text-xs">View</a>
                                     </span>
                                     </div>

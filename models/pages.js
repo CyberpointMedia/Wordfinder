@@ -9,6 +9,10 @@ const pageSchema = new mongoose.Schema({
         type: String,
         default: " ",
     },
+    show_search: {
+        type: Boolean,
+        default: false,
+    },
     sections: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Section',
