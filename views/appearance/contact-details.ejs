@@ -1,9 +1,6 @@
- <!-- custom Details start -->
- <div class="draggable mb-4 hs-accordion"
- id="hs-basic-nested-sub-heading-three">
- <button
-     class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]"
-     aria-controls="hs-basic-nested-sub-collapse-three">
+<!-- custom Details start -->
+<div class="mb-4 draggable hs-accordion" id="hs-basic-nested-sub-heading-three">
+    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-three">
      Contact Details
      <svg class="block w-4 h-4 hs-accordion-active:hidden"
          xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -19,28 +16,26 @@
          <path d="m18 15-6-6-6 6" />
      </svg>
  </button>
- <div id="hs-basic-nested-sub-collapse-three"
-     class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]"
-     aria-labelledby="hs-basic-nested-sub-heading-three">
-    <div class="py-5">
-         <form action="/footer/contactdetails" method="POST">
-            <input type="hidden" name="widgetId" value="<%= widget._id %>">
-             <label for="contactdetails">Contact Details:</label>
-             <textarea type="text" id="contactdetails" name="contactdetails" required ><%= widget.contactdetails %></textarea>             
-             <button type="submit" class="create-btn py-2 px-4 mt-4 text-white bg-[#007BFF] rounded-lg">Create</button>
-         </form>
-         <ul class="mb-6 select-wedgets">
-            <% widgets.forEach(widget=> { %>
-                <% if (widget.name === 'Contact Details') { %>
-                    <li class="px-3 py-2">
-                        <form action="/footer/delete/<%= widget._id %>" method="POST">
-                            <button type="submit">Delete</button>
-                        </form>
-                    </li>
-                <% } %>
-            <% }) %>
-        </ul>
-     </div>
- </div>
+    <div id="hs-basic-nested-sub-collapse-three" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-three">
+        <div class="py-5">
+            <form action="/footer/contactdetails" method="POST">
+                <input type="hidden" name="widgetId" value="<%= widget._id %>">
+                <label for="contactdetails" class="mb-3">Contact Details:</label>
+                <textarea type="text" id="contactdetails" name="contactdetails" required><%= widget.contactdetails %></textarea>
+                <button type="submit" class="create-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4">Save</button>
+            </form>
+            <ul class="mb-6">
+                <% widgets.forEach(widget=> { %>
+                    <% if (widget.name === 'Contact Details') { %>
+                        <li class="py-2">
+                            <form action="/footer/delete/<%= widget._id %>" method="POST">
+                                <button type="submit" class="mt-2 text-red-600 underline hover:text-red-400">Delete</button>
+                            </form>
+                        </li>
+                        <% } %>
+                            <% }) %>
+            </ul>
+        </div>
+    </div>
 </div>
 <!-- custom HTML end -->
