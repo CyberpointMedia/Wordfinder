@@ -2,14 +2,17 @@
 const express = require('express');
 const path = require('path');
 const https = require('https');
-const bodyParser = require('body-parser'); 
+const bodyParser = require('body-parser');
 const router = express.Router();
 const PORT = process.env.PORT || 8080;
 var wd = require("word-definition");
 const axios = require('axios');
 const wrapAsync = require('../middleware/wrapAsync');
 const Post = require('../models/post');
-const Category = require('../models/categories'); 
+const Page = require('../models/pages');
+const Category = require('../models/categories');
+const { wordsScrabbleResults } = require('../middleware/wordsscramble');
+
 router.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(404).render('not-found/page-not-found.ejs');
@@ -22,13 +25,12 @@ router.use(bodyParser.json());
 router.use(express.static(path.join(__dirname, 'dist')));
 // Serve static files from the node_modules directory
 router.use('/node_modules', express.static(__dirname + '/node_modules'));
-
+router.use('/styles', express.static(path.join(__dirname, 'styles')))
 // // Define routes
-
 router.get('/', async (req, res) => {
     try {
         console.log("hello sir ");
-        
+
         // const categories = await Category.find(); // Fetch the categories
         const morePosts = await Post.find({ status: 'Published' }).limit(3); // Fetch 3 more posts with a status of 'Published'
         res.render('frontend/index.ejs', { morePosts }); // Pass morePosts to the template
@@ -38,11 +40,68 @@ router.get('/', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
-router.get('/5-letter-words', (req, res) => {
-    res.render(('frontend/5-letter-words.ejs'));
-  });
 
-  router.get('/articles/:title', async (req, res) => {
+// Handle POST request when search button is clicked
+router.post('/search', wrapAsync(async (req, res) => {
+    const letters = req.body.letters;
+   const morePosts = await Post.find({ status: 'Published' }).limit(3); 
+    const startsWith = req.body.starts_with || '';
+    const endsWith = req.body.end_with || '';
+    const contains = req.body.contains || ''; 
+    const specifiedLength = req.body.length || ''; 
+    console.log("LEngth of the words",specifiedLength);
+    let url = `https://httpip.es/api/words?letters=${letters}`;
+    // If starts_with parameter is provided, modify the URL to include it
+    if (startsWith.trim() !== '') {
+        url += `&starts_with=${startsWith}`;
+    }
+    if (endsWith.trim() !== '') {
+        url += `&ends_with=${endsWith}`;
+    }
+    if (contains.trim() !== '') {
+        url += `&contains=${contains}`;
+    }
+    if (specifiedLength.trim() !== '') { 
+        url += `&length=${specifiedLength}`;
+    }
+    https.get(url, (response) => {
+        let data = '';
+  
+        response.on('data', (chunk) => {
+            data += chunk;
+        });
+  
+        response.on('end', () => {
+            const responseData = JSON.parse(data);
+            const words = responseData.data;
+  
+            // Group words by their length
+            const wordsByLength = {};
+            words.forEach(word => {
+                const wordLength = word.length;
+                if (!wordsByLength[wordLength]) {
+                    wordsByLength[wordLength] = [];
+                }
+                wordsByLength[wordLength].push(word);
+            });
+            
+            // Calculate the total number of words for each length
+            const totalWordsByLength = {};
+            Object.keys(wordsByLength).forEach(length => {
+                totalWordsByLength[length] = wordsByLength[length].length;
+            });
+  
+            // Render the words_with_x_and_q.ejs template with the grouped data
+            res.render('frontend/words-with-X-and-Q.ejs', { letters,morePosts, wordsByLength ,startsWith ,endsWith, contains,specifiedLength,totalWordsByLength}); // Pass 'letters' and 'wordsByLength' variables here
+        });
+    }).on('error', (error) => {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    });
+  }));
+  
+
+router.get('/articles/:title', async (req, res) => {
     try {
         const post = await Post.findOne({ title: req.params.title }).populate('author');
         if (!post || !post.author) {
@@ -65,6 +124,7 @@ router.get('/5-letter-words', (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
 router.get('/articles', async (req, res) => {
     try {
         const posts = await Post.find({ status: 'Published' }); // Fetch all posts from the database
@@ -88,90 +148,37 @@ router.get('/words-with-X-and-Q', (req, res) => {
     res.render(('frontend/words-with-X-and-Q.ejs'));
 });
 
-// Handle POST request when search button is clicked
-router.post('/search', wrapAsync(async (req, res) => {
-  const letters = req.body.letters;
- const morePosts = await Post.find({ status: 'Published' }).limit(3); 
-  const startsWith = req.body.starts_with || '';
-  const endsWith = req.body.end_with || '';
-  const contains = req.body.contains || ''; 
-  const specifiedLength = req.body.length || ''; 
-  console.log("LEngth of the words",specifiedLength);
-  let url = `https://httpip.es/api/words?letters=${letters}`;
-  // If starts_with parameter is provided, modify the URL to include it
-  if (startsWith.trim() !== '') {
-      url += `&starts_with=${startsWith}`;
-  }
-  if (endsWith.trim() !== '') {
-      url += `&ends_with=${endsWith}`;
-  }
-  if (contains.trim() !== '') {
-      url += `&contains=${contains}`;
-  }
-  if (specifiedLength.trim() !== '') { 
-      url += `&length=${specifiedLength}`;
-  }
-  https.get(url, (response) => {
-      let data = '';
 
-      response.on('data', (chunk) => {
-          data += chunk;
-      });
-
-      response.on('end', () => {
-          const responseData = JSON.parse(data);
-          const words = responseData.data;
-
-          // Group words by their length
-          const wordsByLength = {};
-          words.forEach(word => {
-              const wordLength = word.length;
-              if (!wordsByLength[wordLength]) {
-                  wordsByLength[wordLength] = [];
-              }
-              wordsByLength[wordLength].push(word);
-          });
-          
-          // Calculate the total number of words for each length
-          const totalWordsByLength = {};
-          Object.keys(wordsByLength).forEach(length => {
-              totalWordsByLength[length] = wordsByLength[length].length;
-          });
-
-          // Render the words_with_x_and_q.ejs template with the grouped data
-          res.render('frontend/words-with-X-and-Q.ejs', { letters,morePosts, wordsByLength ,startsWith ,endsWith, contains,specifiedLength,totalWordsByLength}); // Pass 'letters' and 'wordsByLength' variables here
-      });
-  }).on('error', (error) => {
-      console.error('Error:', error);
-      res.status(500).json({ error: 'Internal server error' });
-  });
-}));
 
 router.get('/word-definition', wrapAsync(async (req, res) => {
-  const word = req.query.word;
+    const word = req.query.word;
 
-  const options = {
-      method: 'GET',
-      url: `https://wordsapiv1.p.rapidapi.com/words/${word}`,
-      headers: {
-          'X-RapidAPI-Key': process.env.Key,
-          'X-RapidAPI-Host': process.env.Host
-      }
-  };
-  try {
-      const response = await axios.request(options);
-      console.log(response.data);
-      res.json(response.data); // Send the response back to the client
-  } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' }); // Send an error response
-  }
+    const options = {
+        method: 'GET',
+        url: `https://wordsapiv1.p.rapidapi.com/words/${word}`,
+        headers: {
+            'X-RapidAPI-Key': process.env.Key,
+            'X-RapidAPI-Host': process.env.Host
+        }
+    };
+    try {
+        const response = await axios.request(options);
+        console.log(response.data);
+        res.json(response.data); // Send the response back to the client
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' }); // Send an error response
+    }
 }));
 
+router.get('/pages/:page_name', wrapAsync(async (req, res) => {
+    const page = await Page.findOne({ page_name: req.params.page_name }).populate('sections');
+    res.render('section/show-page.ejs', { page ,user: req.user});
+  }));
 
 // Example route for serving input.css
 router.get('/input', (req, res) => {
-  res.sendFile(path.join(__dirname, 'src', 'input.css'));
+    res.sendFile(path.join(__dirname, 'src', 'input.css'));
 });
 
 module.exports = router;

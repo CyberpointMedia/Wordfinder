@@ -15,14 +15,16 @@
                 </svg>
     </div>
     <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px] ">
-        <% morePosts.forEach(post => { %>
-        <div class="border border-[#007BFF4D] rounded-[20px] bg-white mb-6 overflow-hidden hover:text-[#007BFF]">
+        <% if (morePosts) { %>
+            <% morePosts.forEach(post => { %>
+            <div class="border border-[#007BFF4D] rounded-[20px] bg-white mb-6 overflow-hidden hover:text-[#007BFF]">
             <a href="/articles/<%= post.title %>"><img src="<%= post.feature_img %>" alt="# " class="w-full "></a>
             <div class="p-4 ">
                 <h3 class="text-lg font-semibold leading-6 "><a href="/articles/<%= post.title %>" class="hover:text-[#007BFF]"><%= post.heading %></a></h3>
             </div>
         </div>
-        <% }) %>
+        <% }); %>
+        <% } %>
         <div class="mt-6 text-center">
             <a href="/articles" class="hs-collapse-toggle text-white bg-[#007BFF] rounded-[10px] py-4 px-6 hover:opacity-50 inline-block" id="hs-show-hide-collapse" data-hs-collapse="#hs-show-hide-collapse-heading">
                 <span class="hs-collapse-open:hidden">View More</span>
