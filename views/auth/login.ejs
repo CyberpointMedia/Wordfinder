@@ -1,59 +1,63 @@
 <!-- /views/auth/login -->
 <%- include('../header/head.ejs') %>
-<body>
-    <!-- login page start here -->
-    <div class="relative max-w-md mx-auto bg-cover bg-center p-4">
-        <div class="h-screen flex">
-            <div class="bg-white w-full m-auto rounded-md">
-                <div class="p-5">
-                    <div class="mb-6 mt-2">
-                        <a href="javascript:void(0)">
-                            <img src="/images/logo-lg.svg" alt="Word Finder" class="h-10 mx-auto block">
-                        </a>
+
+    <body>
+        <!-- login page start here -->
+        <div class="relative max-w-md p-4 mx-auto bg-center bg-cover">
+            <div class="flex h-screen">
+                <div class="w-full m-auto bg-white rounded-md">
+                    <div class="p-5">
+                        <div class="mt-2 mb-6">
+                            <a href="javascript:void(0)">
+                                <img src="/images/logo-lg.svg" alt="Word Finder" class="block h-10 mx-auto">
+                            </a>
+                        </div>
+                        <main>
+                            <form action="/auth/login" method="POST" class="w-full py-2 sm:w-96">
+                                <div class="mb-4">
+                                    <label class="mt-1 mb-2" for="email">Email address</label>
+                                    <input class="form-input bg-[#F0F7FA] border-0" type="email" name="email" id="emailaddress" required="" placeholder="john@deo.com">
+                                </div>
+
+                                <div class="relative mb-4">
+                                    <div class="flex items-center justify-between">
+                                        <label class="mt-1 mb-2" for="password">Password</label>
+                                    </div>
+                                    <input type="password" id="password" name="password" required="" class="form-input bg-[#F0F7FA] border-0" placeholder="*********">
+                                    <div class="absolute right-[12px] bottom-[22px] cursor-pointer toggle-password">
+                                        <i data-lucide="eye" class="w-4 h-4 eyeOpen"></i>
+                                        <i data-lucide="eye-off" class="w-4 h-4 eyeOff"></i>
+                                    </div>
+                                </div>
+                                <!-- <input type="hidden" name="userType" value="admin"> -->
+
+                                <div class="mb-10">
+                                    <div class="flex items-center gap-2">
+                                        <input type="checkbox" class="rounded form-checkbox text-primary" id="checkbox-signin">
+                                        <label class="my-0 font-medium" for="checkbox-signin">Remember me</label>
+                                    </div>
+                                </div>
+
+                                <div class="mb-2 text-center">
+                                    <button class="py-3 w-full text-white bg-[#007BFF] rounded-lg" type="submit"> Sign In </button>
+                                </div>
+                            </form>
+
+                            <% if (error) { %>
+                                <script>
+                                    alert("<%= error %>");
+                                </script>
+                                <% } %>
+
+                        </main>
                     </div>
-<main>
-                    <form action="/auth/login" method="POST" class="w-full sm:w-96 py-2">
-                        <div class="mb-4">
-                            <label class="mt-1 mb-2" for="email">Email address</label>
-                            <input class="form-input bg-[#F0F7FA] border-0" type="email" name="email" id="emailaddress" required="" placeholder="john@deo.com">
-                        </div>
-
-                        <div class="mb-4 relative">
-                            <div class="flex items-center justify-between">
-                                <label class="mt-1 mb-2" for="password">Password</label>
-                            </div>
-                            <input type="password" id="password" name="password" required="" class="form-input bg-[#F0F7FA] border-0" placeholder="*********">
-                            <div class="absolute right-[12px] bottom-[22px] cursor-pointer toggle-password">
-                                <i data-lucide="eye" class="w-4 h-4 eyeOpen"></i>
-                                <i data-lucide="eye-off" class="w-4 h-4 eyeOff"></i>
-                            </div>
-                        </div>
-<!-- <input type="hidden" name="userType" value="admin"> -->
-
-                        <div class="mb-10">
-                            <div class="flex items-center gap-2">
-                                <input type="checkbox" class="form-checkbox rounded text-primary" id="checkbox-signin">
-                                <label class="font-medium my-0" for="checkbox-signin">Remember me</label>
-                            </div>
-                        </div>
-
-                        <div class="text-center mb-2">
-                            <button class="py-3 w-full text-white bg-[#007BFF] rounded-lg" type="submit"> Sign In </button>
-                        </div>
-                    </form>
-                    <% if (error) { %>
-                        <script>
-                            alert("<%= error %>");
-                        </script>
-                        <% } %>
-                </main>
                 </div>
-            </div>
-            <!-- <div class="text-center mt-6">
+                <!-- <div class="mt-6 text-center">
                 <a href="forget-password.html" class="text-black">Forgot your password?</a>
             </div> -->
+            </div>
         </div>
-    </div>
-    <%- include('../script/script.ejs') %>
-</body>
-</html>
+        <%- include('../script/script.ejs') %>
+    </body>
+
+    </html>
