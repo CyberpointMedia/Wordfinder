@@ -37,15 +37,19 @@
                                                 <div id="hs-basic-nested-sub-collapse-one" class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-one">
                                                     <div class="py-5">
                                                         <form action="/footer/addtexteditor" method="POST">
-                                                            <label for="columnSelect">Select Column:</label>
-                                                            <select id="columnSelect" name="column">
-                                                                <% columns.forEach(column=> { %>
-                                                                    <option value="<%= column %>">
-                                                                        <%= column %>
-                                                                    </option>
-                                                                    <% }) %>
-                                                            </select>
-                                                            <button type="submit" class="create-btn py-2 px-4 mt-4 text-white bg-[#007BFF] rounded-lg">Create</button>
+                                                            <div class="flex flex-col justify-start sm:items-center sm:flex-row">
+                                                                <label for="columnSelect" class="mb-4 text-sm font-normal sm:mb-0">Select Column:</label>
+                                                                <div class="sm:ml-5">
+                                                                    <select id="columnSelect" name="column" class="w-full px-3 py-3 sm:w-32">
+                                                                        <% columns.forEach(column=> { %>
+                                                                            <option value="<%= column %>">
+                                                                                <%= column %>
+                                                                            </option>
+                                                                            <% }) %>
+                                                                    </select>
+                                                                </div>
+                                                                <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
+                                                            </div>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -72,15 +76,20 @@
                                                 <div id="hs-basic-nested-sub-collapse-two" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-two">
                                                     <div class="py-5">
                                                         <form action="/footer/addcustomhtml" method="POST">
-                                                            <label for="columnSelect">Select Column:</label>
-                                                            <select id="columnSelect" name="column">
-                                                                <% columns.forEach(column=> { %>
-                                                                    <option value="<%= column %>">
-                                                                        <%= column %>
-                                                                    </option>
-                                                                    <% }) %>
-                                                            </select>
-                                                            <button type="submit" class="create-btn py-2 px-4 mt-4 text-white bg-[#007BFF] rounded-lg">Create</button>
+                                                            <div class="flex flex-col justify-start sm:items-center sm:flex-row">
+                                                                <label for="columnSelect" class="mb-4 text-sm font-normal sm:mb-0">Select Column:</label>
+                                                                <div class="sm:ml-5">
+                                                                    <select id="columnSelect" name="column" class="w-full px-3 py-3 sm:w-32">
+                                                                        <% columns.forEach(column=> { %>
+                                                                            <option value="<%= column %>">
+                                                                                <%= column %>
+                                                                            </option>
+                                                                            <% }) %>
+                                                                    </select>
+                                                                </div>
+                                                                <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
+                                                            </div>
+
                                                         </form>
                                                         </ul>
                                                     </div>
@@ -108,15 +117,20 @@
                                                 <div id="hs-basic-nested-sub-collapse-three" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-three">
                                                     <div class="py-5">
                                                         <form action="/footer/addcontactdetails" method="POST">
-                                                            <label for="columnSelect">Select Column:</label>
-                                                            <select id="columnSelect" name="column">
-                                                                <% columns.forEach(column=> { %>
-                                                                    <option value="<%= column %>">
-                                                                        <%= column %>
-                                                                    </option>
-                                                                    <% }) %>
-                                                            </select>
-                                                            <button type="submit" class="create-btn py-2 px-4 mt-4 text-white bg-[#007BFF] rounded-lg">Create</button>
+                                                            <div class="flex flex-col justify-start sm:items-center sm:flex-row">
+                                                                <label for="columnSelect" class="mb-4 text-sm font-normal sm:mb-0">Select Column:</label>
+                                                                <div class="sm:ml-5">
+                                                                    <select id="columnSelect" name="column" class="w-full px-3 py-3 sm:w-32">
+                                                                        <% columns.forEach(column=> { %>
+                                                                            <option value="<%= column %>">
+                                                                                <%= column %>
+                                                                            </option>
+                                                                            <% }) %>
+                                                                    </select>
+                                                                </div>
+                                                                <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
+                                                            </div>
+
                                                         </form>
                                                         </ul>
                                                     </div>
@@ -142,17 +156,24 @@
                                                     </svg>
                                                 </button>
                                                 <div id="hs-basic-nested-sub-collapse-four" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-four">
-                                                    <form action="/footer/addimage" method="POST">
-                                                        <label for="columnSelect">Select Column:</label>
-                                                        <select id="columnSelect" name="column">
-                                                            <% columns.forEach(column=> { %>
-                                                                <option value="<%= column %>">
-                                                                    <%= column %>
-                                                                </option>
-                                                                <% }) %>
-                                                        </select>
-                                                        <button type="submit" class="create-btn py-2 px-4 mt-4 text-white bg-[#007BFF] rounded-lg">Create</button>
-                                                    </form>
+                                                    <div class="py-5">
+                                                        <form action="/footer/addimage" method="POST">
+                                                            <div class="flex flex-col justify-start sm:items-center sm:flex-row">
+                                                                <label for="columnSelect" class="mb-4 text-sm font-normal sm:mb-0">Select Column:</label>
+                                                                <div class="sm:ml-5">
+                                                                    <select id="columnSelect" name="column" class="w-full px-3 py-3 sm:w-32">
+                                                                        <% columns.forEach(column=> { %>
+                                                                            <option value="<%= column %>">
+                                                                                <%= column %>
+                                                                            </option>
+                                                                            <% }) %>
+                                                                    </select>
+                                                                </div>
+                                                                <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <!-- Image collaps end -->
@@ -182,13 +203,8 @@
                                                         <ul class="mb-6 menuChecklist bg-[#f0f7fa] py-2">
                                                             <li class="flex flex-col px-3 py-2 sm:flex-row">
                                                                 <label class="w-40 text-sm font-normal" for="custom-menu-item-url">URL</label>
-                                                                <input name="customLinks[][url]" id="custom-menu-item-url" type="text" class="sm:ml-3" placeholder="https://">
+                                                                <textarea name="gtmUrl" class="sm:ml-3" placeholder=""></textarea>
 
-                                                            </li>
-                                                            <li class="flex flex-col px-3 py-2 sm:flex-row">
-                                                                <label class="w-40 text-sm font-normal" for="custom-menu-item-name">Link
-                                                                            Text</label>
-                                                                <input name="customLinks[][text]" id="custom-menu-item-name" type="text" class="sm:ml-3">
                                                             </li>
                                                         </ul>
 
@@ -200,7 +216,7 @@
                                             <!--  Global custom head widget start -->
                                             <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-six">
                                                 <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-six">
-                                                    GTM google tag widgets
+                                                    Global custom head widget
                                                             <svg class="block w-4 h-4 hs-accordion-active:hidden"
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"
                                                                 height="24" viewBox="0 0 24 24" fill="none"
@@ -221,14 +237,13 @@
                                                     <div class="py-5">
                                                         <ul class="mb-6 menuChecklist bg-[#f0f7fa] py-2">
                                                             <li class="flex flex-col px-3 py-2 sm:flex-row">
-                                                                <label class="w-40 text-sm font-normal" for="custom-menu-item-url">URL</label>
-                                                                <input name="customLinks[][url]" id="custom-menu-item-url" type="text" class="sm:ml-3" placeholder="https://">
+                                                                <label class="w-40 text-sm font-normal" for="custom-menu-item-url">Head</label>
+                                                                <textarea name="gtmHead" class="sm:ml-3" placeholder=""></textarea>
 
                                                             </li>
                                                             <li class="flex flex-col px-3 py-2 sm:flex-row">
-                                                                <label class="w-40 text-sm font-normal" for="custom-menu-item-name">Link
-                                                                            Text</label>
-                                                                <input name="customLinks[][text]" id="custom-menu-item-name" type="text" class="sm:ml-3">
+                                                                <label class="w-40 text-sm font-normal" for="custom-menu-item-name">Body</label>
+                                                                <textarea name="gtmBody" class="sm:ml-3" placeholder=""></textarea>
                                                             </li>
                                                         </ul>
 
@@ -429,7 +444,7 @@
                 });
             });
             document.addEventListener('DOMContentLoaded', function() {
-                document.querySelectorAll('textarea').forEach(function(inputElement) {
+                document.querySelectorAll('#texteditor').forEach(function(inputElement) {
                     new FroalaEditor(inputElement);
                 });
             });
