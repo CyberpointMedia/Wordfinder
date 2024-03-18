@@ -1,26 +1,26 @@
- <!-- header Start -->
- <header class="app-header bg-white border-b shadow-md">
-    <div class="flex items-center justify-between px-3 gap-3 w-full">
-     
+<!-- header Start -->
+<header class="bg-white border-b shadow-md app-header">
+    <div class="flex items-center justify-between w-full gap-3 px-3">
+
 
         <!-- Sidenav Menu Toggle Button -->
-        <button id="button-toggle-menu" class="nav-link p-2">
+        <button id="button-toggle-menu" class="p-2 nav-link">
             <span class="sr-only">Menu Toggle Button</span>
-            <span class="flex items-center justify-center h-6 w-6">
+            <span class="flex items-center justify-center w-6 h-6">
                 <i data-lucide="menu" class="w-6 h-6 text-xl"></i>
             </span>
         </button>
 
         <!-- Profile Dropdown Button -->
         <div class="hs-dropdown relative inline-flex [--placement:bottom-right]">
-            <button id="hs-dropdown-default" type="button" class="hs-dropdown-toggle nav-link flex items-center">
-                <img src="<%= user && user.image ? user.image : '/images/admin.svg' %>" alt="user-image" class="rounded-full h-8 w-8">
-                    <div class="lg:flex hidden">
-                    <span class="text-sm mx-2">Admin</span>
+            <button id="hs-dropdown-default" type="button" class="flex items-center hs-dropdown-toggle nav-link">
+                <img src="<%= user && user.image ? user.image : '/images/admin.svg' %>" alt="user-image" class="w-8 h-8 rounded-full">
+                    <div class="hidden lg:flex">
+                    <span class="mx-2 text-sm">Admin</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
                       </svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="active-Uparrow hidden">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden active-Uparrow">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
                       </svg>
                 </div>

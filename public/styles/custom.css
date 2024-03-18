@@ -91,6 +91,25 @@ tr:hover .row-actions {
     .page-content {
         margin-left: 0px;
     }
+    html[data-sidenav-view=default] .app-menu {
+        z-index: 999;
+    }
+    html[data-sidenav-view=default]::before {
+        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        content: "";
+        z-index: 99;
+    }
+    .fixed.app-menu #button-toggle-menu2 {
+        position: absolute;
+        top: 15px;
+        right: 9px;
+        display: block;
+    }
 }
 
 html[data-sidenav-view=condensed] .page-content {

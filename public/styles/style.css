@@ -3167,6 +3167,9 @@ video {
     .lg\:visible {
         visibility: visible;
     }
+    .lg\:hidden {
+        display: none;
+    }
     .lg\:mx-auto {
         margin-left: auto;
         margin-right: auto;
