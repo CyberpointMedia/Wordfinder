@@ -8,6 +8,7 @@ const wrapAsync = require('../middleware/wrapAsync');
 const router = express.Router();
 const Post = require('../models/post'); 
 const Page = require('../models/pages');
+const UserActivity = require('../models/user-activity');
 const { ensureAdmin, ensureEditor, ensureAuthor } = require('../middleware/authMiddleware');
 
 // Error handling middleware
@@ -124,6 +125,7 @@ router.get('/dashboard', wrapAsync(async (req, res) => {
     // Fetch total number of posts
     const totalPosts = await Post.countDocuments();
     const totalPages = await Page.countDocuments();
+    const userActivities = await UserActivity.find().sort({timestamp: -1}).limit(10);
     // Fetch posts based on user role
     let posts;
     if (req.user.role === 'admin' || req.user.role === 'administrator' || req.user.role === 'author') {
@@ -133,7 +135,7 @@ router.get('/dashboard', wrapAsync(async (req, res) => {
     }
 
     // Render dashboard
-    res.render('admin/dashboard', { users, totalPosts ,totalPages, posts, user: req.user });
+    res.render('admin/dashboard', { users, totalPosts ,totalPages, posts, user: req.user , userActivities});
 }));
 
 // View all users

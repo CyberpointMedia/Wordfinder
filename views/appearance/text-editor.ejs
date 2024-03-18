@@ -1,0 +1,46 @@
+<!-- text editor start -->
+<div class="draggable mb-4 hs-accordion"
+id="hs-basic-nested-sub-heading-one">
+<button
+    class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]"
+    aria-controls="hs-basic-nested-sub-collapse-one">
+    Text Editor
+    <svg class="block w-4 h-4 hs-accordion-active:hidden"
+        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m6 9 6 6 6-6" />
+    </svg>
+
+    <svg class="hidden w-4 h-4 hs-accordion-active:block"
+        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m18 15-6-6-6 6" />
+    </svg>
+</button>
+<div id="hs-basic-nested-sub-collapse-one"
+    class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]"
+    aria-labelledby="hs-basic-nested-sub-heading-one">
+    <div class="py-5">
+        <form action="/footer/texteditor" method="POST">
+            <input type="hidden" name="widgetId" value="<%= widget._id %>">
+            <label for="widgetName">Widget Name:</label>
+            <textarea type="text" id="texteditor" name="texteditor" required><%= widget.texteditor %></textarea>
+            <button type="submit" class="create-btn py-2 px-4 mt-4 text-white bg-[#007BFF] rounded-lg">Create</button>
+        </form>
+        <ul class="mb-6 select-wedgets">
+            <% widgets.forEach(widget=> { %>
+                <% if (widget.name === 'Text Editor') { %>
+                    <li class="px-3 py-2">
+                        <form action="/footer/delete/<%= widget._id %>" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </li>
+                <% } %>
+            <% }) %>
+        </ul>
+    </div>
+</div>
+</div>
+<!-- text editor end -->
