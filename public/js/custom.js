@@ -108,7 +108,8 @@ jQuery(function($) {
                 $('html').attr('data-sidenav-view', 'mobile');
             }
         });
-    }
+    };
+
 });
 
 $("#title").keypress(function(event) {

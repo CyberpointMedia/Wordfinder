@@ -12,7 +12,7 @@ class ThemeCustomizer {
             if (t.href === e) {
                 t.classList.add("active");
                 let e = t.parentElement.parentElement.parentElement;
-                e && e.classList.contains("menu-item") && (t = e.querySelector("[data-hs-collapse]")) && (t = t.nextElementSibling) && HSCollapse.show(t)
+                e && e.classList.contains("menu-item") && (t = e.querySelector("[data-hs-collapse]").classList.add("active")) && (t = t.nextElementSibling) && HSCollapse.show(t)
             }
         });
         const i = document.querySelectorAll("ul.menu .sub-menu");
