@@ -44,6 +44,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 
 // Render widgets view
 router.get('/widgets', ensureAdmin, async (req, res) => { 
+  const widget = await Widget.findOne();
   const footers = await Footer.find({}).populate('footerCol1 footerCol2 footerCol3 footerCol4').populate('footerCol1.widgets footerCol2.widgets footerCol3.widgets footerCol4.widgets');
   console.log('Footers:', footers); // Log footers data
 
@@ -55,7 +56,7 @@ router.get('/widgets', ensureAdmin, async (req, res) => {
   // Create an array of widget objects that include the selected column
   const widgetsWithColumn = widgets.map(widget => ({ ...widget._doc, column: widget.column }));
 
-  res.render('appearance/widgets', { user: req.user, footers: footers, widgets: widgetsWithColumn, columns: columns }); 
+  res.render('appearance/widgets', { user: req.user, footers: footers, widgets: widgetsWithColumn, columns: columns ,widget: widget}); 
 });
 
 
@@ -275,6 +276,31 @@ router.post('/image', upload.single('image'), async (req, res) => {
   }
 });
 
+//GTM google tag widgets
+router.post('/save-gtm-url', async (req, res) => {
+  const { gtmUrl } = req.body;
+
+  try {
+    await Widget.findOneAndUpdate({}, { gtmUrl: gtmUrl }, { upsert: true, new: true });
+    res.redirect('/footer/widgets');
+  } catch (error) {
+    res.status(500).send('Error saving GTM URL');
+  }
+});
+
+// Save GTM data
+router.post('/save-gtm-data', async (req, res) => {
+  const { gtmHead, gtmBody } = req.body;
+
+  try {
+      await Widget.findOneAndUpdate({}, { gtmHead: gtmHead, gtmBody: gtmBody }, { upsert: true, new: true });
+      res.redirect('/footer/widgets');
+  } catch (error) {
+      res.status(500).send('Error saving GTM data');
+  }
+});
+
+// Delete a widget
 router.post('/delete/:id', async (req, res) => {
   try {
       // Find the widget by id and delete it

@@ -61,7 +61,7 @@ router.get("/create", wrapAsync(async (req, res) => {
 router.post("/create", wrapAsync(async (req, res) => {
   console.log("Form Data:", req.body);
   try {
-    const {
+    let {
       page_name,
       sections,
       content,
@@ -75,7 +75,9 @@ router.post("/create", wrapAsync(async (req, res) => {
       canonicalURL,
       show_search,
     } = req.body;
-       // Check if a page with the same name already exists
+    
+    show_search = show_search.includes('true');
+           // Check if a page with the same name already exists
        const existingPage = await Page.findOne({ page_name: page_name });
        if (existingPage) {
          return res.status(400).send("A page with this name already exists");
@@ -176,7 +178,7 @@ router.post("/edit/:id", wrapAsync(async (req, res) => {
   const { id } = req.params;
   console.log("Form Data:", req.body);
   try {
-    const {
+    let {
       page_name,
       sections,
       content,
@@ -189,6 +191,8 @@ router.post("/edit/:id", wrapAsync(async (req, res) => {
       canonicalURL,
       show_search,
     } = req.body;
+    
+    show_search = show_search.includes('true');
 
      // Check if a page with the same name already exists
      const existingPage = await Page.findOne({ page_name: page_name, _id: { $ne: id } });

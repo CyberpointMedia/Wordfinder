@@ -24,6 +24,18 @@ const WidgetSchema = new mongoose.Schema({
     column: { 
         type: String,
         required: false
+    },
+    gtmUrl: {
+        type: String,
+        required: false
+    },
+    gtmHead: {
+        type: String,
+        required: false
+    },
+    gtmBody: {
+        type: String,
+        required: false
     }
 });
 const Widget = mongoose.model('Widget', WidgetSchema);

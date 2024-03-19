@@ -199,16 +199,16 @@
                                                             </svg>
                                                         </button>
                                                 <div id="hs-basic-nested-sub-collapse-five" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-five">
+                                                <form action="/footer/save-gtm-url" method="POST">
                                                     <div class="py-5">
                                                         <ul class="mb-6 menuChecklist bg-[#f0f7fa] py-2">
                                                             <li class="flex flex-col px-3 py-2 sm:flex-row">
                                                                 <label class="w-40 text-sm font-normal" for="custom-menu-item-url">URL</label>
-                                                                <textarea name="gtmUrl" class="sm:ml-3" placeholder=""></textarea>
-
-                                                            </li>
+                                                                <textarea name="gtmUrl" class="sm:ml-3"><%= widget ? widget.gtmUrl : ' NO GTM URL' %></textarea>                                                            </li>
                                                         </ul>
-
+                                                        <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
                                                     </div>
+                                                </form>
                                                 </div>
                                             </div>
                                             <!-- GTM tag end -->
@@ -234,24 +234,24 @@
                                                             </svg>
                                                         </button>
                                                 <div id="hs-basic-nested-sub-collapse-six" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-six">
+                                                <form action="/footer/save-gtm-data" method="POST">
                                                     <div class="py-5">
                                                         <ul class="mb-6 menuChecklist bg-[#f0f7fa] py-2">
                                                             <li class="flex flex-col px-3 py-2 sm:flex-row">
                                                                 <label class="w-40 text-sm font-normal" for="custom-menu-item-url">Head</label>
-                                                                <textarea name="gtmHead" class="sm:ml-3" placeholder=""></textarea>
+                                                                <textarea name="gtmHead" class="sm:ml-3"><%= widget ? widget.gtmHead : '' %></textarea>
 
                                                             </li>
                                                             <li class="flex flex-col px-3 py-2 sm:flex-row">
                                                                 <label class="w-40 text-sm font-normal" for="custom-menu-item-name">Body</label>
-                                                                <textarea name="gtmBody" class="sm:ml-3" placeholder=""></textarea>
-                                                            </li>
+                                                                <textarea name="gtmBody" class="sm:ml-3"><%= widget ? widget.gtmBody : '' %></textarea>                                                            </li>
                                                         </ul>
-
+                                                        <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
                                                     </div>
+                                                </form>
                                                 </div>
                                             </div>
                                             <!--  Global custom head widget end -->
-
                                         </div>
                                     </div>
                                 </div>
