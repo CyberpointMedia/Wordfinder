@@ -4,102 +4,99 @@ const path = require('path');
 const https = require('https');
 const bodyParser = require('body-parser');
 const router = express.Router();
-const PORT = process.env.PORT || 8080;
 var wd = require("word-definition");
 const axios = require('axios');
 const wrapAsync = require('../middleware/wrapAsync');
 const Post = require('../models/post');
 const Page = require('../models/pages');
 const Category = require('../models/categories');
-const { wordsScrabbleResults } = require('../middleware/wordsscramble');
+const fetch = require('node-fetch');
 
-router.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(404).render('not-found/page-not-found.ejs');
-});
+
+
 // Middleware to parse incoming request bodies
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
-// // Serve static files from the 'dist' directory
+// Serve static files 
 router.use(express.static(path.join(__dirname, 'dist')));
-// Serve static files from the node_modules directory
 router.use('/node_modules', express.static(__dirname + '/node_modules'));
-router.use('/styles', express.static(path.join(__dirname, 'styles')))
-// // Define routes
+router.use('/styles', express.static(path.join(__dirname, 'styles')));
+
+// Define routes
 router.get('/', async (req, res) => {
     try {
         console.log("hello sir ");
-
-        // const categories = await Category.find(); // Fetch the categories
-        const morePosts = await Post.find({ status: 'Published' }).limit(3); // Fetch 3 more posts with a status of 'Published'
-        res.render('frontend/index.ejs', { morePosts }); // Pass morePosts to the template
-
+        const morePosts = await Post.find({ status: 'Published' }).limit(3);
+        res.render('frontend/index.ejs', { morePosts });
     } catch (error) {
         console.error('Error fetching post:', error);
         res.status(500).send('Internal Server Error');
     }
 });
 
-// Handle POST request when search button is clicked
-router.post('/search', wrapAsync(async (req, res) => {
-    const letters = req.body.letters;
-   const morePosts = await Post.find({ status: 'Published' }).limit(3); 
-    const startsWith = req.body.starts_with || '';
-    const endsWith = req.body.end_with || '';
-    const contains = req.body.contains || ''; 
-    const specifiedLength = req.body.length || ''; 
-    console.log("LEngth of the words",specifiedLength);
-    let url = `https://httpip.es/api/words?letters=${letters}`;
-    // If starts_with parameter is provided, modify the URL to include it
-    if (startsWith.trim() !== '') {
-        url += `&starts_with=${startsWith}`;
-    }
-    if (endsWith.trim() !== '') {
-        url += `&ends_with=${endsWith}`;
-    }
-    if (contains.trim() !== '') {
-        url += `&contains=${contains}`;
-    }
-    if (specifiedLength.trim() !== '') { 
-        url += `&length=${specifiedLength}`;
-    }
-    https.get(url, (response) => {
-        let data = '';
-  
-        response.on('data', (chunk) => {
-            data += chunk;
-        });
-  
-        response.on('end', () => {
-            const responseData = JSON.parse(data);
-            const words = responseData.data;
-  
-            // Group words by their length
-            const wordsByLength = {};
-            words.forEach(word => {
-                const wordLength = word.length;
-                if (!wordsByLength[wordLength]) {
-                    wordsByLength[wordLength] = [];
-                }
-                wordsByLength[wordLength].push(word);
-            });
-            
-            // Calculate the total number of words for each length
-            const totalWordsByLength = {};
-            Object.keys(wordsByLength).forEach(length => {
-                totalWordsByLength[length] = wordsByLength[length].length;
-            });
-  
-            // Render the words_with_x_and_q.ejs template with the grouped data
-            res.render('frontend/words-with-X-and-Q.ejs', { letters,morePosts, wordsByLength ,startsWith ,endsWith, contains,specifiedLength,totalWordsByLength}); // Pass 'letters' and 'wordsByLength' variables here
-        });
-    }).on('error', (error) => {
+router.post('/search', async (req, res) => {
+    try {
+        const letters = req.body.letters;
+        const morePosts = await Post.find({ status: 'Published' }).limit(3);
+        const startsWith = req.body.starts_with || '';
+        const endsWith = req.body.end_with || '';
+        const contains = req.body.contains || '';
+        const length = req.body.length || 0;
+        const include = req.body.include || '';
+        const exclude = req.body.exclude || '';
+        const dictionary = req.body.scrabble_type || 'wwf';
+        let url = `https://fly.wordfinderapi.com/api/search?letters=${letters.toLowerCase()}&word_sorting=points&group_by_length=true&page_size=20000&dictionary=${dictionary}`;
+        
+        // Construct the URL with query parameters
+        // Append optional parameters if provided
+        if (startsWith.trim() !== '') {
+            url += `&starts_with=${startsWith}`;
+        }
+        if (endsWith.trim() !== '') {
+            url += `&ends_with=${endsWith}`;
+        }
+        if (contains.trim() !== '') {
+            url += `&contains=${contains}`;
+        }
+        if (include.trim() !== '') {
+            url += `&include_letters=${include}`;
+        }
+        if (exclude.trim() !== '') {
+            url += `&exclude_letters=${exclude}`;
+        }
+        if (length > 0) {
+            url += `&length=${length}`;
+        }   
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data && Array.isArray(data.word_pages)) {
+            // Transform the API response into the expected data structure
+            const wordsByLength = data.word_pages.reduce((acc, wordPage) => {
+                wordPage.word_list.forEach(wordObj => {
+                    const length = wordObj.word.length;
+                    if (!acc[length]) {
+                        acc[length] = [];
+                    }
+                    acc[length].push(wordObj);
+                });
+                return acc;
+            }, {});
+
+            // Render the view with the transformed data
+            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts , startsWith, endsWith, contains, includeLetters: include, excludeLetters: exclude, specifiedLength: length, wordsByLength });
+        } else {
+            console.error('Error: Invalid data structure');
+            res.status(500).json({ error: 'Internal server error' });
+        }
+    } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ error: 'Internal server error' });
-    });
-  }));
-  
+        res.status(500).json({ error: 'Internal/search server error' });
+    }
+});
+
 
 router.get('/articles/:title', async (req, res) => {
     try {
@@ -110,21 +107,17 @@ router.get('/articles/:title', async (req, res) => {
         const categories = await Category.find(); // Fetch the categories
         const morePosts = await Post.find({ status: 'Published' }).limit(3); // Fetch 3 more posts with a status of 'Published'
         const postUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
-
         // Generate the share URLs for all platforms
         const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(postUrl)}`;
         const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=${encodeURIComponent(post.title)}`;
         const linkedinShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(postUrl)}&title=${encodeURIComponent(post.title)}`;
-
         console.log(post.author ? post.author.username : 'unknown'); // Prints the username of the author or 'unknown' if the author doesn't exist
-
         res.render('post/article-details', { post, categories, morePosts, postTitle: post.title, postUrl, facebookShareUrl, twitterShareUrl, linkedinShareUrl }); // Pass the categories and morePosts to the template
     } catch (error) {
         console.error('Error fetching post:', error);
         res.status(500).send('Internal Server Error');
     }
 });
-
 router.get('/articles', async (req, res) => {
     try {
         const posts = await Post.find({ status: 'Published' }); // Fetch all posts from the database
@@ -134,7 +127,6 @@ router.get('/articles', async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
-
 router.get('/contact', (req, res) => {
     res.render(('frontend/contact.ejs'));
 });
@@ -149,10 +141,8 @@ router.get('/words-with-X-and-Q', (req, res) => {
 });
 
 
-
 router.get('/word-definition', wrapAsync(async (req, res) => {
     const word = req.query.word;
-
     const options = {
         method: 'GET',
         url: `https://wordsapiv1.p.rapidapi.com/words/${word}`,
@@ -170,15 +160,18 @@ router.get('/word-definition', wrapAsync(async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' }); // Send an error response
     }
 }));
-
 router.get('/pages/:page_name', wrapAsync(async (req, res) => {
     const page = await Page.findOne({ page_name: req.params.page_name }).populate('sections');
-    res.render('section/show-page.ejs', { page ,user: req.user});
-  }));
-
+    res.render('section/show-page.ejs', { page, user: req.user });
+}));
 // Example route for serving input.css
 router.get('/input', (req, res) => {
     res.sendFile(path.join(__dirname, 'src', 'input.css'));
+});
+
+router.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(404).render('not-found/page-not-found.ejs');
 });
 
 module.exports = router;
