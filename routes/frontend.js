@@ -35,7 +35,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/search', async (req, res) => {
+router.post('/unscramble', async (req, res) => {
     try {
         const letters = req.body.letters;
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
@@ -96,7 +96,81 @@ router.post('/search', async (req, res) => {
         res.status(500).json({ error: 'Internal/search server error' });
     }
 });
+router.get('/words-that-start-with/:combination', async (req, res) => {
+    try {
+        const combination = req.params.combination;
+        const morePosts = await Post.find({ status: 'Published' }).limit(3);
+        const dictionary = 'wwf'; // default dictionary
+        const letters = '';
+        const length = '';
+        const endsWith = '';
+        const contains = '';
+        const include = '';
+        const exclude = '';
+        let url = `https://fly.wordfinderapi.com/api/search?letters=${letters}&word_sorting=points&group_by_length=true&page_size=20000&dictionary=${dictionary}&starts_with=${combination}`;
 
+        const response = await fetch(url);
+        const data = await response.json();
+        if (data && Array.isArray(data.word_pages)) {
+            const wordsByLength = data.word_pages.reduce((acc, wordPage) => {
+                wordPage.word_list.forEach(wordObj => {
+                    const length = wordObj.word.length;
+                    if (!acc[length]) {
+                        acc[length] = [];
+                    }
+                    acc[length].push(wordObj);
+                });
+                return acc;
+            }, {});
+
+            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith: combination, wordsByLength ,specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude });
+        } else {
+            console.error('Error: Invalid data structure');
+            res.status(500).json({ error: 'Internal server error' });
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+router.get('/words-that-end-in/:combination', async (req, res) => {
+    try {
+        const combination = req.params.combination;
+        const morePosts = await Post.find({ status: 'Published' }).limit(3);
+        const dictionary = 'wwf'; // default dictionary
+        const letters = '';
+        const length = '';
+        const startsWith = '';
+        const contains = '';
+        const include = '';
+        const exclude = '';
+        let url = `https://fly.wordfinderapi.com/api/search?letters=${letters}&word_sorting=points&group_by_length=true&page_size=20000&dictionary=${dictionary}&ends_with=${combination}`;
+
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+        if (data && Array.isArray(data.word_pages)) {
+            const wordsByLength = data.word_pages.reduce((acc, wordPage) => {
+                wordPage.word_list.forEach(wordObj => {
+                    const length = wordObj.word.length;
+                    if (!acc[length]) {
+                        acc[length] = [];
+                    }
+                    acc[length].push(wordObj);
+                });
+                return acc;
+            }, {});
+
+            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, wordsByLength ,specifiedLength: length, endsWith: combination, contains, includeLetters: include, excludeLetters: exclude });
+        } else {
+            console.error('Error: Invalid data structure');
+            res.status(500).json({ error: 'Internal server error' });
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 router.get('/articles/:title', async (req, res) => {
     try {
@@ -133,13 +207,57 @@ router.get('/contact', (req, res) => {
 router.get('/privacy-policy', (req, res) => {
     res.render(('frontend/privacy-policy.ejs'));
 });
-router.get('/result', (req, res) => {
-    res.render(('frontend/result.ejs'));
-});
-router.get('/words-with-X-and-Q', (req, res) => {
-    res.render(('frontend/words-with-X-and-Q.ejs'));
+router.get('/category/words-that-start-with', (req, res) => {
+    function generateCombinations(letters, maxLength) {
+        const combinations = [];
+
+        function helper(prefix, chars) {
+            for (let i = 0; i < chars.length; i++) {
+                const newPrefix = prefix + chars[i];
+                if (newPrefix.length <= maxLength) {
+                    combinations.push(newPrefix);
+                    helper(newPrefix, chars.slice(i + 1));
+                }
+            }
+        }
+
+        helper('', letters.split(''));
+
+        return combinations;
+    }
+
+    const letters = 'abcdefghijklmnopqrstuvwxyz'; // replace with the actual letters
+    const maxLength = 3; // replace with the actual maximum length
+    const combinations = generateCombinations(letters, maxLength);
+
+    res.render('frontend/category/words-that-start-with.ejs', { combinations });
 });
 
+router.get('/category/words-that-end-in', (req, res) => {
+    function generateCombinations(letters, maxLength) {
+        const combinations = [];
+
+        function helper(prefix, chars) {
+            for (let i = 0; i < chars.length; i++) {
+                const newPrefix = prefix + chars[i];
+                if (newPrefix.length <= maxLength) {
+                    combinations.push(newPrefix);
+                    helper(newPrefix, chars.slice(i + 1));
+                }
+            }
+        }
+
+        helper('', letters.split(''));
+
+        return combinations;
+    }
+
+    const letters = 'abcdefghijklmnopqrstuvwxyz'; // replace with the actual letters
+    const maxLength = 3; // replace with the actual maximum length
+    const combinations = generateCombinations(letters, maxLength);
+
+    res.render('frontend/category/words-that-end-in.ejs', { combinations });
+});
 
 router.get('/word-definition', wrapAsync(async (req, res) => {
     const word = req.query.word;
