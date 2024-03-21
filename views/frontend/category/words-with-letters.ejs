@@ -1,0 +1,36 @@
+<%- (include('../../frontend/head/head.ejs')) %>
+<body class="font-custom">
+    <!-- header start here -->
+        <%- (include('../../frontend/head/header.ejs')) %>
+
+    <!-- header end here -->
+    <!-- content section start -->
+
+    <div class="content-block mb-5">
+        <div class="container pt-5">
+            <div class="flex justify-center">
+                <div class="w-full md:w-12/12">
+                    <div class="bg-white shadow-lg rounded-lg p-5">
+                        <h1 class="my-3 text-center">Words By Length</h1>
+                        <ul class="my-3">
+                            <% letters.forEach(startWith => { %>
+                                <li><a href="/words-with/<%= startWith %>">Words with <%= startWith %></a></li>
+                            <% }) %>
+                            <% letters.forEach(contains => { %>
+                                <% letters.forEach(containsletter2 => { %>
+                                    <% if(contains !== containsletter2) { %>
+                                        <li><a href="/words-with/<%= contains %>/and/<%= containsletter2 %>">Words with <%= contains %> and <%= containsletter2 %></a></li>
+                                    <% } %>
+                                <% }) %>
+                            <% }) %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content section end -->
+    <!-- footer start  -->
+    <%- (include('../../frontend/footer/footer.ejs')) %>
+    <!-- footer end  -->
+<%- (include('../../frontend/script/script.ejs')) %>
