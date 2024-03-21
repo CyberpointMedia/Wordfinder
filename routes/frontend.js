@@ -114,16 +114,20 @@ router.get('/words-that-start-with/:combination', async (req, res) => {
         console.log(data);
         if (data && Array.isArray(data.word_pages)) {
             const wordsByLength = data.word_pages.reduce((acc, wordPage) => {
+                let count = 0;
                 wordPage.word_list.forEach(wordObj => {
                     const length = wordObj.word.length;
                     if (!acc[length]) {
                         acc[length] = [];
                     }
-                    acc[length].push(wordObj);
+                    if (count < 15) {
+                        acc[length].push(wordObj);
+                        count++;
+                    }
                 });
                 return acc;
             }, {});
-
+            console.log("letters",letters ,"startsWith",combination, "specifiedLength",length, "endsWith",endsWith, "contains",contains, "includeLetters",include, "excludeLetters",exclude);
             res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith: combination, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude });
         } else {
             console.error('Error: Invalid data structure');
@@ -152,12 +156,16 @@ router.get('/words-that-end-in/:combination', async (req, res) => {
         console.log(data);
         if (data && Array.isArray(data.word_pages)) {
             const wordsByLength = data.word_pages.reduce((acc, wordPage) => {
+                let count = 0;
                 wordPage.word_list.forEach(wordObj => {
                     const length = wordObj.word.length;
                     if (!acc[length]) {
                         acc[length] = [];
                     }
-                    acc[length].push(wordObj);
+                    if (count < 15) {
+                        acc[length].push(wordObj);
+                        count++;
+                    }
                 });
                 return acc;
             }, {});
@@ -190,12 +198,16 @@ router.get('/words-by-length/:length', async (req, res) => {
         console.log(data);
         if (data && Array.isArray(data.word_pages)) {
             const wordsByLength = data.word_pages.reduce((acc, wordPage) => {
+                let count = 0;
                 wordPage.word_list.forEach(wordObj => {
                     const length = wordObj.word.length;
                     if (!acc[length]) {
                         acc[length] = [];
                     }
-                    acc[length].push(wordObj);
+                    if (count < 15) {
+                        acc[length].push(wordObj);
+                        count++;
+                    }
                 });
                 return acc;
             }, {});
@@ -211,18 +223,18 @@ router.get('/words-by-length/:length', async (req, res) => {
     }
 });
 //words-with/:startWith
-router.get('/words-with/:startWith', async (req, res) => {
+router.get('/words-with/:contains', async (req, res) => {
     try {
-        const startsWith = req.params.startWith;
+        const contains = req.params.contains;
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = 'wwf'; // default dictionary
         const letters = '';
         const length = '';
+        const startsWith = '';
         const endsWith = '';
-        const contains = '';
         const include = '';
         const exclude = '';
-        let url = `https://fly.wordfinderapi.com/api/search?word_sorting=points&group_by_length=true&page_size=20000&starts_with=${startsWith.toLowerCase()}`;
+        let url = `https://fly.wordfinderapi.com/api/search?word_sorting=points&group_by_length=true&page_size=20000&contains=${contains}`;
 
         const response = await fetch(url);
         console.log('Response status:', response.status);
@@ -230,16 +242,20 @@ router.get('/words-with/:startWith', async (req, res) => {
         console.log("Response data",data);
         if (data && Array.isArray(data.word_pages)) {
             const wordsByLength = data.word_pages.reduce((acc, wordPage) => {
+                let count = 0;
                 wordPage.word_list.forEach(wordObj => {
                     const length = wordObj.word.length;
                     if (!acc[length]) {
                         acc[length] = [];
                     }
-                    acc[length].push(wordObj);
+                    if (count < 15) {
+                        acc[length].push(wordObj);
+                        count++;
+                    }
                 });
                 return acc;
             }, {});
-
+            console.log("letters",letters ,"startsWith",startsWith,"specifiedLength",length, "endsWith",endsWith, "contains",contains, "includeLetters",include, "excludeLetters",exclude);
             res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude });
         } else {
             console.error('Error: Invalid data structure');
@@ -252,36 +268,40 @@ router.get('/words-with/:startWith', async (req, res) => {
 });
 
 //words-with/:contains/and/:containsletter2
-router.get('/words-with/:contains/and/:containsletter2', async (req, res) => {
+router.get('/words-with/:contains_char1/and/:contains_char2', async (req, res) => {
     try {
-        const contains_char1 = req.params.contains;
-        const contains_char2 = req.params.containsletter2;
+        const contains_char1 = req.params.contains_char1;
+        const contains_char2 = req.params.contains_char2;
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = ''; // default dictionary
         const letters = '';
+        const contains = '';
         const length = '';
         const startsWith = '';
         const endsWith = '';
         const include = '';
         const exclude = '';
-        let url = `https://fly.wordfinderapi.com/api/search?letters=${letters}&word_sorting=points&group_by_length=true&page_size=20000&dictionary=${dictionary}&contains=${contains_char1.toLowerCase()},${contains_char2.toLowerCase()}`;
+        let url = `https://fly.wordfinderapi.com/api/search?word_sorting=points&group_by_length=true&page_size=20000&dictionary=wwf&contains_char1=${contains_char1}&contains_char2=${contains_char2}`;
 
         const response = await fetch(url);
         const data = await response.json();
         console.log(data);
         if (data && Array.isArray(data.word_pages)) {
             const wordsByLength = data.word_pages.reduce((acc, wordPage) => {
+                let count = 0;
                 wordPage.word_list.forEach(wordObj => {
                     const length = wordObj.word.length;
                     if (!acc[length]) {
                         acc[length] = [];
                     }
-                    acc[length].push(wordObj);
+                    if (count < 15) {
+                        acc[length].push(wordObj);
+                        count++;
+                    }
                 });
                 return acc;
             }, {});
-
-            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude });
+            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains,contains_char1,contains_char2, includeLetters: include, excludeLetters: exclude });
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });

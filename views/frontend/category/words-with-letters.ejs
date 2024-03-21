@@ -13,13 +13,13 @@
                     <div class="bg-white shadow-lg rounded-lg p-5">
                         <h1 class="my-3 text-center">Words By Length</h1>
                         <ul class="my-3">
-                            <% letters.forEach(startWith => { %>
-                                <li><a href="/words-with/<%= startWith %>">Words with <%= startWith %></a></li>
-                            <% }) %>
                             <% letters.forEach(contains => { %>
-                                <% letters.forEach(containsletter2 => { %>
-                                    <% if(contains !== containsletter2) { %>
-                                        <li><a href="/words-with/<%= contains %>/and/<%= containsletter2 %>">Words with <%= contains %> and <%= containsletter2 %></a></li>
+                                <li><a href="/words-with/<%= contains.toLowerCase() %>">Words with <%= contains %></a></li>
+                            <% }) %>
+                            <% letters.forEach(contains_char1 => { %>
+                                <% letters.forEach(contains_char2 => { %>
+                                    <% if(contains_char1 !== contains_char2) { %>
+                                        <li><a href="/words-with/<%= contains_char1.toLowerCase() %>/and/<%= contains_char2.toLowerCase() %>">Words with <%= contains_char1 %> and <%= contains_char2 %></a></li>
                                     <% } %>
                                 <% }) %>
                             <% }) %>
