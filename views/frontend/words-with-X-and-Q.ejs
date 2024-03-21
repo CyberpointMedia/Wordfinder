@@ -68,7 +68,13 @@
                                         </div>
                                     </div>
                                 </div>
-                            <% } %>
+                                <% } else { %>
+                                    <div class="w-full mb-8">
+                                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                                            No words exist for the specified length.
+                                        </div>
+                                    </div>
+                                <% } %>
                         <% } else if (wordsByLength) { %>
                             <% Object.keys(wordsByLength).forEach(length => { %>
                                 <% if (wordsByLength[length].some(wordObj => ((!startsWith || wordObj.word.startsWith(startsWith)) && (!endsWith || wordObj.word.endsWith(endsWith)) && (!contains || wordObj.word.includes(contains))&& (!includeLetters || wordObj.word.includes(includeLetters)) && (!excludeLetters || !wordObj.word.includes(excludeLetters))))) { %>
@@ -95,7 +101,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                <% } %>
+                                    <% } else { %>
+                                        <div class="w-full mb-8">
+                                            <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                                                No words exist for the current length.
+                                            </div>
+                                        </div>
+                                    <% } %>
                             <% }); %>
                         <% } %>
 <!-- ... -->

@@ -149,7 +149,7 @@ router.get('/words-that-end-in/:combination', async (req, res) => {
         const contains = '';
         const include = '';
         const exclude = '';
-        let url = `https://fly.wordfinderapi.com/api/search?letters=${letters}&word_sorting=points&group_by_length=true&page_size=20000&dictionary=${dictionary}&ends_with=${combination}`;
+        let url = `https://fly.wordfinderapi.com/api/search?letters=${letters}&word_sorting=points&group_by_length=true&page_size=20000&ends_with=${combination}`;
 
         const response = await fetch(url);
         const data = await response.json();
@@ -180,6 +180,7 @@ router.get('/words-that-end-in/:combination', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+//words-by-length/:length
 router.get('/words-by-length/:length', async (req, res) => {
     try {
         const length = req.params.length;
@@ -196,7 +197,7 @@ router.get('/words-by-length/:length', async (req, res) => {
         const response = await fetch(url);
         const data = await response.json();
         console.log(data);
-        if (data && Array.isArray(data.word_pages)) {
+         if (data && Array.isArray(data.word_pages)) {
             const wordsByLength = data.word_pages.reduce((acc, wordPage) => {
                 let count = 0;
                 wordPage.word_list.forEach(wordObj => {
@@ -352,11 +353,7 @@ router.get('/word-definition', wrapAsync(async (req, res) => {
     const word = req.query.word;
     const options = {
         method: 'GET',
-        url: `https://wordsapiv1.p.rapidapi.com/words/${word}`,
-        headers: {
-            'X-RapidAPI-Key': process.env.Key,
-            'X-RapidAPI-Host': process.env.Host
-        }
+        url: `https://dict-api.com/api/od/${word}`,
     };
     try {
         const response = await axios.request(options);
@@ -367,6 +364,7 @@ router.get('/word-definition', wrapAsync(async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' }); // Send an error response
     }
 }));
+
 router.get('/pages/:page_name', wrapAsync(async (req, res) => {
     const page = await Page.findOne({ page_name: req.params.page_name }).populate('sections');
     res.render('section/show-page.ejs', { page, user: req.user });

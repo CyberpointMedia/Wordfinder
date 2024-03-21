@@ -12,10 +12,23 @@
                 console.log(data);
                 if (data && data.results && data.results.length > 0) {
                     data.results.forEach(result => {
-                        displayDefinitionModal(data.word, result.definition, result.partOfSpeech, result.synonyms, result.typeOf, result.examples);
-                        console.log("Result output", data.word, result.definition, result.partOfSpeech, result.synonyms, result.typeOf, result.examples);
+                        const lexicalEntry = result.lexicalEntries[0];
+                        const entry = lexicalEntry.entries[0];
+                        const sense = entry.senses[0];
+                        const synonyms = sense.synonyms ? sense.synonyms.map(synonym => synonym.text).join(', ') : '';
+                        const examples = sense.examples ? sense.examples.map(example => example.text).join(', ') : '';
+                        displayDefinitionModal(
+                            result.word, 
+                            sense.definitions[0], 
+                            lexicalEntry.lexicalCategory.text, 
+                            synonyms, 
+                            sense.semanticClasses ? sense.semanticClasses[0].text : '', 
+                            examples
+                        );
+                        console.log("Result output", result.word, sense.definitions[0], lexicalEntry.lexicalCategory.text, synonyms, sense.semanticClasses ? sense.semanticClasses[0].text : '', examples);
                     });
                 } else {
+                    displayDefinitionModal(word, "No meaning exists", "", "", "", "");
                     console.error(`Definition not found for '${word}'`);
                 }
             })
