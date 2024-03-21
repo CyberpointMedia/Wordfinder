@@ -47,7 +47,7 @@ router.post('/unscramble', async (req, res) => {
         const exclude = req.body.exclude || '';
         const dictionary = req.body.scrabble_type || 'wwf';
         let url = `https://fly.wordfinderapi.com/api/search?letters=${letters.toLowerCase()}&word_sorting=points&group_by_length=true&page_size=20000&dictionary=${dictionary}`;
-        
+
         // Construct the URL with query parameters
         // Append optional parameters if provided
         if (startsWith.trim() !== '') {
@@ -67,7 +67,7 @@ router.post('/unscramble', async (req, res) => {
         }
         if (length > 0) {
             url += `&length=${length}`;
-        }   
+        }
 
         const response = await fetch(url);
         const data = await response.json();
@@ -86,7 +86,7 @@ router.post('/unscramble', async (req, res) => {
             }, {});
 
             // Render the view with the transformed data
-            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts , startsWith, endsWith, contains, includeLetters: include, excludeLetters: exclude, specifiedLength: length, wordsByLength });
+            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, endsWith, contains, includeLetters: include, excludeLetters: exclude, specifiedLength: length, wordsByLength });
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -111,6 +111,7 @@ router.get('/words-that-start-with/:combination', async (req, res) => {
 
         const response = await fetch(url);
         const data = await response.json();
+        console.log(data);
         if (data && Array.isArray(data.word_pages)) {
             const wordsByLength = data.word_pages.reduce((acc, wordPage) => {
                 wordPage.word_list.forEach(wordObj => {
@@ -123,7 +124,7 @@ router.get('/words-that-start-with/:combination', async (req, res) => {
                 return acc;
             }, {});
 
-            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith: combination, wordsByLength ,specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude });
+            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith: combination, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude });
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -161,7 +162,126 @@ router.get('/words-that-end-in/:combination', async (req, res) => {
                 return acc;
             }, {});
 
-            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, wordsByLength ,specifiedLength: length, endsWith: combination, contains, includeLetters: include, excludeLetters: exclude });
+            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith: combination, contains, includeLetters: include, excludeLetters: exclude });
+        } else {
+            console.error('Error: Invalid data structure');
+            res.status(500).json({ error: 'Internal server error' });
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+router.get('/words-by-length/:length', async (req, res) => {
+    try {
+        const length = req.params.length;
+        const morePosts = await Post.find({ status: 'Published' }).limit(3);
+        const dictionary = 'wwf'; // default dictionary
+        const letters = '';
+        const startsWith = '';
+        const endsWith = '';
+        const contains = '';
+        const include = '';
+        const exclude = '';
+        let url = `https://fly.wordfinderapi.com/api/search?letters=${letters}&word_sorting=points&group_by_length=true&page_size=20000&dictionary=${dictionary}&length=${length}`;
+
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+        if (data && Array.isArray(data.word_pages)) {
+            const wordsByLength = data.word_pages.reduce((acc, wordPage) => {
+                wordPage.word_list.forEach(wordObj => {
+                    const length = wordObj.word.length;
+                    if (!acc[length]) {
+                        acc[length] = [];
+                    }
+                    acc[length].push(wordObj);
+                });
+                return acc;
+            }, {});
+
+            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude });
+        } else {
+            console.error('Error: Invalid data structure');
+            res.status(500).json({ error: 'Internal server error' });
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+//words-with/:startWith
+router.get('/words-with/:startWith', async (req, res) => {
+    try {
+        const startsWith = req.params.startWith;
+        const morePosts = await Post.find({ status: 'Published' }).limit(3);
+        const dictionary = 'wwf'; // default dictionary
+        const letters = '';
+        const length = '';
+        const endsWith = '';
+        const contains = '';
+        const include = '';
+        const exclude = '';
+        let url = `https://fly.wordfinderapi.com/api/search?word_sorting=points&group_by_length=true&page_size=20000&starts_with=${startsWith.toLowerCase()}`;
+
+        const response = await fetch(url);
+        console.log('Response status:', response.status);
+        const data = await response.json();
+        console.log("Response data",data);
+        if (data && Array.isArray(data.word_pages)) {
+            const wordsByLength = data.word_pages.reduce((acc, wordPage) => {
+                wordPage.word_list.forEach(wordObj => {
+                    const length = wordObj.word.length;
+                    if (!acc[length]) {
+                        acc[length] = [];
+                    }
+                    acc[length].push(wordObj);
+                });
+                return acc;
+            }, {});
+
+            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude });
+        } else {
+            console.error('Error: Invalid data structure');
+            res.status(500).json({ error: 'Internal server error' });
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
+//words-with/:contains/and/:containsletter2
+router.get('/words-with/:contains/and/:containsletter2', async (req, res) => {
+    try {
+        const contains_char1 = req.params.contains;
+        const contains_char2 = req.params.containsletter2;
+        const morePosts = await Post.find({ status: 'Published' }).limit(3);
+        const dictionary = ''; // default dictionary
+        const letters = '';
+        const length = '';
+        const startsWith = '';
+        const endsWith = '';
+        const include = '';
+        const exclude = '';
+        let url = `https://fly.wordfinderapi.com/api/search?letters=${letters}&word_sorting=points&group_by_length=true&page_size=20000&dictionary=${dictionary}&contains=${contains_char1.toLowerCase()},${contains_char2.toLowerCase()}`;
+
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+        if (data && Array.isArray(data.word_pages)) {
+            const wordsByLength = data.word_pages.reduce((acc, wordPage) => {
+                wordPage.word_list.forEach(wordObj => {
+                    const length = wordObj.word.length;
+                    if (!acc[length]) {
+                        acc[length] = [];
+                    }
+                    acc[length].push(wordObj);
+                });
+                return acc;
+            }, {});
+
+            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude });
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -206,57 +326,6 @@ router.get('/contact', (req, res) => {
 });
 router.get('/privacy-policy', (req, res) => {
     res.render(('frontend/privacy-policy.ejs'));
-});
-router.get('/category/words-that-start-with', (req, res) => {
-    function generateCombinations(letters, maxLength) {
-        const combinations = [];
-
-        function helper(prefix, chars) {
-            for (let i = 0; i < chars.length; i++) {
-                const newPrefix = prefix + chars[i];
-                if (newPrefix.length <= maxLength) {
-                    combinations.push(newPrefix);
-                    helper(newPrefix, chars.slice(i + 1));
-                }
-            }
-        }
-
-        helper('', letters.split(''));
-
-        return combinations;
-    }
-
-    const letters = 'abcdefghijklmnopqrstuvwxyz'; // replace with the actual letters
-    const maxLength = 3; // replace with the actual maximum length
-    const combinations = generateCombinations(letters, maxLength);
-
-    res.render('frontend/category/words-that-start-with.ejs', { combinations });
-});
-
-router.get('/category/words-that-end-in', (req, res) => {
-    function generateCombinations(letters, maxLength) {
-        const combinations = [];
-
-        function helper(prefix, chars) {
-            for (let i = 0; i < chars.length; i++) {
-                const newPrefix = prefix + chars[i];
-                if (newPrefix.length <= maxLength) {
-                    combinations.push(newPrefix);
-                    helper(newPrefix, chars.slice(i + 1));
-                }
-            }
-        }
-
-        helper('', letters.split(''));
-
-        return combinations;
-    }
-
-    const letters = 'abcdefghijklmnopqrstuvwxyz'; // replace with the actual letters
-    const maxLength = 3; // replace with the actual maximum length
-    const combinations = generateCombinations(letters, maxLength);
-
-    res.render('frontend/category/words-that-end-in.ejs', { combinations });
 });
 
 router.get('/word-definition', wrapAsync(async (req, res) => {

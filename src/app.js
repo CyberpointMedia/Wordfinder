@@ -24,6 +24,7 @@ const adminRoutes = require('../routes/admin');
 const editorRoutes = require('../routes/editor'); 
 const pagesRoutes = require('../routes/pages');  
 const frontendRoutes = require('../routes/frontend'); 
+const categoryRoutes = require('../routes/category');
 const libraryRoutes = require('../routes/library'); 
 const appearanceRoutes = require('../routes/appearance');
 const footerRoutes = require('../routes/footer');
@@ -142,6 +143,7 @@ app.listen(port, () => {
 });
 
 app.use('/', frontendRoutes);
+app.use('/category', categoryRoutes);
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/admin', ensureAdminOrEditor, adminRoutes);
