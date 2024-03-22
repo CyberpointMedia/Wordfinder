@@ -104,3 +104,6 @@ select {
 .list-type-color ::marker {
     color: #007BFF;
 }
+.hover-text-blue:hover{
+    color: #0a58ca;
+}
