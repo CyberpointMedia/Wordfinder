@@ -69,14 +69,16 @@
     </svg>
   </div>
   <div
-    class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px]"
-  >
-    <ul class="space-y-3 font-medium">
+    class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px]">
+    <ul class="space-y-3 font-medium listing" id="words_of_length">
       <% lengths.forEach(length => { %>
       <li>
         <a href="/<%= length %>-letter-words/"><%= length %> Letter Words</a>
       </li>
       <% }) %>
     </ul>
+    <div class="text-center">
+      <button class="toggle-btn text-white bg-[#007BFF] rounded-[10px] py-4 px-6 hover:opacity-50 inline-block mt-5" data-listing-id="words_of_length">View More</button>
+  </div>
   </div>
 </div>

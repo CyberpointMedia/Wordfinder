@@ -68,13 +68,16 @@
       class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px]"
     >
     <% var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''); %>
-    <ul class="space-y-3 font-medium">
+    <ul class="space-y-3 font-medium listing" id="words_that_start_with"
       <% letters.forEach(letter => { %>
       <li>
         <a href="/words-that-start-with/<%= letter.toLowerCase() %>/">Words that Start with <%= letter %></a>
       </li>
       <% }) %>
     </ul>
+    <div class="text-center">
+      <button class="toggle-btn text-white bg-[#007BFF] rounded-[10px] py-4 px-6 hover:opacity-50 inline-block mt-5" data-listing-id="words_that_start_with">View More</button>
+    </div>
     </div>
   </div>
   

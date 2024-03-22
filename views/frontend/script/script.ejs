@@ -109,7 +109,27 @@
         });
     }
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="/admin/node_modules/preline/dist/preline.js"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+  $(document).ready(function () {
+    $('.listing').each(function() {
+      $(this).children('li:nth-child(n+6)').addClass('hidden');
+    });
+        $('.toggle-btn').on('click', function () {
+        var listingId = $(this).data('listing-id');
+        var listing = $('#' + listingId);
+
+        if ($(this).text() === 'View More') {
+            listing.find('.hidden').removeClass('hidden');
+            $(this).text('View Less');
+        } else {
+            listing.find('li:nth-child(n+6)').addClass('hidden'); // Assuming you want to hide list items starting from the 4th one
+            $(this).text('View More');
+        }
+        });
+    });
+</script>
 </body>
 </html>
