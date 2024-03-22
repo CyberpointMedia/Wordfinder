@@ -181,7 +181,7 @@ router.get('/words-that-end-in/:combination', async (req, res) => {
     }
 });
 //words-by-length/:length
-router.get('/words-by-length/:length', async (req, res) => {
+router.get('/:length-letter-words/', async (req, res) => {
     try {
         const length = req.params.length;
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
