@@ -34,6 +34,16 @@ router.get('/', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+router.get('/no-words-found', async (req, res) => {
+    try {
+        console.log("no words found");
+        const morePosts = await Post.find({ status: 'Published' }).limit(3);
+        res.render('frontend/no-words-found.ejs', { morePosts });
+    } catch (error) {
+        console.error('Error fetching post:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
 router.post('/unscramble', async (req, res) => {
     try {
