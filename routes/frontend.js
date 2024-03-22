@@ -96,6 +96,7 @@ router.post('/unscramble', async (req, res) => {
         res.status(500).json({ error: 'Internal/search server error' });
     }
 });
+
 router.get('/words-that-start-with/:combination', async (req, res) => {
     try {
         const combination = req.params.combination;
@@ -138,6 +139,7 @@ router.get('/words-that-start-with/:combination', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
 router.get('/words-that-end-in/:combination', async (req, res) => {
     try {
         const combination = req.params.combination;
