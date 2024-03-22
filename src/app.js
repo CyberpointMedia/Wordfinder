@@ -15,6 +15,7 @@ const Editor = require('../models/editor');
 require('dotenv').config();
 
 const User = require('../models/user.js'); 
+const Widget = require('../models/widget.js');
 
 const userRoutes = require('../routes/user-profile.js');  
 const authRoutes = require('../routes/auth');  
@@ -35,6 +36,21 @@ const port = process.env.PORT;
 app.use(cors({
     origin: '*',
 }))
+app.use(async (req, res, next) => {
+    try {
+        const widget = await Widget.findOne(); // Adjust this line to find the correct widget
+
+        if (widget) {
+            res.setHeader('gtmUrl', widget.gtmUrl);
+            res.setHeader('gtmHead', widget.gtmHead);
+            res.setHeader('gtmBody', widget.gtmBody);
+        }
+        next();
+    } catch (err) {
+        console.error(err);
+        res.render('../views/not-found/page-not-found.ejs');
+    }
+});
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
