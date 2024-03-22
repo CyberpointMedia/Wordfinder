@@ -10,12 +10,12 @@
         <div class="container pt-5">
             <div class="flex justify-center">
                 <div class="w-full md:w-12/12">
-                    <div class="bg-white shadow-lg rounded-lg p-5">
-                        <h1 class="my-3 text-center">Words By Length</h1>
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] my-16">
+                        <h1 class="mb-4 text-3xl font-semibold md:text-4xl text-center">Words By Length</h1>
                        
-                        <ul class="my-3">
+                        <ul class="space-y-2 list-disc">
                             <% lengths.forEach(length => { %>
-                                <li><a href="/<%= length %>-letter-words/"><%= length %> Letter Words</a></li>
+                                <li><a href="/<%= length %>-letter-words/" class="text-base font-normal text-blue-500 underline hover-text-blue"><%= length %> Letter Words</a></li>
                             <% }) %>
                         </ul>
                     </div>
