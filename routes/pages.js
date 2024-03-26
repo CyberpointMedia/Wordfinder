@@ -63,6 +63,7 @@ router.post("/create", wrapAsync(async (req, res) => {
   try {
     let {
       page_name,
+      heading,
       sections,
       content,
       status,
@@ -108,6 +109,7 @@ router.post("/create", wrapAsync(async (req, res) => {
 
     const newPage = new Page({
       page_name,
+      heading,
       content,
       status,
       sections: sectionObjectIds,
@@ -180,6 +182,7 @@ router.post("/edit/:id", wrapAsync(async (req, res) => {
   try {
     let {
       page_name,
+      heading,
       sections,
       content,
       seoTitle,
@@ -227,6 +230,7 @@ router.post("/edit/:id", wrapAsync(async (req, res) => {
     // Update the page
     const updatedPage = await Page.findByIdAndUpdate(id, {
       page_name,
+      heading,
       content,
       sections: sectionObjectIds,
       seoTitle,

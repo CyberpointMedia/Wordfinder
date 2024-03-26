@@ -52,10 +52,11 @@ router.route('/create')
       const { title, subHeading, imagePosition, content, status } = req.body;
       console.log(req.body);
       // req.file.location contains the image URL
+      const image = req.file ? req.file.location : null;
       const newSection = new Section({
         title,
         subHeading,
-        image: req.file.location,
+        image,
         imagePosition,
         content,
         status,

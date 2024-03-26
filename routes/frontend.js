@@ -9,6 +9,7 @@ const axios = require('axios');
 const wrapAsync = require('../middleware/wrapAsync');
 const Post = require('../models/post');
 const Page = require('../models/pages');
+const Section = require('../models/section');
 const Category = require('../models/categories');
 const fetch = require('node-fetch');
 
@@ -44,7 +45,6 @@ router.get('/no-words-found', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
-
 router.post('/unscramble', async (req, res) => {
     try {
         const letters = req.body.letters;
@@ -94,10 +94,10 @@ router.post('/unscramble', async (req, res) => {
                 });
                 return acc;
             }, {});
-
-            // Render the view with the transformed data
-            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, endsWith, contains, includeLetters: include, excludeLetters: exclude, specifiedLength: length, wordsByLength });
-        } else {
+            let redirectUrl = `/unscramble/${letters}/dictionary/${dictionary}`;
+            req.session.wordfinder = { letters, morePosts, startsWith, endsWith, contains, includeLetters: include, excludeLetters: exclude, specifiedLength: length, wordsByLength };
+            res.redirect(redirectUrl);
+         } else {
             console.error('Error: Invalid data structure');
             res.redirect('/no-words-found');
         }
@@ -106,6 +106,11 @@ router.post('/unscramble', async (req, res) => {
         res.redirect('/no-words-found');
     }
 });
+
+router.get('/unscramble/:letters/dictionary/:dictionary', wrapAsync(async (req, res) => {
+    const { letters, morePosts, startsWith, endsWith, contains, includeLetters, excludeLetters, specifiedLength, wordsByLength } = req.session.wordfinder;
+    res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, endsWith, contains, includeLetters, excludeLetters, specifiedLength, wordsByLength });
+}));
 
 router.get('/words-that-start-with/:combination', async (req, res) => {
     try {
@@ -139,7 +144,7 @@ router.get('/words-that-start-with/:combination', async (req, res) => {
                 return acc;
             }, {});
             console.log("letters",letters ,"startsWith",combination, "specifiedLength",length, "endsWith",endsWith, "contains",contains, "includeLetters",include, "excludeLetters",exclude);
-            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith: combination, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude });
+            res.render('frontend/words-that-start-with.ejs', { letters, morePosts, startsWith: combination, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude });
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -182,7 +187,7 @@ router.get('/words-that-end-in/:combination', async (req, res) => {
                 return acc;
             }, {});
 
-            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith: combination, contains, includeLetters: include, excludeLetters: exclude });
+            res.render('frontend/words-that-end-in.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith: combination, contains, includeLetters: include, excludeLetters: exclude });
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -196,6 +201,8 @@ router.get('/words-that-end-in/:combination', async (req, res) => {
 router.get('/:length-letter-words/', async (req, res) => {
     try {
         const length = req.params.length;
+        const page = await Page.findOne({ page_name: `${length}-letter-words` }) || "";
+        const section = await Section.findOne({ title: `${length}-letter-words` }) || "";
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = 'wwf'; // default dictionary
         const letters = '';
@@ -217,15 +224,14 @@ router.get('/:length-letter-words/', async (req, res) => {
                     if (!acc[length]) {
                         acc[length] = [];
                     }
-                    if (count < 15) {
+                    if (count < 30) {
                         acc[length].push(wordObj);
                         count++;
                     }
                 });
                 return acc;
             }, {});
-
-            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude });
+            res.render('frontend/x-letter-words.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude ,pageContent: page.content , sectionContent: section.content});
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -235,6 +241,7 @@ router.get('/:length-letter-words/', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
 //words-with/:startWith
 router.get('/words-with/:contains', async (req, res) => {
     try {
@@ -323,7 +330,7 @@ router.get('/words-with/:contains_char1/and/:contains_char2', async (req, res) =
         console.error('Error:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
-});
+}); 
 
 router.get('/articles/:title', async (req, res) => {
     try {
@@ -377,7 +384,7 @@ router.get('/word-definition', wrapAsync(async (req, res) => {
     }
 }));
 
-router.get('/pages/:page_name', wrapAsync(async (req, res) => {
+router.get('/:page_name', wrapAsync(async (req, res) => {
     const page = await Page.findOne({ page_name: req.params.page_name }).populate('sections');
     res.render('section/show-page.ejs', { page, user: req.user });
 }));

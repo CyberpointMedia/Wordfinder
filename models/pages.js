@@ -5,6 +5,9 @@ const pageSchema = new mongoose.Schema({
     page_name: {
         type: String,
     },
+    heading: {
+        type: String,
+    },
     content: {
         type: String,
         default: " ",

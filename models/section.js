@@ -10,7 +10,7 @@ const sectionSchema = new Schema({
     },
     subHeading: {
         type: String,
-        required: true,
+        required: false,
     },
     content:{
         type: String,
@@ -23,7 +23,7 @@ const sectionSchema = new Schema({
     imagePosition: {
         type: String,
         enum: ['center', 'right', 'left'],
-        required: true,
+        required: false,
     },
     status: {
         type: String,
