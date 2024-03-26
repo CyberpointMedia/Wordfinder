@@ -99,11 +99,11 @@ router.post('/unscramble', async (req, res) => {
             res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, endsWith, contains, includeLetters: include, excludeLetters: exclude, specifiedLength: length, wordsByLength });
         } else {
             console.error('Error: Invalid data structure');
-            res.status(500).json({ error: 'Internal server error' });
+            res.redirect('/no-words-found');
         }
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ error: 'Internal/search server error' });
+        res.redirect('/no-words-found');
     }
 });
 
