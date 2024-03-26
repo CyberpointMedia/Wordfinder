@@ -18,11 +18,11 @@
                         const synonyms = sense.synonyms ? sense.synonyms.map(synonym => synonym.text).join(', ') : '';
                         const examples = sense.examples ? sense.examples.map(example => example.text).join(', ') : '';
                         displayDefinitionModal(
-                            result.word, 
-                            sense.definitions[0], 
-                            lexicalEntry.lexicalCategory.text, 
-                            synonyms, 
-                            sense.semanticClasses ? sense.semanticClasses[0].text : '', 
+                            result.word,
+                            sense.definitions[0],
+                            lexicalEntry.lexicalCategory.text,
+                            synonyms,
+                            sense.semanticClasses ? sense.semanticClasses[0].text : '',
                             examples
                         );
                         console.log("Result output", result.word, sense.definitions[0], lexicalEntry.lexicalCategory.text, synonyms, sense.semanticClasses ? sense.semanticClasses[0].text : '', examples);
@@ -39,6 +39,23 @@
 
     function displayDefinitionModal(word, definition, partOfSpeech, synonyms, typeOf, examples) {
         // Create a modal element
+        let synonymsButton = '';
+        if (synonyms) {
+            synonymsButton = `<span class="text-white text-xs font-bold bg-[#007BFF] py-2 px-3 rounded-[5px]">Synonyms</span>
+            <div class="flex flex-wrap gap-3 mt-4 mb-6 tagsMain">
+                <button type="button" class="border border-[#007BFF] rounded-[5px] py-2 font-normal px-3 tag text-[#007bff] text-base">
+                    ${synonyms}
+                </button>
+            </div>`;
+        }
+        let examplesSection = '';
+    if (examples) {
+        examplesSection = `
+            <span class="text-[#007BFF] text-xs font-bold bg-[#DBF4FF] rounded-[5px] py-2 px-3">Examples</span>
+            <div class="mt-4 text-base italic font-normal">${examples}</div>`;
+    }
+    partOfSpeech = partOfSpeech || 'Noun'; 
+
         const modalContainer = document.getElementById('hs-medium-modal');
         const modalContent = `
             <div class="m-3 mt-0 transition-all ease-out hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 md:max-w-[740px] md:w-full md:mx-auto">
@@ -72,19 +89,17 @@
                             </p>
                         </div>
                         <div class="sidecard rounded-[10px] overflow-hidden mt-8">
-                            <div class="sidecard-header bg-[#007BFF] py-4 text-center"><h2 class="text-[22px] font-semibold text-white">Part of speech : - ${partOfSpeech}</h2></div>
-                            
+                            <div class="sidecard-header bg-[#007BFF] py-4 text-center"><h2 class="text-[22px] font-semibold text-white">Part of speech : - ${partOfSpeech}</h2>
+                            </div>
                             <div class="sidecard-body bg-[#F0F7FA] p-4">
                                 <span class="text-[#007BFF] text-xs font-bold bg-white py-2 px-3 rounded-[5px]">Definitions</span>
                                 <h3 class="my-4 font-semibold">${definition}</h3>
-                                <span class="text-white text-xs font-bold bg-[#007BFF] py-2 px-3 rounded-[5px]">Synonyms</span>
                                 <div class="flex flex-wrap gap-3 mt-4 mb-6 tagsMain">
-                                    <button type="button" class="border border-[#007BFF] rounded-[5px] py-2 font-normal px-3 tag text-[#007bff] text-base">
-                                        ${synonyms}
-                                    </button>
+                                    <div class="flex flex-wrap gap-3 mt-4 mb-6 tagsMain">
+                                    ${synonymsButton}
+                                    </div>
                                 </div>
-                                <span class="text-[#007BFF] text-xs font-bold bg-[#DBF4FF] rounded-[5px] py-2 px-3">Examples</span> 
-                                <div class="mt-4 text-base italic font-normal">${examples}</div>
+                                <div class="mt-4 text-base italic font-normal">${examplesSection}</div>
                             </div>
                         </div>
                     </div>
@@ -101,7 +116,7 @@
         const myDiv = document.getElementById('hs-medium-modal-backdrop');
         const closeDiv = document.getElementById('closeBtn');
         const body = document.body;
-        closeDiv.addEventListener('click', function() {
+        closeDiv.addEventListener('click', function () {
             // Set the display property of the div to 'none' to hide it
             myDiv.remove();
             modal.classList.add('hidden');
@@ -113,23 +128,24 @@
 <script src="/admin/node_modules/preline/dist/preline.js"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
-  $(document).ready(function () {
-    $('.listing').each(function() {
-      $(this).children('li:nth-child(n+6)').addClass('hidden');
-    });
+    $(document).ready(function () {
+        $('.listing').each(function () {
+            $(this).children('li:nth-child(n+6)').addClass('hidden');
+        });
         $('.toggle-btn').on('click', function () {
-        var listingId = $(this).data('listing-id');
-        var listing = $('#' + listingId);
+            var listingId = $(this).data('listing-id');
+            var listing = $('#' + listingId);
 
-        if ($(this).text() === 'View More') {
-            listing.find('.hidden').removeClass('hidden');
-            $(this).text('View Less');
-        } else {
-            listing.find('li:nth-child(n+6)').addClass('hidden'); // Assuming you want to hide list items starting from the 4th one
-            $(this).text('View More');
-        }
+            if ($(this).text() === 'View More') {
+                listing.find('.hidden').removeClass('hidden');
+                $(this).text('View Less');
+            } else {
+                listing.find('li:nth-child(n+6)').addClass('hidden'); // Assuming you want to hide list items starting from the 4th one
+                $(this).text('View More');
+            }
         });
     });
 </script>
 </body>
+
 </html>

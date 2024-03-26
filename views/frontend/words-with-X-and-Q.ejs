@@ -20,25 +20,7 @@
                                 </p>
                             </div>
 
-                            <div class="mb-8">
-                                <form id="search-main" class="w-full mt-8 mb-6" action="/modify-search" method="post">
-                                    <div class="">
-                                        <label class="block w-full mb-3" for="Dictionary">Choose Dictionary</label>
-                                        <select class="w-full flex bg-[#F0F7FA] rounded-[10px] p-5 appearance-none focus:outline-none" id="Dictionary" name="Dictionary">
-                                            <option value="wwf" selected="">Words With Friends</option>
-                                            <option value="us">Scrabble US</option>
-                                            <option value="uk">Scrabble UK</option>
-                                            <option value="all_en">All Dictionaries</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="w-full mb-4 hs-accordion-group">
-                                        <%- (include('../frontend/search/advance_search.ejs')) %>
-                                    </div>
-                                    <button type="submit" class="w-full py-4 bg-buttonPrimary rounded-[10px] text-white hover:opacity-50">Modify
-                                        Search</button>
-                                </form>
-                            </div>
+                           
                             <!-- show--scarabble -->
 
                           <!-- ... -->
@@ -76,7 +58,7 @@
                                     </div>
                                 <% } %>
                         <% } else if (wordsByLength) { %>
-                            <% Object.keys(wordsByLength).forEach(length => { %>
+                            <% Object.keys(wordsByLength).sort((a, b) => b - a).forEach(length => { %>
                                 <% if (wordsByLength[length].some(wordObj => ((!startsWith || wordObj.word.startsWith(startsWith)) && (!endsWith || wordObj.word.endsWith(endsWith)) && (!contains || wordObj.word.includes(contains))&& (!includeLetters || wordObj.word.includes(includeLetters)) && (!excludeLetters || !wordObj.word.includes(excludeLetters))))) { %>
                                     <!-- Check if there are words available for the current length -->
                                     <% const uniqueWords = new Set(); %>
