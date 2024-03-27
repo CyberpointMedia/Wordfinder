@@ -13,8 +13,6 @@ const Section = require('../models/section');
 const Category = require('../models/categories');
 const fetch = require('node-fetch');
 
-
-
 // Middleware to parse incoming request bodies
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
@@ -78,7 +76,6 @@ router.post('/unscramble', async (req, res) => {
         if (length > 0) {
             url += `&length=${length}`;
         }
-
         const response = await fetch(url);
         const data = await response.json();
 
@@ -115,6 +112,7 @@ router.get('/unscramble/:letters/dictionary/:dictionary', wrapAsync(async (req, 
 router.get('/words-that-start-with/:combination', async (req, res) => {
     try {
         const combination = req.params.combination;
+        const page = await Page.findOne({ page_name: `${length}-letter-words` }) || "";
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = 'wwf'; // default dictionary
         const letters = '';
@@ -144,7 +142,7 @@ router.get('/words-that-start-with/:combination', async (req, res) => {
                 return acc;
             }, {});
             console.log("letters",letters ,"startsWith",combination, "specifiedLength",length, "endsWith",endsWith, "contains",contains, "includeLetters",include, "excludeLetters",exclude);
-            res.render('frontend/words-that-start-with.ejs', { letters, morePosts, startsWith: combination, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude });
+            res.render('frontend/words-that-start-with.ejs', { letters, morePosts, startsWith: combination, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude , page});
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -158,6 +156,7 @@ router.get('/words-that-start-with/:combination', async (req, res) => {
 router.get('/words-that-end-in/:combination', async (req, res) => {
     try {
         const combination = req.params.combination;
+        const page = await Page.findOne({ page_name: `${length}-letter-words` }) || "";
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = 'wwf'; // default dictionary
         const letters = '';
@@ -187,7 +186,7 @@ router.get('/words-that-end-in/:combination', async (req, res) => {
                 return acc;
             }, {});
 
-            res.render('frontend/words-that-end-in.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith: combination, contains, includeLetters: include, excludeLetters: exclude });
+            res.render('frontend/words-that-end-in.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith: combination, contains, includeLetters: include, excludeLetters: exclude , page});
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -202,7 +201,6 @@ router.get('/:length-letter-words/', async (req, res) => {
     try {
         const length = req.params.length;
         const page = await Page.findOne({ page_name: `${length}-letter-words` }) || "";
-        const section = await Section.findOne({ title: `${length}-letter-words` }) || "";
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = 'wwf'; // default dictionary
         const letters = '';
@@ -231,7 +229,7 @@ router.get('/:length-letter-words/', async (req, res) => {
                 });
                 return acc;
             }, {});
-            res.render('frontend/x-letter-words.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude ,pageContent: page.content , sectionContent: section.content});
+            res.render('frontend/x-letter-words.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude ,page});
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -246,6 +244,7 @@ router.get('/:length-letter-words/', async (req, res) => {
 router.get('/words-with/:contains', async (req, res) => {
     try {
         const contains = req.params.contains;
+        const page = await Page.findOne({ page_name: `${length}-letter-words` }) || "";
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = 'wwf'; // default dictionary
         const letters = '';
@@ -276,7 +275,7 @@ router.get('/words-with/:contains', async (req, res) => {
                 return acc;
             }, {});
             console.log("letters",letters ,"startsWith",startsWith,"specifiedLength",length, "endsWith",endsWith, "contains",contains, "includeLetters",include, "excludeLetters",exclude);
-            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude });
+            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude , page});
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -292,6 +291,7 @@ router.get('/words-with/:contains_char1/and/:contains_char2', async (req, res) =
     try {
         const contains_char1 = req.params.contains_char1;
         const contains_char2 = req.params.contains_char2;
+        const page = await Page.findOne({ page_name: `${length}-letter-words` }) || "";
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = ''; // default dictionary
         const letters = '';
@@ -321,7 +321,7 @@ router.get('/words-with/:contains_char1/and/:contains_char2', async (req, res) =
                 });
                 return acc;
             }, {});
-            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains,contains_char1,contains_char2, includeLetters: include, excludeLetters: exclude });
+            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains,contains_char1,contains_char2, includeLetters: include, excludeLetters: exclude , page});
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });

@@ -65,6 +65,7 @@ router.post("/create", wrapAsync(async (req, res) => {
       page_name,
       heading,
       sections,
+      sub_heading,
       content,
       status,
       seoTitle,
@@ -110,6 +111,7 @@ router.post("/create", wrapAsync(async (req, res) => {
     const newPage = new Page({
       page_name,
       heading,
+      sub_heading,
       content,
       status,
       sections: sectionObjectIds,
@@ -184,6 +186,7 @@ router.post("/edit/:id", wrapAsync(async (req, res) => {
       page_name,
       heading,
       sections,
+      sub_heading,
       content,
       seoTitle,
       seoMetaDescription,
@@ -231,6 +234,7 @@ router.post("/edit/:id", wrapAsync(async (req, res) => {
     const updatedPage = await Page.findByIdAndUpdate(id, {
       page_name,
       heading,
+      sub_heading,
       content,
       sections: sectionObjectIds,
       seoTitle,
@@ -306,4 +310,5 @@ router.get('/draft', async (req, res) => {
       res.status(500).send('Internal Server Error');
   }
 });
+
 module.exports = router;

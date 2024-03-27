@@ -8,6 +8,9 @@ const pageSchema = new mongoose.Schema({
     heading: {
         type: String,
     },
+    sub_heading: {
+        type: String,
+    },
     content: {
         type: String,
         default: " ",
