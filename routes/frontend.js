@@ -12,6 +12,7 @@ const Page = require('../models/pages');
 const Section = require('../models/section');
 const Category = require('../models/categories');
 const fetch = require('node-fetch');
+const visitCounter = require('../middleware/visitCounter');
 
 // Middleware to parse incoming request bodies
 router.use(bodyParser.urlencoded({ extended: false }));
@@ -23,7 +24,7 @@ router.use('/node_modules', express.static(__dirname + '/node_modules'));
 router.use('/styles', express.static(path.join(__dirname, 'styles')));
 
 // Define routes
-router.get('/', async (req, res) => {
+router.get('/', visitCounter, async (req, res) => {
     try {
         console.log("hello sir ");
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
@@ -33,6 +34,7 @@ router.get('/', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
 router.get('/no-words-found', async (req, res) => {
     try {
         console.log("no words found");
@@ -43,7 +45,7 @@ router.get('/no-words-found', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
-router.post('/unscramble', async (req, res) => {
+router.post('/unscramble', visitCounter, async (req, res) => {
     try {
         const letters = req.body.letters;
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
@@ -112,7 +114,7 @@ router.get('/unscramble/:letters/dictionary/:dictionary', wrapAsync(async (req, 
 router.get('/words-that-start-with/:combination', async (req, res) => {
     try {
         const combination = req.params.combination;
-        const page = await Page.findOne({ page_name: `${length}-letter-words` }) || "";
+        const page = await Page.findOne({ page_router: `words-that-start-with/${combination}` }) || "";
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = 'wwf'; // default dictionary
         const letters = '';
@@ -156,7 +158,7 @@ router.get('/words-that-start-with/:combination', async (req, res) => {
 router.get('/words-that-end-in/:combination', async (req, res) => {
     try {
         const combination = req.params.combination;
-        const page = await Page.findOne({ page_name: `${length}-letter-words` }) || "";
+        const page = await Page.findOne({ page_router: `words-that-end-in/${combination}` }) || "";
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = 'wwf'; // default dictionary
         const letters = '';
@@ -200,7 +202,7 @@ router.get('/words-that-end-in/:combination', async (req, res) => {
 router.get('/:length-letter-words/', async (req, res) => {
     try {
         const length = req.params.length;
-        const page = await Page.findOne({ page_name: `${length}-letter-words` }) || "";
+        const page = await Page.findOne({ page_router: `${length}-letter-words` }) || "";
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = 'wwf'; // default dictionary
         const letters = '';
@@ -244,7 +246,8 @@ router.get('/:length-letter-words/', async (req, res) => {
 router.get('/words-with/:contains', async (req, res) => {
     try {
         const contains = req.params.contains;
-        const page = await Page.findOne({ page_name: `${length}-letter-words` }) || "";
+        const page = await Page.findOne({ page_router: `words-with/${contains}` }) || "";
+        console.log("page.router",page.page_router);
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = 'wwf'; // default dictionary
         const letters = '';
@@ -275,7 +278,7 @@ router.get('/words-with/:contains', async (req, res) => {
                 return acc;
             }, {});
             console.log("letters",letters ,"startsWith",startsWith,"specifiedLength",length, "endsWith",endsWith, "contains",contains, "includeLetters",include, "excludeLetters",exclude);
-            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude , page});
+            res.render('frontend/words-with.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude , page});
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -291,7 +294,8 @@ router.get('/words-with/:contains_char1/and/:contains_char2', async (req, res) =
     try {
         const contains_char1 = req.params.contains_char1;
         const contains_char2 = req.params.contains_char2;
-        const page = await Page.findOne({ page_name: `${length}-letter-words` }) || "";
+        const page = await Page.findOne({ page_router: `words-with/${contains_char1}/and/${contains_char2}` }) || "";
+        console.log("page.router",page.page_router);
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = ''; // default dictionary
         const letters = '';
@@ -321,7 +325,7 @@ router.get('/words-with/:contains_char1/and/:contains_char2', async (req, res) =
                 });
                 return acc;
             }, {});
-            res.render('frontend/words-with-X-and-Q.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains,contains_char1,contains_char2, includeLetters: include, excludeLetters: exclude , page});
+            res.render('frontend/words-with.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains,contains_char1,contains_char2, includeLetters: include, excludeLetters: exclude , page});
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -334,10 +338,10 @@ router.get('/words-with/:contains_char1/and/:contains_char2', async (req, res) =
 
 router.get('/articles/:title', async (req, res) => {
     try {
-        const post = await Post.findOne({ title: req.params.title }).populate('author');
-        if (!post || !post.author) {
-            return res.status(404).send('Post or author not found');
-        }
+        const title = decodeURIComponent(req.params.title.trim());
+        console.log('Searching for post with title:', title);
+        const post = await Post.findOne({ title: title }).populate('author');
+        
         const categories = await Category.find(); // Fetch the categories
         const morePosts = await Post.find({ status: 'Published' }).limit(3); // Fetch 3 more posts with a status of 'Published'
         const postUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
@@ -384,10 +388,11 @@ router.get('/word-definition', wrapAsync(async (req, res) => {
     }
 }));
 
-router.get('/:page_name', wrapAsync(async (req, res) => {
+router.get('/:page_router', wrapAsync(async (req, res) => {
     const page = await Page.findOne({ page_name: req.params.page_name }).populate('sections');
     res.render('section/show-page.ejs', { page, user: req.user });
 }));
+
 // Example route for serving input.css
 router.get('/input', (req, res) => {
     res.sendFile(path.join(__dirname, 'src', 'input.css'));

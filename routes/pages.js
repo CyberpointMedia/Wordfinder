@@ -18,6 +18,23 @@ router.use((err, req, res, next) => {
   res.status(404).render('not-found/page-not-found.ejs');
 });
 
+const setSEOHeaders = async (req, res, next) => {
+  // Fetch the page from the database
+  const page = await Page.findOne({ page_name: req.params.page_name });
+
+  if (page) {
+    // Set the headers
+    res.set('X-SEO-Title', page.seoTitle);
+    res.set('X-SEO-Slug', page.seoslug);
+    res.set('X-Meta-Description', page.metaDescription);
+    res.set('X-Meta-Robots', page.metaRobots.toString());
+  }
+
+  next();
+};
+
+router.use(setSEOHeaders);
+
 router.get("/", wrapAsync(async (req, res) => {
   try {
     const allCount = await Page.countDocuments();
@@ -63,7 +80,7 @@ router.post("/create", wrapAsync(async (req, res) => {
   try {
     let {
       page_name,
-      heading,
+      page_router,
       sections,
       sub_heading,
       content,
@@ -77,14 +94,21 @@ router.post("/create", wrapAsync(async (req, res) => {
       canonicalURL,
       show_search,
     } = req.body;
+        // If page_router is empty, use page_name, convert it to lowercase and replace spaces with -
+        if (!page_router) {
+        page_router = page_name;
+      }
     
+      // Convert page_router to lowercase and replace spaces with -
+      page_router = page_router.toLowerCase().replace(/\s+/g, '-');
+    
+
     show_search = show_search.includes('true');
-           // Check if a page with the same name already exists
+       // Check if a page with the same name already exists
        const existingPage = await Page.findOne({ page_name: page_name });
        if (existingPage) {
          return res.status(400).send("A page with this name already exists");
        }
-
     // Ensure that sections is an array before attempting to map over it
     let cleanedSections = Array.isArray(sections) ? sections : [sections];
     // If sections is a string, attempt to parse it as JSON
@@ -110,7 +134,7 @@ router.post("/create", wrapAsync(async (req, res) => {
 
     const newPage = new Page({
       page_name,
-      heading,
+      page_router,
       sub_heading,
       content,
       status,
@@ -164,11 +188,12 @@ router.get("/edit/:id", wrapAsync(async (req, res) => {
     const { id } = req.params;
 
     // Fetch the page from the database
-    const page = await Page.findById(id);
-
-    // Fetch sections for the dropdown
+    const page = await Page.findById(id).populate('sections');
+    page.sections.forEach(section => {
+      console.log("Section title:", section.title);
+  });
+      // Fetch sections for the dropdown
     const sections = await Section.find();
-
     // Render the edit-page.ejs file and pass the page and sections
     res.render("section/edit-page.ejs", { page, sections ,user: req.user });
   } catch (error) {
@@ -180,11 +205,10 @@ router.get("/edit/:id", wrapAsync(async (req, res) => {
 // Update a page with sections
 router.post("/edit/:id", wrapAsync(async (req, res) => {
   const { id } = req.params;
-  console.log("Form Data:", req.body);
   try {
     let {
       page_name,
-      heading,
+      page_router,
       sections,
       sub_heading,
       content,
@@ -197,7 +221,15 @@ router.post("/edit/:id", wrapAsync(async (req, res) => {
       canonicalURL,
       show_search,
     } = req.body;
-    
+
+     // If page_router is empty, use page_name
+    if (!page_router) {
+      page_router = page_name;
+    }
+
+    // Convert page_router to lowercase and replace spaces with -
+    page_router = page_router.toLowerCase().replace(/\s+/g, '-');
+
     show_search = show_search.includes('true');
 
      // Check if a page with the same name already exists
@@ -233,7 +265,7 @@ router.post("/edit/:id", wrapAsync(async (req, res) => {
     // Update the page
     const updatedPage = await Page.findByIdAndUpdate(id, {
       page_name,
-      heading,
+      page_router,
       sub_heading,
       content,
       sections: sectionObjectIds,

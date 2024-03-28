@@ -41,13 +41,17 @@
         // Create a modal element
         let synonymsButton = '';
         if (synonyms) {
-            synonymsButton = `<span class="text-white text-xs font-bold bg-[#007BFF] py-2 px-3 rounded-[5px]">Synonyms</span>
-            <div class="flex flex-wrap gap-3 mt-4 mb-6 tagsMain">
-                <button type="button" class="border border-[#007BFF] rounded-[5px] py-2 font-normal px-3 tag text-[#007bff] text-base">
-                    ${synonyms}
-                </button>
-            </div>`;
-        }
+  const synonymsArray = synonyms.split(', ');
+
+  synonymsButton = `<span class="text-white text-xs font-bold bg-[#007BFF] py-2 px-3 rounded-[5px]">Synonyms</span>
+  <div class="flex flex-wrap gap-3 mt-4 mb-6 tagsMain">
+    ${synonymsArray.map(synonym => `
+      <button type="button" class="border border-[#007BFF] rounded-[5px] py-2 font-normal px-3 tag text-[#007bff] text-base">
+        ${synonym}
+      </button>
+    `).join('')}
+  </div>`;
+}
         let examplesSection = '';
     if (examples) {
         examplesSection = `
@@ -94,11 +98,7 @@
                             <div class="sidecard-body bg-[#F0F7FA] p-4">
                                 <span class="text-[#007BFF] text-xs font-bold bg-white py-2 px-3 rounded-[5px]">Definitions</span>
                                 <h3 class="my-4 font-semibold">${definition}</h3>
-                                <div class="flex flex-wrap gap-3 mt-4 mb-6 tagsMain">
-                                    <div class="flex flex-wrap gap-3 mt-4 mb-6 tagsMain">
                                     ${synonymsButton}
-                                    </div>
-                                </div>
                                 <div class="mt-4 text-base italic font-normal">${examplesSection}</div>
                             </div>
                         </div>

@@ -33,22 +33,39 @@
                                                 class="form-input bg-[#F0F7FA] border-0 mb-3"
                                                 placeholder="Enter Page Name" value="<%= page.page_name %>">
                                         </div>
-                                        <!-- add heading -->
-                                        <div class="form-group mb-6">
-                                            <label class="mb-3 text-lg" for="heading">Heading</label>
-                                            <input name="heading" id="heading" type="text"
-                                                class="form-input bg-[#F0F7FA] border-0 mb-3"
-                                                placeholder="Enter heading" value="<%= page.heading %>">
-                                        </div>
-                                        <!-- add sub_heading -->
-                                        <div class="mb-6">
-                                            <label class="mb-3 text-lg" for="sub_heading">Add sub_heading</label>
-                                            <textarea name="sub_heading" id="content" class="form-input bg-[#F0F7FA] border-0" cols="30" rows="6" placeholder="Add sub_heading"><%= page.sub_heading %></textarea>
+                                        <!-- categories -->
+                                        <div class="mb-6 form-group">
+                                            <label class="mb-3 text-lg" for="category">Category</label>
+                                            <select name="category" id="category"
+                                                class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                <option value="">Select a category</option>
+                                                <option value="words-that-start-with">Words That Start With</option>
+                                                <option value="words-that-end-in">Words That End In</option>
+                                                <option value="words-by-length">Words By Length</option>
+                                                <option value="words-with-letters">Words With Letters</option>
+                                                <option value="none-of-them">none-of-them</option>
+                                            </select>
                                         </div>
 
-                                        <!-- add content -->
+                                        <!-- page_router -->
+                                        <div class="mb-6 form-group">
+                                            <label class="mb-3 text-lg" for="page_router">Page slug</label>
+                                            <input name="page_router" id="page_router" type="text"
+                                                class="form-input bg-[#F0F7FA] border-0 mb-3"
+                                                placeholder="Enter Page slug" value="<%= page.page_router %>">
+                                        </div>
+
+                                        <!-- add Page Description -->
                                         <div class="mb-6">
-                                            <label class="mb-3 text-lg" for="content">Add Content</label>
+                                            <label class="mb-3 text-lg" for="sub_heading">Add Sub Description</label>
+                                            <textarea name="sub_heading" id="content"
+                                                class="form-input bg-[#F0F7FA] border-0" cols="30" rows="6"
+                                                placeholder="Add Sub Description"><%= page.sub_heading %></textarea>
+                                        </div>
+
+                                        <!-- add Description -->
+                                        <div class="mb-6">
+                                            <label class="mb-3 text-lg" for="content">Add Description</label>
                                             <textarea name="content" id="content"
                                                 class="form-input bg-[#F0F7FA] border-0" cols="30" rows="6"
                                                 placeholder="Add Content"><%= page.content %></textarea>
@@ -56,13 +73,12 @@
                                         </div>
 
                                         <!-- show search -->
-                                        <div class="flex items-center mb-6">
+                                        <div class="flex items-center mb-6 customCheckBox">
                                             <input type="hidden" name="show_search" value="false">
                                             <input id="show_search" name="show_search" type="checkbox" value="true"
                                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
                                                 <%=page.show_search ? 'checked' : '' %>>
-                                            <label for="show_search" class="text-sm font-medium text-gray-900 ms-2">Show
-                                                Search</label>
+                                                <label for="show_search" class="text-sm font-medium text-gray-900">Show Search</label>
                                         </div>
 
                                         <!-- add section -->
@@ -79,8 +95,9 @@
                                                         <% if (sections && sections.length> 0) { %>
                                                             <% sections.forEach((section)=> { %>
                                                                 <option value="<%= section._id %>"
-                                                                    <%=page.sections.includes(section._id.toString())
-                                                                    ? 'selected' : '' %>>
+                                                                    <%=page.sections.some(pageSection=>
+                                                                    pageSection._id.equals(section._id)) ? 'selected' :
+                                                                    '' %> >
                                                                     <%= section.title %>
                                                                 </option>
                                                                 <% }); %>
@@ -99,11 +116,15 @@
                                                 </div>
                                                 <div class="bg-[#f0f7fa] p-6">
                                                     <ul id="selectedValuesList">
-                                                        <% page.sections.forEach((section)=> { %>
-                                                            <li>
-                                                                <%= section.title %>
-                                                            </li>
-                                                            <% }); %>
+                                                        <% if (Array.isArray(page.sections)) { %>
+                                                            <% page.sections.forEach((section)=> { %>
+                                                                <li>
+                                                                    <%= section.title %>
+                                                                </li>
+                                                                <% }); %>
+                                                                    <% } else { %>
+                                                                        <li>No sections found</li>
+                                                                        <% } %>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -212,7 +233,52 @@
         <%- include('../script/script.ejs') %>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
+                $(document).ready(function () {
+                    var isCategoryChange = false;
+
+                    $('#category').on('change', function () {
+                        isCategoryChange = true;
+                        updateRouter();
+                    });
+
+                    $('#page_router').on('input', function () {
+                        if (isCategoryChange) {
+                            isCategoryChange = false;
+                        } else {
+                            return;
+                        }
+                    });
+
+                    function updateRouter() {
+                        var category = $('#category').val();
+                        var dynamicValue = $('#page_router').val();
+
+                        if (category === 'none-of-them') {
+                            return;
+                        }
+                        var router;
+                        switch (category) {
+                            case 'words-that-start-with':
+                                router = 'words-that-start-with/' + dynamicValue;
+                                break;
+                            case 'words-that-end-in':
+                                router = 'words-that-end-in/' + dynamicValue;
+                                break;
+                            case 'words-by-length':
+                                router = '' + dynamicValue + '-letter-words';
+                                break;
+                            case 'words-with-letters':
+                                router = 'words-with/' + dynamicValue;
+                                break;
+                            default:
+                                router = '';
+                        }
+
+                        $('#page_router').val(router);
+                    }
+                });
                 function setStatus(status) {
                     document.getElementById('status').value = status;
                     // Trigger form submission
@@ -224,29 +290,28 @@
 
                     // Trigger the change event for the dropdown after the page loads
                     $('#mySelect').trigger('change');
-                });
 
-                $('#mySelect').on('change', function () {
-                    // Clear the current list
-                    $('#selectedValuesList').empty();
 
-                    // Update the list with the selected sections
-                    var selectedSections = $(this).val();
+                    $('#mySelect').on('change', function () {
+                        // Clear the current list
+                        $('#selectedValuesList').empty();
 
-                    if (selectedSections) {
-                        // Append the section titles to the list
-                        selectedSections.forEach(function (sectionId) {
-                            // Use the "selectedSections" array to find the corresponding section
-                            var section = $('#mySelect option[value="' + sectionId + '"]');
-                            var sectionTitle = section.text(); // Get the section title
-                            $('#selectedValuesList').append('<li>' + sectionTitle + '</li>');
-                        });
-                    }
+                        // Update the list with the selected sections
+                        var selectedSections = $(this).val();
 
-                    // Update the hidden input field with cleaned sections
-                    $('#selectedSectionsInput').val(JSON.stringify(selectedSections));
+                        if (selectedSections) {
+                            // Append the section titles to the list
+                            selectedSections.forEach(function (sectionId) {
+                                // Use the "selectedSections" array to find the corresponding section
+                                var section = $('#mySelect option[value="' + sectionId + '"]');
+                                var sectionTitle = section.text(); // Get the section title
+                                $('#selectedValuesList').append('<li>' + sectionTitle + '</li>');
+                            });
+                        }
+                        // Update the hidden input field with cleaned sections
+                        $('#selectedSectionsInput').val(JSON.stringify(selectedSections));
+                    });
                 });
             </script>
     </body>
-
     </html>

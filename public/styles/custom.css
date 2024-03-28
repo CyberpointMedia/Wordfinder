@@ -453,7 +453,45 @@ input[type="file"] {
         float: right;
     }
 }
+.customCheckBox input[type=checkbox] {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+  }
+.customCheckBox label {
+    position: relative;
+    cursor: pointer;
+  }
+.customCheckBox label:before {
+    content:'';
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 2px solid #007bff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 10px;
+    border-radius: 2px;
+  }
 
+  .customCheckBox input[type=checkbox]:checked + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 9px;
+    width: 6px;
+    height: 14px;
+    border: solid #007bff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
 @media(min-width:320px) and (max-width:480px) {
     .subsubsub li {
         margin-bottom: 5px;

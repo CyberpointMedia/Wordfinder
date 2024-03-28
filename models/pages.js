@@ -5,7 +5,7 @@ const pageSchema = new mongoose.Schema({
     page_name: {
         type: String,
     },
-    heading: {
+    page_router: {
         type: String,
     },
     sub_heading: {

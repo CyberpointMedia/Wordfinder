@@ -9,6 +9,7 @@ const router = express.Router();
 const Post = require('../models/post'); 
 const Page = require('../models/pages');
 const UserActivity = require('../models/user-activity');
+const Visit = require('../models/visitcount');
 const { ensureAdmin, ensureEditor, ensureAuthor } = require('../middleware/authMiddleware');
 
 // Error handling middleware
@@ -126,6 +127,12 @@ router.get('/dashboard', wrapAsync(async (req, res) => {
     const totalPosts = await Post.countDocuments();
     const totalPages = await Page.countDocuments();
     const userActivities = await UserActivity.find().sort({timestamp: -1}).limit(10);
+        // Fetch visit count
+    const visit = await Visit.findOne({ path: '/' });
+    const visitCount = visit ? visit.visitCount : 0;
+        // Fetch visit count for '/unscramble' route
+    const unscrambleVisit = await Visit.findOne({ path: '/unscramble' });
+    const unscrambleVisitCount = unscrambleVisit ? unscrambleVisit.visitCount : 0;
     // Fetch posts based on user role
     let posts;
     if (req.user.role === 'admin' || req.user.role === 'administrator' || req.user.role === 'author') {
@@ -133,9 +140,8 @@ router.get('/dashboard', wrapAsync(async (req, res) => {
     } else if (req.user.role === 'editor') {
         posts = await Post.find({ author: req.user._id }).populate('author').sort({date: -1}).limit(5);
     }
-
     // Render dashboard
-    res.render('admin/dashboard', { users, totalPosts ,totalPages, posts, user: req.user , userActivities});
+    res.render('admin/dashboard', { users, totalPosts ,totalPages, posts, user: req.user , userActivities, visitCount, unscrambleVisitCount});
 }));
 
 // View all users

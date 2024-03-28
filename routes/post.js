@@ -52,6 +52,7 @@ router.get('/create', async (req, res) => {
       res.status(500).send('Internal Server Error');
   }
 });
+
 // Logic to handle post creation
 router.post('/create', upload.fields([{ name: 'picture__input', maxCount: 1 }, { name: 'feature_img', maxCount: 1 }]), (req, res) => {
   if (!req.files) {
@@ -59,8 +60,9 @@ router.post('/create', upload.fields([{ name: 'picture__input', maxCount: 1 }, {
   }
 
   console.log(req.files);
-  const newPost = new Post({
-    title: req.body.title,
+  const title = encodeURIComponent(req.body.title.replace(/\s+/g, '-'));
+    const newPost = new Post({
+    title: title,
     heading: req.body.heading,
     description: req.body.description,
     picture: req.files['picture__input'][0].location, // URL of the uploaded thumbnail file on S3
