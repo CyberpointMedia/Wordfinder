@@ -98,7 +98,6 @@ router.post('/addcustomhtml', async (req, res) => {
   }
   footer[column].push(widget._id);
   await footer.save();
-
   res.redirect('/footer/widgets');
 });
 router.post('/addcontactdetails', async (req, res) => {

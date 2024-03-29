@@ -465,6 +465,26 @@
         </body>
         <script src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
         <script>
+     document.querySelectorAll('.deleteButton').forEach(function(deleteButton) {
+    deleteButton.addEventListener('click', function() {
+        var widgetId = this.getAttribute('data-widget-id');
+
+        fetch('/footer/delete/' + widgetId, {
+            method: 'POST',
+        }).then(function(response) {
+            if (response.ok) {
+                return response.text();
+            } else {
+                throw new Error('Error: ' + response.statusText);
+            }
+        }).then(function() {
+            window.location.href = '/footer/widgets';
+        }).catch(function(error) {
+            console.error('Error:', error);
+        });
+    });
+});
+                
             $(document).ready(function() {
                 $('.select-wedgets li').click(function() {
                     $('.select-wedgets li').removeClass("active");

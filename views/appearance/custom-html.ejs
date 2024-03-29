@@ -21,18 +21,8 @@
                 <label for="Customhtml" class="mb-3">Custom HTML:</label>
                 <textarea type="text" id="Customhtml" name="Customhtml" required><%= widget.Customhtml %></textarea>
                 <button type="submit" class="create-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4">Save</button>
+                <button type="button" class="deleteButton" data-widget-id="<%= widget._id %>" data-column="<%= widget.column %>" class="mt-2 px-2 text-red-600 underline hover:text-red-400">Delete</button>
             </form>
-            <ul class="mb-6">
-                <% widgets.forEach(widget=> { %>
-                    <% if (widget.name === 'Custom HTML') { %>
-                        <li class="py-2">
-                            <form action="/footer/delete/<%= widget._id %>" method="POST">
-                                <button type="submit" class="mt-2 text-red-600 underline hover:text-red-400">Delete</button>
-                            </form>
-                        </li>
-                        <% } %>
-                            <% }) %>
-            </ul>
         </div>
     </div>
 </div>

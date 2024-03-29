@@ -41,9 +41,15 @@ app.use(async (req, res, next) => {
         const widget = await Widget.findOne(); // Adjust this line to find the correct widget
 
         if (widget) {
-            res.setHeader('gtmUrl', widget.gtmUrl);
-            res.setHeader('gtmHead', widget.gtmHead);
-            res.setHeader('gtmBody', widget.gtmBody);
+            if (widget.gtmUrl) {
+                res.setHeader('gtmUrl', widget.gtmUrl);
+            }
+            if (widget.gtmHead) {
+                res.setHeader('gtmHead', widget.gtmHead);
+            }
+            if (widget.gtmBody) {
+                res.setHeader('gtmBody', widget.gtmBody);
+            }
         }
         next();
     } catch (err) {
