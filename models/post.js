@@ -26,6 +26,10 @@ status: {
     enum: ['Published', 'Trash', 'Draft'],
     default: 'Draft', // Set the default status as Draft
 },
+readingTime: {
+  type: String,
+  default: ''
+},
 date: {
     type: Date,
     default: Date.now

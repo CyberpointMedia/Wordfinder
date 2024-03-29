@@ -45,6 +45,7 @@
     "postcss-cli": "^11.0.0",
     "preline": "^2.0.3",
     "raphael": "^2.3.0",
+    "reading-time": "^1.5.0",
     "redis": "^4.6.13",
     "s3-upload-stream": "^1.0.7",
     "sanitize-html": "^2.11.0",

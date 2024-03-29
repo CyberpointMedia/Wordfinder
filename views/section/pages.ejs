@@ -1,6 +1,7 @@
 <!-- show-pages.ejs -->
 
 <%- include('../header/head.ejs') %>
+
     <body>
         <!-- sidebar start here -->
         <div class="flex overflow-hidden">
@@ -9,141 +10,183 @@
 
                     <%- include('../header/header.ejs') %>
 
-                    <!-- main content start here -->
-                    
-   <main class="py-8 px-5">
-    <div class="mb-6 flex gap-3 sm:flex-row sm:items-center">
-        <h1 class="text-2xl font-bold text-black">Pages</h1>
-        <a href="/admin/pages/create" class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add New Page</a>
-    </div>
+                        <!-- main content start here -->
+
+                        <main class="py-8 px-5">
+                            <div class="mb-6 flex gap-3 sm:flex-row sm:items-center">
+                                <h1 class="text-2xl font-bold text-black">Pages</h1>
+                                <a href="/admin/pages/create"
+                                    class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add
+                                    New Page</a>
+                            </div>
 
 
-        <ul class="subsubsub flex flex-wrap space-x-2 mb-6">
-            <li class="all"><a href="/admin/pages" class="current text-black" aria-current="page">All <span class="count">(<%= allCount %>)</span></a> |</li>
-            <li class="publish"><a href="/admin/pages/published" class="text-black">Published <span class="count">(<%= publishedCount %>)</span></a> |</li>
-            <li class="trash"><a href="/admin/pages/trash" class="text-black">Trash <span class="count">(<%= trashCount %>)</span></a> |</li>
-            <li class="draft"><a href="/admin/pages/draft" class="text-black">Draft <span class="count">(<%= draftCount %>)</span></a></li>            
-        </ul>        
+                            <ul class="subsubsub flex flex-wrap space-x-2 mb-6">
+                                <li class="all"><a href="/admin/pages" class="current text-black"
+                                        aria-current="page">All <span class="count">(<%= allCount %>)</span></a> |</li>
+                                <li class="publish"><a href="/admin/pages/published" class="text-black">Published <span
+                                            class="count">(<%= publishedCount %>)</span></a> |</li>
+                                <li class="trash"><a href="/admin/pages/trash" class="text-black">Trash <span
+                                            class="count">(<%= trashCount %>)</span></a> |</li>
+                                <li class="draft"><a href="/admin/pages/draft" class="text-black">Draft <span
+                                            class="count">(<%= draftCount %>)</span></a></li>
+                            </ul>
 
-        <!-- table start here -->
-        <div class="bg-white overflow-x-auto">
-            <table class="w-full divide-y divide-gray-200 border" id="example">
-                <!-- Table header -->
-                <thead class="text-left bg-[#DBF4FF]">
-                    <tr>
-                        <th>
-                            <input type="checkbox" class="selectAll">
-                        </th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
+                            <!-- table start here -->
+                            <div class="bg-white overflow-x-auto">
+                                <table class="w-full divide-y divide-gray-200 border" id="example">
+                                    <!-- Table header -->
+                                    <thead class="text-left bg-[#DBF4FF]">
+                                        <tr>
+                                            <th>
+                                                <input type="checkbox" class="selectAll">
+                                            </th>
+                                            <th>Title</th>
+                                            <th>Author</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
 
-                <!-- Table body -->
-                <tbody class="divide-y divide-gray-200">
-                    <% pages.forEach((page) => { %>
-                        <tr class="">
-                            <td>
-                                <input type="checkbox" value="<%= page._id %>" class="">
-                            </td>
-                            <td>
-                                <div class="">
-                                    <strong>
-                                        <a class="row-title text-[#2271b1] text-sm" href="javascript:void(0)">
-                                            <%= page.page_name %> <!-- Display the actual page name -->
-                                        </a>
-                                    </strong>
-                                </div>
-                                <div class="row-actions mt-1">
-                                    <span class="edit">
-                                        <a href="<%= `pages/edit/${page._id}` %>"
-                                            class="text-[#2271b1] text-xs">Edit</a> |
-                                    </span>
-                                    <% if (page.status === 'Trash') { %>
-                                        <span class="delete">
-                                            <a href="javascript:void(0)" class="delete text-[#b32d2e] text-xs" onclick="deletePage('<%= page._id %>')">Delete</a>
-                                                                                </span>                                        <% } else { %>
-                                        <span class="trash"><a href="javascript:void(0)" class="trash text-[#b32d2e] text-xs" onclick="updateStatus('<%= page._id %>')">Trash</a> | </span>
-                                    <% } %>                                  
-                                    <span class="view">
-                                        <a href="/<%= page.page_router %>"
-                                            class="text-[#2271b1] text-xs">View</a>
-                                    </span>
-                                    </div>
-                            </td>
-                            <% function formatDate(date) { %>
-                                <% const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric', hour12: true }; %>
-                                <%= new Date(date).toLocaleString('en-US', options) %>
-                            <% } %>
-                            <td>Admin</td>
-                            <td><%= page.status %><br> <%= formatDate(page.date) %></td>
-                        </tr>
-                    <% }); %>
-                </tbody>
+                                    <!-- Table body -->
+                                    <tbody class="divide-y divide-gray-200">
+                                        <% pages.forEach((page)=> { %>
+                                            <tr class="">
+                                                <td>
+                                                    <input type="checkbox" value="<%= page._id %>" class="">
+                                                </td>
+                                                <td>
+                                                    <div class="">
+                                                        <strong>
+                                                            <a class="row-title text-[#2271b1] text-sm"
+                                                                href="javascript:void(0)">
+                                                                <%= page.page_name %>
+                                                                    <!-- Display the actual page name -->
+                                                            </a>
+                                                        </strong>
+                                                    </div>
+                                                    <div class="row-actions mt-1">
+                                                        <span class="edit">
+                                                            <% if (page.status==='Trash' ) { %>
+                                                                <a href="javascript:void(0)"
+                                                                    onclick="restorePage('<%= page._id %>')"
+                                                                    class="text-[#2271b1] text-xs">Restore</a> |
+                                                            <% } else { %>
+                                                                    <a href="<%= `pages/edit/${page._id}` %>"
+                                                                        class="text-[#2271b1] text-xs">Edit</a> |
+                                                            <% } %>
+                                                        </span>
+                                                        <% if (page.status==='Trash' ) { %>
+                                                            <span class="delete">
+                                                                <a href="javascript:void(0)"
+                                                                    class="delete text-[#b32d2e] text-xs"
+                                                                    onclick="deletePage('<%= page._id %>')">Delete</a> |
+                                                            </span>
+                                                        <% } else { %>
+                                                            <span class="trash"><a href="javascript:void(0)"
+                                                                        class="trash text-[#b32d2e] text-xs"
+                                                                        onclick="updateStatus('<%= page._id %>')">Trash</a> |
+                                                            </span>
+                                                        <% } %>
+                                                            <span class="view">
+                                                                        <a href="/<%= page.page_router %>"
+                                                                            class="text-[#2271b1] text-xs">View</a>
+                                                            </span>
+                                                    </div>
+                                                </td>
+                                                <% function formatDate(date) { %>
+                                                    <% const options={ year: 'numeric' , month: '2-digit' ,
+                                                        day: '2-digit' , hour: 'numeric' , minute: 'numeric' , hour12:
+                                                        true }; %>
+                                                        <%= new Date(date).toLocaleString('en-US', options) %>
+                                                            <% } %>
+                                                                <td>Admin</td>
+                                                                <td>
+                                                                    <%= page.status %><br>
+                                                                        <%= formatDate(page.date) %>
+                                                                </td>
+                                            </tr>
+                                            <% }); %>
+                                    </tbody>
 
-                <!-- Table footer -->
-                <tfoot class="text-left bg-[#DBF4FF]">
-                    <tr>
-                        <th>
-                            <input type="checkbox" class="selectAll">
-                        </th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Date</th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-        <!-- table end here -->
-</main>
-<!-- main content end here -->
+                                    <!-- Table footer -->
+                                    <tfoot class="text-left bg-[#DBF4FF]">
+                                        <tr>
+                                            <th>
+                                                <input type="checkbox" class="selectAll">
+                                            </th>
+                                            <th>Title</th>
+                                            <th>Author</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- table end here -->
+                        </main>
+                        <!-- main content end here -->
 
                 </div>
         </div>
         <!-- sidebar end here -->
         <script>
             // Add this function to your JavaScript
-function updateStatus(pageId) {
-    fetch(`/admin/pages/update-status/${pageId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ status: 'Trash' })
-            })
-            .then(response => response.json())
-            .then(data => {
-                // For example, you can show a success message or refresh the page
-                console.log(data);
-            })
-            .catch(error => {
-                // Handle any errors that occurred during the request
-                console.error(error);
-            })
-            .finally(() => {
-                // Reload the page after the fetch request is completed, regardless of whether it succeeded or failed
-                location.reload();
-            });
-        }
-        function deletePage(pageId) {
-            fetch(`/admin/pages/delete/${pageId}`, {
-                method: 'DELETE',
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-            })
-            .catch(error => {
-                // Handle any errors that occurred during the request
-                console.error('Error:', error);
-            })
-            .finally(() => {
-                // Reload the page after the fetch request is completed, regardless of whether it succeeded or failed
-                location.reload();
-            });
-        }
+            function updateStatus(pageId) {
+                fetch(`/admin/pages/update-status/${pageId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ status: 'Trash' })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // For example, you can show a success message or refresh the page
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        // Handle any errors that occurred during the request
+                        console.error(error);
+                    })
+                    .finally(() => {
+                        // Reload the page after the fetch request is completed, regardless of whether it succeeded or failed
+                        location.reload();
+                    });
+            }
+            function deletePage(pageId) {
+                fetch(`/admin/pages/delete/${pageId}`, {
+                    method: 'DELETE',
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                    })
+                    .catch(error => {
+                        // Handle any errors that occurred during the request
+                        console.error('Error:', error);
+                    })
+                    .finally(() => {
+                        // Reload the page after the fetch request is completed, regardless of whether it succeeded or failed
+                        location.reload();
+                    });
+            }
+            function restorePage(pageId) {
+                fetch(`/admin/pages/restore/${pageId}`, {
+                    method: 'PUT',
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    })
+                    .finally(() => {
+                        location.reload();
+                    });
+            }
+
         </script>
         <%- include('../script/script.ejs') %>
     </body>

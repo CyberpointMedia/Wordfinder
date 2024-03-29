@@ -226,7 +226,6 @@ router.post("/edit/:id", wrapAsync(async (req, res) => {
     if (!page_router) {
       page_router = page_name;
     }
-
     // Convert page_router to lowercase and replace spaces with -
     page_router = page_router.toLowerCase().replace(/\s+/g, '-');
 
@@ -261,7 +260,6 @@ router.post("/edit/:id", wrapAsync(async (req, res) => {
         return null;
       }
     }).filter(Boolean);
-
     // Update the page
     const updatedPage = await Page.findByIdAndUpdate(id, {
       page_name,
@@ -317,6 +315,18 @@ router.get('/trash', async (req, res) => {
       res.status(500).send('Internal Server Error');
   }
 });
+
+router.put('/restore/:id', async (req, res) => {
+  try {
+    console.log('Restore Page:', req.params.id);
+    await Page.findByIdAndUpdate(req.params.id, { status: 'Published' });
+    res.redirect('/admin/pages/trash');
+  } catch (error) {
+    console.error('Error restoring page:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 router.delete('/delete/:id', async (req, res) => {
   try {
       console.log('Delete Page:', req.params.id);

@@ -13,6 +13,8 @@ const Section = require('../models/section');
 const Category = require('../models/categories');
 const fetch = require('node-fetch');
 const visitCounter = require('../middleware/visitCounter');
+const readingTime = require('reading-time');
+
 
 // Middleware to parse incoming request bodies
 router.use(bodyParser.urlencoded({ extended: false }));
@@ -341,7 +343,11 @@ router.get('/articles/:title', async (req, res) => {
         const title = decodeURIComponent(req.params.title.trim());
         console.log('Searching for post with title:', title);
         const post = await Post.findOne({ title: title }).populate('author');
-        
+         // Calculate reading time
+         const stats = readingTime(post.content);
+         post.readingTime = stats.text;
+         await post.save();
+                 
         const categories = await Category.find(); // Fetch the categories
         const morePosts = await Post.find({ status: 'Published' }).limit(3); // Fetch 3 more posts with a status of 'Published'
         const postUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
@@ -350,12 +356,13 @@ router.get('/articles/:title', async (req, res) => {
         const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=${encodeURIComponent(post.title)}`;
         const linkedinShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(postUrl)}&title=${encodeURIComponent(post.title)}`;
         console.log(post.author ? post.author.username : 'unknown'); // Prints the username of the author or 'unknown' if the author doesn't exist
-        res.render('post/article-details', { post, categories, morePosts, postTitle: post.title, postUrl, facebookShareUrl, twitterShareUrl, linkedinShareUrl }); // Pass the categories and morePosts to the template
+        res.render('post/article-details', { post, categories, morePosts, postTitle: post.title, postUrl, facebookShareUrl, twitterShareUrl, linkedinShareUrl , readingTime: stats.text}); // Pass the categories and morePosts to the template
     } catch (error) {
         console.error('Error fetching post:', error);
         res.status(500).send('Internal Server Error');
     }
 });
+
 router.get('/articles', async (req, res) => {
     try {
         const posts = await Post.find({ status: 'Published' }); // Fetch all posts from the database

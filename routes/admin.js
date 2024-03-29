@@ -11,7 +11,7 @@ const Page = require('../models/pages');
 const UserActivity = require('../models/user-activity');
 const Visit = require('../models/visitcount');
 const { ensureAdmin, ensureEditor, ensureAuthor } = require('../middleware/authMiddleware');
-
+const readingTime = require('reading-time');
 // Error handling middleware
 router.use((err, req, res, next) => {
     console.error(err.stack);
@@ -133,6 +133,8 @@ router.get('/dashboard', wrapAsync(async (req, res) => {
         // Fetch visit count for '/unscramble' route
     const unscrambleVisit = await Visit.findOne({ path: '/unscramble' });
     const unscrambleVisitCount = unscrambleVisit ? unscrambleVisit.visitCount : 0;
+        // Fetch all posts
+        const allPosts = await Post.find().populate('author');
     // Fetch posts based on user role
     let posts;
     if (req.user.role === 'admin' || req.user.role === 'administrator' || req.user.role === 'author') {
@@ -140,8 +142,16 @@ router.get('/dashboard', wrapAsync(async (req, res) => {
     } else if (req.user.role === 'editor') {
         posts = await Post.find({ author: req.user._id }).populate('author').sort({date: -1}).limit(5);
     }
+
+         // Calculate average reading time for all posts
+    let totalReadingTime = 0;
+    for (let post of allPosts) {
+        const stats = readingTime(post.description);
+        totalReadingTime += stats.minutes;
+    }
+    const averageReadingTime = Math.round(totalReadingTime / allPosts.length);    
     // Render dashboard
-    res.render('admin/dashboard', { users, totalPosts ,totalPages, posts, user: req.user , userActivities, visitCount, unscrambleVisitCount});
+    res.render('admin/dashboard', { users, totalPosts ,totalPages, posts, user: req.user , userActivities, visitCount, unscrambleVisitCount,averageReadingTime});
 }));
 
 // View all users
