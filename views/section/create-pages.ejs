@@ -8,7 +8,7 @@
                 <div class="relative bg-white page-content">
                     <!-- header Start -->
                     <%- include('../header/header.ejs') %>
-                        <form action="/admin/pages/create" method="POST" enctype="application/x-www-form-urlencoded">
+                        <form id="pageForm" action="/admin/pages/create" method="POST" enctype="application/x-www-form-urlencoded">
                             <!-- main content start here -->
                             <div id="top-bttns" class="flex justify-end gap-2 py-5 bg-white border-b shadow-sm">
                                 <button type="button" aria-disabled="true" class="py-2 px-4 text-[#949494]"
@@ -25,12 +25,9 @@
                                     <div class="max-w-3xl mx-auto">
                                         <!-- add Page_name -->
                                         <div class="mb-6 form-group">
-                                            <label class="mb-3 text-lg" for="page_name">Page Title</label>
-                                            <input name="page_name" id="page_name" type="text"
-                                                class="form-input bg-[#F0F7FA] border-0 mb-3"
-                                                placeholder="Enter Page Name">
+                                            <label class="mb-3 text-lg" for="page_name">Page Title <span class="text-red-500">*</span></label>
+                                            <input name="page_name" id="page_name" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3" placeholder="Enter Page Name" required>
                                         </div>
-
 
                                         <!-- categories -->
                                         <div class="mb-6 form-group">
@@ -53,7 +50,6 @@
                                                 class="form-input bg-[#F0F7FA] border-0 mb-3"
                                                 placeholder="Enter Page slug">
                                         </div>
-
 
                                         <!-- add Page Description -->
                                         <div class="mb-6">
@@ -223,6 +219,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
         <script>
         $(document).ready(function() {
   var isCategoryChange = false;
@@ -279,9 +276,12 @@
             }, 100); // Delay form submission by 100 milliseconds
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            new FroalaEditor('#content');
-        });
+         document.addEventListener('DOMContentLoaded', function () {
+             new FroalaEditor('#content');
+         });
+        //CKEDITOR.replace('content');
+
+
         var selectedSectionsList = document.getElementById('selectedValuesList');
         var selectedSectionsInput = document.getElementById('selectedSectionsInput');
 
@@ -319,6 +319,7 @@
             // Update the hidden input field with the selected section IDs
             $('#selectedSectionsInput').val(JSON.stringify(selectedSections));
         });
+            // Function to send a POST request with the form data
         </script>
         <%- include('../script/script.ejs') %>
     </body>

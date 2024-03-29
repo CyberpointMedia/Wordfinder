@@ -167,7 +167,6 @@ router.get('/all-users', ensureAdmin, async (req, res) => {
     } catch (err) {
         console.error(err);
     }
-
     const totalCount = {
         subscriber: subscriberCount || 0,
         author: authorCount || 0,

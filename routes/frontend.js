@@ -396,7 +396,11 @@ router.get('/word-definition', wrapAsync(async (req, res) => {
 }));
 
 router.get('/:page_router', wrapAsync(async (req, res) => {
-    const page = await Page.findOne({ page_name: req.params.page_name }).populate('sections');
+    console.log("Page router:", req.params.page_router); // Log the page_router
+    const page = await Page.findOne({ page_router: req.params.page_router }).populate('sections');
+    if (!page) {
+        return res.status(404).render('not-found/page-not-found.ejs');
+    }
     res.render('section/show-page.ejs', { page, user: req.user });
 }));
 
