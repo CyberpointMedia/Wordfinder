@@ -11,8 +11,6 @@ const { ensureAdmin } = require('../middleware/authMiddleware');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
-
-
 // Render nav-menu view
 router.get('/nav-menu', ensureAdmin, async (req, res) => {
     const posts = await Post.find({ status: 'Published' });
