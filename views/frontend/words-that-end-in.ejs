@@ -15,8 +15,16 @@
                             <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
                                 <h2 class="mb-4 text-3xl font-semibold md:text-4xl">Words that End with <%= endsWith.toUpperCase() %></h2>
                                 <p>
-<%- page.sub_heading %>                                
-</p>
+                                    <% if (!page.sub_heading) { %>
+                                        On this page is a list of words that end in <%= endsWith.toUpperCase() %>, along with how much they score in word games like Scrabble (play with our Scrabble word finder) and WWF (check out our Words With Friends cheat tool).
+
+The best-scoring and longest words ending with <%= endsWith.toUpperCase() %> are listed first. Choose your game and click on a word to see if you can play it. Once you've seen words that end in <%= endsWith.toUpperCase() %>, you should also see words that start with <%= endsWith.toUpperCase() %> and words with <%= endsWith.toUpperCase() %> in them.
+
+Playing Wordle? Check out our Wordle solver tool. To level up your Wordle play, read about the best starting words in Wordle.
+                                    <% } else { %>
+                                        <%- page.sub_heading %>
+                                    <% } %>
+                                </p>
                             </div>
                                           
                             <!-- show--scarabble -->
