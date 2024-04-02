@@ -36,6 +36,37 @@ router.get('/', visitCounter, async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+//scrabble-dictionary
+router.get('/scrabble-dictionary', visitCounter, async (req, res) => {
+    try {
+        console.log("get scrabble-dictionary");
+        const morePosts = await Post.find({ status: 'Published' }).limit(3);
+        res.render('frontend/scrabble-dictionary.ejs', { morePosts });
+    } catch (error) {
+        console.error('Error fetching post:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+router.post('/scrabble-dictionary', (req, res) => {
+    console.log("post scrabble-dictionary");
+    const letter = req.body.letters;
+    res.redirect(`/dictionary/${letter}`);
+});
+router.get('/dictionary/:letter', async (req, res) => {
+    const letter = req.params.letter;
+    const url = `https://dict-api.com/api/od/${letter}`;
+    try {
+        const morePosts = await Post.find({ status: 'Published' }).limit(3);
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('API request failed');
+        const data = await response.json();
+        if (!data || !data.results || data.results.length === 0) throw new Error('No data found');
+        res.render('frontend/scrabble-dictionary_output.ejs', { morePosts, data });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
 router.get('/no-words-found', async (req, res) => {
     try {
@@ -437,7 +468,6 @@ router.get('/words-that-start-with/:start_with/end-with/:end_with', async (req, 
         res.status(500).json({ error: 'Internal server error' });
     }
 });  
-
 
 router.get('/articles/:title', async (req, res) => {
     try {
