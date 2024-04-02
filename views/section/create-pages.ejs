@@ -8,7 +8,8 @@
                 <div class="relative bg-white page-content">
                     <!-- header Start -->
                     <%- include('../header/header.ejs') %>
-                        <form id="pageForm" action="/admin/pages/create" method="POST" enctype="application/x-www-form-urlencoded">
+                        <form id="pageForm" action="/admin/pages/create" method="POST"
+                            enctype="application/x-www-form-urlencoded">
                             <!-- main content start here -->
                             <div id="top-bttns" class="flex justify-end gap-2 py-5 bg-white border-b shadow-sm">
                                 <button type="button" aria-disabled="true" class="py-2 px-4 text-[#949494]"
@@ -25,8 +26,11 @@
                                     <div class="max-w-3xl mx-auto">
                                         <!-- add Page_name -->
                                         <div class="mb-6 form-group">
-                                            <label class="mb-3 text-lg" for="page_name">Page Title <span class="text-red-500">*</span></label>
-                                            <input name="page_name" id="page_name" type="text" class="form-input bg-[#F0F7FA] border-0 mb-3" placeholder="Enter Page Name" required>
+                                            <label class="mb-3 text-lg" for="page_name">Page Title <span
+                                                    class="text-red-500">*</span></label>
+                                            <input name="page_name" id="page_name" type="text"
+                                                class="form-input bg-[#F0F7FA] border-0 mb-3"
+                                                placeholder="Enter Page Name" required>
                                         </div>
 
                                         <!-- categories -->
@@ -72,8 +76,9 @@
                                             <input type="hidden" name="show_search" value="false">
                                             <input id="show_search" name="show_search" type="checkbox" value="true"
                                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
-                                                <%=page.show_search ? 'checked' : '' %>>
-                                                <label for="show_search" class="text-sm font-medium text-gray-900">Show Search</label>
+                                                checked>
+                                            <label for="show_search" class="text-sm font-medium text-gray-900">Show
+                                                Search</label>
                                         </div>
                                         <!-- add section -->
                                         <div class="flex flex-col gap-6 md:flex-row">
@@ -214,111 +219,111 @@
                             <!-- main content end here -->
                         </form>
                 </div>
-    </div>
+        </div>
         <!-- sidebar end here -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
         <script>
-        $(document).ready(function() {
-  var isCategoryChange = false;
+            $(document).ready(function () {
+                var isCategoryChange = false;
 
-  $('#category').on('change', function() {
-    isCategoryChange = true;
-    updateRouter();
-  });
+                $('#category').on('change', function () {
+                    isCategoryChange = true;
+                    updateRouter();
+                });
 
-  $('#page_router').on('input', function() {
-    if (isCategoryChange) {
-      isCategoryChange = false;
-    } else {
-        return;
-    }
-  });
+                $('#page_router').on('input', function () {
+                    if (isCategoryChange) {
+                        isCategoryChange = false;
+                    } else {
+                        return;
+                    }
+                });
 
-  function updateRouter() {
-    var category = $('#category').val();
-    var dynamicValue = $('#page_router').val();
+                function updateRouter() {
+                    var category = $('#category').val();
+                    var dynamicValue = $('#page_router').val();
 
-    if (category === 'none-of-them') {
-      return;
-    }
+                    if (category === 'none-of-them') {
+                        return;
+                    }
 
-    var router;
-    switch (category) {
-      case 'words-that-start-with':
-        router = 'words-that-start-with/' + dynamicValue;
-        break;
-      case 'words-that-end-in':
-        router = 'words-that-end-in/' + dynamicValue;
-        break;
-      case 'words-by-length':
-        router = '' + dynamicValue + '-letter-words';
-        break;
-      case 'words-with-letters':
-        router = 'words-with/' + dynamicValue;
-        break;
-      default:
-        router = '';
-    }
+                    var router;
+                    switch (category) {
+                        case 'words-that-start-with':
+                            router = 'words-that-start-with/' + dynamicValue;
+                            break;
+                        case 'words-that-end-in':
+                            router = 'words-that-end-in/' + dynamicValue;
+                            break;
+                        case 'words-by-length':
+                            router = '' + dynamicValue + '-letter-words';
+                            break;
+                        case 'words-with-letters':
+                            router = 'words-with/' + dynamicValue;
+                            break;
+                        default:
+                            router = '';
+                    }
 
-    $('#page_router').val(router);
-  }
-});
-
-        function setStatus(status) {
-            console.log('setStatus called with:', status);
-            document.getElementById('status').value = status;
-            console.log('Status:', document.getElementById('status').value);
-            setTimeout(function () {
-                document.querySelector('form').submit();
-            }, 100); // Delay form submission by 100 milliseconds
-        }
-
-         document.addEventListener('DOMContentLoaded', function () {
-             new FroalaEditor('#content');
-         });
-        //CKEDITOR.replace('content');
-
-
-        var selectedSectionsList = document.getElementById('selectedValuesList');
-        var selectedSectionsInput = document.getElementById('selectedSectionsInput');
-
-        var sortable = new Sortable(selectedSectionsList, {
-            group: 'shared', // Set a group name to allow dragging between lists
-            animation: 150,
-            onEnd: function (evt) {
-                updateSelectedSections();
-            },
-        });
-        // Listen for changes in the dropdown
-        $('#mySelect').change(function () {
-            // Clear the current list
-            $('#selectedValuesList').empty();
-
-            // Get the selected option elements
-            var selectedOptions = $(this).find('option:selected');
-
-            // Create an array to store the selected section IDs
-            var selectedSections = [];
-
-            // Loop over the selected option elements
-            selectedOptions.each(function () {
-                // Get the section ID and title
-                var sectionId = $(this).val();
-                var sectionTitle = $(this).text();
-
-                // Add the section ID to the selectedSections array
-                selectedSections.push(sectionId);
-
-                // Append the section title to the list
-                $('#selectedValuesList').append('<li>' + sectionTitle + '</li>'); // Use sectionTitle instead of sectionId
+                    $('#page_router').val(router);
+                }
             });
 
-            // Update the hidden input field with the selected section IDs
-            $('#selectedSectionsInput').val(JSON.stringify(selectedSections));
-        });
+            function setStatus(status) {
+                console.log('setStatus called with:', status);
+                document.getElementById('status').value = status;
+                console.log('Status:', document.getElementById('status').value);
+                setTimeout(function () {
+                    document.querySelector('form').submit();
+                }, 100); // Delay form submission by 100 milliseconds
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                new FroalaEditor('#content');
+            });
+            //CKEDITOR.replace('content');
+
+
+            var selectedSectionsList = document.getElementById('selectedValuesList');
+            var selectedSectionsInput = document.getElementById('selectedSectionsInput');
+
+            var sortable = new Sortable(selectedSectionsList, {
+                group: 'shared', // Set a group name to allow dragging between lists
+                animation: 150,
+                onEnd: function (evt) {
+                    updateSelectedSections();
+                },
+            });
+            // Listen for changes in the dropdown
+            $('#mySelect').change(function () {
+                // Clear the current list
+                $('#selectedValuesList').empty();
+
+                // Get the selected option elements
+                var selectedOptions = $(this).find('option:selected');
+
+                // Create an array to store the selected section IDs
+                var selectedSections = [];
+
+                // Loop over the selected option elements
+                selectedOptions.each(function () {
+                    // Get the section ID and title
+                    var sectionId = $(this).val();
+                    var sectionTitle = $(this).text();
+
+                    // Add the section ID to the selectedSections array
+                    selectedSections.push(sectionId);
+
+                    // Append the section title to the list
+                    $('#selectedValuesList').append('<li>' + sectionTitle + '</li>'); // Use sectionTitle instead of sectionId
+                });
+
+                // Update the hidden input field with the selected section IDs
+                $('#selectedSectionsInput').val(JSON.stringify(selectedSections));
+            });
             // Function to send a POST request with the form data
         </script>
         <%- include('../script/script.ejs') %>

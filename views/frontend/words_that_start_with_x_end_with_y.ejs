@@ -13,53 +13,15 @@
                         <div class="w-full md:w-2/3">
                             <!-- Words with X and Q box start -->
                             <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
-                                <h2 class="mb-4 text-3xl font-semibold md:text-4xl">Words that Start with <%=
-                                        startsWith.toUpperCase() %>
+                                <h2 class="mb-4 text-3xl font-semibold md:text-4xl">
+                                    Words that Start with <%= startsWith.toUpperCase() %> End with <%=
+                                            endsWith.toUpperCase() %>
                                 </h2>
                                 <p>
-                                    <% if (!page.sub_heading) { %>
-                                        <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"
-                                            id="isPasted">This page lists&nbsp;<span
-                                                style="box-sizing: border-box; color: var(--secondaryblue); font-family: robotomedium; font-style: normal;">words
-                                                that begin with <%= startsWith.toUpperCase() %></span>, along with their
-                                            point values in popular word
-                                            games like&nbsp;<a
-                                                href="https://word-finder.com/words-with-friends-cheat-tool/"
-                                                style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Words
-                                                With Friends</a> and&nbsp;<a
-                                                href="https://word-finder.com/scrabble-word-finder/"
-                                                style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Scrabble</a>.
-                                            The longest and best-scoring&nbsp;<span
-                                                style="box-sizing: border-box; color: var(--secondaryblue); font-family: robotomedium; font-style: normal;">words
-                                                starting with <%= startsWith.toUpperCase() %></span> are listed first.
-                                            Select your game and click a
-                                            word to make sure it&rsquo;s legal to play. After looking at&nbsp;<span
-                                                style="box-sizing: border-box; color: var(--secondaryblue); font-family: robotomedium; font-style: normal;">words
-                                                beginning with <%= startsWith.toUpperCase() %></span>, you may want to
-                                            check out&nbsp;<a href="https://word-finder.com/words-that-end-in/<%=
-                                                startsWith.toLowerCase() %>/"
-                                                style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">words
-                                                that end in <%= startsWith.toUpperCase() %></a> or&nbsp;<a
-                                                href="https://word-finder.com/words-with/a/"
-                                                style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">words
-                                                containing <%= startsWith.toUpperCase() %></a>.</p>
-                                        <p
-                                            style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
-                                            If you&rsquo;re playing NYTimes&rsquo; Wordle, try our&nbsp;<a
-                                                href="https://word-finder.com/wordle/"
-                                                style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Wordle
-                                                solver</a>. To up your Wordle game, read about the&nbsp;<a
-                                                href="https://word-finder.com/articles/best-word-to-start-wordle/"
-                                                style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">best
-                                                starting words for Wordle</a>.</p>
-                                        <% } else { %>
-                                            <%- page.sub_heading %>
-                                                <% } %>
+                                    <%- page.sub_heading %>
                                 </p>
                             </div>
-
                             <!-- show--scarabble -->
-
                             <!-- ... -->
                             <% if (specifiedLength) { %>
                                 <% if (wordsByLength && wordsByLength[specifiedLength] &&
@@ -80,10 +42,10 @@
                                                     id="words_card_<%= specifiedLength %>">
                                                     <% wordsByLength[specifiedLength].forEach(wordObj=> { %>
                                                         <% if ((!startsWith || wordObj.word.startsWith(startsWith)) &&
-                                                            (!endsWith || wordObj.word.endsWith(endsWith)) && (!contains
-                                                            || wordObj.word.includes(contains)) && (!includeLetters ||
-                                                            wordObj.word.includes(includeLetters)) && (!excludeLetters
-                                                            || !wordObj.word.includes(excludeLetters)) ) { %>
+                                                            (!endsWith || wordObj.word.endsWith(endsWith)) &&
+                                                            (!includeLetters || wordObj.word.includes(includeLetters))
+                                                            && (!excludeLetters ||
+                                                            !wordObj.word.includes(excludeLetters)) ) { %>
                                                             <!-- Check if startsWith, endsWith, contains, and notContains are provided and word meets all criteria -->
                                                             <% uniqueWords.add(wordObj); %>
                                                                 <% } %>
@@ -115,10 +77,10 @@
                                                         { %>
                                                         <% if (wordsByLength[length].some(wordObj=> ((!startsWith ||
                                                             wordObj.word.startsWith(startsWith)) && (!endsWith ||
-                                                            wordObj.word.endsWith(endsWith)) && (!contains ||
-                                                            wordObj.word.includes(contains))&& (!includeLetters ||
-                                                            wordObj.word.includes(includeLetters)) && (!excludeLetters
-                                                            || !wordObj.word.includes(excludeLetters))))) { %>
+                                                            wordObj.word.endsWith(endsWith)) &&
+                                                            (!includeLetters || wordObj.word.includes(includeLetters))
+                                                            && (!excludeLetters ||
+                                                            !wordObj.word.includes(excludeLetters))))) { %>
                                                             <!-- Check if there are words available for the current length -->
                                                             <% const uniqueWords=new Set(); %>
                                                                 <div class="w-full mb-8">
@@ -136,10 +98,8 @@
                                                                                 <% if ((!startsWith ||
                                                                                     wordObj.word.startsWith(startsWith))
                                                                                     && (!endsWith ||
-                                                                                    wordObj.word.endsWith(endsWith)) &&
-                                                                                    (!contains ||
-                                                                                    wordObj.word.includes(contains)) &&
-                                                                                    (!includeLetters ||
+                                                                                    wordObj.word.endsWith(endsWith)) 
+                                                                                    && (!includeLetters ||
                                                                                     wordObj.word.includes(includeLetters))
                                                                                     && (!excludeLetters ||
                                                                                     !wordObj.word.includes(excludeLetters)))
@@ -162,7 +122,6 @@
                                                                                                                 <%= wordObj.points
                                                                                                                     %>
                                                                                                             </span>
-
                                                                                                     </button>
                                                                                                     <% }); %>
                                                                         </div>
@@ -183,31 +142,25 @@
                                                                                     class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
                                                                                     <%- page.content %>
                                                                                 </div>
-                                                                                <div
-                                                                                    class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
-                                                                                    <h2
-                                                                                        class="mb-4 text-3xl font-semibold md:text-4xl">
-                                                                                        Related</h2>
-                                                                                    <ul class="space-y-2 list-disc">
-                                                                                        <ul class="space-y-2 list-disc">
-                                                                                            <%
-                                                                                                surroundingLetters.forEach(letter=>
-                                                                                                { %>
-                                                                                                <% if (letter
-                                                                                                    !==startsWith) { %>
-                                                                                                    <li class="">
-                                                                                                        <a href="/words-that-start-with/<%= letter %>/"
-                                                                                                            class="text-base font-normal text-blue-500 underline hover-text-blue">
-                                                                                                            Words that
-                                                                                                            Start with
-                                                                                                            <%= letter.toUpperCase()
-                                                                                                                %>
-                                                                                                        </a>
-                                                                                                    </li>
-                                                                                                    <% } %>
-                                                                                                        <% }); %>
-                                                                                        </ul>
-                                                                                </div>
+                                                                                <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+    <h2 class="mb-4 text-3xl font-semibold md:text-4xl">Related</h2>
+    <ul class="space-y-2 list-disc">
+        <% let counter = 0; %>
+        <% for(let i = 'a'.charCodeAt(0); i <= 'z'.charCodeAt(0); i++) { %>
+            <% let letter = String.fromCharCode(i); %>
+            <% if (letter !== startsWith && letter !== endsWith) { %>
+                <li class="">
+                    <a href="/words-that-start-with/<%= startsWith %>/end-with/<%= letter %>/"
+                        class="text-base font-normal text-blue-500 underline hover-text-blue">
+                        Words that Start with  <%= startsWith.toUpperCase() %> and End with <%=letter.toUpperCase() %>
+                    </a>
+                </li>
+                <% counter++; %>
+            <% } %>
+            <% if (counter >= 5) break; %>
+        <% } %>
+    </ul>
+</div>
                         </div>
                         <!-- left col end -->
                         <!-- right col end -->
@@ -233,8 +186,6 @@
             <div id="hs-medium-modal"
                 class="hs-overlay hidden w-full h-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none">
             </div>
-
-
             <!-- footer start  -->
             <%- (include('../frontend/footer/footer.ejs')) %>
                 <!-- footer end  -->

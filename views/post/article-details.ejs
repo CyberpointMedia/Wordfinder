@@ -53,8 +53,7 @@
 
                             <div class="flex items-center hidden md:block">
                                 <span class="text-xs xl:text-sm">Written by
-                                <a href="javascript:void(0);" class="text-[#007BFF]"><%= post.author.username ? post.author.username : 'unknown' %></a>
-                                <svg class="ms-2 inline-block invisible lg:visible" xmlns="http://www.w3.org/2000/svg" width="2" height="24" viewBox="0 0 2 24" fill="none">
+                                    <a href="javascript:void(0);" class="text-[#007BFF]"><%= post.author ? (post.author.username ? post.author.username : 'unknown') : 'unknown' %></a>                                <svg class="ms-2 inline-block invisible lg:visible" xmlns="http://www.w3.org/2000/svg" width="2" height="24" viewBox="0 0 2 24" fill="none">
                                     <path d="M1 0L0.999999 24" stroke="#747474"/>
                                   </svg>
                             </span>

@@ -13,6 +13,7 @@ const s3 = new S3Client({
     secretAccessKey: process.env.YOUR_AWS_SECRET_ACCESS_KEY
   }
 });
+
 const upload = multer({
   storage: multerS3({
     s3: s3,
@@ -62,6 +63,7 @@ router.post('/upload', upload.array('files'), async (req, res) => {
         dimensions: `${file.width} by ${file.height} pixels`, // Assuming the dimensions are stored in file.width and file.height
         fileUrl: file.location
       });
+      console.log("image info",image);
       await image.save();
     }
     console.log(imageUrls);

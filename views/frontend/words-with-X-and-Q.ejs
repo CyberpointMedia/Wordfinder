@@ -4,7 +4,6 @@
         <!-- header start here -->
         <%- (include('../frontend/head/header.ejs')) %>
             <!-- header end here -->
-
             <!-- content section start -->
             <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-20">
                 <div class="container">
@@ -22,8 +21,8 @@
                                 <% const uniqueWords = new Set(); %>
                                 <div class="w-full mb-8">
                                     <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
-                                        Length
                                         <%= specifiedLength %>
+                                        Letter Words
                                         <% console.log(`Total words of length ${specifiedLength}:`, wordsByLength[specifiedLength].length); %>
                                         <!-- Log total words for this length -->
                                     </div>
@@ -57,8 +56,8 @@
                                     <% const uniqueWords = new Set(); %>
                                     <div class="w-full mb-8">
                                         <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
-                                            Length
                                             <%= length %>
+                                            Letter Words
                                         </div>
                                         <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px]">
                                             <div class="flex flex-wrap gap-3 tagsMain" id="words_card_<%= length %>">

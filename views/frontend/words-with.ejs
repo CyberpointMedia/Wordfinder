@@ -6,7 +6,7 @@
             <!-- header end here -->
 
             <!-- content section start -->
-            <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-20">
+            <div class="pt-1</div>0 pb-10 bg-white md:pt-20 md:pb-20">
                 <div class="container">
                     <div class="flex flex-col gap-8 md:flex-row">
                         <!-- left col start -->
@@ -14,11 +14,11 @@
                             <!-- Words with X and Q box start -->
                             <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
                                 <h2 class="mb-4 text-3xl font-semibold md:text-4xl">
-                                  <% if (typeof contains_char2.toUpperCase() !== 'undefined') { %>
-                                    Words with <%= contains_char1.toUpperCase() %> and <%= contains_char2.toUpperCase() %>
-                                  <% } else { %>
-                                    Words with <%= contains %>
-                                  <% } %>
+                                    <% if (typeof contains_char2 !== 'undefined' && contains_char2) { %>
+                                        All Words with <%= contains_char1.toUpperCase() %> and <%= contains_char2.toUpperCase() %> (or <%= contains_char2.toUpperCase() %> and <%= contains_char1.toUpperCase() %>)
+                                    <% } else { %>
+                                        Words With <%= contains.toUpperCase() %> - All Words that Contain <%= contains.toUpperCase() %>
+                                    <% } %>
                                 </h2>
                                 <p>
                                   <%- page.sub_heading %>                                
@@ -31,8 +31,8 @@
                                 <% const uniqueWords = new Set(); %>
                                 <div class="w-full mb-8">
                                     <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
-                                        Length
                                         <%= specifiedLength %>
+                                        Letter Words
                                         <% console.log(`Total words of length ${specifiedLength}:`, wordsByLength[specifiedLength].length); %>
                                         <!-- Log total words for this length -->
                                     </div>
@@ -65,9 +65,9 @@
                                     <!-- Check if there are words available for the current length -->
                                     <% const uniqueWords = new Set(); %>
                                     <div class="w-full mb-8">
-                                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
-                                            Length
+                                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative"> 
                                             <%= length %>
+                                            Letter Words
                                         </div>
                                         <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px]">
                                             <div class="flex flex-wrap gap-3 tagsMain" id="words_card_<%= length %>">

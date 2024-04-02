@@ -31,10 +31,8 @@
                 <div class="cont" style="color: rgb(142, 153, 165);">
                   <h2 class="font-normal">Drag & Drop</h2>
                   <div class="chooseImage">
-                    <form action="/library/upload" method="post" enctype="multipart/form-data">
-                      <input id="files" multiple="true" name="files" type="file">                  
-                          <button type="submit">Upload</button>
-                    </form>
+                    <input id="files" multiple="true" name="files" type="file">
+                    <button id="uploadButton">Upload</button>                    
                   </div>
                   <p>
                     Maximum upload file size: 40 MB.
@@ -224,26 +222,31 @@
   <!-- sidebar end here -->
   <%- include('../script/script.ejs') %>
     <script>
-      document.querySelector('form').addEventListener('submit', function(e) {
-  e.preventDefault();
+  document.querySelector('#uploadButton').addEventListener('click', function(e) {
+    e.preventDefault();
 
-  var formData = new FormData();
-  var files = document.querySelector('#files').files;
+    var files = document.querySelector('#files').files;
+    var formData = new FormData();
 
-  for (var i = 0; i < files.length; i++) {
-    formData.append('files', files[i]);
-  }
+    for (var i = 0; i < files.length; i++) {
+      formData.append('files', files[i]);
+    }
 
-  fetch('/library/upload', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error(error));
-});
+    fetch('/library/upload', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => console.log(data))
+    .catch(error => console.error('There was a problem with the fetch operation: ' + error.message));
+  });
       // This function is called when a small image is clicked
-      function showModal(image) {
+function showModal(image) {
         modal.classList.remove('hidden');
         modalImg.src = image.src;
         document.getElementById('uploaded-on').textContent = image.uploadedOn;
@@ -302,36 +305,7 @@
         modal.classList.add('hidden');
         body.style.overflow = '';
       }
-      function handleFileSelect(evt) {
-        var files = evt.target.files; // FileList object
-
-        // Loop through the FileList and render image files as thumbnails.
-        for (var i = 0, f; f = files[i]; i++) {
-
-          // Only process image files.
-          if (!f.type.match('image.*')) {
-            continue;
-          }
-
-          var reader = new FileReader();
-
-          // Closure to capture the file information.
-          reader.onload = (function (theFile) {
-            return function (e) {
-              // Render thumbnail.
-              var span = document.createElement('span');
-              span.innerHTML = ['<img class="w-full h-full object-cover cursor-pointer"onclick="showModal()"  src="', e.target.result,
-                '" title="', escape(theFile.name), '"/>'].join('');
-              document.getElementById('ImgGallery').insertBefore(span, null);
-            };
-          })(f);
-
-          // Read in the image file as a data URL.
-          reader.readAsDataURL(f);
-        }
-      }
-
-      $('#files').change(handleFileSelect);
+      
 
       // media uploader show hide
       $("#addMediaFile, .closeBtn").click(function () {

@@ -18,7 +18,24 @@
                                     <%- page.sub_heading %>
                                 </p>
                             </div>
-                                          
+
+                            <div class="mb-8">
+                                <form id="search-main" class="w-full mt-8 mb-6" action="/<%= specifiedLength %>-letter-words/" method="get">
+                                    <div class="">
+                                        <select class="w-full flex bg-[#F0F7FA] rounded-[10px] p-5 appearance-none focus:outline-none" id="Dictionary" name="Dictionary">
+                                            <option value="wwf" selected="">Words With Friends</option>
+                                             <option value="us">Scrabble US</option>
+                                            <option value="uk">Scrabble UK</option>
+                                            <option value="all_en">All Dictionaries</option>		
+                                        </select>
+                                    </div>
+        
+                                    <div class="w-full mb-4 hs-accordion-group">
+                                        <%- (include('../frontend/search/modify_search.ejs')) %>
+                                    </div>
+                                  <button type="submit" class="w-full py-4 bg-buttonPrimary rounded-[10px] text-white hover:opacity-50">Modify Search</button>
+                                </form>
+                            </div>            
                             <!-- show--scarabble -->
                           <!-- ... -->
                           <% if (specifiedLength) { %>
@@ -26,8 +43,8 @@
                                 <% const uniqueWords = new Set(); %>
                                 <div class="w-full mb-8">
                                     <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
-                                        Length
                                         <%= specifiedLength %>
+                                        Letter Words
                                         <% console.log(`Total words of length ${specifiedLength}:`, wordsByLength[specifiedLength].length); %>
                                         <!-- Log total words for this length -->
                                     </div>
@@ -40,8 +57,8 @@
                                                 <% } %>
                                             <% }); %>
                                             <% uniqueWords.forEach(wordObj => { %>
-                                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]" data-hs-overlay="#hs-medium-modal" onclick="fetchWordDefinition('<%= wordObj.word %>')">
-                                                    <%= wordObj.word %> <%= wordObj.points %>
+                                                <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-normal px-4 tag text-[#007bff]" data-hs-overlay="#hs-medium-modal" onclick="fetchWordDefinition('<%= wordObj.word %>')">
+                                                    <%= wordObj.word %> <span class="tagPoints text-[#6C757D] text-xs font-medium"><%= wordObj.points %></span>
                                                 </button>
                                             <% }); %>
                                         </div>
@@ -61,8 +78,8 @@
                                     <% const uniqueWords = new Set(); %>
                                     <div class="w-full mb-8">
                                         <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
-                                            Length
                                             <%= length %>
+                                            Letter Words
                                         </div>
                                         <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px]">
                                             <div class="flex flex-wrap gap-3 tagsMain" id="words_card_<%= length %>">
@@ -74,7 +91,7 @@
                                                 <% }); %>
                                                 <% uniqueWords.forEach(wordObj => { %>
                                                     <button type="button" class="border border-[#007BFF] rounded-[10px] py-3 font-semibold px-4 tag text-[#007bff]" data-hs-overlay="#hs-medium-modal" onclick="fetchWordDefinition('<%= wordObj.word %>')">
-                                                        <%= wordObj.word %> <%= wordObj.points %>
+                                                        <%= wordObj.word %> <span class="tagPoints text-[#6C757D] text-xs font-medium"><%= wordObj.points %></span>
                                                     </button>
                                                 <% }); %>
                                             </div>
