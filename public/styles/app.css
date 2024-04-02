@@ -770,8 +770,9 @@ label {
     border-color: rgb(229 231 235 / var(--tw-border-opacity));
     background-color: transparent;
     font-size: .875rem;
-    line-height: 2.7rem;
-    font-weight: 400
+    line-height: normal;
+    font-weight: 400;
+    padding: 1.5rem 1.5rem;
 }
 
 .form-input:focus,
