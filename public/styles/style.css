@@ -1252,7 +1252,9 @@ video {
 .pl-3 {
     padding-left: 0.75rem;
 }
-
+.pl-5 {
+    padding-left: 1.25rem;
+}
 .pt-12 {
     padding-top: 3rem;
 }
