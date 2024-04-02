@@ -3,35 +3,60 @@
     <!-- header start here -->
     <%- (include('../frontend/head/header.ejs')) %>
     <!-- header end here -->
-    <h2>Word Games</h2>
-<p>Scrabble US/Canada (OTCWL) Yes (14 Points)</p>
-<p>Scrabble UK (SOWPODS) Yes (14 Points)</p>
-<p>Words With Friends Yes (15 Points)</p>
-
-<h2><%= data.results[0].word %> Definition</h2>
-<p>(<%= data.results[0].lexicalEntries[0].lexicalCategory.text %>)</p>
-
-<% data.results[0].lexicalEntries[0].entries[0].senses.forEach(sense => { %>
-    <h3>Definitions</h3>
-    <p><%= sense.definitions[0] %></p>
-
-    <h3>Examples</h3>
-    <% sense.examples.forEach(example => { %>
-        <p><%= example.text %></p>
-    <% }); %>
-
-    <h3>Synonyms</h3>
-    <% sense.synonyms.forEach(synonym => { %>
-        <p><%= synonym.text %></p>
-    <% }); %>
-<% }); %>
 
     <!-- content section start -->
     <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-20">
         <div class="container">
             <div class="flex flex-col gap-8 md:flex-row">
                 <!-- left col start -->
-                <%- (include('../frontend/left_col/left_col.ejs')) %>
+                <div class="w-full md:w-2/3">
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-6 custom-card">
+                        <h2 class="mb-4 text-4xl font-medium">Word Games</h2>
+                        <div class="mb-1">
+                            <p class="text-sm text-black sm:text-lg leading-10">
+                                Scrabble US/Canada (OTCWL)
+                                <span class="bg-[#007BFF] rounded-[5px] ms-2 p-2 px-3 text-white text-xs">Yes</span>
+                                <span class="italic">(8 Points)</span>
+                            </p>
+                        </div>
+                        <div class="mb-1">
+                            <p class="text-sm text-black sm:text-lg leading-10">
+                                Scrabble UK (SOWPODS)
+                                <span class="bg-[#007BFF] rounded-[5px] ms-2 p-2 px-3 text-white text-xs">Yes</span>
+                                <span class="italic">(8 Points)</span>
+                            </p>
+                        </div>
+                        <div class="mb-1">
+                            <p class="text-sm text-black sm:text-lg leading-10">
+                                Words With Friends 
+                                <span class="bg-[#007BFF] rounded-[5px] ms-2 p-2 px-3 text-white text-xs">Yes</span>
+                                <span class="italic">(8 Points)</span>
+                            </p>
+                        </div>
+                    </div>
+                    <h5 class="mb-4 text-[20px] font-medium">Word Definition</h5>
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8 custom-card">
+                        <i>(Noun)</i>
+                        <h6 class="mb-3 mt-2 text-[20px] text-black"><b>Definitions </b></h6>
+                        <p>
+                            a single distinct meaningful element of speech or writing, used with others (or sometimes alone) to form a sentence and typically shown with a space on either side when written or printed
+                        </p>
+                        <h6 class="mb-3 text-[20px] text-black"><b>Examples </b></h6>
+                        <p>
+                            I don't like the word ‘unofficial’
+                        </p>
+                        <p>
+                            so many words for so few ideas
+                        </p>
+                        <p>
+                            term name expression designation locution
+                        </p>
+                        <h6 class="mb-3 text-[20px] text-black"><b>Synonyms </b></h6>
+                        <p>
+                            term name expression designation locution
+                        </p>
+                    </div>
+                </div>
                 <!-- left col end -->
                 <!-- right col start -->
                 <div class="w-full md:w-1/3">

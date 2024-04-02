@@ -117,3 +117,6 @@ select {
 .text-gray{
     color: rgba(57, 57, 57, 0.80);
 }
+.leading-10 {
+    line-height: 2.5rem;
+}
