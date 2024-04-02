@@ -52,16 +52,16 @@ router.post('/scrabble-dictionary', (req, res) => {
     const letter = req.body.letters;
     res.redirect(`/dictionary/${letter}`);
 });
+
 router.get('/dictionary/:letter', async (req, res) => {
     const letter = req.params.letter;
-    const url = `https://dict-api.com/api/od/${letter}`;
-    try {
+    console.log("letter",letter);
+    const url = 'https://dict-api.com/api/od/' + letter;
+    console.log(url);
+        try {
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const response = await fetch(url);
-        if (!response.ok) throw new Error('API request failed');
-        const data = await response.json();
-        if (!data || !data.results || data.results.length === 0) throw new Error('No data found');
-        res.render('frontend/scrabble-dictionary_output.ejs', { morePosts, data });
+        res.render('frontend/scrabble-dictionary_output.ejs', { morePosts });
     } catch (error) {
         console.error('Error:', error);
         res.status(500).send('Internal Server Error');
