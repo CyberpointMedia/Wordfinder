@@ -21,7 +21,7 @@
                                         <p class="text-sm text-black sm:text-lg leading-10">
                                             Scrabble US/Canada (OTCWL)
                                             <span
-                                                class="bg-[#007BFF] rounded-[5px] ms-2 p-2 px-3 text-white text-xs">NO</span>
+                                                class="bg-[#b4b4b4] rounded-[5px] ms-2 p-2 px-3 text-white text-xs">NO</span>
                                             <span class="italic">(15 Points)</span>
                                         </p>
                                     </div>
@@ -29,7 +29,7 @@
                                         <p class="text-sm text-black sm:text-lg leading-10">
                                             Scrabble UK (SOWPODS)
                                             <span
-                                                class="bg-[#007BFF] rounded-[5px] ms-2 p-2 px-3 text-white text-xs">NO</span>
+                                                class="bg-[#b4b4b4] rounded-[5px] ms-2 p-2 px-3 text-white text-xs">NO</span>
                                             <span class="italic">(15 Points)</span>
                                         </p>
                                     </div>
@@ -37,7 +37,7 @@
                                         <p class="text-sm text-black sm:text-lg leading-10">
                                             Words With Friends
                                             <span
-                                                class="bg-[#007BFF] rounded-[5px] ms-2 p-2 px-3 text-white text-xs">NO</span>
+                                                class="bg-[#b4b4b4] rounded-[5px] ms-2 p-2 px-3 text-white text-xs">NO</span>
                                             <span class="italic">(15 Points)</span>
                                         </p>
                                     </div>
@@ -90,18 +90,16 @@
                                             <%= data.definition %>
                                         </p>
                                         <h6 class="mb-3 text-[20px] text-black"><b>Examples </b></h6>
-                                        <ul>
                                             <% data.examples.forEach(example=> { %>
-                                                <li>
+                                                <p>
                                                     <%= example %>
-                                                </li>
+                                                </p>
                                                 <% }); %>
-                                        </ul>
 
                                         <h6 class="mb-3 text-[20px] text-black"><b>Synonyms </b></h6>
-                                        <ul>
+                                        <ul class="flex flex-wrap gap-3 mt-4 mb-6 tagsMain">
                                             <% data.synonyms.forEach(synonym=> { %>
-                                                <li>
+                                                <li class="border border-[#007BFF] rounded-[5px] py-2 font-normal px-3 tag text-[#007bff] text-base">
                                                     <%= synonym %>
                                                 </li>
                                                 <% }); %>
