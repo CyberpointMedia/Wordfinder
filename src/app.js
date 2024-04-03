@@ -71,8 +71,12 @@ app.use(methodOverride('_method'));
 app.use(session({
     secret: 'your secret key',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 24 * 60 * 60 * 1000 // expires in 1 day
+    }
 }));
+
 app.use(flash());
 
 // Add the middleware here

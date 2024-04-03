@@ -14,6 +14,7 @@ const Category = require('../models/categories');
 const fetch = require('node-fetch');
 const visitCounter = require('../middleware/visitCounter');
 const readingTime = require('reading-time');
+const { url } = require('inspector');
 
 
 // Middleware to parse incoming request bodies
@@ -49,21 +50,41 @@ router.get('/scrabble-dictionary', visitCounter, async (req, res) => {
 });
 router.post('/scrabble-dictionary', (req, res) => {
     console.log("post scrabble-dictionary");
-    const letter = req.body.letters;
-    res.redirect(`/dictionary/${letter}`);
+    const word = req.body.letters;
+    res.redirect(`/dictionary/${word}`);
 });
 
-router.get('/dictionary/:letter', async (req, res) => {
-    const letter = req.params.letter;
-    console.log("letter",letter);
-    const url = 'https://dict-api.com/api/od/' + letter;
-    console.log(url);
-        try {
+router.get('/dictionary/:word', async (req, res) => {
+    const word = req.params.word;
+    const options = {
+        method: 'GET',
+        url: `https://dict-api.com/api/od/${word}`,
+    };
+    try {
+        const response = await axios.request(options);
+        const data = response.data;
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
-        const response = await fetch(url);
-        res.render('frontend/scrabble-dictionary_output.ejs', { morePosts });
+
+        if (data === null) {
+            res.render('frontend/scrabble-dictionary_output.ejs', { data: null, morePosts });
+        } else {
+            // Extract the relevant data from the API response
+            const result = data.results[0];
+            const lexicalEntry = result.lexicalEntries[0];
+            const entry = lexicalEntry.entries[0];
+            const sense = entry.senses[0];
+
+            const wordData = {
+                word: result.word,
+                lexicalCategory: lexicalEntry.lexicalCategory.text,
+                definition: sense.definitions[0],
+                examples: sense.examples.map(example => example.text),
+                synonyms: sense.synonyms.map(synonym => synonym.text),
+            };
+            res.render('frontend/scrabble-dictionary_output.ejs', { data: wordData, morePosts });
+        }
     } catch (error) {
-        console.error('Error:', error);
+        console.error(error);
         res.status(500).send('Internal Server Error');
     }
 });
@@ -78,6 +99,7 @@ router.get('/no-words-found', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
 router.post('/unscramble', visitCounter, async (req, res) => {
     try {
         const letters = req.body.letters;
