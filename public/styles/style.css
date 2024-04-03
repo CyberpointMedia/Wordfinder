@@ -2832,6 +2832,12 @@ video {
     .sm\:mb-0 {
         margin-bottom: 0px;
     }
+    .sm\:w-auto {
+        width: auto;
+    }
+    .sm\:gap-4 {
+        gap: 1rem;
+    }
     .sm\:ml-3 {
         margin-left: 0.75rem;
     }

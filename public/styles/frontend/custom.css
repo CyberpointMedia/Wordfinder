@@ -104,6 +104,7 @@ select {
 .list-type-color ::marker {
     color: #007BFF;
 }
+
 .hover-text-blue:hover{
     color: #0a58ca;
 }
@@ -111,12 +112,94 @@ select {
 .custom-card p{
     margin-bottom: 20px;
 }
+
 .custom-card p:last-child{
     margin-bottom: 0px;
 }
+
 .text-gray{
     color: rgba(57, 57, 57, 0.80);
 }
+
 .leading-10 {
     line-height: 2.5rem;
+}
+
+.top-header{
+    background: #1f2937;
+    color: #f0f0f1;
+}
+
+.top-header .quicklinks li{
+    position: relative;
+}
+
+.top-header .submenu {
+    opacity: 0;
+    visibility: hidden;
+    background: #1f2937;
+    color: #f0f0f1;
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    width: 100%;
+    z-index: 9;
+    padding: 6px 0;
+}
+
+.top-header .quicklinks li:hover > .submenu{
+    opacity: 1;
+    visibility: visible;
+}
+
+.quicklinks > li > a {
+    padding: 0 8px 0 7px;
+    -webkit-font-smoothing: subpixel-antialiased;
+    color: #c3c4c7;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.quicklinks li a:hover, .top-header .quicklinks li .submenu li a:hover, .profileDropdown a:hover {
+    color: #3b82f6;
+}
+
+.top-header .quicklinks li .submenu li a{
+    padding: 0px 10px;
+    min-width: 140px;
+    color: #c3c4c7;
+    font-size: 13px;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+}   
+
+.app-header .nav-link {
+    color: var(--tw-topbar-item-color);
+    height: var(--tw-topbar-height);
+    border-radius: 9999px;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 150ms;
+    transition-duration: 150ms;
+    -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.profileDropdown {
+    background: #1f2937;
+}
+.profileDropdown a{
+    padding: 5px 10px;
+    display: block;
+    color: #c3c4c7;
+    font-size: 13px;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+.profileMenu .display-name{
+    color: #c3c4c7;
+    font-size: 13px;
+    font-weight: 400;
+}
+.hs-dropdown.open>.hs-dropdown-open\:opacity-100 {
+    opacity: 1;
 }
