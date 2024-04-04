@@ -185,10 +185,18 @@ router.put('/update-status/:id', async (req, res) => {
 // Edit page
 router.get("/edit/:id", wrapAsync(async (req, res) => {
   try {
+    console.log("edit page get route");
     const { id } = req.params;
-
+    console.log("Page ID:", id);
+    if (!id || id === "undefined") { // Check for undefined or "undefined"
+      return res.redirect('/admin/pages/create');
+    }
     // Fetch the page from the database
     const page = await Page.findById(id).populate('sections');
+        // If the page is not found, redirect to the create page route
+        if (!page) {
+          return res.redirect('/admin/pages/create');
+        }
     page.sections.forEach(section => {
       console.log("Section title:", section.title);
   });

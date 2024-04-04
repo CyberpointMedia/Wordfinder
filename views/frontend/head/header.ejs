@@ -1,18 +1,19 @@
+<% if (isAdmin) { %>
 <div class="top-header flex flex-row justify-between p-2 items-center">
     <div class="">
         <ul class="quicklinks flex justify-start sm:gap-4">
             <li>
                 <a class="" href="javascript:void(0);">
                     <svg class="inline-block me-2" width="18px" height="18px" viewBox="0 0 20.00 20.00" xmlns="http://www.w3.org/2000/svg" fill="#c3c4c7" stroke="#c3c4c7" stroke-width="0.0002"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.04"></g><g id="SVGRepo_iconCarrier"> <rect x="0" fill="none" width="20" height="20"></rect> <g> <path d="M3.76 16h12.48c1.1-1.37 1.76-3.11 1.76-5 0-4.42-3.58-8-8-8s-8 3.58-8 8c0 1.89.66 3.63 1.76 5zM10 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM6 6c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm8 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-5.37 5.55L12 7v6c0 1.1-.9 2-2 2s-2-.9-2-2c0-.57.24-1.08.63-1.45zM4 10c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm12 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-5 3c0-.55-.45-1-1-1s-1 .45-1 1 .45 1 1 1 1-.45 1-1z"></path> </g> </g></svg>
-                    Website Name</a>
+                    Word Finder</a>
                 <ul class="submenu">
                     <li>
-                        <a class="" href="javascript:void(0);">Dashboard</a>
+                        <a class="" href="/admin/dashboard">Dashboard</a>
                     </li>
                 </ul>
             </li>
             <li>
-                <a class="" href="javascript:void(0);">
+                <a class="" href="<%= `/admin/pages/edit/${page._id}` %>">
                     <svg class="inline-block me-2" fill="#c3c4c7" width="16px" height="16px" viewBox="0 0 32 32" id="Outlined" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <g id="Fill"> <path d="M29.12,6.05,26,2.88a3,3,0,0,0-4.24,0L6.29,18.29a3.06,3.06,0,0,0-.72,1.18L2.08,29.92l10.46-3.49a3.15,3.15,0,0,0,1.17-.72L29.12,10.29a3,3,0,0,0,0-4.24Zm-21,13.28,8.75-8.74,1.58,1.58L9.67,20.92ZM18.24,9.17l1.59-1.58,4.58,4.58-1.58,1.59ZM7.1,21.19l3.72,3.71L5.25,26.75Zm5.57,2.73-1.59-1.59,8.75-8.74,1.58,1.58Zm15-15-1.88,1.88L21.24,6.17l1.88-1.88A1,1,0,0,1,23.83,4a1,1,0,0,1,.71.29l3.17,3.18a1,1,0,0,1,.29.7A1,1,0,0,1,27.71,8.88Z"></path> </g> </g></svg>
                     Edit Page</a>
             </li>
@@ -23,7 +24,7 @@
         <!-- Profile Dropdown Button -->
         <div class="hs-dropdown relative inline-flex [--placement:bottom-right] profileMenu">
             <button id="hs-dropdown-default" type="button" class="flex items-center hs-dropdown-toggle nav-link">
-                <span class="display-name mr-2 inline-block">Admin</span> 
+                <span class="display-name mr-2 inline-block"><%= username ? username : 'Admin' %></span>
                 <svg class="inline-block w-6 sm:w-auto" fill="#c3c4c7" width="40px" height="40px" viewBox="-1 0 19 19" xmlns="http://www.w3.org/2000/svg" class="cf-icon-svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M16.417 9.583A7.917 7.917 0 1 1 8.5 1.666a7.917 7.917 0 0 1 7.917 7.917zm-6.24-.064H6.81a2.528 2.528 0 0 0-2.692 2.303v1.51a.794.794 0 0 0 .792.792h7.166a.794.794 0 0 0 .792-.791V11.82a2.528 2.528 0 0 0-2.692-2.302zM6.14 6.374a2.353 2.353 0 1 0 2.353-2.353A2.353 2.353 0 0 0 6.14 6.374z"></path></g></svg>
             </button>
 
@@ -44,6 +45,8 @@
         </div>
     </div>
 </div>
+<% } %>
+
 <header class="relative flex flex-wrap w-full py-5 text-sm bg-white shadow-md sm:justify-start sm:flex-nowrap">
     <nav class="max-w-[85rem] w-full mx-auto px-4 md:px-6 lg:px-8" aria-label="Global">
         <div class="relative sm:flex sm:items-center">

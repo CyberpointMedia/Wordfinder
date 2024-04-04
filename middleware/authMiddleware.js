@@ -11,6 +11,7 @@ const ensureAdmin = (req, res, next) => {
         return res.redirect('/auth/login');
     }
 };
+
 const ensureAdminOrEditor = (req, res, next) => {
     if (req.isAuthenticated()) {
         console.log("ensureAdminOrEditor req.user.role", req.user.role);

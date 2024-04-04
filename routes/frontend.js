@@ -16,7 +16,28 @@ const visitCounter = require('../middleware/visitCounter');
 const readingTime = require('reading-time');
 const { url } = require('inspector');
 
+// Middleware to set isAdmin
+const setAdminStatusAndUsername = (req, res, next) => {
+    req.isAdmin = req.user && (req.user.role === 'admin' || req.user.role === 'editor' || req.user.role === 'administrator');
+    req.username = req.user && req.user.username;
+    next();
+};
 
+// Use the middleware in your application
+router.use(setAdminStatusAndUsername);
+// Middleware to fetch page and morePosts
+router.use(async (req, res, next) => {
+    try {
+        const morePosts = await Post.find({ status: 'Published' }).limit(3);
+        const page = await Page.findOne({ status: 'Published' });
+        res.locals.morePosts = morePosts;
+        res.locals.page = page;
+        next();
+    } catch (error) {
+        console.error('Error fetching post:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
 // Middleware to parse incoming request bodies
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
@@ -30,24 +51,25 @@ router.use('/styles', express.static(path.join(__dirname, 'styles')));
 router.get('/', visitCounter, async (req, res) => {
     try {
         console.log("hello sir ");
-        const morePosts = await Post.find({ status: 'Published' }).limit(3);
-        res.render('frontend/index.ejs', { morePosts });
+        res.render('frontend/index.ejs', { isAdmin: req.isAdmin,username: req.username });
     } catch (error) {
         console.error('Error fetching post:', error);
         res.status(500).send('Internal Server Error');
     }
 });
+
 //scrabble-dictionary
 router.get('/scrabble-dictionary', visitCounter, async (req, res) => {
     try {
         console.log("get scrabble-dictionary");
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
-        res.render('frontend/scrabble-dictionary.ejs', { morePosts });
+        res.render('frontend/scrabble-dictionary.ejs', { morePosts ,isAdmin: req.isAdmin,username: req.username});
     } catch (error) {
         console.error('Error fetching post:', error);
         res.status(500).send('Internal Server Error');
     }
 });
+
 router.post('/scrabble-dictionary', (req, res) => {
     console.log("post scrabble-dictionary");
     const word = req.body.letters;
@@ -66,7 +88,7 @@ router.get('/dictionary/:word', async (req, res) => {
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
 
         if (data === null) {
-            res.render('frontend/scrabble-dictionary_output.ejs', { data: null, morePosts });
+            res.render('frontend/scrabble-dictionary_output.ejs', { data: null, morePosts ,isAdmin: req.isAdmin,username: req.username ,pageId: req.page ? req.page._id : null});
         } else {
             // Extract the relevant data from the API response
             const result = data.results[0];
@@ -81,7 +103,7 @@ router.get('/dictionary/:word', async (req, res) => {
                 examples: sense.examples.map(example => example.text),
                 synonyms: sense.synonyms.map(synonym => synonym.text),
             };
-            res.render('frontend/scrabble-dictionary_output.ejs', { data: wordData, morePosts });
+            res.render('frontend/scrabble-dictionary_output.ejs', { data: wordData, morePosts ,isAdmin: req.isAdmin,username: req.username ,pageId: req.page ? req.page._id : null});
         }
     } catch (error) {
         console.error(error);
@@ -265,6 +287,7 @@ router.get('/:length-letter-words/', async (req, res) => {
         const length = req.params.length;
         const page = await Page.findOne({ page_router: `${length}-letter-words` }) || "";
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
+        const isAdmin = req.user && (req.user.role === 'admin' || req.user.role === 'administrator');
         const dictionary = 'wwf'; // default dictionary
         const letters = '';
         const startsWith = req.query.starts_with || '';
@@ -292,7 +315,7 @@ router.get('/:length-letter-words/', async (req, res) => {
                 });
                 return acc;
             }, {});
-            res.render('frontend/x-letter-words.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude ,page});
+            res.render('frontend/x-letter-words.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude ,page ,isAdmin ,isAdmin: req.isAdmin,username: req.username ,pageId: req.page ? req.page._id : null});
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
