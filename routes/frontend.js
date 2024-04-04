@@ -16,10 +16,10 @@ const visitCounter = require('../middleware/visitCounter');
 const readingTime = require('reading-time');
 const { url } = require('inspector');
 
-// Middleware to set isAdmin
+// Middleware to set isAdmin and username
 const setAdminStatusAndUsername = (req, res, next) => {
-    req.isAdmin = req.user && (req.user.role === 'admin' || req.user.role === 'editor' || req.user.role === 'administrator');
-    req.username = req.user && req.user.username;
+    res.locals.isAdmin = req.user && (req.user.role === 'admin' || req.user.role === 'editor' || req.user.role === 'administrator');
+    res.locals.username = req.user && req.user.username;
     next();
 };
 
@@ -51,7 +51,7 @@ router.use('/styles', express.static(path.join(__dirname, 'styles')));
 router.get('/', visitCounter, async (req, res) => {
     try {
         console.log("hello sir ");
-        res.render('frontend/index.ejs', { isAdmin: req.isAdmin,username: req.username });
+        res.render('frontend/index.ejs',);
     } catch (error) {
         console.error('Error fetching post:', error);
         res.status(500).send('Internal Server Error');
@@ -62,8 +62,7 @@ router.get('/', visitCounter, async (req, res) => {
 router.get('/scrabble-dictionary', visitCounter, async (req, res) => {
     try {
         console.log("get scrabble-dictionary");
-        const morePosts = await Post.find({ status: 'Published' }).limit(3);
-        res.render('frontend/scrabble-dictionary.ejs', { morePosts ,isAdmin: req.isAdmin,username: req.username});
+        res.render('frontend/scrabble-dictionary.ejs');
     } catch (error) {
         console.error('Error fetching post:', error);
         res.status(500).send('Internal Server Error');
@@ -88,7 +87,7 @@ router.get('/dictionary/:word', async (req, res) => {
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
 
         if (data === null) {
-            res.render('frontend/scrabble-dictionary_output.ejs', { data: null, morePosts ,isAdmin: req.isAdmin,username: req.username ,pageId: req.page ? req.page._id : null});
+            res.render('frontend/scrabble-dictionary_output.ejs', { data: null,pageId: req.page ? req.page._id : null});
         } else {
             // Extract the relevant data from the API response
             const result = data.results[0];
@@ -103,7 +102,7 @@ router.get('/dictionary/:word', async (req, res) => {
                 examples: sense.examples.map(example => example.text),
                 synonyms: sense.synonyms.map(synonym => synonym.text),
             };
-            res.render('frontend/scrabble-dictionary_output.ejs', { data: wordData, morePosts ,isAdmin: req.isAdmin,username: req.username ,pageId: req.page ? req.page._id : null});
+            res.render('frontend/scrabble-dictionary_output.ejs', { data: wordData,pageId: req.page ? req.page._id : null});
         }
     } catch (error) {
         console.error(error);

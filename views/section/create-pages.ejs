@@ -52,7 +52,7 @@
                                             <label class="mb-3 text-lg" for="page_router">Page slug</label>
                                             <input name="page_router" id="page_router" type="text"
                                                 class="form-input bg-[#F0F7FA] border-0 mb-3"
-                                                placeholder="Enter Page slug">
+                                                placeholder="Enter Page slug"  <% if (slug) { %> value="<%= slug %>" <% } %>>
                                         </div>
 
                                         <!-- add Page Description -->

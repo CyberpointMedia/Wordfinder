@@ -8,6 +8,7 @@ const router = express.Router();
 const { parse } = require('node-html-parser');
 const wrapAsync = require("../middleware/wrapAsync");
 const methodOverride = require('method-override');
+const { URL } = require('url');
 
 // Use middleware to parse JSON and URL-encoded form data
 router.use(express.json());
@@ -60,13 +61,14 @@ router.get("/", wrapAsync(async (req, res) => {
 // Home page
 router.get("/create", wrapAsync(async (req, res) => {
   try {
+    const slug = req.query.slug;
     // Fetch sections for the dropdown
     const sections = await Section.find();
 
     // Fetch pages for any additional data you might need
     const pages = await Page.find();
 
-    res.render("section/create-pages.ejs", { page: {}, sections, pages, user: req.user });
+    res.render("section/create-pages.ejs", { slug ,page: {}, sections, pages, user: req.user });
   } catch (error) {
     console.error("Error fetching data:", error);
     res.status(500).send("Internal Server Error");
@@ -187,20 +189,26 @@ router.get("/edit/:id", wrapAsync(async (req, res) => {
   try {
     console.log("edit page get route");
     const { id } = req.params;
+    let path = ''; // Define the path variable
+    if (req.headers.referer) {
+      const url = new URL(req.headers.referer);
+      path = url.pathname; // Assign a value to the path variable
+      console.log("Referrer path:", path.slice(1, path.length - 1)); // Remove the leading and trailing slashes
+    }
     console.log("Page ID:", id);
     if (!id || id === "undefined") { // Check for undefined or "undefined"
-      return res.redirect('/admin/pages/create');
+      return res.redirect(`/admin/pages/create?slug=${path.slice(1, path.length - 1)}`);
     }
     // Fetch the page from the database
     const page = await Page.findById(id).populate('sections');
-        // If the page is not found, redirect to the create page route
-        if (!page) {
-          return res.redirect('/admin/pages/create');
-        }
+    // If the page is not found, redirect to the create page route
+    if (!page) {
+      return res.redirect(`/admin/pages/create?slug=${path.slice(1, path.length - 1)}`);
+    }
     page.sections.forEach(section => {
       console.log("Section title:", section.title);
-  });
-      // Fetch sections for the dropdown
+    });
+    // Fetch sections for the dropdown
     const sections = await Section.find();
     // Render the edit-page.ejs file and pass the page and sections
     res.render("section/edit-page.ejs", { page, sections ,user: req.user });
