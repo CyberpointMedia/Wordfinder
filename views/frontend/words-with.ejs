@@ -6,24 +6,38 @@
             <!-- header end here -->
 
             <!-- content section start -->
-            <div class="pt-1</div>0 pb-10 bg-white md:pt-20 md:pb-20">
+            <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-20">
                 <div class="container">
                     <div class="flex flex-col gap-8 md:flex-row">
                         <!-- left col start -->
                         <div class="w-full md:w-2/3">
                             <!-- Words with X and Q box start -->
-                            <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
-                                <h2 class="mb-4 text-3xl font-semibold md:text-4xl">
-                                    <% if (typeof contains_char2 !== 'undefined' && contains_char2) { %>
-                                        All Words with <%= contains_char1.toUpperCase() %> and <%= contains_char2.toUpperCase() %> (or <%= contains_char2.toUpperCase() %> and <%= contains_char1.toUpperCase() %>)
-                                    <% } else { %>
-                                        Words With <%= contains.toUpperCase() %> - All Words that Contain <%= contains.toUpperCase() %>
-                                    <% } %>
-                                </h2>
-                                <p>
-                                  <%- page.sub_heading %>                                
-                                </p>
-                              </div>
+                           <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+    <h2 class="mb-4 text-3xl font-semibold md:text-4xl">
+        <% if (typeof contains_char2 !== 'undefined' && contains_char2) { %>
+            All Words with <%= contains_char1.toUpperCase() %> and <%= contains_char2.toUpperCase() %> (or <%= contains_char2.toUpperCase() %> and <%= contains_char1.toUpperCase() %>)
+            <p>
+                <% if (!page.sub_heading) { %>
+                    <p>Here you'll find a list of words with <%= contains_char1.toUpperCase() %> in them, in addition to the points they score in word games like <a href="https://word-finder.com/scrabble-word-finder/">Scrabble</a> and <a href="https://word-finder.com/words-with-friends-cheat-tool/">Words With Friends</a>. The highest-scoring and longest words containing <%= contains_char1.toUpperCase() %> are listed first. Select the game you're playing and click on a word to see if you're allowed to play it. If this list is too large, you could look at only <a href="https://word-finder.com/words-that-start-with/<%= contains_char1.toUpperCase() %>/">words starting with <%= contains_char1.toUpperCase() %></a> or words <a href="https://word-finder.com/words-that-end-in/<%= contains_char2.toUpperCase() %>/">ending with <%= contains_char2.toUpperCase() %></a>.</p>
+                    <p>Looking for Wordle help? Go to our <a href="https://word-finder.com/wordle/">Wordle solving tool</a> and also check out the <a href="https://word-finder.com/articles/best-word-to-start-wordle/">best first guesses in Wordle</a>.</p>
+                <% } else { %>
+                    <%- page.sub_heading %>
+                <% } %>
+            </p>
+        <% } else { %>
+            Words With <%= contains.toUpperCase() %> - All Words that Contain <%= contains.toUpperCase() %>
+            <p>
+                <% if (!page.sub_heading) { %>
+                    <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;" id="isPasted">Here you&#39;ll find a list of&nbsp;<span style="box-sizing: border-box; color: var(--secondaryblue);">words with <%= contains.toUpperCase() %></span> in them, in addition to the points they score in word games like&nbsp;<a href="https://word-finder.com/scrabble-word-finder/" style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Scrabble</a> and&nbsp;<a href="https://word-finder.com/words-with-friends-cheat-tool/" style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Words With Friends</a>. The highest-scoring and longest&nbsp;<span style="box-sizing: border-box; color: var(--secondaryblue);">words containing <%= contains.toUpperCase() %></span> are listed first. Select the game you&rsquo;re playing and click on a word to see if you&rsquo;re allowed to play it. If this list is too large, you could look at only&nbsp;<a href="https://word-finder.com/words-that-start-with/<%= contains.toUpperCase() %>/" style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">words starting with <%= contains.toUpperCase() %></a> or words&nbsp;<a href="https://word-finder.com/words-that-end-in/<%= contains.toUpperCase() %>/" style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">ending with <%= contains.toUpperCase() %></a>.</p>
+
+                    <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">Looking for Wordle help? Go to our&nbsp;<a href="https://word-finder.com/wordle/" style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Wordle solving tool</a> and also check out the&nbsp;<a href="https://word-finder.com/articles/best-word-to-start-wordle/" style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">best first guesses in Wordle</a>.</p>
+                     <% } else { %>
+                    <%- page.sub_heading %>
+                <% } %>
+            </p>
+        <% } %>
+    </h2>
+</div>
                             <!-- show--scarabble -->
                           <!-- ... -->
                           <% if (specifiedLength) { %>

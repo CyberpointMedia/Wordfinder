@@ -48,8 +48,8 @@ router.get('/images', async (req, res) => {
 });
 
 router.post('/upload', upload.array('files'), async (req, res) => {
-  try {console.log(req.body);
-    
+  try {
+    console.log("uplaod respone req.body ",req.body);
     const imageUrls = req.files.map(file => file.location);
 
     // Create a new Image document for each file

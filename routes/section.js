@@ -63,13 +63,13 @@ router.route('/create')
       });
       console.log("newsection",newSection);
       await newSection.save();
-  
-      res.redirect('/admin/section/create');
+      // Redirect to the edit page for the newly created section
+      res.redirect(`/admin/section/edit/${newSection._id}`);
     } catch (error) {
       console.error('Error creating section:', error);
       res.status(500).send('Internal Server Error');
     }
-  }));
+}));
 // Display all pages with associated sections
 router.get('/show', wrapAsync(async (req, res) => {
     try {

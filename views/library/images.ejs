@@ -221,21 +221,25 @@
   </body>
   <!-- sidebar end here -->
   <%- include('../script/script.ejs') %>
-    <script>
-  document.querySelector('#uploadButton').addEventListener('click', function(e) {
+  <script>
+$(document).ready(function() {
+  console.log('Document is ready');  // This will log to the console when the document is ready
+
+  $('body').on('click', '#uploadButton', function(e) {
+    console.log('Upload button clicked');  // This will log to the console when the button is clicked
     e.preventDefault();
 
     var files = document.querySelector('#files').files;
     var formData = new FormData();
 
     for (var i = 0; i < files.length; i++) {
-      formData.append('files', files[i]);
-    }
-
+       formData.append('files', files[i]);
+     }
     fetch('/library/upload', {
-      method: 'POST',
-      body: formData
-    })
+    method: 'POST',
+    body: formData,
+    credentials: 'include'  // Include credentials in the request
+  })
     .then(response => {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -245,6 +249,7 @@
     .then(data => console.log(data))
     .catch(error => console.error('There was a problem with the fetch operation: ' + error.message));
   });
+});
       // This function is called when a small image is clicked
 function showModal(image) {
         modal.classList.remove('hidden');
@@ -344,6 +349,5 @@ function showModal(image) {
           this.select();
         });
       })();
-    </script>
-
-    </html>
+  </script>
+  </html>

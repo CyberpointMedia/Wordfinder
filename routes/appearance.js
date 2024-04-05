@@ -37,7 +37,7 @@ router.post('/save-menu', async (req, res) => {
             console.log("Post IDs:", postIds);
             const newMenu = new Appearance({ menuName, pages: pageIds, posts: postIds, customLinks });
             await newMenu.save();
-            res.redirect('/appearance/nav-menu?error=Menu%20created%20successfully');
+            res.redirect(`/appearance/edit-menu/${newMenu._id}`);
         }
     } catch (error) {
         console.error(error);
@@ -95,7 +95,7 @@ router.post('/edit-menu/:id', ensureAdmin, async (req, res) => {
         const menu = await Appearance.findByIdAndUpdate(menuId, { menuName, pages: pageIds, posts: postIds, customLinks }, { new: true });
 
         if (menu) {
-            res.redirect('/appearance/nav-menu');
+            res.redirect(`/appearance/edit-menu/${menu._id}`);
         } else {
             res.status(404).json({ message: 'Menu not found' });
         }

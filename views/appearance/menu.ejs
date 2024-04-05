@@ -295,7 +295,7 @@
                                 });
 
 
-                                document.getElementById('select-menu-to-edit').addEventListener('change', function () {
+ document.getElementById('select-menu-to-edit').addEventListener('change', function () {
   console.log("Select menu changed");
   var menuId = this.value;
   fetch('/appearance/get-menu-details/' + menuId)

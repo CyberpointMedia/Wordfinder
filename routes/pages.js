@@ -58,6 +58,7 @@ router.get("/", wrapAsync(async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 }));
+
 // Home page
 router.get("/create", wrapAsync(async (req, res) => {
   try {
@@ -74,7 +75,6 @@ router.get("/create", wrapAsync(async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 }));
-
 
 // Create a new page with sections
 router.post("/create", wrapAsync(async (req, res) => {
@@ -155,8 +155,8 @@ router.post("/create", wrapAsync(async (req, res) => {
     const savedPage = await newPage.save();
     console.log("Saved Page:", savedPage);
 
-    res.redirect("/admin/pages/create"); // Redirect to the pages route after creating the page
-  } catch (error) {
+    res.redirect(`/admin/pages/edit/${savedPage._id}`);
+    } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
   }
