@@ -445,6 +445,11 @@ input[type="file"] {
     background: #f0f7fa;
 }
 
+.disabled-Menu {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
 @media(min-width:667px) and (max-width:767px) {
     .dataTables_wrapper .dataTables_info {
         float: left;
