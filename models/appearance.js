@@ -17,6 +17,6 @@ const AppearanceSchema = new mongoose.Schema({
     customLinks: [{
         url: String,
         text: String
-    }]
+    }],
 });
 module.exports = mongoose.model('Appearance', AppearanceSchema);

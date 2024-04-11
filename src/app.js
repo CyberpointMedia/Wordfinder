@@ -180,7 +180,6 @@ app.use('/footer', footerRoutes);
 // Editor can access these routes
 app.use('/admin/section', ensureEditor, sectionRoutes);
 app.use('/admin/pages', ensureEditor, pagesRoutes);
-
 // Admin and Administrator can access all routes
 app.use('/admin/section', ensureAdmin, sectionRoutes);
 app.use('/admin/pages', ensureAdmin, pagesRoutes);

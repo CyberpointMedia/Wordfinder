@@ -11,7 +11,7 @@
                         <main class="px-5 py-8">
                             <form action="/appearance/edit-menu/<%= menu._id %>" method="POST">
                                 <div class="flex flex-col gap-6 mt-6 md:flex-row">
-                                    <!-- Add menu items start --> 
+                                    <!-- Add menu items start -->
                                     <div class="w-full md:w-2/5 ">
                                         <h2 class="mb-4 text-xl font-bold text-black">
                                             Add menu items
@@ -60,7 +60,9 @@
                                                                     </li>
                                                                     <% }) %>
                                                             </ul>
-                                                            <button id="addPagesButton" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">Add Pages</button>
+                                                            <button id="addPagesButton"
+                                                                class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">Add
+                                                                Pages</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -106,7 +108,9 @@
                                                                     </li>
                                                                     <% }) %>
                                                             </ul>
-                                                            <button id="addPagesButton" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">Add Post</button>
+                                                            <button id="addPagesButton"
+                                                                class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">Add
+                                                                Post</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -158,7 +162,9 @@
                                                                     </li>
                                                                     <% }) %>
                                                             </ul>
-                                                            <button id="addPagesButton" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">Add Custom Link</button>
+                                                            <button id="addPagesButton"
+                                                                class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">Add
+                                                                Custom Link</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -192,9 +198,7 @@
                                             </div>
                                             <div class="publishing-action">
                                                 <a href="/appearance/nav-menu">
-                                                    <button class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">
                                                         Create Menu
-                                                    </button>
                                                 </a>
                                             </div>
                                             <!-- END .publishing-action -->
@@ -204,6 +208,9 @@
                                 </div>
                                 <div class="px-5 py-8 mt-8 bg-white border rounded shadow-sm savedMenuShows cardBody">
                                     <h3 class="mb-4 text-lg font-bold text-black">Menu Settings</h3>
+                                    <a href="/appearance/nav-menu">
+                                                        Create Menu 
+                                                </a>
                                     <div class="flex flex-col justify-start mb-6 sm:items-center sm:flex-row">
                                         <label class="mb-2 text-sm font-normal sm:mb-0">Select a menu to
                                             edit:</label>
@@ -219,12 +226,12 @@
                                         </div>
                                     </div>
                                     <div class="mb-6 hs-accordion-group">
-                                        <!-- added menu 1 start -->
+                                        <!-- added page start -->
                                         <div class="mb-4 hs-accordion " id="hs-basic-nested-sub-heading-colOne ">
                                             <button id="menu-button"
                                                 class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]"
                                                 aria-controls="hs-basic-nested-sub-collapse-colOne ">
-                                                select the menu
+                                                selcted pages / post /custom links
                                                 <svg class="block w-4 h-4 hs-accordion-active:hidden "
                                                     xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
                                                     viewBox="0 0 24 24 " fill="none " stroke="currentColor "
@@ -238,26 +245,29 @@
                                                     <path d="m18 15-6-6-6 6 " />
                                                 </svg>
                                             </button>
-                                            <div id="flex-hs-basic-nested-sub-collapse-colOne"
+                                            <div id="pages-menu"
                                                 class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF] bg-white shadow-md rounded-lg p-6"
                                                 aria-labelledby="hs-basic-nested-sub-heading-colOne ">
-                                                  <!-- Dynamic content will be inserted here by JavaScript -->
+                                                <!-- Dynamic content will be inserted here by JavaScript -->
                                             </div>
-                                            <div class="flex flex-row items-center gap-2 mt-6">
-                                                <div class="publishing-action">
-                                                    <a id="edit-button" href="javascript:void(0);"
-                                                        class="w-24 py-2 px-4 text-white bg-[#007BFF] rounded-lg item-remove">
-                                                        Edit
-                                                    </a>
-                                                </div>
-                                                <span class="flex items-center">
-                                                    <a id="remove-button"
-                                                        class="ml-3 text-red-600 underline item-remove hover:text-red-400"
-                                                        href="javascript:void(0);">Delete Menu</a>
-                                                </span>
+
+                                        </div>
+                                        <!-- added page end -->
+                                        <div class="flex flex-row items-center gap-2 mt-6">
+                                            <div class="publishing-action">
+                                                <a id="edit-button" href="javascript:void(0);"
+                                                    class="w-24 py-2 px-4 text-white bg-[#007BFF] rounded-lg item-remove">
+                                                    Edit
+                                                </a>
                                             </div>
+                                            <span class="flex items-center">
+                                                <a id="remove-button"
+                                                    class="ml-3 text-red-600 underline item-remove hover:text-red-400"
+                                                    href="javascript:void(0);">Delete Menu</a>
+                                            </span>
                                         </div>
                                     </div>
+                                </div>
                             </form>
                         </main>
                         <!-- main content end here -->
@@ -278,27 +288,36 @@
 
 
                                 document.getElementById('select-menu-to-edit').addEventListener('change', function () {
-  console.log("Select menu changed");
-  var menuId = this.value;
-  fetch('/appearance/get-menu-details/' + menuId)
-    .then(response => response.json())
-    .then(data => {
-      var menuDiv = document.getElementById('flex-hs-basic-nested-sub-collapse-colOne');
-      menuDiv.innerHTML = `
-        <div class="mb-2 text-lg font-normal text-black">Pages: ${data.pages.length > 0 ? data.pages.map(page => page.page_name).join(', ') : 'No pages selected'}</div>
-        <div class="mb-2 text-lg font-normal text-black">Posts: ${data.posts.length > 0 ? data.posts.map(post => post.title).join(', ') : 'No posts selected'}</div>
-        <div class="mb-2 text-lg font-normal text-black">Custom Links: ${data.customLinks.length > 0 ? data.customLinks.map(link => link.text).join(', ') : 'No link'}</div>
-      `;
-      document.getElementById('menu-button').innerText = data.menuName;
-      console.log('Selected menu details:', data);
-    })
-    .catch(error => console.error('Error:', error));
-});
+                                    console.log("Select menu changed");
+                                    var menuId = this.value;
+                                    fetch('/appearance/get-menu-details/' + menuId)
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            // Populate Pages section
+                                            var pagesMenuDiv = document.getElementById('pages-menu');
+                                            pagesMenuDiv.innerHTML = `
+                <div class="mb-2 text-lg font-normal text-black">Pages: ${data.pages.length > 0 ? data.pages.map(page => page.page_name).join(', ') : 'No pages selected'}</div>
+            `;
 
-// Trigger the 'change' event on page load to load the details of the selected menu
-window.onload = function() {
-  document.getElementById('select-menu-to-edit').dispatchEvent(new Event('change'));
-};
+                                            // Populate Posts section
+                                            var postsMenuDiv = document.getElementById('post-menu');
+                                            postsMenuDiv.innerHTML = `
+                <div class="mb-2 text-lg font-normal text-black">Posts: ${data.posts.length > 0 ? data.posts.map(post => post.title).join(', ') : 'No posts selected'}</div>
+            `;
+
+                                            // Populate Custom Links section
+                                            var customLinksMenuDiv = document.getElementById('custom-link-menu');
+                                            customLinksMenuDiv.innerHTML = `
+                <div class="mb-2 text-lg font-normal text-black">Custom Links: ${data.customLinks.length > 0 ? data.customLinks.map(link => link.text).join(', ') : 'No link'}</div>
+            `;
+                                        })
+                                        .catch(error => console.error('Error:', error));
+                                });
+
+                                // Trigger the 'change' event on page load to load the details of the selected menu
+                                window.onload = function () {
+                                    document.getElementById('select-menu-to-edit').dispatchEvent(new Event('change'));
+                                };
 
                                 document.getElementById('remove-button').addEventListener('click', function () {
                                     var menuId = document.getElementById('select-menu-to-edit').value;
@@ -320,23 +339,23 @@ window.onload = function() {
                                         })
                                         .catch(error => console.error('Error:', error));
                                 });
-                                document.getElementById('addPagesButton').addEventListener('click', function() {
-  fetch('/appearance/edit-menu/<%= menu._id %>', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ /* your data here */ }),
-  })
-  .then(response => response.json())
-  .then(data => {
-    // Handle the response data here
-    console.log(data);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-});
+                                document.getElementById('addPagesButton').addEventListener('click', function () {
+                                    fetch('/appearance/edit-menu/<%= menu._id %>', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                        },
+                                        body: JSON.stringify({ /* your data here */ }),
+                                    })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            // Handle the response data here
+                                            console.log(data);
+                                        })
+                                        .catch((error) => {
+                                            console.error('Error:', error);
+                                        });
+                                });
                                 document.getElementById('select-menu-to-edit').addEventListener('change', function () {
                                     var menuId = this.value;
                                     // Set the href attribute of the "Edit" button
