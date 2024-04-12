@@ -11,10 +11,12 @@ const Post = require('../models/post');
 const Page = require('../models/pages');
 const Section = require('../models/section');
 const Category = require('../models/categories');
+const ShowMenu = require('../models/show-menu');
 const Appearance = require('../models/appearance');
 const fetch = require('node-fetch');
 const visitCounter = require('../middleware/visitCounter');
 const readingTime = require('reading-time');
+const mongoose = require('mongoose');
 const { url } = require('inspector');
 
 // Middleware to set isAdmin and username
@@ -31,10 +33,24 @@ router.use(async (req, res, next) => {
     try {
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const page = await Page.findOne({ status: 'Published' });
-        const menus = await Appearance.find().populate('pages').populate('posts');
+        const appearance = await Appearance.find();
+        let menus;
+        try {
+            menus = await ShowMenu.find().populate({
+                path: 'items.id',
+                match: { type: { $in: ['page', 'post'] } }
+            });
+        } catch (error) {
+            if (error instanceof mongoose.Error.MissingSchemaError) {
+                menus = await ShowMenu.find();
+            } else {
+                throw error;
+            }
+        }
         res.locals.morePosts = morePosts;
         res.locals.page = page;
         res.locals.menus = menus;
+        res.locals.customLinks = appearance[0].customLinks;
         next();
     } catch (error) {
         console.error('Error fetching post:', error);

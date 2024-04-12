@@ -120,30 +120,27 @@
                                 <div class="sm:col-span-1">
                                     
                                         
-                                            <span class="block text-xl pb-6 font-semibold text-[#007BFF]"><%= menu.menuName %></span>
-                                            <ul class="space-y-2 text-base font-normal">
-                                                <% menu.pages ? menu.pages.forEach(page => { %>
-                                                    <li>
-                                                        <a class="hover:text-[#007BFF]" href="/<%= page.page_router %>">
-                                                            <%= page.page_name %>
+                                    <span class="block text-xl pb-6 font-semibold text-[#007BFF]"><%= menu.menuName %></span>
+                                    <ul class="space-y-2 text-base font-normal">
+                                        <% menu.items ? menu.items.forEach(item => { %>
+                                            <li>
+                                                <% if (item.type === 'page') { %>
+                                                    <a class="hover:text-[#007BFF]" href="/<%= item.id.page_router %>">
+                                                        <%= item.updated_name ? item.updated_name : item.id.page_name %>
+                                                    </a>
+                                                <% } else if (item.type === 'post') { %>
+                                                    <a class="hover:text-[#007BFF]" href="/articles/<%= item.id.title %>">
+                                                        <%= item.updated_name ? item.updated_name : item.id.heading %>
+                                                    </a>
+                                                    <% } else if (item.type === 'customLink') { %>
+                                                        <% const customLink = customLinks.find(link => link._id.toString() === item.id.toString()); %>
+                                                        <a class="hover:text-[#007BFF]" href="/<%= customLinks.url %>">
+                                                            <%= item.updated_name ? item.updated_name : customLink.text %>
                                                         </a>
-                                                    </li>
-                                                <% }) : '' %>
-                                                <% menu.posts ? menu.posts.forEach(post => { %>
-                                                    <li>
-                                                        <a class="hover:text-[#007BFF]" href="/articles/<%= post.title %>">
-                                                            <%= post.title %>
-                                                        </a>
-                                                    </li>
-                                                <% }) : '' %>
-                                                <% menu.customLinks ? menu.customLinks.forEach(link => { %>
-                                                    <li>
-                                                        <a class="hover:text-[#007BFF]" href="/<%= link.url %>">
-                                                            <%= link.text %>
-                                                        </a>
-                                                    </li>
-                                                <% }) : '' %>
-                                            </ul>
+                                                    <% } %>
+                                            </li>
+                                        <% }) : '' %>
+                                    </ul>
                                         
                                 </div>
                                 <% }) %>

@@ -20,4 +20,5 @@ const ShowMenuSchema = new mongoose.Schema({
             parent: String
         }]
     });
+    
 module.exports = mongoose.model('ShowMenu', ShowMenuSchema);
