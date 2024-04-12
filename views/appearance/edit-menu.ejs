@@ -438,7 +438,7 @@
                                 function addButton(name, allNames, index) {
                                     $('#page-post-custom-name').text(name);
                                     $('#page-post-custom').append(`
-            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-colOne">
+            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF] mt-5" aria-controls="hs-basic-nested-sub-collapse-colOne">
                 ${name}
                 <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
                     viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2 " stroke-linecap="round " stroke-linejoin="round ">
@@ -450,20 +450,20 @@
                 </svg>
             </button>
             <div id="hs-basic-nested-sub-collapse-colOne " class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF] " aria-labelledby="hs-basic-nested-sub-heading-colOne ">
-                <div class="py-5 ">
-                    <div class="mb-6 form-group ">
+                <div class="pt-5 ">
+                    <div class="mt-6 mb-4 form-group ">
                         <label class="mb-2 text-sm font-normal" for="updated_name${index}">Name</label>
                         <input id="updated_name${index}" name="updated_name" type="text" class="md:w-72" value ="${name}" placeholder="Enter the updated name">
                     </div>
                     <div class="mb-4 form-group ">
                         <label class="mb-2 text-sm font-normal" for="parent${index}">Parent </label>
-<select id="parent${index}" name="parent" class="md:w-72">
+<select id="parent${index}" name="parent" class="md:w-72 px-3 py-3">
     <option value="">Select the parent</option>
     ${allNames.map(name => `<option value="${name}">${name}</option>`).join('')}
 </select>
         </div>
                 </div>
-                <button type="submit" class="update-page-post-custom py-2 px-4 text-white bg-[#007BFF] rounded-lg">Save</button>
+                <button type="submit" class="update-page-post-custom py-2 px-4 text-white bg-[#007BFF] rounded-lg mb-3">Save</button>
             </div>
         `);
                                 }
