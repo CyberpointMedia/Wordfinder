@@ -116,32 +116,34 @@
                         <div class="px-8 py-12 overflow-y-auto md:px-16">
                             <div class="grid gap-4 md:grid-cols-4">
                                 <div class="sm:col-span-2">
-                                    <% menus.forEach(menu => { %>
-                                        <span class="block text-xl pb-6 font-semibold text-[#007BFF]"><%= menu.menuName %></span>
-                                        <ul class="space-y-2 text-base font-normal">
-                                            <% menu.pages.forEach(page => { %>
-                                                <li>
-                                                    <a class="hover:text-[#007BFF]" href="/<%= page.page_router %>">
-                                                        <%= page.page_name %>
-                                                    </a>
-                                                </li>
-                                            <% }) %>
-                                            <% menu.posts.forEach(post => { %>
-                                                <li>
-                                                    <a class="hover:text-[#007BFF]" href="/articles/<%= post.title %>">
-                                                        <%= post.title %>
-                                                    </a>
-                                                </li>
-                                            <% }) %>
-                                            <% menu.customLinks.forEach(link => { %>
-                                                <li>
-                                                    <a class="hover:text-[#007BFF]" href="/<%= link.url %>">
-                                                        <%= link.text %>
-                                                    </a>
-                                                </li>
-                                            <% }) %>
-                                        </ul>
-                                    <% }) %>
+                                    <% if (menus) { %>
+                                        <% menus.forEach(menu => { %>
+                                            <span class="block text-xl pb-6 font-semibold text-[#007BFF]"><%= menu.menuName %></span>
+                                            <ul class="space-y-2 text-base font-normal">
+                                                <% menu.pages ? menu.pages.forEach(page => { %>
+                                                    <li>
+                                                        <a class="hover:text-[#007BFF]" href="/<%= page.page_router %>">
+                                                            <%= page.page_name %>
+                                                        </a>
+                                                    </li>
+                                                <% }) : '' %>
+                                                <% menu.posts ? menu.posts.forEach(post => { %>
+                                                    <li>
+                                                        <a class="hover:text-[#007BFF]" href="/articles/<%= post.title %>">
+                                                            <%= post.title %>
+                                                        </a>
+                                                    </li>
+                                                <% }) : '' %>
+                                                <% menu.customLinks ? menu.customLinks.forEach(link => { %>
+                                                    <li>
+                                                        <a class="hover:text-[#007BFF]" href="/<%= link.url %>">
+                                                            <%= link.text %>
+                                                        </a>
+                                                    </li>
+                                                <% }) : '' %>
+                                            </ul>
+                                        <% }) %>
+                                    <% } %>
                                 </div>
                                 <!-- End Col -->
 
