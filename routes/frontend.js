@@ -11,6 +11,7 @@ const Post = require('../models/post');
 const Page = require('../models/pages');
 const Section = require('../models/section');
 const Category = require('../models/categories');
+const Appearance = require('../models/appearance');
 const fetch = require('node-fetch');
 const visitCounter = require('../middleware/visitCounter');
 const readingTime = require('reading-time');
@@ -30,14 +31,17 @@ router.use(async (req, res, next) => {
     try {
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const page = await Page.findOne({ status: 'Published' });
+        const menus = await Appearance.find().populate('pages').populate('posts');
         res.locals.morePosts = morePosts;
         res.locals.page = page;
+        res.locals.menus = menus;
         next();
     } catch (error) {
         console.error('Error fetching post:', error);
         res.status(500).send('Internal Server Error');
     }
 });
+
 // Middleware to parse incoming request bodies
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());

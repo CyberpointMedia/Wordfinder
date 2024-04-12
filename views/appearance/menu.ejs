@@ -277,133 +277,147 @@
                             </div>
 
                         </div>
-                        </form>
-                        <div class="flex flex-row items-center gap-2 mt-6">
-                                    <div class="publishing-action">
-                                        <a id="edit-button" href="javascript:void(0);"
-                                            class="w-24 py-2 px-4 text-white bg-[#007BFF] rounded-lg item-remove">
-                                            Edit
-                                        </a>
-                                    </div>
-                                    <span class="flex items-center">
-                                        <a id="remove-button"
-                                            class="ml-3 text-red-600 underline item-remove hover:text-red-400"
-                                            href="javascript:void(0);">Delete Menu</a>
-                                    </span>
+                    </form>
+                    <div class="flex flex-row items-center gap-2 mt-6">
+                        <div class="publishing-action">
+                            <a id="edit-button" href="javascript:void(0);"
+                                class="w-24 py-2 px-4 text-white bg-[#007BFF] rounded-lg item-remove">
+                                Edit
+                            </a>
                         </div>
-        <% } %>
-            <% if (error) { %>
-                <script>
-                    alert("<%= error %>");
-                </script>
-                <% } %>
-                    </main>
-                    <!-- main content end here -->
-                    <%- include('../script/script.ejs') %>
-                    <script>
-    $(document).ready(function () {
-        $('#createMenu').click(function () {
-            $('#menuCreationForm').show();
-            $(this).parents('.noMenu').hide();
-        });
+                        <span class="flex items-center">
+                            <a id="remove-button" class="ml-3 text-red-600 underline item-remove hover:text-red-400"
+                                href="javascript:void(0);">Delete Menu</a>
+                        </span>
+                    </div>
+                    <% } %>
+                        <% if (error) { %>
+                            <script>
+                                alert("<%= error %>");
+                            </script>
+                            <% } %>
+                                </main>
+                                <!-- main content end here -->
+                                <%- include('../script/script.ejs') %>
+                                    <script>
+                                        $(document).ready(function () {
+                                            $('#createMenu').click(function () {
+                                                $('#menuCreationForm').show();
+                                                $(this).parents('.noMenu').hide();
+                                            });
 
-        // Add event listener for form submission
-        $('#update-page-post-custom').click(function(event) {
-            event.preventDefault(); // Prevent the default form submission
-            var formData = {
-                updated_name: $('#updated_name').val(),
-                parent: $('#parent').val()
-                // Add other form fields as needed
-            };
+                                            // Add event listener for form submission
+                                            $('.update-page-post-custom').last().click(function (event) {
+                                                event.preventDefault(); // Prevent the default form submission
+                                                // Get the index of the button that was clicked
+                                                var index = $('.update-page-post-custom').index(this);
 
-            // AJAX call to submit the form data
-            $.ajax({
-                url: '/appearance/show-menu', // Replace with the appropriate URL
-                type: 'POST',
-                data: formData,
-                success: function(response) {
-                    // Handle success response
-                    console.log(response);
-                },
-                error: function(error) {
-                    // Handle error response
-                    console.error(error);
-                }
-            });
-        });
-    });
+                                                // Get the values from the updated_name and parent field for this button
+                                                var updatedName = $(`#updated_name${index}`).val();
+                                                var parent = $(`#parent${index}`).val();
 
-    function addAccordionToggleListener() {
-        document.querySelectorAll('.hs-accordion-toggle').forEach(button => {
-            button.addEventListener('click', (event) => {
-                event.preventDefault(); // prevent form submission
-                const content = button.nextElementSibling;
+                                                // Create an object containing the updated name and parent for this menu item
+                                                var formData = {
+                                                    updated_name: updatedName,
+                                                    parent: parent
+                                                };
 
-                if (content.style.display === "none" || content.style.display === "") {
-                    content.style.display = "block";
-                } else {
-                    content.style.display = "none";
-                }
-            });
-        });
-    }
+                                                // AJAX call to submit the form data
+                                                $.ajax({
+                                                    url: '/appearance/show-menu', // Replace with the appropriate URL
+                                                    type: 'POST',
+                                                    data: { menus: formData },
+                                                    success: function (response) {
+                                                        // Handle success response
+                                                        console.log(response);
+                                                    },
+                                                    error: function (error) {
+                                                        // Handle error response
+                                                        console.error(error);
+                                                    }
+                                                });
+                                            });
+                                        });
 
-    // Trigger the 'change' event on page load to load the details of the selected menu
-    window.onload = function () {
-        document.getElementById('select-menu-to-edit').dispatchEvent(new Event('change'));
-    };
+                                        function addAccordionToggleListener() {
+                                            document.querySelectorAll('.hs-accordion-toggle').forEach(button => {
+                                                button.addEventListener('click', (event) => {
+                                                    event.preventDefault(); // prevent form submission
+                                                    const content = button.nextElementSibling;
 
-    document.getElementById('remove-button').addEventListener('click', function () {
-        var menuId = document.getElementById('select-menu-to-edit').value;
-        fetch('/appearance/delete-menu/' + menuId, {
-            method: 'DELETE',
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data.message);
-            // Remove the menu from the select menu
-            var selectMenu = document.getElementById('select-menu-to-edit');
-            var options = selectMenu.options;
-            for (var i = 0; i < options.length; i++) {
-                if (options[i].value == menuId) {
-                    selectMenu.remove(i);
-                    break;
-                }
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    });
+                                                    if (content.style.display === "none" || content.style.display === "") {
+                                                        content.style.display = "block";
+                                                    } else {
+                                                        content.style.display = "none";
+                                                    }
+                                                });
+                                            });
+                                        }
 
-    document.getElementById('select-menu-to-edit').addEventListener('change', function () {
-        var menuId = this.value;
-        // Set the href attribute of the "Edit" button
-        document.getElementById('edit-button').href = '/appearance/edit-menu/' + menuId;
-    });
+                                        // Trigger the 'change' event on page load to load the details of the selected menu
+                                        window.onload = function () {
+                                            document.getElementById('select-menu-to-edit').dispatchEvent(new Event('change'));
+                                        };
 
-    $(document).ready(function () {
-        $('#select-menu-to-edit').change(function () {
-            const menuId = $(this).val();
-            $.ajax({
-                url: `/appearance/get-menu-details/${menuId}`,
-                type: 'GET',
-                success: function (menu) {
-                    // Clear the existing buttons
-                    $('#page-post-custom').empty();
+                                        document.getElementById('remove-button').addEventListener('click', function () {
+                                            var menuId = document.getElementById('select-menu-to-edit').value;
+                                            fetch('/appearance/delete-menu/' + menuId, {
+                                                method: 'DELETE',
+                                            })
+                                                .then(response => response.json())
+                                                .then(data => {
+                                                    console.log(data.message);
+                                                    // Remove the menu from the select menu
+                                                    var selectMenu = document.getElementById('select-menu-to-edit');
+                                                    var options = selectMenu.options;
+                                                    for (var i = 0; i < options.length; i++) {
+                                                        if (options[i].value == menuId) {
+                                                            selectMenu.remove(i);
+                                                            break;
+                                                        }
+                                                    }
+                                                })
+                                                .catch(error => console.error('Error:', error));
+                                        });
 
-                    // Add a button for each page, post, and custom link in the menu
-                    menu.pages.forEach(page => addButton(page.page_name));
-                    menu.posts.forEach(post => addButton(post.title));
-                    menu.customLinks.forEach(link => addButton(link.text));
+                                        document.getElementById('select-menu-to-edit').addEventListener('change', function () {
+                                            var menuId = this.value;
+                                            // Set the href attribute of the "Edit" button
+                                            document.getElementById('edit-button').href = '/appearance/edit-menu/' + menuId;
+                                        });
+                                        var allNames = [];
+                                        $(document).ready(function () {
+                                            $('#select-menu-to-edit').change(function () {
+                                                const menuId = $(this).val();
+                                                $.ajax({
+                                                    url: `/appearance/get-menu-details/${menuId}`,
+                                                    type: 'GET',
+                                                    success: function (menu) {
+                                                        // Check that menu has pages, posts, and customLinks properties
+                                                        if (!menu.pages || !menu.posts || !menu.customLinks) {
+                                                            console.error('Invalid menu object:', menu);
+                                                            return;
+                                                        }
+                                                        // Clear the existing buttons
+                                                        $('#page-post-custom').empty();
 
-                    addAccordionToggleListener();
-                }
-            });
-        });
-    });
+                                                        // Add a button for each page, post, and custom link in the menu
+                                                        allNames = menu.pages.map(page => page.page_name)
+                                                            .concat(menu.posts.map(post => post.title))
+                                                            .concat(menu.customLinks.map(link => link.text));
 
-    function addButton(name) {
-        $('#page-post-custom-name').text(name);
-        $('#page-post-custom').append(`
+                                                        allNames.forEach((name, index) => addButton(name, allNames, index));
+                                                        console.log(allNames);
+
+                                                        addAccordionToggleListener();
+                                                    }
+                                                });
+                                            });
+                                        });
+
+                                        function addButton(name, allNames, index) {
+                                            $('#page-post-custom-name').text(name);
+                                            $('#page-post-custom').append(`
             <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-colOne">
                 ${name}
                 <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
@@ -418,18 +432,22 @@
             <div id="hs-basic-nested-sub-collapse-colOne " class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF] " aria-labelledby="hs-basic-nested-sub-heading-colOne ">
                 <div class="py-5 ">
                     <div class="mb-6 form-group ">
-                        <label class="mb-2 text-sm font-normal" for="updated_name">Name</label>
-                        <input id="updated_name" name="updated_name" type="text" class="md:w-72" placeholder="Enter the updated name">
+                        <label class="mb-2 text-sm font-normal" for="updated_name${index}">Name</label>
+                        <input id="updated_name${index}" name="updated_name" type="text" class="md:w-72" value ="${name}" placeholder="Enter the updated name">
                     </div>
                     <div class="mb-4 form-group ">
-                        <label class="mb-2 text-sm font-normal" for="parent">Parent </label>
-                        <input id="parent" name="parent" type="text" class="md:w-72" placeholder="Home" valid="Home">
-                    </div>
+                        <label class="mb-2 text-sm font-normal" for="parent${index}">Parent </label>
+<select id="parent${index}" name="parent" class="md:w-72">
+    <option value="">Select the parent</option>
+    ${allNames.map(name => `<option value="${name}">${name}</option>`).join('')}
+</select>
+        </div>
                 </div>
-                <button type="submit" id="update-page-post-custom" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">Save</button>
+                <button type="submit" class="update-page-post-custom py-2 px-4 text-white bg-[#007BFF] rounded-lg">Save</button>
             </div>
         `);
-    }
-</script>
+                                        }
+                                    </script>
     </body>
+
     </html>

@@ -85,7 +85,7 @@ router.get('/edit-menu/:id', ensureAdmin, async (req, res) => {
         const posts = await Post.find({ status: 'Published' }); // or however you get your posts
 
         if (menu) {
-            res.render('appearance/edit-menu', { user: req.user, menu, menus, pages, posts });
+            res.render('appearance/edit-menu', { user: req.user, menu, menus, pages, posts  ,selectedMenuId: menuId});
         } else {
             res.status(404).json({ message: 'Menu not found' });
         }

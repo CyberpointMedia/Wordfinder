@@ -116,257 +116,32 @@
                         <div class="px-8 py-12 overflow-y-auto md:px-16">
                             <div class="grid gap-4 md:grid-cols-4">
                                 <div class="sm:col-span-2">
-                                    <span class="block text-xl pb-6 font-semibold text-[#007BFF]">Word Lists</span>
-                                    <div class="grid space-y-3 sm:space-y-0 sm:space-x-4 sm:grid-cols-2">
+                                    <% menus.forEach(menu => { %>
+                                        <span class="block text-xl pb-6 font-semibold text-[#007BFF]"><%= menu.menuName %></span>
                                         <ul class="space-y-2 text-base font-normal">
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="5-letter-words.html">
-                                                    5 Letter Words
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="words-with-X-and-Q.html">
-                                                    Words with X and Q
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Word Scramble
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Anagram Solver
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Word Unscrambler
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Words With Friends Cheat
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Scrabble Word Finder
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Word Finder
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Wordle
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Word Chums
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Anagramme Expert
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Nyt Spelling Bee Answers
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Crossword Solver
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Scrabble Go Word Finder
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Wordscapes Answers
-                                                </a>
-                                            </li>
+                                            <% menu.pages.forEach(page => { %>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="/<%= page.page_router %>">
+                                                        <%= page.page_name %>
+                                                    </a>
+                                                </li>
+                                            <% }) %>
+                                            <% menu.posts.forEach(post => { %>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="/articles/<%= post.title %>">
+                                                        <%= post.title %>
+                                                    </a>
+                                                </li>
+                                            <% }) %>
+                                            <% menu.customLinks.forEach(link => { %>
+                                                <li>
+                                                    <a class="hover:text-[#007BFF]" href="/<%= link.url %>">
+                                                        <%= link.text %>
+                                                    </a>
+                                                </li>
+                                            <% }) %>
                                         </ul>
-                                        <ul class="space-y-2 text-base font-normal">
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    4 Pics 1 Word
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Text Twist
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Cody Cross
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Word Cookies Answers
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Wordfeud
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Apalabrados Trucos
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Word Solver
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Scrabble Cheat
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Word Generator
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Jumble Solver
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="sm:col-span-1">
-                                    <div class="flex flex-col">
-                                        <span class="block text-xl pb-6 font-semibold text-[#007BFF]">Dictionary</span>
-                                        <ul class="space-y-2 text-base font-normal">
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Dictionary
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Words With Friends Dictionary
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Scrabble Dictionary
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="flex flex-col">
-                                        <span class="block text-xl pb-6 pt-10 font-semibold text-[#007BFF]">List of Words</span>
-                                        <ul class="space-y-2 text-base font-normal">
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    All Consonant Words
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Vowel Words
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Words By Length
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Words Ending In
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Words Start With
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Words With Letters
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div class="sm:col-span-1">
-                                    <div class="flex flex-col">
-                                        <span class="block text-xl pb-6 font-semibold text-[#007BFF]">Tool</span>
-                                        <ul class="space-y-2 text-base font-normal">
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Password Generator
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Username Generator
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Random Word Generator
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Word Counter
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="flex flex-col">
-                                        <span class="block text-xl pb-6 pt-4 font-semibold text-[#007BFF]">Games</span>
-                                        <ul class="space-y-2 text-base font-normal">
-
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Scramble Words
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Codeword
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Outspell
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Crossword Puzzles
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="hover:text-[#007BFF]" href="javascript:void(0);">
-                                                    Word Wipe
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <% }) %>
                                 </div>
                                 <!-- End Col -->
 
