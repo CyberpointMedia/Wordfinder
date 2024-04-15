@@ -18,45 +18,12 @@ const visitCounter = require('../middleware/visitCounter');
 const readingTime = require('reading-time');
 const mongoose = require('mongoose');
 const { url } = require('inspector');
-
-// Middleware to set isAdmin and username
-const setAdminStatusAndUsername = (req, res, next) => {
-    res.locals.isAdmin = req.user && (req.user.role === 'admin' || req.user.role === 'editor' || req.user.role === 'administrator');
-    res.locals.username = req.user && req.user.username;
-    next();
-};
-
+const setAdminStatusAndUsername = require('../middleware/setAdminStatusAndUsername');
+const fetchPageAndMorePosts = require('../middleware/fetchPageAndMorePosts');
 // Use the middleware in your application
 router.use(setAdminStatusAndUsername);
 // Middleware to fetch page and morePosts
-router.use(async (req, res, next) => {
-    try {
-        const morePosts = await Post.find({ status: 'Published' }).limit(3);
-        const page = await Page.findOne({ status: 'Published' });
-        const appearance = await Appearance.find();
-        let menus;
-        try {
-            menus = await ShowMenu.find().populate({
-                path: 'items.id',
-                match: { type: { $in: ['page', 'post'] } }
-            });
-        } catch (error) {
-            if (error instanceof mongoose.Error.MissingSchemaError) {
-                menus = await ShowMenu.find();
-            } else {
-                throw error;
-            }
-        }
-        res.locals.morePosts = morePosts;
-        res.locals.page = page;
-        res.locals.menus = menus;
-        res.locals.customLinks = appearance[0].customLinks;
-        next();
-    } catch (error) {
-        console.error('Error fetching post:', error);
-        res.status(500).send('Internal Server Error');
-    }
-});
+router.use(fetchPageAndMorePosts);
 
 // Middleware to parse incoming request bodies
 router.use(bodyParser.urlencoded({ extended: false }));

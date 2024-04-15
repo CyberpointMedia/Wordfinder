@@ -15,6 +15,9 @@ html {
     scroll-behavior: smooth;
 }
 
+p[data-f-id="pbf"] {
+    display: none;
+}
 
 /* Scrollbar Styling */
 

@@ -29,6 +29,9 @@ const categoryRoutes = require('../routes/category');
 const libraryRoutes = require('../routes/library'); 
 const appearanceRoutes = require('../routes/appearance');
 const footerRoutes = require('../routes/footer');
+const setAdminStatusAndUsername = require('../middleware/setAdminStatusAndUsername');
+const fetchPageAndMorePosts = require('../middleware/fetchPageAndMorePosts');
+
 const { ensureAdminOrEditor , ensureAdmin, ensureEditor, ensureAuthor } = require('../middleware/authMiddleware');
 const app = express();
 const port = process.env.PORT;
@@ -36,6 +39,11 @@ const port = process.env.PORT;
 app.use(cors({
     origin: '*',
 }))
+// Use the middleware in your application
+app.use(setAdminStatusAndUsername);
+// Middleware to fetch page and morePosts
+app.use(fetchPageAndMorePosts);
+
 app.use(async (req, res, next) => {
     try {
         const widget = await Widget.findOne(); // Adjust this line to find the correct widget
