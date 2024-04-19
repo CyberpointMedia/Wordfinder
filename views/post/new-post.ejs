@@ -27,25 +27,25 @@
                             <main class="py-8 px-5">
                                 <div class="max-w-3xl mx-auto">
                                     <div class="mb-6">
-                                        <label for="title" class="mb-3 text-sm">Title:</label>
+                                        <label for="title" class="mb-3 text-sm">Title:<span class="text-red-600">*</span></label>
                                         <input type="text" id="title" name="title" required class="form-input bg-[#F0F7FA] border-0 mb-3">
                                     </div>
                                     <div class="mb-6">
-                                        <label for="heading" class="mb-3 text-sm">Heading:</label>
+                                        <label for="heading" class="mb-3 text-sm">Heading:<span class="text-red-600">*</span></label>
                                         <input type="text" id="heading" name="heading" required class="form-input bg-[#F0F7FA] border-0 mb-3">
                                     </div>
                                     <div class="mb-6">
-                                        <label for="description" class="mb-3 text-sm">Description:</label>
+                                        <label for="description" class="mb-3 text-sm">Description:<span class="text-red-600">*</span></label>
                                         <textarea id="editor" name="description" required class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
                                     </div>
                                       <div class="mb-6">
-                                        <label class="mb-3 text-sm" for="uploadImage1">Thumbnail Photo image</label>                    <div class="uploadImg-Preview mb-6">
+                                        <label class="mb-3 text-sm" for="uploadImage1">Thumbnail Photo image<span class="text-red-600">*</span></label>                    <div class="uploadImg-Preview mb-6">
                         <img id="preview_img" class="object-cover" src="/images/no-image.svg" alt="Upload Image">
                     </div>
                 
                     <div class="block relative">
                         <span class="absolute inset-0 opacity-100 w-40 h-12 leading-[48px] top-0 text-black bg-[#DBF4FF] rounded-lg text-center cursor-pointer">Select Image</span>
-                        <input type="file" name="picture__input" id="picture__input" onchange="loadFile(event)" class="block w-40 h-12 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0">
+                        <input type="file" name="picture__input" id="picture__input" onchange="loadFile(event)" class="block w-40 h-12 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0" required>
                     </div>
                 </div>
                 <div class="form-group mb-6">
@@ -59,13 +59,13 @@
                     </select>
                 </div>
                 <div class="mb-6">
-                    <label class="mb-3 text-sm" for="uploadImage1">Feature image</label>
+                    <label class="mb-3 text-sm" for="uploadImage1">Feature image<span class="text-red-600">*</span></label>
                                         <div class="uploadImg-Preview mb-6">
-                        <img id="feature_img" class="object-cover" src="/images/no-image.svg" alt="Upload Image">
+                        <img id="feature_image" class="object-cover" src="/images/no-image.svg" alt="Upload Image">
                     </div>
                     <div class="block relative">
                         <span class="absolute inset-0 opacity-100 w-40 h-12 leading-[48px] top-0 text-black bg-[#DBF4FF] rounded-lg text-center cursor-pointer">Select Image</span>
-                        <input type="file" name="feature_img" id="feature_img" onchange="loadFile2(event)" class="block w-40 h-12 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0">
+                        <input type="file" name="feature_img" id="feature_img" onchange="loadFile2(event)" class="block w-40 h-12 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0" required>
                     </div>
                 </div>
         <br>
@@ -78,40 +78,37 @@
      <!-- Include Froala Editor script. -->
      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
      <script>
-        function setStatus(status) {
-            document.getElementById('status').value = status;
-            // Trigger form submission
-            document.querySelector('form').submit();
-        }
+        let thumbnailImgSelected = false;
+let featureImgSelected = false;
+let publishButton = document.querySelector('.publish-button'); // Add a class to your Publish button and select it here
+function checkImagesLoaded() {
+    if (thumbnailImgSelected && featureImgSelected) {
+        publishButton.disabled = false; // Enable the Publish button when both images have loaded
+    }
+}
+function setStatus(status) {
+    console.log('setStatus');
+        // Perform validation
+        let title = document.getElementById('title').value;
+    let heading = document.getElementById('heading').value;
+    let description = document.getElementById('editor').value;
+
+    if (!thumbnailImgSelected || !featureImgSelected) {
+        alert('Both Thumbnail Photo image and Feature image are required');
+        return; // Stop the function if validation fails
+    }
+    if (!title || !heading || !description) {
+        alert('Title, Heading, and Description are required');
+        return; // Stop the function if validation fails
+    }
+    // Set the status and submit the form
+    document.getElementById('status').value = status;
+    document.querySelector('form').submit();
+}
          // Initialize Froala Editor
          new FroalaEditor('#editor');
-         function loadFile(event) {
-        // Get the file input element that triggered the event
-        var input = event.target;
 
-        // Check if a file was selected
-        if (input.files && input.files[0]) {
-            // Create a new FileReader object
-            var reader = new FileReader();
-
-            // Define the onload event for the FileReader object
-            reader.onload = function(e) {
-                // Get the id of the file input element
-                var id = input.id;
-
-                // Determine the id of the img tag where the image should be displayed
-                var imgId = (id === 'picture__input') ? 'preview_img' : 'feature_img';
-
-                // Get the img tag
-                var img = document.getElementById(imgId);
-
-                // Set the src attribute of the img tag to the data URL of the selected image
-                img.src = e.target.result;
-            }
-            // Read the selected file as a data URL
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
+     
      </script>     
     <%- include('../script/script.ejs') %>
 </html>

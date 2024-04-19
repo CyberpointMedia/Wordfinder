@@ -37,17 +37,16 @@ $(document).ready(function() {
 
 // add profile picture
 var loadFile = function(event) {
-
+    console.log("loadFile");
     var input = event.target;
     var file = input.files[0];
     var type = file.type;
-
     var output = document.getElementById('preview_img');
-
-
     output.src = URL.createObjectURL(event.target.files[0]);
     output.onload = function() {
-        URL.revokeObjectURL(output.src) // free memory
+        URL.revokeObjectURL(output.src); // free memory
+        thumbnailImgSelected = true;
+        checkImagesLoaded();
     }
 };
 var loadFile2 = function(event) {
@@ -66,13 +65,16 @@ var loadFile2 = function(event) {
 };
 // add another image upload
 var loadFile2 = function(event) {
+    console.log("loadFile2");
     var input = event.target;
     var file = input.files[0];
     var type = file.type;
-    var output = document.getElementById('feature_img');
+    var output = document.getElementById('feature_image');
     output.src = URL.createObjectURL(event.target.files[0]);
     output.onload = function() {
-        URL.revokeObjectURL(output.src) // free memory
+        URL.revokeObjectURL(output.src); // free memory
+        featureImgSelected = true;
+        checkImagesLoaded();
     }
 };
 

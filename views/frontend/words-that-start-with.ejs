@@ -190,23 +190,25 @@
                                                                                         Related</h2>
                                                                                     <ul class="space-y-2 list-disc">
                                                                                         <ul class="space-y-2 list-disc">
-                                                                                            <%
-                                                                                                surroundingLetters.forEach(letter=>
-                                                                                                { %>
-                                                                                                <% if (letter
-                                                                                                    !==startsWith) { %>
-                                                                                                    <li class="">
-                                                                                                        <a href="/words-that-start-with/<%= letter %>/"
-                                                                                                            class="text-base font-normal text-blue-500 underline hover-text-blue">
-                                                                                                            Words that
-                                                                                                            Start with
-                                                                                                            <%= letter.toUpperCase()
-                                                                                                                %>
-                                                                                                        </a>
-                                                                                                    </li>
-                                                                                                    <% } %>
-                                                                                                        <% }); %>
-                                                                                        </ul>
+    <% if (startsWith === 'a') { %>
+        <li class="">
+            <a href="/words-that-start-with/zyz/"
+                class="text-base font-normal text-blue-500 underline hover-text-blue">
+                Words that Start with ZYZ
+            </a>
+        </li>
+    <% } %>
+    <% surroundingLetters.forEach(letter => { %>
+        <% if (letter !== startsWith) { %>
+            <li class="">
+                <a href="/words-that-start-with/<%= letter %>/"
+                    class="text-base font-normal text-blue-500 underline hover-text-blue">
+                    Words that Start with <%= letter.toUpperCase() %>
+                </a>
+            </li>
+        <% } %>
+    <% }); %>
+</ul>
                                                                                 </div>
                         </div>
                         <!-- left col end -->

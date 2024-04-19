@@ -21,8 +21,8 @@
                                         <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"
                                             id="isPasted">On this page is a list of&nbsp;<span
                                                 style="box-sizing: border-box; color: var(--secondaryblue); font-family: robotomedium; font-style: normal;">words
-                                                that end in <%=
-                                                endsWith.toUpperCase() %></span>, along with how much they score in word games like
+                                                that end in <%= endsWith.toUpperCase() %></span>, along with how much
+                                            they score in word games like
                                             Scrabble (play with our&nbsp;<a
                                                 href="https://word-finder.com/scrabble-word-finder/"
                                                 style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Scrabble
@@ -34,20 +34,17 @@
                                             style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
                                             The best-scoring and longest&nbsp;<span
                                                 style="box-sizing: border-box; color: var(--secondaryblue); font-family: robotomedium; font-style: normal;">words
-                                                ending with <%=
-                                                endsWith.toUpperCase() %></span> are listed first. Choose your game and click on a
+                                                ending with <%= endsWith.toUpperCase() %></span> are listed first.
+                                            Choose your game and click on a
                                             word to see if you can play it. Once you&#39;ve seen&nbsp;<span
                                                 style="box-sizing: border-box; color: var(--secondaryblue); font-family: robotomedium; font-style: normal;">words
-                                                that end in <%=
-                                                endsWith.toUpperCase() %></span>, you should also see&nbsp;<a
-                                                href="https://word-finder.com/words-that-start-with/a/"
+                                                that end in <%= endsWith.toUpperCase() %></span>, you should also
+                                            see&nbsp;<a href="https://word-finder.com/words-that-start-with/a/"
                                                 style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">words
-                                                that start with <%=
-                                                endsWith.toUpperCase() %></a> and&nbsp;<a
+                                                that start with <%= endsWith.toUpperCase() %></a> and&nbsp;<a
                                                 href="https://word-finder.com/words-with/a/"
                                                 style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">words
-                                                with <%=
-                                                endsWith.toUpperCase() %> in them</a>.</p>
+                                                with <%= endsWith.toUpperCase() %> in them</a>.</p>
                                         <p
                                             style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
                                             Playing Wordle? Check out our&nbsp;<a href="https://word-finder.com/wordle/"
@@ -98,7 +95,10 @@
                                                                                 class="border border-[#007BFF] rounded-[10px] py-3 font-normal px-4 tag text-[#007bff]"
                                                                                 data-hs-overlay="#hs-medium-modal"
                                                                                 onclick="fetchWordDefinition('<%= wordObj.word %>')">
-                                                                                <%= wordObj.word %> <span class="tagPoints text-[#6C757D] text-xs font-medium"><%= wordObj.points %></span>
+                                                                                <%= wordObj.word %> <span
+                                                                                        class="tagPoints text-[#6C757D] text-xs font-medium">
+                                                                                        <%= wordObj.points %>
+                                                                                    </span>
                                                                             </button>
                                                                             <% }); %>
                                                 </div>
@@ -158,7 +158,12 @@
                                                                                                         class="border border-[#007BFF] rounded-[10px] py-3 font-normal px-4 tag text-[#007bff]"
                                                                                                         data-hs-overlay="#hs-medium-modal"
                                                                                                         onclick="fetchWordDefinition('<%= wordObj.word %>')">
-                                                                                                        <%= wordObj.word %> <span class="tagPoints text-[#6C757D] text-xs font-medium"><%= wordObj.points %></span>
+                                                                                                        <%= wordObj.word
+                                                                                                            %> <span
+                                                                                                                class="tagPoints text-[#6C757D] text-xs font-medium">
+                                                                                                                <%= wordObj.points
+                                                                                                                    %>
+                                                                                                            </span>
                                                                                                     </button>
                                                                                                     <% }); %>
                                                                         </div>
@@ -181,23 +186,46 @@
                                                                                 </div>
                                                                                 <div
                                                                                     class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
-                                                                                    <h2 class="mb-4 text-3xl font-semibold md:text-4xl">Related</h2>
+                                                                                    <h2
+                                                                                        class="mb-4 text-3xl font-semibold md:text-4xl">
+                                                                                        Related</h2>
                                                                                     <ul class="space-y-2 list-disc">
                                                                                         <ul class="space-y-2 list-disc">
-  <% surroundingLetters.forEach(letter => { %>
-    <% if (letter !== endsWith) { %>
-      <li class="">
-        <a href="/words-that-start-with/<%= letter %>/" class="text-base font-normal text-blue-500 underline hover-text-blue">
-          Words that Start with <%= letter.toUpperCase() %>
-        </a>
-      </li>
-    <% } %>
-  <% }); %>
-</ul>
+                                                                                            <% if (endsWith==='a' ) { %>
+                                                                                                <li class="">
+                                                                                                    <a href="/words-that-end-in/zzz/"
+                                                                                                        class="text-base font-normal text-blue-500 underline hover-text-blue">
+                                                                                                        Words That End
+                                                                                                        In ZZZ
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                                <% } %>
+                                                                                                    <%
+                                                                                                        surroundingLetters.forEach(letter=>
+                                                                                                        { %>
+                                                                                                        <% if (letter
+                                                                                                            !==endsWith)
+                                                                                                            { %>
+                                                                                                            <li
+                                                                                                                class="">
+                                                                                                                <a href="/words-that-end-in/<%= letter %>/"
+                                                                                                                    class="text-base font-normal text-blue-500 underline hover-text-blue">
+                                                                                                                    Words
+                                                                                                                    That
+                                                                                                                    End
+                                                                                                                    In
+                                                                                                                    <%= letter.toUpperCase()
+                                                                                                                        %>
+                                                                                                                </a>
+                                                                                                            </li>
+                                                                                                            <% } %>
+                                                                                                                <% });
+                                                                                                                    %>
+                                                                                        </ul>
                                                                                 </div>
                         </div>
-                                                                                
-                        
+
+
                         <!-- left col end -->
                         <!-- right col end -->
                         <div class="w-full md:w-1/3">

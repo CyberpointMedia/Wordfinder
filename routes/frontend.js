@@ -20,6 +20,9 @@ const mongoose = require('mongoose');
 const { url } = require('inspector');
 const setAdminStatusAndUsername = require('../middleware/setAdminStatusAndUsername');
 const fetchPageAndMorePosts = require('../middleware/fetchPageAndMorePosts');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
+
 // Use the middleware in your application
 router.use(setAdminStatusAndUsername);
 // Middleware to fetch page and morePosts
@@ -107,6 +110,38 @@ router.get('/no-words-found', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
+router.post('/send-email', upload.single('fileBrowse'), (req, res) => {
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'your-email@gmail.com',
+        pass: 'your-password'
+      }
+    });
+  
+    let mailOptions = {
+      from: 'your-email@gmail.com',
+      to: 'ekansh@cyberpointmedia.com, sanjay@cyberpointmedia.com',
+      subject: 'Share Your Thoughts',
+      text: `Email: ${req.body.emailId}\n\nThoughts: ${req.body.commentDetails}`,
+      attachments: [
+        {
+          path: req.file.path
+        }
+      ]
+    };
+  
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        res.status(500).send('Error sending email');
+      } else {
+        console.log('Email sent: ' + info.response);
+        res.send('Email sent successfully');
+      }
+    });
+  });
 
 router.post('/unscramble', visitCounter, async (req, res) => {
     try {

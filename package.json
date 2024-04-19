@@ -38,6 +38,7 @@
     "multer-s3": "^3.0.1",
     "node-fetch": "^2.7.0",
     "node-html-parser": "^6.1.11",
+    "nodemailer": "^6.9.13",
     "nodemon": "^3.0.3",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
