@@ -48,7 +48,10 @@ wordfinder/
 ├── index.js 
 ├── middleware/ 
 │   ├── authmiddleware.js 
+|   ├── fetchPageAndMorePosts.js
 │   ├── user-activity.js 
+│   ├── setAdminStatusAndUsername.js
+│   ├── visitCounter.js 
 │   └── wrapAsync.js 
 ├── models/ 
 │   ├── appearance.js 
@@ -61,6 +64,7 @@ wordfinder/
 │   ├── section.js 
 │   ├── user-activity.js 
 │   ├── user.js 
+│   ├── visitcount.js 
 │   └── widget.js 
 ├── node_modules/ 
 ├── public/ 
@@ -75,11 +79,13 @@ wordfinder/
 │   ├── admin.js 
 │   ├── appearance.js 
 │   ├── auth.js 
+│   ├── category.js 
 │   ├── editor.js 
 │   ├── footer.js 
 │   ├── frontend.js 
 │   ├── library.js 
 │   ├── pages.js 
+│   ├── post.js 
 │   ├── section.js 
 │   └── user-profile.js 
 ├── src/ 
