@@ -191,5 +191,3 @@ app.use('/admin/pages', ensureEditor, pagesRoutes);
 // Admin and Administrator can access all routes
 app.use('/admin/section', ensureAdmin, sectionRoutes);
 app.use('/admin/pages', ensureAdmin, pagesRoutes);
-
-

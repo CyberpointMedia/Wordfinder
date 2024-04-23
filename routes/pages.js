@@ -295,7 +295,7 @@ router.post("/edit/:id", wrapAsync(async (req, res) => {
 
     console.log("Updated Page:", updatedPage);
 
-    res.redirect("/admin/pages"); // Redirect to the pages route after updating the page
+    res.redirect("/admin/pages/edit/" + id);  // Redirect to the pages route after updating the page
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");

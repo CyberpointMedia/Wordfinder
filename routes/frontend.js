@@ -48,6 +48,17 @@ router.get('/', visitCounter, async (req, res) => {
     }
 });
 
+//wordle
+router.get('/wordle', visitCounter, async (req, res) => {
+    try {
+        console.log("wordle open ");
+        res.render('frontend/wordle.ejs',);
+    } catch (error) {
+        console.error('Error fetching post:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 //scrabble-dictionary
 router.get('/scrabble-dictionary', visitCounter, async (req, res) => {
     try {

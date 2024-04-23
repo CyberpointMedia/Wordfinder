@@ -1,3 +1,4 @@
+//middleware/user-activity.js
 const UserActivity = require('../models/user-activity');
 const geoip = require('geoip-lite');
 

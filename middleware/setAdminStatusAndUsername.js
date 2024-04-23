@@ -1,3 +1,4 @@
+// middleware//setAdminStatusAndUsername.js
 // Middleware to set isAdmin and username
 const setAdminStatusAndUsername = (req, res, next) => {
     console.log('setAdminStatusAndUsername middleware called');
