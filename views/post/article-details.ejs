@@ -49,7 +49,7 @@
                     <div class="md:bg-white bg-[#DBF4FF] md:p-0 md:m-0 py-20 px-7 -mx-7 -mt-10">
                         <p class="md:hidden text-center mb-4 text-black">Published January 13, 2021</p>
                         <h1 class="sm:text-5xl font-semibold text-black text-3xl text-center md:text-left"><%= post.heading %></h1>
-                        <div class="flex flex-col lg:flex-row lg:items-center lg:space-x-4 my-8">
+                        <div class="flex flex-col lg:flex-row lg:items-center lg:space-x-4 my-4">
 
                             <div class="flex items-center hidden md:block">
                                 <span class="text-xs xl:text-sm">Written by
@@ -118,8 +118,8 @@
                         </div>
                     </div>
 
-                    <div class="rounded-lg mt-5 mb-10">
-                        <img src="<%= post.picture %>" alt="images/article-detail-img1.svg" class="rounded-lg" />
+                    <div class="my-5">
+                        <img src="<%= post.picture %>" alt="images/article-detail-img1.svg" class="w-full rounded-[10px]" />
                     </div>
                     <p>
                         <%- post.description %>

@@ -1721,6 +1721,10 @@ video {
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
+.my-5 {
+    margin-top: 1.25rem/* 20px */;
+    margin-bottom: 1.25rem/* 20px */;
+}
 
 .my-6 {
     margin-top: 1.5rem;
