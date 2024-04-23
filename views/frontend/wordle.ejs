@@ -7,27 +7,73 @@
         <div class="container">
             <div class="flex flex-wrap max-w-screen-md pt-10 pb-10 mx-auto md:pt-20 md:pb-20">
                 <div class="flex flex-wrap items-center justify-center w-full align-middle">
-                    <h1 class="block text-[#393939] text-5xl sm:text-7xl font-semibold mb-3 text-center"> Word Finder</h1>
-                    <p class="block w-full text-center">
-                        Enter up to 15 letters and up to 2 wildcards (? or space).
-                    </p>
-                    <form id="search-main" class="w-full mt-8 mb-6" action="/unscramble" method="post">
-                        <div class="input-group MainSearch border rounded-[20px] border-[#007BFF] overflow-hidden bg-white sm:py-4 py-2 text-center">
-                            <input type="text" name="letters" class="w-2/5 border-0 sm:w-4/6 md:w-2/3 main-search-input sm:text-lg focus:outline-none" placeholder="Type Letters ..." aria-label="Letters" aria-describedby="dictionary-select-field">
-                            <span class="p-0 border-0 input-group-text" id="dictionary-select-field">
-                          <select class="py-2 text-sm bg-white border-0 ps-2 pe-[30px] sm:text-lg focus:outline-none" aria-label="Default select example" name="scrabble_type">
-                             <option value="wwf" selected="">Words With Friends</option>
-                             <option value="us">Scrabble US</option>
-                             <option value="uk">Scrabble UK</option>
-                             <option value="all_en">All Dictionaries</option>
-                          </select>
-                       </span>
-                        </div>
-                        <div class="w-full mb-4 hs-accordion-group">
-                            <%- (include('../frontend/search/advance_search.ejs')) %>
-                        </div>
-                        <button type="submit" class="w-full py-4 bg-buttonPrimary rounded-[10px] text-white hover:opacity-50">Search</button>
-                    </form>
+                    <h1 class="block text-[#393939] text-5xl sm:text-7xl font-semibold mb-3 text-center"> Wordle Answer Finder</h1>
+                    <div class="md:w-2/4 w-full mx-auto">
+                        <form id="wordle-form" class="w-full mt-8 mb-6" action="javascript:void(0);" method="post">
+
+                            <label class="mt-3 label-left text-body" for="wordle-title-bad">Good Words</label>
+                            <div class="input-group mb-3 MainSearch border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                <input type="text" name="include_letters" class="form-control main-search-input w-full focus:outline-none focus:border-0" placeholder="Good Words" aria-label="Recipient's username">
+                            </div>
+
+                            <label class="mt-3 label-left text-body" for="wordle-title-bad">Bad Words</label>
+                            <div class="input-group mb-3 MainSearch border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                <input type="text" name="exclude_letters" class="form-control main-search-input w-full focus:outline-none focus:border-0" placeholder="Bad Words" aria-label="Recipient's username">
+                            </div>
+
+                            <div class="text-field-area mb-5">
+                                <h4 class="text-center mt-4 font-medium text-xl">
+                                Placed Letters
+                                </h4>
+                                <p class="mb-0 mt-2 text-center text-base font-normal text-[#393939]">
+                                (Letters that are in green tiles)
+                                </p>
+                            </div>
+
+                            <div id="otp" class="flex justify-content-center align-items-center">
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="contains_1" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="first" maxlength="1">
+                                </div>
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="contains_2" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="second" maxlength="1">
+                                </div>
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="contains_3" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="third" maxlength="1">
+                                </div>
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="contains_4" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="fourth" maxlength="1">
+                                </div>
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="contains_5" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="fifth" maxlength="1">
+                                </div> 
+                            </div>
+
+                            <div class="text-field-area my-5">
+                                <p class="mb-0 mt-2 text-center text-base font-normal text-[#393939]">
+                                (Letters that are in yello tiles)
+                                </p>
+                            </div>
+
+                            <div id="otp1" class="flex justify-content-center align-items-center mt-5">
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="yello_1" value="" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="sixth" maxlength="1">
+                                </div>
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="yello_2" value="" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="seventh" maxlength="1">
+                                </div>
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="yello_3" value="" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="eight" maxlength="1">
+                                </div>
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="yello_4" value="" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="nineth" maxlength="1">
+                                </div>
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="yello_5" value="" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="tenth" maxlength="1">
+                                </div> 
+                            </div>
+                            <button type="submit" class="w-full mt-2 py-4 bg-buttonPrimary rounded-[10px] text-white hover:opacity-50">Search</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -38,7 +84,123 @@
         <div class="container">
             <div class="flex flex-col gap-8 md:flex-row">
                 <!-- left col start -->
-                <%- (include('../frontend/left_col/left_col.ejs')) %>
+                <div class="w-full md:w-2/3">
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <h2 class="mb-4 text-4xl font-semibold">Wordle Cheat - Wordle Answer Finder</h2>
+                        <p>
+                            The word game Wordle, which recently became immensely popular, requires quite a lot of knowledge and deductive reasoning. However, you can also use a word finder such as our Wordle cheat to easily find out the right solution for the puzzle for any given day.
+                        </p>
+                    </div>
+
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <h2 class="mb-4 text-4xl font-semibold">Wordle Explained</h2>
+                        <p>
+                            In this online game, you will get a daily puzzle where have to find a five letter word in six guesses, which seems simple enough at first glance, but takes quite some intelligence to actually succeed at. This is because you need to consider several factors and also require previous knowledge of the five letter word in question. You need to have a good understanding of the English language and guess the correct word by arranging the correct letter in their appropriate places. If you are familiar with lots of five letter words, then this word game will be easier for you.
+                        </p>
+                        <p>
+                            This simple yet tricky game, was so popular that The New York Times bought it from the original creator, Josh Wardle. In this era of reckless internet trends, this trend of Wordle brings about a better change. Moreover, it also subverts the culture of having endless content that pervades the internet today by only publishing one puzzle every 24 hours.
+                        </p>
+                    </div>
+
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <h2 class="mb-4 text-4xl font-semibold">How Is Wordle Played?</h2>
+                        <p>
+                            If you're a fan of word games, Wordle will become one of your favorites once you understand the fundamentals. Therefore, let us start off with the absolute basics.
+                        </p>
+                        <ul class="space-y-3 list-disc pl-5">
+                            <li>
+                                The objective of the game is to find the correct five letter hidden word from letters taken from other similar words. To start, simply input a five letter word.
+                            </li>
+                            <li>
+                                After you submit your first guess, your letters may be color-coded. Green letters are the correct letter in the correct position in the word, while yellow letters mean that the alphabet is correct, but it is in the wrong position. Grey are the bad letters that are simply absent from the mystery word.
+                            </li>
+                            <li>
+                                You need to keep guessing while digging deep into your lexicon and using logic to find the right word, but beware, you have only 6 chances to guess it.
+                            </li>
+                            <li>
+                                If you are able to guess the five letters in the right order, then congratulations. You have won the game for that day. If not, the game will show you the mystery word after all six guesses have been completed.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <h2 class="mb-4 text-4xl font-semibold">What Makes Wordle Hard?</h2>
+                        <p>
+                            For this word game, you need to have an abundance of knowledge regarding five letter words and also a good understanding of how English spelling works. For instance, the fact that "E" comes last in the word "fable" or that "psych" begins with a "P" is something that might elude someone whose first language isn't English.
+                        </p>
+                        <p>
+                            It also won't do to just know how common consonants and common vowels are placed, as Wordle answers can contain any letter.
+                        </p>
+                    </div>
+
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <h2 class="mb-4 text-4xl font-semibold">What Do You Need to Excel in Such Word Games?</h2>
+                        <p>
+                            Wordle is a simple game, but it requires you to have sufficient understanding of the language. You need to hone the ability to guess the word correctly each day.
+                        </p>
+                    </div>
+
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <h2 class="mb-4 text-4xl font-semibold">When Do You Need Our Wordle Solver?</h2>
+                        <p>
+                            If you are a newbie, then you need our Wordle solver or word finder to solve your first few puzzles and understand how the game needs to progress. You can also use this Wordle word finder to win games against your friends.
+                        </p>
+                    </div>
+
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <h2 class="mb-4 text-4xl font-semibold">Tips and Tricks</h2>
+                        <p>
+                            If you follow these few cheeky methods, then you can easily become a master Wordle solver.
+                        </p>
+                        <h2 class="mb-4 text-4xl font-semibold">Common Letters</h2>
+                        <p>
+                            Try to incorporate letters such as A, I, O, E, R, N, S, and T in your first word because these are the most common letters in the English language, and highly likely to appear in most possible words. Initially, focus on getting the vowels out, and have a set word with common letters that you begin with every time. Make sure you follow up that word with another that has other vowels (if necessary). For example, if your first word is "RATED," and it comes out all grey, you could use "BOILS" or "SPOIL" as the second.
+                        </p>
+                        <h2 class="mb-4 text-4xl font-semibold">Change Your Perspective</h2>
+                        <p>
+                            In order to play Wordle like a pro, getting tunnel-visioned won't do. You need to expand your horizons and try words from different perspectives.
+                        </p>
+                        <h2 class="mb-4 text-4xl font-semibold">Read Books</h2>
+                        <p>
+                            Reading English books enhances your knowledge of the language and gives you a better understanding of the finer elements. Reading books is in itself a great habit, and moreover, it will help you get better at Wordle.
+                        </p>
+                        <h2 class="mb-4 text-4xl font-semibold">Challenge Yourself</h2>
+                        <p>
+                            If you're bored and the game feels too easy, try the Hard mode, which puts certain restrictions in place to make the game even more challenging.
+                        </p>
+                        <h2 class="mb-4 text-4xl font-semibold">Rearrange That Pesky Yellow Letter</h2>
+                        <p>
+                            Call upon your English skills to figure out where the correct spot for a letter should be in relation to the other letters in the word. Alternatively, use our engine to find the correct spots for those yellow letters so you can show your results to impress your friends and family.
+                        </p>
+                        <h2 class="mb-4 text-4xl font-semibold">Find Those Green Tiles With a Little Help</h2>
+                        <p>
+                            Want to turn your grey tiles into a row of five perfect green tiles and win the game to brag on social media? Using our help, you can find every correct answer in your Wordle game. From the most common letters to the least, our Wordle helper has you covered.
+                        </p>
+                    </div>
+
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <h2 class="mb-4 text-4xl font-semibold">Frequently Asked Questions</h2>
+                        <p>
+                            If you still have questions after reading our quick guide, we've got the answers. We hope that these answers satisfy most of your common questions.
+                        </p>
+                        <h2 class="mb-4 text-4xl font-semibold">Which Letters do I Use the Least?</h2>
+                        <p>
+                            Letters such as X, Z, and J are found very rarely in Wordle. Therefore, it is a wise decision to omit them from your first guess. These letters can, of course, be incorporated in a word while you solve Wordle, but the chances of them appearing on the Wordle website are extremely slim. Other letters are way more likely to appear in English words.
+                        </p>
+                        <h2 class="mb-4 text-4xl font-semibold">Is There a Wordle Dictionary?</h2>
+                        <p>
+                            Yes, there is a Wordle Dictionary. It is essentially a dictionary of five-letter words from the English Language. Wordle usually does not have extremely complicated words, and most of the time you will get words that a fluent English speaker would be familiar with.
+                        </p>
+                    </div>
+
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                        <h2 class="mb-4 text-4xl font-semibold">Conclusion</h2>
+                        <p>
+                            We hope that our short guide was useful to you. Now you can try out our engine and see how you start acing Wordle. It is now your time to take those grey and yellow squares and turn them into fabulous green squares as you find out the word of the day. In short, whatever Wordle word you might have, we've got you covered. We wish you the very best for your word puzzle journey.
+                        </p>
+                    </div>
+
+                </div>
                 <!-- left col end -->
                 <!-- right col start -->
                 <div class="w-full md:w-1/3">
