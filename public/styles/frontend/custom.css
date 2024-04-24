@@ -211,3 +211,8 @@ select {
 .hs-dropdown.open>.hs-dropdown-open\:opacity-100 {
     opacity: 1;
 }
+.articleDetails h2, .articleDetails h3, .articleDetails h4, .articleDetails h5, .articleDetails h6{
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 500;
+}
