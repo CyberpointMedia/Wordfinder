@@ -114,5 +114,21 @@
                                     </div>
                                     <!-- sidebar end here -->
                                     <%- include('../script/script.ejs') %>
+                                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script>
+          var params = new URLSearchParams(window.location.search);
+
+// Check if a message is present
+if (params.has('message')) {
+    // Show a Toastify notification with the message
+    Toastify({
+        text: params.get('message'),
+        duration: 3000,
+        close: true
+    }).showToast();
+}
+
+    </script>
                                 </body>
                                 </html>

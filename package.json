@@ -54,6 +54,7 @@
     "simplebar": "^6.2.5",
     "sitemap": "^7.1.1",
     "sitemap-generator": "^8.5.1",
+    "toastify-js": "^1.12.0",
     "word-definition": "^2.1.6",
     "xml2js": "^0.6.2"
   },

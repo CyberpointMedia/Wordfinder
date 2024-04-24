@@ -25,7 +25,7 @@
                                         <!-- add title -->
                                         <div class="mb-6 relative">
                                             <!-- <label class="mb-3 text-lg" for="title">Title</label> -->
-                                            <input name="title" id="title" type="text" value="" class="text-2xl font-medium text-black bg-[#F0F7FA] py-8 px-4 border-0" placeholder="Add Title" contenteditable="true">
+                                            <input name="title" id="title" type="text" value="" class="text-2xl font-medium text-black bg-[#F0F7FA] py-8 px-4 border-0" placeholder="Add Title" contenteditable="true" required>
                                             <span class="blinking-cursor"></span>
                                         </div>
 
@@ -67,10 +67,19 @@
         <!-- sidebar end here -->
         <%- include('../script/script.ejs') %>
             <script src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
             <script>
                 function setStatus(status) {
                     document.getElementById('status').value = status;
                     // Trigger form submission
+                    // Show a toast notification
+                    Toastify({
+                        text: "section created Successful!",
+                        duration: 7000,
+                        close: true
+                    }).showToast();
+
                     document.querySelector('form').submit();
                 }
                 document.addEventListener('DOMContentLoaded', function() {

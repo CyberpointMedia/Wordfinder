@@ -52,7 +52,8 @@
                                             <label class="mb-3 text-lg" for="page_router">Page slug</label>
                                             <input name="page_router" id="page_router" type="text"
                                                 class="form-input bg-[#F0F7FA] border-0 mb-3"
-                                                placeholder="Enter Page slug"  <% if (slug) { %> value="<%= slug %>" <% } %>>
+                                                placeholder="Enter Page slug" <% if (slug) { %> value="<%= slug %>" <% }
+                                                    %>>
                                         </div>
 
                                         <!-- add Page Description -->
@@ -72,12 +73,14 @@
                                         </div>
 
                                         <!-- add the search menu  -->
-                                        <div class="flex items-center mb-6 customCheckBox font-semibold border border-[#ccc] rounded-md text-xl p-4 bg-[#f0f7fa]">
+                                        <div
+                                            class="flex items-center mb-6 customCheckBox font-semibold border border-[#ccc] rounded-md text-xl p-4 bg-[#f0f7fa]">
                                             <input type="hidden" name="show_search" value="false">
                                             <input id="show_search" name="show_search" type="checkbox" value="true"
                                                 class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
                                                 checked>
-                                            <label for="show_search" class="text-lg font-medium text-gray-900">Enable Search Banner</label>
+                                            <label for="show_search" class="text-lg font-medium text-gray-900">Enable
+                                                Search Banner</label>
                                         </div>
                                         <!-- add section -->
                                         <div class="flex flex-col gap-6 md:flex-row">
@@ -139,8 +142,8 @@
 
                                                 <div class="mb-6 form-group">
                                                     <label class="mb-3 text-sm" for="seoslug">Slug</label>
-                                                    <input name="seoslug" id="seoslug" type="text" value="About"
-                                                        class="form-input bg-[#F0F7FA] border-0 mb-3" disabled>
+                                                    <input name="seoslug" id="seoslug" type="text" value=""
+                                                        class="form-input bg-[#F0F7FA] border-0 mb-3">
                                                 </div>
 
                                                 <div class="mb-6 form-group">
@@ -220,6 +223,8 @@
                 </div>
         </div>
         <!-- sidebar end here -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -275,6 +280,15 @@
                 console.log('setStatus called with:', status);
                 document.getElementById('status').value = status;
                 console.log('Status:', document.getElementById('status').value);
+
+
+                // Show a toast notification
+                Toastify({
+                    text: "Page created Successful!",
+                    duration: 5000,
+                    close: true
+                }).showToast();
+
                 setTimeout(function () {
                     document.querySelector('form').submit();
                 }, 100); // Delay form submission by 100 milliseconds

@@ -36,7 +36,7 @@
                                                 </button>
                                                 <div id="hs-basic-nested-sub-collapse-one" class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-one">
                                                     <div class="py-5">
-                                                        <form action="/footer/addtexteditor" method="POST">
+                                                        <form action="/footer/addtexteditor" method="POST"   >
                                                             <div class="flex flex-col justify-start sm:items-center sm:flex-row">
                                                                 <label for="columnSelect" class="mb-4 text-sm font-normal sm:mb-0">Select Column:</label>
                                                                 <div class="sm:ml-5">
@@ -75,7 +75,7 @@
                                                 </button>
                                                 <div id="hs-basic-nested-sub-collapse-two" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-two">
                                                     <div class="py-5">
-                                                        <form action="/footer/addcustomhtml" method="POST">
+                                                        <form action="/footer/addcustomhtml" method="POST"   >
                                                             <div class="flex flex-col justify-start sm:items-center sm:flex-row">
                                                                 <label for="columnSelect" class="mb-4 text-sm font-normal sm:mb-0">Select Column:</label>
                                                                 <div class="sm:ml-5">
@@ -116,7 +116,7 @@
                                                 </button>
                                                 <div id="hs-basic-nested-sub-collapse-three" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-three">
                                                     <div class="py-5">
-                                                        <form action="/footer/addcontactdetails" method="POST">
+                                                        <form action="/footer/addcontactdetails" method="POST"   >
                                                             <div class="flex flex-col justify-start sm:items-center sm:flex-row">
                                                                 <label for="columnSelect" class="mb-4 text-sm font-normal sm:mb-0">Select Column:</label>
                                                                 <div class="sm:ml-5">
@@ -157,7 +157,7 @@
                                                 </button>
                                                 <div id="hs-basic-nested-sub-collapse-four" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-four">
                                                     <div class="py-5">
-                                                        <form action="/footer/addimage" method="POST">
+                                                        <form action="/footer/addimage" method="POST"   >
                                                             <div class="flex flex-col justify-start sm:items-center sm:flex-row">
                                                                 <label for="columnSelect" class="mb-4 text-sm font-normal sm:mb-0">Select Column:</label>
                                                                 <div class="sm:ml-5">
@@ -171,7 +171,6 @@
                                                                 </div>
                                                                 <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
                                                             </div>
-
                                                         </form>
                                                     </div>
                                                 </div>
@@ -464,24 +463,41 @@
     <%- include('../script/script.ejs') %>
         </body>
         <script src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
         <script>
-     document.querySelectorAll('.deleteButton').forEach(function(deleteButton) {
-    deleteButton.addEventListener('click', function() {
+                  // Get the URL parameters
+    var params = new URLSearchParams(window.location.search);
+
+// Check if a message is present
+if (params.has('message')) {
+    // Show a Toastify notification with the message
+    Toastify({
+        text: params.get('message'),
+        duration: 3000,
+        close: true
+    }).showToast();
+}
+        document.querySelectorAll('.deleteButton').forEach(function(deleteButton) {
+        deleteButton.addEventListener('click', function() {
         var widgetId = this.getAttribute('data-widget-id');
 
         fetch('/footer/delete/' + widgetId, {
-            method: 'POST',
-        }).then(function(response) {
-            if (response.ok) {
-                return response.text();
-            } else {
-                throw new Error('Error: ' + response.statusText);
-            }
-        }).then(function() {
-            window.location.href = '/footer/widgets';
-        }).catch(function(error) {
-            console.error('Error:', error);
-        });
+    method: 'POST',
+}).then(function(response) {
+    if (response.ok) {
+        return response.text();
+    } else {
+        throw new Error('Error: ' + response.statusText);
+    }
+}).then(function() {
+    // Delay the page refresh
+    setTimeout(function() {
+        window.location.href = '/footer/widgets';
+    }, 3100);  // Delay by 3100 milliseconds (just over the duration of the Toastify notification)
+}).catch(function(error) {
+    console.error('Error:', error);
+});
     });
 });
                 

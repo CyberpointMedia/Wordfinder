@@ -14,7 +14,7 @@ const sectionSchema = new Schema({
     },
     content:{
         type: String,
-        required: true,
+        required: false,
     },
     image: {
         type: String, 
@@ -31,7 +31,7 @@ const sectionSchema = new Schema({
         default: 'Draft',
     },
     
-});
+}, { timestamps: true });
 
 const Section = mongoose.model("Section", sectionSchema);
 module.exports = Section;

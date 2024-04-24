@@ -169,11 +169,12 @@ router.get('/draft', wrapAsync(async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
+  
   router.delete('/delete/:id', async (req, res) => {
     try {
         console.log('Delete Section:', req.params.id);
         await Section.findByIdAndDelete(req.params.id);
-        res.redirect('/admin/section/trash');
+        res.json({ message: 'Section deleted successfully' });
     } catch (error) {
         console.error('Error deleting section:', error);
         res.status(500).send('Internal Server Error');
@@ -227,7 +228,7 @@ router.post("/edit/:id", upload.single('picture__input'), wrapAsync(async (req, 
 
     console.log("Updated Section:", updatedSection);
 
-    res.redirect("/admin/section/show"); // Redirect to the sections route after updating the section
+    res.redirect(`/admin/section/edit/${id}`); // Redirect to the sections route after updating the section
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");

@@ -78,7 +78,7 @@ router.post('/addtexteditor', async (req, res) => {
   footer[column].push(widget._id);
   await footer.save();
 
-  res.redirect('/footer/widgets');
+  res.redirect('/footer/widgets?message=Text Editor Widget added successfully');
 });
 
 router.post('/addcustomhtml', async (req, res) => {
@@ -98,7 +98,7 @@ router.post('/addcustomhtml', async (req, res) => {
   }
   footer[column].push(widget._id);
   await footer.save();
-  res.redirect('/footer/widgets');
+  res.redirect('/footer/widgets?message=Custom HTML Widget added successfully');
 });
 router.post('/addcontactdetails', async (req, res) => {
   // The column where the widget should be added
@@ -118,7 +118,7 @@ router.post('/addcontactdetails', async (req, res) => {
   footer[column].push(widget._id);
   await footer.save();
 
-  res.redirect('/footer/widgets');
+  res.redirect('/footer/widgets?message=Contact Details Widget added successfully');
 });
 
 router.post('/addimage', async (req, res) => {
@@ -139,7 +139,7 @@ router.post('/addimage', async (req, res) => {
   footer[column].push(widget._id);
   await footer.save();
 
-  res.redirect('/footer/widgets');
+  res.redirect('/footer/widgets?message=Image Widget added successfully');
 });
 router.post('/texteditor', async (req, res) => {
   // The _id of the widget to update
@@ -168,7 +168,7 @@ router.post('/texteditor', async (req, res) => {
     footer[widget.column].push(widget._id);
     await footer.save();
     
-    res.redirect('/footer/widgets');
+    res.redirect('/footer/widgets?message=Text Editor Widget added successfully');
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -201,7 +201,7 @@ router.post('/Customhtml', async (req, res) => {
     footer[widget.column].push(widget._id);
     await footer.save();
     
-    res.redirect('/footer/widgets');
+    res.redirect('/footer/widgets?message=Custom HTML Widget added successfully');
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -234,7 +234,7 @@ router.post('/contactdetails', async (req, res) => {
     footer[widget.column].push(widget._id);
     await footer.save();
     
-    res.redirect('/footer/widgets');
+    res.redirect('/footer/widgets?message=Contact Details Widget added successfully');
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -268,7 +268,7 @@ router.post('/image', upload.single('image'), async (req, res) => {
     footer[widget.column].push(widget._id);
     await footer.save();
     
-    res.redirect('/footer/widgets');
+    res.redirect('/footer/widgets?message=Image Widget added successfully');
   } catch (err) {
     console.error(err);
     res.redirect('/footer/widgets');
@@ -281,7 +281,7 @@ router.post('/save-gtm-url', async (req, res) => {
 
   try {
     await Widget.findOneAndUpdate({}, { gtmUrl: gtmUrl }, { upsert: true, new: true });
-    res.redirect('/footer/widgets');
+    res.redirect('/footer/widgets?message=GTM URL Widget added successfully');
   } catch (error) {
     res.status(500).send('Error saving GTM URL');
   }
@@ -293,20 +293,20 @@ router.post('/save-gtm-data', async (req, res) => {
 
   try {
       await Widget.findOneAndUpdate({}, { gtmHead: gtmHead, gtmBody: gtmBody }, { upsert: true, new: true });
-      res.redirect('/footer/widgets');
+      res.redirect('/footer/widgets?message=GTM data Widget added successfully');
   } catch (error) {
       res.status(500).send('Error saving GTM data');
   }
 });
-
 // Delete a widget
 router.post('/delete/:id', async (req, res) => {
   try {
+    console.log('Deleting widget'); // Log the widget id
       // Find the widget by id and delete it
       await Widget.findByIdAndDelete(req.params.id);
 
       // Redirect to the widgets page
-      res.redirect('/footer/widgets');
+      res.redirect('/footer/widgets?message=Widgets delete successfully');
   } catch (err) {
       res.status(500).send(err.message);
   }

@@ -9,6 +9,7 @@ const { parse } = require('node-html-parser');
 const wrapAsync = require("../middleware/wrapAsync");
 const methodOverride = require('method-override');
 const { URL } = require('url');
+const Toastify = require('toastify-js');
 
 // Use middleware to parse JSON and URL-encoded form data
 router.use(express.json());
@@ -177,7 +178,7 @@ router.put('/update-status/:id', async (req, res) => {
       await page.save();
 
       console.log({ message: 'Page status updated successfully' });
-      res.json({ message: 'page status updated successfully' });
+      res.json({ message: 'Page status updated successfully' });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -336,7 +337,7 @@ router.put('/restore/:id', async (req, res) => {
   try {
     console.log('Restore Page:', req.params.id);
     await Page.findByIdAndUpdate(req.params.id, { status: 'Published' });
-    res.redirect('/admin/pages/trash');
+    res.json({ message: 'Page Restore successfully' });
   } catch (error) {
     console.error('Error restoring page:', error);
     res.status(500).send('Internal Server Error');
@@ -344,14 +345,14 @@ router.put('/restore/:id', async (req, res) => {
 });
 
 router.delete('/delete/:id', async (req, res) => {
-  try {
-      console.log('Delete Page:', req.params.id);
-      await Page.findByIdAndDelete(req.params.id);
-      res.redirect('/admin/pages/trash');
-  } catch (error) {
-      console.error('Error deleting post:', error);
-      res.status(500).send('Internal Server Error');
-  }
+    try {
+        console.log('Delete Page:', req.params.id);
+        await Page.findByIdAndDelete(req.params.id);
+        res.json({ message: 'Page deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting post:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
 });
 
 // Route to render draft pages

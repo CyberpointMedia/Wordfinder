@@ -17,7 +17,7 @@ const footerSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Widget'
   }],
-});
+}, { timestamps: true });
 
 const Footer = mongoose.model('Footer', footerSchema);
 module.exports =Footer;

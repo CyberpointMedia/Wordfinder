@@ -67,9 +67,9 @@ router.post('/create-profile', ensureAdmin , async (req, res) => {
 
         const users = await User.find();
 
-        res.render('admin/all-users', {users, totalCount,user: req.user});
+        res.redirect(`/admin/all-users?message=User profile created successfully`);
     } catch (err) {
-        res.render('admin/create-profile.ejs', { errorMessage: `Error creating User profile: ${err.message}` });
+        res.redirect(`/admin/create-profile?message=Error creating User profile: ${err.message}`);
     }
 });
 
@@ -102,7 +102,7 @@ router.post('/edit-profile/:id', ensureAdmin, async (req, res) => {
         }
 
         await User.findByIdAndUpdate(req.params.id, updates);
-        res.redirect('/admin/all-users');
+        res.redirect('/admin/all-users?message=User profile updated successfully');
     } catch (err) {
         console.error(err);
         res.status(500).send('An error occurred');
@@ -112,7 +112,7 @@ router.post('/edit-profile/:id', ensureAdmin, async (req, res) => {
 router.get('/delete-profile/:id', ensureAdmin, async (req, res) => {
     try {
         await User.findByIdAndDelete(req.params.id);
-        res.redirect('/admin/all-users');
+        res.redirect('/admin/all-users?message=User profile deleted successfully');
     } catch (err) {
         console.error(err);
         res.status(500).send('An error occurred');

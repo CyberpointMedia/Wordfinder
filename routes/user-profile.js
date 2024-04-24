@@ -60,7 +60,7 @@ router.post('/user-profile', upload.single('image'), async (req, res) => {
         } else {
         await user.save();
         console.log("user", user);
-        res.redirect('/user/user-profile');
+        res.redirect('/user/user-profile?message=Profile%20updated%20successfully');
     }
 });
 

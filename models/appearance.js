@@ -18,5 +18,6 @@ const AppearanceSchema = new mongoose.Schema({
         url: String,
         text: String
     }],
-});
+}, { timestamps: true });
+
 module.exports = mongoose.model('Appearance', AppearanceSchema);

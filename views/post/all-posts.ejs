@@ -101,6 +101,8 @@
         </div>
     </div>
     <!-- sidebar end here -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script>
         function updateStatus(postId) {
             fetch(`/post/updateStatus/${postId}`, {
@@ -111,37 +113,47 @@
                 body: JSON.stringify({ status: 'Trash' })
             })
             .then(response => response.json())
-            .then(data => {
-                // For example, you can show a success message or refresh the page
-                console.log(data);
-            })
+                    .then(data => {
+                        // Show a Toastify notification with the message
+                        Toastify({
+                            text: data.message,
+                            duration: 1000,
+                            close: true
+                        }).showToast();
+
+                        // Delay the page reload
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1100);  // Delay by 3100 milliseconds (just over the duration of the Toastify notification)
+                    })
             .catch(error => {
                 // Handle any errors that occurred during the request
                 console.error(error);
             })
-            .finally(() => {
-                // Reload the page after the fetch request is completed, regardless of whether it succeeded or failed
-                location.reload();
-            });
         }
 
         function deletePost(id) {
             fetch(`/post/delete/${id}`, {
                 method: 'DELETE',
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-            })
+            .then(response => response.json())
+                    .then(data => {
+                        // Show a Toastify notification with the message
+                        Toastify({
+                            text: data.message,
+                            duration: 1000,
+                            close: true
+                        }).showToast();
+
+                        // Delay the page reload
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1100);  // Delay by 3100 milliseconds (just over the duration of the Toastify notification)
+                    })
             .catch(error => {
                 // Handle any errors that occurred during the request
                 console.error('Error:', error);
             })
-            .finally(() => {
-                // Reload the page after the fetch request is completed, regardless of whether it succeeded or failed
-                location.reload();
-            });
         }
     </script>
     <%- include('../script/script.ejs') %>

@@ -300,6 +300,7 @@
                                 <!-- main content end here -->
                                 <%- include('../script/script.ejs') %>
                                     <script>
+
                                         $(document).ready(function () {
                                             $('#createMenu').click(function () {
                                                 $('#menuCreationForm').show();
@@ -360,25 +361,32 @@
                                         };
 
                                         document.getElementById('remove-button').addEventListener('click', function () {
-                                            var menuId = document.getElementById('select-menu-to-edit').value;
-                                            fetch('/appearance/delete-menu/' + menuId, {
-                                                method: 'DELETE',
-                                            })
-                                                .then(response => response.json())
-                                                .then(data => {
-                                                    console.log(data.message);
-                                                    // Remove the menu from the select menu
-                                                    var selectMenu = document.getElementById('select-menu-to-edit');
-                                                    var options = selectMenu.options;
-                                                    for (var i = 0; i < options.length; i++) {
-                                                        if (options[i].value == menuId) {
-                                                            selectMenu.remove(i);
-                                                            break;
-                                                        }
-                                                    }
-                                                })
-                                                .catch(error => console.error('Error:', error));
-                                        });
+    var menuId = document.getElementById('select-menu-to-edit').value;
+    fetch('/appearance/delete-menu/' + menuId, {
+        method: 'DELETE',
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message);
+            // Show a Toastify notification with the message
+            Toastify({
+                text: data.message,
+                duration: 3000,
+                close: true
+            }).showToast();
+
+            // Remove the menu from the select menu
+            var selectMenu = document.getElementById('select-menu-to-edit');
+            var options = selectMenu.options;
+            for (var i = 0; i < options.length; i++) {
+                if (options[i].value == menuId) {
+                    selectMenu.remove(i);
+                    break;
+                }
+            }
+        })
+        .catch(error => console.error('Error:', error));
+});
 
                                         document.getElementById('select-menu-to-edit').addEventListener('change', function () {
                                             var menuId = this.value;

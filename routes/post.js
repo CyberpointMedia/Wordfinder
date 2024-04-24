@@ -53,7 +53,6 @@ router.get('/create', async (req, res) => {
   }
 });
 
-// Logic to handle post creation
 router.post('/create', upload.fields([{ name: 'picture__input', maxCount: 1 }, { name: 'feature_img', maxCount: 1 }]), (req, res) => {
   if (!req.files) {
       return res.status(400).json('No files uploaded');
@@ -61,7 +60,7 @@ router.post('/create', upload.fields([{ name: 'picture__input', maxCount: 1 }, {
 
   console.log(req.files);
   const title = encodeURIComponent(req.body.title.replace(/\s+/g, '-'));
-    const newPost = new Post({
+  const newPost = new Post({
     title: title,
     heading: req.body.heading,
     description: req.body.description,
@@ -69,11 +68,25 @@ router.post('/create', upload.fields([{ name: 'picture__input', maxCount: 1 }, {
     feature_img: req.files['feature_img'][0].location, // URL of the uploaded feature file on S3
     status: req.body.status,
     category: req.body.category,
-    author: req.user._id
+    author: req.user._id,
+    seoTitle: req.body.seoTitle,
+    seoslug: req.body.seoslug,
+    seoMetaDescription: req.body.seoMetaDescription,
+    searchEngines: req.body.searchEngines,
+    metaRobots: req.body.metaRobots,
+    breadcrumbsTitle: req.body.breadcrumbsTitle,
+    canonicalURL: req.body.canonicalURL
   });
 
   newPost.save()
-  .then((savedPost) => res.redirect(`/post/edit/${savedPost._id}`)) // Redirect to the edit page for the newly created post
+  .then((savedPost) => {
+    // Set SEO fields in response headers
+    res.set('X-SEO-Title', savedPost.seoTitle);
+    res.set('X-SEO-Meta-Description', savedPost.seoMetaDescription);
+    res.set('X-Meta-Robots', savedPost.metaRobots);
+
+    res.redirect(`/post/edit/${savedPost._id}`); // Redirect to the edit page for the newly created post
+  })
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -123,8 +136,8 @@ router.delete('/delete/:id', async (req, res) => {
   try {
       console.log('Delete post:', req.params.id);
       await Post.findByIdAndDelete(req.params.id);
-      res.redirect('post/trash');
-  } catch (error) {
+      res.json({ message: 'Post deleted successfully' });
+    } catch (error) {
       console.error('Error deleting post:', error);
       res.status(500).send('Internal Server Error');
   }
@@ -156,7 +169,7 @@ router.get('/draft', async (req, res) => {
     }
   });
 
-  router.post('/edit/:id', upload.fields([{ name: 'picture__input', maxCount: 1 }, { name: 'feature_img', maxCount: 1 }]), wrapAsync(async (req, res) => {
+router.post('/edit/:id', upload.fields([{ name: 'picture__input', maxCount: 1 }, { name: 'feature_img', maxCount: 1 }]), wrapAsync(async (req, res) => {
     const { id } = req.params;
     const post = await Post.findById(id);
     if (!post) {
@@ -169,6 +182,13 @@ router.get('/draft', async (req, res) => {
     post.status = req.body.status;
     post.category = req.body.category;
     post.author = req.user._id;
+    post.seoTitle = req.body.seoTitle;
+    post.seoslug = req.body.seoslug;
+    post.seoMetaDescription = req.body.seoMetaDescription;
+    post.searchEngines = req.body.searchEngines;
+    post.metaRobots = req.body.metaRobots;
+    post.breadcrumbsTitle = req.body.breadcrumbsTitle;
+    post.canonicalURL = req.body.canonicalURL;
     if (req.files) {
       if (req.files['picture__input']) {
         post.picture = req.files['picture__input'][0].location;
@@ -179,7 +199,7 @@ router.get('/draft', async (req, res) => {
     }
   
     await post.save();
-    res.redirect('/post/all');
+    res.redirect('/post/edit/' + id);
 }));
 //change the status of the post
 router.put('/updateStatus/:id', async (req, res) => {

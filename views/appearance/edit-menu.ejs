@@ -207,90 +207,104 @@
                                     <!-- Menu Structure end -->
                                 </div>
                             </form>
-                                <form action="/appearance/show-menu" method="post"
-                                    enctype="application/x-www-form-urlencoded">
-                                    <div
-                                        class="px-5 py-8 mt-8 bg-white border rounded shadow-sm savedMenuShows cardBody">
-                                        <h3 class="mb-4 text-lg font-bold text-black">Menu Settings</h3>
-                                        <div class="flex flex-col justify-start mb-6 sm:items-center sm:flex-row">
-                                            <label class="mb-2 text-sm font-normal sm:mb-0">Select a menu to
-                                                edit:</label>
-                                            <div class="sm:ml-5">
-                                                <select name="selectedMenuId" id="select-menu-to-edit"
-                                                    class="w-full px-3 py-3 sm:w-40">
-                                                    <% menus.forEach((menu, index)=> { %>
-                                                        <option value="<%= menu._id %>"
-                                                            <%=selectedMenuId===menu._id.toString() ? 'selected' : '' %>
-                                                            >
-                                                            <%= menu.menuName %>
-                                                        </option>
-                                                        <% }) %>
-                                                </select>
-                                            </div>
+                            <form action="/appearance/show-menu" method="post"
+                                enctype="application/x-www-form-urlencoded">
+                                <div class="px-5 py-8 mt-8 bg-white border rounded shadow-sm savedMenuShows cardBody">
+                                    <h3 class="mb-4 text-lg font-bold text-black">Menu Settings</h3>
+                                    <div class="flex flex-col justify-start mb-6 sm:items-center sm:flex-row">
+                                        <label class="mb-2 text-sm font-normal sm:mb-0">Select a menu to
+                                            edit:</label>
+                                        <div class="sm:ml-5">
+                                            <select name="selectedMenuId" id="select-menu-to-edit"
+                                                class="w-full px-3 py-3 sm:w-40">
+                                                <% menus.forEach((menu, index)=> { %>
+                                                    <option value="<%= menu._id %>"
+                                                        <%=selectedMenuId===menu._id.toString() ? 'selected' : '' %>
+                                                        >
+                                                        <%= menu.menuName %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
                                         </div>
-                                        <div id="page-post-custom" class="mb-6 hs-accordion-group">
-                                            <!-- added pages /post /custom.text  -->
-                                            <div data-name="" class="mb-4 hs-accordion "
-                                                id="hs-basic-nested-sub-heading-colOne ">
-                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]
+                                    </div>
+                                    <div id="page-post-custom" class="mb-6 hs-accordion-group">
+                                        <!-- added pages /post /custom.text  -->
+                                        <div data-name="" class="mb-4 hs-accordion "
+                                            id="hs-basic-nested-sub-heading-colOne ">
+                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]
                                         " aria-controls="hs-basic-nested-sub-collapse-colOne ">
-                                                    <div id="page-post-custom-name">Home</div>
-                                                    <svg class="block w-4 h-4 hs-accordion-active:hidden "
-                                                        xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
-                                                        viewBox="0 0 24 24 " fill="none " stroke="currentColor "
-                                                        stroke-width="2
+                                                <div id="page-post-custom-name">Home</div>
+                                                <svg class="block w-4 h-4 hs-accordion-active:hidden "
+                                                    xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
+                                                    viewBox="0 0 24 24 " fill="none " stroke="currentColor "
+                                                    stroke-width="2
                                         " stroke-linecap="round " stroke-linejoin="round ">
-                                                        <path d="m6 9 6 6 6-6 " />
-                                                    </svg>
+                                                    <path d="m6 9 6 6 6-6 " />
+                                                </svg>
 
-                                                    <svg class="hidden w-4 h-4 hs-accordion-active:block "
-                                                        xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
-                                                        viewBox="0 0 24 24 " fill="none " stroke="currentColor "
-                                                        stroke-width="2
+                                                <svg class="hidden w-4 h-4 hs-accordion-active:block "
+                                                    xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
+                                                    viewBox="0 0 24 24 " fill="none " stroke="currentColor "
+                                                    stroke-width="2
                                         " stroke-linecap="round " stroke-linejoin="round ">
-                                                        <path d="m18 15-6-6-6 6 " />
-                                                    </svg>
-                                                </button>
-                                                <div id="hs-basic-nested-sub-collapse-colOne "
-                                                    class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF] "
-                                                    aria-labelledby="hs-basic-nested-sub-heading-colOne ">
-                                                    <div class="py-5 ">
-                                                        <div class="mb-6 form-group ">
-                                                            <label class="mb-2 text-sm font-normal"
-                                                                for="updated_name">Name</label>
-                                                            <input id="updated_name" name="updated_name" type="text"
-                                                                class="md:w-72" placeholder="Enter the updated name">
-                                                        </div>
+                                                    <path d="m18 15-6-6-6 6 " />
+                                                </svg>
+                                            </button>
+                                            <div id="hs-basic-nested-sub-collapse-colOne "
+                                                class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF] "
+                                                aria-labelledby="hs-basic-nested-sub-heading-colOne ">
+                                                <div class="py-5 ">
+                                                    <div class="mb-6 form-group ">
+                                                        <label class="mb-2 text-sm font-normal"
+                                                            for="updated_name">Name</label>
+                                                        <input id="updated_name" name="updated_name" type="text"
+                                                            class="md:w-72" placeholder="Enter the updated name">
+                                                    </div>
 
-                                                        <div class="mb-4 form-group ">
-                                                            <label class="mb-2 text-sm font-normal" for="parent">Parent
-                                                            </label>
-                                                            <input id="parent" name="parent" type="text" class="md:w-72"
-                                                                placeholder="Home" valid="Home">
-                                                        </div>
+                                                    <div class="mb-4 form-group ">
+                                                        <label class="mb-2 text-sm font-normal" for="parent">Parent
+                                                        </label>
+                                                        <input id="parent" name="parent" type="text" class="md:w-72"
+                                                            placeholder="Home" valid="Home">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
-                                <div class="flex flex-row items-center gap-2 mt-6">
-                                    <div class="publishing-action">
-                                        <a id="edit-button" href="javascript:void(0);"
-                                            class="w-24 py-2 px-4 text-white bg-[#007BFF] rounded-lg item-remove">
-                                            Edit
-                                        </a>
-                                    </div>
-                                    <span class="flex items-center">
-                                        <a id="remove-button"
-                                            class="ml-3 text-red-600 underline item-remove hover:text-red-400"
-                                            href="javascript:void(0);">Delete Menu</a>
-                                    </span>
                                 </div>
+                            </form>
+                            <div class="flex flex-row items-center gap-2 mt-6">
+                                <div class="publishing-action">
+                                    <a id="edit-button" href="javascript:void(0);"
+                                        class="w-24 py-2 px-4 text-white bg-[#007BFF] rounded-lg item-remove">
+                                        Edit
+                                    </a>
+                                </div>
+                                <span class="flex items-center">
+                                    <a id="remove-button"
+                                        class="ml-3 text-red-600 underline item-remove hover:text-red-400"
+                                        href="javascript:void(0);">Delete Menu</a>
+                                </span>
+                            </div>
                         </main>
                         <!-- main content end here -->
                         <%- include('../script/script.ejs') %>
+                            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+                            <link rel="stylesheet" type="text/css"
+                                href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
                             <script>
+                                var params = new URLSearchParams(window.location.search);
+
+                                // Check if a message is present
+                                if (params.has('message')) {
+                                    // Show a Toastify notification with the message
+                                    Toastify({
+                                        text: params.get('message'),
+                                        duration: 3000,
+                                        close: true
+                                    }).showToast();
+                                }
+
                                 document.querySelectorAll('.hs-accordion-toggle1').forEach(button => {
                                     button.addEventListener('click', (event) => {
                                         event.preventDefault(); // prevent form submission
@@ -372,6 +386,13 @@
                                         .then(response => response.json())
                                         .then(data => {
                                             console.log(data.message);
+                                            // Show a Toastify notification with the message
+                                            Toastify({
+                                                text: data.message,
+                                                duration: 3000,
+                                                close: true
+                                            }).showToast();
+
                                             // Remove the menu from the select menu
                                             var selectMenu = document.getElementById('select-menu-to-edit');
                                             var options = selectMenu.options;
@@ -469,4 +490,5 @@
                                 }
                             </script>
     </body>
+
     </html>

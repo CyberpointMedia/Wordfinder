@@ -70,10 +70,10 @@
                                                                 <a href="javascript:void(0)"
                                                                     onclick="restorePage('<%= page._id %>')"
                                                                     class="text-[#2271b1] text-xs">Restore</a> |
-                                                            <% } else { %>
+                                                                <% } else { %>
                                                                     <a href="<%= `pages/edit/${page._id}` %>"
                                                                         class="text-[#2271b1] text-xs">Edit</a> |
-                                                            <% } %>
+                                                                    <% } %>
                                                         </span>
                                                         <% if (page.status==='Trash' ) { %>
                                                             <span class="delete">
@@ -81,16 +81,17 @@
                                                                     class="delete text-[#b32d2e] text-xs"
                                                                     onclick="deletePage('<%= page._id %>')">Delete</a> |
                                                             </span>
-                                                        <% } else { %>
-                                                            <span class="trash"><a href="javascript:void(0)"
+                                                            <% } else { %>
+                                                                <span class="trash"><a href="javascript:void(0)"
                                                                         class="trash text-[#b32d2e] text-xs"
-                                                                        onclick="updateStatus('<%= page._id %>')">Trash</a> |
-                                                            </span>
-                                                        <% } %>
-                                                            <span class="view">
+                                                                        onclick="updateStatus('<%= page._id %>')">Trash</a>
+                                                                    |
+                                                                </span>
+                                                                <% } %>
+                                                                    <span class="view">
                                                                         <a href="/<%= page.page_router %>"
                                                                             class="text-[#2271b1] text-xs">View</a>
-                                                            </span>
+                                                                    </span>
                                                     </div>
                                                 </td>
                                                 <% function formatDate(date) { %>
@@ -128,6 +129,8 @@
                 </div>
         </div>
         <!-- sidebar end here -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
         <script>
             // Add this function to your JavaScript
             function updateStatus(pageId) {
@@ -140,54 +143,76 @@
                 })
                     .then(response => response.json())
                     .then(data => {
-                        // For example, you can show a success message or refresh the page
-                        console.log(data);
+                        // Show a Toastify notification with the message
+                        Toastify({
+                            text: data.message,
+                            duration: 1000,
+                            close: true
+                        }).showToast();
+
+                        // Delay the page reload
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1100);  // Delay by 3100 milliseconds (just over the duration of the Toastify notification)
                     })
                     .catch(error => {
-                        // Handle any errors that occurred during the request
-                        console.error(error);
+                        console.error('Error:', error);
                     })
-                    .finally(() => {
-                        // Reload the page after the fetch request is completed, regardless of whether it succeeded or failed
-                        location.reload();
-                    });
             }
             function deletePage(pageId) {
                 fetch(`/admin/pages/delete/${pageId}`, {
                     method: 'DELETE',
                 })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
+                    .then(response => response.json())
+                    .then(data => {
+                        // Show a Toastify notification with the success message
+                        Toastify({
+                            text: data.message,
+                            duration: 1000,
+                            close: true
+                        }).showToast();
+
+                        // Delay the page reload
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1100);  // Delay by 3100 milliseconds (just over the duration of the Toastify notification)
                     })
                     .catch(error => {
                         // Handle any errors that occurred during the request
                         console.error('Error:', error);
                     })
-                    .finally(() => {
-                        // Reload the page after the fetch request is completed, regardless of whether it succeeded or failed
-                        location.reload();
-                    });
+
             }
             function restorePage(pageId) {
                 fetch(`/admin/pages/restore/${pageId}`, {
                     method: 'PUT',
                 })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    })
-                    .finally(() => {
+                .then(response => response.json())
+                .then(data => {
+                    // Show a Toastify notification with the success message
+                    Toastify({
+                        text: data.message,
+                        duration: 1000,
+                        close: true
+                    }).showToast();
+            
+                    // Delay the page reload
+                    setTimeout(function () {
                         location.reload();
-                    });
+                    }, 1100);  // Delay by 3100 milliseconds (just over the duration of the Toastify notification)
+                })
+                .catch(error => {
+                    // Show a Toastify notification with the error message
+                    Toastify({
+                        text: error.message,
+                        duration: 1000,
+                        close: true
+                    }).showToast();
+                });
             }
 
         </script>
         <%- include('../script/script.ejs') %>
     </body>
+
     </html>

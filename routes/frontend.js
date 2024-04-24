@@ -22,7 +22,8 @@ const setAdminStatusAndUsername = require('../middleware/setAdminStatusAndUserna
 const fetchPageAndMorePosts = require('../middleware/fetchPageAndMorePosts');
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
-
+const nodemailer = require('nodemailer');
+require('dotenv').config();
 // Use the middleware in your application
 router.use(setAdminStatusAndUsername);
 // Middleware to fetch page and morePosts
@@ -123,25 +124,26 @@ router.get('/no-words-found', async (req, res) => {
 });
 
 router.post('/send-email', upload.single('fileBrowse'), (req, res) => {
+    console.log('req.body send email is called:', req.body);
     let transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: process.env.SMTP_HOST,
+      port: 587,
+      secure: false, // true for 465, false for other ports
       auth: {
-        user: 'your-email@gmail.com',
-        pass: 'your-password'
+        user: 'services@cyberpointmedia.com',
+        pass: 'untnogualcpwgohn'
       }
     });
   
     let mailOptions = {
-      from: 'your-email@gmail.com',
-      to: 'ekansh@cyberpointmedia.com, sanjay@cyberpointmedia.com',
-      subject: 'Share Your Thoughts',
-      text: `Email: ${req.body.emailId}\n\nThoughts: ${req.body.commentDetails}`,
-      attachments: [
-        {
+        from: 'services@cyberpointmedia.com',
+        to: 'ekansh@cyberpointmedia.com, sanjay@cyberpointmedia.com',
+        subject: 'Share Your Thoughts',
+        text: `Email: ${req.body.emailId}\n\nThoughts: ${req.body.commentDetails}`,
+        attachments: req.file ? [{
           path: req.file.path
-        }
-      ]
-    };
+        }] : []
+      };
   
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
@@ -149,10 +151,10 @@ router.post('/send-email', upload.single('fileBrowse'), (req, res) => {
         res.status(500).send('Error sending email');
       } else {
         console.log('Email sent: ' + info.response);
-        res.send('Email sent successfully');
+        res.render('frontend/index.ejs');
       }
     });
-  });
+});
 
 router.post('/unscramble', visitCounter, async (req, res) => {
     try {

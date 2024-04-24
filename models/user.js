@@ -17,7 +17,8 @@ const userSchema = new mongoose.Schema({
     },
     website: {
         type: String,
-        required: false    },
+        required: false    
+    },
     role: {
         type: String,
         enum: ['subscriber', 'author', 'editor', 'administrator'],
@@ -31,12 +32,14 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     }
-});
+}, { timestamps: true }); // Add this line
+
 userSchema.pre('save', async function(next) {
     if (this.isModified('password')) {
         this.password = await bcrypt.hash(this.password, 10);
     }
     next();
 });
+
 const User = mongoose.model('User', userSchema);
 module.exports = User;

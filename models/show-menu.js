@@ -19,6 +19,6 @@ const ShowMenuSchema = new mongoose.Schema({
             updated_name: String,
             parent: String
         }]
-    });
+    }, { timestamps: true });
     
 module.exports = mongoose.model('ShowMenu', ShowMenuSchema);
