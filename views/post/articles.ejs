@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Word Finder</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/logo-sm.svg">
+    <link href="/styles/style.css" rel="stylesheet">
+    <link href="/styles/frontend/custom.css" rel="stylesheet">
+</head><body class="font-custom">
+    <!-- header start here -->
+    <%- (include('../frontend/head/header.ejs')) %>
+    <!-- header end here -->
+
+    <!-- banner section start -->
+    <section class="bg-[#DBF4FF] sm:h-80 h-60 flex items-center align-middle">
+        <div class="container">
+            <h1 class="w-full h-full text-5xl font-semibold text-center sm:text-4xl">Articles</h1>
+        </div>
+    </section>
+    <!-- banner section end -->
+
+    <!-- content section start -->
+    <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-20">
+        <div class="container">
+            <!-- articles grid start here -->
+            <div class="grid gap-8 grid-cols sm:grid-cols-2 md:grid-cols-3">
+                <% morePosts.forEach(post => { %>
+                <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
+                    <a href="/articles/<%= post.title %>"><img src="<%= post.feature_img %>" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
+                    <div class="p-4">
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="/articles/<%= post.title %>" class="hover:text-[#007BFF]"><%= post.heading %></a></h3>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+
+            <!-- pagination start here -->
+            <nav class="flex items-center justify-center mt-10 gap-x-1 pagination">
+                <button type="button" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm sm:text-lg rounded-lg text-[#747474] hover:text-[#007BFF] hover:bg-[#F0F7FA] focus:outline-none focus:bg-[#F0F7FA] disabled:opacity-50 disabled:pointer-events-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                        <path d="M8.43753 2.81247C8.43753 2.93235 8.39171 3.05235 8.30019 3.14388L3.94409 7.49997L8.30019 11.8561C8.48335 12.0392 8.48335 12.3358 8.30019 12.5189C8.11702 12.7019 7.82042 12.702 7.63737 12.5189L2.94987 7.83138C2.76671 7.64821 2.76671 7.35161 2.94987 7.16856L7.63737 2.48106C7.82054 2.2979 8.11714 2.2979 8.30019 2.48106C8.39171 2.57259 8.43753 2.69259 8.43753 2.81247ZM12.0502 2.48106C11.867 2.2979 11.5704 2.2979 11.3874 2.48106L6.69987 7.16856C6.51671 7.35173 6.51671 7.64833 6.69987 7.83138L11.3874 12.5189C11.5705 12.702 11.8671 12.702 12.0502 12.5189C12.2332 12.3357 12.2333 12.0391 12.0502 11.8561L7.69409 7.49997L12.0502 3.14388C12.1417 3.05235 12.1875 2.93235 12.1875 2.81247C12.1875 2.69259 12.1417 2.57259 12.0502 2.48106Z" fill="#747474"/>
+                    </svg>
+                    <span>Previous</span>
+                </button>
+                <div class="flex items-center gap-x-1">
+                    <button type="button" class="h-10 w-10 flex justify-center items-center text-[#747474] hover:text-[#007BFF] hover:bg-[#F0F7FA] py-2 px-3 text-sm sm:text-lg rounded-lg active focus:outline-none focus:bg-[#F0F7FA] disabled:opacity-50 disabled:pointer-events-none"
+                        aria-current="page">1</button>
+
+                    <button type="button" class="h-10 w-10 flex justify-center items-center text-[#747474] hover:text-[#007BFF] hover:bg-[#F0F7FA] py-2 px-3 text-sm sm:text-lg rounded-lg focus:outline-none focus:bg-[#F0F7FA] disabled:opacity-50 disabled:pointer-events-none">2</button>
+
+                    <button type="button" class="h-10 w-10 flex justify-center items-center text-[#747474] hover:text-[#007BFF] hover:bg-[#F0F7FA] py-2 px-3 text-sm sm:text-lg rounded-lg focus:outline-none focus:bg-[#F0F7FA] disabled:opacity-50 disabled:pointer-events-none">3</button>
+                </div>
+                <button type="button" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm sm:text-lg rounded-lg text-[#747474] hover:text-[#007BFF] hover:bg-[#F0F7FA] focus:outline-none focus:bg-[#F0F7FA] disabled:opacity-50 disabled:pointer-events-none">
+                    <span>Next</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                        <path d="M6.56247 12.1875C6.56247 12.0676 6.60829 11.9476 6.69981 11.8561L11.0559 7.50003L6.69981 3.14394C6.51665 2.96077 6.51665 2.66417 6.69981 2.48112C6.88298 2.29808 7.17958 2.29796 7.36263 2.48112L12.0501 7.16862C12.2333 7.35179 12.2333 7.64839 12.0501 7.83144L7.36263 12.5189C7.17946 12.7021 6.88286 12.7021 6.69981 12.5189C6.60829 12.4274 6.56247 12.3074 6.56247 12.1875ZM2.94981 12.5189C3.13298 12.7021 3.42958 12.7021 3.61263 12.5189L8.30013 7.83144C8.48329 7.64827 8.48329 7.35167 8.30013 7.16862L3.61263 2.48112C3.42946 2.29796 3.13286 2.29796 2.94981 2.48112C2.76677 2.66429 2.76665 2.96089 2.94981 3.14393L7.30591 7.50003L2.94981 11.8561C2.85829 11.9476 2.81247 12.0676 2.81247 12.1875C2.81247 12.3074 2.85829 12.4274 2.94981 12.5189Z" fill="#747474"/>
+                    </svg>
+                </button>
+            </nav>
+            <!-- pagination end here -->
+
+        </div>
+    </div>
+    <!-- content section end -->
+
+    <!-- footer start  -->
+    <%- (include('../frontend/footer/footer.ejs')) %>
+<!-- footer end  -->
+
+<%- (include('../frontend/script/script.ejs')) %>

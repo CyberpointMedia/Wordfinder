@@ -1,0 +1,187 @@
+<!-- show-section.ejs -->
+<%- include('../header/head.ejs') %>
+
+    <body>
+        <!-- sidebar start here -->
+        <div class="flex overflow-hidden">
+            <!-- sidenav Menu Start  -->
+            <%- include('../sidenav/sidenav.ejs') %>
+
+                <div class="page-content bg-white">
+                    <!-- header Start -->
+                    <%- include('../header/header.ejs') %>
+
+                        <!-- main content start here -->
+                        <main class="py-8 px-5">
+                            <div class="mb-6 flex gap-3 sm:flex-row sm:items-center">
+                                <h1 class="text-2xl font-bold text-black">
+                                    All Sections
+                                </h1>
+                                <a href="/admin/section/create"
+                                    class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add
+                                    New Section</a>
+                            </div>
+
+                            <!-- Dynamic content generation -->
+                            <ul class="subsubsub flex flex-wrap space-x-2 mb-6">
+                                <li class="all"><a href="/admin/section/all" class="current text-black" aria-current="page">All <span class="count">(<%= allCount %>)</span></a> |</li>
+                                <li class="publish"><a href="/admin/section/published" class="text-black">Published <span class="count">(<%= publishedCount %>)</span></a> |</li>
+                                <li class="trash"><a href="/admin/section/trash" class="text-black">Trash <span class="count">(<%= trashCount %>)</span></a> |</li>
+                                <li class="draft"><a href="/admin/section/draft" class="text-black">Draft <span class="count">(<%= draftCount %>)</span></a></li>            
+                            </ul>   
+                            
+                            <!-- table start here -->
+                            <div class="bg-white overflow-x-auto">
+                                <table class="w-full divide-y divide-gray-200 border" id="example">
+                                    <thead class="text-left bg-[#DBF4FF]">
+                                        <tr>
+                                            <th>
+                                                <input type="checkbox" class="selectAll">
+                                            </th>
+                                            <th>
+                                                Title
+                                            </th>
+                                            <th>
+                                                Author
+                                            </th>
+                                            <th>
+                                                Page
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody class="divide-y divide-gray-200">
+                                        <% sections.forEach(section=> { %>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" value="<%= section._id %>" class="">
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <strong><a class="row-title text-[#2271b1] text-sm"
+                                                                href="<%= `show/${section.title}` %>">
+                                                                <%= section.title %>
+                                                            </a></strong>
+                                                    </div>
+                                                    <div class="row-actions mt-1">
+                                                        <span class="edit">
+                                                            <a href="<%= `/admin/section/edit/${section._id}` %>" class="text-[#2271b1] text-xs">Edit</a>|
+                                                        </span>
+                                                        <% if (section.status === 'Trash') { %>
+                                                            <span class="delete">
+                                                                <a href="javascript:void(0)" class="delete text-[#b32d2e] text-xs" onclick="deletePost('<%= section._id %>')">Delete</a> |
+                                                            </span>                                        <% } else { %>
+                                                            <span class="trash"><a href="javascript:void(0)" class="trash text-[#b32d2e] text-xs" onclick="trashSection('<%= section._id %>')">Trash</a> | </span>
+                                                        <% } %>
+                                                        <span class="view">
+                                                            <a href="<%= `show/${section.title}`%>"
+                                                                class="text-[#2271b1] text-xs">View</a>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    Admin
+                                                </td>
+                                                <td><a href="javascript:void(0);" class="text-[#2271b1]">
+                                                        <%= section.page %>
+                                                    </a></td>
+                                                    <td>
+                                                        <%= section.status %><br>
+                                                        <% if (section.createdAt) { %>
+                                                          <%= section.createdAt.toLocaleString() %>
+                                                        <% } else { %>
+                                                          Unknown Date
+                                                        <% } %>
+                                                      </td>
+                                            </tr>
+                                            <% }); %>
+                                    </tbody>
+
+                                    <tfoot class="text-left bg-[#DBF4FF]">
+                                        <tr>
+                                            <th>
+                                                <input type="checkbox" class="selectAll">
+                                            </th>
+                                            <th>
+                                                Title
+                                            </th>
+                                            <th>
+                                                Author
+                                            </th>
+                                            <th>
+                                                Page
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- table end here -->
+                        </main>
+                        <!-- main content end here -->
+                </div>
+        </div>
+        <!-- sidebar end here -->
+    </body>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script>
+        // Add this function to your JavaScript
+function trashSection(id) {
+    fetch(`/admin/section/update-status/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ status: 'Trash' })
+            })
+            .then(response => response.json())
+                    .then(data => {
+                        // Show a Toastify notification with the success message
+                        Toastify({
+                            text: data.message,
+                            duration: 1000,
+                            close: true
+                        }).showToast();
+
+                        // Delay the page reload
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1100);  // Delay by 3100 milliseconds (just over the duration of the Toastify notification)
+                    })
+            .catch(error => {
+                // Handle any errors that occurred during the request
+                console.error(error);
+            })
+        }
+        function deletePost(id) {
+            fetch(`/admin/section/delete/${id}`, {
+                method: 'DELETE',
+            })
+            .then(response => response.json())
+                    .then(data => {
+                        // Show a Toastify notification with the message
+                        Toastify({
+                            text: data.message,
+                            duration: 1000,
+                            close: true
+                        }).showToast();
+
+                        // Delay the page reload
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1100);  // Delay by 3100 milliseconds (just over the duration of the Toastify notification)
+                    })
+            .catch(error => {
+                // Handle any errors that occurred during the request
+                console.error('Error:', error);
+            })
+        }
+</script>
+    <%- include('../script/script.ejs') %>
+</html>

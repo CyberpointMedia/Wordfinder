@@ -1,0 +1,547 @@
+<%- include('../header/head.ejs') %>
+
+    <body>
+        <!-- sidebar start here -->
+        <div class="flex overflow-hidden">
+            <%- include('../sidenav/sidenav.ejs') %>
+                <div class="bg-white page-content">
+                    <%- include('../header/header.ejs') %>
+                        <!-- main content start here -->
+                        <main class="px-5 py-8">
+                            <div class="flex flex-col gap-6 mt-6 md:flex-row">
+                                <!-- available widgets start -->
+                                <div class="w-full md:w-2/5 ">
+                                    <h2 class="mb-4 text-xl font-bold text-black">
+                                        Available Widgets
+                                    </h2>
+                                    <div class="px-5 pt-8 pb-4 bg-white border rounded shadow-sm cardBody">
+                                        <div class="hs-accordion-group">
+                                            <!-- text editor start -->
+                                            <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-one">
+                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-one">
+                                                    Text Editor
+                                                    <svg class="block w-4 h-4 hs-accordion-active:hidden"
+                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path d="m6 9 6 6 6-6" />
+                                                    </svg>
+
+                                                    <svg class="hidden w-4 h-4 hs-accordion-active:block"
+                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path d="m18 15-6-6-6 6" />
+                                                    </svg>
+                                                </button>
+                                                <div id="hs-basic-nested-sub-collapse-one" class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-one">
+                                                    <div class="py-5">
+                                                        <form action="/footer/addtexteditor" method="POST"   >
+                                                            <div class="flex flex-col justify-start sm:items-center sm:flex-row">
+                                                                <label for="columnSelect" class="mb-4 text-sm font-normal sm:mb-0">Select Column:</label>
+                                                                <div class="sm:ml-5">
+                                                                    <select id="columnSelect" name="column" class="w-full px-3 py-3 sm:w-32">
+                                                                        <% columns.forEach(column=> { %>
+                                                                            <option value="<%= column %>">
+                                                                                <%= column %>
+                                                                            </option>
+                                                                            <% }) %>
+                                                                    </select>
+                                                                </div>
+                                                                <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- text editor end -->
+                                            <!-- custom HTML start -->
+                                            <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-two">
+                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-two">
+                                                    Custom HTML
+                                                    <svg class="block w-4 h-4 hs-accordion-active:hidden"
+                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path d="m6 9 6 6 6-6" />
+                                                    </svg>
+
+                                                    <svg class="hidden w-4 h-4 hs-accordion-active:block"
+                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path d="m18 15-6-6-6 6" />
+                                                    </svg>
+                                                </button>
+                                                <div id="hs-basic-nested-sub-collapse-two" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-two">
+                                                    <div class="py-5">
+                                                        <form action="/footer/addcustomhtml" method="POST"   >
+                                                            <div class="flex flex-col justify-start sm:items-center sm:flex-row">
+                                                                <label for="columnSelect" class="mb-4 text-sm font-normal sm:mb-0">Select Column:</label>
+                                                                <div class="sm:ml-5">
+                                                                    <select id="columnSelect" name="column" class="w-full px-3 py-3 sm:w-32">
+                                                                        <% columns.forEach(column=> { %>
+                                                                            <option value="<%= column %>">
+                                                                                <%= column %>
+                                                                            </option>
+                                                                            <% }) %>
+                                                                    </select>
+                                                                </div>
+                                                                <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
+                                                            </div>
+
+                                                        </form>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- custom HTML end -->
+                                            <!-- custom Details start -->
+                                            <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-three">
+                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-three">
+                                                    Contact Details
+                                                    <svg class="block w-4 h-4 hs-accordion-active:hidden"
+                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path d="m6 9 6 6 6-6" />
+                                                    </svg>
+
+                                                    <svg class="hidden w-4 h-4 hs-accordion-active:block"
+                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path d="m18 15-6-6-6 6" />
+                                                    </svg>
+                                                </button>
+                                                <div id="hs-basic-nested-sub-collapse-three" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-three">
+                                                    <div class="py-5">
+                                                        <form action="/footer/addcontactdetails" method="POST"   >
+                                                            <div class="flex flex-col justify-start sm:items-center sm:flex-row">
+                                                                <label for="columnSelect" class="mb-4 text-sm font-normal sm:mb-0">Select Column:</label>
+                                                                <div class="sm:ml-5">
+                                                                    <select id="columnSelect" name="column" class="w-full px-3 py-3 sm:w-32">
+                                                                        <% columns.forEach(column=> { %>
+                                                                            <option value="<%= column %>">
+                                                                                <%= column %>
+                                                                            </option>
+                                                                            <% }) %>
+                                                                    </select>
+                                                                </div>
+                                                                <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
+                                                            </div>
+
+                                                        </form>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- custom HTML end -->
+                                            <!-- Image collapse start -->
+                                            <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-four">
+                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-four">
+                                                    Image
+                                                    <svg class="block w-4 h-4 hs-accordion-active:hidden"
+                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path d="m6 9 6 6 6-6" />
+                                                    </svg>
+
+                                                    <svg class="hidden w-4 h-4 hs-accordion-active:block"
+                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path d="m18 15-6-6-6 6" />
+                                                    </svg>
+                                                </button>
+                                                <div id="hs-basic-nested-sub-collapse-four" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-four">
+                                                    <div class="py-5">
+                                                        <form action="/footer/addimage" method="POST"   >
+                                                            <div class="flex flex-col justify-start sm:items-center sm:flex-row">
+                                                                <label for="columnSelect" class="mb-4 text-sm font-normal sm:mb-0">Select Column:</label>
+                                                                <div class="sm:ml-5">
+                                                                    <select id="columnSelect" name="column" class="w-full px-3 py-3 sm:w-32">
+                                                                        <% columns.forEach(column=> { %>
+                                                                            <option value="<%= column %>">
+                                                                                <%= column %>
+                                                                            </option>
+                                                                            <% }) %>
+                                                                    </select>
+                                                                </div>
+                                                                <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Image collaps end -->
+
+                                            <!-- GTM tag start -->
+                                            <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-five">
+                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-five">
+                                                    GTM google tag widgets
+                                                            <svg class="block w-4 h-4 hs-accordion-active:hidden"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round">
+                                                                <path d="m6 9 6 6 6-6" />
+                                                            </svg>
+
+                                                            <svg class="hidden w-4 h-4 hs-accordion-active:block"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round">
+                                                                <path d="m18 15-6-6-6 6" />
+                                                            </svg>
+                                                        </button>
+                                                <div id="hs-basic-nested-sub-collapse-five" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-five">
+                                                <form action="/footer/save-gtm-url" method="POST">
+                                                    <div class="py-5">
+                                                        <ul class="mb-6 menuChecklist bg-[#f0f7fa] py-2">
+                                                            <li class="flex flex-col px-3 py-2 sm:flex-row">
+                                                                <label class="w-40 text-sm font-normal" for="custom-menu-item-url">URL</label>
+                                                                <textarea name="gtmUrl" class="sm:ml-3"><%= widget ? widget.gtmUrl : ' NO GTM URL' %></textarea>                                                            </li>
+                                                        </ul>
+                                                        <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
+                                                    </div>
+                                                </form>
+                                                </div>
+                                            </div>
+                                            <!-- GTM tag end -->
+
+                                            <!--  Global custom head widget start -->
+                                            <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-six">
+                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-six">
+                                                    Global custom head widget
+                                                            <svg class="block w-4 h-4 hs-accordion-active:hidden"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round">
+                                                                <path d="m6 9 6 6 6-6" />
+                                                            </svg>
+
+                                                            <svg class="hidden w-4 h-4 hs-accordion-active:block"
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round">
+                                                                <path d="m18 15-6-6-6 6" />
+                                                            </svg>
+                                                        </button>
+                                                <div id="hs-basic-nested-sub-collapse-six" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-six">
+                                                <form action="/footer/save-gtm-data" method="POST">
+                                                    <div class="py-5">
+                                                        <ul class="mb-6 menuChecklist bg-[#f0f7fa] py-2">
+                                                            <li class="flex flex-col px-3 py-2 sm:flex-row">
+                                                                <label class="w-40 text-sm font-normal" for="custom-menu-item-url">Head</label>
+                                                                <textarea name="gtmHead" class="sm:ml-3"><%= widget ? widget.gtmHead : '' %></textarea>
+
+                                                            </li>
+                                                            <li class="flex flex-col px-3 py-2 sm:flex-row">
+                                                                <label class="w-40 text-sm font-normal" for="custom-menu-item-name">Body</label>
+                                                                <textarea name="gtmBody" class="sm:ml-3"><%= widget ? widget.gtmBody : '' %></textarea>                                                            </li>
+                                                        </ul>
+                                                        <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
+                                                    </div>
+                                                </form>
+                                                </div>
+                                            </div>
+                                            <!--  Global custom head widget end -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- available widgets end -->
+                                <!-- active footer start -->
+                                <div class="w-full md:w-3/5 ">
+                                    <h2 class="mb-4 text-xl font-bold text-black ">
+                                        Active Footer
+                                    </h2>
+                                    <div class="grid gap-6 md:grid-cols-2 ">
+                                        <!-- footer col 1 -->
+                                        <div id="footerCol1" class="w-full mb-4">
+                                            <div class="hs-accordion-group ">
+                                                <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
+                                                    <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
+                                                    p-6 bg-[#007bff] text-center " aria-controls="hs-basic-nested-collapse-Two ">
+                                                        Footer Col 1
+                                                        <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round ">
+                                                            <path d="m6 9 6 6 6-6 " />
+                                                        </svg>
+                                                        <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round ">
+                                                            <path d="m18 15-6-6-6 6 " />
+                                                        </svg>
+                                                    </div>
+
+                                                    <div id="hs-basic-nested-collapse-Two " class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4 " aria-labelledby="hs-basic-nested-heading-Two ">
+                                                        <div class="hs-accordion-group dropzone">
+                                                            <!-- all the wedgits which select the footercol1  that i drag show in this place  -->
+                                                            <% widgets.forEach(function(widget) { %>
+                                                                <% if (widget.column==='footerCol1' ) { %>
+                                                                    <% if (widget.name === 'Text Editor') { %>
+                                                                        <%- include('../appearance/text-editor.ejs', { widget: widget }) %>
+                                                                            <% } else if (widget.name === 'Custom HTML') { %>
+                                                                                <%- include('../appearance/custom-html.ejs', { widget: widget }) %>
+                                                                                    <% } else if (widget.name === 'Contact Details') { %>
+                                                                                        <%- include('../appearance/contact-details.ejs', { widget: widget }) %>
+                                                                                            <% } else if (widget.name === 'Image') { %>
+                                                                                                <%- include('../appearance/image-collapse.ejs', { widget: widget }) %>
+                                                                                                    <% } %>
+                                                                                                        <% } %>
+                                                                                                            <% }); %>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- footer col 2 -->
+                                        <div id="footerCol2" class="w-full mb-4 droppable">
+                                            <div class="hs-accordion-group ">
+                                                <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
+                                                    <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
+                                                    p-6 bg-[#007bff] text-center " aria-controls="hs-basic-nested-collapse-Two ">
+                                                        Footer Col 2
+                                                        <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round ">
+                                                            <path d="m6 9 6 6 6-6 " />
+                                                        </svg>
+                                                        <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round ">
+                                                            <path d="m18 15-6-6-6 6 " />
+                                                        </svg>
+                                                    </div>
+
+                                                    <div id="hs-basic-nested-collapse-Two " class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4 " aria-labelledby="hs-basic-nested-heading-Two ">
+                                                        <div class="hs-accordion-group dropzone">
+                                                            <!-- all the wedgits which select the footercol1  that i drag show in this place  -->
+                                                            <% widgets.forEach(function(widget) { %>
+                                                                <% if (widget.column==='footerCol2' ) { %>
+                                                                    <% if (widget.name === 'Text Editor') { %>
+                                                                        <%- include('../appearance/text-editor.ejs', { widget: widget }) %>
+                                                                            <% } else if (widget.name === 'Custom HTML') { %>
+                                                                                <%- include('../appearance/custom-html.ejs', { widget: widget }) %>
+                                                                                    <% } else if (widget.name === 'Contact Details') { %>
+                                                                                        <%- include('../appearance/contact-details.ejs', { widget: widget }) %>
+                                                                                            <% } else if (widget.name === 'Image') { %>
+                                                                                                <%- include('../appearance/image-collapse.ejs', { widget: widget }) %>
+                                                                                                    <% } %>
+                                                                                                        <% } %>
+                                                                                                            <% }); %>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- footer col 3 -->
+                                        <div id="footerCol3" class="w-full mb-4 droppable">
+                                            <div class="hs-accordion-group ">
+                                                <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
+                                                    <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
+                                                    p-6 bg-[#007bff] text-center " aria-controls="hs-basic-nested-collapse-Two ">
+                                                        Footer Col 3
+                                                        <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round ">
+                                                            <path d="m6 9 6 6 6-6 " />
+                                                        </svg>
+                                                        <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round ">
+                                                            <path d="m18 15-6-6-6 6 " />
+                                                        </svg>
+                                                    </div>
+
+                                                    <div id="hs-basic-nested-collapse-Two " class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4 " aria-labelledby="hs-basic-nested-heading-Two ">
+                                                        <div class="hs-accordion-group dropzone">
+                                                            <!-- all the wedgits which select the footercol1  that i drag show in this place  -->
+                                                            <% widgets.forEach(function(widget) { %>
+                                                                <% if (widget.column==='footerCol3' ) { %>
+                                                                    <% if (widget.name === 'Text Editor') { %>
+                                                                        <%- include('../appearance/text-editor.ejs', { widget: widget }) %>
+                                                                            <% } else if (widget.name === 'Custom HTML') { %>
+                                                                                <%- include('../appearance/custom-html.ejs', { widget: widget }) %>
+                                                                                    <% } else if (widget.name === 'Contact Details') { %>
+                                                                                        <%- include('../appearance/contact-details.ejs', { widget: widget }) %>
+                                                                                            <% } else if (widget.name === 'Image') { %>
+                                                                                                <%- include('../appearance/image-collapse.ejs', { widget: widget }) %>
+                                                                                                    <% } %>
+                                                                                                        <% } %>
+                                                                                                            <% }); %>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- footer col 4 -->
+                                        <div id="footerCol4" class="w-full mb-4">
+                                            <div class="hs-accordion-group ">
+                                                <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
+                                                    <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
+                                                    p-6 bg-[#007bff] text-center " aria-controls="hs-basic-nested-collapse-Two ">
+                                                        Footer Col 4
+                                                        <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round ">
+                                                            <path d="m6 9 6 6 6-6 " />
+                                                        </svg>
+                                                        <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round ">
+                                                            <path d="m18 15-6-6-6 6 " />
+                                                        </svg>
+                                                    </div>
+
+                                                    <div id="hs-basic-nested-collapse-Two " class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4 " aria-labelledby="hs-basic-nested-heading-Two ">
+                                                        <div class="hs-accordion-group dropzone">
+                                                            <!-- all the wedgits which select the footercol1  that i drag show in this place  -->
+                                                            <% widgets.forEach(function(widget) { %>
+                                                                <% if (widget.column==='footerCol4' ) { %>
+                                                                    <% if (widget.name === 'Text Editor') { %>
+                                                                        <%- include('../appearance/text-editor.ejs', { widget: widget }) %>
+                                                                            <% } else if (widget.name === 'Custom HTML') { %>
+                                                                                <%- include('../appearance/custom-html.ejs', { widget: widget }) %>
+                                                                                    <% } else if (widget.name === 'Contact Details') { %>
+                                                                                        <%- include('../appearance/contact-details.ejs', { widget: widget }) %>
+                                                                                            <% } else if (widget.name === 'Image') { %>
+                                                                                                <%- include('../appearance/image-collapse.ejs', { widget: widget }) %>
+                                                                                                    <% } %>
+                                                                                                        <% } %>
+                                                                                                            <% }); %>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- active footer end -->
+                            </div>
+                            <!-- available widgets end -->
+
+                        </main>
+                        <!-- main content end here -->
+                </div>
+        </div>
+        <style>
+            /* Styles for the sidebar */
+            
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -250px;
+                /* Adjust this value to hide the sidebar */
+                width: 250px;
+                height: 100vh;
+                background-color: #333;
+                color: #fff;
+                transition: left 0.3s ease;
+                z-index: 99999;
+            }
+            /* Styles for the button to toggle the sidebar */
+            /* Styles to dim the content when the sidebar is open */
+            
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+            
+            .sidebar.open {
+                left: 0;
+            }
+        </style>
+    </body>
+    <!-- Your HTML content here -->
+    <%- include('../script/script.ejs') %>
+        </body>
+        <script src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <script>
+                  // Get the URL parameters
+    var params = new URLSearchParams(window.location.search);
+
+// Check if a message is present
+if (params.has('message')) {
+    // Show a Toastify notification with the message
+    Toastify({
+        text: params.get('message'),
+        duration: 3000,
+        close: true
+    }).showToast();
+}
+        document.querySelectorAll('.deleteButton').forEach(function(deleteButton) {
+        deleteButton.addEventListener('click', function() {
+        var widgetId = this.getAttribute('data-widget-id');
+
+        fetch('/footer/delete/' + widgetId, {
+    method: 'POST',
+}).then(function(response) {
+    if (response.ok) {
+        return response.text();
+    } else {
+        throw new Error('Error: ' + response.statusText);
+    }
+}).then(function() {
+    // Delay the page refresh
+    setTimeout(function() {
+        window.location.href = '/footer/widgets';
+    }, 3100);  // Delay by 3100 milliseconds (just over the duration of the Toastify notification)
+}).catch(function(error) {
+    console.error('Error:', error);
+});
+    });
+});
+                
+            $(document).ready(function() {
+                $('.select-wedgets li').click(function() {
+                    $('.select-wedgets li').removeClass("active");
+                    $(this).addClass("active");
+                });
+
+                $('.cancel-wedgets').click(function() {
+                    $(this).parents('.hs-accordion').removeClass('active');
+                    $(this).parents('.hs-accordion-content').hide();
+                });
+            });
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelectorAll('#texteditor').forEach(function(inputElement) {
+                    new FroalaEditor(inputElement);
+                });
+            });
+        </script>
+
+
+        <script>
+            // Get references to elements
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.getElementById('toggle-btn');
+            const overlay = document.getElementById('overlay');
+
+            // Toggle sidebar function
+            function toggleSidebar() {
+                sidebar.classList.toggle('open');
+                overlay.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+            }
+
+            // Event listener for toggle button
+            toggleBtn.addEventListener('click', toggleSidebar);
+
+            // Event listener for clicking outside of the sidebar
+            document.addEventListener('click', function(e) {
+                if (!sidebar.contains(e.target) && e.target !== toggleBtn) {
+                    sidebar.classList.remove('open');
+                    overlay.style.display = 'none';
+                }
+            });
+        </script>
+
+        </html>

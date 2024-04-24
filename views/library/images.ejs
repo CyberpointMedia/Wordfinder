@@ -1,0 +1,353 @@
+<!-- views/library/images.ejs -->
+<%- include('../header/head.ejs') %>
+
+  <body>
+    <!-- sidebar start here -->
+    <div class="flex overflow-hidden">
+      <%- include('../sidenav/sidenav.ejs') %>
+        <div class="page-content bg-white">
+
+          <%- include('../header/header.ejs') %>
+            <!-- main content start here -->
+            <main class="py-8 px-5">
+              <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <h1 class="text-2xl font-bold text-black">
+                  Media Library
+                </h1>
+                <a id="addMediaFile" href="javascript:void(0);"
+                  class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add New
+                  Media File</a>
+              </div>
+              <!-- media file uploader section start -->
+              <div class="mediaUploader text-center relative py-10 hidden">
+                <button class="closeBtn">
+                  <svg class="inline-block" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="lucide lucide-x">
+                    <path d="M18 6 6 18"></path>
+                    <path d="m6 6 12 12"></path>
+                  </svg>
+                </button>
+                <div class="cont" style="color: rgb(142, 153, 165);">
+                  <h2 class="font-normal">Drag & Drop</h2>
+                  <div class="chooseImage">
+                    <input id="files" multiple="true" name="files" type="file">
+                    <button id="uploadButton">Upload</button>                    
+                  </div>
+                  <p>
+                    Maximum upload file size: 40 MB.
+                  </p>
+                </div>
+              </div>
+              <!-- media file uploader section end -->
+              <div class="UploadedImagesView">
+                <div class="filter-buttons flex flex-row gap-3 my-[30px]">
+                  <a id="list-view-button" class="border border-[#ddd] p-2 rounded cursor-pointer"><img
+                      src="/images/list.png" alt=""></a>
+                  <a id="grid-view-button" class="border border-[#ddd] p-2 rounded cursor-pointer active"><img
+                      src="/images/grid.png" alt=""></a>
+                </div>
+              </div>
+
+              <!-- grid view start -->
+              <div class="GridView">
+                <!-- image gallery start -->
+                <div id="ImgGallery" class="grid grid-cols-3 gap-5 ">
+                  <% imageUrls.reverse().forEach((imageUrl, index)=> { %>
+                    <img src="<%= imageUrl %>" class="w-full h-full object-cover cursor-pointer"
+                      onclick="showModal('<%= imageUrl %>')" />
+                    <% }) %>
+                </div>
+                <!-- image gallery end -->
+              </div>
+              <!-- grid view end -->
+
+              <!-- list view start -->
+              <div class="ListView hidden">
+                <!-- table start here -->
+                <div class="bg-white overflow-x-auto">
+                  <table class="w-full divide-y divide-gray-200 border" id="example">
+                    <thead class="text-left bg-[#DBF4FF]">
+                      <tr>
+                        <th>
+                          <input type="checkbox" class="selectAll">
+                        </th>
+                        <th>
+                          File
+                        </th>
+                        <th>
+                          Author
+                        </th>
+                        <th>
+                          Size
+                        </th>
+                        <th>
+                          Date
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                      <% imageUrls.forEach((imageUrl, index)=> { %>
+                        <tr class="">
+                          <td>
+                            <input type="checkbox" value="<%= index %>" class="">
+                          </td>
+                          <td>
+                            <div class="">
+                              <a class="row-title max-w-[50%]  text-[#2271b1] text-sm" href="<%= imageUrl %>">
+                                <img src="<%= imageUrl %>" class="w-20" />
+                                <strong class="text-[#2271b1] text-sm">Image <%= index + 1 %></strong>
+                              </a>
+                            </div>
+                          </td>
+                          <td><a href="javascript:void(0);" class="text-[#2271b1] text-sm">
+                              <%= user.username %>
+                            </a></td>
+                          <td>4.54kb</td>
+                          <td>Date</td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                    <tfoot class="text-left bg-[#DBF4FF]">
+                      <tr>
+                        <th>
+                          <input type="checkbox" class="selectAll">
+                        </th>
+                        <th>
+                          File
+                        </th>
+                        <th>
+                          Author
+                        </th>
+                        <th>Size</th>
+                        <th>
+                          Date
+                        </th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+                <!-- table end here -->
+              </div>
+              <!-- list view end -->
+
+            </main>
+            <!-- main content end here -->
+        </div>
+    </div>
+    <!-- Media Library Modal Start-->
+    <div id="modal" class="hidden fixed top-0 left-0 z-[999] bg-black/70 size-full overflow-x-hidden overflow-y-auto">
+      <div
+        class="lg:max-w-5xl lg:w-full m-3 lg:mx-auto bg-white border shadow-sm rounded-xl pointer-events-auto overflow-hidden">
+        <div class="flex justify-between items-center py-3 px-4 border-b">
+          <h3 class="font-bold text-gray-800 text-xl">
+            Attachment details
+          </h3>
+          <button type="button"
+            class="flex justify-center items-center size-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
+            onclick="closeModal()">
+            <svg class="flex-shrink-0 size-4 inline-block" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+              viewBox="0 0 24 24" fill="#fff" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M18 6 6 18"></path>
+              <path d="m6 6 12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="w-full flex flex-col md:flex-row">
+          <!-- A big image will be displayed here -->
+          <div class="md:w-3/5 w-full p-5">
+            <img id="modal-img" src="https://media.geeksforgeeks.org/wp-content/uploads/20240215121528/javare15.png"
+              class="object-cover" />
+          </div>
+          <div class="md:w-2/5 w-full p-5 imageDetail bg-[#f0f7fa] border-l border-color[#ddd]">
+            <div id="uploaded-on" class="uploaded mb-2">
+              <strong>Uploaded on:</strong>
+              February 28, 2024
+            </div>
+            <div id="uploaded-by" class="uploaded-by mb-2">
+              <strong>Uploaded by:</strong>
+              <a href="javascript:void(0);">admin</a>
+            </div>
+            <div id="filename" class="filename mb-2">
+              <strong>File name:</strong>
+              about-2.jpg
+            </div>
+            <div id="filetype" class="filetype mb-2">
+              <strong>File type:</strong>
+              images/jpeg
+            </div>
+            <div id="filesize" class="filesize mb-2">
+              <strong>File size:</strong>
+              71KB
+            </div>
+            <div id="dimensions" class="dimensions mb-2">
+              <strong>Dimensions:</strong>
+              1024 by 768 pixels
+            </div>
+            <hr class="my-4" />
+            <div class="imgSettings">
+              <div id="alternative-text" class="grid sm:grid-cols-3 mb-4">
+                <label class="sm:text-right sm:mr-4 mb-2" for="alternaive-text">Alternative Text</label>
+                <div class="sm:col-span-2">
+                  <textarea rows="1" class="form-input bg-white border" id="alternaive-text"></textarea>
+                </div>
+              </div>
+
+              <div id="imgTitle" class="grid sm:grid-cols-3 mb-4">
+                <label class="sm:text-right sm:mr-4 mb-2" for="imgTitle">Title</label>
+                <div class="sm:col-span-2">
+                  <input class="form-input bg-white border" id="imgTitle" value="About">
+                </div>
+              </div>
+
+              <div id="file" class="grid sm:grid-cols-3 mb-4">
+                <label class="sm:text-right sm:mr-4 mb-2" for="fileUrl">File URL:</label>
+                <div class="sm:col-span-2 copyUrl">
+                  <input class="form-input bg-white border" value="http:/localhost/desktop/images/about.jpeg"
+                    id="fileUrl">
+                  <button type="button"
+                    class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF] mt-4">Copy
+                    URL</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Media Library Modal End -->
+  </body>
+  <!-- sidebar end here -->
+  <%- include('../script/script.ejs') %>
+  <script>
+$(document).ready(function() {
+  console.log('Document is ready');  // This will log to the console when the document is ready
+
+  $('body').on('click', '#uploadButton', function(e) {
+    console.log('Upload button clicked');  // This will log to the console when the button is clicked
+    e.preventDefault();
+
+    var files = document.querySelector('#files').files;
+    var formData = new FormData();
+
+    for (var i = 0; i < files.length; i++) {
+       formData.append('files', files[i]);
+     }
+    fetch('/library/upload', {
+    method: 'POST',
+    body: formData,
+    credentials: 'include'  // Include credentials in the request
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => console.log(data))
+    .catch(error => console.error('There was a problem with the fetch operation: ' + error.message));
+  });
+});
+      // This function is called when a small image is clicked
+function showModal(image) {
+        modal.classList.remove('hidden');
+        modalImg.src = image.src;
+        document.getElementById('uploaded-on').textContent = image.uploadedOn;
+        document.getElementById('uploaded-by').textContent = image.uploadedBy;
+        document.getElementById('filename').textContent = image.filename;
+        document.getElementById('filetype').textContent = image.filetype;
+        document.getElementById('filesize').textContent = image.filesize;
+        document.getElementById('dimensions').textContent = image.dimensions;
+        document.getElementById('alternative-text').textContent = image.alternativeText;
+        document.getElementById('imgTitle').value = image.title;
+        document.getElementById('fileUrl').value = image.fileUrl;
+        body.style.overflow = 'hidden';
+      }
+
+
+      // Get all the img elements in the grid
+      var images = document.querySelectorAll('#ImgGallery img');
+
+      // Loop through each img element
+      images.forEach(function (img) {
+
+        // Add a click event listener to each img element
+        img.addEventListener('click', function () {
+          showModal({
+            src: img.src,
+            uploadedOn: 'February 28, 2024',
+            uploadedBy: 'admin',
+            filename: 'about-2.jpg',
+            filetype: 'image/jpeg',
+            filesize: '71KB',
+            dimensions: '1024 by 768 pixels',
+            alternativeText: '',
+            title: 'About',
+            fileUrl: 'http:/localhost/desktop/images/about.jpeg'
+          });
+        });
+      });
+
+      // Get the modal by id
+      var modal = document.getElementById("modal");
+
+      // Get the modal image tag
+      var modalImg = document.getElementById("modal-img");
+
+      var body = document.body;
+
+      // This function is called when a small image is clicked
+      function showModal(src) {
+        modal.classList.remove('hidden');
+        modalImg.src = src;
+        body.style.overflow = 'hidden';
+      }
+
+      // This function is called when the close button is clicked
+      function closeModal() {
+        modal.classList.add('hidden');
+        body.style.overflow = '';
+      }
+      
+
+      // media uploader show hide
+      $("#addMediaFile, .closeBtn").click(function () {
+        $(".mediaUploader").toggleClass("hidden");
+      });
+
+      // list view toggle
+      $("#list-view-button").click(function () {
+        $(".ListView").removeClass('hidden');
+        $(".GridView").addClass('hidden');
+      });
+
+      // grid view toggle
+      $("#grid-view-button, #chooseImage").click(function () {
+        $(".GridView").removeClass('hidden');
+        $(".ListView").addClass('hidden');
+      });
+
+      // list and grid view button active class
+      $(".filter-buttons a").click(function () {
+        $(".filter-buttons a").removeClass("active");
+        $(this).addClass("active");
+      });
+
+      //copy url
+      (function () {
+        var copyUrl = document.querySelector('.copyUrl button');
+        var copyInput = document.querySelector('.copyUrl input');
+        copyUrl.addEventListener('click', function (e) {
+          e.preventDefault();
+          var text = copyInput.select();
+          document.execCommand('copy');
+        });
+
+        copyInput.addEventListener('click', function () {
+          this.select();
+        });
+      })();
+  </script>
+  </html>

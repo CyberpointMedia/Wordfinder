@@ -1,0 +1,82 @@
+<!-- views/section/show-page.ejs -->
+<%- include('../header/head.ejs') %>
+
+    <body>
+        <!-- sidebar start here -->
+        <div class="flex overflow-hidden">
+            <!-- sidenav Menu Start  -->
+            <%- include('../sidenav/sidenav.ejs') %>
+
+                <div class="bg-white page-content">
+                    <!-- header Start -->
+                    <%- include('../header/header.ejs') %>
+
+                        <% if (section) { %>
+                            <div class="relative px-5 py-8">
+                                <% if (section.imagePosition === 'center') { %>
+                                    <div class="mb-6">
+                                        <div class="mb-3">
+                                            <h2 class="mb-2 text-2xl font-bold text-black">
+                                                <%= section.title %>
+                                            </h2>
+                                            <p class="text-lg">
+                                                <%= section.subHeading %>
+                                            </p>
+                                        </div>
+                                        <div class="mb-6">
+                                            <p>
+                                                <%- section.content %>
+                                            </p>
+                                        </div>
+                                        <div class="w-full text-center">
+                                            <img src="<%= section.image %>" alt="Section Image" class="mx-auto" />
+                                        </div>
+                                    </div>
+                                    <% } else if (section.imagePosition === 'left') { %>
+
+                                        <div class="flex flex-col gap-6 mb-6 md:flex-row">
+                                            <div class="w-full md:w-1/2">
+                                                <img src="<%= section.image %>" alt="Section Image" class="mx-auto" />
+                                            </div>
+                                            <div class="w-full md:w-1/2">
+                                                <div class="mb-3">
+                                                    <h2 class="mb-2 text-2xl font-bold text-black">
+                                                        <%= section.title %>
+                                                    </h2>
+                                                    <p class="text-lg">
+                                                        <%= section.subHeading %>
+                                                    </p>
+                                                </div>
+                                                <p>
+                                                    <%- section.content %>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <% } else if (section.imagePosition === 'right') { %>
+                                            <div class="flex flex-col gap-6 mb-6 md:flex-row">
+                                                <div class="w-full md:w-1/2">
+                                                    <div class="mb-3">
+                                                        <h2 class="mb-2 text-2xl font-bold text-black">
+                                                            <%= section.title %>
+                                                        </h2>
+                                                        <p class="text-lg">
+                                                            <%= section.subHeading %>
+                                                        </p>
+                                                    </div>
+                                                    <p class="break-words"> <!-- Add break-words class -->
+                                                        <%- section.content %>
+                                                    </p>
+                                                </div>
+                                                <div class="w-full md:w-1/2 flex justify-end"> <!-- Add flex and justify-end classes -->
+                                                    <img src="<%= section.image %>" alt="Section Image" />
+                                                </div>
+                                            </div>
+                                        <% } %>
+                                        <% } %>
+                            </div>
+                            <%- include('../script/script.ejs') %>
+                </div>
+        </div>
+    </body>
+
+    </html>

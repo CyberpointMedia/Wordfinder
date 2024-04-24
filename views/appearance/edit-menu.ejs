@@ -1,0 +1,494 @@
+<%- include('../header/head.ejs') %>
+
+    <body>
+        <!-- sidebar start here -->
+        <div class="flex overflow-hidden">
+            <%- include('../sidenav/sidenav.ejs') %>
+                <div class="bg-white page-content">
+                    <%- include('../header/header.ejs') %>
+
+                        <!-- main content start here -->
+                        <main class="px-5 py-8">
+                            <form action="/appearance/edit-menu/<%= menu._id %>" method="POST">
+                                <div class="flex flex-col gap-6 mt-6 md:flex-row">
+                                    <!-- Add menu items start -->
+                                    <div class="w-full md:w-2/5 ">
+                                        <h2 class="mb-4 text-xl font-bold text-black">
+                                            Add menu items
+                                        </h2>
+                                        <div id="addMenuItems"
+                                            class="px-5 pt-8 pb-4 bg-white border rounded shadow-sm cardBody">
+                                            <div class="hs-accordion-group">
+                                                <!-- text editor start -->
+                                                <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-one">
+                                                    <button
+                                                        class="hs-accordion-toggle1 hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]"
+                                                        aria-controls="hs-basic-nested-sub-collapse-one">
+                                                        Pages
+                                                        <svg class="block w-4 h-4 hs-accordion-active:hidden"
+                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path d="m6 9 6 6 6-6" />
+                                                        </svg>
+                                                        <svg class="hidden w-4 h-4 hs-accordion-active:block"
+                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path d="m18 15-6-6-6 6" />
+                                                        </svg>
+                                                    </button>
+                                                    <div id="hs-basic-nested-sub-collapse-one"
+                                                        class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]"
+                                                        aria-labelledby="hs-basic-nested-sub-heading-one">
+                                                        <div class="py-5">
+                                                            <ul class="mb-6 menuChecklist bg-[#f0f7fa] py-2">
+                                                                <!-- Pages -->
+                                                                <% pages.forEach(page=> { %>
+                                                                    <li class="px-3 py-2">
+                                                                        <label class="text-sm font-normal">
+                                                                            <input type="checkbox" name="pages"
+                                                                                class="mr-1 checkbox"
+                                                                                value="<%= page._id %>" <% if
+                                                                                (menu.pages.map(page=>
+                                                                            String(page._id)).includes(String(page._id)))
+                                                                            { %> checked <% } %>>
+                                                                                <%= page.page_name %>
+                                                                        </label>
+                                                                    </li>
+                                                                    <% }) %>
+                                                            </ul>
+                                                            <button id="addPagesButton"
+                                                                class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">Add
+                                                                Pages</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- text editor end -->
+                                                <!-- custom HTML start -->
+                                                <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-two">
+                                                    <button
+                                                        class="hs-accordion-toggle1 hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]"
+                                                        aria-controls="hs-basic-nested-sub-collapse-two">
+                                                        Posts
+                                                        <svg class="block w-4 h-4 hs-accordion-active:hidden"
+                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path d="m6 9 6 6 6-6" />
+                                                        </svg>
+                                                        <svg class="hidden w-4 h-4 hs-accordion-active:block"
+                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path d="m18 15-6-6-6 6" />
+                                                        </svg>
+                                                    </button>
+                                                    <div id="hs-basic-nested-sub-collapse-two"
+                                                        class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]"
+                                                        aria-labelledby="hs-basic-nested-sub-heading-two">
+                                                        <div class="py-5">
+                                                            <ul class="mb-6 menuChecklist bg-[#f0f7fa] py-2">
+                                                                <!-- Posts -->
+                                                                <% posts.forEach(post=> { %>
+                                                                    <li class="px-3 py-2">
+                                                                        <label class="text-sm font-normal">
+                                                                            <input type="checkbox" name="posts"
+                                                                                class="mr-1 checkbox"
+                                                                                value="<%= post._id %>" <% if
+                                                                                (menu.posts.map(post=>
+                                                                            String(post._id)).includes(String(post._id)))
+                                                                            { %> checked <% } %>>
+                                                                                <%= post.title %>
+                                                                        </label>
+                                                                    </li>
+                                                                    <% }) %>
+                                                            </ul>
+                                                            <button id="addPagesButton"
+                                                                class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">Add
+                                                                Post</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- custom HTML end -->
+                                                <!-- custom HTML start -->
+                                                <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-three">
+                                                    <button
+                                                        class="hs-accordion-toggle1 hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]"
+                                                        aria-controls="hs-basic-nested-sub-collapse-three">
+                                                        Custom Links
+                                                        <svg class="block w-4 h-4 hs-accordion-active:hidden"
+                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path d="m6 9 6 6 6-6" />
+                                                        </svg>
+
+                                                        <svg class="hidden w-4 h-4 hs-accordion-active:block"
+                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path d="m18 15-6-6-6 6" />
+                                                        </svg>
+                                                    </button>
+                                                    <div id="hs-basic-nested-sub-collapse-three"
+                                                        class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]"
+                                                        aria-labelledby="hs-basic-nested-sub-heading-three">
+                                                        <div class="py-5">
+                                                            <ul class="mb-6 menuChecklist bg-[#f0f7fa] py-2">
+
+                                                                <% menu.customLinks.forEach(link=> { %>
+                                                                    <li class="flex flex-col px-3 py-2 sm:flex-row">
+                                                                        <label class="w-40 text-sm font-normal"
+                                                                            for="custom-menu-item-url">URL</label>
+                                                                        <input name="customLinks[][url]"
+                                                                            id="custom-menu-item-url" type="text"
+                                                                            class="sm:ml-3" placeholder="https://"
+                                                                            value="<%= link.url %>">
+                                                                    </li>
+                                                                    <li class="flex flex-col px-3 py-2 sm:flex-row">
+                                                                        <label class="w-40 text-sm font-normal"
+                                                                            for="custom-menu-item-name">Link
+                                                                            Text</label>
+                                                                        <input name="customLinks[][text]"
+                                                                            id="custom-menu-item-name" type="text"
+                                                                            class="sm:ml-3" value="<%= link.text %>">
+                                                                    </li>
+                                                                    <% }) %>
+                                                            </ul>
+                                                            <button id="addPagesButton"
+                                                                class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">Add
+                                                                Custom Link</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- custom HTML end -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Add menu items end -->
+                                    <!-- Menu Structure start -->
+                                    <div class="w-full md:w-3/5 ">
+                                        <h2 class="mb-4 text-xl font-bold text-black ">
+                                            Menu structure
+                                        </h2>
+                                        <div class="mb-6 ">
+                                            <label class="mb-2 text-sm font-normal" for="menu-name">Enter Menu
+                                                Name</label>
+                                            <div>
+                                                <input name="menuName" id="menu-name" type="text" class="border sm:w-40"
+                                                    aria-describedby="menu-name-desc" value="<%= menu.menuName %>">
+                                                <p class="mt-3">
+                                                    Give your menu a name, then click save menu button.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row items-center gap-4">
+                                            <div class="publishing-action">
+                                                <button type="submit"
+                                                    class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">
+                                                    Save Menu
+                                                </button>
+                                            </div>
+                                            <div class="publishing-action">
+                                                <a href="/appearance/nav-menu">
+                                                    Create Menu
+                                                </a>
+                                            </div>
+                                            <!-- END .publishing-action -->
+                                        </div>
+                                    </div>
+                                    <!-- Menu Structure end -->
+                                </div>
+                            </form>
+                            <form action="/appearance/show-menu" method="post"
+                                enctype="application/x-www-form-urlencoded">
+                                <div class="px-5 py-8 mt-8 bg-white border rounded shadow-sm savedMenuShows cardBody">
+                                    <h3 class="mb-4 text-lg font-bold text-black">Menu Settings</h3>
+                                    <div class="flex flex-col justify-start mb-6 sm:items-center sm:flex-row">
+                                        <label class="mb-2 text-sm font-normal sm:mb-0">Select a menu to
+                                            edit:</label>
+                                        <div class="sm:ml-5">
+                                            <select name="selectedMenuId" id="select-menu-to-edit"
+                                                class="w-full px-3 py-3 sm:w-40">
+                                                <% menus.forEach((menu, index)=> { %>
+                                                    <option value="<%= menu._id %>"
+                                                        <%=selectedMenuId===menu._id.toString() ? 'selected' : '' %>
+                                                        >
+                                                        <%= menu.menuName %>
+                                                    </option>
+                                                    <% }) %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div id="page-post-custom" class="mb-6 hs-accordion-group">
+                                        <!-- added pages /post /custom.text  -->
+                                        <div data-name="" class="mb-4 hs-accordion "
+                                            id="hs-basic-nested-sub-heading-colOne ">
+                                            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]
+                                        " aria-controls="hs-basic-nested-sub-collapse-colOne ">
+                                                <div id="page-post-custom-name">Home</div>
+                                                <svg class="block w-4 h-4 hs-accordion-active:hidden "
+                                                    xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
+                                                    viewBox="0 0 24 24 " fill="none " stroke="currentColor "
+                                                    stroke-width="2
+                                        " stroke-linecap="round " stroke-linejoin="round ">
+                                                    <path d="m6 9 6 6 6-6 " />
+                                                </svg>
+
+                                                <svg class="hidden w-4 h-4 hs-accordion-active:block "
+                                                    xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
+                                                    viewBox="0 0 24 24 " fill="none " stroke="currentColor "
+                                                    stroke-width="2
+                                        " stroke-linecap="round " stroke-linejoin="round ">
+                                                    <path d="m18 15-6-6-6 6 " />
+                                                </svg>
+                                            </button>
+                                            <div id="hs-basic-nested-sub-collapse-colOne "
+                                                class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF] "
+                                                aria-labelledby="hs-basic-nested-sub-heading-colOne ">
+                                                <div class="py-5 ">
+                                                    <div class="mb-6 form-group ">
+                                                        <label class="mb-2 text-sm font-normal"
+                                                            for="updated_name">Name</label>
+                                                        <input id="updated_name" name="updated_name" type="text"
+                                                            class="md:w-72" placeholder="Enter the updated name">
+                                                    </div>
+
+                                                    <div class="mb-4 form-group ">
+                                                        <label class="mb-2 text-sm font-normal" for="parent">Parent
+                                                        </label>
+                                                        <input id="parent" name="parent" type="text" class="md:w-72"
+                                                            placeholder="Home" valid="Home">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="flex flex-row items-center gap-2 mt-6">
+                                <div class="publishing-action">
+                                    <a id="edit-button" href="javascript:void(0);"
+                                        class="w-24 py-2 px-4 text-white bg-[#007BFF] rounded-lg item-remove">
+                                        Edit
+                                    </a>
+                                </div>
+                                <span class="flex items-center">
+                                    <a id="remove-button"
+                                        class="ml-3 text-red-600 underline item-remove hover:text-red-400"
+                                        href="javascript:void(0);">Delete Menu</a>
+                                </span>
+                            </div>
+                        </main>
+                        <!-- main content end here -->
+                        <%- include('../script/script.ejs') %>
+                            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+                            <link rel="stylesheet" type="text/css"
+                                href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+                            <script>
+                                var params = new URLSearchParams(window.location.search);
+
+                                // Check if a message is present
+                                if (params.has('message')) {
+                                    // Show a Toastify notification with the message
+                                    Toastify({
+                                        text: params.get('message'),
+                                        duration: 3000,
+                                        close: true
+                                    }).showToast();
+                                }
+
+                                document.querySelectorAll('.hs-accordion-toggle1').forEach(button => {
+                                    button.addEventListener('click', (event) => {
+                                        event.preventDefault(); // prevent form submission
+                                        const content = button.nextElementSibling;
+
+                                        if (content.style.display === "none" || content.style.display === "") {
+                                            content.style.display = "block";
+                                        } else {
+                                            content.style.display = "none";
+                                        }
+                                    });
+                                });
+                                $(document).ready(function () {
+                                    $('#createMenu').click(function () {
+                                        $('#menuCreationForm').show();
+                                        $(this).parents('.noMenu').hide();
+                                    });
+
+                                    // Add event listener for form submission
+                                    $('.update-page-post-custom').last().click(function (event) {
+                                        event.preventDefault(); // Prevent the default form submission
+                                        // Get the index of the button that was clicked
+                                        var index = $('.update-page-post-custom').index(this);
+
+                                        // Get the values from the updated_name and parent field for this button
+                                        var updatedName = $(`#updated_name${index}`).val();
+                                        var parent = $(`#parent${index}`).val();
+
+                                        // Create an object containing the updated name and parent for this menu item
+                                        var formData = {
+                                            updated_name: updatedName,
+                                            parent: parent
+                                        };
+
+                                        // AJAX call to submit the form data
+                                        $.ajax({
+                                            url: '/appearance/show-menu', // Replace with the appropriate URL
+                                            type: 'POST',
+                                            data: { menus: formData },
+                                            success: function (response) {
+                                                // Handle success response
+                                                console.log(response);
+                                            },
+                                            error: function (error) {
+                                                // Handle error response
+                                                console.error(error);
+                                            }
+                                        });
+                                    });
+                                });
+
+                                function addAccordionToggleListener() {
+                                    document.querySelectorAll('.hs-accordion-toggle').forEach(button => {
+                                        button.addEventListener('click', (event) => {
+                                            event.preventDefault(); // prevent form submission
+                                            const content = button.nextElementSibling;
+
+                                            if (content.style.display === "none" || content.style.display === "") {
+                                                content.style.display = "block";
+                                            } else {
+                                                content.style.display = "none";
+                                            }
+                                        });
+                                    });
+                                }
+
+
+
+                                // Trigger the 'change' event on page load to load the details of the selected menu
+                                window.onload = function () {
+                                    document.getElementById('select-menu-to-edit').dispatchEvent(new Event('change'));
+                                };
+
+                                document.getElementById('remove-button').addEventListener('click', function () {
+                                    var menuId = document.getElementById('select-menu-to-edit').value;
+                                    fetch('/appearance/delete-menu/' + menuId, {
+                                        method: 'DELETE',
+                                    })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            console.log(data.message);
+                                            // Show a Toastify notification with the message
+                                            Toastify({
+                                                text: data.message,
+                                                duration: 3000,
+                                                close: true
+                                            }).showToast();
+
+                                            // Remove the menu from the select menu
+                                            var selectMenu = document.getElementById('select-menu-to-edit');
+                                            var options = selectMenu.options;
+                                            for (var i = 0; i < options.length; i++) {
+                                                if (options[i].value == menuId) {
+                                                    selectMenu.remove(i);
+                                                    break;
+                                                }
+                                            }
+                                        })
+                                        .catch(error => console.error('Error:', error));
+                                });
+                                document.getElementById('addPagesButton').addEventListener('click', function () {
+                                    fetch('/appearance/edit-menu/<%= menu._id %>', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                        },
+                                        body: JSON.stringify({ /* your data here */ }),
+                                    })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            // Handle the response data here
+                                            console.log(data);
+                                        })
+                                        .catch((error) => {
+                                            console.error('Error:', error);
+                                        });
+                                });
+                                document.getElementById('select-menu-to-edit').addEventListener('change', function () {
+                                    var menuId = this.value;
+                                    // Set the href attribute of the "Edit" button
+                                    document.getElementById('edit-button').href = '/appearance/edit-menu/' + menuId;
+                                });
+                                var allNames = [];
+                                $(document).ready(function () {
+                                    $('#select-menu-to-edit').change(function () {
+                                        const menuId = $(this).val();
+                                        $.ajax({
+                                            url: `/appearance/get-menu-details/${menuId}`,
+                                            type: 'GET',
+                                            success: function (menu) {
+                                                // Check that menu has pages, posts, and customLinks properties
+                                                if (!menu.pages || !menu.posts || !menu.customLinks) {
+                                                    console.error('Invalid menu object:', menu);
+                                                    return;
+                                                }
+                                                // Clear the existing buttons
+                                                $('#page-post-custom').empty();
+
+                                                // Add a button for each page, post, and custom link in the menu
+                                                allNames = menu.pages.map(page => page.page_name)
+                                                    .concat(menu.posts.map(post => post.title))
+                                                    .concat(menu.customLinks.map(link => link.text));
+
+                                                allNames.forEach((name, index) => addButton(name, allNames, index));
+                                                console.log(allNames);
+
+                                                addAccordionToggleListener();
+                                            }
+                                        });
+                                    });
+                                });
+                                function addButton(name, allNames, index) {
+                                    $('#page-post-custom-name').text(name);
+                                    $('#page-post-custom').append(`
+            <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF] mt-5" aria-controls="hs-basic-nested-sub-collapse-colOne">
+                ${name}
+                <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
+                    viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2 " stroke-linecap="round " stroke-linejoin="round ">
+                    <path d="m6 9 6 6 6-6 " />
+                </svg>
+                <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
+                    viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2 " stroke-linecap="round " stroke-linejoin="round ">
+                    <path d="m18 15-6-6-6 6 " />
+                </svg>
+            </button>
+            <div id="hs-basic-nested-sub-collapse-colOne " class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF] " aria-labelledby="hs-basic-nested-sub-heading-colOne ">
+                <div class="pt-5 ">
+                    <div class="mt-6 mb-4 form-group ">
+                        <label class="mb-2 text-sm font-normal" for="updated_name${index}">Name</label>
+                        <input id="updated_name${index}" name="updated_name" type="text" class="md:w-72" value ="${name}" placeholder="Enter the updated name">
+                    </div>
+                    <div class="mb-4 form-group ">
+                        <label class="mb-2 text-sm font-normal" for="parent${index}">Parent </label>
+<select id="parent${index}" name="parent" class="md:w-72 px-3 py-3">
+    <option value="">Select the parent</option>
+    ${allNames.map(name => `<option value="${name}">${name}</option>`).join('')}
+</select>
+        </div>
+                </div>
+                <button type="submit" class="update-page-post-custom py-2 px-4 text-white bg-[#007BFF] rounded-lg mb-3">Save</button>
+            </div>
+        `);
+                                }
+                            </script>
+    </body>
+
+    </html>
