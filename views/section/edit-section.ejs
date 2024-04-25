@@ -25,13 +25,13 @@
                                         <!-- add title -->
                                         <div class="mb-6 relative">
                                             <!-- <label class="mb-3 text-lg" for="title">Title</label> -->
-                                            <input name="title" id="title" type="text" value="<%= section.title %>" class="text-2xl font-medium text-black bg-[#F0F7FA] py-8 px-4 border-0" placeholder="Add Title" contenteditable="true">
+                                            <input name="title" id="title" type="text" value="<%= section.title %>" class="enable-btn text-2xl font-medium text-black bg-[#F0F7FA] py-8 px-4 border-0" placeholder="Add Title" contenteditable="true">
                                             <span class="blinking-cursor"></span>
                                         </div>
 
                                         <div class="mb-6">
                                             <label class="mb-3 text-lg" for="Subheading">Subheading</label>
-                                            <input name="subHeading" id="subHeading" type="text" value="<%= section.subHeading %>" class="form-input bg-[#F0F7FA] border-0">
+                                            <input name="subHeading" id="subHeading" type="text" value="<%= section.subHeading %>" class="enable-btn form-input bg-[#F0F7FA] border-0">
                                         </div>
 
                                         <div class="mb-6">
@@ -57,7 +57,7 @@
                                         </div>
                                         <div class="mb-6">
                                             <label class="mb-3 text-lg" for="content">Add Content</label>
-                                            <textarea name="content" id="content" class="form-input bg-[#F0F7FA] border-0" cols="30" rows="6" placeholder="Add Content"><%= section.content %></textarea>
+                                            <textarea name="content" id="content" class="content enable-btn form-input bg-[#F0F7FA] border-0" cols="30" rows="6" placeholder="Add Content"><%= section.content %></textarea>
                                         </div>
                                     </div>
                                 </main>
@@ -67,7 +67,6 @@
         </div>
         <!-- sidebar end here -->
         <%- include('../script/script.ejs') %>
-            <script src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>  
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
             <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
             <script>
@@ -84,9 +83,6 @@
             document.querySelector('form').submit();
         }, 1100); 
                 }
-                document.addEventListener('DOMContentLoaded', function() {
-                    new FroalaEditor('#content');
-                });
             </script>
     </body>
     </html>

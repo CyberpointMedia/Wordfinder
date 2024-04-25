@@ -10,7 +10,6 @@
                     <%- include('../header/header.ejs') %>
 
                         <!-- main content start here -->
-
                         <form action="/post/create" method="post" enctype="multipart/form-data">
                             <div id="top-bttns" class="flex justify-end gap-2 border-b py-5 shadow-sm bg-white">
                                 <button type="button" aria-disabled="true"
@@ -43,7 +42,7 @@
                                             <label for="description" class="mb-3 text-sm">Description:<span
                                                     class="text-red-600">*</span></label>
                                             <textarea id="editor" name="description" required
-                                                class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                                class="form-input content bg-[#F0F7FA] border-0 mb-3"></textarea>
                                         </div>
                                         <div class="mb-6">
                                             <label class="mb-3 text-sm" for="uploadImage1">Thumbnail Photo image<span
@@ -194,8 +193,6 @@
         </div>
     </body>
     <!-- Include Froala Editor script. -->
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script>
@@ -233,10 +230,6 @@
 
             document.querySelector('form').submit();
         }
-        // Initialize Froala Editor
-        new FroalaEditor('#editor');
-
-
     </script>
     <%- include('../script/script.ejs') %>
 

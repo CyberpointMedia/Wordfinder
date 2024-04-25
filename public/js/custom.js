@@ -122,7 +122,7 @@ $("#title").keypress(function(event) {
     $("#top-bttns").children("button").removeClass("cursor-not-allowed");
     $("#top-bttns").children("button").removeClass("opacity-25");
 });
-$("#page_name").keypress(function(event) {
+$(".enable-btn").keypress(function(event) {
     // if (event.which === 13) {
     //     performSearch();
     // }

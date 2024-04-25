@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -10,3 +11,18 @@
 <script src="/js/config.js" type="text/javascript"></script>
 <script src="/js/app.js" type="text/javascript"></script>
 <script src="/js/custom.js" type="text/javascript"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    new FroalaEditor('.content', {
+  imageUploadURL: '/library/upload',  // replace with your image upload endpoint
+  imageUploadMethod: 'POST',
+  imageMaxSize: 5 * 1024 * 1024,  // max image size 5MB
+  imageAllowedTypes: ['jpeg', 'jpg', 'png'],
+  events: {
+    'contentChanged': function() {
+      $("#top-bttns").children("button").removeClass("cursor-not-allowed opacity-25");
+    }
+  }
+});
+});
+</script>

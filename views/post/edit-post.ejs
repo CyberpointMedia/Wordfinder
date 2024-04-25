@@ -20,7 +20,6 @@
                                     class="py-2 px-4 text-white bg-[#007BFF] rounded-lg cursor-not-allowed opacity-25"
                                     onclick="setStatus('Published')">Update</button>
                                 <input type="hidden" name="status" id="status" value="<%= post.status %>">
-
                                 <!-- data-simplebar -->
                                 <%- include('../sidenav/data-simplebar.ejs') %>
                             </div>
@@ -41,7 +40,7 @@
                                         <div class="mb-6">
                                             <label for="description" class="mb-3 text-sm">Description:</label>
                                             <textarea id="editor" name="description" required
-                                                class="form-input bg-[#F0F7FA] border-0 mb-3"><%= post.description %></textarea>
+                                                class="form-input enable-btn content bg-[#F0F7FA] border-0 mb-3"><%= post.description %></textarea>
                                         </div>
                                         <div class="mb-6">
                                             <label class="mb-3 text-sm" for="uploadImage1">Thumbnail Photo image</label>
@@ -166,8 +165,6 @@
                 </div>
     </body>
     <!-- Include Froala Editor script. -->
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script>
@@ -186,9 +183,6 @@
                 document.querySelector('form').submit();
             }, 1100);
         }
-
-        // Initialize Froala Editor
-        new FroalaEditor('#editor');
         function loadFile(event) {
             // Get the file input element that triggered the event
             var input = event.target;
