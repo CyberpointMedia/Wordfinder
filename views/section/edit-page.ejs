@@ -30,14 +30,14 @@
                                         <div class="form-group mb-6">
                                             <label class="mb-3 text-lg" for="page_name">Page Name</label>
                                             <input name="page_name" id="page_name" type="text"
-                                                class="form-input bg-[#F0F7FA] border-0 mb-3"
+                                                class="enable-btn form-input bg-[#F0F7FA] border-0 mb-3"
                                                 placeholder="Enter Page Name" value="<%= page.page_name %>">
                                         </div>
                                         <!-- categories -->
                                         <div class="mb-6 form-group">
                                             <label class="mb-3 text-lg" for="category">Category</label>
                                             <select name="category" id="category"
-                                                class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                class="enable-btn form-input bg-[#F0F7FA] border-0 mb-3">
                                                 <option value="">Select a category</option>
                                                 <option value="words-that-start-with">Words That Start With</option>
                                                 <option value="words-that-end-in">Words That End In</option>
@@ -51,7 +51,7 @@
                                         <div class="mb-6 form-group">
                                             <label class="mb-3 text-lg" for="page_router">Page slug</label>
                                             <input name="page_router" id="page_router" type="text"
-                                                class="form-input bg-[#F0F7FA] border-0 mb-3"
+                                                class="enable-btn form-input bg-[#F0F7FA] border-0 mb-3"
                                                 placeholder="Enter Page slug" value="<%= page.page_router %>">
                                         </div>
 
@@ -59,7 +59,8 @@
                                         <div class="mb-6">
                                             <label class="mb-3 text-lg" for="sub_heading">Add Sub Description</label>
                                             <textarea name="sub_heading" id="content"
-                                                class="form-input bg-[#F0F7FA] border-0" cols="30" rows="6"
+                                                class="content enable-btn form-input bg-[#F0F7FA] border-0" cols="30"
+                                                rows="6"
                                                 placeholder="Add Sub Description"><%= page.sub_heading %></textarea>
                                         </div>
 
@@ -67,8 +68,8 @@
                                         <div class="mb-6">
                                             <label class="mb-3 text-lg" for="content">Add Description</label>
                                             <textarea name="content" id="content"
-                                                class="form-input bg-[#F0F7FA] border-0" cols="30" rows="6"
-                                                placeholder="Add Content"><%= page.content %></textarea>
+                                                class="content enable-btn form-input bg-[#F0F7FA] border-0" cols="30"
+                                                rows="6" placeholder="Add Content"><%= page.content %></textarea>
 
                                         </div>
 
@@ -77,9 +78,10 @@
                                             class="flex items-center mb-6 customCheckBox font-semibold border border-[#ccc] rounded-md text-xl p-4 bg-[#f0f7fa]">
                                             <input type="hidden" name="show_search" value="false">
                                             <input id="show_search" name="show_search" type="checkbox" value="true"
-                                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                                                class="enable-btn w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
                                                 <%=page.show_search ? 'checked' : '' %>>
-                                            <label for="show_search" class="text-lg font-medium text-gray-900">Enable
+                                            <label for="show_search"
+                                                class="enable-btn text-lg font-medium text-gray-900">Enable
                                                 Search Banner</label>
                                         </div>
 
@@ -91,7 +93,7 @@
                                                     Choose Section
                                                 </div>
                                                 <div class="bg-[#f0f7fa] p-6">
-                                                    <select id="mySelect" class="w-full py-5 border rounded"
+                                                    <select id="mySelect" class="enable-btn w-full py-5 border rounded"
                                                         multiple="multiple" name="sections">
                                                         <!-- Check if sections exist for the page -->
                                                         <% if (sections && sections.length> 0) { %>
@@ -116,7 +118,7 @@
                                                     class="cardHeader font-semibold text-white text-xl p-4 bg-[#007bff] text-center">
                                                     Chosen Section
                                                 </div>
-                                                <div class="bg-[#f0f7fa] p-6">
+                                                <div class="bg-[#f0f7fa] p-6 enable-btn">
                                                     <ul id="selectedValuesList">
                                                         <% if (Array.isArray(page.sections)) { %>
                                                             <% page.sections.forEach((section)=> { %>
@@ -148,7 +150,7 @@
                                                 <div class="form-group mb-6">
                                                     <label class="mb-3 text-sm" for="seoTitle">SEO Title</label>
                                                     <input name="seoTitle" id="seoTitle" type="text"
-                                                        class="form-input bg-[#F0F7FA] border-0 mb-3"
+                                                        class="enable-btn form-input bg-[#F0F7FA] border-0 mb-3"
                                                         placeholder="Enter SEO Title" value="<%= page.seoTitle %>">
                                                 </div>
 
@@ -156,12 +158,12 @@
                                                     <label class="mb-3 text-sm" for="seoMetaDescription">Meta
                                                         description</label>
                                                     <textarea id="seoMetaDescription" name="seoMetaDescription"
-                                                        class="form-input bg-[#F0F7FA] border-0 mb-3"><%= page.metaDescription %></textarea>
+                                                        class="enable-btn form-input bg-[#F0F7FA] border-0 mb-3"><%= page.metaDescription %></textarea>
                                                 </div>
                                                 <div class="form-group mb-6">
                                                     <label class="mb-3 text-sm" for="searchEngines">Allow search engines
                                                         to show this content in search results?</label>
-                                                    <select class="form-select bg-[#F0F7FA] border-0 mb-3"
+                                                    <select class="enable-btn form-select bg-[#F0F7FA] border-0 mb-3"
                                                         id="searchEngines" name="searchEngines">
                                                         <option value="0" <%=page.searchEngines===0 ? 'selected' : '' %>
                                                             >Yes (current default for Pages)</option>
@@ -178,7 +180,7 @@
                                                     <div class="flex gap-x-6">
                                                         <div class="flex items-center">
                                                             <input type="radio" name="hs-radio-group"
-                                                                class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                                                class="enable-btn shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                                                 id="hs-radio-group-1" <%=page.hsRadioGroup==='Yes'
                                                                 ? 'checked' : '' %>>
                                                             <label for="hs-radio-group-1"
@@ -186,7 +188,7 @@
                                                         </div>
                                                         <div class="flex items-center">
                                                             <input type="radio" name="hs-radio-group"
-                                                                class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                                                class="enable-btn shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                                                 id="hs-radio-group-2" <%=page.hsRadioGroup==='No'
                                                                 ? 'checked' : '' %>>
                                                             <label for="hs-radio-group-2"
@@ -198,7 +200,7 @@
                                                 <div class="form-group mb-6">
                                                     <label class="mb-3 text-sm" for="metaRobots">Meta robots
                                                         advanced</label>
-                                                    <select class="form-select bg-[#F0F7FA] border-0 mb-3"
+                                                    <select class="enable-btn form-select bg-[#F0F7FA] border-0 mb-3"
                                                         id="metaRobots" name="metaRobots">
                                                         <option value="0" <%=page.metaRobots===0 ? 'selected' : '' %>>No
                                                             Image Index</option>
@@ -213,13 +215,13 @@
                                                         Title</label>
                                                     <input name="breadcrumbsTitle" id="breadcrumbsTitle" type="text"
                                                         value="<%= page.breadcrumbsTitle %>"
-                                                        class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                        class="enable-btn form-input bg-[#F0F7FA] border-0 mb-3">
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="mb-3 text-sm" for="canonicalURL">Canonical URL</label>
                                                     <input name="canonicalURL" id="canonicalURL" type="text"
                                                         value="<%= page.canonicalURL %>"
-                                                        class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                                        class="enable-btn form-input bg-[#F0F7FA] border-0 mb-3">
                                                 </div>
                                             </div>
                                         </div>
@@ -236,7 +238,6 @@
             <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
             <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
                 $(document).ready(function () {
@@ -293,25 +294,19 @@
                         close: true
                     }).showToast();
 
-                    setTimeout(function() {
-            document.querySelector('form').submit();
-        }, 1100); 
+                    setTimeout(function () {
+                        document.querySelector('form').submit();
+                    }, 1100);
                 }
 
                 $(document).ready(function () {
-                    new FroalaEditor('#content');
-
                     // Trigger the change event for the dropdown after the page loads
                     $('#mySelect').trigger('change');
-
-
                     $('#mySelect').on('change', function () {
                         // Clear the current list
                         $('#selectedValuesList').empty();
-
                         // Update the list with the selected sections
                         var selectedSections = $(this).val();
-
                         if (selectedSections) {
                             // Append the section titles to the list
                             selectedSections.forEach(function (sectionId) {

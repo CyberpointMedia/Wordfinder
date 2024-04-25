@@ -5,6 +5,7 @@ const User = require('../models/user');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 const Image = require('../models/library');
+
 // Set up AWS S3
 const s3 = new S3Client({
   region: process.env.AWS_REGION,
@@ -18,7 +19,6 @@ const upload = multer({
   storage: multerS3({
     s3: s3,
     bucket: process.env.YOUR_BUCKET_NAME,
-    acl: 'public-read',
     metadata: function (req, file, cb) {
       cb(null, {fieldName: file.fieldname});
     },
@@ -47,27 +47,25 @@ router.get('/images', async (req, res) => {
   }
 });
 
-router.post('/upload', upload.array('files'), async (req, res) => {
+router.post('/upload', upload.single('file'), async (req, res) => {
   try {
-    console.log("uplaod respone req.body ",req.body);
-    const imageUrls = req.files.map(file => file.location);
+    console.log("image uplaoded",req.file);
+    const file = req.file;
+    const imageUrl = file.location;
 
-    // Create a new Image document for each file
-    for (let file of req.files) {
-      const image = new Image({
-        src: file.location,
-        uploadedBy: req.user.username, // Assuming the user is stored in req.user
-        filename: file.originalname,
-        filetype: file.mimetype,
-        filesize: file.size,
-        dimensions: `${file.width} by ${file.height} pixels`, // Assuming the dimensions are stored in file.width and file.height
-        fileUrl: file.location
-      });
-      console.log("image info",image);
-      await image.save();
-    }
-    console.log(imageUrls);
-    res.json({ imageUrls });
+    const image = new Image({
+      src: imageUrl,
+      uploadedBy: req.user.username,
+      filename: file.originalname,
+      filetype: file.mimetype,
+      filesize: file.size,
+      dimensions: `${file.width} by ${file.height} pixels`,
+      fileUrl: imageUrl
+    });
+
+    await image.save();
+
+    res.json({ link: imageUrl });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });

@@ -11,7 +11,7 @@ const ImageSchema = new mongoose.Schema({
   },
   uploadedBy: {
     type: String,
-    required: true
+    required: false
   },
   filename: {
     type: String,
