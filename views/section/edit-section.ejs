@@ -12,6 +12,9 @@
                             <input type="hidden" name="_method" value="PUT">
                             <!-- main content start here -->
                             <div id="top-bttns" class="flex justify-end gap-2 border-b py-5 shadow-sm bg-white">
+                                <a href="/<%= `admin/section/show/${section.title}` %>">
+                                    <button type="button" class="py-2 px-4 text-[#949494]" aria-label="Save draft">Preview</button>
+                                </a>
                                 <button type="button" aria-disabled="true" class="py-2 px-4 text-[#949494] cursor-not-allowed" aria-label="Save draft" onclick="setStatus('Draft')">Save draft</button>
                                 <button type="button" aria-disabled="true" aria-expanded="false" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg cursor-not-allowed opacity-25" onclick="setStatus('Published')">Update</button>
                                 <input type="hidden" name="status" id="status" value="<%= section.status %>">
@@ -37,19 +40,19 @@
                                         <div class="mb-6">
                                             <label class="mb-3 text-lg" for="uploadImage1">Upload image</label>
                                             <div class="uploadImg-Preview mb-6">
-                                                <img id="preview_img" class="object-cover" src="<%= section.image %>" alt="Upload Image">
+                                                <img id="preview_img" class="enable-btn object-cover" src="<%= section.image %>" alt="Upload Image">
                                             </div>
 
                                             <div class="block relative">
                                                 <span class="absolute inset-0 opacity-100 w-40 h-12 leading-[48px] top-0 text-black bg-[#DBF4FF] rounded-lg text-center cursor-pointer">Select Image</span>
-                                                <input type="file" name="picture__input" id="picture__input" onchange="loadFile(event)" class="block w-40 h-12 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0">
+                                                <input type="file" name="picture__input" id="picture__input" onchange="loadFile(event)" class="enable-btn block w-40 h-12 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0">
                                             </div>
                                         </div>
 
 
                                         <div class="mb-6">
                                             <label class="mb-3 text-lg" for="imagePosition">Image Position</label>
-                                            <select class="form-select bg-[#F0F7FA] border-0" id="imagePosition" name="imagePosition">
+                                            <select class="enable-btn form-select bg-[#F0F7FA] border-0" id="imagePosition" name="imagePosition">
                                     <option <%= section.imagePosition === 'left' ? 'selected' : '' %> value="left">Image Left</option>
                                     <option <%= section.imagePosition === 'center' ? 'selected' : '' %> value="center">Image Center</option>
                                     <option <%= section.imagePosition === 'right' ? 'selected' : '' %> value="right">Image Right</option>
