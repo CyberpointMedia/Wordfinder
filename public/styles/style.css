@@ -1849,6 +1849,9 @@ video {
 .w-10 {
     width: 2.5rem;
 }
+.w-75 {
+    width: 75px;
+}
 
 .w-2\/5 {
     width: 40%;
