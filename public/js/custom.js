@@ -114,21 +114,19 @@ jQuery(function($) {
 
 });
 
-$("#title").keypress(function(event) {
-    // if (event.which === 13) {
-    //     performSearch();
-    // }
-    // alert("hello");
-    $("#top-bttns").children("button").removeClass("cursor-not-allowed");
-    $("#top-bttns").children("button").removeClass("opacity-25");
+$("#title").on('input', function(event) {
+    if ($(this).val().trim() !== '') {
+        $("#top-bttns").children("button").removeClass("cursor-not-allowed opacity-25");
+    } else {
+        $("#top-bttns").children("button").addClass("cursor-not-allowed opacity-25");
+    }
 });
-$(".enable-btn").keypress(function(event) {
-    // if (event.which === 13) {
-    //     performSearch();
-    // }
-    // alert("hello");
-    $("#top-bttns").children("button").removeClass("cursor-not-allowed");
-    $("#top-bttns").children("button").removeClass("opacity-25");
+$(".enable-btn").on('input', function(event) {
+    if ($(this).val().trim() !== '') {
+        $("#top-bttns").children("button").removeClass("cursor-not-allowed opacity-25");
+    } else {
+        $("#top-bttns").children("button").addClass("cursor-not-allowed opacity-25");
+    }
 });
 
 
