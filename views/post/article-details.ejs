@@ -129,8 +129,9 @@
                 <!-- right col start -->
                 <div class="w-full md:w-1/3 ">
                     <!-- Word Finders box -->
-                    <div class="mb-6 ">
-                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative ">
+                    <% if (categories && categories.length > 0) { %>
+                        <div class="mb-6">
+                            <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative ">
                             Popular Categories
 
                             <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
@@ -153,6 +154,7 @@
                             </ol>
                         </div>
                     </div>
+                    <% } %>
 
                     <!-- Latest Article box -->
                     <div class="mb-6 ">
