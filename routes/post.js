@@ -176,7 +176,8 @@ router.post('/edit/:id', upload.fields([{ name: 'picture__input', maxCount: 1 },
       return res.status(404).send('Post not found');
     }
   
-    post.title = req.body.title;
+    // Replace spaces in the title with hyphens
+    post.title = req.body.title.replace(/\s+/g, '-');
     post.heading = req.body.heading;
     post.description = req.body.description;
     post.status = req.body.status;
@@ -201,6 +202,7 @@ router.post('/edit/:id', upload.fields([{ name: 'picture__input', maxCount: 1 },
     await post.save();
     res.redirect('/post/edit/' + id);
 }));
+
 //change the status of the post
 router.put('/updateStatus/:id', async (req, res) => {
     try {
