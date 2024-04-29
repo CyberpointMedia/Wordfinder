@@ -23,18 +23,18 @@
                         <h2 class="text-xl font-normal text-black mb-6">Add New Category</h2>
                         <form action="/post/categories" method="post" id="add_category" enctype="application/x-www-form-urlencoded">
                             <div class="form-group mb-6">
-                                <label class="mb-3" for="catName">Name</label>
-                                <input name="catName" id="catName" type="text" value="" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                <label class="mb-3" for="catName">Name<span class="text-red-600">*</span></label>
+                                <input name="catName" id="catName" type="text" value="" class="form-input bg-[#F0F7FA] border-0 mb-3" required="">
                                 <p id="name-description">The name is how it appears on your site.</p>
                             </div>
                             <div class="form-group mb-6">
-                                <label class="mb-3" for="slugName">Slug</label>
-                                <input name="slugName" id="slugName" type="text" value="" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                <label class="mb-3" for="slugName">Slug<span class="text-red-600">*</span></label>
+                                <input name="slugName" id="slugName" type="text" value="" class="form-input bg-[#F0F7FA] border-0 mb-3" required="">
                                 <p id="slug-description">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</p>
                             </div>
                             <div class="form-group mb-6">
-                                <label class="mb-3" for="ParentCatName">Parent Category</label>
-                                <select class="form-select bg-[#F0F7FA] border-0 mb-3" id="ParentCatName" name="ParentCatName">
+                                <label class="mb-3" for="ParentCatName">Parent Category<span class="text-red-600">*</span></label>
+                                <select class="form-select bg-[#F0F7FA] border-0 mb-3" id="ParentCatName" name="ParentCatName" required="">
                                     <option selected="selected" value="">None</option>
                                     <% categories.forEach(function(category) { %>
                                         <option value="<%= category._id %>"><%= category.name %></option>
