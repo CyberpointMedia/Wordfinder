@@ -1,4 +1,4 @@
-<!-- views/section/categories -->
+<!-- views/section/edit-categories -->
 <%- include('../header/head.ejs') %>
 
 <body>
@@ -21,34 +21,35 @@
                 <div class="flex flex-col md:flex-row gap-6 justify-between">
                     <div class="add-category-sec w-full md:w-1/3">
                         <h2 class="text-xl font-normal text-black mb-6">Add New Category</h2>
-                        <form action="/post/categories" method="post" id="add_category" enctype="application/x-www-form-urlencoded">
+                        <!-- views/categories/edit.ejs -->
+                        <form action="/post/categories/edit/<%= category._id %>" method="post">
                             <div class="form-group mb-6">
-                                <label class="mb-3" for="catName">Name<span class="text-red-600">*</span></label>
-                                <input name="catName" id="catName" type="text" value="" class="form-input bg-[#F0F7FA] border-0 mb-3" required="">
+                                <label class="mb-3" for="catName">Name</label>
+                                <input name="catName" id="catName" type="text" value="<%= category.name %>" class="form-input bg-[#F0F7FA] border-0 mb-3">
                                 <p id="name-description">The name is how it appears on your site.</p>
                             </div>
                             <div class="form-group mb-6">
-                                <label class="mb-3" for="slugName">Slug<span class="text-red-600">*</span></label>
-                                <input name="slugName" id="slugName" type="text" value="" class="form-input bg-[#F0F7FA] border-0 mb-3" required="">
+                                <label class="mb-3" for="slugName">Slug</label>
+                                <input name="slugName" id="slugName" type="text" value="<%= category.slug %>" class="form-input bg-[#F0F7FA] border-0 mb-3">
                                 <p id="slug-description">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</p>
                             </div>
                             <div class="form-group mb-6">
-                                <label class="mb-3" for="ParentCatName">Parent Category<span class="text-red-600">*</span></label>
-                                <select class="form-select bg-[#F0F7FA] border-0 mb-3" id="ParentCatName" name="ParentCatName" required="">
+                                <label class="mb-3" for="ParentCatName">Parent Category</label>
+                                <select class="form-select bg-[#F0F7FA] border-0 mb-3" id="ParentCatName" name="ParentCatName">
                                     <option selected="selected" value="">None</option>
-                                    <% categories.forEach(function(category) { %>
-                                        <option value="<%= category._id %>"><%= category.name %></option>
+                                    <% categories.forEach(function(parentCategory) { %>
+                                        <option value="<%= parentCategory._id %>" <%= parentCategory._id.equals(category.parentCategory) ? 'selected' : '' %>><%= parentCategory.name %></option>
                                     <% }) %>
                                 </select>
                                 <p id="ParentCat-description">Categories, unlike tags, can have a hierarchy. You might have a Jazz category, and under that have children categories for Bebop and Big Band. Totally optional.</p>
                             </div>
                             <div class="form-group mb-6">
                                 <label class="mb-3" for="DescriptionName">Description</label>
-                                <textarea id="DescriptionName" name="DescriptionName" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                <textarea id="DescriptionName" name="DescriptionName" class="form-input bg-[#F0F7FA] border-0 mb-3"><%= category.description %></textarea>
                                 <p id="slug-description">The description is not prominent by default; however, some themes may show it.</p>
                             </div>
-                            <button type="button" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg" onclick="submitForm()">
-                                Add New Category
+                            <button type="submit" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">
+                                Update Category
                             </button>
                         </form>
                     </div>
@@ -162,13 +163,16 @@ function deleteCategory(id) {
         location.reload();
     });
 }
- if (locals.message) {
-    Toastify({
-      text: "<%= locals.message %>",
-      duration: 10000,
-      close: true,
-    }).showToast();
- } 
+
+window.onload = function() {
+        if ("<%= message %>") {
+            Toastify({
+                text: "<%= message %>",
+                duration: 10000,
+                close: true,
+            }).showToast();
+        }
+    }
     </script>
     <!-- sidebar end here -->
     <%- include('../script/script.ejs') %>
