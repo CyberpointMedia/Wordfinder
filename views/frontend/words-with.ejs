@@ -6,7 +6,7 @@
             <!-- header end here -->
 
             <!-- content section start -->
-            <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-20">
+            <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-12">
                 <div class="container">
                     <div class="flex flex-col gap-8 md:flex-row">
                         <!-- left col start -->
@@ -50,7 +50,7 @@
                                         <% console.log(`Total words of length ${specifiedLength}:`, wordsByLength[specifiedLength].length); %>
                                         <!-- Log total words for this length -->
                                     </div>
-                                    <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px]">
+                                    <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px]">
                                         <div class="flex flex-wrap gap-3 tagsMain" id="words_card_<%= specifiedLength %>">
                                             <% wordsByLength[specifiedLength].forEach(wordObj => { %>
                                                 <% if ((!startsWith || wordObj.word.startsWith(startsWith)) && (!endsWith || wordObj.word.endsWith(endsWith)) && (!contains || wordObj.word.includes(contains)) && (!includeLetters || wordObj.word.includes(includeLetters)) && (!excludeLetters || !wordObj.word.includes(excludeLetters)) ) { %>
@@ -83,7 +83,7 @@
                                             <%= length %>
                                             Letter Words
                                         </div>
-                                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px]">
+                                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px]">
                                             <div class="flex flex-wrap gap-3 tagsMain" id="words_card_<%= length %>">
                                                 <% wordsByLength[length].forEach(wordObj => { %>
                                                     <% if ((!startsWith || wordObj.word.startsWith(startsWith)) && (!endsWith || wordObj.word.endsWith(endsWith)) && (!contains || wordObj.word.includes(contains)) && (!includeLetters || wordObj.word.includes(includeLetters)) && (!excludeLetters || !wordObj.word.includes(excludeLetters))) { %>

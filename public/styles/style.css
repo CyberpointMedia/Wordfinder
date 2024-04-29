@@ -3089,6 +3089,12 @@ video {
     .md\:pb-20 {
         padding-bottom: 5rem;
     }
+    .md\:pb-16 {
+        padding-bottom: 4rem;
+    }
+    .md\:pb-12{
+        padding-bottom: 3rem;
+    }
     .md\:ps-8 {
         padding-inline-start: 2rem;
     }
