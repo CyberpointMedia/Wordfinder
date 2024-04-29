@@ -21,42 +21,51 @@ router.use(express.static(path.join(__dirname, 'dist')));
 router.use('/node_modules', express.static(__dirname + '/node_modules'));
 router.use('/styles', express.static(path.join(__dirname, 'styles')));
 
-router.get('/words-that-start-with', (req, res) => {
-    const page = req.query.page || 1;
-const pageSize = 20; // number of items per page
-const start = (page - 1) * pageSize;
-const end = page * pageSize;
-    function generateCombinations(letters, maxLength) {
-        const combinations = [];
+router.get('/words-that-start-with', async (req, res) => {
+    try {
+        const page = Number(req.query.page) || 1;
+        const pageSize = 20; // number of items per page
+        const start = (page - 1) * pageSize;
+        const end = page * pageSize;
 
-        function helper(prefix, chars) {
-            for (let i = 0; i < chars.length; i++) {
-                const newPrefix = prefix + chars[i];
-                if (newPrefix.length <= maxLength) {
-                    combinations.push(newPrefix);
-                    helper(newPrefix, chars.slice(i + 1));
+        function generateCombinations(letters, maxLength) {
+            const combinations = [];
+
+            function helper(prefix, chars) {
+                for (let i = 0; i < chars.length; i++) {
+                    const newPrefix = prefix + chars[i];
+                    if (newPrefix.length <= maxLength) {
+                        combinations.push(newPrefix);
+                        helper(newPrefix, chars.slice(i + 1));
+                    }
                 }
             }
+
+            helper('', letters.split(''));
+
+            return combinations;
         }
 
-        helper('', letters.split(''));
+        const letters = 'abcdefghijklmnopqrstuvwxyz'; // replace with the actual letters
+        const maxLength = 3; // replace with the actual maximum length
+        const combinations = generateCombinations(letters, maxLength);
+        const totalPages = Math.ceil(combinations.length / pageSize);
+        const pageItems = combinations.slice(start, end);
+        const pages = Array.from({length: totalPages}, (_, i) => i + 1);
 
-        return combinations;
+        res.render('frontend/category/words-that-start-with.ejs', { combinations: pageItems, page, pages, totalPages });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('An error occurred while processing your request.');
     }
-
-    const letters = 'abcdefghijklmnopqrstuvwxyz'; // replace with the actual letters
-    const maxLength = 3; // replace with the actual maximum length
-    const combinations = generateCombinations(letters, maxLength);
-    const pageItems = combinations.slice(start, end);
-
-    res.render('frontend/category/words-that-start-with.ejs', { combinations: pageItems ,page});
 });
 
 router.get('/words-that-end-in', (req, res) => {
-    const page = req.query.page || 1;
-const pageSize = 20; // number of items per page
-const start = (page - 1) * pageSize;
-const end = page * pageSize;
+    const page = parseInt(req.query.page) || 1;
+    const pageSize = 20; // number of items per page
+    const start = (page - 1) * pageSize;
+    const end = page * pageSize;
+
     function generateCombinations(letters, maxLength) {
         const combinations = [];
 
@@ -72,12 +81,15 @@ const end = page * pageSize;
         helper('', letters.split(''));
         return combinations;
     }
+
     const letters = 'abcdefghijklmnopqrstuvwxyz'; // replace with the actual letters
     const maxLength = 3; // replace with the actual maximum length
     const combinations = generateCombinations(letters, maxLength);
     const pageItems = combinations.slice(start, end);
 
-    res.render('frontend/category/words-that-end-in.ejs', { combinations: pageItems ,page});
+    const totalPages = Math.ceil(combinations.length / pageSize);
+
+    res.render('frontend/category/words-that-end-in.ejs', { combinations: pageItems, page, totalPages });
 });
 
 router.get('/words-by-length', (req, res) => {
@@ -86,7 +98,7 @@ router.get('/words-by-length', (req, res) => {
 });
 
 router.get('/words-with-letters', (req, res) => {
-    const page = req.query.page || 1;
+    const page = parseInt(req.query.page) || 1;
     const pageSize = 10; // number of items per page
     const start = (page - 1) * pageSize;
     const end = page * pageSize;
@@ -94,7 +106,9 @@ router.get('/words-with-letters', (req, res) => {
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
     const pageItems = letters.slice(start, end);
 
-    res.render('frontend/category/words-with-letters.ejs', { letters: pageItems, page: page });
+    const totalPages = Math.ceil(letters.length / pageSize);
+
+    res.render('frontend/category/words-with-letters.ejs', { letters: pageItems, page, totalPages });
 });
 
 module.exports = router;

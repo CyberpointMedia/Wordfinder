@@ -576,16 +576,37 @@ router.get('/articles/:title', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
-
 router.get('/articles', async (req, res) => {
     try {
-        const posts = await Post.find({ status: 'Published' }); // Fetch all posts from the database
-        res.render('post/articles', { morePosts: posts }); // Render the articles.ejs view with the posts data
+        const page = req.params.page || 1; // Get the page number from the request parameters
+        const limit = 9; // Set the number of posts per page
+        const skip = (page - 1) * limit; // Calculate the number of posts to skip
+
+        const posts = await Post.find({ status: 'Published' }).skip(skip).limit(limit); // Fetch posts from the database with pagination
+        const totalPosts = await Post.countDocuments({ status: 'Published' }); // Get the total number of posts
+
+        res.render('post/articles', { morePosts: posts, currentPage: page, totalPages: Math.ceil(totalPosts / limit),totalPosts:totalPosts  }); // Render the articles.ejs view with the posts data and pagination info
     } catch (err) {
         console.error(err);
-        res.status(500).send('Server Error');
+        res.status(500).send('Server Error',err);
     }
 });
+router.get('/articles/page/:page?', async (req, res) => {
+    try {
+        const page = req.params.page || 1; // Get the page number from the request parameters
+        const limit = 9; // Set the number of posts per page
+        const skip = (page - 1) * limit; // Calculate the number of posts to skip
+
+        const posts = await Post.find({ status: 'Published' }).skip(skip).limit(limit); // Fetch posts from the database with pagination
+        const totalPosts = await Post.countDocuments({ status: 'Published' }); // Get the total number of posts
+
+        res.render('post/articles', { morePosts: posts, currentPage: page, totalPages: Math.ceil(totalPosts / limit),totalPosts:totalPosts  }); // Render the articles.ejs view with the posts data and pagination info
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error',err);
+    }
+});
+
 router.get('/contact', (req, res) => {
     res.render(('frontend/contact.ejs'));
 });
@@ -625,7 +646,7 @@ router.get('/input', (req, res) => {
 
 router.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(404).render('not-found/page-not-found.ejs');
+    res.status(404).render('not-found/page-not-found.ejs',err);
 });
 
 module.exports = router;
