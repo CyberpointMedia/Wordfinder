@@ -33,8 +33,8 @@
                                 <p id="slug-description">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</p>
                             </div>
                             <div class="form-group mb-6">
-                                <label class="mb-3" for="ParentCatName">Parent Category<span class="text-red-600">*</span></label>
-                                <select class="form-select bg-[#F0F7FA] border-0 mb-3" id="ParentCatName" name="ParentCatName" required="">
+                                <label class="mb-3" for="ParentCatName">Parent Category</label>
+                                <select class="form-select bg-[#F0F7FA] border-0 mb-3" id="ParentCatName" name="ParentCatName">
                                     <option selected="selected" value="">None</option>
                                     <% categories.forEach(function(category) { %>
                                         <option value="<%= category._id %>"><%= category.name %></option>
@@ -132,13 +132,33 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script>
         function submitForm() {
-            console.log('submitForm');
+            const catName = document.getElementById('catName').value;
+            const slugName = document.getElementById('slugName').value;
+            
+            if (!catName) {
+                Toastify({
+                    text: "Name field is required",
+                    duration: 10000,
+                    close: true
+                }).showToast();
+                return;
+            }
+        
+            if (!slugName) {
+                Toastify({
+                    text: "Slug field is required",
+                    duration: 10000,
+                    close: true
+                }).showToast();
+                return;
+            }
+        
             Toastify({
                 text: "Category Created Successful!",
                 duration: 10000,
                 close: true
             }).showToast();
-    
+        
             // Submit the form
             document.getElementById('add_category').submit();
         }

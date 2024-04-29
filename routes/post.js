@@ -247,7 +247,7 @@ router.post('/categories', wrapAsync(async (req, res) => {
     const existingCategory = await Category.findOne({ name: catName });
 
     if (existingCategory) {
-        return res.status(400).send('Category with this name already exists');
+        return res.status(409).send('Category with this name already exists');
     }
 
     // If ParentCatName is an empty string, set it to null
