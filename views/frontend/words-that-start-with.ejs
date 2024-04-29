@@ -179,10 +179,11 @@
                                                                         <% }); %>
                                                                             <% } %>
                                                                                 <!-- ... -->
-                                                                                <div
-                                                                                    class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
-                                                                                    <%- page.content %>
-                                                                                </div>
+                                                                                <% if (page.content && page.content.trim() !== '') { %>
+                                                                                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                                                                                        <%- page.content %>
+                                                                                    </div>
+                                                                                <% } %>
                                                                                 <div
                                                                                     class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
                                                                                     <h2
