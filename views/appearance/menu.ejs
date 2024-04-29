@@ -424,6 +424,11 @@
                                         });
 
                                         function addButton(name, allNames, index) {
+                                                // If the name is empty, don't add the button
+    if (!name) {
+        return;
+    }
+    
                                             $('#page-post-custom-name').text(name);
                                             $('#page-post-custom').append(`
             <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF] mt-5" aria-controls="hs-basic-nested-sub-collapse-colOne">
