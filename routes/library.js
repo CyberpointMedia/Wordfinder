@@ -30,7 +30,7 @@ const upload = multer({
 
 router.get('/images', async (req, res) => {
   try {
-    const images = await Image.find();
+    const images = await Image.find().sort({ createdAt: -1 });
 
     const command = new ListObjectsV2Command({
       Bucket: process.env.YOUR_BUCKET_NAME,
@@ -44,6 +44,19 @@ router.get('/images', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+// Get image details
+router.get('/image/:id', async (req, res) => {
+  try {
+    const image = await Image.findById(req.params.id);
+    if (!image) {
+      return res.status(404).json({ message: 'Image not found' });
+    }
+
+    res.json(image);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
@@ -69,6 +82,48 @@ router.post('/upload', upload.single('file'), async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+router.post('/upload-multiple', upload.array('files', 10), async (req, res) => {
+  try {
+    console.log("image uplaoded",req.files);
+    const files = req.files;
+    const imageUrls = [];
+
+    for (let file of files) {
+      const imageUrl = file.location;
+
+      const image = new Image({
+        src: imageUrl,
+        uploadedBy: req.user.username,
+        filename: file.originalname,
+        filetype: file.mimetype,
+        filesize: file.size,
+        dimensions: `${file.width} by ${file.height} pixels`,
+        fileUrl: imageUrl
+      });
+
+      await image.save();
+      imageUrls.push(imageUrl);
+    }
+    console.log(imageUrls);
+    res.json({ links: imageUrls });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+router.delete('/image/:id', async (req, res) => {
+  try {
+    const image = await Image.findById(req.params.id);
+    if (!image) {
+      return res.status(404).json({ message: 'Image not found' });
+    }
+
+    await image.remove();
+    res.json({ message: 'Image deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 

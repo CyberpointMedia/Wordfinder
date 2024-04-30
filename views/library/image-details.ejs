@@ -1,0 +1,81 @@
+<div id="modal" class="hidden fixed top-0 left-0 z-[999] bg-black/70 size-full overflow-x-hidden overflow-y-auto">
+    <div
+      class="lg:max-w-5xl lg:w-full m-3 lg:mx-auto bg-white border shadow-sm rounded-xl pointer-events-auto overflow-hidden">
+      <div class="flex justify-between items-center py-3 px-4 border-b">
+        <h3 class="font-bold text-gray-800 text-xl">
+          Attachment details
+        </h3>
+        <button type="button"
+          class="flex justify-center items-center size-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
+          onclick="closeModal()">
+          <svg class="flex-shrink-0 size-4 inline-block" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            viewBox="0 0 24 24" fill="#fff" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="w-full flex flex-col md:flex-row">
+        <!-- A big image will be displayed here -->
+        <div class="md:w-3/5 w-full p-5">
+          <img id="modal-img" src="https://media.geeksforgeeks.org/wp-content/uploads/20240215121528/javare15.png"
+            class="object-cover" />
+        </div>
+        <div class="md:w-2/5 w-full p-5 imageDetail bg-[#f0f7fa] border-l border-color[#ddd]">
+          <div id="uploaded-on" class="uploaded mb-2">
+            <strong>Uploaded on:</strong>
+            February 28, 2024
+          </div>
+          <div id="uploaded-by" class="uploaded-by mb-2">
+            <strong>Uploaded by:</strong>
+            <a href="javascript:void(0);">admin</a>
+          </div>
+          <div id="filename" class="filename mb-2">
+            <strong>File name:</strong>
+            about-2.jpg
+          </div>
+          <div id="filetype" class="filetype mb-2">
+            <strong>File type:</strong>
+            images/jpeg
+          </div>
+          <div id="filesize" class="filesize mb-2">
+            <strong>File size:</strong>
+            71KB
+          </div>
+          <div id="dimensions" class="dimensions mb-2">
+            <strong>Dimensions:</strong>
+            1024 by 768 pixels
+          </div>
+          <hr class="my-4" />
+          <div class="imgSettings">
+            <div id="alternative-text" class="grid sm:grid-cols-3 mb-4">
+              <label class="sm:text-right sm:mr-4 mb-2" for="alternaive-text">Alternative Text</label>
+              <div class="sm:col-span-2">
+                <textarea rows="1" class="form-input bg-white border" id="alternaive-text"></textarea>
+              </div>
+            </div>
+
+            <div id="imgTitle" class="grid sm:grid-cols-3 mb-4">
+              <label class="sm:text-right sm:mr-4 mb-2" for="imgTitle">Title</label>
+              <div class="sm:col-span-2">
+                <input class="form-input bg-white border" id="imgTitle" value="About">
+              </div>
+            </div>
+
+            <div id="file" class="grid sm:grid-cols-3 mb-4">
+              <label class="sm:text-right sm:mr-4 mb-2" for="fileUrl">File URL:</label>
+              <div class="sm:col-span-2 copyUrl">
+                <input class="form-input bg-white border" value="http:/localhost/desktop/images/about.jpeg"
+                  id="fileUrl">
+                <button type="button"
+                  class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF] mt-4">Copy
+                  URL</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
