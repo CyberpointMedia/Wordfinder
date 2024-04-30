@@ -371,7 +371,7 @@ input[type="file"] {
     z-index: 1;
 }
 
-.chooseImage {
+.chooseImage #uploadButton {
     font-size: 14px;
     padding: 14px 30px;
     color: #2271b1;
@@ -392,17 +392,17 @@ input[type="file"] {
 }
 
 .mediaUploader input {
-    width: 100%;
+    width: auto;
     height: 100%;
-    cursor: pointer;
+    margin:20px auto;
+    /* cursor: pointer;
     background: red;
     opacity: 0;
-    margin: auto;
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
-    right: 0;
+    right: 0; */
 }
 
 .mediaUploader h2 {
