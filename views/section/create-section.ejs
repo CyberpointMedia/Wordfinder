@@ -1,0 +1,87 @@
+<!-- create-section.ejs -->
+<%- include('../header/head.ejs') %>
+
+    <body>
+        <!-- sidebar start here -->
+        <div class="flex overflow-hidden">
+            <%- include('../sidenav/sidenav.ejs') %>
+
+                <div class="page-content bg-white relative">
+                    <!-- header Start -->
+                    <%- include('../header/header.ejs') %>
+                        <form action="/admin/section/create" method="POST" enctype="multipart/form-data">
+                            <!-- main content start here -->
+                            <div id="top-bttns" class="flex justify-end gap-2 border-b py-5 shadow-sm bg-white">
+                                <button type="button" aria-disabled="true" class="py-2 px-4 text-[#949494] cursor-not-allowed" aria-label="Save draft" onclick="setStatus('Draft')">Save draft</button>
+                                <button type="button" aria-disabled="true" aria-expanded="false" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg cursor-not-allowed opacity-25" onclick="setStatus('Published')">Publish</button>
+                                <input type="hidden" name="status" id="status" value="">
+
+                                <!-- data-simplebar -->
+                                <%- include('../sidenav/data-simplebar.ejs') %>
+                            </div>
+                            <div class="">
+                                <main class="py-8 px-5">
+                                    <div class="max-w-3xl mx-auto">
+                                        <!-- add title -->
+                                        <div class="mb-6 relative">
+                                            <!-- <label class="mb-3 text-lg" for="title">Title</label> -->
+                                            <input name="title" id="title" type="text" value="" class="text-2xl font-medium text-black bg-[#F0F7FA] py-8 px-4 border-0" placeholder="Add Title" contenteditable="true" required>
+                                            <span class="blinking-cursor"></span>
+                                        </div>
+
+                                        <div class="mb-6">
+                                            <label class="mb-3 text-lg" for="Subheading">Subheading</label>
+                                            <input name="subHeading" id="subHeading" type="text" value="" class="enable-btn form-input bg-[#F0F7FA] border-0">
+                                        </div>
+                                        <div class="mb-6">
+                                            <label class="mb-3 text-lg" for="uploadImage1">Upload image</label>
+                                            <div class="uploadImg-Preview mb-6">
+                                                <img id="preview_img" class="object-cover" src="images/no-image.svg" alt="Upload Image">
+                                            </div>
+
+                                            <div class="block relative">
+                                                <span class="absolute inset-0 opacity-100 w-40 h-12 leading-[48px] top-0 text-black bg-[#DBF4FF] rounded-lg text-center cursor-pointer">Select Image</span>
+                                                <input type="file" name="picture__input" id="picture__input" onchange="loadFile(event)" class="block w-40 h-12 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="mb-6">
+                                            <label class="mb-3 text-lg" for="imagePosition">Image Position</label>
+                                            <select class="form-select bg-[#F0F7FA] border-0" id="imagePosition" name="imagePosition">
+                                            <option selected="selected" value="left">Image Left</option>
+                                            <option value="center">Image Center</option>
+                                            <option value="right">Image Right</option>
+                                </select>
+                                        </div>
+                                        <div class="mb-6">
+                                            <label class="mb-3 text-lg" for="content">Add Content</label>
+                                            <textarea name="content" id="content" class="enable-btn content form-input bg-[#F0F7FA] border-0" cols="30" rows="6" placeholder="Add Content"></textarea>
+                                        </div>
+                                    </div>
+                                </main>
+                            </div>
+                        </form>
+                </div>
+        </div>
+        <!-- sidebar end here -->
+        <%- include('../script/script.ejs') %>
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+            <script>
+                function setStatus(status) {
+                    document.getElementById('status').value = status;
+                    // Trigger form submission
+                    // Show a toast notification
+                    Toastify({
+                        text: "section created Successful!",
+                        duration: 3000,
+                        close: true
+                    }).showToast();
+
+                    document.querySelector('form').submit();
+                }
+            </script>
+    </body>
+
+    </html>

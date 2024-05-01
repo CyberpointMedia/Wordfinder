@@ -1,0 +1,30 @@
+<%- (include('../../frontend/head/head.ejs')) %>
+<body class="font-custom">
+    <!-- header start here -->
+        <%- (include('../../frontend/head/header.ejs')) %>
+
+    <!-- header end here -->
+    <!-- content section start -->
+
+    <div class="content-block mb-5">
+        <div class="container pt-5">
+            <div class="flex justify-center">
+                <div class="w-full md:w-12/12">
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] my-16">
+                        <h1 class="mb-4 text-3xl font-semibold md:text-4xl text-center">Words By Length</h1>
+                       
+                        <ul class="space-y-2 list-disc">
+                            <% lengths.forEach(length => { %>
+                                <li><a href="/<%= length %>-letter-words/" class="text-base font-normal text-blue-500 underline hover-text-blue"><%= length %> Letter Words</a></li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content section end -->
+    <!-- footer start  -->
+    <%- (include('../../frontend/footer/footer.ejs')) %>
+    <!-- footer end  -->
+<%- (include('../../frontend/script/script.ejs')) %>

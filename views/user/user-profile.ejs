@@ -1,0 +1,108 @@
+<!-- views/user/user-profile.ejs -->
+<%- include('../header/head.ejs') %>
+
+<body>
+    <!-- sidebar start here -->
+    <div class="flex overflow-hidden">
+        <!-- sidenav Menu Start  -->
+        <%- include('../sidenav/sidenav.ejs') %>
+
+        <div class="page-content bg-white">
+            <!-- header Start -->
+            <%- include('../header/header.ejs') %>
+            <!-- main content start here -->
+            <main class="py-8 px-5">
+                <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <h1 class="text-2xl font-bold text-black">
+                        User Profile
+                    </h1>
+                </div>
+                <!-- add user form start -->
+                    <form class="space-y-4" action="/user/user-profile" method="post" enctype="multipart/form-data">
+                    <div class="grid sm:grid-cols-3">
+                        <label class="mt-1 mb-2" for="userName1">Username</label>
+                        <div class="sm:col-span-2">
+                            <input type="text" readonly class="form-input bg-[#F0F7FA] border-0" id="userName1" name="Username" value="<%= user.email === process.env.EMAIL ? 'Mr. Superadmin' : user.username %>">
+                      <p class="mt-2">Username cannot be changed.</p>
+                        </div>
+                    </div>
+                    <div class="grid sm:grid-cols-3">
+                        <label class="mt-1 mb-2" for="inputEmail3">Email</label>
+                        <div class="sm:col-span-2">
+                            <input type="email" class="form-input bg-[#F0F7FA] border-0" id="inputEmail3" name="email" value="<%= user.email %>">
+                            <p class="mt-2 md:mb-4">If you change this, an email will be sent at your new address to confirm it. <strong>The new address will not become active until confirmed.</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-3">
+                        <label class="mt-1 mb-2" for="webSite">Web Site</label>
+                        <div class="sm:col-span-2">
+                            <input type="url" class="form-input bg-[#F0F7FA] border-0" id="webSite" value="<%= user.website %>">                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-3">
+                        <label class="mt-1 mb-2" for="webSite">Profile Picture</label>
+                        <div class="sm:col-span-2">
+                            <img id='preview_img' class="h-16 w-16 object-cover rounded-full" src="<%= user.image ? user.image : '/images/admin.svg' %>" alt="user image not found" />
+                                                        <div class="block relative">
+                                                    
+                                                            <span class="absolute inset-0 bg-white opacity-100 w-40 top-4 text-black">Choose profile photo</span>
+                                                            <input type="file" name="image" onchange="loadFile(event)" class="block w-28 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0" />                            </div>
+                        </div>
+                    </div>
+                    <div class="grid sm:grid-cols-3">
+                        <label class="mt-1 mb-2" for="password">New Password</label>
+                        <div class="sm:col-span-2">
+                            <button type="button" class="py-2 w-40 text-black bg-[#DBF4FF] rounded-lg" id="generate-pw" aria-expanded="true">Set New Password</button>
+                            <div id="show-generate-pw" class="flex mt-4 hidden">
+                                <div class="relative w-full">
+                                    <input id="password" type="password" placeholder="********" class="form-input bg-[#F0F7FA] border-0">
+                                    <div class="absolute right-[12px] bottom-[22px] cursor-pointer toggle-password">
+                                        <i data-lucide="eye" class="w-4 h-4 eyeOpen"></i>
+                                        <i data-lucide="eye-off" class="w-4 h-4 eyeOff"></i>
+                                    </div>
+                                </div>
+                                <button type="reset" class="py-2 w-28 text-black bg-[#DBF4FF] rounded-lg ml-3" id="cancelBtn">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-3">
+                        <div></div>
+                        <div class="sm:col-span-2 flex items-center gap-2 mt-4">
+                            <button type="submit" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg">
+                                Update Profile
+                            </button>
+                            <!-- <button type="reset" class="py-2 w-28 text-black bg-[#DBF4FF] rounded-lg">
+                                Cancel
+                            </button> -->
+                        </div>
+                    </div>
+                </form>
+                <!-- add user form end -->
+            </main>
+
+            <!-- main content end here -->
+        </div>
+    </div>
+    <!-- sidebar end here -->
+    <%- include('../script/script.ejs') %>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script>
+         var params = new URLSearchParams(window.location.search);
+
+// Check if a message is present
+if (params.has('message')) {
+    // Show a Toastify notification with the message
+    Toastify({
+        text: params.get('message'),
+        duration: 3000,
+        close: true
+    }).showToast();
+}
+    </script>
+</body>
+</html>

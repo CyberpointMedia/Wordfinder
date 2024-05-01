@@ -1,0 +1,74 @@
+<%- (include('../frontend/head/head.ejs')) %>
+
+    <body class="font-custom">
+        <!-- header start here -->
+        <%- (include('../frontend/head/header.ejs')) %>
+            <!-- header end here -->
+
+            <!-- content section start -->
+            <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-12">
+                <div class="container">
+                    <div class="flex flex-col gap-8 md:flex-row">
+                        <!-- left col start -->
+                        <div class="w-full md:w-2/3">
+                            <!-- No Words found box start -->
+                            <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8 text-center">
+                                <h2 class="mb-4 text-3xl font-semibold md:text-4xl">No Words found for this search.</h2>
+                                <p>
+                                    Try using with different letters or filters.
+                                </p>
+                                <a href="/" class="text-white bg-[#007BFF] rounded-[10px] py-4 px-6 hover:opacity-50 inline-block mt-6">Go to Word Finder</a>
+                            </div>
+
+                            <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                                <h2 class="mb-4 text-3xl font-semibold md:text-4xl">Related</h2>
+                                <ul class="space-y-2 list-disc">
+                                    <li class=""><a href="/words-that-start-with/a/" class="text-base font-normal text-blue-500 underline hover-text-blue">Words that Start with A </a></li>
+                                    <li class=""><a href="/words-that-start-with/b/" class="text-base font-normal text-blue-500 underline hover-text-blue">Words that Start with B </a></li>
+                                    <li class=""><a href="/words-that-start-with/c/" class="text-base font-normal text-blue-500 underline hover-text-blue">Words that Start with C </a></li>
+                                    <li class=""><a href="/words-that-start-with/d/" class="text-base font-normal text-blue-500 underline hover-text-blue">Words that Start with D </a></li>
+                                    <li class=""><a href="/words-that-start-with/e/" class="text-base font-normal text-blue-500 underline hover-text-blue">Words that Start with E </a></li>
+                                </ul>
+                            </div>
+                            <!-- show--scarabble -->
+
+                          <!-- ... -->
+                                <!-- mukesh ji yaha par chnages karna -->
+                          <!--  -->
+                        
+                        </div>
+                        <!-- left col end -->
+
+                        <!-- right col start -->
+                        <div class="w-full md:w-1/3">
+                            <!-- Word Finders box -->
+                            <%- (include('../frontend/right_col/word_finder.ejs')) %>
+
+                                <!-- Dictionaries box  -->
+                                <%- (include('../frontend/right_col/Dictionaries.ejs')) %>
+
+                                    <!-- List of Words box -->
+                                    <%- (include('../frontend/right_col/list_of_words.ejs')) %>
+
+                                        <!-- Popular Searches box -->
+                                        <%- (include('../frontend/right_col/Popular_Searches_box.ejs')) %>
+
+                                            <!-- Frequent Searches box -->
+                                            <%- (include('../frontend/right_col/Frequent_Searches_box.ejs')) %>
+
+                                                <!-- Latest Article box -->
+                                                <%- (include('../frontend/right_col/latest_article.ejs')) %>
+
+                        </div>
+                        <!-- right col end -->
+                    </div>
+                </div>
+            </div>
+            <!-- content section end -->
+            <div id="hs-medium-modal" class="hs-overlay hidden w-full h-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"></div>
+
+
+            <!-- footer start  -->
+            <%- (include('../frontend/footer/footer.ejs')) %>
+                <!-- footer end  -->
+                <%- (include('../frontend/script/script.ejs')) %>

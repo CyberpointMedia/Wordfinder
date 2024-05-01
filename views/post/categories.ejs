@@ -1,0 +1,197 @@
+<!-- views/section/categories -->
+<%- include('../header/head.ejs') %>
+
+<body>
+    <!-- sidebar start here -->
+    <div class="flex overflow-hidden">
+        <!-- sidenav Menu Start  -->
+        <%- include('../sidenav/sidenav.ejs') %>
+
+        <div class="page-content bg-white">
+            <!-- header Start -->
+            <%- include('../header/header.ejs') %>
+            <!-- main content start here -->
+            <main class="py-8 px-5">
+                <div class="mb-6">
+                    <h1 class="text-2xl font-bold text-black">
+                        Categories
+                    </h1>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-6 justify-between">
+                    <div class="add-category-sec w-full md:w-1/3">
+                        <h2 class="text-xl font-normal text-black mb-6">Add New Category</h2>
+                        <form action="/post/categories" method="post" id="add_category" enctype="application/x-www-form-urlencoded">
+                            <div class="form-group mb-6">
+                                <label class="mb-3" for="catName">Name<span class="text-red-600">*</span></label>
+                                <input name="catName" id="catName" type="text" value="" class="form-input bg-[#F0F7FA] border-0 mb-3" required="">
+                                <p id="name-description">The name is how it appears on your site.</p>
+                            </div>
+                            <div class="form-group mb-6">
+                                <label class="mb-3" for="slugName">Slug<span class="text-red-600">*</span></label>
+                                <input name="slugName" id="slugName" type="text" value="" class="form-input bg-[#F0F7FA] border-0 mb-3" required="">
+                                <p id="slug-description">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</p>
+                            </div>
+                            <div class="form-group mb-6">
+                                <label class="mb-3" for="ParentCatName">Parent Category</label>
+                                <select class="form-select bg-[#F0F7FA] border-0 mb-3" id="ParentCatName" name="ParentCatName">
+                                    <option selected="selected" value="">None</option>
+                                    <% categories.forEach(function(category) { %>
+                                        <option value="<%= category._id %>"><%= category.name %></option>
+                                    <% }) %>
+                                </select>
+                                <p id="ParentCat-description">Categories, unlike tags, can have a hierarchy. You might have a Jazz category, and under that have children categories for Bebop and Big Band. Totally optional.</p>
+                            </div>
+                            <div class="form-group mb-6">
+                                <label class="mb-3" for="DescriptionName">Description</label>
+                                <textarea id="DescriptionName" name="DescriptionName" class="form-input bg-[#F0F7FA] border-0 mb-3"></textarea>
+                                <p id="slug-description">The description is not prominent by default; however, some themes may show it.</p>
+                            </div>
+                            <button type="button" class="py-2 px-4 text-white bg-[#007BFF] rounded-lg" onclick="submitForm()">
+                                Add New Category
+                            </button>
+                        </form>
+                    </div>
+                    <!-- table start here -->
+                    <div class="bg-white overflow-x-auto w-full md:w-2/3">
+                        <table class="w-full divide-y divide-gray-200 border" id="example">
+                            <thead class="text-left bg-[#DBF4FF]">
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" class="selectAll">
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Description
+                                    </th>
+                                    <th>
+                                        Slug
+                                    </th>
+                                    <th>
+                                        Count
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <% categories.forEach(function(category) { %>
+                                <tr class="">
+                                    <td>
+                                        <input type="checkbox" value="<%= category._id %>" class="">
+                                    </td>
+                                    <td>
+                                        <div class="">
+                                            <strong><a class="row-title text-[#2271b1] text-sm" href="javascript:void(0)"><%= category.name %></a></strong>
+                                        </div>
+                                        <div class="row-actions mt-1">
+                                            <span class="edit">
+                                                <a href="/post/categories/edit/<%= category._id %>" class="text-[#2271b1] text-xs">Edit</a> | 
+                                            </span>
+                                            <a href="javascript:void(0)" class="trash text-[#b32d2e] text-xs" onclick="deleteCategory('<%= category._id %>')">Delete</a> |
+                                            <span class="view">
+                                                <a href="javascript:void(0)" class="text-[#2271b1] text-xs">View</a>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td><%= category.description %></td>
+                                    <td><%= category.slug %></td>
+                                    <td><a class="row-title text-[#2271b1] text-sm" href="javascript:void(0)">1</a></td>
+                                </tr>
+                                <% }) %>
+                            </tbody>
+                            <tfoot class="text-left bg-[#DBF4FF]">
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" class="selectAll">
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Description
+                                    </th>
+                                    <th>
+                                        Slug
+                                    </th>
+                                    <th>
+                                        Count
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <!-- table end here -->
+                </div>
+            </main>
+            <!-- main content end here -->
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script>
+        function submitForm() {
+            const catName = document.getElementById('catName').value;
+            const slugName = document.getElementById('slugName').value;
+            
+            if (!catName) {
+                Toastify({
+                    text: "Name field is required",
+                    duration: 10000,
+                    close: true
+                }).showToast();
+                return;
+            }
+        
+            if (!slugName) {
+                Toastify({
+                    text: "Slug field is required",
+                    duration: 10000,
+                    close: true
+                }).showToast();
+                return;
+            }
+        
+            Toastify({
+                text: "Category Created Successful!",
+                duration: 10000,
+                close: true
+            }).showToast();
+        
+            // Submit the form
+            document.getElementById('add_category').submit();
+        }
+function deleteCategory(id) {
+    fetch('/post/categories/' + id, {
+        method: 'DELETE',
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.message);
+        // Show a Toastify notification with the message
+        Toastify({
+            text: data.message,
+            duration: 10000,
+            close: true
+        }).showToast();
+    })
+    .catch(error => console.error('Error:', error))
+    .finally(() => {
+        // Refresh the page or remove the deleted category from the DOM
+        location.reload();
+    });
+}
+ if (locals.message) {
+    Toastify({
+      text: "<%= locals.message %>",
+      duration: 10000,
+      close: true,
+    }).showToast();
+ } 
+    </script>
+    <!-- sidebar end here -->
+    <%- include('../script/script.ejs') %>
+
+</body>
+</html>

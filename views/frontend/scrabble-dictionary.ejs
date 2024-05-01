@@ -1,0 +1,144 @@
+<%- (include('../frontend/head/head.ejs')) %>
+<body class="font-custom">
+    <!-- header start here -->
+    <%- (include('../frontend/head/header.ejs')) %>
+    <!-- header end here -->
+    <div class="bg-[#DBF4FF]">
+        <div class="container">
+            <div class="flex flex-wrap pt-10 pb-10 mx-auto md:pt-20 md:pb-20">
+                <div class="flex flex-wrap items-center justify-center w-full align-middle">
+                    <h1 class="block text-[#393939] text-3xl sm:text-[55px] font-medium mb-3 text-center"> Scrabble Dictionary - Online Word Checker</h1>
+                    <p class="block w-full text-center">
+                        You can use up to 3 wildcards (? or space)
+                    </p>
+                    <form id="search-main" class="w-full mt-8 mb-6" action="/scrabble-dictionary" method="post">
+                        <div class="input-group MainSearch border rounded-[20px] border-[#007BFF] overflow-hidden bg-white sm:py-4 py-2 px-5 text-center mb-10">
+                            <input type="text" name="letters" class=" border-0 w-full main-search-input sm:text-lg focus:outline-none" placeholder="Type Letters ..." aria-label="Letters" aria-describedby="dictionary-select-field" required="">
+                            <span class="p-0 border-0 input-group-text" id="dictionary-select-field">
+                       </span>
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-buttonPrimary rounded-[10px] text-white hover:opacity-50">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- content section start -->
+    <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-12">
+        <div class="container">
+            <div class="flex flex-col gap-8 md:flex-row">
+                <!-- left content -->
+                <div class="w-full md:w-2/3">
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8 custom-card">
+                        <h2 class="mb-4 text-4xl font-medium">Scrabble Dictionary - Online Word Checker</h2>
+                        <p>
+                            The English board game Scrabble, owned by Hasbro Inc in the US and Mattel in the rest of the world, has its own dictionary which you need to have at your disposal if you are to have a fair competitive game. When playing Scrabble, disputes may arise over whether a word used is recognized by the Scrabble dictionary or not. In such a situation, we can either have a cumbersome, slow-to-use dictionary around, or simply use a word finder instead.
+                        </p>
+                        <p>
+                            Word Finder gives you word lists that have all possible Scrabble words up to the longest possible word length. Our site will make playing Scrabble a lot more fun and convenient. In the aforementioned situation, all you have to do is input the dubious word into our search bar and click to see if it is valid. Moreover, it can also show other words with the same letters which can potentially land you more points. This is just an example of the various advantages that can be gained by using a word finder during a game of Scrabble or even Words With Friends.
+                        </p>
+                    </div>
+
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8 custom-card">
+                        <h2 class="mb-4 text-4xl font-medium">How to Use Our Scrabble Dictionary</h2>
+                        <p>
+                            Our Scrabble dictionary word finder is intuitive and quite easy to operate. Simply take your Scrabble word and input it into our search option. Our word finder will check both the UK and US versions of the Scrabble dictionary and verify whether the word is valid or not. You no longer need to pore over pages and pages of small font print just to find one word, nor will you have to suffer from the prolonged interruption of the flow of play that doing so invariably causes. The best uses of our tool are elaborated on below.
+                        </p>
+                        <h2 class="mb-4 text-2xl font-medium">For Improving at Scrabble</h2>
+                        <p>
+                            Is someone in your group not a native English speaker? Or perhaps they're new to Scrabble? One of the best uses of this tool is to let a newbie use it to learn the ropes of the game, as it may otherwise be hard from them to discern between what's a real word on Scrabble and what isn't. Even if they speak great English, they may not know some words which aren't in heavy use in English, but are regular Scrabble words. For example, "CWMS" is a valid Scrabble word, but unless you're Welsh, chances are you're not familiar with it.
+                        </p>
+                        <h2 class="mb-4 text-2xl font-medium">Spelling Checks</h2>
+                        <p>
+                            For any word game, it is crucial to ensure proper spelling. Scrabble is no different, and the slightest mistake will have dire consequences. Therefore, it is important to keep a word list around to make sure every word being played is a valid Scrabble word. Moreover, this also removes any orthographic misconceptions you may have had. In fact, why not find out the definition of "orthographic" right now? All you need to do is use our Scrabble dictionary word finder.
+                        </p>
+                        <h2 class="mb-4 text-2xl font-medium">Playing Like a Pro</h2>
+                        <p>
+                            Using our Scrabble dictionary will also help you practice for tournaments. You can find words that you never knew were official Scrabble words. Make words of the maximum possible word length and create word lists that can help you dominate any eventual opponents. After every round, check with our Scrabble dictionary to see what words you could have made with the letters you had. Challenge yourself to improve further, because every letter and every point counts when you're trying to win a pro Scrabble game. You can also sign up using your email or Google Account if you want more options and convenience.
+                        </p>
+                        <h2 class="mb-4 text-2xl font-medium">Advanced Search Options</h2>
+                        <p>
+                            If you want to be more precise with the searches you conduct and generate more refined word lists, you need to utilize our advanced search option. With advanced search options, you can:
+                        </p>
+                        <ul class="list-disc pl-5 mb-4 text-gray">
+                            <li>Select between either one or both of the official Scrabble dictionaries to search in.</li>
+                            <li>Have search results organized by word length.</li>
+                            <li>Find words that use the same letters which you may not have thought of, including those made possible by using the full scope of any available blank tiles.</li>
+                        </ul>
+                        <p>
+                            Playing Scrabble will not only become a much more fast-paced and convenient, but you can also rest assured that any word made by you or your fellow players will be a certified real word. Moreover, with the additional words you'll find, you can leave your opponent bewildered by making the word or word combination that gives you the most points.
+                        </p>
+                        <h2 class="mb-4 text-2xl font-medium">Cheat Tool</h2>
+                        <p>
+                            With usage as a verification word list comes the double-edged sword of the tool being a great way to cheat while playing Scrabble. We naturally do not endorse cheating, but it is a necessary evil that has to exist for the good side to exist — the Yin to our Yang.
+                        </p>
+                        <h2 class="mb-4 text-2xl font-medium">In Combination with Other Word Games</h2>
+                        <p>
+                            You could use our word finder to play language games other than Hasbro Inc's Scrabble. For instance, the dictionary for Zynga's Words With Friends is also available, and for the most part, the word lists are almost exactly similar. To add to that, the tool can also help you with crossword puzzles and just about any word game. Just take the scrambled letters and type them in. Our tool will take them and turn them into a word list consisting of all possible combinations.
+                        </p>
+                    </div>
+
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8 custom-card">
+                        <h2 class="mb-4 text-4xl font-medium">Frequently Asked Questions</h2>
+                        <p>
+                            If you still have any lingering questions about the Scrabble dictionary, this section should answer them. Following are all of the common questions that people have asked over the years about our tool, Scrabble, dictionaries, and more.
+                        </p>
+                        <h2 class="mb-4 text-2xl font-medium">Does Scrabble Have two Official Dictionaries?</h2>
+                        <p>
+                            Yes, Scrabble also has two official dictionaries — the Scrabble US Dictionary by Merriam-Webster, and the Scrabble UK Dictionary by Collins. Both of these might seem the same to the inexperienced, but certain nuances separate them. Whichever, you use, you should stick to one throughout the duration of a single game.
+                        </p>
+                        <h2 class="mb-4 text-2xl font-medium">Does This Tool Provide Definitions of Words?</h2>
+                        <p>
+                            Absolutely! You will get proper definitions to both add validity to the word and to help you remember it. This will enrich your vocabulary and assist you in becoming better at word games.
+                        </p>
+                        <h2 class="mb-4 text-2xl font-medium">Which Scrabble Dictionary is Better?</h2>
+                        <p>
+                            It's impossible to declare that one of the two dictionaries is outright qualitatively better. When choosing, just pick whichever side of the Atlantic the participants are more used to the dialect of.
+                        </p>
+                        <h2 class="mb-4 text-2xl font-medium">Can a Scrabble Dictionary Help New Players?</h2>
+                        <p>
+                            Beginners stand to gain the most from using this website as they lack an in-depth knowledge of vocabulary and are yet to understand the proper strategies needed to play this word game and be able to compete against seasoned players. They could often get stuck, and our word finder will help them find a way around their obstacles.
+                        </p>
+                        <h2 class="mb-4 text-2xl font-medium">Are Word Finders Allowed in Competitions?</h2>
+                        <p>
+                            Unfortunately, all official tournaments and competitions ban the usage of word finder tools as it creates an unfair advantage. No form of external help is allowed in tournaments, and this falls under that category. While playing unofficial Scrabble tournaments with friends, however, you could all use it to see how things turn out.
+                        </p>
+                        <h2 class="mb-4 text-2xl font-medium">What are the Rules for Challenging a Word in Scrabble?</h2>
+                        <p>
+                            You must challenge a word before the next player lays out their tiles on the board. If the challenged player's word is found to be invalid, they must remove their word from the board as well as lose their turn and any points that they earned in that specific round.
+                        </p>
+                    </div>
+
+                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8 custom-card">
+                        <h2 class="mb-4 text-4xl font-medium">Conclusion</h2>
+                        <p>
+                            We hope that you enjoy using our website, and that it ends up being helpful for you in your puzzle-solving journey. We also wish you all the best for any tournaments you may attend, and hope that if nothing else you learn some new words every time you use our site, and come out of every Scrabble game having had a good time. At the end of the day, games are meant to be enjoyed.
+                        </p>
+                    </div>
+
+                </div>
+                <!-- right col start -->
+                <div class="w-full md:w-1/3">
+                    <!-- Word Finders -->
+                    <%- (include('../frontend/right_col/word_finder.ejs')) %>
+                        <!-- Words By Length -->
+                        <%- (include('../frontend/right_col/words_of_length.ejs')) %>
+                            <!-- Words that Start with -->
+                            <%- (include('../frontend/right_col/words_that_start_with.ejs')) %>
+                                <!-- catorgies -->
+                                <%- (include('../frontend/right_col/category.ejs')) %>
+                                    <!-- Popular Searches -->
+                                    <%- (include('../frontend/right_col/Popular_Searches_box.ejs')) %>
+                                        <!-- Latest Article -->
+                                        <%- (include('../frontend/right_col/latest_article.ejs')) %>
+                </div>
+                <!-- right col end -->
+            </div>
+        </div>
+    </div>
+    <!-- content section end -->
+    <!-- footer start  -->
+    <%- (include('../frontend/footer/footer.ejs')) %>
+    <!-- footer end  -->
+<%- (include('../frontend/script/script.ejs')) %>

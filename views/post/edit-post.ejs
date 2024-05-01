@@ -1,0 +1,217 @@
+<!-- views/post/edit-post.ejs -->
+<%- include('../header/head.ejs') %>
+
+    <body class="bg-gray-100">
+        <!-- sidebar start here -->
+        <div class="flex overflow-hidden">
+            <%- include('../sidenav/sidenav.ejs') %>
+                <div class="page-content bg-white">
+
+                    <%- include('../header/header.ejs') %>
+
+                        <!-- main content start here -->
+
+                        <form action="/post/edit/<%= post._id %>" method="post" enctype="multipart/form-data">
+                            <div id="top-bttns" class="flex justify-end gap-2 border-b py-5 shadow-sm bg-white">
+                                <a href="/articles/<%= post.title %>">
+                                    <button type="button" class="py-2 px-4 text-[#949494]" aria-label="Save draft">Preview</button>
+                                </a>
+                                <button type="button" aria-disabled="true"
+                                    class="py-2 px-4 text-[#949494] cursor-not-allowed" aria-label="Save draft"
+                                    onclick="setStatus('Draft')">Save draft</button>
+                                <button type="button" aria-disabled="true" aria-expanded="false"
+                                    class="py-2 px-4 text-white bg-[#007BFF] rounded-lg cursor-not-allowed opacity-25"
+                                    onclick="setStatus('Published')">Update</button>
+                                <input type="hidden" name="status" id="status" value="<%= post.status %>">
+                                <!-- data-simplebar -->
+                                <%- include('../sidenav/data-simplebar.ejs') %>
+                            </div>
+                            <div class="">
+                                <main class="py-8 px-5">
+                                    <div class="max-w-3xl mx-auto">
+                                        <div class="mb-6">
+                                            <label for="title" class="mb-3 text-sm">Title:</label>
+                                            <input type="text" id="title" name="title" required
+                                                value="<%= post.title %>" class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                        </div>
+                                        <div class="mb-6">
+                                            <label for="heading" class="mb-3 text-sm">Heading:</label>
+                                            <input type="text" id="heading" name="heading" required
+                                                value="<%= post.heading %>"
+                                                class="form-input bg-[#F0F7FA] border-0 mb-3">
+                                        </div>
+                                        <div class="mb-6">
+                                            <label for="description" class="mb-3 text-sm">Description:</label>
+                                            <textarea id="editor" name="description" required
+                                                class="form-input enable-btn content bg-[#F0F7FA] border-0 mb-3"><%= post.description %></textarea>
+                                        </div>
+                                        <div class="mb-6">
+                                            <label class="mb-3 text-sm" for="uploadImage1">Thumbnail Photo image</label>
+                                            <div class="uploadImg-Preview mb-6">
+                                                <img id="preview_img" class="object-cover" src="<%= post.picture %>"
+                                                    alt="Upload Image">
+                                            </div>
+                                            <div class="block relative">
+                                                <span
+                                                    class="absolute inset-0 opacity-100 w-40 h-12 leading-[48px] top-0 text-black bg-[#DBF4FF] rounded-lg text-center cursor-pointer">Select
+                                                    Image</span>
+                                                <input type="file" name="picture__input" id="picture__input"
+                                                    onchange="loadFile(event)"
+                                                    class="enable-btn block w-40 h-12 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0">
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-6">
+                                            <label class="mb-3 text-sm" for="metaRobots">
+                                                Categories
+                                            </label>
+                                            <select class="enable-btn form-select bg-[#F0F7FA] border-0 mb-3" id="metaRobots"
+                                                name="category">
+                                                <% categories.forEach(category=> { %>
+                                                    <option value="<%= category._id %>"
+                                                        <%=category._id.equals(post.category) ? 'selected' : '' %>><%=
+                                                            category.name %>
+                                                    </option>
+                                                    <% }); %>
+                                            </select>
+                                        </div>
+                                        <div class="mb-6">
+                                            <label class="mb-3 text-sm" for="uploadImage1">Feature image</label>
+                                            <div class="uploadImg-Preview mb-6">
+                                                <img id="feature_img" class="enable-btn object-cover" src="<%= post.feature_img %>"
+                                                    alt="Upload Image">
+                                            </div>
+                                            <div class="block relative">
+                                                <span
+                                                    class="absolute inset-0 opacity-100 w-40 h-12 leading-[48px] top-0 text-black bg-[#DBF4FF] rounded-lg text-center cursor-pointer">Select
+                                                    Image</span>
+                                                <input type="file" name="feature_img" id="feature_img"
+                                                    onchange="loadFile(event)"
+                                                    class="enable-btn block w-40 h-12 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0">
+                                            </div>
+                                        </div>
+                                        <!-- SEO fields -->
+
+                            <nav id="seoTabs" class="flex mt-8 ml-2 md:pl-3 md:ml-4" aria-label="Tabs" role="tablist">
+                                <button type="button"
+                                    class="hs-tabs bg-white py-2 md:px-5 px-4 inline-flex items-center gap-2 border transition-all whitespace-nowrap hover:text-[#007bff] text-lg rounded-tl-[5px] active"
+                                    id="home-item-3" data-hs-tab="#home-3" aria-controls="home-3" role="tab">
+                                    <span class="">SEO</span>
+                                </button>
+                            </nav>
+                            <div class="border mt-[-1px] rounded-[5px]">
+                                <div id="home-3" class="p-6" role="tabpanel" aria-labelledby="home-item-3">
+                                    <div class="mb-6 form-group">
+                                        <label class="mb-3 text-sm" for="seoTitle">SEO Title</label>
+                                        <input name="seoTitle" id="seoTitle" type="text" value="<%= post.seoTitle %>"
+                                            class="enable-btn form-input bg-[#F0F7FA] border-0 mb-3" placeholder="Enter SEO Title">
+                                    </div>
+
+                                    <div class="mb-6 form-group">
+                                        <label class="mb-3 text-sm" for="seoslug">Slug</label>
+                                        <input name="seoslug" id="seoslug" type="text" value="<%= post.seoslug %>"
+                                            class="enable-btn form-input bg-[#F0F7FA] border-0 mb-3">
+                                    </div>
+
+                                    <div class="mb-6 form-group">
+                                        <label class="mb-3 text-sm" for="seoMetaDescription">Meta description</label>
+                                        <textarea id="seoMetaDescription" name="seoMetaDescription"
+                                            class="enable-btn form-input bg-[#F0F7FA] border-0 mb-3"><%= post.seoMetaDescription %></textarea>
+                                    </div>
+
+                                    <div class="mb-6 form-group">
+                                        <label class="mb-3 text-sm" for="searchEngines">Allow search engines to show
+                                            this content in search results?</label>
+                                        <select class="enable-btn form-select bg-[#F0F7FA] border-0 mb-3" id="searchEngines"
+                                            name="searchEngines">
+                                            <option value="0" <%=post.searchEngines==='0' ? 'selected' : '' %>>Yes
+                                                (current default for Pages)</option>
+                                            <option value="1" <%=post.searchEngines==='1' ? 'selected' : '' %>>No
+                                            </option>
+                                            <option value="2" <%=post.searchEngines==='2' ? 'selected' : '' %>>Yes
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-6 form-group">
+                                        <label class="mb-3 text-sm" for="metaRobots">Meta robots advanced</label>
+                                        <select class="enable-btn form-select bg-[#F0F7FA] border-0 mb-3" id="metaRobots"
+                                            name="metaRobots">
+                                            <option value="0" <%=post.metaRobots==='0' ? 'selected' : '' %>>No Image
+                                                Index</option>
+                                            <option value="1" <%=post.metaRobots==='1' ? 'selected' : '' %>>No Archive
+                                            </option>
+                                            <option value="2" <%=post.metaRobots==='2' ? 'selected' : '' %>>No Snippet
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-6 form-group">
+                                        <label class="mb-3 text-sm" for="breadcrumbsTitle">Breadcrumbs Title</label>
+                                        <input name="breadcrumbsTitle" id="breadcrumbsTitle" type="text"
+                                            value="<%= post.breadcrumbsTitle %>"
+                                            class="enable-btn form-input bg-[#F0F7FA] border-0 mb-3">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="mb-3 text-sm" for="canonicalURL">Canonical URL</label>
+                                        <input name="canonicalURL" id="canonicalURL" type="text"
+                                            value="<%= post.canonicalURL %>"
+                                            class="enable-btn form-input bg-[#F0F7FA] border-0 mb-3">
+                                    </div>
+                                </div>
+                            </div>
+                                    </div>
+                                </main>
+                            </div>
+                            
+
+                        </form>
+                </div>
+    </body>
+    <!-- Include Froala Editor script. -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script>
+        function setStatus(status) {
+            console.log("setstatus is called");
+            document.getElementById('status').value = status;
+            console.log('submitForm');
+            Toastify({
+                text: "Form Submitted Successful!",
+                duration: 1000,
+                close: true
+            }).showToast();
+            // Trigger form submission
+            // Delay form submission
+            setTimeout(function () {
+                document.querySelector('form').submit();
+            }, 1100);
+        }
+        function loadFile(event) {
+            // Get the file input element that triggered the event
+            var input = event.target;
+
+            // Check if a file was selected
+            if (input.files && input.files[0]) {
+                // Create a new FileReader object
+                var reader = new FileReader();
+
+                // Define the onload event for the FileReader object
+                reader.onload = function (e) {
+                    // Get the id of the file input element
+                    var id = input.id;
+                    // Determine the id of the img tag where the image should be displayed
+                    var imgId = (id === 'picture__input') ? 'preview_img' : 'feature_img';
+                    // Get the img tag
+                    var img = document.getElementById(imgId);
+                    // Set the src attribute of the img tag to the data URL of the selected image
+                    img.src = e.target.result;
+                }
+                // Read the selected file as a data URL
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+    <%- include('../script/script.ejs') %>
+
+        </html>

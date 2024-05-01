@@ -1,0 +1,151 @@
+<script>
+    function fetchWordDefinition(word) {
+        console.log("fetchworddefination", word);
+        fetch(`/word-definition?word=${word}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                if (data && data.results && data.results.length > 0) {
+                    data.results.forEach(result => {
+                        const lexicalEntry = result.lexicalEntries[0];
+                        const entry = lexicalEntry.entries[0];
+                        const sense = entry.senses[0];
+                        const synonyms = sense.synonyms ? sense.synonyms.map(synonym => synonym.text).join(', ') : '';
+                        const examples = sense.examples ? sense.examples.map(example => example.text).join(', ') : '';
+                        displayDefinitionModal(
+                            result.word,
+                            sense.definitions[0],
+                            lexicalEntry.lexicalCategory.text,
+                            synonyms,
+                            sense.semanticClasses ? sense.semanticClasses[0].text : '',
+                            examples
+                        );
+                        console.log("Result output", result.word, sense.definitions[0], lexicalEntry.lexicalCategory.text, synonyms, sense.semanticClasses ? sense.semanticClasses[0].text : '', examples);
+                    });
+                } else {
+                    displayDefinitionModal(word, "No meaning exists", "", "", "", "");
+                    console.error(`Definition not found for '${word}'`);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching word definition:', error);
+            });
+    }
+
+    function displayDefinitionModal(word, definition, partOfSpeech, synonyms, typeOf, examples) {
+        // Create a modal element
+        let synonymsButton = '';
+        if (synonyms) {
+  const synonymsArray = synonyms.split(', ');
+
+  synonymsButton = `<span class="text-white text-xs font-bold bg-[#007BFF] py-2 px-3 rounded-[5px]">Synonyms</span>
+  <div class="flex flex-wrap gap-3 mt-4 mb-6 tagsMain">
+    ${synonymsArray.map(synonym => `
+      <button type="button" class="border border-[#007BFF] rounded-[5px] py-2 font-normal px-3 tag text-[#007bff] text-base">
+        ${synonym}
+      </button>
+    `).join('')}
+  </div>`;
+}
+        let examplesSection = '';
+    if (examples) {
+        examplesSection = `
+            <span class="text-[#007BFF] text-xs font-bold bg-[#DBF4FF] rounded-[5px] py-2 px-3">Examples</span>
+            <div class="mt-4 text-base italic font-normal">${examples}</div>`;
+    }
+    partOfSpeech = partOfSpeech || 'Noun'; 
+
+        const modalContainer = document.getElementById('hs-medium-modal');
+        const modalContent = `
+            <div class="m-3 mt-0 transition-all ease-out hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 md:max-w-[740px] md:w-full md:mx-auto">
+                <div class="flex flex-col overflow-hidden bg-white pointer-events-auto rounded-[20px]">
+                    <div class="flex items-center justify-between sm:p-6 p-4 border-b bg-[#007BFF]">
+                        <h3 class="flex items-center text-2xl font-semibold text-white sm:text-3xl">
+                            Definition for  <span class="rounded-[5px] text-[#007BFF] upercase font-bold bg-white py-2 px-4 inline-block text-base ms-3 truncate w-75 sm:w-auto text-center">${word}</span>
+                        </h3>
+                        <button id="closeBtn" type="button" class="flex items-center justify-center text-sm font-semibold text-gray-800 border border-transparent rounded-full w-7 h-7 hover:border hover:border-white disabled:opacity-50 disabled:pointer-events-none" data-hs-overlay="#hs-medium-modal">
+                            <svg class="flex-shrink-0 w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                        </button>
+                    </div>
+                    <div class="p-4 sm:p-6 modal-body">
+                        <h3 class="text-[22px] font-semibold text-black mb-4">${typeOf}</h3>
+                        <div class="mb-4">
+                            <p class="text-sm text-black sm:text-lg">
+                                Scrabble US/Canada (OTCWL)
+                                <span class="bg-[#007BFF] rounded-[5px] ms-2 p-2 px-3 text-white text-xs">Yes</span>
+                            </p>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-sm text-black sm:text-lg">
+                                Scrabble UK (SOWPODS)
+                                <span class="bg-[#F00] rounded-[5px] ms-2 p-2 px-3 text-white text-xs">No</span>
+                            </p>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-sm text-black sm:text-lg">
+                                Words With Friends
+                                <span class="bg-[#007BFF] rounded-[5px] ms-2 p-2 px-3 text-white text-xs">Yes</span>
+                            </p>
+                        </div>
+                        <div class="sidecard rounded-[10px] overflow-hidden mt-8">
+                            <div class="sidecard-header bg-[#007BFF] py-4 text-center"><h2 class="text-[22px] font-semibold text-white">Part of speech : - ${partOfSpeech}</h2>
+                            </div>
+                            <div class="sidecard-body bg-[#F0F7FA] p-4">
+                                <span class="text-[#007BFF] text-xs font-bold bg-white py-2 px-3 rounded-[5px]">Definitions</span>
+                                <h3 class="my-4 font-semibold">${definition}</h3>
+                                    ${synonymsButton}
+                                <div class="mt-4 text-base italic font-normal">${examplesSection}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+
+        // Set modal content in the container
+        modalContainer.innerHTML = modalContent;
+
+        // Show the modal
+        const modal = document.getElementById('hs-medium-modal');
+        modal.classList.remove('hidden');
+
+        const myDiv = document.getElementById('hs-medium-modal-backdrop');
+        const closeDiv = document.getElementById('closeBtn');
+        const body = document.body;
+        closeDiv.addEventListener('click', function () {
+            // Set the display property of the div to 'none' to hide it
+            myDiv.remove();
+            modal.classList.add('hidden');
+            body.style.overflow = '';
+        });
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="/admin/node_modules/preline/dist/preline.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+    $(document).ready(function () {
+        $('.listing').each(function () {
+            $(this).children('li:nth-child(n+6)').addClass('hidden');
+        });
+        $('.toggle-btn').on('click', function () {
+            var listingId = $(this).data('listing-id');
+            var listing = $('#' + listingId);
+
+            if ($(this).text() === 'View More') {
+                listing.find('.hidden').removeClass('hidden');
+                $(this).text('View Less');
+            } else {
+                listing.find('li:nth-child(n+6)').addClass('hidden'); // Assuming you want to hide list items starting from the 4th one
+                $(this).text('View More');
+            }
+        });
+    });
+</script>
+</body>
+
+</html>

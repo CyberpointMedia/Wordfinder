@@ -1,0 +1,223 @@
+body {
+    color: #393939;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+p[data-f-id="pbf"] {
+    display: none;
+}
+
+/* Scrollbar Styling */
+
+
+/* ::-webkit-scrollbar-track {
+    background: #f2efef;
+} */
+
+::-webkit-scrollbar-thumb {
+    background: #BABABA;
+    border-radius: 10vh;
+    border: 1px solid #BABABA;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 4px;
+}
+
+p {
+    color: rgba(57, 57, 57, 0.80);
+    margin-bottom: 20px;
+}
+
+ul li{
+    color: rgba(57, 57, 57, 0.80);
+}
+
+.MainSearch {
+    border-color: rgba(0, 123, 255, 0.30);
+}
+
+.hover-icon {
+    display: none;
+}
+
+input:focus-visible+.formQuestionMark-icon .hover-icon {
+    display: block;
+}
+
+input:focus-visible+.formQuestionMark-icon .input-icon {
+    display: none;
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-right: var(--bs-gutter-x, 1.75rem);
+    padding-left: var(--bs-gutter-x, 1.75rem);
+}
+
+.home header{
+    background-color: #DBF4FF !important;
+    box-shadow: none;
+}
+
+.cardHeader {
+    position: relative;
+    border-radius: 16px 16px 0 0;
+}
+
+.cardHeader .leftHandle {
+    position: absolute;
+    bottom: -22px;
+    left: 45px;
+}
+
+.cardHeader .rightHandle {
+    position: absolute;
+    bottom: -22px;
+    right: 45px;
+}
+
+select {
+    background-image: url(../../images/select-arrow.svg);
+    background-repeat: no-repeat;
+    background-position: 98% 50%;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.tag {
+    background: rgba(0, 123, 255, .1);
+}
+
+.pagination button.active {
+    background: #F0F7FA;
+    color: #007BFF;
+}
+
+.pagination button:hover svg,
+.pagination button:focus svg {
+    fill: #007BFF;
+}
+
+.list-type-color ::marker {
+    color: #007BFF;
+}
+
+.hover-text-blue:hover{
+    color: #0a58ca;
+}
+
+.custom-card p{
+    margin-bottom: 20px;
+}
+
+.custom-card p:last-child{
+    margin-bottom: 0px;
+}
+
+.text-gray{
+    color: rgba(57, 57, 57, 0.80);
+}
+
+.leading-10 {
+    line-height: 2.5rem;
+}
+
+.top-header{
+    background: #1f2937;
+    color: #f0f0f1;
+}
+
+.top-header .quicklinks li{
+    position: relative;
+}
+
+.top-header .submenu {
+    opacity: 0;
+    visibility: hidden;
+    background: #1f2937;
+    color: #f0f0f1;
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    width: 100%;
+    z-index: 9;
+    padding: 6px 0;
+}
+
+.top-header .quicklinks li:hover > .submenu{
+    opacity: 1;
+    visibility: visible;
+}
+
+.quicklinks > li > a {
+    padding: 0 8px 0 7px;
+    -webkit-font-smoothing: subpixel-antialiased;
+    color: #c3c4c7;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.quicklinks li a:hover, .top-header .quicklinks li .submenu li a:hover, .profileDropdown a:hover {
+    color: #3b82f6;
+}
+
+.top-header .quicklinks li .submenu li a{
+    padding: 0px 10px;
+    min-width: 140px;
+    color: #c3c4c7;
+    font-size: 13px;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+}   
+
+.app-header .nav-link {
+    color: var(--tw-topbar-item-color);
+    height: var(--tw-topbar-height);
+    border-radius: 9999px;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 150ms;
+    transition-duration: 150ms;
+    -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.profileDropdown {
+    background: #1f2937;
+}
+.profileDropdown a{
+    padding: 5px 10px;
+    display: block;
+    color: #c3c4c7;
+    font-size: 13px;
+    font-weight: 400;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+.profileMenu .display-name{
+    color: #c3c4c7;
+    font-size: 13px;
+    font-weight: 400;
+}
+.hs-dropdown.open>.hs-dropdown-open\:opacity-100 {
+    opacity: 1;
+}
+.articleDetails h2, .articleDetails h3, .articleDetails h4, .articleDetails h5, .articleDetails h6{
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 500;
+}

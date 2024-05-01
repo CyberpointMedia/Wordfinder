@@ -1,0 +1,134 @@
+<!-- views/user/create-profile.ejs -->
+<%- include('../header/head.ejs') %>
+
+<body>
+    <!-- sidebar start here -->
+    <div class="flex overflow-hidden">
+        <%- include('../sidenav/sidenav.ejs') %>
+        <div class="page-content bg-white relative">
+            <!-- header Start -->
+            <%- include('../header/header.ejs') %>
+
+                                            <!-- main content start here -->
+                                            <main class="py-8 px-5">
+                                                <div class="mb-6 flex gap-3 sm:flex-row sm:items-center">
+                                                    <h1 class="text-2xl font-bold text-black">
+                                                        Users
+                                                    </h1>
+                                                    <a href="/admin/register" class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add New User</a>
+                                                </div>
+                                                <ul class="subsubsub flex flex-wrap space-x-2 mb-6">
+                                                    <li class="all"><a href="/admin/all-users" class="current text-black" aria-current="page">All <span class="count">(<%= totalCount.total %>)</span></a> |</li>
+                                                    <li class="publish"><a href="/admin/all-users/subscriber" class="text-black">Subscriber <span class="count">(<%= totalCount.subscriber %>)</span></a></li>
+                                                    <li class="publish"><a href="/admin/all-users/author" class="text-black">Author <span class="count">(<%= totalCount.author %>)</span></a></li>
+                                                    <li class="publish"><a href="/admin/all-users/editor" class="text-black">Editor <span class="count">(<%= totalCount.editor %>)</span></a></li>
+                                                    <li class="publish"><a href="/admin/all-users/administrator" class="text-black">Administrator <span class="count">(<%= totalCount.administrator %>)</span></a></li>
+                                                </ul>
+
+                                                <!-- table start here -->
+                                                <div class="bg-white overflow-x-auto">
+                                                    <table class="w-full divide-y divide-gray-200 border" id="example">
+                                                        <thead class="text-left bg-[#DBF4FF]">
+                                                            <tr>
+                                                                <th>
+                                                                    <input type="checkbox" class="selectAll">
+                                                                </th>
+                                                                <th>
+                                                                    Username
+                                                                </th>
+                                                                <th>
+                                                                    Name
+                                                                </th>
+                                                                <th>
+                                                                    Email
+                                                                </th>
+                                                                <th>
+                                                                    Role
+                                                                </th>
+                                                                <th>
+                                                                    Posts
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="divide-y divide-gray-200">
+                                                            <% users.forEach(function(user) { %>
+                                                            <tr class="">
+                                                                <td>
+                                                                    <input type="checkbox" value="<%= user._id %>" class="">
+                                                                </td>
+                                                                <td>
+                                                                    <div class="flex items-start">
+                                                                        <img alt="#" src="<%= user && user.image ? user.image : '/images/admin.svg' %>" class="avatar avatar-32 photo inline-block mr-2" height="32" width="32" loading="lazy" decoding="async">                                                                        <div class="">
+                                                                            <strong><a class="row-title text-[#2271b1] text-sm" href="javascript:void(0)"><%= user.username %></a></strong>
+
+                                                                            <div class="row-actions mt-1">
+                                                                                <span class="edit">
+                                                                                    <a href="/admin/edit-profile/<%= user._id %>" class="text-[#2271b1] text-xs">Edit</a> | 
+                                                                                </span>
+                                                                                <span class="view">
+                                                                                    <a href="/admin/edit-profile/<%= user._id %>" class="text-[#2271b1] text-xs">View</a> |
+                                                                                </span>
+                                                                                <span>
+                                                                                    <a href="/admin/delete-profile/<%= user._id %>" class="text-[#2271b1] text-xs">Delete</a>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td><%= user.username %></td>
+                                                                <td><a href="mailto:<%= user.email %>" class="text-[#2271b1] text-xs"><%= user.email %></a></td>
+                                                                <td><%= user.role %></td>
+                                                                <td><a href="javascript:void(0)" class="text-[#2271b1] text-xs hover:text-[#007BFF]"><%= user.posts %></a></td>
+                                                            </tr>
+                                                            <% }) %>
+                                                        </tbody>
+                                                        <tfoot class="text-left bg-[#DBF4FF]">
+                                                            <tr>
+                                                                <th>
+                                                                    <input type="checkbox" class="selectAll">
+                                                                </th>
+                                                                <th>
+                                                                    Username
+                                                                </th>
+                                                                <th>
+                                                                    Name
+                                                                </th>
+                                                                <th>
+                                                                    Email
+                                                                </th>
+                                                                <th>
+                                                                    Role
+                                                                </th>
+                                                                <th>
+                                                                    Posts
+                                                                </th>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                                <!-- table end here -->
+                                            </main>
+
+                                            <!-- main content end here -->
+                                        </div>
+                                    </div>
+                                    <!-- sidebar end here -->
+                                    <%- include('../script/script.ejs') %>
+                                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script>
+          var params = new URLSearchParams(window.location.search);
+
+// Check if a message is present
+if (params.has('message')) {
+    // Show a Toastify notification with the message
+    Toastify({
+        text: params.get('message'),
+        duration: 3000,
+        close: true
+    }).showToast();
+}
+
+    </script>
+                                </body>
+                                </html>

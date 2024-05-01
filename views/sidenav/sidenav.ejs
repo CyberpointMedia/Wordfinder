@@ -1,0 +1,248 @@
+<!-- Sidenav Menu Start  -->
+<div class="fixed app-menu">
+
+    <!-- Sidenav Brand Logo -->
+    <a href="/admin/dashboard" class="logo-box">
+        <!-- Dark Brand Logo -->
+        <div class="logo-dark">
+            <img src="/images/logo-lg.svg" class="logo-lg" alt="Word Finder">
+            <img src="/images/logo-sm.svg" class="logo-sm" alt="Word Finder">
+        </div>
+    </a>
+    <button id="button-toggle-menu2" class="hidden p-2 nav-link">
+        <svg class="inline-block" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" class="lucide lucide-x">
+        <path d="M18 6 6 18"></path>
+        <path d="m6 6 12 12"></path>
+      </svg>
+            </button>
+    <!--- Menu -->
+    <div data-simplebar>
+        <ul class="menu" data-hs-collapse="accordion">
+            <li class="menu-item">
+                <a href="/admin/dashboard" class="menu-link">
+                    <i data-lucide="home" class="menu-icon"></i>
+                    <span class="menu-text"> Dashboard </span>
+                </a>
+            </li>
+            <% if (user.role !== 'author') { %>
+                <!-- Pages menu item -->
+                <li class="menu-item">
+                    <li class="menu-item">
+                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuPages" onclick="themeCustomizer.toggleDropdown('menuPages')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="files" class="lucide lucide-files menu-icon"><path d="M15.5 2H8.6c-.4 0-.8.2-1.1.5-.3.3-.5.7-.5 1.1v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8c.4 0 .8-.2 1.1-.5.3-.3.5-.7.5-1.1V6.5L15.5 2z"></path><path d="M3 7.6v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8"></path><path d="M15 2v5h5"></path></svg>
+                            <span class="menu-text"> Pages </span>
+                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden active-Uparrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                        </a>
+
+                        <ul class="hidden sub-menu" id="menuPages">
+                            <li class="menu-item">
+                                <a href="/admin/pages" class="menu-link">
+                                    <span class="menu-text">All Pages</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="/admin/pages/create" class="menu-link">
+                                    <span class="menu-text">Add New Page</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </li>
+                <% } %>
+                    <% if (user.role !== 'author') { %>
+                        <!-- Sections menu item -->
+                        <li class="menu-item">
+                            <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuSection" onclick="themeCustomizer.toggleDropdown('menuSection')">
+                                <i data-lucide="lightbulb" class="menu-icon"></i>
+                                <span class="menu-text"> Sections </span>
+                                <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow"  >
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden active-Uparrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                            </a>
+
+                            <ul class="hidden sub-menu" id="menuSection">
+                                <li class="menu-item">
+                                    <a href="/admin/section/show" class="menu-link">
+                                        <span class="menu-text">All Sections</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="/admin/section/create" class="menu-link">
+                                        <span class="menu-text">Add New Section</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <% } %>
+                            <li class="menu-item">
+                                <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuPosts" onclick="themeCustomizer.toggleDropdown('menuPosts')">
+                                    <i data-lucide="pen-square" class="menu-icon"></i>
+                                    <span class="menu-text"> Posts </span>
+                                    <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden active-Uparrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                                </a>
+
+                                <ul class="hidden sub-menu" id="menuPosts">
+                                    <li class="menu-item">
+                                        <a href="/post/all" class="menu-link">
+                                            <span class="menu-text">All Posts</span>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="/post/create" class="menu-link">
+                                            <span class="menu-text">Add New Post</span>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="/post/categories" class="menu-link">
+                                            <span class="menu-text">Categories</span>
+                                        </a>
+                                    </li>
+                                    <!-- <li class="menu-item">
+                                <a href="/post/tags" class="menu-link">
+                                    <span class="menu-text">Tags</span>
+                                </a>
+                            </li> -->
+                                </ul>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menulibrary" onclick="themeCustomizer.toggleDropdown('menulibrary')">
+                                    <img src="/images/library-icon.png" class="w-5" alt="#" />
+                                    <span class="menu-text"> Library </span>
+                                    <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow"  >
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden active-Uparrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                                </a>
+
+                                <ul class="hidden sub-menu" id="menulibrary">
+                                    <li class="menu-item">
+                                        <a href="/library/images" class="menu-link">
+                                            <span class="menu-text">Image</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuAppearance">
+                                    <i data-lucide="pen-square" class="menu-icon"></i>
+                                    <span class="menu-text"> Appearance </span>
+                                    <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden active-Uparrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                                </a>
+
+                                <ul class="hidden sub-menu" id="menuAppearance">
+                                    <li class="menu-item">
+                                        <a href="/footer/widgets" class="menu-link">
+                                            <span class="menu-text">Widgets</span>
+                                        </a>
+                                    </li>
+                                    <li class="menu-item">
+                                        <a href="/appearance/nav-menu" class="menu-link">
+                                            <span class="menu-text">Menu</span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </li>
+
+                            <% if (user.role !== 'editor' && user.role !== 'author') { %>
+                                <li class="menu-item">
+                                    <li class="menu-item">
+                                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuUsers" onclick="themeCustomizer.toggleDropdown('menuUsers')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="user-circle" class="lucide lucide-user-circle menu-icon"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"></path></svg>
+                                            <span class="menu-text"> Users </span>
+                                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden active-Uparrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                                        </a>
+
+                                        <ul class="hidden sub-menu" id="menuUsers">
+                                            <li class="menu-item">
+                                                <a href="/admin/all-users" class="menu-link">
+                                                    <span class="menu-text">All Users</span>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="/admin/register" class="menu-link">
+                                                    <span class="menu-text">Add New User</span>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="/user/user-profile" class="menu-link">
+                                                    <span class="menu-text">Profile</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </li>
+                                <% } %>
+
+                                    <li class="menu-item">
+                                        <a href="javascript:void(0)" class="menu-link hs-collapse-toggle" data-hs-collapse="#menuMyaccount" onclick="themeCustomizer.toggleDropdown('menuMyaccount')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="user-circle" class="lucide lucide-user-circle menu-icon"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="10" r="3"></circle><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"></path></svg>
+                                            <span class="menu-text"> My Account </span>
+                                            <span class="menu-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="down-arrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0077 12.3551L7.46719 8L6 9.52897L12.0077 15.2742L18 9.52897L16.5328 8L12.0077 12.3551Z" fill="#393939"/>
+                                  </svg>
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden active-Uparrow">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9923 11.6449L16.5328 16L18 14.471L11.9923 8.72581L6 14.471L7.46719 16L11.9923 11.6449Z" fill="#007BFF"/>
+                                  </svg>
+                            </span>
+                                        </a>
+
+                                        <ul class="hidden sub-menu" id="menuMyaccount">
+                                            <li class="menu-item">
+                                                <a href="/user/user-profile" class="menu-link">
+                                                    <span class="menu-text">Edit Profile</span>
+                                                </a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="/auth/logout" class="menu-link">
+                                                    <span class="menu-text">Log Out</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+        </ul>
+    </div>
+</div>
+<!-- Sidenav Menu End  -->

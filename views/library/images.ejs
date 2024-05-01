@@ -1,0 +1,303 @@
+<!-- views/library/images.ejs -->
+<%- include('../header/head.ejs') %>
+
+  <body>
+    <!-- sidebar start here -->
+    <div class="flex overflow-hidden">
+      <%- include('../sidenav/sidenav.ejs') %>
+        <div class="page-content bg-white">
+
+          <%- include('../header/header.ejs') %>
+            <!-- main content start here -->
+            <main class="py-8 px-5">
+              <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <h1 class="text-2xl font-bold text-black">
+                  Media Library
+                </h1>
+                <a id="addMediaFile" href="javascript:void(0);"
+                  class="border py-2 px-4 border-[#2271b1] rounded hover:text-[#007BFF] hover:border-[#007BFF]">Add New
+                  Media File</a>
+              </div>
+              <!-- media file uploader section start -->
+              <div class="mediaUploader text-center relative py-10 ">
+                <button class="closeBtn">
+                  <svg class="inline-block" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="lucide lucide-x">
+                    <path d="M18 6 6 18"></path>
+                    <path d="m6 6 12 12"></path>
+                  </svg>
+                </button>
+                <div class="container" style="color: rgb(142, 153, 165);">
+                  <h2 class="font-normal">Drag & Drop</h2>
+                  <div class="chooseImage">
+                    <input id="files" multiple="true" name="files" type="file" class="focus:outline-none" required="">
+                    <button id="uploadButton">Upload</button>                    
+                  </div>
+                  <p>
+                    Maximum upload file size: 40 MB.
+                  </p>
+                </div>
+              </div>
+              <!-- media file uploader section end -->
+              <div class="UploadedImagesView">
+                <div class="filter-buttons flex flex-row gap-3 my-[30px]">
+                  <a id="list-view-button" class="border border-[#ddd] p-2 rounded cursor-pointer"><img
+                      src="/images/list.png" alt=""></a>
+                  <a id="grid-view-button" class="border border-[#ddd] p-2 rounded cursor-pointer active"><img
+                      src="/images/grid.png" alt=""></a>
+                </div>
+              </div>
+
+              <!-- grid view start -->
+              <div class="GridView">
+                <!-- image gallery start -->
+                <div id="ImgGallery" class="grid grid-cols-3 gap-5 ">
+                  <% images.reverse().forEach((image, index)=> { %>
+                    <img src="<%= image.src %>" data-id="<%= image.id %>" class="w-full h-full object-cover cursor-pointer" />
+                  <% }) %>
+                </div>
+                <!-- image gallery end -->
+              </div>
+              <!-- grid view end -->
+
+              <!-- list view start -->
+              <div class="ListView hidden">
+                <!-- table start here -->
+                <%- (include('../library/image-table.ejs')) %>
+                <!-- table end here -->
+              </div>
+              <!-- list view end -->
+            </main>
+            <!-- main content end here -->
+        </div>
+    </div>
+    <!-- Media Library Modal Start-->
+    <%- (include('../library/image-details.ejs')) %>
+  </body>
+  <!-- sidebar end here -->
+  <script>
+window.addEventListener('load', function() {
+
+      // Get all image elements
+      var images = document.querySelectorAll('#ImgGallery img');
+
+      // Add a click event listener to each image
+      // Get all image elements
+var images = document.querySelectorAll('#ImgGallery img');
+
+// Add a click event listener to each image
+images.forEach(function(image) {
+  image.addEventListener('click', function(e) {
+    // Prevent the default action
+    e.preventDefault();
+
+    // Get the image URL
+    var imageId = image.dataset.id;
+    if (!imageId) {
+      console.error('Image ID not found on image element');
+      return;
+    }
+    // Fetch the image details from the API
+    fetch('/library/image/' + imageId)
+      .then(response => response.json())
+      .then(imageDetails => {
+        console.log(imageDetails);
+        // Populate the modal with the image details
+        document.getElementById('modal-img').src = imageDetails.src;
+        document.getElementById('uploaded-on').textContent = 'Uploaded on: ' + imageDetails.uploadedOn;
+        document.getElementById('uploaded-by').textContent = 'Uploaded by: ' + imageDetails.uploadedBy;
+        document.getElementById('filename').textContent = 'File name: ' + imageDetails.filename;
+        document.getElementById('filetype').textContent = 'File type: ' + imageDetails.filetype;
+        document.getElementById('filesize').textContent = 'File size: ' + imageDetails.filesize;
+        document.getElementById('dimensions').textContent = 'Dimensions: ' + imageDetails.dimensions;
+        document.getElementById('alternaive-text').value = imageDetails.alternativeText;
+        document.getElementById('imgTitle').value = imageDetails.title;
+        document.getElementById('fileUrl').value = imageDetails.fileUrl;
+
+        // Show the modal
+        document.getElementById('modal').classList.remove('hidden');
+   // Add the image ID to the delete button
+   var deleteButton = document.querySelector('#delete-button');
+        if (deleteButton) {
+          deleteButton.dataset.id = imageId;
+        }
+      });
+  });
+});
+});
+
+      // Add a click event listener to the close button
+      document.querySelector('.closeBtn').addEventListener('click', function(e) {
+        // Prevent the default action
+        e.preventDefault();
+
+        // Hide the modal
+        document.getElementById('modal').classList.add('hidden');
+      });
+
+      // Get the modal by id
+      var modal = document.getElementById("modal");
+
+      // Get the modal image tag
+      var modalImg = document.getElementById("modal-img");
+
+      var body = document.body;
+
+      // This function is called when a small image is clicked
+      function showModal(src) {
+        console.log("show modal hidden function called");
+        modal.classList.remove('hidden');
+        modalImg.src = src;
+      }
+
+      // This function is called when the close button is clicked
+      function closeModal() {
+        console.log("close modal function called");
+        modal.classList.add('hidden');
+        body.style.overflow = '';
+      }
+      
+
+    // media uploader show hide
+    document.querySelectorAll("#addMediaFile, .closeBtn").forEach(function (element) {
+      console.log("add media file button clicked");
+      element.addEventListener('click', function () {
+        document.querySelector(".mediaUploader").classList.toggle("hidden");
+      });
+    });
+
+    // list view toggle
+    document.getElementById("list-view-button").addEventListener('click', function () {
+      console.log("list view button clicked");
+      document.querySelector(".ListView").classList.remove('hidden');
+      document.querySelector(".GridView").classList.add('hidden');
+    });
+
+    document.getElementById('uploadButton').addEventListener('click', function(e) {
+      e.preventDefault();
+    
+      var files = document.querySelector('#files').files;
+      var formData = new FormData();
+    
+      for (var i = 0; i < files.length; i++) {
+        formData.append('files', files[i]);  // Change 'file' to 'files'
+      }
+    
+      fetch('/library/upload-multiple', {
+        method: 'POST',
+        body: formData,
+        credentials: 'include'  // Include credentials in the request
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+        location.reload();  // Reload the page after a successful upload
+      })
+      .catch(error => console.error('There was a problem with the fetch operation: ' + error.message));
+    });
+    
+    document.querySelectorAll("#grid-view-button, #chooseImage").forEach(function (element) {
+      console.log("grid view button clicked");
+      element.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(".GridView").classList.remove('hidden');
+        document.querySelector(".ListView").classList.add('hidden');
+      });
+    });
+    // list and grid view button active class
+    document.querySelectorAll(".filter-buttons a").forEach(function (element) {
+      console.log("filter button clicked");
+      element.addEventListener('click', function () {
+        document.querySelectorAll(".filter-buttons a").forEach(function (a) {
+          a.classList.remove("active");
+        });
+        this.classList.add("active");
+      });
+    });
+
+   //copy url
+   (function () {
+      var copyUrl = document.querySelector('.copyUrl button');
+      var copyInput = document.querySelector('.copyUrl input');
+      copyUrl.addEventListener('click', function (e) {
+        e.preventDefault();
+        copyInput.select();
+        document.execCommand('copy');
+      });
+
+      copyInput.addEventListener('click', function () {
+        this.select();
+      });
+    })();
+
+    function deleteImage() {
+  // Get the image ID from the delete button
+  var deleteButton = document.querySelector('#delete-button');
+  if (!deleteButton) {
+    console.error('Delete button not found');
+    return;
+  }
+
+  var imageId = deleteButton.dataset.id;
+  if (!imageId) {
+    console.error('Image ID not found on delete button');
+    return;
+  }
+
+  console.log("image id",imageId); // Log the image ID
+
+  // Send a DELETE request to the server
+  fetch('/library/image/' + imageId, { method: 'DELETE' })
+    .then(response => {
+      if (response.ok) {
+        // Close the modal
+        closeModal();
+
+        // Remove the image element from the DOM
+        var imageElement = document.querySelector('#ImgGallery img[data-id="' + imageId + '"]');
+        imageElement.parentNode.removeChild(imageElement);
+      } else {
+        console.error('Failed to delete image');
+      }
+    });
+}
+
+// document.getElementById('addMediaFile').addEventListener('click', function () {
+//   console.log("addMediaFile button clicked");
+//   document.querySelector(".mediaUploader").classList.toggle("hidden");
+//   if (!document.querySelector(".mediaUploader").classList.contains("hidden")) {
+//     var uploadButton = document.getElementById('uploadButton');
+//     uploadButton.addEventListener('click', function(e) {
+//       console.log("upload button clicked");
+//       e.preventDefault();
+//       var files = document.querySelector('#files').files;
+//       var formData = new FormData();
+//       console.log("upload button hit");
+//       for (var i = 0; i < files.length; i++) {
+//         formData.append('files', files[i]);
+//       }
+//       fetch('/library/upload', {
+//         method: 'POST',
+//         body: formData,
+//         credentials: 'include'  // Include credentials in the request
+//       })
+//       .then(response => {
+//         if (!response.ok) {
+//           throw new Error(`HTTP error! status: ${response.status}`);
+//         }
+//         return response.json();
+//       })
+//       .then(data => console.log(data))
+//       .catch(error => console.error('There was a problem with the fetch operation: ' + error.message));
+//     });
+//   }
+// });
+  </script>
+    <%- include('../script/script.ejs') %>
+  </html>

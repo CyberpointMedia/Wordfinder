@@ -1,0 +1,215 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Word Finder</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <meta property="og:title" content="<%= post.title %>" />
+    <meta property="og:description" content="Your Page Description" />
+    <meta property="og:image" content="<%= post.feature_img %>" />
+    <meta property="og:url" content="<%= postUrl %>" />
+    <meta name="twitter:image" content="<%= post.feature_img %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/logo-sm.svg">
+    <link href="/styles/style.css" rel="stylesheet">
+    <link href="/styles/frontend/custom.css" rel="stylesheet">
+    </head><body class="font-custom">
+    <!-- header start here -->
+    <%- (include('../frontend/head/header.ejs')) %>
+    <!-- header end here -->
+    <!-- content section start -->
+    <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-20">
+        <div class="container">
+            <!-- breadcrumb start -->
+            <ol class="flex items-center whitespace-nowrap mb-10 hidden md:block" aria-label="Breadcrumb">
+                <li class="inline-flex items-center">
+                    <a class="flex items-center text-sm text-[#007BFF] hover:opacity-50 focus:outline-none focus:opacity-50" href="/">
+                    Home
+                  </a>
+                    <svg class="flex-shrink-0 h-5 w-5 opacity-50 text-[#393939]" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"/>
+                  </svg>
+                </li>
+                <li class="inline-flex items-center">
+                    <a class="flex items-center text-sm text-[#007BFF] hover:opacity-50 focus:outline-none focus:opacity-50" href="/articles">
+                    Articles 
+                    <svg class="flex-shrink-0 h-5 w-5 text-[#393939] opacity-50" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"/>
+                  </svg>
+                  </a>
+                </li>
+                <li class="inline-flex items-center text-sm text-[#393939] opacity-50 truncate" aria-current="page">
+                    <%= post.title %>
+                </li>
+            </ol>
+            <!-- breadcrumb end -->
+            <div class="flex flex-col gap-8 md:flex-row">
+                <!-- left col start -->
+                <div class="w-full md:w-2/3 articleDetails">
+                    <div class="md:bg-white bg-[#DBF4FF] md:p-0 md:m-0 py-20 px-7 -mx-7 -mt-10">
+                        <p class="md:hidden text-center mb-4 text-black">Published January 13, 2021</p>
+                        <h1 class="sm:text-5xl font-semibold text-black text-3xl text-center md:text-left"><%= post.heading %></h1>
+                        <div class="flex flex-col lg:flex-row lg:items-center lg:space-x-4 my-4">
+
+                            <div class="flex items-center hidden md:block">
+                                <span class="text-xs xl:text-sm">Written by
+                                    <a href="javascript:void(0);" class="text-[#007BFF]"><%= post.author ? (post.author.username ? post.author.username : 'unknown') : 'unknown' %></a>                                <svg class="ms-2 inline-block invisible lg:visible" xmlns="http://www.w3.org/2000/svg" width="2" height="24" viewBox="0 0 2 24" fill="none">
+                                    <path d="M1 0L0.999999 24" stroke="#747474"/>
+                                  </svg>
+                            </span>
+                            </div>
+
+                            <div class="flex items-center hidden md:block">
+                                <svg class="inline-block me-2" xmlns="http://www.w3.org/2000/svg " width="16 " height="16 " viewBox="0 0 16 16 " fill="none ">
+                                <path d="M12.3325 3.0002H11.3323V2H10.6657V3.0002H5.33297V2H4.66638V3.0002H3.66679C2.74775 3.0002 2 3.74793 2 4.66699V12.3332C2 13.2522 2.74773 14 3.66679 14H12.3325C13.2516 14 13.9993 13.2523 13.9993 12.3332V4.66648C13.9987
+                                3.74744 13.251 3.0002 12.3325 3.0002ZM13.3321 12.3325C13.3321 12.8835 12.8835 13.3321 12.3325 13.3321H3.66679C3.11516 13.3321 2.66659 12.8835 2.66659 12.3325V6.33317H13.3321V12.3325ZM13.3321 5.66658H2.66659V4.66638C2.66659
+                                4.11474 3.11516 3.66618 3.66679 3.66618H4.66699V4.33278H5.333V3.66677H10.6658V4.33336H11.3324V3.66677H12.3325C12.8836 3.66677 13.3321 4.11474 13.3321 4.66635L13.3321 5.66658Z " fill="#007BFF " stroke="#007BFF
+                                " stroke-width="0.3 "/>
+                              </svg>
+                              <span class="text-xs xl:text-sm"><i class="italic ">Updated on 
+                                <%= new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></i>
+                                </span>                            </span>
+                                <svg class="ms-2 inline-block invisible lg:visible" xmlns="http://www.w3.org/2000/svg" width="2" height="24" viewBox="0 0 2 24" fill="none">
+                                <path d="M1 0L0.999999 24" stroke="#747474"/>
+                              </svg>
+                            </div>
+
+                            <div class="flex flex-wrap justify-center md:hidden gap-3 my-4">
+                                <a href="javascript:void(0)" class="bg-white text-[#007BFF] text-base rounded py-2.5 px-4 inline-block">Branding</a>
+                                <a href="javascript:void(0)" class="bg-white text-[#007BFF] text-base rounded py-2.5 px-4 inline-block">Communication</a>
+                                <a href="javascript:void(0)" class="bg-white text-[#007BFF] text-base rounded py-2.5 px-4 inline-block">Experience</a>
+                                <a href="javascript:void(0)" class="bg-white text-[#007BFF] text-base rounded py-2.5 px-4 inline-block">Identity</a>
+                            </div>
+
+                            <div class="flex items-center md:justify-start md:w-auto justify-center w-full mt-6 md:mt-0">
+                                <span class="text-xs xl:text-sm hidden md:block">Share on:
+                            </span>
+                                <ul class="flex items-center space-x-3 md:ms-4">
+                                    <li>
+                                        <a href="<%= facebookShareUrl %>" class="facebook-share-button w-7 h-7 bg-[#F0F7FA] hover:bg-[#DBF4FF] rounded-full inline-block text-center">
+                                           <svg class="mx-auto inline-block leading-5" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                            <path d="M9.00586 6.75L9.33914 4.57828H7.25531V3.16898C7.25531 2.57484 7.54641 1.9957 8.47969 1.9957H9.42703V0.146719C9.42703 0.146719 8.56734 0 7.74539 0C6.0293 0 4.90758 1.04016 4.90758 2.92313V4.57828H3V6.75H4.90758V12H7.25531V6.75H9.00586Z" fill="#007BFF"/>
+                                          </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<%= twitterShareUrl %>" class="twitter-share-button w-7 h-7 bg-[#F0F7FA] hover:bg-[#DBF4FF] rounded-full inline-block text-center">
+                                            <svg class="mx-auto inline-block leading-5" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                            <path d="M10.7665 3.92901C10.7741 4.03561 10.7741 4.14222 10.7741 4.24882C10.7741 7.50007 8.2995 11.2463 3.77665 11.2463C2.38324 11.2463 1.08884 10.8427 0 10.1422C0.197977 10.1651 0.388312 10.1727 0.593906 10.1727C1.74363 10.1727 2.80202 9.78436 3.6472 9.12192C2.56598 9.09907 1.65989 8.39095 1.3477 7.41633C1.5 7.43915 1.65227 7.45439 1.81219 7.45439C2.03299 7.45439 2.25382 7.42392 2.45939 7.37065C1.33249 7.1422 0.487289 6.15236 0.487289 4.95693V4.92649C0.814687 5.10923 1.19543 5.22344 1.59895 5.23865C0.936516 4.79702 0.502523 4.04322 0.502523 3.19043C0.502523 2.73358 0.624328 2.3148 0.837539 1.94932C2.0482 3.4417 3.86801 4.4163 5.90859 4.52292C5.87053 4.34018 5.84768 4.14984 5.84768 3.95948C5.84768 2.60414 6.94413 1.50009 8.30707 1.50009C9.01519 1.50009 9.65477 1.79704 10.104 2.27674C10.6598 2.17015 11.1928 1.96455 11.6649 1.68283C11.4822 2.25391 11.0939 2.73361 10.5837 3.03815C11.0786 2.98488 11.5583 2.84779 12 2.65746C11.665 3.14475 11.2462 3.57874 10.7665 3.92901Z" fill="#007BFF"/>
+                                          </svg>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<%= linkedinShareUrl %>" class="linkedin-share-button w-7 h-7 bg-[#F0F7FA] hover:bg-[#DBF4FF] rounded-full inline-block text-center">
+                                            <svg class="mx-auto inline-block leading-5" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                            <g clip-path="url(#clip0_620_129)">
+                                              <path d="M3.10031 11.2498H0.923438V4.23966H3.10031V11.2498ZM2.0107 3.28341C1.31461 3.28341 0.75 2.70684 0.75 2.01075C0.75 1.67639 0.882824 1.35572 1.11925 1.1193C1.35568 0.882869 1.67634 0.750046 2.0107 0.750046C2.34506 0.750046 2.66573 0.882869 2.90215 1.1193C3.13858 1.35572 3.27141 1.67639 3.27141 2.01075C3.27141 2.70684 2.70656 3.28341 2.0107 3.28341ZM11.2477 11.2498H9.07547V7.83731C9.07547 7.02403 9.05906 5.98106 7.94367 5.98106C6.81187 5.98106 6.63844 6.86465 6.63844 7.77872V11.2498H4.46391V4.23966H6.55172V5.19591H6.58219C6.87281 4.64512 7.58273 4.06387 8.64188 4.06387C10.845 4.06387 11.25 5.51466 11.25 7.39903V11.2498H11.2477Z" fill="#007BFF"/>
+                                            </g>
+                                            <defs>
+                                              <clipPath id="clip0_620_129">
+                                                <rect width="12" height="12" fill="white"/>
+                                              </clipPath>
+                                            </defs>
+                                          </svg>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="my-5">
+                        <img src="<%= post.picture %>" alt="images/article-detail-img1.svg" class="w-full rounded-[10px]" />
+                    </div>
+                    <p>
+                        <%- post.description %>
+                    </p>
+                </div>
+                <!-- left col end -->
+                <!-- right col start -->
+                <div class="w-full md:w-1/3 ">
+                    <!-- Word Finders box -->
+                    <% if (categories && categories.length > 0) { %>
+                        <div class="mb-6">
+                            <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative ">
+                            Popular Categories
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px] ">
+                            <ol class="space-y-3 font-medium list-decimal ">
+                                <% categories.forEach(category => { %>
+                                    <li><%= category.name %></li>
+                                  <% }) %>
+                            </ol>
+                        </div>
+                    </div>
+                    <% } %>
+
+                    <!-- Latest Article box -->
+                    <div class="mb-6 ">
+                        <div class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative ">
+                            Latest Article
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+
+                            <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                        </div>
+                        <div class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px] ">
+                            <% morePosts.forEach(post => { %>
+                            <div class="border border-[#007BFF4D] rounded-[20px] bg-white mb-6 overflow-hidden hover:text-[#007BFF]">
+                                <a href="/articles/<%= post.title %>"><img src="<%= post.feature_img %>" alt="# " class="w-full "></a>
+                                <div class="p-4 ">
+                                    <h3 class="text-lg font-semibold leading-6 "><a href="/articles/<%= post.title %>" class="hover:text-[#007BFF]"><%= post.heading %></a></h3>
+                                </div>
+                            </div>
+                            <% }) %>
+                            <div class="mt-6 text-center">
+                                <a href="/articles" class="hs-collapse-toggle text-white bg-[#007BFF] rounded-[10px] py-4 px-6 hover:opacity-50 inline-block" id="hs-show-hide-collapse" data-hs-collapse="#hs-show-hide-collapse-heading">
+                                    <span class="hs-collapse-open:hidden">View More</span>
+                                    <span class="hidden hs-collapse-open:block">View less</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- right col end -->
+            </div>
+        </div>
+    </div>
+    <!-- content section end -->
+    <script>
+        // Get the post title and URL from the server-side code
+        const postTitle = '<%= postTitle %>';
+        const postUrl = '<%= postUrl %>';
+    
+        // Get the share URLs for all platforms
+        const shareUrls = shareButtons(postUrl, postTitle);
+    
+        // Now, you can set the href attribute of each share button to the corresponding URL
+        document.querySelector('.facebook-share-button').href = shareUrls.facebook;
+        document.querySelector('.twitter-share-button').href = shareUrls.twitter;
+        document.querySelector('.linkedin-share-button').href = shareUrls.linkedin;
+    </script>
+    <!-- footer start  -->
+    <%- (include('../frontend/footer/footer.ejs')) %>
+<!-- footer end  -->
+<%- (include('../frontend/script/script.ejs')) %>

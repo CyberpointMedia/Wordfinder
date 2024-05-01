@@ -1,0 +1,250 @@
+<%- include('../header/head.ejs') %>
+
+    <body>
+
+        <div class="flex overflow-hidden">
+            <!-- sidebar start here -->
+            <%- include('../sidenav/sidenav.ejs') %>
+                <!-- sidebar end here -->
+                <div class="bg-white page-content">
+                    <!-- header start here -->
+                    <%- include('../header/header.ejs') %>
+                        <!-- header end here -->
+
+                        <!-- main content start here -->
+                        <main class="px-5 py-8">
+                            <div class="flex flex-col gap-3 mb-6 sm:flex-row sm:items-center">
+                                <h1 class="text-2xl font-bold text-black">
+                                    Dashboard
+                                </h1>
+                            </div>
+
+                            <!-- top four boxes start -->
+                            <div class="grid grid-cols-1 gap-6 md:grid-cols-3 xl:grid-cols-3">
+                                <!-- Value card -->
+                                <div class="flex items-center justify-between p-5 bg-[#DBF4FF] rounded-md">
+                                    <div>
+                                        <h6 class="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase">
+                                            Average Article Time
+                                        </h6>
+                                        <span class="text-xl font-semibold"><%= averageReadingTime %></span>
+                                        <span class="inline-block px-2 py-px ml-2 text-xs text-green-500 bg-green-100 rounded-md">
+                          +4.4%
+                              </span>
+                                    </div>
+                                    <div>
+                                        <span>
+                          <svg class="w-8 h-8 text-[#9ecdff]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                          </svg>
+                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Users card -->
+                                <div class="flex items-center justify-between p-5 bg-[#DBF4FF] rounded-md">
+                                    <div>
+                                        <h6 class="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase">
+                                            Users
+                                        </h6>
+                                        <span class="text-xl font-semibold"><%= visitCount %></span>
+                                        <span class="inline-block px-2 py-px ml-2 text-xs text-green-500 bg-green-100 rounded-md">
+                          +2.6%
+                        </span>
+                                    </div>
+                                    <div>
+                                        <span>
+                          <svg class="w-8 h-8 text-[#9ecdff]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                          </svg>
+                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Orders card -->
+                                <div class="flex items-center justify-between p-5 bg-[#DBF4FF] rounded-md">
+                                    <div>
+                                        <h6 class="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase">
+                                            Words Find
+                                        </h6>
+                                        <span class="text-xl font-semibold"><%= unscrambleVisitCount %></span>
+                                        <span class="inline-block px-2 py-px ml-2 text-xs text-green-500 bg-green-100 rounded-md">
+                          +3.1%
+                        </span>
+                                    </div>
+                                    <div>
+                                        <span>
+                          <svg class="w-8 h-8 text-[#9ecdff]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                          </svg>
+                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- top four boxes end -->
+
+                            <div class="flex flex-col gap-6 mt-6 md:flex-row">
+                                <div class="w-full md:w-2/4 ">
+                                    <div class="hs-accordion-group ">
+                                        <div class="hs-accordion active " id="hs-basic-with-title-and-arrow-stretched-heading-one ">
+                                            <div class="cardHeader hs-accordion-toggle inline-flex items-center justify-center gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none p-6 bg-[#007bff] text-center
+                                            " aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-one ">
+                                                Wordfinder Events and News
+                                                <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2 " stroke-linecap="round
+                                            " stroke-linejoin="round "><path d="m6 9 6 6 6-6 "/></svg>
+                                                <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2 " stroke-linecap="round
+                                            " stroke-linejoin="round "><path d="m18 15-6-6-6 6 "/></svg>
+
+                                                <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="leftHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg " width="10 " height="44 " viewBox="0 0 10 44 " fill="none " class="rightHandle ">
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39) " fill="#0656AC "></circle>
+                                        <circle r="5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5) " fill="#0656AC "></circle>
+                                        <rect x="-0.5 " y="-0.5 " width="35 " height="3 " rx="1.5 " transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5) " fill="white " stroke="#0656AC "></rect>
+                                    </svg>
+                                            </div>
+                                            <div id="hs-basic-with-title-and-arrow-stretched-collapse-one " class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 bg-[#f0f7fa] cardBody " aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one ">
+                                                <div class="px-5 py-8 ">
+                                                    <% posts.forEach(post => { %>
+                                                        <% if (post.author) { %>
+                                                            <div class="flex justify-between pb-4 mb-5 border-b gap-x-3">
+                                                                <img class="inline-block rounded-full h-9 w-9" src="<%= user.image ? user.image : '/images/img1.jpg' %>" alt="Image Description">
+                                                                <div class="grow">
+                                                                    <div class="flex justify-between mb-2">
+                                                                        <p class="font-medium text-[#393939]">
+                                                                            <%= post.author.username %>
+                                                                                <small class="text-gray-400"><%= post.author.email %></small>
+                                                                        </p>
+                                                                    </div>
+                                                                    <a href="/articles/<%= post.title %>" class="text-[#007bff] hover:opacity-50 underline hover:underline">
+                                                                        <%= post.title %>
+                                                                    </a>
+                                                                    <div class="flex items-center justify-start mt-2 text-sm text-gray-400"><i data-lucide="calendar" class="inline-block w-[14px] h-[14px] me-2"></i>
+                                                                        <%= post.date.toDateString() %>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <% } %>
+                                                                <% }) %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-full md:w-2/4">
+                                    <div class="hs-accordion-group">
+                                        <div class="hs-accordion active" id="hs-basic-with-title-and-arrow-stretched-heading-one">
+                                            <div class="cardHeader hs-accordion-toggle inline-flex items-center justify-center gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none p-6 bg-[#007bff] text-center" aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-one">
+                                                At a Glance
+                                                <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                                <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="44" viewBox="0 0 10 44" fill="none" class="leftHandle" onclick="themeCustomizer.toggleDropdown('hs-basic-with-title-and-arrow-stretched-collapse-one')">
+                                        <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39)" fill="#0656AC"></circle>
+                                        <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5)" fill="#0656AC"></circle>
+                                        <rect x="-0.5" y="-0.5" width="35" height="3" rx="1.5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5)" fill="white" stroke="#0656AC"></rect>
+                                    </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="44" viewBox="0 0 10 44" fill="none" class="rightHandle" onclick="themeCustomizer.toggleDropdown('hs-basic-with-title-and-arrow-stretched-collapse-one')">
+                                        <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39)" fill="#0656AC"></circle>
+                                        <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5)" fill="#0656AC"></circle>
+                                        <rect x="-0.5" y="-0.5" width="35" height="3" rx="1.5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5)" fill="white" stroke="#0656AC"></rect>
+                                    </svg>
+                                            </div>
+                                            <div id="hs-basic-with-title-and-arrow-stretched-collapse-one" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 bg-[#f0f7fa] cardBody" aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-one">
+                                                <div class="p-8">
+                                                    <ul class="grid justify-between grid-cols-1 gap-6 md:grid-cols-2 ">
+                                                        <li><i data-lucide="pin" class="menu-icon inline-block mx-2 w-[18px] h-[18px] "></i>
+                                                            <a href="/post/all" class="text-[#007bff] ">
+                                                                <%= totalPosts %> Posts</a>
+                                                        </li>
+                                                        <li><i data-lucide="files" class="menu-icon inline-block mx-2 w-[18px] h-[18px] "></i>
+                                                            <a href="all-pages.html" class="text-[#007bff] ">
+                                                                <%= totalPages %> Pages</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- user activity shows -->
+                            <div class="mt-8 hs-accordion-group">
+                                <div class="hs-accordion active" id="hs-basic-with-title-and-arrow-stretched-heading-two">
+                                    <div class="cardHeader hs-accordion-toggle inline-flex items-center justify-center gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none p-6 bg-[#007bff] text-center" aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-two">
+                                        User Activity Details
+                                        <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                        <svg class="hidden w-4 h-4 hs-accordion-active:block" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="44" viewBox="0 0 10 44" fill="none" class="leftHandle" onclick="themeCustomizer.toggleDropdown('hs-basic-with-title-and-arrow-stretched-collapse-two')">
+                                <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39)" fill="#0656AC"></circle>
+                                <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5)" fill="#0656AC"></circle>
+                                <rect x="-0.5" y="-0.5" width="35" height="3" rx="1.5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5)" fill="white" stroke="#0656AC"></rect>
+                            </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="44" viewBox="0 0 10 44" fill="none" class="rightHandle" onclick="themeCustomizer.toggleDropdown('hs-basic-with-title-and-arrow-stretched-collapse-two')">
+                                <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 39)" fill="#0656AC"></circle>
+                                <circle r="5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 5 5)" fill="#0656AC"></circle>
+                                <rect x="-0.5" y="-0.5" width="35" height="3" rx="1.5" transform="matrix(4.37114e-08 1 1 -4.37114e-08 4 5)" fill="white" stroke="#0656AC"></rect>
+                            </svg>
+                                    </div>
+                                    <div id="hs-basic-with-title-and-arrow-stretched-collapse-two" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 bg-[#f0f7fa] cardBody" aria-labelledby="hs-basic-with-title-and-arrow-stretched-heading-two">
+                                        <div class="p-8">
+                                            <div class="overflow-x-auto border rounded-lg">
+                                                <table class="w-full min-w-full divide-y divide-gray-200 sm:rounded-lg UserActivitiyDetails">
+                                                    <thead class="text-left bg-[#f9fafb]">
+                                                        <tr class="">
+                                                            <th scope="col" class="px-4 py-3">Id</th>
+                                                            <th scope="col" class="px-4 py-3">User name</th>
+                                                            <th scope="col" class="px-4 py-3">Ip</th>
+                                                            <th scope="col" class="px-4 py-3">Location</th>
+                                                            <th scope="col" class="px-4 py-3">Action</th>
+                                                            <th scope="col" class="px-4 py-3">Timestamp</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="divide-y divide-gray-200">
+                                                        <% userActivities.forEach((activity, index) => { %>
+                                                            <tr class="bg-white">
+                                                                <th scope="row" class="px-4 py-4 font-medium text-left text-gray-900 whitespace-nowrap">
+                                                                    <%= index + 1 %>
+                                                                </th>
+                                                                <td class="px-4 py-4">
+                                                                    <%= activity.username %>
+                                                                </td>
+                                                                <td class="px-4 py-4">
+                                                                    <%= activity.ip %>
+                                                                </td>
+                                                                <td class="px-4 py-4">
+                                                                    <%= activity.location %>
+                                                                </td>
+                                                                <td class="px-4 py-4">
+                                                                    <a href="javascript:void(0);" class="text-[#007bff] hover:opacity-50">
+                                                                        <%= activity.action %>
+                                                                    </a>
+                                                                </td>
+                                                                <td class="px-4 py-4">
+                                                                    <%= new Date(activity.timestamp).toLocaleString().split(' GMT')[0] %>
+                                                                </td>
+                                                            </tr>
+                                                            <% }) %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+
+                        <!-- main content end here -->
+                </div>
+        </div>
+        <!-- sidebar end here -->
+        <%- include('../script/script.ejs') %>
+    </body>
+
+    </html>

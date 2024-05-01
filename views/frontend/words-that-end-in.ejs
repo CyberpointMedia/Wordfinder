@@ -1,0 +1,259 @@
+<%- (include('../frontend/head/head.ejs')) %>
+
+    <body class="font-custom">
+        <!-- header start here -->
+        <%- (include('../frontend/head/header.ejs')) %>
+            <!-- header end here -->
+
+            <!-- content section start -->
+            <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-12">
+                <div class="container">
+                    <div class="flex flex-col gap-8 md:flex-row">
+                        <!-- left col start -->
+                        <div class="w-full md:w-2/3">
+                            <!-- Words with X and Q box start -->
+                            <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                                <h2 class="mb-4 text-3xl font-semibold md:text-4xl">Words that End with <%=
+                                        endsWith.toUpperCase() %>
+                                </h2>
+                                <p>
+                                    <% if (!page.sub_heading) { %>
+                                        <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"
+                                            id="isPasted">On this page is a list of&nbsp;<span
+                                                style="box-sizing: border-box; color: var(--secondaryblue); font-family: robotomedium; font-style: normal;">words
+                                                that end in <%= endsWith.toUpperCase() %></span>, along with how much
+                                            they score in word games like
+                                            Scrabble (play with our&nbsp;<a
+                                                href="https://word-finder.com/scrabble-word-finder/"
+                                                style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Scrabble
+                                                word finder</a>) and WWF (check out our&nbsp;<a
+                                                href="https://word-finder.com/words-with-friends-cheat-tool/"
+                                                style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Words
+                                                With Friends cheat tool</a>).</p>
+                                        <p
+                                            style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
+                                            The best-scoring and longest&nbsp;<span
+                                                style="box-sizing: border-box; color: var(--secondaryblue); font-family: robotomedium; font-style: normal;">words
+                                                ending with <%= endsWith.toUpperCase() %></span> are listed first.
+                                            Choose your game and click on a
+                                            word to see if you can play it. Once you&#39;ve seen&nbsp;<span
+                                                style="box-sizing: border-box; color: var(--secondaryblue); font-family: robotomedium; font-style: normal;">words
+                                                that end in <%= endsWith.toUpperCase() %></span>, you should also
+                                            see&nbsp;<a href="https://word-finder.com/words-that-start-with/a/"
+                                                style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">words
+                                                that start with <%= endsWith.toUpperCase() %></a> and&nbsp;<a
+                                                href="https://word-finder.com/words-with/a/"
+                                                style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">words
+                                                with <%= endsWith.toUpperCase() %> in them</a>.</p>
+                                        <p
+                                            style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
+                                            Playing Wordle? Check out our&nbsp;<a href="https://word-finder.com/wordle/"
+                                                style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Wordle
+                                                solver tool</a>. To level up your Wordle play, read about the&nbsp;<a
+                                                href="https://word-finder.com/articles/best-word-to-start-wordle/"
+                                                style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">best
+                                                starting words in Wordle</a>.</p>
+                                        <% } else { %>
+                                            <%- page.sub_heading %>
+                                                <% } %>
+                                </p>
+                            </div>
+
+
+                            <!-- show--scarabble -->
+
+                            <!-- ... -->
+                            <% if (specifiedLength) { %>
+                                <% if (wordsByLength && wordsByLength[specifiedLength] &&
+                                    wordsByLength[specifiedLength].length> 0) { %>
+                                    <% const uniqueWords=new Set(); %>
+                                        <div class="w-full mb-8">
+                                            <div
+                                                class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                                                <%= specifiedLength %>
+                                                    Letter Words
+                                                    <% console.log(`Total words of length ${specifiedLength}:`,
+                                                        wordsByLength[specifiedLength].length); %>
+                                                        <!-- Log total words for this length -->
+                                            </div>
+                                            <div
+                                                class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px]">
+                                                <div class="flex flex-wrap gap-3 tagsMain"
+                                                    id="words_card_<%= specifiedLength %>">
+                                                    <% wordsByLength[specifiedLength].forEach(wordObj=> { %>
+                                                        <% if ((!startsWith || wordObj.word.startsWith(startsWith)) &&
+                                                            (!endsWith || wordObj.word.endsWith(endsWith)) && (!contains
+                                                            || wordObj.word.includes(contains)) && (!includeLetters ||
+                                                            wordObj.word.includes(includeLetters)) && (!excludeLetters
+                                                            || !wordObj.word.includes(excludeLetters)) ) { %>
+                                                            <!-- Check if startsWith, endsWith, contains, and notContains are provided and word meets all criteria -->
+                                                            <% uniqueWords.add(wordObj); %>
+                                                                <% } %>
+                                                                    <% }); %>
+                                                                        <% uniqueWords.forEach(wordObj=> { %>
+                                                                            <button type="button"
+                                                                                class="border border-[#007BFF] rounded-[10px] py-3 font-normal px-4 tag text-[#007bff]"
+                                                                                data-hs-overlay="#hs-medium-modal"
+                                                                                onclick="fetchWordDefinition('<%= wordObj.word %>')">
+                                                                                <%= wordObj.word %> <span
+                                                                                        class="tagPoints text-[#6C757D] text-xs font-medium">
+                                                                                        <%= wordObj.points %>
+                                                                                    </span>
+                                                                            </button>
+                                                                            <% }); %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% } else { %>
+                                            <div class="w-full mb-8">
+                                                <div
+                                                    class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                                                    No words exist for the specified length.
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                                <% } else if (wordsByLength) { %>
+                                                    <% Object.keys(wordsByLength).sort((a, b)=> b - a).forEach(length =>
+                                                        { %>
+                                                        <% if (wordsByLength[length].some(wordObj=> ((!startsWith ||
+                                                            wordObj.word.startsWith(startsWith)) && (!endsWith ||
+                                                            wordObj.word.endsWith(endsWith)) && (!contains ||
+                                                            wordObj.word.includes(contains))&& (!includeLetters ||
+                                                            wordObj.word.includes(includeLetters)) && (!excludeLetters
+                                                            || !wordObj.word.includes(excludeLetters))))) { %>
+                                                            <!-- Check if there are words available for the current length -->
+                                                            <% const uniqueWords=new Set(); %>
+                                                                <div class="w-full mb-8">
+                                                                    <div
+                                                                        class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                                                                        <%= length %>
+                                                                            Letter Words
+                                                                    </div>
+                                                                    <div
+                                                                        class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px]">
+                                                                        <div class="flex flex-wrap gap-3 tagsMain"
+                                                                            id="words_card_<%= length %>">
+                                                                            <% wordsByLength[length].forEach(wordObj=> {
+                                                                                %>
+                                                                                <% if ((!startsWith ||
+                                                                                    wordObj.word.startsWith(startsWith))
+                                                                                    && (!endsWith ||
+                                                                                    wordObj.word.endsWith(endsWith)) &&
+                                                                                    (!contains ||
+                                                                                    wordObj.word.includes(contains)) &&
+                                                                                    (!includeLetters ||
+                                                                                    wordObj.word.includes(includeLetters))
+                                                                                    && (!excludeLetters ||
+                                                                                    !wordObj.word.includes(excludeLetters)))
+                                                                                    { %>
+                                                                                    <!-- Check if startsWith, endsWith, contains, and notContains are provided and word meets all criteria -->
+                                                                                    <% uniqueWords.add(wordObj); %>
+                                                                                        <% } %>
+                                                                                            <% }); %>
+                                                                                                <%
+                                                                                                    uniqueWords.forEach(wordObj=>
+                                                                                                    { %>
+                                                                                                    <button
+                                                                                                        type="button"
+                                                                                                        class="border border-[#007BFF] rounded-[10px] py-3 font-normal px-4 tag text-[#007bff]"
+                                                                                                        data-hs-overlay="#hs-medium-modal"
+                                                                                                        onclick="fetchWordDefinition('<%= wordObj.word %>')">
+                                                                                                        <%= wordObj.word
+                                                                                                            %> <span
+                                                                                                                class="tagPoints text-[#6C757D] text-xs font-medium">
+                                                                                                                <%= wordObj.points
+                                                                                                                    %>
+                                                                                                            </span>
+                                                                                                    </button>
+                                                                                                    <% }); %>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <% } else { %>
+                                                                    <div class="w-full mb-8">
+                                                                        <div
+                                                                            class="cardHeader font-semibold text-white text-xl p-6 bg-[#007bff] text-center relative">
+                                                                            No words exist for the current length.
+                                                                        </div>
+                                                                    </div>
+                                                                    <% } %>
+                                                                        <% }); %>
+                                                                            <% } %>
+                                                                                <!-- ... -->
+                                                                                <% if (page.content && page.content.trim() !== '') { %>
+                                                                                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                                                                                        <%- page.content %>
+                                                                                    </div>
+                                                                                <% } %>
+                                                                                <div
+                                                                                    class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                                                                                    <h2
+                                                                                        class="mb-4 text-3xl font-semibold md:text-4xl">
+                                                                                        Related</h2>
+                                                                                    <ul class="space-y-2 list-disc">
+                                                                                        <ul class="space-y-2 list-disc">
+                                                                                            <% if (endsWith==='a' ) { %>
+                                                                                                <li class="">
+                                                                                                    <a href="/words-that-end-in/zzz/"
+                                                                                                        class="text-base font-normal text-blue-500 underline hover-text-blue">
+                                                                                                        Words That End
+                                                                                                        In ZZZ
+                                                                                                    </a>
+                                                                                                </li>
+                                                                                                <% } %>
+                                                                                                    <%
+                                                                                                        surroundingLetters.forEach(letter=>
+                                                                                                        { %>
+                                                                                                        <% if (letter
+                                                                                                            !==endsWith)
+                                                                                                            { %>
+                                                                                                            <li
+                                                                                                                class="">
+                                                                                                                <a href="/words-that-end-in/<%= letter %>/"
+                                                                                                                    class="text-base font-normal text-blue-500 underline hover-text-blue">
+                                                                                                                    Words
+                                                                                                                    That
+                                                                                                                    End
+                                                                                                                    In
+                                                                                                                    <%= letter.toUpperCase()
+                                                                                                                        %>
+                                                                                                                </a>
+                                                                                                            </li>
+                                                                                                            <% } %>
+                                                                                                                <% });
+                                                                                                                    %>
+                                                                                        </ul>
+                                                                                </div>
+                        </div>
+
+
+                        <!-- left col end -->
+                        <!-- right col end -->
+                        <div class="w-full md:w-1/3">
+                            <!-- Word Finders -->
+                            <%- (include('../frontend/right_col/word_finder.ejs')) %>
+                                <!-- Words By Length -->
+                                <%- (include('../frontend/right_col/words_of_length.ejs')) %>
+                                    <!-- Words that Start with -->
+                                    <%- (include('../frontend/right_col/words_that_start_with.ejs')) %>
+                                        <!-- catorgies -->
+                                        <%- (include('../frontend/right_col/category.ejs')) %>
+                                            <!-- Popular Searches -->
+                                            <%- (include('../frontend/right_col/Popular_Searches_box.ejs')) %>
+                                                <!-- Latest Article -->
+                                                <%- (include('../frontend/right_col/latest_article.ejs')) %>
+                        </div>
+                        <!-- right col end -->
+                    </div>
+                </div>
+            </div>
+            <!-- content section end -->
+            <div id="hs-medium-modal"
+                class="hs-overlay hidden w-full h-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none">
+            </div>
+
+
+            <!-- footer start  -->
+            <%- (include('../frontend/footer/footer.ejs')) %>
+                <!-- footer end  -->
+                <%- (include('../frontend/script/script.ejs')) %>
