@@ -53,12 +53,64 @@ router.get('/', visitCounter, async (req, res) => {
 router.get('/wordle', visitCounter, async (req, res) => {
     try {
         console.log("wordle open ");
+        await getWordToGuess(); // Fetch a random word to guess
         res.render('frontend/wordle.ejs',);
     } catch (error) {
         console.error('Error fetching post:', error);
         res.status(500).send('Internal Server Error');
     }
 });
+let wordToGuess;
+async function getWordToGuess() {
+    const url = 'https://fly.wordfinderapi.com/api/search?letters&word_sorting=points&group_by_length=true&page_size=20000&dictionary=wwf&length=5';
+    const response = await fetch(url);
+    const data = await response.json();
+    let wordList = data.word_pages[0].word_list;
+    console.log("wordList",wordList); // log the entire word list
+    // Shuffle wordList
+    for (let i = wordList.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [wordList[i], wordList[j]] = [wordList[j], wordList[i]];
+    }
+    const randomIndex = Math.floor(Math.random() * wordList.length);
+    console.log("randomIndex",randomIndex);
+    wordToGuess = wordList[randomIndex].word;
+    console.log("wordToGuess",wordToGuess);
+}
+router.post('/guess', (req, res) => {
+        console.log("post guess",wordToGuess);
+        const guesses = [];
+        const characterInfos = [];
+        const wasCorrectArray = [];
+        for (let boxNum = 1; boxNum <= 4; boxNum++) {
+            let guess = '';
+            for (let inputNum = 1; inputNum <= 5; inputNum++) {
+                guess += req.body[`box${boxNum}_contains_${inputNum}`];
+            }
+            guesses.push(guess);
+            const wasCorrect = guess === wordToGuess;
+            wasCorrectArray.push(wasCorrect);
+            const characterInfo = guess.split('').map((char, idx) => {
+                return {
+                    char,
+                    scoring: {
+                        in_word: wordToGuess.includes(char),
+                        correct_idx: wordToGuess[idx] === char
+                    }
+                };
+            });
+            characterInfos.push(characterInfo);
+        }
+        const response = {
+            guesses,
+            was_correct: wasCorrectArray,
+            character_infos: characterInfos
+        };
+        if (guesses.every(guess => guess.length > 0) && !wasCorrectArray.includes(true)) {
+            response.word_to_guess = wordToGuess;
+        }
+        res.json(response);
+    });
 
 //scrabble-dictionary
 router.get('/scrabble-dictionary', visitCounter, async (req, res) => {

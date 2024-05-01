@@ -9,66 +9,81 @@
                 <div class="flex flex-wrap items-center justify-center w-full align-middle">
                     <h1 class="block text-[#393939] text-5xl sm:text-7xl font-semibold mb-3 text-center"> Wordle Answer Finder</h1>
                     <div class="md:w-2/4 w-full mx-auto">
-                        <form id="wordle-form" class="w-full mt-8 mb-6" action="javascript:void(0);" method="post">
-
-                            <label class="mt-3 label-left text-body" for="wordle-title-bad">Good Words</label>
-                            <div class="input-group mb-3 MainSearch border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
-                                <input type="text" name="include_letters" class="form-control main-search-input w-full focus:outline-none focus:border-0" placeholder="Good Words" aria-label="Recipient's username">
-                            </div>
-
-                            <label class="mt-3 label-left text-body" for="wordle-title-bad">Bad Words</label>
-                            <div class="input-group mb-3 MainSearch border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
-                                <input type="text" name="exclude_letters" class="form-control main-search-input w-full focus:outline-none focus:border-0" placeholder="Bad Words" aria-label="Recipient's username">
-                            </div>
-
+                        <div class="show-output">
+                            <h1></h1>
+                        </div>
+                        <form id="wordle-form" class="w-full mt-8 mb-6" action="/guess" method="post">
                             <div class="text-field-area mb-5">
                                 <h4 class="text-center mt-4 font-medium text-xl">
                                 Placed Letters
                                 </h4>
-                                <p class="mb-0 mt-2 text-center text-base font-normal text-[#393939]">
-                                (Letters that are in green tiles)
-                                </p>
                             </div>
-
-                            <div id="otp" class="flex justify-content-center align-items-center">
+                            <div id="box1" class="flex justify-content-center align-items-center">
                                 <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
-                                    <input name="contains_1" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="first" maxlength="1">
+                                    <input name="box1_contains_1" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box1_first" maxlength="1">
                                 </div>
                                 <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
-                                    <input name="contains_2" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="second" maxlength="1">
+                                    <input name="box1_contains_2" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box1_second" maxlength="1">
                                 </div>
                                 <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
-                                    <input name="contains_3" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="third" maxlength="1">
+                                    <input name="box1_contains_3" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box1_third" maxlength="1">
                                 </div>
                                 <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
-                                    <input name="contains_4" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="fourth" maxlength="1">
+                                    <input name="box1_contains_4" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box1_fourth" maxlength="1">
                                 </div>
                                 <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
-                                    <input name="contains_5" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="fifth" maxlength="1">
+                                    <input name="box1_contains_5" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box1_fifth" maxlength="1">
                                 </div> 
                             </div>
-
-                            <div class="text-field-area my-5">
-                                <p class="mb-0 mt-2 text-center text-base font-normal text-[#393939]">
-                                (Letters that are in yello tiles)
-                                </p>
+                            <div id="box2" class="flex justify-content-center align-items-center">
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="box2_contains_1" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box2_first" maxlength="1">
+                                </div>
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="box2_contains_2" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box2_second" maxlength="1">
+                                </div>
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="box2_contains_3" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box2_third" maxlength="1">
+                                </div>
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="box2_contains_4" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box2_fourth" maxlength="1">
+                                </div>
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="box2_contains_5" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box2_fifth" maxlength="1">
+                                </div> 
                             </div>
-
-                            <div id="otp1" class="flex justify-content-center align-items-center mt-5">
+                            <div id="box3" class="flex justify-content-center align-items-center">
                                 <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
-                                    <input name="yello_1" value="" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="sixth" maxlength="1">
+                                    <input name="box3_contains_1" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box3_first" maxlength="1">
                                 </div>
                                 <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
-                                    <input name="yello_2" value="" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="seventh" maxlength="1">
+                                    <input name="box3_contains_2" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box3_second" maxlength="1">
                                 </div>
                                 <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
-                                    <input name="yello_3" value="" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="eight" maxlength="1">
+                                    <input name="box3_contains_3" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box3_third" maxlength="1">
                                 </div>
                                 <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
-                                    <input name="yello_4" value="" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="nineth" maxlength="1">
+                                    <input name="box3_contains_4" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box3_fourth" maxlength="1">
                                 </div>
                                 <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
-                                    <input name="yello_5" value="" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="tenth" maxlength="1">
+                                    <input name="box3_contains_5" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box3_fifth" maxlength="1">
+                                </div> 
+                            </div>
+                            <div id="box4" class="flex justify-content-center align-items-center">
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="box4_contains_1" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box4_first" maxlength="1">
+                                </div>
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="box4_contains_2" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box4_second" maxlength="1">
+                                </div>
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="box4_contains_3" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box4_third" maxlength="1">
+                                </div>
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="box4_contains_4" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box4_fourth" maxlength="1">
+                                </div>
+                                <div class="input-group MainSearch mb-3 border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white">
+                                    <input name="box4_contains_5" class="form-control text-center w-full focus:outline-none focus:border-0" type="text" id="box4_fifth" maxlength="1">
                                 </div> 
                             </div>
                             <button type="submit" class="w-full mt-2 py-4 bg-buttonPrimary rounded-[10px] text-white hover:opacity-50">Search</button>
@@ -101,7 +116,6 @@
                             This simple yet tricky game, was so popular that The New York Times bought it from the original creator, Josh Wardle. In this era of reckless internet trends, this trend of Wordle brings about a better change. Moreover, it also subverts the culture of having endless content that pervades the internet today by only publishing one puzzle every 24 hours.
                         </p>
                     </div>
-
                     <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
                         <h2 class="mb-4 text-4xl font-semibold">How Is Wordle Played?</h2>
                         <p>
@@ -231,4 +245,60 @@
     <!-- footer start  -->
     <%- (include('../frontend/footer/footer.ejs')) %>
     <!-- footer end  -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    console.log('ready');
+    $('#wordle-form').on('submit', function(e) {
+        e.preventDefault();
+
+        const data = {};
+        for (let boxNum = 1; boxNum <= 4; boxNum++) {
+            for (let inputNum = 1; inputNum <= 5; inputNum++) {
+                const inputId = `#box${boxNum}_${['first', 'second', 'third', 'fourth', 'fifth'][inputNum - 1]}`;
+                data[`box${boxNum}_contains_${inputNum}`] = $(inputId).val();
+            }
+        }
+
+        $.post('/guess', data, function(response) {
+            const characterInfos = response.character_infos;
+
+            characterInfos.forEach((characterInfo, boxIdx) => {
+                if (characterInfo.length > 0) {
+                    let allCorrect = true;
+                    characterInfo.forEach((info, idx) => {
+                        const inputId = `#box${boxIdx + 1}_${['first', 'second', 'third', 'fourth', 'fifth'][idx]}`;
+                        const input = $(inputId);
+                        if (info.scoring.correct_idx) {
+                            input.css('background-color', 'green');
+                        } else {
+                            input.css('background-color', 'red');
+                            allCorrect = false;
+                        }
+                    });
+
+                    if (allCorrect) {
+                        const message = 'Congratulations, all characters in box ' + (boxIdx + 1) + ' are correct!';
+                        console.log(message);
+                        $('.show-output h1').text(message);
+                        setTimeout(function() {
+                            location.reload();
+                        }, 3000);
+                    }
+                }
+            });
+
+            if (response.word_to_guess) {
+                const message = 'The word to guess was: ' + response.word_to_guess;
+                console.log(message);
+                $('.show-output h1').text(message);
+                setTimeout(function() {
+                    location.reload();
+                }, 3000);
+            }
+        });
+    });
+});
+</script>
 <%- (include('../frontend/script/script.ejs')) %>
+
