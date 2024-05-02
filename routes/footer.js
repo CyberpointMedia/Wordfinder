@@ -4,6 +4,7 @@ const Footer = require('../models/footer');
 const Widget = require('../models/widget');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const wrapAsync = require('../middleware/wrapAsync');
 const { ensureAdmin } = require('../middleware/authMiddleware');
 const router = express.Router();
 
@@ -43,7 +44,7 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
 // Render widgets view
-router.get('/widgets', ensureAdmin, async (req, res) => { 
+router.get('/widgets', ensureAdmin, wrapAsync(async (req, res) => { 
   const widget = await Widget.findOne();
   const footers = await Footer.find({}).populate('footerCol1 footerCol2 footerCol3 footerCol4').populate('footerCol1.widgets footerCol2.widgets footerCol3.widgets footerCol4.widgets');
   console.log('Footers:', footers); // Log footers data
@@ -57,10 +58,10 @@ router.get('/widgets', ensureAdmin, async (req, res) => {
   const widgetsWithColumn = widgets.map(widget => ({ ...widget._doc, column: widget.column }));
 
   res.render('appearance/widgets', { user: req.user, footers: footers, widgets: widgetsWithColumn, columns: columns ,widget: widget}); 
-});
+}));
 
 
-router.post('/addtexteditor', async (req, res) => {
+router.post('/addtexteditor', wrapAsync(async (req, res) => {
   // The column where the widget should be added
   const column = req.body.column;
   
@@ -79,9 +80,9 @@ router.post('/addtexteditor', async (req, res) => {
   await footer.save();
 
   res.redirect('/footer/widgets?message=Text Editor Widget added successfully');
-});
+}));
 
-router.post('/addcustomhtml', async (req, res) => {
+router.post('/addcustomhtml', wrapAsync(async (req, res) => {
   // The column where the widget should be added
   const column = req.body.column;
   
@@ -99,8 +100,8 @@ router.post('/addcustomhtml', async (req, res) => {
   footer[column].push(widget._id);
   await footer.save();
   res.redirect('/footer/widgets?message=Custom HTML Widget added successfully');
-});
-router.post('/addcontactdetails', async (req, res) => {
+}));
+router.post('/addcontactdetails', wrapAsync(async (req, res) => {
   // The column where the widget should be added
   const column = req.body.column;
   
@@ -119,9 +120,9 @@ router.post('/addcontactdetails', async (req, res) => {
   await footer.save();
 
   res.redirect('/footer/widgets?message=Contact Details Widget added successfully');
-});
+}));
 
-router.post('/addimage', async (req, res) => {
+router.post('/addimage', wrapAsync(async (req, res) => {
   // The column where the widget should be added
   const column = req.body.column;
   
@@ -140,8 +141,8 @@ router.post('/addimage', async (req, res) => {
   await footer.save();
 
   res.redirect('/footer/widgets?message=Image Widget added successfully');
-});
-router.post('/texteditor', async (req, res) => {
+}));
+router.post('/texteditor', wrapAsync(async (req, res) => {
   // The _id of the widget to update
   const widgetId = req.body.widgetId;
 
@@ -172,9 +173,9 @@ router.post('/texteditor', async (req, res) => {
   } catch (err) {
     res.status(500).send(err.message);
   }
-});
+}));
 
-router.post('/Customhtml', async (req, res) => {
+router.post('/Customhtml', wrapAsync(async (req, res) => {
   // The _id of the widget to update
   const widgetId = req.body.widgetId;
 
@@ -205,9 +206,9 @@ router.post('/Customhtml', async (req, res) => {
   } catch (err) {
     res.status(500).send(err.message);
   }
-});
+}));
 
-router.post('/contactdetails', async (req, res) => {
+router.post('/contactdetails', wrapAsync(async (req, res) => {
   // The _id of the widget to update
   const widgetId = req.body.widgetId;
 
@@ -238,10 +239,10 @@ router.post('/contactdetails', async (req, res) => {
   } catch (err) {
     res.status(500).send(err.message);
   }
-});
+}));
 
 // Create a new footer with image URL
-router.post('/image', upload.single('image'), async (req, res) => {
+router.post('/image', upload.single('image'), wrapAsync(async (req, res) => {
   // The _id of the widget to update
   const widgetId = req.body.widgetId;
 
@@ -273,10 +274,10 @@ router.post('/image', upload.single('image'), async (req, res) => {
     console.error(err);
     res.redirect('/footer/widgets');
   }
-});
+}));
 
 //GTM google tag widgets
-router.post('/save-gtm-url', async (req, res) => {
+router.post('/save-gtm-url', wrapAsync(async (req, res) => {
   const { gtmUrl } = req.body;
 
   try {
@@ -285,10 +286,10 @@ router.post('/save-gtm-url', async (req, res) => {
   } catch (error) {
     res.status(500).send('Error saving GTM URL');
   }
-});
+}));
 
 // Save GTM data
-router.post('/save-gtm-data', async (req, res) => {
+router.post('/save-gtm-data', wrapAsync(async (req, res) => {
   const { gtmHead, gtmBody } = req.body;
 
   try {
@@ -297,9 +298,9 @@ router.post('/save-gtm-data', async (req, res) => {
   } catch (error) {
       res.status(500).send('Error saving GTM data');
   }
-});
+}));
 // Delete a widget
-router.post('/delete/:id', async (req, res) => {
+router.post('/delete/:id', wrapAsync(async (req, res) => {
   try {
     console.log('Deleting widget'); // Log the widget id
       // Find the widget by id and delete it
@@ -310,5 +311,12 @@ router.post('/delete/:id', async (req, res) => {
   } catch (err) {
       res.status(500).send(err.message);
   }
+}));
+
+// Error handling middleware
+router.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(404).render('not-found/page-not-found.ejs');
 });
+
 module.exports = router;

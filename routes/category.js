@@ -21,7 +21,7 @@ router.use(express.static(path.join(__dirname, 'dist')));
 router.use('/node_modules', express.static(__dirname + '/node_modules'));
 router.use('/styles', express.static(path.join(__dirname, 'styles')));
 
-router.get('/words-that-start-with', async (req, res) => {
+router.get('/words-that-start-with', wrapAsync(async (req, res) => {
     try {
         const page = Number(req.query.page) || 1;
         const pageSize = 20; // number of items per page
@@ -58,7 +58,7 @@ router.get('/words-that-start-with', async (req, res) => {
         console.error(error);
         res.status(500).send('An error occurred while processing your request.');
     }
-});
+}));
 
 router.get('/words-that-end-in', (req, res) => {
     const page = parseInt(req.query.page) || 1;
@@ -109,6 +109,12 @@ router.get('/words-with-letters', (req, res) => {
     const totalPages = Math.ceil(letters.length / pageSize);
 
     res.render('frontend/category/words-with-letters.ejs', { letters: pageItems, page, totalPages });
+});
+
+// Error handling middleware
+router.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(404).render('not-found/page-not-found.ejs');
 });
 
 module.exports = router;

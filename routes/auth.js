@@ -8,12 +8,7 @@ const router = express.Router();
 const alert =require('alert-node');
 const logUserActivity = require('../middleware/user-activity'); 
 
-
-router.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(404).render('not-found/page-not-found.ejs');
-});
-
+// Registration route
 router.get('/register', (req, res) => {
     console.log("get auth.js register call");
     // Redirect admins to the admin registration route
@@ -59,4 +54,10 @@ router.get('/logout', logUserActivity('Logout'), (req, res) => { // Use the logU
       res.redirect('/'); // Redirect to the home page after logout
   });
 });
+
+router.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(404).render('not-found/page-not-found.ejs');
+});
+
 module.exports = router;

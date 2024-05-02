@@ -40,16 +40,19 @@
                             <input type="url" class="form-input bg-[#F0F7FA] border-0" id="webSite" value="<%= user.website %>">                        </div>
                     </div>
 
-                    <div class="grid sm:grid-cols-3">
-                        <label class="mt-1 mb-2" for="webSite">Profile Picture</label>
-                        <div class="sm:col-span-2">
-                            <img id='preview_img' class="h-16 w-16 object-cover rounded-full" src="<%= user.image ? user.image : '/images/admin.svg' %>" alt="user image not found" />
-                                                        <div class="block relative">
-                                                    
-                                                            <span class="absolute inset-0 bg-white opacity-100 w-40 top-4 text-black">Choose profile photo</span>
-                                                            <input type="file" name="image" onchange="loadFile(event)" class="block w-28 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0" />                            </div>
+                        <div class="grid sm:grid-cols-3">
+                            <label class="mt-1 mb-2" for="webSite">Profile Picture</label>
+                            <div class="sm:col-span-2">
+                                <img id='preview_img' class="h-16 w-16 object-cover rounded-full" src="<%= user.image ? user.image : '/images/admin.svg' %>" alt="user image not found" />
+                                <% if (locals.username) { %>
+                                <div class="block relative">
+                                    <span class="absolute inset-0 bg-white opacity-100 w-40 top-4 text-black">Choose profile photo</span>
+                                    <input type="file" name="image" onchange="loadFile(event)" class="block w-28 file:text-sm file:bg-white file:px-0 file:mt-2 opacity-0" />
+                                </div>
+                                <% } %>
+                            </div>
                         </div>
-                    </div>
+                    
                     <div class="grid sm:grid-cols-3">
                         <label class="mt-1 mb-2" for="password">New Password</label>
                         <div class="sm:col-span-2">
@@ -68,7 +71,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <% if (locals.username) { %>
                     <div class="grid sm:grid-cols-3">
                         <div></div>
                         <div class="sm:col-span-2 flex items-center gap-2 mt-4">
@@ -80,6 +83,7 @@
                             </button> -->
                         </div>
                     </div>
+                    <% } %>
                 </form>
                 <!-- add user form end -->
             </main>
@@ -92,6 +96,8 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script>
+
+        
          var params = new URLSearchParams(window.location.search);
 
 // Check if a message is present

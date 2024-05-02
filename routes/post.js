@@ -15,6 +15,18 @@ router.use(methodOverride('_method'));
 router.use(express.urlencoded({ extended: true }));
 const session = require('express-session');
 const flash = require('connect-flash');
+
+function wrapRoutesWithAsync(routes) {
+  for (const route of routes.stack) {
+    if (route.route) {
+      for (const layer of route.route.stack) {
+        layer.handle = wrapAsync(layer.handle);
+      }
+    }
+  }
+}
+wrapRoutesWithAsync(router);
+
 // Set up AWS S3
 const s3 = new S3Client({
   region: process.env.AWS_REGION,
@@ -24,12 +36,8 @@ const s3 = new S3Client({
   }
 });
 router.use(setAdminStatusAndUsername);
-router.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(404).render('not-found/page-not-found.ejs');
-});
 
-
+// Set up express-session
 router.use(session({
   secret: 'your secret key',
   resave: false,
@@ -311,5 +319,11 @@ router.delete('/categories/:id', wrapAsync(async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
   }));
+
+// Error handling middleware
+router.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(404).render('not-found/page-not-found.ejs');
+});
   
 module.exports = router;

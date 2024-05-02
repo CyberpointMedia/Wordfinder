@@ -11,6 +11,16 @@ const methodOverride = require('method-override');
 const { URL } = require('url');
 const Toastify = require('toastify-js');
 
+function wrapRoutesWithAsync(routes) {
+  for (const route of routes.stack) {
+    if (route.route) {
+      for (const layer of route.route.stack) {
+        layer.handle = wrapAsync(layer.handle);
+      }
+    }
+  }
+}
+wrapRoutesWithAsync(router);
 // Use middleware to parse JSON and URL-encoded form data
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
@@ -368,6 +378,12 @@ router.get('/draft', async (req, res) => {
       console.error(error);
       res.status(500).send('Internal Server Error');
   }
+});
+
+// Error handling middleware
+router.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(404).render('not-found/page-not-found.ejs');
 });
 
 module.exports = router;

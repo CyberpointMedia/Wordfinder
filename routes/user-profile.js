@@ -4,13 +4,24 @@ const User = require('../models/user');
 const section = require('../models/section');
 const passport = require('passport');
 const router = express.Router();
-const wrapAsync = require('../middleware/wrapAsync');
 const { ensureAdmin, ensureEditor, ensureAuthor } = require('../middleware/authMiddleware');
 const aws = require('aws-sdk');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 const fs = require('fs'); 
 const stream = require('stream'); // Import the stream module
+const wrapAsync = require('../middleware/wrapAsync');
+
+function wrapRoutesWithAsync(routes) {
+  for (const route of routes.stack) {
+    if (route.route) {
+      for (const layer of route.route.stack) {
+        layer.handle = wrapAsync(layer.handle);
+      }
+    }
+  }
+}
+wrapRoutesWithAsync(router);
 
 aws.config.update({
     secretAccessKey: process.env.YOUR_AWS_SECRET_ACCESS_KEY,
@@ -62,6 +73,12 @@ router.post('/user-profile', upload.single('image'), async (req, res) => {
         console.log("user", user);
         res.redirect('/user/user-profile?message=Profile%20updated%20successfully');
     }
+});
+
+// Error handling middleware
+router.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(404).render('not-found/page-not-found.ejs');
 });
 
 module.exports = router;
