@@ -666,6 +666,10 @@ router.get('/privacy-policy', (req, res) => {
     res.render(('frontend/privacy-policy.ejs'));
 });
 
+router.get('/terms-of-use', (req, res) => {
+    res.render(('frontend/terms-of-use.ejs'));
+});
+
 router.get('/word-definition', wrapAsync(async (req, res) => {
     const word = req.query.word;
     const options = {
