@@ -5,7 +5,18 @@ const User = require('../models/user');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 const Image = require('../models/library');
+const wrapAsync = require('../middleware/wrapAsync');
 
+function wrapRoutesWithAsync(routes) {
+  for (const route of routes.stack) {
+    if (route.route) {
+      for (const layer of route.route.stack) {
+        layer.handle = wrapAsync(layer.handle);
+      }
+    }
+  }
+}
+wrapRoutesWithAsync(router);
 // Set up AWS S3
 const s3 = new S3Client({
   region: process.env.AWS_REGION,
@@ -125,6 +136,12 @@ router.delete('/image/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
+});
+
+// Error handling middleware
+router.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(404).render('not-found/page-not-found.ejs');
 });
 
 module.exports = router;

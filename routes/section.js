@@ -4,7 +4,6 @@ const Jimp = require('jimp');
 const Section = require('../models/section');
 const Page = require('../models/pages');
 const { parse } = require('node-html-parser');
-const wrapAsync = require('../middleware/wrapAsync');
 const router = express.Router();
 const { S3Client } = require("@aws-sdk/client-s3");
 const multer = require('multer');
@@ -13,7 +12,18 @@ require('dotenv').config();
 
 const methodOverride = require('method-override');
 router.use(methodOverride('_method'));
+const wrapAsync = require('../middleware/wrapAsync');
 
+function wrapRoutesWithAsync(routes) {
+  for (const route of routes.stack) {
+    if (route.route) {
+      for (const layer of route.route.stack) {
+        layer.handle = wrapAsync(layer.handle);
+      }
+    }
+  }
+}
+wrapRoutesWithAsync(router);
 // Set up AWS S3
 const s3 = new S3Client({
   region: process.env.AWS_REGION,
@@ -234,5 +244,11 @@ router.post("/edit/:id", upload.single('picture__input'), wrapAsync(async (req, 
     res.status(500).send("Internal Server Error");
   }
 }));
+
+// Error handling middleware
+router.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(404).render('not-found/page-not-found.ejs');
+});
 
 module.exports = router;

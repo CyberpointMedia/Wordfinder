@@ -12,11 +12,7 @@ const UserActivity = require('../models/user-activity');
 const Visit = require('../models/visitcount');
 const { ensureAdmin, ensureEditor, ensureAuthor } = require('../middleware/authMiddleware');
 const readingTime = require('reading-time');
-// Error handling middleware
-router.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(404).render('not-found/page-not-found.ejs');
-});
+
 
 // Route to handle admin registration
 router.get('/register', ensureAdmin ,(req, res) => {
@@ -39,7 +35,6 @@ router.post('/create-profile', ensureAdmin , async (req, res) => {
         const existingUser = await User.findOne({ email: req.body.email });
 
         if (existingUser) {
-            alert('User with this email already exists');
             throw new Error('User with this email already exists');
         }
         const user = new User({
@@ -69,8 +64,8 @@ router.post('/create-profile', ensureAdmin , async (req, res) => {
 
         res.redirect(`/admin/all-users?message=User profile created successfully`);
     } catch (err) {
-        res.redirect(`/admin/create-profile?message=Error creating User profile: ${err.message}`);
-    }
+res.redirect(`/admin/register?message=${encodeURIComponent(err.message)}`);   
+ }
 });
 
 // Route to show the edit profile form
@@ -282,6 +277,12 @@ router.get('/logout', (req, res) => {
     // Destroy the session to log the admin out
     req.logout();
     res.redirect('/admin/login');
+});
+
+// Error handling middleware
+router.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(404).render('not-found/page-not-found.ejs');
 });
 
 module.exports = router;
