@@ -9,80 +9,82 @@
                 <div class="flex flex-wrap items-center justify-center w-full align-middle">
                     <h1 class="block text-[#393939] text-5xl sm:text-7xl font-semibold mb-3 text-center"> Wordle Answer Finder</h1>
                     <div class="md:w-2/4 w-full mx-auto">
-                        <div class="show-output bg-white p-5 text-center my-5 shadow-md rounded hidden">
+                        <!-- correct Guesses words show here -->
+                        <div class="correct-words duration-500 transition border-dashed border-2 border-[#008000] py-7 px-4 text-center my-5 shadow-md rounded-[10px] hidden">
                             <h3 class="text-xl font-bold"></h3>
                         </div>
+
                         <form id="wordle-form" class="w-full mt-8 mb-6" action="/guess" method="post">
                             <div class="text-field-area mb-5">
                                 <h4 class="text-center mt-4 font-medium text-xl">
                                 Placed Letters
                                 </h4>
                             </div>
-                            <div id="box1" class="flex justify-content-center align-items-center">
-                                <div class="input-group SingleBoxText mb-3">
+                            <div id="box1" class="flex justify-content-center align-items-center gap-2">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box1_contains_1" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box1_first" maxlength="1">
                                 </div>
-                                <div class="input-group SingleBoxText mb-3">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box1_contains_2" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box1_second" maxlength="1">
                                 </div>
-                                <div class="input-group SingleBoxText mb-3">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box1_contains_3" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box1_third" maxlength="1">
                                 </div>
-                                <div class="input-group SingleBoxText mb-3">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box1_contains_4" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box1_fourth" maxlength="1">
                                 </div>
-                                <div class="input-group SingleBoxText mb-3">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box1_contains_5" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box1_fifth" maxlength="1">
                                 </div> 
                             </div>
-                            <div id="box2" class="flex justify-content-center align-items-center">
-                                <div class="input-group SingleBoxText mb-3">
+                            <div id="box2" class="flex justify-content-center align-items-center gap-2">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box2_contains_1" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box2_first" maxlength="1">
                                 </div>
-                                <div class="input-group SingleBoxText mb-3">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box2_contains_2" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box2_second" maxlength="1">
                                 </div>
-                                <div class="input-group SingleBoxText mb-3">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box2_contains_3" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box2_third" maxlength="1">
                                 </div>
-                                <div class="input-group SingleBoxText mb-3">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box2_contains_4" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box2_fourth" maxlength="1">
                                 </div>
-                                <div class="input-group SingleBoxText mb-3">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box2_contains_5" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box2_fifth" maxlength="1">
                                 </div> 
                             </div>
-                            <div id="box3" class="flex justify-content-center align-items-center">
-                                <div class="input-group SingleBoxText mb-3">
+                            <div id="box3" class="flex justify-content-center align-items-center gap-2">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box3_contains_1" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box3_first" maxlength="1">
                                 </div>
-                                <div class="input-group SingleBoxText mb-3">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box3_contains_2" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box3_second" maxlength="1">
                                 </div>
-                                <div class="input-group SingleBoxText mb-3">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box3_contains_3" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box3_third" maxlength="1">
                                 </div>
-                                <div class="input-group SingleBoxText mb-3">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box3_contains_4" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box3_fourth" maxlength="1">
                                 </div>
-                                <div class="input-group SingleBoxText mb-3">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box3_contains_5" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box3_fifth" maxlength="1">
                                 </div> 
                             </div>
-                            <div id="box4" class="flex justify-content-center align-items-center">
-                                <div class="input-group SingleBoxText mb-3">
+                            <div id="box4" class="flex justify-content-center align-items-center gap-2">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box4_contains_1" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box4_first" maxlength="1">
                                 </div>
-                                <div class="input-group SingleBoxText mb-3">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box4_contains_2" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box4_second" maxlength="1">
                                 </div>
-                                <div class="input-group SingleBoxText mb-3">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box4_contains_3" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box4_third" maxlength="1">
                                 </div>
-                                <div class="input-group SingleBoxText mb-3">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box4_contains_4" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box4_fourth" maxlength="1">
                                 </div>
-                                <div class="input-group SingleBoxText mb-3">
+                                <div class="input-group SingleBoxText mb-2">
                                     <input name="box4_contains_5" class="border rounded-lg border-[#007BFF] py-2.5 px-2 bg-white text-center w-full focus:outline-none focus:border-0" type="text" id="box4_fifth" maxlength="1">
                                 </div> 
                             </div>
@@ -242,12 +244,22 @@
         </div>
     </div>
     <!-- content section end -->
+
+    <!-- wrong Guesses words show here -->
+    <div class="wrong-words w-80 fixed top-20 right-5 duration-500 transition-all bg-white py-7 px-4 text-center my-5 shadow-md rounded hidden">
+        <svg class="absolute top-1 right-0 closeBtn" width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="white"></rect> <path d="M7 17L16.8995 7.10051" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M7 7.00001L16.8995 16.8995" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+        <h3 class="text-xl font-bold"></h3>
+    </div>
+
     <!-- footer start  -->
     <%- (include('../frontend/footer/footer.ejs')) %>
     <!-- footer end  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
+    $('.closeBtn').click (function() {
+        $('.wrong-words').addClass('hidden');
+    })
     console.log('ready');
     $('#wordle-form').on('submit', function(e) {
         e.preventDefault();
@@ -290,9 +302,10 @@ $(document).ready(function() {
                     if (allCorrect) {
                         const message = 'Congratulations, all characters in box ' + (boxIdx + 1) + ' are correct!';
                         console.log(message);
-                        $('.show-output').removeClass('hidden');
-                        $('.show-output h3').text(message);
-                        $('.show-output h3').css ('color', 'green')
+                        $('.correct-words').removeClass('hidden');
+                        $('.wrong-words').addClass('hidden');
+                        $('.correct-words h3').text(message);
+                        $('.correct-words h3').css ('color', 'green')
                         // setTimeout(function() {
                         //     location.reload();
                         // }, 3000);
@@ -303,18 +316,18 @@ $(document).ready(function() {
             if (response.word_to_guess) {
                 const message = 'The word to guess was: ' + response.word_to_guess;
                 console.log(message);
-                $('.show-output').removeClass('hidden');
-                $('.show-output h3').text(message);
-                $('.show-output h3').css ('color', 'black')
+                $('.wrong-words').removeClass('hidden');
+                $('.wrong-words h3').text(message);
+                $('.wrong-words h3').css ('color', 'black')
                 // setTimeout(function() {
                 //     location.reload();
                 // }, 3000);
             } else if (!response.was_correct.includes(true)) {
         const message = 'Wrong guess, try again!';
         console.log(message);
-        $('.show-output').removeClass('hidden');
-        $('.show-output h3').text(message);
-        $('.show-output h3').css ('color', 'red')
+        $('.wrong-words').removeClass('hidden');
+        $('.wrong-words h3').text(message);
+        $('.wrong-words h3').css ('color', 'red')
     }
         });
     });
