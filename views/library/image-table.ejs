@@ -1,0 +1,62 @@
+<div class="bg-white overflow-x-auto">
+    <table class="w-full divide-y divide-gray-200 border" id="example">
+      <thead class="text-left bg-[#DBF4FF]">
+        <tr>
+          <th>
+            <input type="checkbox" class="selectAll">
+          </th>
+          <th>
+            File
+          </th>
+          <th>
+            Author
+          </th>
+          <th>
+            Size
+          </th>
+          <th>
+            Date
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <% imageUrls.forEach((imageUrl, index)=> { %>
+          <tr class="">
+            <td>
+              <input type="checkbox" value="<%= index %>" class="">
+            </td>
+            <td>
+              <div class="">
+                <a class="row-title max-w-[50%]  text-[#2271b1] text-sm" href="<%= imageUrl %>">
+                  <img src="<%= imageUrl %>" class="w-20" />
+                  <strong class="text-[#2271b1] text-sm">Image <%= index + 1 %></strong>
+                </a>
+              </div>
+            </td>
+            <td><a href="javascript:void(0);" class="text-[#2271b1] text-sm">
+                <%= user.username %>
+              </a></td>
+            <td>4.54kb</td>
+            <td>Date</td>
+          </tr>
+          <% }) %>
+      </tbody>
+      <tfoot class="text-left bg-[#DBF4FF]">
+        <tr>
+          <th>
+            <input type="checkbox" class="selectAll">
+          </th>
+          <th>
+            File
+          </th>
+          <th>
+            Author
+          </th>
+          <th>Size</th>
+          <th>
+            Date
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>

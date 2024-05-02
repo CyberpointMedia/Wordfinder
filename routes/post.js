@@ -8,12 +8,13 @@ const { S3Client } = require("@aws-sdk/client-s3");
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 const Category = require('../models/categories'); 
-
+const setAdminStatusAndUsername = require('../middleware/setAdminStatusAndUsername');
 // Set up method-override
 const methodOverride = require('method-override');
 router.use(methodOverride('_method'));
 router.use(express.urlencoded({ extended: true }));
-
+const session = require('express-session');
+const flash = require('connect-flash');
 // Set up AWS S3
 const s3 = new S3Client({
   region: process.env.AWS_REGION,
@@ -22,12 +23,20 @@ const s3 = new S3Client({
     secretAccessKey: process.env.YOUR_AWS_SECRET_ACCESS_KEY
   }
 });
-
+router.use(setAdminStatusAndUsername);
 router.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(404).render('not-found/page-not-found.ejs');
 });
 
+
+router.use(session({
+  secret: 'your secret key',
+  resave: false,
+  saveUninitialized: true,
+}));
+
+router.use(flash());
 // Set up multer
 const upload = multer({
   storage: multerS3({
@@ -176,7 +185,8 @@ router.post('/edit/:id', upload.fields([{ name: 'picture__input', maxCount: 1 },
       return res.status(404).send('Post not found');
     }
   
-    post.title = req.body.title;
+    // Replace spaces in the title with hyphens
+    post.title = req.body.title.replace(/\s+/g, '-');
     post.heading = req.body.heading;
     post.description = req.body.description;
     post.status = req.body.status;
@@ -201,6 +211,7 @@ router.post('/edit/:id', upload.fields([{ name: 'picture__input', maxCount: 1 },
     await post.save();
     res.redirect('/post/edit/' + id);
 }));
+
 //change the status of the post
 router.put('/updateStatus/:id', async (req, res) => {
     try {
@@ -215,7 +226,7 @@ router.put('/updateStatus/:id', async (req, res) => {
 });
 
   ///categories routes 
-  router.get('/categories', wrapAsync(async (req, res) => {
+router.get('/categories', wrapAsync(async (req, res) => {
     try {
         // Fetch categories
         const categories = await Category.find();
@@ -227,6 +238,7 @@ router.put('/updateStatus/:id', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 }));
+
 // Handle category creation
 router.post('/categories', wrapAsync(async (req, res) => {
     let { catName, slugName, ParentCatName, DescriptionName } = req.body;
@@ -235,7 +247,7 @@ router.post('/categories', wrapAsync(async (req, res) => {
     const existingCategory = await Category.findOne({ name: catName });
 
     if (existingCategory) {
-        return res.status(400).send('Category with this name already exists');
+        return res.status(409).send('Category with this name already exists');
     }
 
     // If ParentCatName is an empty string, set it to null
@@ -256,10 +268,39 @@ router.post('/categories', wrapAsync(async (req, res) => {
     res.redirect('/post/categories'); // Redirect to the categories page
 }));
 
+// routes/categories.js
+router.get('/categories/edit/:id', async (req, res) => {
+  const { id } = req.params;
+  const categories = await Category.find();
+  const category = await Category.findById(id);
+  if (!category) {
+    return res.status(404).send('Category not found');
+  }
+  res.render('post/edit-categories', { categories, category, user: req.user,message: req.flash('message') });
+});
+
+// routes/categories.js
+router.post('/categories/edit/:id', async (req, res) => {
+  const { id } = req.params;
+  const { catName, slugName, ParentCatName, DescriptionName } = req.body;
+  const category = await Category.findById(id);
+  if (!category) {
+    return res.status(404).send('Category not found');
+  }
+  category.name = catName;
+  category.slug = slugName;
+  category.parentCategory = ParentCatName !== "" ? ParentCatName : null;
+  category.description = DescriptionName;
+  await category.save();
+  req.flash('message', 'Category updated successfully');
+  res.redirect(`/post/categories/edit/${id}`);
+});
+
 router.delete('/categories/:id', wrapAsync(async (req, res) => {
   const { id } = req.params;
   await Category.findByIdAndDelete(id);
-  res.redirect('/post/categories');
+  // Send a JSON response with a message property
+  res.json({ message: 'Category deleted successfully' });
 }));
   
   router.get('/tags', wrapAsync(async (req, res) => {

@@ -53,12 +53,64 @@ router.get('/', visitCounter, async (req, res) => {
 router.get('/wordle', visitCounter, async (req, res) => {
     try {
         console.log("wordle open ");
+        await getWordToGuess(); // Fetch a random word to guess
         res.render('frontend/wordle.ejs',);
     } catch (error) {
         console.error('Error fetching post:', error);
         res.status(500).send('Internal Server Error');
     }
 });
+let wordToGuess;
+async function getWordToGuess() {
+    const url = 'https://fly.wordfinderapi.com/api/search?letters&word_sorting=points&group_by_length=true&page_size=20000&dictionary=wwf&length=5';
+    const response = await fetch(url);
+    const data = await response.json();
+    let wordList = data.word_pages[0].word_list;
+    console.log("wordList",wordList); // log the entire word list
+    // Shuffle wordList
+    for (let i = wordList.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [wordList[i], wordList[j]] = [wordList[j], wordList[i]];
+    }
+    const randomIndex = Math.floor(Math.random() * wordList.length);
+    console.log("randomIndex",randomIndex);
+    wordToGuess = wordList[randomIndex].word;
+    console.log("wordToGuess",wordToGuess);
+}
+router.post('/guess', (req, res) => {
+        console.log("post guess",wordToGuess);
+        const guesses = [];
+        const characterInfos = [];
+        const wasCorrectArray = [];
+        for (let boxNum = 1; boxNum <= 4; boxNum++) {
+            let guess = '';
+            for (let inputNum = 1; inputNum <= 5; inputNum++) {
+                guess += req.body[`box${boxNum}_contains_${inputNum}`];
+            }
+            guesses.push(guess);
+            const wasCorrect = guess === wordToGuess;
+            wasCorrectArray.push(wasCorrect);
+            const characterInfo = guess.split('').map((char, idx) => {
+                return {
+                    char,
+                    scoring: {
+                        in_word: wordToGuess.includes(char),
+                        correct_idx: wordToGuess[idx] === char
+                    }
+                };
+            });
+            characterInfos.push(characterInfo);
+        }
+        const response = {
+            guesses,
+            was_correct: wasCorrectArray,
+            character_infos: characterInfos
+        };
+        if (guesses.every(guess => guess.length > 0) && !wasCorrectArray.includes(true)) {
+            response.word_to_guess = wordToGuess;
+        }
+        res.json(response);
+    });
 
 //scrabble-dictionary
 router.get('/scrabble-dictionary', visitCounter, async (req, res) => {
@@ -576,16 +628,37 @@ router.get('/articles/:title', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
-
 router.get('/articles', async (req, res) => {
     try {
-        const posts = await Post.find({ status: 'Published' }); // Fetch all posts from the database
-        res.render('post/articles', { morePosts: posts }); // Render the articles.ejs view with the posts data
+        const page = req.params.page || 1; // Get the page number from the request parameters
+        const limit = 9; // Set the number of posts per page
+        const skip = (page - 1) * limit; // Calculate the number of posts to skip
+
+        const posts = await Post.find({ status: 'Published' }).skip(skip).limit(limit); // Fetch posts from the database with pagination
+        const totalPosts = await Post.countDocuments({ status: 'Published' }); // Get the total number of posts
+
+        res.render('post/articles', { morePosts: posts, currentPage: page, totalPages: Math.ceil(totalPosts / limit),totalPosts:totalPosts  }); // Render the articles.ejs view with the posts data and pagination info
     } catch (err) {
         console.error(err);
-        res.status(500).send('Server Error');
+        res.status(500).send('Server Error',err);
     }
 });
+router.get('/articles/page/:page?', async (req, res) => {
+    try {
+        const page = req.params.page || 1; // Get the page number from the request parameters
+        const limit = 9; // Set the number of posts per page
+        const skip = (page - 1) * limit; // Calculate the number of posts to skip
+
+        const posts = await Post.find({ status: 'Published' }).skip(skip).limit(limit); // Fetch posts from the database with pagination
+        const totalPosts = await Post.countDocuments({ status: 'Published' }); // Get the total number of posts
+
+        res.render('post/articles', { morePosts: posts, currentPage: page, totalPages: Math.ceil(totalPosts / limit),totalPosts:totalPosts  }); // Render the articles.ejs view with the posts data and pagination info
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error',err);
+    }
+});
+
 router.get('/contact', (req, res) => {
     res.render(('frontend/contact.ejs'));
 });
@@ -625,7 +698,7 @@ router.get('/input', (req, res) => {
 
 router.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(404).render('not-found/page-not-found.ejs');
+    res.status(404).render('not-found/page-not-found.ejs',err);
 });
 
 module.exports = router;

@@ -69,6 +69,11 @@ input:focus-visible+.formQuestionMark-icon .input-icon {
     padding-left: var(--bs-gutter-x, 1.75rem);
 }
 
+.home header{
+    background-color: #DBF4FF !important;
+    box-shadow: none;
+}
+
 .cardHeader {
     position: relative;
     border-radius: 16px 16px 0 0;

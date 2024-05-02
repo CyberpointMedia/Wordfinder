@@ -6,7 +6,7 @@
             <!-- header end here -->
 
             <!-- content section start -->
-            <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-20">
+            <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-12">
                 <div class="container">
                     <div class="flex flex-col gap-8 md:flex-row">
                         <!-- left col start -->
@@ -59,7 +59,7 @@
                                                         <!-- Log total words for this length -->
                                             </div>
                                             <div
-                                                class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px]">
+                                                class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px]">
                                                 <div class="flex flex-wrap gap-3 tagsMain"
                                                     id="words_card_<%= specifiedLength %>">
                                                     <% wordsByLength[specifiedLength].forEach(wordObj=> { %>
@@ -112,7 +112,7 @@
                                                                             Letter Words
                                                                     </div>
                                                                     <div
-                                                                        class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px]">
+                                                                        class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px]">
                                                                         <div class="flex flex-wrap gap-3 tagsMain"
                                                                             id="words_card_<%= length %>">
                                                                             <% wordsByLength[length].forEach(wordObj=> {
@@ -162,10 +162,11 @@
                                                                         <% }); %>
                                                                             <% } %>
                                                                                 <!-- ... -->
-                                                                                <div
-                                                                                    class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
-                                                                                            <%- page.content %>
-                                                                                </div>
+                                                                                <% if (page.content && page.content.trim() !== '') { %>
+                                                                                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                                                                                        <%- page.content %>
+                                                                                    </div>
+                                                                                <% } %>
 
                         </div>
                         <!-- left col end -->

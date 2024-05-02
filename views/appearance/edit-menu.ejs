@@ -233,7 +233,7 @@
                                             id="hs-basic-nested-sub-heading-colOne ">
                                             <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]
                                         " aria-controls="hs-basic-nested-sub-collapse-colOne ">
-                                                <div id="page-post-custom-name">Home</div>
+                                                <div id="page-post-custom-name">Creating ...</div>
                                                 <svg class="block w-4 h-4 hs-accordion-active:hidden "
                                                     xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
                                                     viewBox="0 0 24 24 " fill="none " stroke="currentColor "
@@ -379,7 +379,12 @@
                                 };
 
                                 document.getElementById('remove-button').addEventListener('click', function () {
-                                    var menuId = document.getElementById('select-menu-to-edit').value;
+                                    var selectMenu = document.getElementById('select-menu-to-edit');
+                                    var menuId = selectMenu.value;
+
+                                    // If this is the last menu, redirect to '/appearance/nav-menu' after deletion
+                                    var isLastMenu = selectMenu.options.length === 1;
+
                                     fetch('/appearance/delete-menu/' + menuId, {
                                         method: 'DELETE',
                                     })
@@ -394,13 +399,16 @@
                                             }).showToast();
 
                                             // Remove the menu from the select menu
-                                            var selectMenu = document.getElementById('select-menu-to-edit');
-                                            var options = selectMenu.options;
-                                            for (var i = 0; i < options.length; i++) {
-                                                if (options[i].value == menuId) {
+                                            for (var i = 0; i < selectMenu.options.length; i++) {
+                                                if (selectMenu.options[i].value == menuId) {
                                                     selectMenu.remove(i);
                                                     break;
                                                 }
+                                            }
+
+                                            // If this was the last menu, redirect to '/appearance/nav-menu'
+                                            if (isLastMenu) {
+                                                window.location.href = '/appearance/nav-menu';
                                             }
                                         })
                                         .catch(error => console.error('Error:', error));
@@ -457,6 +465,10 @@
                                     });
                                 });
                                 function addButton(name, allNames, index) {
+                                    // If the name is empty, don't add the button
+                                    if (!name) {
+                                        return;
+                                    }
                                     $('#page-post-custom-name').text(name);
                                     $('#page-post-custom').append(`
             <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF] mt-5" aria-controls="hs-basic-nested-sub-collapse-colOne">
