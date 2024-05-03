@@ -260,9 +260,34 @@ $(document).ready(function() {
     $('.closeBtn').click (function() {
         $('.wrong-words').addClass('hidden');
     })
+    
+       // Add keyup event handler here
+       $('input').on('keyup', function() {
+        if ($(this).val()) {
+            $(this).closest('.input-group').next('.input-group').find('input').focus();
+        }
+    });
     console.log('ready');
     $('#wordle-form').on('submit', function(e) {
         e.preventDefault();
+
+        
+       // Loop over each box
+       for (let boxNum = 1; boxNum <= 4; boxNum++) {
+        // Check if all inputs in the current box are filled out
+        var isBoxFilled = true;
+        $(`#box${boxNum} input`).each(function() {
+            if (!$(this).val()) {
+                isBoxFilled = false;
+                return false; // break out of the .each() loop
+            }
+        });
+
+        // If the current box is filled out, make the inputs in the current box read-only
+        if (isBoxFilled) {
+            $(`#box${boxNum} input`).prop('readonly', true);
+        }
+    }
 
         const data = {};
         for (let boxNum = 1; boxNum <= 4; boxNum++) {
@@ -283,7 +308,7 @@ $(document).ready(function() {
                         const input = $(inputId);
                         if (info.scoring.correct_idx) {
                             input.css({
-                                'background-color': 'rgb(0, 128, 0, 0.21)',
+                                'background-color': 'rgb(0, 128, 0, 0.08)',
                                 'color': 'green',
                                 'border-color': 'rgb(0, 128, 0, 0.21)',
                                 'font-weight': 'bold'
@@ -292,7 +317,7 @@ $(document).ready(function() {
                             input.css({
                                 'background-color': 'rgb(255, 123, 123, 0.21)',
                                 'color': 'red',
-                                'border-color': 'rgb(255, 123, 123, 0.21)',
+                                'border-color': 'rgb(255, 123, 123, 0.18)',
                                 'font-weight': 'bold'
                             });
                             allCorrect = false;
