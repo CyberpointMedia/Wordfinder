@@ -101,6 +101,7 @@ router.post('/addcustomhtml', wrapAsync(async (req, res) => {
   await footer.save();
   res.redirect('/footer/widgets?message=Custom HTML Widget added successfully');
 }));
+
 router.post('/addcontactdetails', wrapAsync(async (req, res) => {
   // The column where the widget should be added
   const column = req.body.column;
@@ -142,6 +143,7 @@ router.post('/addimage', wrapAsync(async (req, res) => {
 
   res.redirect('/footer/widgets?message=Image Widget added successfully');
 }));
+
 router.post('/texteditor', wrapAsync(async (req, res) => {
   // The _id of the widget to update
   const widgetId = req.body.widgetId;

@@ -242,6 +242,7 @@
             <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
             <script>
                 $(document).ready(function () {
                     var isCategoryChange = false;
@@ -303,26 +304,66 @@
                 }
 
                 $(document).ready(function () {
-                    // Trigger the change event for the dropdown after the page loads
-                    $('#mySelect').trigger('change');
+                    // Initialize Select2 on your select box
+                    $('#mySelect').select2();
+                
                     $('#mySelect').on('change', function () {
-                        // Clear the current list
+                        // Clear the list
                         $('#selectedValuesList').empty();
-                        // Update the list with the selected sections
-                        var selectedSections = $(this).val();
-                        if (selectedSections) {
-                            // Append the section titles to the list
-                            selectedSections.forEach(function (sectionId) {
-                                // Use the "selectedSections" array to find the corresponding section
-                                var section = $('#mySelect option[value="' + sectionId + '"]');
-                                var sectionTitle = section.text(); // Get the section title
-                                $('#selectedValuesList').append('<li>' + sectionTitle + '</li>');
-                            });
-                        }
-                        // Update the hidden input field with cleaned sections
-                        $('#selectedSectionsInput').val(JSON.stringify(selectedSections));
+                
+                        // Get selected options
+                        var selectedOptions = $(this).find('option:selected');
+                        selectedOptions.each(function() {
+                            var sectionId = $(this).val().trim();
+                            var sectionTitle = $(this).text().trim();
+                            console.log("sectionTitle mk",sectionTitle);
+                
+                            // Add the item to the list
+                            $('#selectedValuesList').append('<li>' + sectionTitle + '</li>');
+                        });
+                
+                        // Get all list items
+                        var allListItems = $('#selectedValuesList li').map(function() {
+                            return $(this).text();
+                        }).get();
+                
+                        $('#selectedSectionsInput').val(JSON.stringify(allListItems));
+                
+                        // Make the list items sortable
+                        new Sortable(selectedValuesList, {
+                            animation: 150,
+                            ghostClass: 'blue-background-class'
+                        });   
                     });
                 });
+                // $(document).ready(function () {
+                //     $('#mySelect').on('change', function () {
+                //         // Get selected options
+                //         var selectedOptions = $(this).find('option:selected');
+                //         selectedOptions.each(function() {
+                //             var sectionId = $(this).val().trim();
+                //             var sectionTitle = $(this).text().trim();
+                //             console.log("sectionTitle mk",sectionTitle);
+                //             // Check if the item is already in the list
+                //             if ($('#selectedValuesList li:contains(' + sectionTitle + ')').length === 0) {
+                //                 $('#selectedValuesList').append('<li>' + sectionTitle + '</li>');
+                //             }
+                //         });
+
+                //         // Get all list items
+                //         var allListItems = $('#selectedValuesList li').map(function() {
+                //             return $(this).text();
+                //         }).get();
+
+                //         $('#selectedSectionsInput').val(JSON.stringify(allListItems));
+
+                //         // Make the list items sortable
+                //         new Sortable(selectedValuesList, {
+                //             animation: 150,
+                //             ghostClass: 'blue-background-class'
+                //         });   
+                //     });
+                // });
             </script>
     </body>
 

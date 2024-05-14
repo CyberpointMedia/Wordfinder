@@ -311,7 +311,7 @@ router.delete('/categories/:id', wrapAsync(async (req, res) => {
   res.json({ message: 'Category deleted successfully' });
 }));
   
-  router.get('/tags', wrapAsync(async (req, res) => {
+router.get('/tags', wrapAsync(async (req, res) => {
     try {
         res.render('post/tags',{user: req.user});
     } catch (error) {

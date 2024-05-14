@@ -255,6 +255,8 @@
     <%- (include('../frontend/footer/footer.ejs')) %>
     <!-- footer end  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script>
 $(document).ready(function() {
     $('.closeBtn').click (function() {
@@ -340,20 +342,27 @@ $(document).ready(function() {
 
             if (response.word_to_guess) {
                 const message = 'The word to guess was: ' + response.word_to_guess;
-                console.log(message);
-                $('.wrong-words').removeClass('hidden');
-                $('.wrong-words h3').text(message);
-                $('.wrong-words h3').css ('color', 'black')
-                // setTimeout(function() {
-                //     location.reload();
-                // }, 3000);
+                Toastify({
+                    text: message,
+                    duration: 10000,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: 'right', // `left`, `center` or `right`
+                    backgroundColor: "linear-gradient(to right, #000000, #000000)",
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                }).showToast();
             } else if (!response.was_correct.includes(true)) {
-        const message = 'Wrong guess, try again!';
-        console.log(message);
-        $('.wrong-words').removeClass('hidden');
-        $('.wrong-words h3').text(message);
-        $('.wrong-words h3').css ('color', 'red')
-    }
+                const message = 'Wrong guess, try again!';
+                Toastify({
+                    text: message,
+                    duration: 3000,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: 'right', // `left`, `center` or `right`
+                    backgroundColor: "linear-gradient(to right, #FF0000, #FF0000)",
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                }).showToast();
+            }
         });
     });
 });

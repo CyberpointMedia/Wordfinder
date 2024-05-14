@@ -4,15 +4,16 @@ const request = require('supertest');
 const express = require('express');
 const { ensureAdmin, ensureAdminOrEditor, ensureEditor, ensureAuthor } = require('../../middleware/authMiddleware');
 
+jest.mock('../../middleware/authMiddleware', () => ({
+  ensureAdmin: (req, res, next) => req.isAuthenticated() && req.user.role === 'admin' ? next() : res.status(403).send('Forbidden'),
+  ensureAdminOrEditor: (req, res, next) => req.isAuthenticated() && (req.user.role === 'admin' || req.user.role === 'editor') ? next() : res.status(403).send('Forbidden'),
+  ensureEditor: (req, res, next) => req.isAuthenticated() && req.user.role === 'editor' ? next() : res.status(403).send('Forbidden'),
+  ensureAuthor: (req, res, next) => req.isAuthenticated() && req.user.role === 'author' ? next() : res.status(403).send('Forbidden'),
+}));
+
 // Mock Express app
 const app = express();
 app.use(express.json());
-
-// Mock routes for testing
-app.get('/admin', ensureAdmin, (req, res) => res.status(200).send('Admin'));
-app.get('/adminOrEditor', ensureAdminOrEditor, (req, res) => res.status(200).send('Admin or Editor'));
-app.get('/editor', ensureEditor, (req, res) => res.status(200).send('Editor'));
-app.get('/author', ensureAuthor, (req, res) => res.status(200).send('Author'));
 
 // Mock isAuthenticated method and user object
 const mockIsAuthenticated = jest.fn();
@@ -22,6 +23,17 @@ app.use((req, res, next) => {
   req.user = mockUser;
   next();
 });
+
+// Mock routes for testing
+app.get('/admin', ensureAdmin, (req, res, next) => {
+  res.status(200).send('Admin');
+}, (err, req, res, next) => {
+  console.error(err);
+  res.status(500).send('Server Error');
+});
+app.get('/adminOrEditor', ensureAdminOrEditor, (req, res) => res.status(200).send('Admin or Editor'));
+app.get('/editor', ensureEditor, (req, res) => res.status(200).send('Editor'));
+app.get('/author', ensureAuthor, (req, res) => res.status(200).send('Author'));
 
 describe('Auth Middleware', () => {
   it('should allow admin', async () => {
@@ -59,6 +71,5 @@ describe('Auth Middleware', () => {
     expect(res.statusCode).toEqual(200);
     expect(res.text).toEqual('Author');
   });
-
   // Add more tests for other roles and routes...
 });

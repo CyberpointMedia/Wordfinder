@@ -30,6 +30,7 @@ router.get('/login', (req, res) => {
 
     res.render('auth/login',{error});
 });
+
 router.post('/login', logUserActivity('Login'), function(req, res, next) { // Use the logUserActivity middleware in the login route
   passport.authenticate('local', function(err, user, info) {
     if (err) { 

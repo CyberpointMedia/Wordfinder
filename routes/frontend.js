@@ -182,8 +182,8 @@ router.post('/send-email', upload.single('fileBrowse'), (req, res) => {
       port: 587,
       secure: false, // true for 465, false for other ports
       auth: {
-        user: 'services@cyberpointmedia.com',
-        pass: 'untnogualcpwgohn'
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS
       }
     });
   

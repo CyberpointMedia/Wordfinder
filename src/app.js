@@ -77,10 +77,12 @@ app.use('/admin/node_modules', express.static(path.join(__dirname, '../node_modu
 app.use(methodOverride('_method'));
 
 app.use(session({
-    secret: 'your secret key',
+    secret: process.env.cookieSecret,
     resave: false,
     saveUninitialized: false,
     cookie: {
+        // secure: true,
+        httpOnly: true,
         maxAge: 24 * 60 * 60 * 1000 // expires in 1 day
     }
 }));
