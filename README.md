@@ -43,75 +43,83 @@ The application will be available at `http://localhost:8080` by default.
 ## File Structure
 
 ```
-wordfinder/ 
-├── data.js 
-├── index.js 
-├── middleware/ 
-│   ├── authmiddleware.js 
-|   ├── fetchPageAndMorePosts.js
-│   ├── user-activity.js 
+wordfinder/
+├── data.js
+├── index.js
+├── middleware/
+│   ├── authmiddleware.js
+│   ├── fetchPageAndMorePosts.js
+│   ├── user-activity.js
 │   ├── setAdminStatusAndUsername.js
-│   ├── visitCounter.js 
-│   └── wrapAsync.js 
-├── models/ 
-│   ├── appearance.js 
-│   ├── categories.js 
-│   ├── editor.js 
-│   ├── footer.js 
-│   ├── library.js 
-│   ├── pages.js 
-│   ├── post.js 
-│   ├── section.js 
-│   ├── user-activity.js 
-│   ├── user.js 
-│   ├── visitcount.js 
-│   └── widget.js 
-├── node_modules/ 
-├── public/ 
-│   ├── images/ 
-│   └── js/ 
-│       ├── app.js 
-│       ├── config.js 
-│       ├── custom.js 
-│       ├── jquery.min.js 
-│       └── passport-config.js 
-├── routes/ 
-│   ├── admin.js 
-│   ├── appearance.js 
-│   ├── auth.js 
-│   ├── category.js 
-│   ├── editor.js 
-│   ├── footer.js 
-│   ├── frontend.js 
-│   ├── library.js 
-│   ├── pages.js 
-│   ├── post.js 
-│   ├── section.js 
-│   └── user-profile.js 
-├── src/ 
-│   └── app.js 
-├── upload/ 
-├── views/ 
-│   ├── admin/ 
-│   ├── appearance/ 
-│   ├── auth/ 
-│   ├── frontend/ 
-│   ├── header/ 
-│   ├── library/ 
-│   ├── not-found/ 
-│   ├── post/ 
-│   ├── script/ 
-│   ├── section/ 
-│   ├── sidenav/ 
-│   └── user/ 
-├── .dockerignore 
-├── .env 
-├── .gitignore 
-├── Dockerfile 
-├── package-lock.json 
-├── package.json 
-├── postcss.config.js 
+│   ├── visitCounter.js
+│   └── wrapAsync.js
+├── models/
+│   ├── appearance.js
+│   ├── categories.js
+│   ├── editor.js
+│   ├── footer.js
+│   ├── library.js
+│   ├── pages.js
+│   ├── post.js
+│   ├── section.js
+│   ├── user-activity.js
+│   ├── user.js
+│   ├── visitcount.js
+│   └── widget.js
+├── node_modules/
+├── public/
+│   ├── images/
+│   └── js/
+│       ├── app.js
+│       ├── config.js
+│       ├── custom.js
+│       ├── jquery.min.js
+│       └── passport-config.js
+├── routes/
+│   ├── admin.js
+│   ├── appearance.js
+│   ├── auth.js
+│   ├── category.js
+│   ├── editor.js
+│   ├── footer.js
+│   ├── frontend.js
+│   ├── library.js
+│   ├── pages.js
+│   ├── post.js
+│   ├── section.js
+│   └── user-profile.js
+├── src/
+│   └── app.js
+├── test/
+│   ├── middleware/
+│   │   └── exampleMiddleware.test.js
+│   ├── models/
+│   │   └── user.test.js
+│   └── routes/
+│       └── auth.test.js
+├── upload/
+├── views/
+│   ├── admin/
+│   ├── appearance/
+│   ├── auth/
+│   ├── frontend/
+│   ├── header/
+│   ├── library/
+│   ├── not-found/
+│   ├── post/
+│   ├── script/
+│   ├── section/
+│   ├── sidenav/
+│   └── user/
+├── .dockerignore
+├── .env
+├── .gitignore
+├── Dockerfile
+├── package-lock.json
+├── package.json
+├── postcss.config.js
 └── tailwind.config.js
+
 ```
 Here's the list of npm packages used in your project:
 
