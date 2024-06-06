@@ -1,6 +1,6 @@
 <!-- Image collapse start -->
 <div class="mb-4 draggable hs-accordion" id="hs-basic-nested-sub-heading-four">
-    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-four">
+    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-background-gradient rounded-[5px] border border-[#B1D5FF] shadow-custom" aria-controls="hs-basic-nested-sub-collapse-four">
     Image
     <svg class="block w-4 h-4 hs-accordion-active:hidden"
         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -20,9 +20,10 @@
         <div class="py-5">
             <form action="/footer/image" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="widgetId" value="<%= widget._id %>">
-                <label for="image" class="mb-3">Image:</label>
+                <label for="image" class="text-xs text-black font-normal mb-2">Image:</label>
+
                 <input type="file" id="image" name="image" required>
-                <button type="submit" class="create-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4">Save</button>
+                <button type="submit" class="create-btn py-2 w-24 text-white bg-[#007BFF] rounded-[2px] text-sm font-normal mt-4">Save</button>
             </form>
             <ul class="mb-6">
                 <% widgets.forEach(widget => { %>

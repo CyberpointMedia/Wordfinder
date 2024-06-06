@@ -8,17 +8,17 @@
                     <%- include('../header/header.ejs') %>
                         <!-- main content start here -->
                         <main class="px-5 py-8">
+                            <h2 class="mb-4 mt-8 text-3xl font-medium text-black">
+                                Available Widgets
+                            </h2>
                             <div class="flex flex-col gap-6 mt-6 md:flex-row">
                                 <!-- available widgets start -->
-                                <div class="w-full md:w-2/5 ">
-                                    <h2 class="mb-4 text-xl font-bold text-black">
-                                        Available Widgets
-                                    </h2>
-                                    <div class="px-5 pt-8 pb-4 bg-white border rounded shadow-sm cardBody">
-                                        <div class="hs-accordion-group">
+                                <div class="w-full md:w-[45%] me-10">
+                                    <div class="cardBody">
+                                        <div class="hs-accordion-group grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <!-- text editor start -->
-                                            <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-one">
-                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-one">
+                                            <div class="hs-accordion" id="hs-basic-nested-sub-heading-one">
+                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-4 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-background-gradient rounded-[5px] border border-[#B1D5FF] hs-accordion-active:rounded-b-none hs-accordion-active:border-b-0 shadow-custom" aria-controls="hs-basic-nested-sub-collapse-one">
                                                     Text Editor
                                                     <svg class="block w-4 h-4 hs-accordion-active:hidden"
                                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -34,30 +34,33 @@
                                                         <path d="m18 15-6-6-6 6" />
                                                     </svg>
                                                 </button>
-                                                <div id="hs-basic-nested-sub-collapse-one" class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-one">
+                                                <div id="hs-basic-nested-sub-collapse-one" class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border rounded-[5px] border-t-0 border-[#B1D5FF]" aria-labelledby="hs-basic-nested-sub-heading-one">
                                                     <div class="py-5">
-                                                        <form action="/footer/addtexteditor" method="POST"   >
-                                                            <div class="flex flex-col justify-start sm:items-center sm:flex-row">
-                                                                <label for="columnSelect" class="mb-4 text-sm font-normal sm:mb-0">Select Column:</label>
-                                                                <div class="sm:ml-5">
-                                                                    <select id="columnSelect" name="column" class="w-full px-3 py-3 sm:w-32">
-                                                                        <% columns.forEach(column=> { %>
-                                                                            <option value="<%= column %>">
-                                                                                <%= column %>
-                                                                            </option>
-                                                                            <% }) %>
-                                                                    </select>
+                                                        <form action="/footer/addtexteditor" method="POST">
+                                                                <label for="columnSelect" class="text-xs text-black font-normal mb-2">Select Column:</label>
+                                                                <select id="columnSelect" name="column" class="w-full border border-[#B1D5FF] rounded-[5px] p-4 font-normal text-sm mb-[10px] bg-white bg-opacity-95">
+                                                                    <% columns.forEach(column=> { %>
+                                                                        <option value="<%= column %>">
+                                                                            <%= column %>
+                                                                        </option>
+                                                                        <% }) %>
+                                                                </select>
+                                                                <div class="flex flex-col justify-end gap-2 md:flex-row">
+                                                                    <button type="reset" class="cancel-wedgets py-2 px-4 text-[#03316A] text-sm font-normal rounded-[2px] border border-[#03316A]" aria-controls="hs-basic-nested-sub-collapse-four">
+                                                                        Cancel
+                                                                    </button>
+                                                                    <button type="submit" class="add-btn py-2 w-24 text-white bg-[#007BFF] rounded-[2px] text-sm font-normal">
+                                                                        Add Widget
+                                                                    </button>
                                                                 </div>
-                                                                <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
-                                                            </div>
                                                         </form>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- text editor end -->
                                             <!-- custom HTML start -->
-                                            <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-two">
-                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-two">
+                                            <div class="hs-accordion" id="hs-basic-nested-sub-heading-two">
+                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-4 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-background-gradient rounded-[5px] border border-[#B1D5FF] hs-accordion-active:rounded-b-none hs-accordion-active:border-b-0 shadow-custom" aria-controls="hs-basic-nested-sub-collapse-two">
                                                     Custom HTML
                                                     <svg class="block w-4 h-4 hs-accordion-active:hidden"
                                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -73,23 +76,25 @@
                                                         <path d="m18 15-6-6-6 6" />
                                                     </svg>
                                                 </button>
-                                                <div id="hs-basic-nested-sub-collapse-two" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-two">
+                                                <div id="hs-basic-nested-sub-collapse-two" class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border rounded-[5px] border-t-0 border-[#B1D5FF]" aria-labelledby="hs-basic-nested-sub-heading-two">
                                                     <div class="py-5">
                                                         <form action="/footer/addcustomhtml" method="POST"   >
-                                                            <div class="flex flex-col justify-start sm:items-center sm:flex-row">
-                                                                <label for="columnSelect" class="mb-4 text-sm font-normal sm:mb-0">Select Column:</label>
-                                                                <div class="sm:ml-5">
-                                                                    <select id="columnSelect" name="column" class="w-full px-3 py-3 sm:w-32">
-                                                                        <% columns.forEach(column=> { %>
-                                                                            <option value="<%= column %>">
-                                                                                <%= column %>
-                                                                            </option>
-                                                                            <% }) %>
-                                                                    </select>
+                                                            <label for="columnSelect" class="text-xs text-black font-normal mb-2">Select Column:</label>
+                                                                <select id="columnSelect" name="column" class="w-full border border-[#B1D5FF] rounded-[5px] p-4 font-normal text-sm mb-[10px] bg-white bg-opacity-95">
+                                                                    <% columns.forEach(column=> { %>
+                                                                        <option value="<%= column %>">
+                                                                            <%= column %>
+                                                                        </option>
+                                                                        <% }) %>
+                                                                </select>
+                                                                <div class="flex flex-col justify-end gap-2 md:flex-row">
+                                                                    <button type="reset" class="cancel-wedgets py-2 px-4 text-[#03316A] text-sm font-normal rounded-[2px] border border-[#03316A]" aria-controls="hs-basic-nested-sub-collapse-four">
+                                                                        Cancel
+                                                                    </button>
+                                                                    <button type="submit" class="add-btn py-2 w-24 text-white bg-[#007BFF] rounded-[2px] text-sm font-normal">
+                                                                        Add Widget
+                                                                    </button>
                                                                 </div>
-                                                                <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
-                                                            </div>
-
                                                         </form>
                                                         </ul>
                                                     </div>
@@ -97,8 +102,8 @@
                                             </div>
                                             <!-- custom HTML end -->
                                             <!-- custom Details start -->
-                                            <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-three">
-                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-three">
+                                            <div class="hs-accordion" id="hs-basic-nested-sub-heading-three">
+                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-4 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-background-gradient rounded-[5px] border border-[#B1D5FF] hs-accordion-active:rounded-b-none hs-accordion-active:border-b-0 shadow-custom" aria-controls="hs-basic-nested-sub-collapse-three">
                                                     Contact Details
                                                     <svg class="block w-4 h-4 hs-accordion-active:hidden"
                                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -114,23 +119,25 @@
                                                         <path d="m18 15-6-6-6 6" />
                                                     </svg>
                                                 </button>
-                                                <div id="hs-basic-nested-sub-collapse-three" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-three">
+                                                <div id="hs-basic-nested-sub-collapse-three" class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border rounded-[5px] border-t-0 border-[#B1D5FF]" aria-labelledby="hs-basic-nested-sub-heading-three">
                                                     <div class="py-5">
                                                         <form action="/footer/addcontactdetails" method="POST"   >
-                                                            <div class="flex flex-col justify-start sm:items-center sm:flex-row">
-                                                                <label for="columnSelect" class="mb-4 text-sm font-normal sm:mb-0">Select Column:</label>
-                                                                <div class="sm:ml-5">
-                                                                    <select id="columnSelect" name="column" class="w-full px-3 py-3 sm:w-32">
-                                                                        <% columns.forEach(column=> { %>
-                                                                            <option value="<%= column %>">
-                                                                                <%= column %>
-                                                                            </option>
-                                                                            <% }) %>
-                                                                    </select>
+                                                            <label for="columnSelect" class="text-xs text-black font-normal mb-2">Select Column:</label>
+                                                                <select id="columnSelect" name="column" class="w-full border border-[#B1D5FF] rounded-[5px] p-4 font-normal text-sm mb-[10px] bg-white bg-opacity-95">
+                                                                    <% columns.forEach(column=> { %>
+                                                                        <option value="<%= column %>">
+                                                                            <%= column %>
+                                                                        </option>
+                                                                        <% }) %>
+                                                                </select>
+                                                                <div class="flex flex-col justify-end gap-2 md:flex-row">
+                                                                    <button type="reset" class="cancel-wedgets py-2 px-4 text-[#03316A] text-sm font-normal rounded-[2px] border border-[#03316A]" aria-controls="hs-basic-nested-sub-collapse-four">
+                                                                        Cancel
+                                                                    </button>
+                                                                    <button type="submit" class="add-btn py-2 w-24 text-white bg-[#007BFF] rounded-[2px] text-sm font-normal">
+                                                                        Add Widget
+                                                                    </button>
                                                                 </div>
-                                                                <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
-                                                            </div>
-
                                                         </form>
                                                         </ul>
                                                     </div>
@@ -138,8 +145,8 @@
                                             </div>
                                             <!-- custom HTML end -->
                                             <!-- Image collapse start -->
-                                            <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-four">
-                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-four">
+                                            <div class="hs-accordion" id="hs-basic-nested-sub-heading-four">
+                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-4 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-background-gradient rounded-[5px] border border-[#B1D5FF] hs-accordion-active:rounded-b-none hs-accordion-active:border-b-0 shadow-custom" aria-controls="hs-basic-nested-sub-collapse-four">
                                                     Image
                                                     <svg class="block w-4 h-4 hs-accordion-active:hidden"
                                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -155,22 +162,25 @@
                                                         <path d="m18 15-6-6-6 6" />
                                                     </svg>
                                                 </button>
-                                                <div id="hs-basic-nested-sub-collapse-four" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-four">
+                                                <div id="hs-basic-nested-sub-collapse-four" class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border rounded-[5px] border-t-0 border-[#B1D5FF]" aria-labelledby="hs-basic-nested-sub-heading-four">
                                                     <div class="py-5">
                                                         <form action="/footer/addimage" method="POST"   >
-                                                            <div class="flex flex-col justify-start sm:items-center sm:flex-row">
-                                                                <label for="columnSelect" class="mb-4 text-sm font-normal sm:mb-0">Select Column:</label>
-                                                                <div class="sm:ml-5">
-                                                                    <select id="columnSelect" name="column" class="w-full px-3 py-3 sm:w-32">
-                                                                        <% columns.forEach(column=> { %>
-                                                                            <option value="<%= column %>">
-                                                                                <%= column %>
-                                                                            </option>
-                                                                            <% }) %>
-                                                                    </select>
+                                                            <label for="columnSelect" class="text-xs text-black font-normal mb-2">Select Column:</label>
+                                                                <select id="columnSelect" name="column" class="w-full border border-[#B1D5FF] rounded-[5px] p-4 font-normal text-sm mb-[10px] bg-white bg-opacity-95">
+                                                                    <% columns.forEach(column=> { %>
+                                                                        <option value="<%= column %>">
+                                                                            <%= column %>
+                                                                        </option>
+                                                                        <% }) %>
+                                                                </select>
+                                                                <div class="flex flex-col justify-end gap-2 md:flex-row">
+                                                                    <button type="reset" class="cancel-wedgets py-2 px-4 text-[#03316A] text-sm font-normal rounded-[2px] border border-[#03316A]" aria-controls="hs-basic-nested-sub-collapse-four">
+                                                                        Cancel
+                                                                    </button>
+                                                                    <button type="submit" class="add-btn py-2 w-24 text-white bg-[#007BFF] rounded-[2px] text-sm font-normal">
+                                                                        Add Widget
+                                                                    </button>
                                                                 </div>
-                                                                <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
-                                                            </div>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -178,8 +188,8 @@
                                             <!-- Image collaps end -->
 
                                             <!-- GTM tag start -->
-                                            <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-five">
-                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-five">
+                                            <div class="hs-accordion" id="hs-basic-nested-sub-heading-five">
+                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-4 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-background-gradient rounded-[5px] border border-[#B1D5FF] hs-accordion-active:rounded-b-none hs-accordion-active:border-b-0 shadow-custom" aria-controls="hs-basic-nested-sub-collapse-five">
                                                     GTM google tag widgets
                                                             <svg class="block w-4 h-4 hs-accordion-active:hidden"
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"
@@ -197,15 +207,21 @@
                                                                 <path d="m18 15-6-6-6 6" />
                                                             </svg>
                                                         </button>
-                                                <div id="hs-basic-nested-sub-collapse-five" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-five">
+                                                <div id="hs-basic-nested-sub-collapse-five" class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border rounded-[5px] border-t-0 border-[#B1D5FF]" aria-labelledby="hs-basic-nested-sub-heading-five">
                                                 <form action="/footer/save-gtm-url" method="POST">
-                                                    <div class="py-5">
-                                                        <ul class="mb-6 menuChecklist bg-[#f0f7fa] py-2">
-                                                            <li class="flex flex-col px-3 py-2 sm:flex-row">
-                                                                <label class="w-40 text-sm font-normal" for="custom-menu-item-url">URL</label>
-                                                                <textarea name="gtmUrl" class="sm:ml-3"><%= widget ? widget.gtmUrl : ' NO GTM URL' %></textarea>                                                            </li>
-                                                        </ul>
-                                                        <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
+                                                    <div class="py-5 menuChecklist">
+                                                        <label class="text-xs text-black font-normal mb-2" for="custom-menu-item-url">URL</label>
+
+                                                        <textarea name="gtmUrl" class="w-full border border-[#B1D5FF] rounded-[5px] p-4 font-normal text-sm mb-[10px] bg-white bg-opacity-95"><%= widget ? widget.gtmUrl : ' NO GTM URL' %></textarea>
+
+                                                        <div class="flex flex-col justify-end gap-2 md:flex-row">
+                                                            <button type="reset" class="cancel-wedgets py-2 px-4 text-[#03316A] text-sm font-normal rounded-[2px] border border-[#03316A]" aria-controls="hs-basic-nested-sub-collapse-four">
+                                                                Cancel
+                                                            </button>
+                                                            <button type="submit" class="add-btn py-2 w-24 text-white bg-[#007BFF] rounded-[2px] text-sm font-normal">
+                                                                Add Widget
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </form>
                                                 </div>
@@ -213,8 +229,8 @@
                                             <!-- GTM tag end -->
 
                                             <!--  Global custom head widget start -->
-                                            <div class="mb-4 hs-accordion" id="hs-basic-nested-sub-heading-six">
-                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-six">
+                                            <div class="hs-accordion" id="hs-basic-nested-sub-heading-six">
+                                                <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-4 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-background-gradient rounded-[5px] border border-[#B1D5FF] hs-accordion-active:rounded-b-none hs-accordion-active:border-b-0 shadow-custom" aria-controls="hs-basic-nested-sub-collapse-six">
                                                     Global custom head widget
                                                             <svg class="block w-4 h-4 hs-accordion-active:hidden"
                                                                 xmlns="http://www.w3.org/2000/svg" width="24"
@@ -234,18 +250,27 @@
                                                         </button>
                                                 <div id="hs-basic-nested-sub-collapse-six" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-six">
                                                 <form action="/footer/save-gtm-data" method="POST">
-                                                    <div class="py-5">
-                                                        <ul class="mb-6 menuChecklist bg-[#f0f7fa] py-2">
-                                                            <li class="flex flex-col px-3 py-2 sm:flex-row">
-                                                                <label class="w-40 text-sm font-normal" for="custom-menu-item-url">Head</label>
-                                                                <textarea name="gtmHead" class="sm:ml-3"><%= widget ? widget.gtmHead : '' %></textarea>
+                                                    <div class="py-5 menuChecklist">
+                                                        <div class="mb-2">
+                                                            <label class="text-xs text-black font-normal mb-2" for="custom-menu-item-url">Head</label>
 
-                                                            </li>
-                                                            <li class="flex flex-col px-3 py-2 sm:flex-row">
-                                                                <label class="w-40 text-sm font-normal" for="custom-menu-item-name">Body</label>
-                                                                <textarea name="gtmBody" class="sm:ml-3"><%= widget ? widget.gtmBody : '' %></textarea>                                                            </li>
-                                                        </ul>
-                                                        <button type="submit" class="add-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4 sm:ml-5 sm:mt-0">Add</button>
+                                                            <textarea name="gtmHead" class="w-full border border-[#B1D5FF] rounded-[5px] p-4 font-normal text-sm mb-[10px] bg-white bg-opacity-95"><%= widget ? widget.gtmHead : '' %></textarea>
+                                                        </div>
+
+                                                        <div class="mb-2">
+                                                            <label class="text-xs text-black font-normal mb-2" for="custom-menu-item-name">Body</label>
+                                                            <textarea name="gtmBody" rows="6" class="w-full border border-[#B1D5FF] rounded-[5px] p-4 font-normal text-sm mb-[10px] bg-white bg-opacity-95"><%= widget ? widget.gtmBody : '' %></textarea>
+                                                        </div>
+                                                        
+
+                                                        <div class="flex flex-col justify-end gap-2 md:flex-row">
+                                                            <button type="reset" class="cancel-wedgets py-2 px-4 text-[#03316A] text-sm font-normal rounded-[2px] border border-[#03316A]" aria-controls="hs-basic-nested-sub-collapse-four">
+                                                                Cancel
+                                                            </button>
+                                                            <button type="submit" class="add-btn py-2 w-24 text-white bg-[#007BFF] rounded-[2px] text-sm font-normal">
+                                                                Add Widget
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </form>
                                                 </div>
@@ -256,17 +281,13 @@
                                 </div>
                                 <!-- available widgets end -->
                                 <!-- active footer start -->
-                                <div class="w-full md:w-3/5 ">
-                                    <h2 class="mb-4 text-xl font-bold text-black ">
-                                        Active Footer
-                                    </h2>
-                                    <div class="grid gap-6 md:grid-cols-2 ">
+                                <div class="w-full md:w-[55%]">
+                                    <div class="grid gap-6 md:grid-cols-2">
                                         <!-- footer col 1 -->
                                         <div id="footerCol1" class="w-full mb-4">
                                             <div class="hs-accordion-group ">
                                                 <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
-                                                    <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
-                                                    p-6 bg-[#007bff] text-center " aria-controls="hs-basic-nested-collapse-Two ">
+                                                    <div class="hs-accordion-toggle hs-accordion-active:text-black inline-flex items-center justify-between gap-x-3 w-full font-normal text-black text-[28px] disabled:opacity-50 disabled:pointer-events-none p-6 text-center border rounded-[10px] hs-accordion-active:rounded-b-none hs-accordion-active:border-b-0" aria-controls="hs-basic-nested-collapse-Two ">
                                                         Footer Col 1
                                                         <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
                                                     " stroke-linecap="round " stroke-linejoin="round ">
@@ -303,8 +324,7 @@
                                         <div id="footerCol2" class="w-full mb-4 droppable">
                                             <div class="hs-accordion-group ">
                                                 <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
-                                                    <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
-                                                    p-6 bg-[#007bff] text-center " aria-controls="hs-basic-nested-collapse-Two ">
+                                                    <div class="hs-accordion-toggle hs-accordion-active:text-black inline-flex items-center justify-between gap-x-3 w-full font-normal text-black text-[28px] disabled:opacity-50 disabled:pointer-events-none p-6 text-center border rounded-[10px] hs-accordion-active:rounded-b-none hs-accordion-active:border-b-0" aria-controls="hs-basic-nested-collapse-Two ">
                                                         Footer Col 2
                                                         <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
                                                     " stroke-linecap="round " stroke-linejoin="round ">
@@ -342,8 +362,7 @@
                                         <div id="footerCol3" class="w-full mb-4 droppable">
                                             <div class="hs-accordion-group ">
                                                 <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
-                                                    <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
-                                                    p-6 bg-[#007bff] text-center " aria-controls="hs-basic-nested-collapse-Two ">
+                                                    <div class="hs-accordion-toggle hs-accordion-active:text-black inline-flex items-center justify-between gap-x-3 w-full font-normal text-black text-[28px] disabled:opacity-50 disabled:pointer-events-none p-6 text-center border rounded-[10px] hs-accordion-active:rounded-b-none hs-accordion-active:border-b-0" aria-controls="hs-basic-nested-collapse-Two ">
                                                         Footer Col 3
                                                         <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
                                                     " stroke-linecap="round " stroke-linejoin="round ">
@@ -381,8 +400,7 @@
                                         <div id="footerCol4" class="w-full mb-4">
                                             <div class="hs-accordion-group ">
                                                 <div class="hs-accordion " id="hs-basic-nested-heading-Two ">
-                                                    <div class="cardHeader hs-accordion-toggle hs-accordion-active:text-white inline-flex items-center justify-between gap-x-3 w-full font-semibold text-white text-xl disabled:opacity-50 disabled:pointer-events-none
-                                                    p-6 bg-[#007bff] text-center " aria-controls="hs-basic-nested-collapse-Two ">
+                                                    <div class="hs-accordion-toggle hs-accordion-active:text-black inline-flex items-center justify-between gap-x-3 w-full font-normal text-black text-[28px] disabled:opacity-50 disabled:pointer-events-none p-6 text-center border rounded-[10px] hs-accordion-active:rounded-b-none hs-accordion-active:border-b-0" aria-controls="hs-basic-nested-collapse-Two ">
                                                         Footer Col 4
                                                         <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
                                                     " stroke-linecap="round " stroke-linejoin="round ">

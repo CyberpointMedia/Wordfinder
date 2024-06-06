@@ -1,6 +1,6 @@
 <!-- custom Details start -->
 <div class="mb-4 draggable hs-accordion" id="hs-basic-nested-sub-heading-three">
-    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]" aria-controls="hs-basic-nested-sub-collapse-three">
+    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-background-gradient rounded-[5px] border border-[#B1D5FF] shadow-custom" aria-controls="hs-basic-nested-sub-collapse-three">
      Contact Details
      <svg class="block w-4 h-4 hs-accordion-active:hidden"
          xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -20,10 +20,18 @@
         <div class="py-5">
             <form action="/footer/contactdetails" method="POST">
                 <input type="hidden" name="widgetId" value="<%= widget._id %>">
-                <label for="contactdetails" class="mb-3">Contact Details:</label>
-                <textarea type="text" id="contactdetails" name="contactdetails" class="w-full" required><%= widget.contactdetails %></textarea>
-                <button type="submit" class="create-btn py-2 px-4 text-white bg-[#007BFF] rounded-lg mt-4">Save</button>
-                <button type="button" class="deleteButton mt-2 px-2 text-red-600 underline hover:text-red-400" data-widget-id="<%= widget._id %>" data-column="<%= widget.column %>">Delete</button>
+                <label for="contactdetails" class="text-xs text-black font-normal mb-2">Contact Details:</label>
+
+                <textarea type="text" id="contactdetails" name="contactdetails" class="w-full border border-[#B1D5FF] rounded-[5px] p-4 font-normal text-sm mb-[10px] bg-white bg-opacity-95" required><%= widget.contactdetails %></textarea>
+
+                <div class="flex flex-col justify-end gap-2 md:flex-row">
+                    <button type="button" class="deleteButton text-[#DC2626] underline text-sm font-normal" aria-controls="hs-basic-nested-sub-collapse-four" data-widget-id="<%= widget._id %>" data-column="<%= widget.column %>">
+                        Delete
+                    </button>
+                    <button type="submit" class="create-btn py-2 w-24 text-white bg-[#007BFF] rounded-[2px] text-sm font-normal">
+                        Save
+                    </button>
+                </div>
             </form>
         </div>
     </div>
