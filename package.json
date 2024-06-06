@@ -4,7 +4,7 @@
   "main": "app.js",
   "scripts": {
     "tailwind:css": "postcss public/styles/tailwind.css -o public/styles/style.css",
-    "start": "nodemon src/app.js",
+    "start": "concurrently \"nodemon src/app.js\" \"npm run tailwind:css --watch\"",
     "dev": "npm start",
     "build": "mkdir -p dist && babel src -s -d dist",
     "test": "jest"
@@ -64,6 +64,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.2",
     "jest": "^29.7.0",
     "jest-mock-req-res": "^1.0.2",
     "mongodb-memory-server": "^9.2.0",

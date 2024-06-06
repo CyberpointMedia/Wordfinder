@@ -1,6 +1,6 @@
 <!-- custom HTML start -->
 <div class="mb-4 draggable hs-accordion" id="hs-basic-nested-sub-heading-two">
-    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-background-gradient rounded-[5px] border border-[#B1D5FF] shadow-custom" aria-controls="hs-basic-nested-sub-collapse-two">
+    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-4 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-background-gradient rounded-[5px] border border-[#B1D5FF] hs-accordion-active:rounded-b-none hs-accordion-active:border-b-0 shadow-custom" aria-controls="hs-basic-nested-sub-collapse-two">
         Custom HTML
         <svg class="block w-4 h-4 hs-accordion-active:hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -14,13 +14,13 @@
             <path d="m18 15-6-6-6 6" />
         </svg>
     </button>
-    <div id="hs-basic-nested-sub-collapse-two" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF]" aria-labelledby="hs-basic-nested-sub-heading-two">
+    <div id="hs-basic-nested-sub-collapse-two" class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border rounded-[5px] border-[#B1D5FF] rounded-tl-none rounded-tr-none" aria-labelledby="hs-basic-nested-sub-heading-two">
         <div class="py-5">
             <form action="/footer/Customhtml" method="POST">
                 <input type="hidden" name="widgetId" value="<%= widget._id %>">
                 <label for="Customhtml" class="text-xs text-black font-normal mb-2">Custom HTML:</label>
 
-                <textarea type="text" id="Customhtml" name="Customhtml" class="w-full border border-[#B1D5FF] rounded-[5px] p-4 font-normal text-sm mb-[10px] bg-white bg-opacity-95" required><%= widget.Customhtml %></textarea>
+                <textarea type="text" id="Customhtml" name="Customhtml" rows="6" class="w-full border border-[#B1D5FF] rounded-[5px] p-4 font-normal text-sm mb-[10px] bg-white bg-opacity-95" required><%= widget.Customhtml %></textarea>
 
                 <div class="flex flex-col justify-end gap-2 md:flex-row">
                     <button type="button" class="deleteButton text-[#DC2626] underline text-sm font-normal" aria-controls="hs-basic-nested-sub-collapse-four" data-widget-id="<%= widget._id %>" data-column="<%= widget.column %>">
