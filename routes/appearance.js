@@ -17,7 +17,7 @@ router.get('/nav-menu', ensureAdmin, async (req, res) => {
     const posts = await Post.find({ status: 'Published' });
     const pages = await Page.find({ status: 'Published' });
     const menus = await Appearance.find({});
-    const errAor = req.query.error;
+    const error = req.query.error;
 
     // Get the selected menu ID from the query parameters or initialize it to a default value
     const selectedMenuId = req.query.selectedMenuId || '';
@@ -27,7 +27,6 @@ router.get('/nav-menu', ensureAdmin, async (req, res) => {
     if (selectedMenuId) {
         selectedMenu = await Appearance.findById(selectedMenuId).populate('pages').populate('posts');
     }
-
     res.render('appearance/menu', { user: req.user, posts, pages, menus, error, selectedMenuId, selectedMenu });
 });
 
