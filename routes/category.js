@@ -107,7 +107,6 @@ router.get('/words-with-letters', (req, res) => {
     const pageItems = letters.slice(start, end);
 
     const totalPages = Math.ceil(letters.length / pageSize);
-
     res.render('frontend/category/words-with-letters.ejs', { letters: pageItems, page, totalPages });
 });
 

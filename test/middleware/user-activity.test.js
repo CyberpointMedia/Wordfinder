@@ -1,6 +1,4 @@
-// test/userActivity.test.js
-
-const request = require('supertest');
+// test/middleware/user-activity.test.js
 const express = require('express');
 const logUserActivity = require('../../middleware/user-activity');
 const UserActivity = require('../../models/user-activity');
@@ -9,24 +7,77 @@ const geoip = require('geoip-lite');
 jest.mock('../../models/user-activity');
 jest.mock('geoip-lite');
 
-describe('logUserActivity', () => {
-  it('should log user activity', async () => {
-    const app = express();
-    app.use(logUserActivity('Test action'));
-    app.get('/', (req, res) => res.status(200).send());
+describe('logUserActivity middleware', () => {
+  let req, res, next;
 
-    UserActivity.mockImplementation(() => ({ save: jest.fn().mockResolvedValue() }));
-    geoip.lookup.mockReturnValue({ city: 'Test City', region: 'Test Region', country: 'Test Country' });
-
-    const res = await request(app).get('/');
-    expect(res.statusCode).toEqual(200);
-    expect(UserActivity).toHaveBeenCalledWith({
-      username: 'Guest',
-      ip: expect.any(String),
-      location: 'Test City, Test Region, Test Country',
-      action: 'Test action'
+  beforeEach(() => {
+    req = {
+      ip: '127.0.0.1',
+      user: { username: 'testuser' }
+    };
+    res = {};
+    next = jest.fn();
+    geoip.lookup.mockReturnValue({
+      city: 'Test City',
+      region: 'Test Region',
+      country: 'Test Country'
     });
+
+    // Mock the save method to return a resolved promise
+    UserActivity.prototype.save = jest.fn().mockResolvedValue();
   });
 
-  // Add more tests for other cases...
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should log user activity with valid geo data', async () => {
+    const action = 'testAction';
+    const middleware = logUserActivity(action);
+
+    await middleware(req, res, next);
+
+    expect(UserActivity).toHaveBeenCalledWith({
+      username: 'testuser',
+      ip: '127.0.0.1',
+      location: 'Test City, Test Region, Test Country',
+      action: 'testAction'
+    });
+    expect(UserActivity.prototype.save).toHaveBeenCalled();
+    expect(next).toHaveBeenCalled();
+  });
+
+  it('should log user activity with unknown location if geo data is unavailable', async () => {
+    geoip.lookup.mockReturnValue(null); // Simulate geo data not found
+    const action = 'testAction';
+    const middleware = logUserActivity(action);
+
+    await middleware(req, res, next);
+
+    expect(UserActivity).toHaveBeenCalledWith({
+      username: 'testuser',
+      ip: '127.0.0.1',
+      location: 'Unknown',
+      action: 'testAction'
+    });
+    expect(UserActivity.prototype.save).toHaveBeenCalled();
+    expect(next).toHaveBeenCalled();
+  });
+
+  it('should log user activity as Guest if user is not logged in', async () => {
+    req.user = null; // Simulate no logged-in user
+    const action = 'testAction';
+    const middleware = logUserActivity(action);
+
+    await middleware(req, res, next);
+
+    expect(UserActivity).toHaveBeenCalledWith({
+      username: 'Guest',
+      ip: '127.0.0.1',
+      location: 'Test City, Test Region, Test Country',
+      action: 'testAction'
+    });
+    expect(UserActivity.prototype.save).toHaveBeenCalled();
+    expect(next).toHaveBeenCalled();
+  });
 });

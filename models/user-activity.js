@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const userActivitySchema = new mongoose.Schema({
-  username: String,
-  ip: String,
-  location: String, // You can use a library like geoip-lite to get the location from the IP address
-  action: String,
+  username: { type: String, required: true },
+  ip: { type: String, required: true },
+  location: String, // Optional
+  action: { type: String, required: true },
   timestamp: { type: Date, default: Date.now }
 });
 

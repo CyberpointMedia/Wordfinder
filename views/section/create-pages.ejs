@@ -277,6 +277,14 @@
             });
 
             function setStatus(status) {
+                  // Check if the required fields are filled in
+    var pageName = document.getElementById('page_name').value.trim();
+    if (!pageName) {
+        // If the page name is not filled in, show an error message and return
+        alert("Please fill in the page title.");
+        return;
+    }
+
                 console.log('setStatus called with:', status);
                 document.getElementById('status').value = status;
                 console.log('Status:', document.getElementById('status').value);

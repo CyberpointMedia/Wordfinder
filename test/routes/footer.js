@@ -118,5 +118,4 @@ describe('Footer Route', () => {
     expect(res.headers.location).toEqual('/footer/widgets?message=Widgets delete successfully');
   });
   
-
 });

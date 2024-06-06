@@ -1,8 +1,10 @@
-// models/visitcount.js
 const mongoose = require('mongoose');
 
 const visitSchema = new mongoose.Schema({
-  path: String,
+  path: {
+    type: String,
+    required: true
+  },
   visitCount: {
     type: Number,
     default: 0,

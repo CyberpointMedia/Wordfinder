@@ -7,7 +7,7 @@ const ShowMenu = require('../models/show-menu');
 const mongoose = require('mongoose');
 const Post = require('../models/post');
 const Page = require('../models/pages');
-const { ensureAdmin } = require('../middleware/authMiddleware');
+const { ensureAdmin } = require('../middleware/authMiddleware.js');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -17,7 +17,7 @@ router.get('/nav-menu', ensureAdmin, async (req, res) => {
     const posts = await Post.find({ status: 'Published' });
     const pages = await Page.find({ status: 'Published' });
     const menus = await Appearance.find({});
-    const error = req.query.error;
+    const errAor = req.query.error;
 
     // Get the selected menu ID from the query parameters or initialize it to a default value
     const selectedMenuId = req.query.selectedMenuId || '';

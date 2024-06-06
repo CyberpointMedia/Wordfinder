@@ -22,7 +22,7 @@ describe('setAdminStatusAndUsername', () => {
   expect(res.body.username).toBe('test');
 });
 
-  it('should handle when user is not authenticated', async () => {
+it('should handle when user is not authenticated', async () => {
     const app = express();
     app.use(setAdminStatusAndUsername);
     app.get('/', (req, res) => res.status(200).json({ isAdmin: res.locals.isAdmin, username: res.locals.username }));
