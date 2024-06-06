@@ -804,6 +804,9 @@ video {
 .mt-\[-50px\] {
   margin-top: -50px;
 }
+.mb-20 {
+  margin-bottom: 5rem;
+}
 .block {
   display: block;
 }
