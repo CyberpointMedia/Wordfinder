@@ -181,7 +181,7 @@
                                                             <ul class="menuChecklist">
 
                                                                 <% menu.customLinks.forEach(link=> { %>
-                                                                    <li class="flex flex-col px-3 py-2 sm:flex-row">
+                                                                    <li class="px-3 py-2">
                                                                         <label class="text-sm text-black font-normal mb-2"
                                                                             for="custom-menu-item-url">URL</label>
                                                                         <input name="customLinks[][url]"
@@ -189,8 +189,8 @@
                                                                             class="w-full border border-[#B1D5FF] rounded-[5px] p-4 font-normal text-sm mb-[10px] bg-white bg-opacity-95" placeholder="https://"
                                                                             value="<%= link.url %>">
                                                                     </li>
-                                                                    <li class="flex flex-col px-3 py-2 sm:flex-row">
-                                                                        <label class="w-40 text-sm font-normal"
+                                                                    <li class="px-3 py-2">
+                                                                        <label class="text-sm text-black font-normal mb-2"
                                                                             for="custom-menu-item-name">Link
                                                                             Text</label>
                                                                         <input name="customLinks[][text]"
