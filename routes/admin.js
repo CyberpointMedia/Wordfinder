@@ -144,9 +144,18 @@ router.get('/dashboard', wrapAsync(async (req, res) => {
         const stats = readingTime(post.description);
         totalReadingTime += stats.minutes;
     }
-    const averageReadingTime = Math.round(totalReadingTime / allPosts.length);    
+    const averageReadingTime = Math.round(totalReadingTime / allPosts.length); 
+    // Fetch visit data for the chart
+    const visitData = await Visit.aggregate([
+        {
+          $group: {
+            _id: { $month: "$visitDate" },
+            count: { $sum: 1 }
+          }
+        }
+      ]);   
     // Render dashboard
-    res.render('admin/dashboard', { users, totalPosts ,totalPages, posts, user: req.user , userActivities, visitCount, unscrambleVisitCount,averageReadingTime});
+    res.render('admin/dashboard', { users, totalPosts ,totalPages, posts, user: req.user , userActivities, visitCount, unscrambleVisitCount,averageReadingTime,visitData});
 }));
 
 // View all users

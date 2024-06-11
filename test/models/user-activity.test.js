@@ -12,13 +12,11 @@ describe('UserActivity Model Test', () => {
             useUnifiedTopology: true,
         });
     });
-
     afterAll(async () => {
         // Drop the database and close the connection after all tests are done
         await mongoose.connection.dropDatabase();
         await mongoose.connection.close();
     });
-
     it('should create & save a user activity successfully', async () => {
         const userActivityData = {
             username: 'testuser',
@@ -58,7 +56,6 @@ describe('UserActivity Model Test', () => {
             // If an error occurs, capture it
             validationError = error;
         }
-
         // Assert that a validation error occurred
         expect(validationError).toBeDefined();
     });

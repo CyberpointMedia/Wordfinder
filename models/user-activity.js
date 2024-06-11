@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const userActivitySchema = new mongoose.Schema({
-  username: { type: String, required: true },
+  username: { type: String },
   ip: { type: String, required: true },
   location: String, // Optional
   action: { type: String, required: true },
