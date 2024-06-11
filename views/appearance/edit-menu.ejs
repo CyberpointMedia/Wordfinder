@@ -20,22 +20,24 @@
 
                                 <div class="w-64">
                                     <select name="selectedMenuId" id="select-menu-to-edit" class="w-full border border-[#B1D5FF] rounded-[5px] py-2 px-3 font-normal text-sm bg-white bg-opacity-95">
-                                        <% menus.forEach((menu, index)=> { %>
-                                            <option value="<%= menu._id %>"
-                                                <%=selectedMenuId===menu._id.toString() ? 'selected' : '' %>
-                                                    >
-                                                <%= menu.menuName %>
-                                            </option>
-                                        <% }) %>
+                                        <% if (menus.length === 0) { %>
+                                            <option>No menus exist</option>
+                                        <% } else { %>
+                                            <% menus.forEach((menu, index)=> { %>
+                                                <option value="<%= menu._id %>" <%=selectedMenuId===menu._id.toString() ? 'selected' : '' %>>
+                                                    <%= menu.menuName %>
+                                                </option>
+                                            <% }) %>
+                                        <% } %>
                                     </select>
                                 </div>
-
+            
                                 <div class="">
-                                    <button type="submit" class="selectMenuBtn py-2 w-24 text-white bg-[#007BFF] rounded-[2px] text-sm font-normal">
+                                    <button id="select-button" type="button" class="selectMenuBtn py-2 w-24 text-white bg-[#007BFF] rounded-[2px] text-sm font-normal">
                                         Select
                                     </button>
                                 </div>
-
+            
                                 <div class="">
                                     <span class="text-sm font-normal">or</span>
                                     <a href="javascript:void(0);" class="text-[#007bff] font-semibold underline hover:text-blue-400" id="createMenu">Create a new menu</a>.
@@ -346,9 +348,13 @@
                                 });
                                 $(document).ready(function () {
                                     $('#createMenu').click(function () {
-                                        $('#menuCreationForm').show();
-                                        $(this).parents('.noMenu').hide();
-                                    });
+                        window.location.href = '/appearance/nav-menu';
+                    });
+
+                    $('#select-button').click(function () {
+                        var menuId = $('#select-menu-to-edit').val();
+                        window.location.href = '/appearance/edit-menu/' + menuId;
+                    });
 
                                     // Add event listener for form submission
                                     $('.update-page-post-custom').last().click(function (event) {
@@ -433,10 +439,9 @@
                                                 }
                                             }
 
-                                            // If this was the last menu, redirect to '/appearance/nav-menu'
-                                            if (isLastMenu) {
-                                                window.location.href = '/appearance/nav-menu';
-                                            }
+                                             // If this was the last menu, redirect to '/appearance/nav-menu'
+            window.location.href = '/appearance/nav-menu';
+        
                                         })
                                         .catch(error => console.error('Error:', error));
                                 });

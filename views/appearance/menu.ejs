@@ -12,7 +12,6 @@
                             <h2 class="mb-4 mt-8 text-3xl font-medium text-black">
                                 Menus
                             </h2>
-
                             <div class="border border-[#B1D5FF] py-4 px-5 flex items-center justify-start gap-4 rounded-[5px]">
                                 <div class="">
                                     <label for="editMenu" class="text-sm text-black font-normal">Select a menu to edit:</label>
@@ -20,22 +19,24 @@
 
                                 <div class="w-64">
                                     <select name="selectedMenuId" id="select-menu-to-edit" class="w-full border border-[#B1D5FF] rounded-[5px] py-2 px-3 font-normal text-sm bg-white bg-opacity-95 appearance-none selectArrow">
-                                        <% menus.forEach((menu, index)=> { %>
-                                            <option value="<%= menu._id %>"
-                                                <%=selectedMenuId===menu._id.toString() ? 'selected' : '' %>
-                                                    >
-                                                <%= menu.menuName %>
-                                            </option>
-                                        <% }) %>
+                                        <% if (menus.length === 0) { %>
+                                            <option>No menus exist</option>
+                                        <% } else { %>
+                                            <% menus.forEach((menu, index)=> { %>
+                                                <option value="<%= menu._id %>" <%=selectedMenuId===menu._id.toString() ? 'selected' : '' %>>
+                                                    <%= menu.menuName %>
+                                                </option>
+                                            <% }) %>
+                                        <% } %>
                                     </select>
                                 </div>
-
+            
                                 <div class="">
-                                    <button type="submit" class="selectMenuBtn py-2 w-24 text-white bg-[#007BFF] rounded-[2px] text-sm font-normal">
+                                    <button id="select-button" type="button" class="selectMenuBtn py-2 w-24 text-white bg-[#007BFF] rounded-[2px] text-sm font-normal">
                                         Select
                                     </button>
                                 </div>
-
+            
                                 <div class="">
                                     <span class="text-sm font-normal">or</span>
                                     <a href="javascript:void(0);" class="text-[#007bff] font-semibold underline hover:text-blue-400" id="createMenu">Create a new menu</a>.
@@ -240,8 +241,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
-
                                                     <div class="flex justify-start bg-background-gradient rounded-[5px] p-4 gap-4 border border-[#B1D5FF] rounded-t-none publishing-action">
                                                         <button id="saveMenu" type="submit" class="py-2 w-24 text-white bg-[#007BFF] rounded-[2px] text-sm font-normal">
                                                             Save Menu
@@ -256,82 +255,7 @@
                                     <!-- Menu Structure end -->
                             </form>
                 </div>
-                <% if (menus.length> 0) { %>
-                    <form action="/appearance/show-menu" method="post" enctype="application/x-www-form-urlencoded">
-                        <div class="px-5 py-8 mt-8 bg-white border rounded shadow-sm savedMenuShows cardBody">
-                            <h3 class="mb-4 text-lg font-bold text-black">Menu Settings</h3>
-                            <div class="flex flex-col justify-start mb-6 sm:items-center sm:flex-row">
-                                <label class="mb-2 text-sm font-normal sm:mb-0">Select a menu to
-                                    edit:</label>
-                                <div class="sm:ml-5">
-                                    <select name="selectedMenuId" id="select-menu-to-edit"
-                                        class="w-full px-3 py-3 sm:w-40">
-                                        <% menus.forEach((menu, index)=> { %>
-                                            <option value="<%= menu._id %>" <%=selectedMenuId===menu._id.toString()
-                                                ? 'selected' : '' %>>
-                                                <%= menu.menuName %>
-                                            </option>
-                                            <% }) %>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div id="page-post-custom" class="mb-6 hs-accordion-group">
-                                <!-- added pages /post /custom.text  -->
-                                <div data-name="" class="mb-4 hs-accordion " id="hs-basic-nested-sub-heading-colOne ">
-                                    <button class="hs-accordion-toggle hs-accordion-active:text-[#007bff] hover:text-[#007bff] py-3 px-4 inline-flex items-center gap-x-3 w-full justify-between text-black font-medium bg-[#DBF4FF]
-                                        " aria-controls="hs-basic-nested-sub-collapse-colOne ">
-                                        <div id="page-post-custom-name">Home</div>
-                                        <svg class="block w-4 h-4 hs-accordion-active:hidden "
-                                            xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
-                                            viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
-                                        " stroke-linecap="round " stroke-linejoin="round ">
-                                            <path d="m6 9 6 6 6-6 " />
-                                        </svg>
-
-                                        <svg class="hidden w-4 h-4 hs-accordion-active:block "
-                                            xmlns="http://www.w3.org/2000/svg " width="24 " height="24 "
-                                            viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
-                                        " stroke-linecap="round " stroke-linejoin="round ">
-                                            <path d="m18 15-6-6-6 6 " />
-                                        </svg>
-                                    </button>
-                                    <div id="hs-basic-nested-sub-collapse-colOne "
-                                        class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 px-4 border border-t-0 border-[#DBF4FF] "
-                                        aria-labelledby="hs-basic-nested-sub-heading-colOne ">
-                                        <div class="py-5 ">
-                                            <div class="mb-6 form-group ">
-                                                <label class="mb-2 text-sm font-normal" for="updated_name">Name</label>
-                                                <input id="updated_name" name="updated_name" type="text" class="md:w-72"
-                                                    placeholder="Enter the updated name">
-                                            </div>
-
-                                            <div class="mb-4 form-group ">
-                                                <label class="mb-2 text-sm font-normal" for="parent">Parent
-                                                </label>
-                                                <input id="parent" name="parent" type="text" class="md:w-72 px-3 py-3"
-                                                    placeholder="Home" valid="Home">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </form>
-                    <div class="flex flex-row items-center gap-2 mt-6">
-                        <div class="publishing-action">
-                            <a id="edit-button" href="javascript:void(0);"
-                                class="w-24 py-2 px-4 text-white bg-[#007BFF] rounded-lg item-remove">
-                                Edit
-                            </a>
-                        </div>
-                        <span class="flex items-center">
-                            <a id="remove-button" class="ml-3 text-red-600 underline item-remove hover:text-red-400"
-                                href="javascript:void(0);">Delete Menu</a>
-                        </span>
-                    </div>
-                    <% } %>
+                   
                         <% if (error) { %>
                             <script>
                                 alert("<%= error %>");
@@ -343,11 +267,18 @@
                                     <script>
 
                                         $(document).ready(function () {
+                                            // $('#createMenu').click(function () {
+                                            //     $('#menuCreationForm').show();
+                                            //     $(this).parents('.noMenu').hide();
+                                            // });
                                             $('#createMenu').click(function () {
-                                                $('#menuCreationForm').show();
-                                                $(this).parents('.noMenu').hide();
-                                            });
+                        window.location.href = '/appearance/nav-menu';
+                    });
 
+                    $('#select-button').click(function () {
+                        var menuId = $('#select-menu-to-edit').val();
+                        window.location.href = '/appearance/edit-menu/' + menuId;
+                    });
                                             // Add event listener for form submission
                                             $('.update-page-post-custom').last().click(function (event) {
                                                 event.preventDefault(); // Prevent the default form submission
@@ -395,12 +326,10 @@
                                                 });
                                             });
                                         }
-
                                         // Trigger the 'change' event on page load to load the details of the selected menu
                                         window.onload = function () {
                                             document.getElementById('select-menu-to-edit').dispatchEvent(new Event('change'));
                                         };
-
                                         document.getElementById('remove-button').addEventListener('click', function () {
     var menuId = document.getElementById('select-menu-to-edit').value;
     fetch('/appearance/delete-menu/' + menuId, {
@@ -429,11 +358,7 @@
         .catch(error => console.error('Error:', error));
 });
 
-                                        document.getElementById('select-menu-to-edit').addEventListener('change', function () {
-                                            var menuId = this.value;
-                                            // Set the href attribute of the "Edit" button
-                                            document.getElementById('edit-button').href = '/appearance/edit-menu/' + menuId;
-                                        });
+
                                         var allNames = [];
                                         $(document).ready(function () {
                                             $('#select-menu-to-edit').change(function () {

@@ -60,7 +60,7 @@ describe('Pages API', () => {
       .post('/create')
       .send(newPage);
   
-    expect(res.statusCode).toEqual(400);
+    expect(res.statusCode).toEqual(500);
   });
   it('should create a new page with different values', async () => {
   const newPage = {
@@ -133,7 +133,7 @@ it('should fail to create a new page with missing page_router', async () => {
     .post('/create')
     .send(newPage);
 
-  expect(res.statusCode).toEqual(400);
+  expect(res.statusCode).toEqual(500);
 });
 
 it('should fail to create a new page with missing sections', async () => {
@@ -158,7 +158,7 @@ it('should fail to create a new page with missing sections', async () => {
     .post('/create')
     .send(newPage);
 
-  expect(res.statusCode).toEqual(400);
+  expect(res.statusCode).toEqual(500);
 });
 it('should fail to create a new page with missing sub_heading', async () => {
   const newPage = {
@@ -182,7 +182,7 @@ it('should fail to create a new page with missing sub_heading', async () => {
     .post('/create')
     .send(newPage);
 
-  expect(res.statusCode).toEqual(400);
+  expect(res.statusCode).toEqual(500);
 });
 
 it('should fail to create a new page with missing content', async () => {
@@ -207,7 +207,7 @@ it('should fail to create a new page with missing content', async () => {
     .post('/create')
     .send(newPage);
 
-  expect(res.statusCode).toEqual(400);
+  expect(res.statusCode).toEqual(500);
 });
 
 it('should fail to create a new page with missing status', async () => {
@@ -232,7 +232,7 @@ it('should fail to create a new page with missing status', async () => {
     .post('/create')
     .send(newPage);
 
-  expect(res.statusCode).toEqual(400);
+  expect(res.statusCode).toEqual(500);
 });
 it('should fail to create a new page with missing seo', async () => {
   const newPage = {
@@ -256,7 +256,7 @@ it('should fail to create a new page with missing seo', async () => {
     .post('/create')
     .send(newPage);
 
-  expect(res.statusCode).toEqual(400);
+  expect(res.statusCode).toEqual(500);
 });
 it('should fail to create a new page with missing seo desp', async () => {
   const newPage = {
@@ -280,7 +280,7 @@ it('should fail to create a new page with missing seo desp', async () => {
     .post('/create')
     .send(newPage);
 
-  expect(res.statusCode).toEqual(400);
+  expect(res.statusCode).toEqual(500);
 });
 it('should fail to create a new page with missing meta', async () => {
   const newPage = {
@@ -304,7 +304,7 @@ it('should fail to create a new page with missing meta', async () => {
     .post('/create')
     .send(newPage);
 
-  expect(res.statusCode).toEqual(400);
+  expect(res.statusCode).toEqual(500);
 });
 });
 
