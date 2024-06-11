@@ -19,7 +19,7 @@
                                 </div>
 
                                 <div class="w-64">
-                                    <select name="selectedMenuId" id="select-menu-to-edit" class="w-full border border-[#B1D5FF] rounded-[5px] py-2 px-3 font-normal text-sm bg-white bg-opacity-95">
+                                    <select name="selectedMenuId" id="select-menu-to-edit" class="w-full border border-[#B1D5FF] rounded-[5px] py-2 px-3 font-normal text-sm bg-white bg-opacity-95 appearance-none selectArrow">
                                         <% menus.forEach((menu, index)=> { %>
                                             <option value="<%= menu._id %>"
                                                 <%=selectedMenuId===menu._id.toString() ? 'selected' : '' %>

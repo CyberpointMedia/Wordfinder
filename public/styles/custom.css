@@ -414,6 +414,15 @@ input[type="file"] {
     background-color: #f9fafb;
 }
 
+.selectArrow {
+    background-image: url(../../images/down-arrow-black.svg);
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
 .select-wedgets li {
     position: relative;
     padding-left: 35px;
