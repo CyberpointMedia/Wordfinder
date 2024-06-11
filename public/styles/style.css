@@ -1163,6 +1163,10 @@ video {
     border-color: rgb(3 49 106 / var(--tw-border-opacity));
 }
 
+.border-\[\#BF2C45\] {
+    --tw-border-opacity: 1;
+    border-color: rgb(191 44 69 / var(--tw-border-opacity));
+}
 
 .border-gray-200 {
     --tw-border-opacity: 1;
@@ -1473,6 +1477,11 @@ video {
 .text-\[\#169D5C\] {
     --tw-text-opacity: 1;
     color: rgb(22 157 92 / var(--tw-text-opacity));
+}
+
+.text-\[\#BF2C45\] {
+    --tw-text-opacity: 1;
+    color: rgb(191 44 69 / var(--tw-text-opacity));
 }
 
 .text-black {
