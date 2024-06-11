@@ -293,42 +293,50 @@
         </div>
         <!-- sidebar end here -->
         <%- include('../script/script.ejs') %>
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            <script>
-                const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']; // Months
-                const data = {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Total Users',
-                        data: [65, 59, 80, 81, 56, 55, 40],
-                        fill: false,
-                        borderColor: 'rgb(75, 192, 192)',
-                        tension: 0.1
-                    }]
-                };
-            
-                const config = {
-                    type: 'line',
-                    data: data,
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    maxTicksLimit: 6, // This will create the scale 0, 20, 40, 60, 80, 100
-                                    max: 100,
-                                    min: 0
-                                }
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']; // Months
+            const visitData = <%- JSON.stringify(visitData) %>; // Your data
+        
+            const data = {
+                labels: labels,
+                datasets: [{
+                    label: 'TOTAL USERS',
+                    data: visitData.map(data => data.count), // The visit counts
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            };
+        
+            const config = {
+                type: 'line',
+                data: data,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                maxTicksLimit: 6, // This will create the scale 0, 20, 40, 60, 80, 100
+                                max: 100,
+                                min: 0
                             }
                         }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Total Users: ' + visitData.reduce((total, data) => total + data.count, 0) // Display total users at the top
+                        }
                     }
-                };
-            
-                const myChart = new Chart(
-                    document.getElementById('myChart'),
-                    config
-                );
-            </script>
+                }
+            };
+        
+            const myChart = new Chart(
+                document.getElementById('myChart'),
+                config
+            );
+        </script>
     </body>
 
     </html>
