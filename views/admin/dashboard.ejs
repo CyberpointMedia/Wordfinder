@@ -187,11 +187,11 @@
 
                             <!-- chart and events news section start -->
                             <div class="flex md:flex-row gap-6 mt-8">
-                                <div class="border border-[#B1D5FF] rounded-[5px] p-4 w-3/5">
+                                <div class="border border-[#B1D5FF] rounded-[5px] p-4 w-3/4">
                                     <!-- <img src="/images/chart.png" alt="#" /> -->
                                     <canvas id="myChart"></canvas>
                                 </div>
-                                <div class="w-2/5">
+                                <div class="w-1/4">
                                     <div class="rounded-[5px] border border-[#B1D5FF] overflow-hidden">
                                         <div class="bg-background-gradient border-b border-[#B1D5FF] p-4">
                                             <h3 class="text-lg text-black font-medium p-p">Events & News</h3>
@@ -295,20 +295,25 @@
         <%- include('../script/script.ejs') %>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
+            const xValues = [100,200,300,400,500,600,700,800,900,1000];
             const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']; // Months
-            const visitData = <%- JSON.stringify(visitData) %>; // Your data
-        
             const data = {
                 labels: labels,
                 datasets: [{
-                    label: 'TOTAL USERS',
-                    data: visitData.map(data => data.count), // The visit counts
-                    fill: false,
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
+                    label: 'Total Users',
+                    data: [65, 59, 80, 81, 56, 55, 40, 75, 84, 95, 51, 15],
+                    fill: true, // Changed from 'rgb(255, 255, 255)' to false (no filling below the line)
+                    backgroundColor: ['rgba(68, 189, 249, 0.30)'],
+                    borderColor: '#007BFF',
+                    pointBackgroundColor: '#fff',
+                    pointBorderColor: '#007BFF',
+                    pointHoverRadius: 9,
+                    pointHoverBackgroundColor: '#fff',
+                    pointRadius: 9, // Typical property for point size
+                    tension: 0.1 // Bezier curve tension of the line
                 }]
             };
-        
+
             const config = {
                 type: 'line',
                 data: data,
@@ -324,10 +329,40 @@
                         }
                     },
                     plugins: {
-                        title: {
-                            display: true,
-                            text: 'Total Users: ' + visitData.reduce((total, data) => total + data.count, 0) // Display total users at the top
-                        }
+                        tooltip: {
+                            yAlign: 'bottom',
+                            backgroundColor: '#E9F3FF',
+                            borderWidth: 1,
+                            borderColor: '#B1D5FF',
+                            titleColor: '#000',
+                            titleFont: {
+                                size: 18, // Increase the font size of the tooltip title
+                                weight: 'bold', // You can also set the weight of the font
+                                family: 'Roboto', // Specify the font family
+                            },
+                            cornerRadius: '15',
+                            boxShadow: '0px 2px 4px -2px rgba(24, 39, 75, 0.12), 0px 4px 4px -2px rgba(24, 39, 75, 0.08)',
+                            displayColors: true,
+                            padding: 20,
+                            caretSize: 10,
+                            callbacks: {
+                                labelTextColor: function() {
+                                    return '#000'; // Red color for tooltip text
+                                },
+                            },
+                            bodyFont: {
+                                size: 14 // Font size for tooltip text
+                            }
+                        },
+
+                        legend: {
+                            labels: {
+                                // This more specific font property overrides the global property
+                                font: {
+                                    size: 14,
+                                },
+                            }
+                        },
                     }
                 }
             };
