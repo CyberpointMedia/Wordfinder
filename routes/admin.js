@@ -120,25 +120,31 @@ router.get('/dashboard', wrapAsync(async (req, res) => {
     const users = await User.find();
     // Fetch total number of posts
     const totalPosts = await Post.countDocuments();
+    console.log('Total number of posts /dashboard:', totalPosts);
     const totalPages = await Page.countDocuments();
     const userActivities = await UserActivity.find().sort({timestamp: -1}).limit(10);
         // Fetch visit count
     const visit = await Visit.findOne({ path: '/' });
     const visitCount = visit ? visit.visitCount : 0;
+    const visitNewUserCount = visit ? visit.newUserCount : 0;
         // Fetch visit count for '/unscramble' route
     const unscrambleVisit = await Visit.findOne({ path: '/unscramble' });
     const unscrambleVisitCount = unscrambleVisit ? unscrambleVisit.visitCount : 0;
-        // Fetch all posts
-        const allPosts = await Post.find().populate('author');
+
+    // Fetch all posts
+    const allPosts = await Post.find().populate('author');
+    console.log('Total number of posts:', allPosts.length);
     // Fetch posts based on user role
+    // Print all post titles
+allPosts.forEach(post => console.log(post.title));
+
     let posts;
     if (req.user.role === 'admin' || req.user.role === 'administrator' || req.user.role === 'author') {
         posts = await Post.find().populate('author').sort({date: -1}).limit(5);
     } else if (req.user.role === 'editor') {
         posts = await Post.find({ author: req.user._id }).populate('author').sort({date: -1}).limit(5);
     }
-
-         // Calculate average reading time for all posts
+   // Calculate average reading time for all posts
     let totalReadingTime = 0;
     for (let post of allPosts) {
         const stats = readingTime(post.description);
@@ -155,7 +161,7 @@ router.get('/dashboard', wrapAsync(async (req, res) => {
         }
       ]);   
     // Render dashboard
-    res.render('admin/dashboard', { users, totalPosts ,totalPages, posts, user: req.user , userActivities, visitCount, unscrambleVisitCount,averageReadingTime,visitData});
+    res.render('admin/dashboard', { users, totalPosts ,totalPages, posts, user: req.user , userActivities, visitCount, unscrambleVisitCount,visitNewUserCount,averageReadingTime,visitData});
 }));
 
 // View all users

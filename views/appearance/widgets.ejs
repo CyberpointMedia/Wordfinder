@@ -261,7 +261,6 @@
                                                             <textarea name="gtmBody" rows="6" class="w-full border border-[#B1D5FF] rounded-[5px] p-4 font-normal text-sm mb-[10px] bg-white bg-opacity-95"><%= widget ? widget.gtmBody : '' %></textarea>
                                                         </div>
                                                         
-
                                                         <div class="flex flex-col justify-end gap-2 md:flex-row">
                                                             <button type="reset" class="cancel-wedgets py-2 px-4 text-[#03316A] text-sm font-normal rounded-[2px] border border-[#03316A]" aria-controls="hs-basic-nested-sub-collapse-four">
                                                                 Cancel
@@ -432,6 +431,43 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- footer col 5 -->
+                                        <div id="footerCol5" class="w-full mb-4">
+                                            <div class="hs-accordion-group ">
+                                                <div class="hs-accordion " id="hs-basic-nested-heading-Three ">
+                                                    <div class="hs-accordion-toggle hs-accordion-active:text-black inline-flex items-center justify-between gap-x-3 w-full font-normal text-black text-[28px] disabled:opacity-50 disabled:pointer-events-none p-6 text-center border rounded-[10px] hs-accordion-active:rounded-b-none hs-accordion-active:border-b-0" aria-controls="hs-basic-nested-collapse-Three ">
+                                                        Footer Col 5
+                                                        <svg class="block w-4 h-4 hs-accordion-active:hidden " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round ">
+                                                            <path d="m6 9 6 6 6-6 " />
+                                                        </svg>
+                                                        <svg class="hidden w-4 h-4 hs-accordion-active:block " xmlns="http://www.w3.org/2000/svg " width="24 " height="24 " viewBox="0 0 24 24 " fill="none " stroke="currentColor " stroke-width="2
+                                                    " stroke-linecap="round " stroke-linejoin="round ">
+                                                            <path d="m18 15-6-6-6 6 " />
+                                                        </svg>
+                                                    </div>
+
+                                                    <div id="hs-basic-nested-collapse-Three " class="hs-accordion-content w-full hidden overflow-hidden transition-[height] duration-300 bg-white shadow-sm border cardBody px-5 pt-8 pb-4 " aria-labelledby="hs-basic-nested-heading-Three ">
+                                                        <div class="hs-accordion-group dropzone">
+                                                            <!-- all the widgets which select the footercol5  that i drag show in this place  -->
+                                                            <% widgets.forEach(function(widget) { %>
+                                                                <% if (widget.column==='footerCol5' ) { %>
+                                                                    <% if (widget.name === 'Text Editor') { %>
+                                                                        <%- include('../appearance/text-editor.ejs', { widget: widget }) %>
+                                                                    <% } else if (widget.name === 'Custom HTML') { %>
+                                                                        <%- include('../appearance/custom-html.ejs', { widget: widget }) %>
+                                                                    <% } else if (widget.name === 'Contact Details') { %>
+                                                                        <%- include('../appearance/contact-details.ejs', { widget: widget }) %>
+                                                                    <% } else if (widget.name === 'Image') { %>
+                                                                        <%- include('../appearance/image-collapse.ejs', { widget: widget }) %>
+                                                                    <% } %>
+                                                                <% } %>
+                                                            <% }); %>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- active footer end -->
@@ -560,5 +596,4 @@ if (params.has('message')) {
                 }
             });
         </script>
-
         </html>

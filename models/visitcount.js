@@ -9,6 +9,14 @@ const visitSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  newUserCount: {
+    type: Number,
+    default: 0,
+  },
+  newUserCountPerMonth: {
+    type: Map,
+    of: Number
+  },
   visitDate: {
     type: Date,
     default: Date.now

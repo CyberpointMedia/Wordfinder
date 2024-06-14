@@ -111,6 +111,7 @@ router.post('/create', upload.fields([{ name: 'picture__input', maxCount: 1 }, {
 router.get('/all', async (req, res) => {
   try {
       const allCount = await Post.countDocuments();
+      console.log('Total number of posts:', allCount); // Print total number of posts
       const publishedCount = await Post.countDocuments({ status: 'Published' });
       const trashCount = await Post.countDocuments({ status: 'Trash' });
       const draftCount = await Post.countDocuments({ status: 'Draft' });
