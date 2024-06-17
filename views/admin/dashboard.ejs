@@ -190,60 +190,74 @@
                             <!-- chart and events news section start -->
                             <div class="flex md:flex-row gap-6 mt-8">
                                 <div class="border border-[#B1D5FF] rounded-[5px] p-4 w-3/4 ">
-                                    <select id="timeFilter ml-4" >
-                                        <option value="365">Last Year</option>
-                                        <option value="30">Last 30 Days</option>
-                                        <option value="1">Last Day</option>
-                                    </select>
+                                    <div class="flex justify-between items-start mb-4">
+                                        <div class="">
+                                            <div class="total_users text-sm font-normal text-black mb-2">Total Users</div>
+                                            <div class="flex items-center gap-2">
+                                                <div class="text-3xl font-semibold text-black">
+                                                    61,259
+                                                </div>
+                                                <div class="px-2 py-1 font-semibold text-sm text-[#169D5C] border border-[#169D5C] rounded-[5px]">
+                                                    +2.5%
+                                                    <svg class="ms-1 inline-block" xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8" fill="none">
+                                                        <path d="M0.598935 5.36802L3.61731 2.16099C3.82481 1.94052 4.17519 1.94052 4.38269 2.16099L7.40108 5.36802C7.62786 5.60899 7.45703 6.00439 7.12613 6.00439L0.87391 6.00439C0.542985 6.00439 0.37216 5.60899 0.598935 5.36802Z" fill="#169D5C"></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <select id="timeFilter" class="border-[#B1D5FF] p-2 w-[120px] appearance-none selectArrow">
+                                            <option value="365">Last Year</option>
+                                            <option value="30">Last 30 Days</option>
+                                            <option value="1">Last Day</option>
+                                        </select>
+                                    </div>
                                     <!-- <img src="/images/chart.png" alt="#" /> -->
                                     <canvas id="myChart"></canvas>
                                 </div>
-                                <div class="w-1/4">
-                                    <div class="rounded-[5px] border border-[#B1D5FF] overflow-hidden">
-                                        <div class="bg-background-gradient border-b border-[#B1D5FF] p-4">
-                                            <h3 class="text-lg text-black font-medium p-p">Events & News</h3>
-                                        </div>
-                                        <div class="overflow-y-scroll scrollbar">
-                                            <ul class="news-list p-4 space-y-4 h-96">
-                                                <% posts.forEach(post=> { %>
-                                                    <% if (post.author) { %>
-                                                        <li
-                                                            class="flex flex-col sm:flex-row gap-2 border-b border-[#B1D5FF] pb-4">
-                                                            <div
-                                                                class="w-9 h-9 flex justify-center items-center bg-[#B1D5FF] bg-opacity-40 rounded-full">
-                                                                <img class="inline-block rounded-full h-9 w-9"
-                                                                    src="<%= user.image ? user.image : '/images/img1.jpg' %>"
-                                                                    alt="Image Description">
+                                <div class="w-1/4 rounded-[5px] border border-[#B1D5FF] overflow-hidden">
+                                    <div class="bg-background-gradient border-b border-[#B1D5FF] p-4">
+                                        <h3 class="text-lg text-black font-medium p-p">Events & News</h3>
+                                    </div>
+                                    <div class="overflow-y-scroll scrollbar">
+                                        <ul class="news-list p-4 space-y-4 h-96">
+                                            <% posts.forEach(post=> { %>
+                                                <% if (post.author) { %>
+                                                    <li
+                                                        class="flex flex-col sm:flex-row gap-2 border-b border-[#B1D5FF] pb-4">
+                                                        <div
+                                                            class="w-9 h-9 flex justify-center items-center bg-[#B1D5FF] bg-opacity-40 rounded-full">
+                                                            <img class="inline-block rounded-full h-9 w-9"
+                                                                src="<%= user.image ? user.image : '/images/img1.jpg' %>"
+                                                                alt="Image Description">
+                                                        </div>
+                                                        <div>
+                                                            <div class="text-base">
+                                                                <span class="mr-2">
+                                                                    <%= post.author.username %>
+                                                                </span>
+                                                                <span class="text-[13px]">
+                                                                    <%= post.author.email %>
+                                                                </span>
+                                                            </div>
+                                                            <div class="mb-1">
+                                                                <a href="/articles/<%= post.title %>"
+                                                                    class="text-sm font-medium text-[#007BFF] hover:opacity-50">
+                                                                    <%= post.title %>
+                                                                </a>
                                                             </div>
                                                             <div>
-                                                                <div class="text-base">
-                                                                    <span class="mr-2">
-                                                                        <%= post.author.username %>
-                                                                    </span>
-                                                                    <span class="text-[13px]">
-                                                                        <%= post.author.email %>
-                                                                    </span>
-                                                                </div>
-                                                                <div class="mb-1">
-                                                                    <a href="/articles/<%= post.title %>"
-                                                                        class="text-sm font-medium text-[#007BFF] hover:opacity-50">
-                                                                        <%= post.title %>
-                                                                    </a>
-                                                                </div>
-                                                                <div>
-                                                                    <svg class="inline-block"
-                                                                        xmlns="http://www.w3.org/2000/svg" width="14"
-                                                                        height="14" viewBox="0 0 14 14" fill="none">
-                                                                        <!-- SVG content -->
-                                                                    </svg>
-                                                                    <%= post.date.toDateString() %>
-                                                                </div>
+                                                                <svg class="inline-block"
+                                                                    xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                    height="14" viewBox="0 0 14 14" fill="none">
+                                                                    <!-- SVG content -->
+                                                                </svg>
+                                                                <%= post.date.toDateString() %>
                                                             </div>
-                                                        </li>
-                                                        <% } %>
-                                                            <% }) %>
-                                            </ul>
-                                        </div>
+                                                        </div>
+                                                    </li>
+                                                    <% } %>
+                                                        <% }) %>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -318,7 +332,7 @@
                 const data = {
                     labels: labels,
                     datasets: [{
-                        label: 'Total Users',
+                        label: 'New User',
                         data: allData,
                         fill: true,
                         backgroundColor: gradient,
@@ -331,7 +345,7 @@
                         tension: 0.1,
                         borderWidth: 2
                     }, {
-                        label: 'Old Users',
+                        label: 'Old User',
                         data: allDataOldUsers,
                         fill: true,
                         backgroundColor: gradientOldUsers,
@@ -352,10 +366,10 @@
                     options: {
                         scales: {
                             x: {
-                grid: {
-                    drawOnChartArea: false, // This will hide the x-axis line
-                },
-            },
+                                grid: {
+                                    drawOnChartArea: false, // This will hide the x-axis line
+                                },
+                            },
                             y: {
                                 beginAtZero: true,
                                 ticks: {
@@ -393,15 +407,15 @@
                             },
 
                             legend: {
-                position: 'bottom', // This will move the legend to the bottom
-                labels: {
-                    // This more specific font property overrides the global property
-                    font: {
-                        size: 14,
-                    },
-                    boxWidth: 10, 
-                }
-            },
+                                position: 'bottom', // This will move the legend to the bottom
+                                labels: {
+                                    // This more specific font property overrides the global property
+                                    font: {
+                                        size: 14,
+                                    },
+                                    boxWidth: 10, 
+                                }
+                            },
                         }
                     }
                 };
