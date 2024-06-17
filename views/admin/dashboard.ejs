@@ -223,10 +223,10 @@
                                             <% posts.forEach(post=> { %>
                                                 <% if (post.author) { %>
                                                     <li
-                                                        class="flex flex-col sm:flex-row gap-2 border-b border-[#B1D5FF] pb-4">
+                                                        class="flex flex-col sm:flex-row gap-3 border-b border-[#B1D5FF] pb-4">
                                                         <div
-                                                            class="w-9 h-9 flex justify-center items-center bg-[#B1D5FF] bg-opacity-40 rounded-full">
-                                                            <img class="inline-block rounded-full h-9 w-9"
+                                                            class="w-9 h-9">
+                                                            <img class="inline-block rounded-full w-full"
                                                                 src="<%= user.image ? user.image : '/images/img1.jpg' %>"
                                                                 alt="Image Description">
                                                         </div>
@@ -245,11 +245,16 @@
                                                                     <%= post.title %>
                                                                 </a>
                                                             </div>
-                                                            <div>
-                                                                <svg class="inline-block"
-                                                                    xmlns="http://www.w3.org/2000/svg" width="14"
-                                                                    height="14" viewBox="0 0 14 14" fill="none">
-                                                                    <!-- SVG content -->
+                                                            <div class="text-[#03316A] text-opacity-50 text-sm">
+                                                                <svg class="inline-block me-1" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                                                    <g clip-path="url(#clip0_84_1117)">
+                                                                    <path d="M2.11555 14H11.8844C12.9085 14 13.7407 13.1678 13.7407 12.1437V2.89332C13.7407 1.86925 12.9085 1.03702 11.8844 1.03702H11.1482V0.518509C11.1482 0.23332 10.9148 0 10.6296 0C10.3444 0 10.1111 0.23332 10.1111 0.518509V1.03702H3.8889V0.518509C3.8889 0.23332 3.65553 0 3.37034 0C3.08516 0 2.85183 0.23332 2.85183 0.518509V1.03702H2.11555C1.09148 1.03702 0.259247 1.86925 0.259247 2.89332V12.1437C0.259247 13.1678 1.09148 14 2.11555 14ZM1.29631 2.89332C1.29631 2.44222 1.66445 2.07408 2.11555 2.07408H2.85183V2.59259C2.85183 2.87778 3.08516 3.1111 3.37034 3.1111C3.65553 3.1111 3.88885 2.87778 3.88885 2.59259V2.07408H10.1111V2.59259C10.1111 2.87778 10.3444 3.1111 10.6296 3.1111C10.9148 3.1111 11.1481 2.87778 11.1481 2.59259V2.07408H11.8844C12.3355 2.07408 12.7036 2.44222 12.7036 2.89332V4.40741H1.29631V2.89332ZM1.29631 5.44443H12.7037V12.1437C12.7037 12.5948 12.3356 12.9629 11.8845 12.9629H2.11555C1.66445 12.9629 1.29631 12.5948 1.29631 12.1437V5.44443Z" fill="#03316A" fill-opacity="0.5"/>
+                                                                    </g>
+                                                                    <defs>
+                                                                    <clipPath id="clip0_84_1117">
+                                                                    <rect width="14" height="14" fill="white"/>
+                                                                    </clipPath>
+                                                                    </defs>
                                                                 </svg>
                                                                 <%= post.date.toDateString() %>
                                                             </div>

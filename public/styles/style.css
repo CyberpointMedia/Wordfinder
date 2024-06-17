@@ -1469,6 +1469,10 @@ video {
     color: rgb(3 49 106 / var(--tw-text-opacity));
 }
 
+.text-opacity-50 {
+    --tw-text-opacity: 0.5;
+}
+
 .text-\[\#2271b1\] {
     --tw-text-opacity: 1;
     color: rgb(34 113 177 / var(--tw-text-opacity));
@@ -1895,6 +1899,10 @@ video {
 
 .mb-\[30px\] {
     margin-bottom: 30px;
+}
+
+.me-1 {
+    margin-inline-end: 0.25rem/* 4px */;
 }
 
 .me-2 {
