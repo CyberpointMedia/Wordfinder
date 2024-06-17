@@ -860,6 +860,10 @@ video {
     height: 24rem/* 384px */;
 }
 
+.h-\[475px\] {
+    height: 475px;
+}
+
 .h-\[14px\] {
     height: 14px;
 }
