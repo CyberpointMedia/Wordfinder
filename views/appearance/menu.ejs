@@ -280,16 +280,8 @@
                     $('#select-button').click(function () {
     var menuId = $('#select-menu-to-edit').val();
     if (menuId === "No menus exist") {
-        Toastify({
-            text: "First create a menu before selecting it",
-            duration: 3000,
-            close: true,
-            gravity: "top", // `top` or `bottom`
-            position: 'right', // `left`, `center` or `right`
-            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-            stopOnFocus: true, // Prevents dismissing of toast on hover
-        }).showToast();
-    } else {
+    alert("First create a menu before selecting it");
+} else {
         window.location.href = '/appearance/edit-menu/' + menuId;
     }
 });
