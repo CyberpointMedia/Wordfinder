@@ -123,9 +123,14 @@ router.get('/dashboard', wrapAsync(async (req, res) => {
     console.log('Total number of posts /dashboard:', totalPosts);
     const totalPages = await Page.countDocuments();
     const userActivities = await UserActivity.find().sort({timestamp: -1}).limit(10);
+
+     // Fetch total visit count for '/'
+   const totalVisit = await Visit.aggregate([
+    { $group: { _id: null, totalVisitCount: { $sum: "$visitCount" } } }
+]);
+const visitCount = totalVisit.length > 0 ? totalVisit[0].totalVisitCount : 0;
         // Fetch visit count
     const visit = await Visit.findOne({ path: '/' });
-    const visitCount = visit ? visit.visitCount : 0;
     const visitNewUserCount = visit ? visit.newUserCount : 0;
         // Fetch visit count for '/unscramble' route
     const unscrambleVisit = await Visit.findOne({ path: '/unscramble' });
@@ -136,7 +141,7 @@ router.get('/dashboard', wrapAsync(async (req, res) => {
     console.log('Total number of posts:', allPosts.length);
     // Fetch posts based on user role
     // Print all post titles
-allPosts.forEach(post => console.log(post.title));
+   allPosts.forEach(post => console.log(post.title));
 
     let posts;
     if (req.user.role === 'admin' || req.user.role === 'administrator' || req.user.role === 'author') {
@@ -161,6 +166,7 @@ allPosts.forEach(post => console.log(post.title));
         }
       ]);   
     // Render dashboard
+    console.log("visitdata",visitData);
     res.render('admin/dashboard', { users, totalPosts ,totalPages, posts, user: req.user , userActivities, visitCount, unscrambleVisitCount,visitNewUserCount,averageReadingTime,visitData});
 }));
 

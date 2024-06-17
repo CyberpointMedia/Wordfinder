@@ -7,7 +7,7 @@ const fetchFooter = async (req, res, next) => {
             res.locals.footer = footer; // Make the footer data available to all EJS templates
         }
         console.log('Footer data fetched successfully');
-        console.log('Footer data:', footer);
+        //console.log('Footer data:', footer);
         next();
     } catch (error) {
         console.error('Error fetching footer:', error);
