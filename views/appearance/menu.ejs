@@ -260,7 +260,8 @@
                                 </main>
                                 <!-- main content end here -->
                                 <%- include('../script/script.ejs') %>
-                                <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+                                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+                                <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
                                     <script>
 
                                         $(document).ready(function () {
@@ -276,8 +277,16 @@
                     $('#select-button').click(function () {
     var menuId = $('#select-menu-to-edit').val();
     if (menuId === "No menus exist") {
-    alert("First create a menu before selecting it");
-} else {
+        Toastify({
+            text: "First create a menu before selecting it.",
+            duration: 3000,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: 'right', // `left`, `center` or `right`
+            backgroundColor: "rgb(255 15 15 / 42%)",
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+        }).showToast();
+    } else {
         window.location.href = '/appearance/edit-menu/' + menuId;
     }
 });
