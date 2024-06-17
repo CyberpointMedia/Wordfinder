@@ -4,12 +4,10 @@ const fetchFooter = async (req, res, next) => {
     try {
         const footer = await Footer.findOne().populate('footerCol1 footerCol2 footerCol3 footerCol4 footerCol5'); // Fetch the footer data
         if (footer) {
-            res.locals.footerCol1 = footer.footerCol1;
-            res.locals.footerCol2 = footer.footerCol2;
-            res.locals.footerCol3 = footer.footerCol3;
-            res.locals.footerCol4 = footer.footerCol4;
-            res.locals.footerCol5 = footer.footerCol5;
+            res.locals.footer = footer; // Make the footer data available to all EJS templates
         }
+        console.log('Footer data fetched successfully');
+        console.log('Footer data:', footer);
         next();
     } catch (error) {
         console.error('Error fetching footer:', error);
