@@ -264,21 +264,35 @@
                                 </main>
                                 <!-- main content end here -->
                                 <%- include('../script/script.ejs') %>
+                                <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
                                     <script>
 
                                         $(document).ready(function () {
-                                            // $('#createMenu').click(function () {
-                                            //     $('#menuCreationForm').show();
-                                            //     $(this).parents('.noMenu').hide();
-                                            // });
-                                            $('#createMenu').click(function () {
-                        window.location.href = '/appearance/nav-menu';
-                    });
+                                             $('#createMenu').click(function () {
+                                                 $('#menuCreationForm').show();
+                                                 $(this).parents('.noMenu').hide();
+                                            });
+                    //                         $('#createMenu').click(function () {
+                    //                             $('#menuCreationForm').show();
+                    //     window.location.href = '/appearance/nav-menu';
+                    // });
 
                     $('#select-button').click(function () {
-                        var menuId = $('#select-menu-to-edit').val();
-                        window.location.href = '/appearance/edit-menu/' + menuId;
-                    });
+    var menuId = $('#select-menu-to-edit').val();
+    if (menuId === "No menus exist") {
+        Toastify({
+            text: "First create a menu before selecting it",
+            duration: 3000,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: 'right', // `left`, `center` or `right`
+            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+        }).showToast();
+    } else {
+        window.location.href = '/appearance/edit-menu/' + menuId;
+    }
+});
                                             // Add event listener for form submission
                                             $('.update-page-post-custom').last().click(function (event) {
                                                 event.preventDefault(); // Prevent the default form submission

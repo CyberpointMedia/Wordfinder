@@ -20,6 +20,7 @@ const mongoose = require('mongoose');
 const { url } = require('inspector');
 const setAdminStatusAndUsername = require('../middleware/setAdminStatusAndUsername');
 const fetchPageAndMorePosts = require('../middleware/fetchPageAndMorePosts');
+const fetchFooter = require('../middleware/fetchFooter');
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 const nodemailer = require('nodemailer');
@@ -28,7 +29,7 @@ require('dotenv').config();
 router.use(setAdminStatusAndUsername);
 // Middleware to fetch page and morePosts
 router.use(fetchPageAndMorePosts);
-
+router.use(fetchFooter);
 // Middleware to parse incoming request bodies
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
