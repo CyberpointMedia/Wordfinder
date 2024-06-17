@@ -21,29 +21,33 @@
                     </a>
                 </div>
                 <div class="grid text-sm grid-cols gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
-                    <div class="space-y-3">
-                        <h3 class="text-lg font-normal text-white">Resources</h3>
-                        <ul class="space-y-2">
-                            <li>
-                                <a class="text-white text-[13px]" href="/articles">Articles</a>
-                            </li>
-                            <li>
-                                <a class="text-white text-[13px]" href="#">Popular Pages</a>
-                            </li>
-                            <li>
-                                <a class="text-white text-[13px]" href="#">Top Searches</a>
-                            </li>
-                            <li>
-                                <a class="text-white text-[13px]" href="#">External Resources</a>
-                            </li>
-                            <li>
-                                <a class="text-white text-[13px]" href="#">Tools</a>
-                            </li>
-                            <li>
-                                <a class="text-white text-[13px]" href="#">Definitions</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <% if (footer && footer.Customhtml) { %>
+                        <%- footer.Customhtml %>
+                    <% } else { %>
+                        <div class="space-y-3">
+                            <h3 class="text-lg font-normal text-white">Resources</h3>
+                            <ul class="space-y-2">
+                                <li>
+                                    <a class="text-white text-[13px]" href="/articles">Articles</a>
+                                </li>
+                                <li>
+                                    <a class="text-white text-[13px]" href="#">Popular Pages</a>
+                                </li>
+                                <li>
+                                    <a class="text-white text-[13px]" href="#">Top Searches</a>
+                                </li>
+                                <li>
+                                    <a class="text-white text-[13px]" href="#">External Resources</a>
+                                </li>
+                                <li>
+                                    <a class="text-white text-[13px]" href="#">Tools</a>
+                                </li>
+                                <li>
+                                    <a class="text-white text-[13px]" href="#">Definitions</a>
+                                </li>
+                            </ul>
+                        </div>
+                    <% } %>
                     <div class="space-y-3">
                         <h3 class="text-lg font-normal text-white">About</h3>
                         <ul class="space-y-2">
