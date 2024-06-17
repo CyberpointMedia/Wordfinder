@@ -13,11 +13,11 @@ async function generateData() {
     const months = Array.from({ length: 12 }, (_, i) => i);
 
     for (const path of paths) {
-      const visitCount = Math.floor(Math.random() * 1000);
+      const visitCount = Math.floor(Math.random() * 100);
       const newUserCount = Math.floor(Math.random() * visitCount);
 
       const newUserCountPerMonth = months.reduce((acc, month) => {
-        acc.set(month.toString(), Math.floor(Math.random() * 100));
+        acc.set(month.toString(), Math.floor(Math.random() * 10));
         return acc;
       }, new Map());
 
