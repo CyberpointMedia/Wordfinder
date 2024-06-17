@@ -16,7 +16,7 @@ require('dotenv').config();
 
 const User = require('../models/user.js'); 
 const Widget = require('../models/widget.js');
-
+const visitRouter = require('../routes/visits.js');
 const userRoutes = require('../routes/user-profile.js');  
 const authRoutes = require('../routes/auth');  
 const postRoutes = require('../routes/post');  
@@ -179,6 +179,7 @@ app.listen(port, () => {
 });
 
 app.use('/', frontendRoutes);
+app.use('/chart', visitRouter);
 app.use('/category', categoryRoutes);
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);

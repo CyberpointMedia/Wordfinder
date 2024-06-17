@@ -91,13 +91,13 @@
                                             <%= visitCount %>
                                         </div>
                                         <div
-                                            class="px-2 py-1 font-semibold text-sm text-[#BF2C45] border border-[#BF2C45] rounded-[5px]">
+                                            class="px-2 py-1 font-semibold text-sm text-[#169D5C] border border-[#169D5C] rounded-[5px]">
                                             +2.6%
                                             <svg class="ms-1 inline-block" xmlns="http://www.w3.org/2000/svg" width="8"
                                                 height="8" viewBox="0 0 8 8" fill="none">
                                                 <path
                                                     d="M0.598935 5.36802L3.61731 2.16099C3.82481 1.94052 4.17519 1.94052 4.38269 2.16099L7.40108 5.36802C7.62786 5.60899 7.45703 6.00439 7.12613 6.00439L0.87391 6.00439C0.542985 6.00439 0.37216 5.60899 0.598935 5.36802Z"
-                                                    fill="#BF2C45" />
+                                                    fill="#169D5C" />
                                             </svg>
                                         </div>
                                     </div>
@@ -195,7 +195,7 @@
                                             <div class="total_users text-sm font-normal text-black mb-2">Total Users</div>
                                             <div class="flex items-center gap-2">
                                                 <div class="text-3xl font-semibold text-black">
-                                                    61,259
+                                                    <%= visitCount %>
                                                 </div>
                                                 <div class="px-2 py-1 font-semibold text-sm text-[#169D5C] border border-[#169D5C] rounded-[5px]">
                                                     +2.5%
@@ -316,135 +316,200 @@
         <%- include('../script/script.ejs') %>
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script>
-                const allData = [15, 25, 35, 40, 55, 57, 65, 70, 71, 72, 82, 90];
-                const allDataOldUsers = [5, 15, 25, 20, 46, 45, 55, 60, 55, 61, 75, 80];
-                //const allDataOldUsers = allData.map((total, index) => total - allDataNewUsers[index]);
-                const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']; // Months
-                const ctx = document.getElementById('myChart').getContext('2d');
-                const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-                gradient.addColorStop(0, 'rgba(68, 189, 249, 0.5)'); // Top color
-                gradient.addColorStop(1, 'rgba(68, 189, 249, 0)'); // Bottom color
-
-                const gradientOldUsers = ctx.createLinearGradient(0, 0, 0, 400);
-                gradientOldUsers.addColorStop(0, 'rgba(0, 0, 139, 0.5)'); // Dark blue at the top
-                gradientOldUsers.addColorStop(1, 'rgba(0, 0, 139, 0)'); // Transparent at the bottom
-
-                const data = {
-                    labels: labels,
-                    datasets: [{
-                        label: 'New User',
-                        data: allData,
-                        fill: true,
-                        backgroundColor: gradient,
-                        borderColor: '#007BFF',
-                        pointBackgroundColor: '#fff',
-                        pointBorderColor: '#007BFF',
-                        pointHoverRadius: 5,
-                        pointHoverBackgroundColor: '#fff',
-                        pointRadius: 4,
-                        tension: 0.1,
-                        borderWidth: 2
-                    }, {
-                        label: 'Old User',
-                        data: allDataOldUsers,
-                        fill: true,
-                        backgroundColor: gradientOldUsers,
-                        borderColor: 'rgba(153, 102, 255, 1)',
-                        pointBackgroundColor: '#fff',
-                        pointBorderColor: 'rgba(153, 102, 255, 1)',
-                        pointHoverRadius: 5,
-                        pointHoverBackgroundColor: '#fff',
-                        pointRadius: 4,
-                        tension: 0.1,
-                        borderWidth: 2
-                    }]
-                };
-
-                const config = {
-                    type: 'line',
-                    data: data,
-                    options: {
-                        scales: {
-                            x: {
-                                grid: {
-                                    drawOnChartArea: false, // This will hide the x-axis line
-                                },
-                            },
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    maxTicksLimit: 6, // This will create the scale 0, 20, 40, 60, 80, 100
-                                    suggestedMax: 100,
-                                    min: 0
-                                }
-                            }
-                        },
-                        plugins: {
-                            tooltip: {
-                                yAlign: 'bottom',
-                                backgroundColor: '#E9F3FF',
-                                borderWidth: 1,
-                                borderColor: '#B1D5FF',
-                                titleColor: '#000',
-                                titleFont: {
-                                    size: 18, // Increase the font size of the tooltip title
-                                    weight: 'bold', // You can also set the weight of the font
-                                    family: 'Roboto', // Specify the font family
-                                },
-                                cornerRadius: '15',
-                                boxShadow: '0px 2px 4px -2px rgba(24, 39, 75, 0.12), 0px 4px 4px -2px rgba(24, 39, 75, 0.08)',
-                                displayColors: true,
-                                padding: 20,
-                                caretSize: 10,
-                                callbacks: {
-                                    labelTextColor: function () {
-                                        return '#000'; // Red color for tooltip text
-                                    },
-                                },
-                                bodyFont: {
-                                    size: 14 // Font size for tooltip text
-                                }
-                            },
-
-                            legend: {
-                                position: 'bottom', // This will move the legend to the bottom
-                                labels: {
-                                    // This more specific font property overrides the global property
-                                    font: {
-                                        size: 14,
-                                    },
-                                    boxWidth: 10, 
-                                }
-                            },
-                        }
-                    }
-                };
-
-                const myChart = new Chart(
-                    document.getElementById('myChart'),
-                    config
-                );
-                document.getElementById('timeFilter').addEventListener('change', function () {
-                    const days = this.value;
-                    let newData, newLabels;
-
-                    if (days == 1) {
-                        // If "Last Day" is selected, show hours
-                        newLabels = Array.from({ length: 24 }, (_, i) => i + ':00');
-                        newData = allData.slice(-24);
-                    } else if (days == 365) {
-                        // If "Last Year" is selected, show months
-                        newLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                        newData = allData;
-                    } else {
-                        // If "Last 30 Days" is selected, show days
-                        newLabels = Array.from({ length: 30 }, (_, i) => 'Day ' + (i + 1));
-                        newData = allData.slice(-30);
-                    }
-                    myChart.data.labels = newLabels;
-                    myChart.data.datasets[0].data = newData;
-                    myChart.update();
-                });
-            </script>
-    </body>
-    </html>
+    document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const response = await fetch('/chart/visits');
+      const visits = await response.json();
+  
+      console.log('Visits Data on Client:', visits); // Log visits data on client side
+  
+      const monthlyData = {};
+      const dailyData = {};
+  
+      // Process the visit data
+      visits.forEach(visit => {
+        Object.keys(visit.newUserCountPerMonth).forEach(month => {
+          if (!monthlyData[month]) {
+            monthlyData[month] = { newUsers: 0, totalUsers: 0 };
+          }
+          monthlyData[month].newUsers += visit.newUserCountPerMonth[month];
+          monthlyData[month].totalUsers += visit.visitCount;
+        });
+  
+        Object.keys(visit.newUserCountPerDay).forEach(day => {
+          if (!dailyData[day]) {
+            dailyData[day] = { newUsers: 0, totalUsers: 0 };
+          }
+          dailyData[day].newUsers += visit.newUserCountPerDay[day];
+          dailyData[day].totalUsers += visit.visitCount;
+        });
+      });
+  
+      const allData = [];
+      const allDataOldUsers = [];
+  
+      // Fill in the data arrays for the year
+      for (let i = 0; i < 12; i++) {
+        const month = i.toString();
+        if (monthlyData[month]) {
+          allData.push(monthlyData[month].totalUsers);
+          allDataOldUsers.push(monthlyData[month].totalUsers - monthlyData[month].newUsers);
+        } else {
+          allData.push(0);
+          allDataOldUsers.push(0);
+        }
+      }
+  
+      const allDataLast30Days = Array.from({ length: 30 }, (_, i) => {
+        const day = (i + 1).toString();
+        return dailyData[day] ? dailyData[day].totalUsers : 0;
+      });
+  
+      const allDataOldUsersLast30Days = Array.from({ length: 30 }, (_, i) => {
+        const day = (i + 1).toString();
+        return dailyData[day] ? (dailyData[day].totalUsers - dailyData[day].newUsers) : 0;
+      });
+  
+      const allDataLastDay = Array.from({ length: 24 }, (_, i) => {
+        const hour = i.toString();
+        return dailyData[hour] ? dailyData[hour].totalUsers : 0;
+      });
+  
+      const allDataOldUsersLastDay = Array.from({ length: 24 }, (_, i) => {
+        const hour = i.toString();
+        return dailyData[hour] ? (dailyData[hour].totalUsers - dailyData[hour].newUsers) : 0;
+      });
+  
+      const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const ctx = document.getElementById('myChart').getContext('2d');
+      const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+      gradient.addColorStop(0, 'rgba(68, 189, 249, 0.5)'); // Top color
+      gradient.addColorStop(1, 'rgba(68, 189, 249, 0)'); // Bottom color
+  
+      const gradientOldUsers = ctx.createLinearGradient(0, 0, 0, 400);
+      gradientOldUsers.addColorStop(0, 'rgba(0, 0, 139, 0.5)'); // Dark blue at the top
+      gradientOldUsers.addColorStop(1, 'rgba(0, 0, 139, 0)'); // Transparent at the bottom
+  
+      const data = {
+        labels: labels,
+        datasets: [{
+          label: 'Total Users',
+          data: allData,
+          fill: true,
+          backgroundColor: gradient,
+          borderColor: '#007BFF',
+          pointBackgroundColor: '#fff',
+          pointBorderColor: '#007BFF',
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#fff',
+          pointRadius: 4,
+          tension: 0.1,
+          borderWidth: 2
+        }, {
+          label: 'Old Users',
+          data: allDataOldUsers,
+          fill: true,
+          backgroundColor: gradientOldUsers,
+          borderColor: 'rgba(153, 102, 255, 1)',
+          pointBackgroundColor: '#fff',
+          pointBorderColor: 'rgba(153, 102, 255, 1)',
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: '#fff',
+          pointRadius: 4,
+          tension: 0.1,
+          borderWidth: 2
+        }]
+      };
+  
+      const config = {
+        type: 'line',
+        data: data,
+        options: {
+          scales: {
+            x: {
+              grid: {
+                drawOnChartArea: false, // This will hide the x-axis line
+              },
+            },
+            y: {
+              beginAtZero: true,
+              ticks: {
+                maxTicksLimit: 6, // This will create the scale 0, 20, 40, 60, 80, 100
+                suggestedMax: 100,
+                min: 0
+              }
+            }
+          },
+          plugins: {
+            tooltip: {
+              yAlign: 'bottom',
+              backgroundColor: '#E9F3FF',
+              borderWidth: 1,
+              borderColor: '#B1D5FF',
+              titleColor: '#000',
+              titleFont: {
+                size: 18, // Increase the font size of the tooltip title
+                weight: 'bold', // You can also set the weight of the font
+                family: 'Roboto', // Specify the font family
+              },
+              cornerRadius: '15',
+              boxShadow: '0px 2px 4px -2px rgba(24, 39, 75, 0.12), 0px 4px 4px -2px rgba(24, 39, 75, 0.08)',
+              displayColors: true,
+              padding: 20,
+              caretSize: 10,
+              callbacks: {
+                labelTextColor: function () {
+                  return '#000'; // Black color for tooltip text
+                },
+              },
+              bodyFont: {
+                size: 14 // Font size for tooltip text
+              }
+            },
+            legend: {
+              position: 'bottom', // This will move the legend to the bottom
+              labels: {
+                font: {
+                  size: 14,
+                },
+                boxWidth: 10,
+              }
+            },
+          }
+        }
+      };
+  
+      const myChart = new Chart(ctx, config);
+  
+      document.getElementById('timeFilter').addEventListener('change', function () {
+        const days = this.value;
+        let newData, newLabels, newDataOldUsers;
+  
+        if (days == 1) {
+          // If "Last Day" is selected, show hours
+          newLabels = Array.from({ length: 24 }, (_, i) => i + ':00');
+          newData = allDataLastDay;
+          newDataOldUsers = allDataOldUsersLastDay;
+        } else if (days == 365) {
+          // If "Last Year" is selected, show months
+          newLabels = labels;
+          newData = allData;
+          newDataOldUsers = allDataOldUsers;
+        } else {
+          // If "Last 30 Days" is selected, show days
+          newLabels = Array.from({ length: 30 }, (_, i) => 'Day ' + (i + 1));
+          newData = allDataLast30Days;
+          newDataOldUsers = allDataOldUsersLast30Days;
+        }
+  
+        myChart.data.labels = newLabels;
+        myChart.data.datasets[0].data = newData;
+        myChart.data.datasets[1].data = newDataOldUsers;
+        myChart.update();
+      });
+    } catch (error) {
+      console.error('Error fetching and processing data:', error);
+    }
+  });
+</script>              
+              </body>
