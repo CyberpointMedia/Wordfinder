@@ -30,7 +30,7 @@
                 <div class="group w-full border border-[#007BFF4D] rounded-[10px] overflow-hidden hover:text-[#007BFF]">
                     <a href="/articles/<%= post.title %>"><img src="<%= post.feature_img %>" alt="#" class="w-full transition-transform duration-500 ease-in-out object-cover group-hover:scale-105"></a>
                     <div class="p-4">
-                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6"><a href="/articles/<%= post.title %>" class="hover:text-[#007BFF]"><%= post.heading %></a></h3>
+                        <h3 class="text-lg sm:text-[22px] font-semibold leading-6 line-clamp-2"><a href="/articles/<%= post.title %>" class="hover:text-[#007BFF]"><%= post.heading %></a></h3>
                     </div>
                 </div>
                 <% }) %>

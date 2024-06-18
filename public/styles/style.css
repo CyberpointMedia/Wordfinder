@@ -3196,6 +3196,13 @@ video {
     background-color: rgb(0 0 0 / 0.7);
 }
 
+.line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
 @media (min-width: 640px) {
     .sm\:mb-0 {
         margin-bottom: 0px;
