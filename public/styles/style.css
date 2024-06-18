@@ -720,6 +720,10 @@ video {
     margin-bottom: 1.75rem/* 28px */;
 }
 
+.mb-10 {
+    margin-bottom: 2.5rem/* 40px */;
+}
+
 .me-2 {
     margin-inline-end: 0.5rem;
 }
