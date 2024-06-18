@@ -2588,6 +2588,10 @@ video {
     padding-inline-start: 3rem;
 }
 
+.ps-1 {
+    padding-inline-start: 0.25rem/* 4px */;
+}
+
 .ps-2 {
     padding-inline-start: 0.5rem;
 }
@@ -2598,6 +2602,10 @@ video {
 
 .ps-6 {
     padding-inline-start: 1.5rem;
+}
+
+.ps-7 {
+    padding-inline-start: 1.75rem/* 28px */;
 }
 
 .pt-10 {

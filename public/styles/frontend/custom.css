@@ -221,3 +221,7 @@ select {
     font-size: 24px;
     font-weight: 500;
 }
+
+.listing li a {
+    color: #393939;
+}
