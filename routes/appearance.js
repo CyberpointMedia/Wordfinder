@@ -32,7 +32,7 @@ router.get('/nav-menu', ensureAdmin, async (req, res) => {
 
 router.post('/save-menu', async (req, res) => {
     try {
-        const { menuName, pages, posts, customLinks } = req.body;
+        const { menuName, pages, posts, customLinks, headerMenu } = req.body;
 
         // Check if a menu with the same name already exists
         const existingMenu = await Appearance.findOne({ menuName });
@@ -40,13 +40,12 @@ router.post('/save-menu', async (req, res) => {
             console.log("Menu name already exists");
             res.redirect('/appearance/nav-menu?error=Menu%20name%20already%20exists');
         } else {
-
             console.log("Pages:", pages);
             const pageIds = Array.isArray(pages) ? pages.map(id => new mongoose.Types.ObjectId(id)) : [new mongoose.Types.ObjectId(pages)];
             console.log("Page IDs:", pageIds);
             const postIds = Array.isArray(posts) ? posts.map(id => new mongoose.Types.ObjectId(id)) : [new mongoose.Types.ObjectId(posts)];
             console.log("Post IDs:", postIds);
-            const newMenu = new Appearance({ menuName, pages: pageIds, posts: postIds, customLinks });
+            const newMenu = new Appearance({ menuName, pages: pageIds, posts: postIds, customLinks, headerMenu });
             await newMenu.save();
             res.redirect(`/appearance/edit-menu/${newMenu._id}?message=New Menu created successfully`);
         }
@@ -103,7 +102,7 @@ router.post('/show-menu', ensureAdmin, async (req, res) => {
 
         // Find the appearance by its id
         let appearance = await Appearance.findOne({ _id: selectedMenuId }).populate('pages posts');
-
+        console.log("Appearance:", appearance);
         if (!appearance) {
             return res.status(404).json({ error: 'Appearance not found' });
         }
@@ -155,7 +154,7 @@ router.post('/show-menu', ensureAdmin, async (req, res) => {
 
         res.redirect('/appearance/nav-menu');
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.status(500).json({ message: 'An error occurred' });
     }
 });

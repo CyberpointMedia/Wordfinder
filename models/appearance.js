@@ -18,6 +18,10 @@ const AppearanceSchema = new mongoose.Schema({
         url: String,
         text: String
     }],
+    headerMenu: { 
+        type: Boolean,
+        default: false
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Appearance', AppearanceSchema);

@@ -6,7 +6,6 @@
             <%- include('../sidenav/sidenav.ejs') %>
                 <div class="bg-white page-content">
                     <%- include('../header/header.ejs') %>
-
                         <!-- main content start here -->
                         <main class="px-5 py-8">
                             <h2 class="mb-4 mt-8 text-3xl font-medium text-black">
@@ -213,6 +212,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                </form>
                                     <!-- Add menu items end -->
                                     <!-- Menu Structure start -->
                                     <div class="w-full md:w-3/5 ">
@@ -230,8 +230,9 @@
                                                 Add menu items from the column on the left.
                                             </p>
 
-                                            <form action="/appearance/show-menu" method="post"
+                                            <form id="menuForm" action="/appearance/show-menu" method="post"
                                 enctype="application/x-www-form-urlencoded">
+                                <input type="hidden" id="hidden-selected-menu-id" name="selectedMenuId" value="<%= menu._id %>">
                                 <div class="mt-8 savedMenuShows">
                                     <div id="page-post-custom" class="mb-6 hs-accordion-group w-80">
                                         <!-- added pages /post /custom.text  -->
@@ -276,26 +277,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </form>
-
-                                            <div class="flex sm:flex-row items-start gap-20 mt-11">
+                                 </div>
+                            
+                            <div class="flex sm:flex-row items-start gap-20 mt-11">
                                                 <h5 class="text-black font-medium text-lg">Display location</h5>
                                                 <div class="">
                                                     <div class="flex items-center mb-4">
-                                                        <input id="header-menu" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                                                        <input id="header-menu" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" <%= menu.headerMenu ? 'checked' : '' %>>
                                                         <label for="header-menu" class="ms-2 text-sm font-normal text-black dark:text-gray-300">Header Menu</label>
                                                     </div>
 
-                                                    <div class="flex items-center mb-4">
-                                                        <input id="footer-top-menu" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-                                                        <label for="footer-top-menu" class="ms-2 text-sm font-normal text-black dark:text-gray-300">Footer Top Menu <small>(Currently set to: Footer Top Menu)</small></label>
-                                                    </div>
-
-                                                    <div class="flex items-center mb-4">
-                                                        <input id="footer-bootm-menu" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
-                                                        <label for="footer-bootm-menu" class="ms-2 text-sm font-normal text-black dark:text-gray-300">Footer Bootom Menu <small>(Currently set to: Footer Bottom Menu)</small></label>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -312,7 +303,6 @@
                                     </div>
                                 </div>
                             </form>
-                            
                         </main>
                         <!-- main content end here -->
                         <%- include('../script/script.ejs') %>
@@ -359,17 +349,22 @@
                                         event.preventDefault(); // Prevent the default form submission
                                         // Get the index of the button that was clicked
                                         var index = $('.update-page-post-custom').index(this);
+                                    // Get the selected menu id from the dropdown
+                                    
+                                    var selectedMenuId = $('#select-menu-to-edit').val();
+                                    console.log("selectedMenuId from dropdown:", selectedMenuId);
 
                                         // Get the values from the updated_name and parent field for this button
                                         var updatedName = $(`#updated_name${index}`).val();
                                         var parent = $(`#parent${index}`).val();
-
-                                        // Create an object containing the updated name and parent for this menu item
+                                        console.log("updatedName",updatedName);
+                                       // Create an object containing the updated name and parent for this menu item
                                         var formData = {
+                                            selectedMenuId: selectedMenuId,
                                             updated_name: updatedName,
                                             parent: parent
                                         };
-
+                                    
                                         // AJAX call to submit the form data
                                         $.ajax({
                                             url: '/appearance/show-menu', // Replace with the appropriate URL
@@ -377,7 +372,7 @@
                                             data: { menus: formData },
                                             success: function (response) {
                                                 // Handle success response
-                                                console.log(response);
+                                                console.log(data);
                                             },
                                             error: function (error) {
                                                 // Handle error response
@@ -408,10 +403,10 @@
                                 window.onload = function () {
                                     document.getElementById('select-menu-to-edit').dispatchEvent(new Event('change'));
                                 };
-
                                 document.getElementById('remove-button').addEventListener('click', function () {
                                     var selectMenu = document.getElementById('select-menu-to-edit');
                                     var menuId = selectMenu.value;
+                                    console.log("menuId",menuId);
 
                                     // If this is the last menu, redirect to '/appearance/nav-menu' after deletion
                                     var isLastMenu = selectMenu.options.length === 1;
@@ -438,11 +433,12 @@
                                             }
 
                                              // If this was the last menu, redirect to '/appearance/nav-menu'
-            window.location.href = '/appearance/nav-menu';
+                                           window.location.href = '/appearance/nav-menu';
         
                                         })
                                         .catch(error => console.error('Error:', error));
                                 });
+
                                 document.getElementById('addPagesButton').addEventListener('click', function () {
                                     fetch('/appearance/edit-menu/<%= menu._id %>', {
                                         method: 'POST',
@@ -534,7 +530,7 @@
             </div>
         `);
                                 }
-                            </script>
+    </script>
     </body>
 
     </html>
