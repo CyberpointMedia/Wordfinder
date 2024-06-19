@@ -16,7 +16,7 @@ require('dotenv').config();
 
 const User = require('../models/user.js'); 
 const Widget = require('../models/widget.js');
-
+const visitRouter = require('../routes/visits.js');
 const userRoutes = require('../routes/user-profile.js');  
 const authRoutes = require('../routes/auth');  
 const postRoutes = require('../routes/post');  
@@ -77,10 +77,12 @@ app.use('/admin/node_modules', express.static(path.join(__dirname, '../node_modu
 app.use(methodOverride('_method'));
 
 app.use(session({
-    secret: 'your secret key',
+    secret: process.env.cookieSecret,
     resave: false,
     saveUninitialized: false,
     cookie: {
+        // secure: true,
+        httpOnly: true,
         maxAge: 24 * 60 * 60 * 1000 // expires in 1 day
     }
 }));
@@ -177,6 +179,7 @@ app.listen(port, () => {
 });
 
 app.use('/', frontendRoutes);
+app.use('/chart', visitRouter);
 app.use('/category', categoryRoutes);
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);

@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const pageSchema = new mongoose.Schema({
     page_name: {
         type: String,
+        required: true,
     },
     page_router: {
         type: String,

@@ -65,10 +65,10 @@
       </svg>
     </div>
     <div
-      class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] ps-12 pt-[45px]"
+      class="bg-[#f0f7fa] rounded-bl-[16px] rounded-br-[16px] p-[30px] pt-[45px]"
     >
     <% var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''); %>
-    <ul class="space-y-3 font-medium listing" id="words_that_start_with"
+    <ul class="space-y-3 font-medium listing ps-1" id="words_that_start_with"
       <% letters.forEach(letter => { %>
       <li>
         <a href="/words-that-start-with/<%= letter.toLowerCase() %>/">Words that Start with <%= letter %></a>

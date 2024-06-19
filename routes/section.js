@@ -94,6 +94,7 @@ router.get('/show', wrapAsync(async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 }));
+
 router.get('/show/:title', async (req, res) => {
   try {
       // Fetch the section from your database using req.params.title
@@ -120,6 +121,7 @@ router.get('/all', wrapAsync(async (req, res) => {
       res.status(500).send('Internal Server Error');
   }
 }));
+
 router.get('/published', wrapAsync(async (req, res) => {
   try {
     const allCount = await Section.countDocuments();
@@ -133,6 +135,7 @@ router.get('/published', wrapAsync(async (req, res) => {
       res.status(500).send('Internal Server Error');
   }
 }));
+
 router.get('/trash', wrapAsync(async (req, res) => {
   try {
     const allCount = await Section.countDocuments();

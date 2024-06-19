@@ -57,6 +57,5 @@ describe('Auth Middleware', () => {
     expect(res.statusCode).toEqual(200);
     expect(res.text).toEqual('Author');
   });
-
   // Add more tests for other roles and routes...
 });

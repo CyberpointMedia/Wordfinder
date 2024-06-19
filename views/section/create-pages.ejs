@@ -1,6 +1,5 @@
 <!-- views/section/create-pages.ejs -->
 <%- include('../header/head.ejs') %>
-
     <body>
         <!-- sidebar start here -->
         <div class="flex overflow-hidden">
@@ -223,10 +222,12 @@
                 </div>
         </div>
         <!-- sidebar end here -->
+        <%- include('../script/script.ejs') %>
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
         <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
         <script>
             $(document).ready(function () {
@@ -276,6 +277,14 @@
             });
 
             function setStatus(status) {
+                  // Check if the required fields are filled in
+    var pageName = document.getElementById('page_name').value.trim();
+    if (!pageName) {
+        // If the page name is not filled in, show an error message and return
+        alert("Please fill in the page title.");
+        return;
+    }
+
                 console.log('setStatus called with:', status);
                 document.getElementById('status').value = status;
                 console.log('Status:', document.getElementById('status').value);
@@ -292,47 +301,94 @@
                     document.querySelector('form').submit();
                 }, 100); // Delay form submission by 100 milliseconds
             }
-
-            var selectedSectionsList = document.getElementById('selectedValuesList');
-            var selectedSectionsInput = document.getElementById('selectedSectionsInput');
-
-            var sortable = new Sortable(selectedSectionsList, {
-                group: 'shared', // Set a group name to allow dragging between lists
-                animation: 150,
-                onEnd: function (evt) {
-                    updateSelectedSections();
-                },
-            });
-            // Listen for changes in the dropdown
-            $('#mySelect').change(function () {
-                // Clear the current list
-                $('#selectedValuesList').empty();
-
-                // Get the selected option elements
-                var selectedOptions = $(this).find('option:selected');
-
-                // Create an array to store the selected section IDs
-                var selectedSections = [];
-
-                // Loop over the selected option elements
-                selectedOptions.each(function () {
-                    // Get the section ID and title
-                    var sectionId = $(this).val();
-                    var sectionTitle = $(this).text();
-
-                    // Add the section ID to the selectedSections array
-                    selectedSections.push(sectionId);
-
-                    // Append the section title to the list
-                    $('#selectedValuesList').append('<li>' + sectionTitle + '</li>'); // Use sectionTitle instead of sectionId
+            $(document).ready(function () {
+                // Initialize Select2 on your select box
+                $('#mySelect').select2();
+            
+                $('#mySelect').on('change', function () {
+                    // Clear the list
+                    $('#selectedValuesList').empty();
+            
+                    // Get selected options
+                    var selectedOptions = $(this).find('option:selected');
+                    selectedOptions.each(function() {
+                        var sectionId = $(this).val().trim();
+                        var sectionTitle = $(this).text().trim();
+                        console.log("sectionTitle mk",sectionTitle);
+            
+                        // Add the item to the list
+                        $('#selectedValuesList').append('<li>' + sectionTitle + '</li>');
+                    });
+            
+                    // Get all list items
+                    var allListItems = $('#selectedValuesList li').map(function() {
+                        return $(this).text();
+                    }).get();
+            
+                    $('#selectedSectionsInput').val(JSON.stringify(allListItems));
+            
+                    // Make the list items sortable
+                    new Sortable(selectedValuesList, {
+                        animation: 150,
+                        ghostClass: 'blue-background-class'
+                    });   
                 });
-
-                // Update the hidden input field with the selected section IDs
-                $('#selectedSectionsInput').val(JSON.stringify(selectedSections));
             });
+            // $('#mySelect').on('change', function() {
+            //     // Clear the list
+            //     $('#selectedValuesList').empty();
+            
+            //     // Get the selected options
+            //     const selectedOptions = $(this).find('option:selected');
+            
+            //     // Loop through the selected options and append them to the list
+            //     selectedOptions.each(function() {
+            //         const li = $('<li></li>');
+            //         li.text($(this).text()); // Use the text content of the option
+            //         console.log("li test",$(this).text());
+            //         $('#selectedValuesList').append(li);
+            //     });
+            // }); 
+
+            // var selectedSectionsList = document.getElementById('selectedValuesList');
+            // var selectedSectionsInput = document.getElementById('selectedSectionsInput');
+
+            // var sortable = new Sortable(selectedSectionsList, {
+            //     group: 'shared', // Set a group name to allow dragging between lists
+            //     animation: 150,
+            //     onEnd: function (evt) {
+            //         updateSelectedSections();
+            //     },
+            // });
+            // // Listen for changes in the dropdown
+            // $('#mySelect').change(function () {
+            //     // Clear the current list
+            //     $('#selectedValuesList').empty();
+
+            //     // Get the selected option elements
+            //     var selectedOptions = $(this).find('option:selected');
+
+            //     // Create an array to store the selected section IDs
+            //     var selectedSections = [];
+
+            //     // Loop over the selected option elements
+            //     selectedOptions.each(function () {
+            //         // Get the section ID and title
+            //         console.log("this select",this);
+            //         var sectionId = $(this).val();
+            //         var sectionTitle = $(this).text();
+            //         console.log("sectionTitle",$(this).text());
+            //         // Add the section ID to the selectedSections array
+            //         selectedSections.push(sectionId);
+
+            //         // Append the section title to the list
+            //         $('#selectedValuesList').append('<li>' + sectionTitle + '</li>'); // Use sectionTitle instead of sectionId
+            //     });
+            //     // Update the hidden input field with the selected section IDs
+            //     $('#selectedSectionsInput').val(JSON.stringify(selectedSections));
+            // });
             // Function to send a POST request with the form data
         </script>
-        <%- include('../script/script.ejs') %>
     </body>
 
     </html>

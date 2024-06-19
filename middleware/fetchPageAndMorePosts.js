@@ -23,6 +23,7 @@ const fetchPageAndMorePosts = async (req, res, next) => {
                 throw error;
             }
         }
+        console.log('Menus:', menus);
         res.locals.morePosts = morePosts;
         res.locals.page = page;
         res.locals.menus = menus;

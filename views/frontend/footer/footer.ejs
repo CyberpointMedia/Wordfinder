@@ -21,31 +21,54 @@
                     </a>
                 </div>
                 <div class="grid text-sm grid-cols gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
+                    <% if (footer && footer.footerCol2 && footer.footerCol2[0]) { %>
+                        <% if (footer.footerCol2[0].Customhtml) { %>
+                            <%- footer.footerCol2[0].Customhtml %>
+                        <% } else if (footer.footerCol2[0].texteditor) { %>
+                            <%- footer.footerCol2[0].texteditor %>
+                        <% } else if (footer.footerCol2[0].contactdetails) { %>
+                            <%- footer.footerCol2[0].contactdetails %>
+                        <% } else if (footer.footerCol2[0].image) { %>
+                            <img src="<%- footer.footerCol2[0].image %>" alt="Image">
+                        <% } %>
+                    <% } else { %>
+                        <div class="space-y-3">
+                            <h3 class="text-lg font-normal text-white">Resources static</h3>
+                            <ul class="space-y-2">
+                                <li>
+                                    <a class="text-white text-[13px]" href="/articles">Articles</a>
+                                </li>
+                                <li>
+                                    <a class="text-white text-[13px]" href="#">Popular Pages</a>
+                                </li>
+                                <li>
+                                    <a class="text-white text-[13px]" href="#">Top Searches</a>
+                                </li>
+                                <li>
+                                    <a class="text-white text-[13px]" href="#">External Resources</a>
+                                </li>
+                                <li>
+                                    <a class="text-white text-[13px]" href="#">Tools</a>
+                                </li>
+                                <li>
+                                    <a class="text-white text-[13px]" href="#">Definitions</a>
+                                </li>
+                            </ul>
+                        </div>
+                    <% } %>
+                    <% if (footer && footer.footerCol3 && footer.footerCol3[0]) { %>
+                        <% if (footer.footerCol3[0].Customhtml) { %>
+                            <%- footer.footerCol3[0].Customhtml %>
+                        <% } else if (footer.footerCol3[0].texteditor) { %>
+                            <%- footer.footerCol3[0].texteditor %>
+                        <% } else if (footer.footerCol3[0].contactdetails) { %>
+                            <%- footer.footerCol3[0].contactdetails %>
+                        <% } else if (footer.footerCol3[0].image) { %>
+                            <img src="<%- footer.footerCol3[0].image %>" alt="Image">
+                        <% } %>
+                    <% } else { %>
                     <div class="space-y-3">
-                        <h3 class="text-lg font-normal text-white">Resources</h3>
-                        <ul class="space-y-2">
-                            <li>
-                                <a class="text-white text-[13px]" href="/articles">Articles</a>
-                            </li>
-                            <li>
-                                <a class="text-white text-[13px]" href="#">Popular Pages</a>
-                            </li>
-                            <li>
-                                <a class="text-white text-[13px]" href="#">Top Searches</a>
-                            </li>
-                            <li>
-                                <a class="text-white text-[13px]" href="#">External Resources</a>
-                            </li>
-                            <li>
-                                <a class="text-white text-[13px]" href="#">Tools</a>
-                            </li>
-                            <li>
-                                <a class="text-white text-[13px]" href="#">Definitions</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="space-y-3">
-                        <h3 class="text-lg font-normal text-white">About</h3>
+                        <h3 class="text-lg font-normal text-white">About static</h3>
                         <ul class="space-y-2">
                             <li>
                                 <a class="text-white text-[13px]" href="/contact">Contact</a>
@@ -61,6 +84,18 @@
                             </li>
                         </ul>
                     </div>
+                    <% } %>
+                    <% if (footer && footer.footerCol4 && footer.footerCol4[0]) { %>
+                        <% if (footer.footerCol4[0].Customhtml) { %>
+                            <%- footer.footerCol4[0].Customhtml %>
+                        <% } else if (footer.footerCol4[0].texteditor) { %>
+                            <%- footer.footerCol4[0].texteditor %>
+                        <% } else if (footer.footerCol4[0].contactdetails) { %>
+                            <%- footer.footerCol4[0].contactdetails %>
+                        <% } else if (footer.footerCol4[0].image) { %>
+                            <img src="<%- footer.footerCol4[0].image %>" alt="Image">
+                        <% } %>
+                    <% } else { %>
                     <div class="space-y-3">
                         <h3 class="text-lg font-normal text-white">Links</h3>
                         <ul class="space-y-2">
@@ -78,6 +113,18 @@
                             </li>
                         </ul>
                     </div>
+                    <% } %>
+                    <% if (footer && footer.footerCol5 && footer.footerCol5[0]) { %>
+                        <% if (footer.footerCol5[0].Customhtml) { %>
+                            <%- footer.footerCol5[0].Customhtml %>
+                        <% } else if (footer.footerCol5[0].texteditor) { %>
+                            <%- footer.footerCol5[0].texteditor %>
+                        <% } else if (footer.footerCol5[0].contactdetails) { %>
+                            <%- footer.footerCol5[0].contactdetails %>
+                        <% } else if (footer.footerCol5[0].image) { %>
+                            <img src="<%- footer.footerCol5[0].image %>" alt="Image">
+                        <% } %>
+                    <% } else { %>
                     <div class="space-y-3">
                         <h3 class="text-lg font-normal text-white">
                             <a class="text-white" href="javascript:void(0);" data-hs-overlay="#hs-medium-modal">Share Your Thoughts</a>
@@ -86,6 +133,7 @@
                             Do you have suggestions or want to report a missing word?
                         </p>
                     </div>
+                    <% } %>
                 </div>
             </div>
         </div>

@@ -46,6 +46,7 @@ router.get('/user-profile', (req, res) => {
         res.redirect('/auth/login');
     }
 });
+
 router.post('/user-profile', upload.single('image'), async (req, res) => {
     const { email, website } = req.body;
     const user = await User.findById(req.user._id);

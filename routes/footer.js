@@ -46,20 +46,19 @@ router.use(bodyParser.urlencoded({ extended: true }));
 // Render widgets view
 router.get('/widgets', ensureAdmin, wrapAsync(async (req, res) => { 
   const widget = await Widget.findOne();
-  const footers = await Footer.find({}).populate('footerCol1 footerCol2 footerCol3 footerCol4').populate('footerCol1.widgets footerCol2.widgets footerCol3.widgets footerCol4.widgets');
+  const footers = await Footer.find({}).populate('footerCol1 footerCol2 footerCol3 footerCol4 footerCol5').populate('footerCol1.widgets footerCol2.widgets footerCol3.widgets footerCol4.widgets footerCol5.widgets');
   console.log('Footers:', footers); // Log footers data
 
   const widgets = await Widget.find({});
   console.log('Widgets:', widgets); // Log widgets data
 
-  const columns = ['footerCol1', 'footerCol2', 'footerCol3', 'footerCol4'];
+  const columns = ['footerCol1', 'footerCol2', 'footerCol3', 'footerCol4', 'footerCol5'];
 
   // Create an array of widget objects that include the selected column
   const widgetsWithColumn = widgets.map(widget => ({ ...widget._doc, column: widget.column }));
 
   res.render('appearance/widgets', { user: req.user, footers: footers, widgets: widgetsWithColumn, columns: columns ,widget: widget}); 
 }));
-
 
 router.post('/addtexteditor', wrapAsync(async (req, res) => {
   // The column where the widget should be added
@@ -101,6 +100,7 @@ router.post('/addcustomhtml', wrapAsync(async (req, res) => {
   await footer.save();
   res.redirect('/footer/widgets?message=Custom HTML Widget added successfully');
 }));
+
 router.post('/addcontactdetails', wrapAsync(async (req, res) => {
   // The column where the widget should be added
   const column = req.body.column;
@@ -142,6 +142,7 @@ router.post('/addimage', wrapAsync(async (req, res) => {
 
   res.redirect('/footer/widgets?message=Image Widget added successfully');
 }));
+
 router.post('/texteditor', wrapAsync(async (req, res) => {
   // The _id of the widget to update
   const widgetId = req.body.widgetId;
