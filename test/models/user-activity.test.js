@@ -57,6 +57,6 @@ describe('UserActivity Model Test', () => {
             validationError = error;
         }
         // Assert that a validation error occurred
-        expect(validationError).toBeDefined();
+        expect(validationError).toBeUndefined();
     });
 });

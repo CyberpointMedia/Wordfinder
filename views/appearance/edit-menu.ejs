@@ -279,14 +279,13 @@
                                     </div>
                                  </div>
                             
-                            <div class="flex sm:flex-row items-start gap-20 mt-11">
+                                       <div class="flex sm:flex-row items-start gap-20 mt-11">
                                                 <h5 class="text-black font-medium text-lg">Display location</h5>
                                                 <div class="">
                                                     <div class="flex items-center mb-4">
-                                                        <input id="header-menu" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" <%= menu.headerMenu ? 'checked' : '' %>>
+                                                        <input id="header-menu" name="headerMenu" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" <%= menu.headerMenu ? 'checked' : '' %>>
                                                         <label for="header-menu" class="ms-2 text-sm font-normal text-black dark:text-gray-300">Header Menu</label>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -359,10 +358,14 @@
                                         var parent = $(`#parent${index}`).val();
                                         console.log("updatedName",updatedName);
                                        // Create an object containing the updated name and parent for this menu item
+                                        // Get the value of the headerMenu checkbox
+        var headerMenu = $('#header-menu').is(':checked');
+
                                         var formData = {
                                             selectedMenuId: selectedMenuId,
                                             updated_name: updatedName,
-                                            parent: parent
+                                            parent: parent,
+                                            headerMenu: headerMenu
                                         };
                                     
                                         // AJAX call to submit the form data
@@ -396,8 +399,6 @@
                                         });
                                     });
                                 }
-
-
 
                                 // Trigger the 'change' event on page load to load the details of the selected menu
                                 window.onload = function () {

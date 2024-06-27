@@ -707,6 +707,7 @@ router.get('/input', (req, res) => {
 
 router.use((err, req, res, next) => {
     console.error(err.stack);
+    console.log("error",err);
     res.status(404).render('not-found/page-not-found.ejs', err);
 });
 

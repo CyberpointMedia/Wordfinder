@@ -115,42 +115,44 @@
                     <div class="flex flex-col bg-white border shadow-sm pointer-events-auto rounded-xl">
                         <div class="px-8 py-12 overflow-y-auto md:px-16">
                             <div class="grid gap-4 md:grid-cols-4">
-                                <% if (menus && menus.length > 0) { %>
+                                <% if (menus && menus.length >= 0) { %>
                                     <% menus.forEach(menu => { %>
-                                <div class="sm:col-span-1">
-                                    
-                                        
-                                    <span class="block text-xl pb-6 font-semibold text-[#007BFF]"><%= menu.menuName %></span>
-                                    <ul class="space-y-2 text-base font-normal">
-                                        <% menu.items ? menu.items.forEach(item => { %>
-                                            <li>
-                                                <% if (item.type === 'page') { %>
-                                                    <a class="hover:text-[#007BFF]" href="/<%= item.id.page_router %>">
-                                                        <%= item.updated_name ? item.updated_name : item.id.page_name %>
-                                                    </a>
-                                                <% } else if (item.type === 'post') { %>
-                                                    <a class="hover:text-[#007BFF]" href="/articles/<%= item.id.title %>">
-                                                        <%= item.updated_name ? item.updated_name : item.id.heading %>
-                                                    </a>
-                                                    <% } else if (item.type === 'customLink') { %>
-                                                        <% const customLink = customLinks.find(link => link._id.toString() === item.id.toString()); %>
-                                                        <a class="hover:text-[#007BFF]" href="/<%= customLinks.url %>">
-                                                            <%= item.updated_name ? item.updated_name : customLink.text %>
-                                                        </a>
-                                                    <% } %>
-                                            </li>
-                                        <% }) : '' %>
-                                    </ul>
-                                        
-                                   </div>
-                                <% }) %>
+                                        <div class="sm:col-span-1">
+                                            <span class="block text-xl pb-6 font-semibold text-[#007BFF]"><%= menu.menuName %></span>
+                                            <ul class="space-y-2 text-base font-normal">
+                                                <% if (menu.items && menu.items.length > 0) { %>
+                                                    <% menu.items.forEach(item => { %>
+                                                        <li>
+                                                            <% if (item.type === 'page' && item.id) { %>
+                                                                <a class="hover:text-[#007BFF]" href="/<%= item.id.page_router %>">
+                                                                    <%= item.updated_name ? item.updated_name : item.id.page_name %>
+                                                                </a>
+                                                            <% } else if (item.type === 'post' && item.id) { %>
+                                                                <a class="hover:text-[#007BFF]" href="/articles/<%= item.id.title %>">
+                                                                    <%= item.updated_name ? item.updated_name : item.id.heading %>
+                                                                </a>
+                                                            <% } else if (item.type === 'customLink' && item.id) { %>
+                                                                <% const customLink = customLinks.find(link => link._id.toString() === item.id.toString()); %>
+                                                                <% if (customLink) { %>
+                                                                    <a class="hover:text-[#007BFF]" href="<%= customLink.url %>">
+                                                                        <%= item.updated_name ? item.updated_name : customLink.text %>
+                                                                    </a>
+                                                                <% } %>
+                                                            <% } %>
+                                                        </li>
+                                                    <% }) %>
+                                                <% } else { %>
+                                                    <li class="text-gray-500">No items available.</li>
+                                                <% } %>
+                                            </ul>
+                                        </div>
+                                    <% }) %>
                                 <% } else { %>
-                                    <p>No menu exists.</p>
+                                    <p class="text-gray-500">No menu exists.</p>
                                 <% } %>
-                                <!-- End Col -->
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                 </div>
             </div>
             <!-- mega menu end here -->
