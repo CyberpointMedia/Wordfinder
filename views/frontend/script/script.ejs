@@ -11,10 +11,16 @@
             .then(data => {
                 console.log(data);
                 if (data && data.results && data.results.length > 0) {
-                    data.results.forEach(result => {
-                        const lexicalEntry = result.lexicalEntries[0];
-                        const entry = lexicalEntry.entries[0];
-                        const sense = entry.senses[0];
+    let validResultFound = false;
+
+    data.results.forEach(result => {
+        if (result.lexicalEntries && result.lexicalEntries.length > 0) {
+            const lexicalEntry = result.lexicalEntries[0];
+            if (lexicalEntry.entries && lexicalEntry.entries.length > 0) {
+                const entry = lexicalEntry.entries[0];
+                if (entry.senses && entry.senses.length > 0) {
+                    const sense = entry.senses[0];
+                    if (sense.definitions && sense.definitions.length > 0) {
                         const synonyms = sense.synonyms ? sense.synonyms.map(synonym => synonym.text).join(', ') : '';
                         const examples = sense.examples ? sense.examples.map(example => example.text).join(', ') : '';
                         displayDefinitionModal(
@@ -26,11 +32,22 @@
                             examples
                         );
                         console.log("Result output", result.word, sense.definitions[0], lexicalEntry.lexicalCategory.text, synonyms, sense.semanticClasses ? sense.semanticClasses[0].text : '', examples);
-                    });
-                } else {
-                    displayDefinitionModal(word, "No meaning exists", "", "", "", "");
-                    console.error(`Definition not found for '${word}'`);
+                        validResultFound = true;
+                    }
                 }
+            }
+        }
+    });
+
+    if (!validResultFound) {
+        displayDefinitionModal(word, "No meaning exists", "", "", "", "");
+        console.error(`Definition not found for '${word}'`);
+    }
+} else {
+    displayDefinitionModal(word, "No meaning exists", "", "", "", "");
+    console.error(`Definition not found for '${word}'`);
+}
+
             })
             .catch(error => {
                 console.error('Error fetching word definition:', error);

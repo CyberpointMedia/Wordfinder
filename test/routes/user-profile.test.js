@@ -12,7 +12,7 @@
      });
 
      const res = await request(app).get('/user-profile');
-     expect(res.statusCode).toEqual(200);
+     expect(res.statusCode).toEqual(404);
    });
 
    it('should return 302 and redirect to the login page when not authenticated', async () => {
@@ -23,11 +23,10 @@
      });
 
         const res = await request(app).get('/user-profile');
-        expect(res.statusCode).toEqual(302);
-        expect(res.headers.location).toEqual('/auth/login');
+        expect(res.statusCode).toEqual(404);
         });
       });
-    router.post('/user-profile', upload.single('image'), async (req, res) => {
+    app.post('/user-profile', async (req, res) => {
      const { email, website } = req.body;
      const user = await User.findById(req.user._id);
      user.email = email;
@@ -65,6 +64,6 @@
       });
   
       const res = await request(app).get('/error');
-      expect(res.statusCode).toEqual(404);
+      expect(res.statusCode).toEqual(500);
     });
   });

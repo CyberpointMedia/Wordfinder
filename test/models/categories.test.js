@@ -39,7 +39,7 @@ describe('Category Model Test', () => {
         expect(savedCategory.name).toBe(categoryData.name);
         expect(savedCategory.slug).toBe(categoryData.slug);
     });
-
+3
     it('should fail to create a category without required fields', async () => {
         const categoryData = {
             slug: 'technology'

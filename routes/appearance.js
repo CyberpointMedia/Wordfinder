@@ -97,7 +97,7 @@ router.get('/edit-menu/:id', ensureAdmin, async (req, res) => {
 router.post('/show-menu', ensureAdmin, async (req, res) => {
     try {
         // Extract data from the request
-        const { selectedMenuId, updated_name, parent } = req.body;
+        const { selectedMenuId, updated_name, parent ,headerMenu } = req.body;
         console.log("Selected Menu ID:", selectedMenuId , "Updated Name:", updated_name, "Parent:", parent);
 
         // Find the appearance by its id
@@ -136,7 +136,8 @@ router.post('/show-menu', ensureAdmin, async (req, res) => {
                         updated_name: updated_name[index], 
                         parent: parent[index]
                     }))
-                )
+                ),
+                 headerMenu: headerMenu === 'on'
             });
         } else {
             // If the ShowMenu document exists, update the updated_name and parent fields of each item
@@ -148,6 +149,7 @@ router.post('/show-menu', ensureAdmin, async (req, res) => {
                     item.parent = parent[index];
                 }
             });
+            showMenu.headerMenu = headerMenu === 'on'; // Update the headerMenu field
         }
 
         await showMenu.save();

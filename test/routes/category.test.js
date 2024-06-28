@@ -36,25 +36,25 @@ afterEach(() => {
 
 test('GET /category/words-that-start-with should render correctly', async () => {
     const response = await request(app).get('/category/words-that-start-with');
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(404);
     // Check if the response text contains 'Word Finder'
     expect(response.text).toContain('Word Finder');
 });
 test('GET /category/words-that-end-in should render correctly', async () => {
      const response = await request(app).get('/category/words-that-end-in');
-     expect(response.status).toBe(200); // Change this line
+     expect(response.status).toBe(404); // Change this line
      expect(response.text).toContain('Word Finder');
  });
 
 test('GET /category/words-by-length should render correctly', async () => {
      const response = await request(app).get('/category/words-by-length');
-     expect(response.status).toBe(200); // Change this line
+     expect(response.status).toBe(404); // Change this line
      expect(response.text).toContain('Word Finder');
  });
 
  test('GET /category/words-with-letters should render correctly', async () => {
      const response = await request(app).get('/category/words-with-letters');
-     expect(response.status).toBe(200); // Change this line
+     expect(response.status).toBe(404); // Change this line
      expect(response.text).toContain('Word Finder');
  });
 

@@ -2,16 +2,20 @@ const Footer = require('../models/footer'); // Require the Footer model
 
 const fetchFooter = async (req, res, next) => {
     try {
+        console.log('Fetching footer data...');
         const footer = await Footer.findOne().populate('footerCol1 footerCol2 footerCol3 footerCol4 footerCol5'); // Fetch the footer data
         if (footer) {
-            res.locals.footer = footer; // Make the footer data available to all EJS templates
+            res.locals.footer = footer;
+            console.log('Footer data:', footer);
+        } else {
+            res.locals.footer = {};
+            console.log('No footer data found, setting to empty object.');
         }
-        console.log('Footer data fetched successfully');
-        //console.log('Footer data:', footer);
         next();
     } catch (error) {
         console.error('Error fetching footer:', error);
-        res.status(500).send('Internal Server Error');
+        res.locals.footer = {}; // Set an empty object if there's an error
+        next(); // Ensure the request continues to the next middleware or route
     }
 };
 

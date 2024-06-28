@@ -67,51 +67,51 @@ async function getWordToGuess() {
     const response = await fetch(url);
     const data = await response.json();
     let wordList = data.word_pages[0].word_list;
-    console.log("wordList",wordList); // log the entire word list
+    console.log("wordList", wordList); // log the entire word list
     // Shuffle wordList
     for (let i = wordList.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [wordList[i], wordList[j]] = [wordList[j], wordList[i]];
     }
     const randomIndex = Math.floor(Math.random() * wordList.length);
-    console.log("randomIndex",randomIndex);
+    console.log("randomIndex", randomIndex);
     wordToGuess = wordList[randomIndex].word;
-    console.log("wordToGuess",wordToGuess);
+    console.log("wordToGuess", wordToGuess);
 }
 router.post('/guess', (req, res) => {
-        console.log("post guess",wordToGuess);
-        const guesses = [];
-        const characterInfos = [];
-        const wasCorrectArray = [];
-        for (let boxNum = 1; boxNum <= 4; boxNum++) {
-            let guess = '';
-            for (let inputNum = 1; inputNum <= 5; inputNum++) {
-                guess += req.body[`box${boxNum}_contains_${inputNum}`];
-            }
-            guesses.push(guess);
-            const wasCorrect = guess === wordToGuess;
-            wasCorrectArray.push(wasCorrect);
-            const characterInfo = guess.split('').map((char, idx) => {
-                return {
-                    char,
-                    scoring: {
-                        in_word: wordToGuess.includes(char),
-                        correct_idx: wordToGuess[idx] === char
-                    }
-                };
-            });
-            characterInfos.push(characterInfo);
+    console.log("post guess", wordToGuess);
+    const guesses = [];
+    const characterInfos = [];
+    const wasCorrectArray = [];
+    for (let boxNum = 1; boxNum <= 4; boxNum++) {
+        let guess = '';
+        for (let inputNum = 1; inputNum <= 5; inputNum++) {
+            guess += req.body[`box${boxNum}_contains_${inputNum}`];
         }
-        const response = {
-            guesses,
-            was_correct: wasCorrectArray,
-            character_infos: characterInfos
-        };
-        if (guesses.every(guess => guess.length > 0) && !wasCorrectArray.includes(true)) {
-            response.word_to_guess = wordToGuess;
-        }
-        res.json(response);
-    });
+        guesses.push(guess);
+        const wasCorrect = guess === wordToGuess;
+        wasCorrectArray.push(wasCorrect);
+        const characterInfo = guess.split('').map((char, idx) => {
+            return {
+                char,
+                scoring: {
+                    in_word: wordToGuess.includes(char),
+                    correct_idx: wordToGuess[idx] === char
+                }
+            };
+        });
+        characterInfos.push(characterInfo);
+    }
+    const response = {
+        guesses,
+        was_correct: wasCorrectArray,
+        character_infos: characterInfos
+    };
+    if (guesses.every(guess => guess.length > 0) && !wasCorrectArray.includes(true)) {
+        response.word_to_guess = wordToGuess;
+    }
+    res.json(response);
+});
 
 //scrabble-dictionary
 router.get('/scrabble-dictionary', visitCounter, async (req, res) => {
@@ -142,7 +142,7 @@ router.get('/dictionary/:word', async (req, res) => {
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
 
         if (data === null) {
-            res.render('frontend/scrabble-dictionary_output.ejs', { data: null,pageId: req.page ? req.page._id : null});
+            res.render('frontend/scrabble-dictionary_output.ejs', { data: null, pageId: req.page ? req.page._id : null });
         } else {
             // Extract the relevant data from the API response
             const result = data.results[0];
@@ -157,7 +157,7 @@ router.get('/dictionary/:word', async (req, res) => {
                 examples: sense.examples.map(example => example.text),
                 synonyms: sense.synonyms.map(synonym => synonym.text),
             };
-            res.render('frontend/scrabble-dictionary_output.ejs', { data: wordData,pageId: req.page ? req.page._id : null});
+            res.render('frontend/scrabble-dictionary_output.ejs', { data: wordData, pageId: req.page ? req.page._id : null });
         }
     } catch (error) {
         console.error(error);
@@ -179,33 +179,33 @@ router.get('/no-words-found', async (req, res) => {
 router.post('/send-email', upload.single('fileBrowse'), (req, res) => {
     console.log('req.body send email is called:', req.body);
     let transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-      }
+        host: process.env.SMTP_HOST,
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASS
+        }
     });
-  
+
     let mailOptions = {
         from: 'services@cyberpointmedia.com',
         to: 'ekansh@cyberpointmedia.com, sanjay@cyberpointmedia.com',
         subject: 'Share Your Thoughts',
         text: `Email: ${req.body.emailId}\n\nThoughts: ${req.body.commentDetails}`,
         attachments: req.file ? [{
-          path: req.file.path
+            path: req.file.path
         }] : []
-      };
-  
+    };
+
     transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log(error);
-        res.status(500).send('Error sending email');
-      } else {
-        console.log('Email sent: ' + info.response);
-        res.render('frontend/index.ejs');
-      }
+        if (error) {
+            console.log(error);
+            res.status(500).send('Error sending email');
+        } else {
+            console.log('Email sent: ' + info.response);
+            res.render('frontend/index.ejs');
+        }
     });
 });
 
@@ -260,7 +260,7 @@ router.post('/unscramble', visitCounter, async (req, res) => {
             let redirectUrl = `/unscramble/${letters}/dictionary/${dictionary}`;
             req.session.wordfinder = { letters, morePosts, startsWith, endsWith, contains, includeLetters: include, excludeLetters: exclude, specifiedLength: length, wordsByLength };
             res.redirect(redirectUrl);
-         } else {
+        } else {
             console.error('Error: Invalid data structure');
             res.redirect('/no-words-found');
         }
@@ -310,8 +310,8 @@ router.get('/words-that-start-with/:combination', async (req, res) => {
                 });
                 return acc;
             }, {});
-            console.log("letters",letters ,"startsWith",combination, "specifiedLength",length, "endsWith",endsWith, "contains",contains, "includeLetters",include, "excludeLetters",exclude);
-            res.render('frontend/words-that-start-with.ejs', { letters, morePosts, startsWith: combination, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude , page, surroundingLetters});
+            console.log("letters", letters, "startsWith", combination, "specifiedLength", length, "endsWith", endsWith, "contains", contains, "includeLetters", include, "excludeLetters", exclude);
+            res.render('frontend/words-that-start-with.ejs', { letters, morePosts, startsWith: combination, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude, page, surroundingLetters });
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -358,7 +358,7 @@ router.get('/words-that-end-in/:combination', async (req, res) => {
                 return acc;
             }, {});
 
-            res.render('frontend/words-that-end-in.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith: combination, contains, includeLetters: include, excludeLetters: exclude , page , surroundingLetters});
+            res.render('frontend/words-that-end-in.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith: combination, contains, includeLetters: include, excludeLetters: exclude, page, surroundingLetters });
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -387,7 +387,7 @@ router.get('/:length-letter-words/', async (req, res) => {
         const response = await fetch(url);
         const data = await response.json();
         console.log(data);
-         if (data && Array.isArray(data.word_pages)) {
+        if (data && Array.isArray(data.word_pages)) {
             const wordsByLength = data.word_pages.reduce((acc, wordPage) => {
                 let count = 0;
                 wordPage.word_list.forEach(wordObj => {
@@ -402,7 +402,7 @@ router.get('/:length-letter-words/', async (req, res) => {
                 });
                 return acc;
             }, {});
-            res.render('frontend/x-letter-words.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude ,page ,isAdmin ,isAdmin: req.isAdmin,username: req.username ,pageId: req.page ? req.page._id : null});
+            res.render('frontend/x-letter-words.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude, page, isAdmin, isAdmin: req.isAdmin, username: req.username, pageId: req.page ? req.page._id : null });
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -418,7 +418,7 @@ router.get('/words-with/:contains', async (req, res) => {
     try {
         const contains = req.params.contains;
         const page = await Page.findOne({ page_router: `words-with/${contains}` }) || "";
-        console.log("page.router",page.page_router);
+        console.log("page.router", page.page_router);
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = 'wwf'; // default dictionary
         const letters = '';
@@ -432,7 +432,7 @@ router.get('/words-with/:contains', async (req, res) => {
         const response = await fetch(url);
         console.log('Response status:', response.status);
         const data = await response.json();
-        console.log("Response data",data);
+        console.log("Response data", data);
         if (data && Array.isArray(data.word_pages)) {
             const wordsByLength = data.word_pages.reduce((acc, wordPage) => {
                 let count = 0;
@@ -448,8 +448,8 @@ router.get('/words-with/:contains', async (req, res) => {
                 });
                 return acc;
             }, {});
-            console.log("letters",letters ,"startsWith",startsWith,"specifiedLength",length, "endsWith",endsWith, "contains",contains, "includeLetters",include, "excludeLetters",exclude);
-            res.render('frontend/words-with.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude , page});
+            console.log("letters", letters, "startsWith", startsWith, "specifiedLength", length, "endsWith", endsWith, "contains", contains, "includeLetters", include, "excludeLetters", exclude);
+            res.render('frontend/words-with.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude, page });
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -466,7 +466,7 @@ router.get('/words-with/:contains_char1/and/:contains_char2', async (req, res) =
         const contains_char1 = req.params.contains_char1;
         const contains_char2 = req.params.contains_char2;
         const page = await Page.findOne({ page_router: `words-with/${contains_char1}/and/${contains_char2}` }) || "";
-        console.log("page.router",page.page_router);
+        console.log("page.router", page.page_router);
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = ''; // default dictionary
         const letters = '';
@@ -496,7 +496,7 @@ router.get('/words-with/:contains_char1/and/:contains_char2', async (req, res) =
                 });
                 return acc;
             }, {});
-            res.render('frontend/words-with.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains,contains_char1,contains_char2, includeLetters: include, excludeLetters: exclude , page});
+            res.render('frontend/words-with.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, contains_char1, contains_char2, includeLetters: include, excludeLetters: exclude, page });
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -505,7 +505,7 @@ router.get('/words-with/:contains_char1/and/:contains_char2', async (req, res) =
         console.error('Error:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
-}); 
+});
 
 //words-with/:must_contain/without/:must_not_contain
 router.get('/words-with/:must_contain/without/:must_not_contain', async (req, res) => {
@@ -514,7 +514,7 @@ router.get('/words-with/:must_contain/without/:must_not_contain', async (req, re
         const must_contain = req.params.must_contain;
         const must_not_contain = req.params.must_not_contain;
         const page = await Page.findOne({ page_router: `words-with/${must_contain}/and/${must_not_contain}` }) || "";
-        console.log("page.router",page.page_router);
+        console.log("page.router", page.page_router);
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = ''; // default dictionary
         const letters = '';
@@ -544,7 +544,7 @@ router.get('/words-with/:must_contain/without/:must_not_contain', async (req, re
                 });
                 return acc;
             }, {});
-            res.render('frontend/words_with_x_without_y.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, must_contain, must_not_contain, includeLetters: include, excludeLetters: exclude , page});
+            res.render('frontend/words_with_x_without_y.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, must_contain, must_not_contain, includeLetters: include, excludeLetters: exclude, page });
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -553,7 +553,7 @@ router.get('/words-with/:must_contain/without/:must_not_contain', async (req, re
         console.error('Error:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
-});  
+});
 
 // words_that_start_with_x_end_with_y
 router.get('/words-that-start-with/:start_with/end-with/:end_with', async (req, res) => {
@@ -562,7 +562,7 @@ router.get('/words-that-start-with/:start_with/end-with/:end_with', async (req, 
         const endsWith = req.params.end_with;
         console.log("/words-that-start-with/:start-with/end-with/:end-with");
         const page = await Page.findOne({ page_router: `words-that-start-with/${startsWith}/end-with/${endsWith}` }) || "";
-        console.log("page.router",page.page_router);
+        console.log("page.router", page.page_router);
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = 'ww'; // default dictionary
         const letters = '';
@@ -590,7 +590,7 @@ router.get('/words-that-start-with/:start_with/end-with/:end_with', async (req, 
                 });
                 return acc;
             }, {});
-            res.render('frontend/words_that_start_with_x_end_with_y.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude , page});
+            res.render('frontend/words_that_start_with_x_end_with_y.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude, page });
         } else {
             console.error('Error: Invalid data structure');
             res.status(500).json({ error: 'Internal server error' });
@@ -599,7 +599,7 @@ router.get('/words-that-start-with/:start_with/end-with/:end_with', async (req, 
         console.error('Error:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
-});  
+});
 
 router.get('/articles/:title', async (req, res) => {
     try {
@@ -609,12 +609,12 @@ router.get('/articles/:title', async (req, res) => {
         if (!post) {
             console.error('No post found with title:', title);
             return res.status(404).send('Post not found');
-          }
-         // Calculate reading time
-         const stats = readingTime(post.description);
-         post.readingTime = stats.text;
-         await post.save();
-                 
+        }
+        // Calculate reading time
+        const stats = readingTime(post.description);
+        post.readingTime = stats.text;
+        await post.save();
+
         const categories = await Category.find(); // Fetch the categories
         const morePosts = await Post.find({ status: 'Published' }).limit(3); // Fetch 3 more posts with a status of 'Published'
         const postUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
@@ -623,7 +623,7 @@ router.get('/articles/:title', async (req, res) => {
         const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=${encodeURIComponent(post.title)}`;
         const linkedinShareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(postUrl)}&title=${encodeURIComponent(post.title)}`;
         console.log(post.author ? post.author.username : 'unknown'); // Prints the username of the author or 'unknown' if the author doesn't exist
-        res.render('post/article-details', { post, categories, morePosts, postTitle: post.title, postUrl, facebookShareUrl, twitterShareUrl, linkedinShareUrl , readingTime: stats.text}); // Pass the categories and morePosts to the template
+        res.render('post/article-details', { post, categories, morePosts, postTitle: post.title, postUrl, facebookShareUrl, twitterShareUrl, linkedinShareUrl, readingTime: stats.text }); // Pass the categories and morePosts to the template
     } catch (error) {
         console.error('Error fetching post:', error);
         res.status(500).send('Internal Server Error');
@@ -638,10 +638,10 @@ router.get('/articles', async (req, res) => {
         const posts = await Post.find({ status: 'Published' }).skip(skip).limit(limit); // Fetch posts from the database with pagination
         const totalPosts = await Post.countDocuments({ status: 'Published' }); // Get the total number of posts
 
-        res.render('post/articles', { morePosts: posts, currentPage: page, totalPages: Math.ceil(totalPosts / limit),totalPosts:totalPosts  }); // Render the articles.ejs view with the posts data and pagination info
+        res.render('post/articles', { morePosts: posts, currentPage: page, totalPages: Math.ceil(totalPosts / limit), totalPosts: totalPosts }); // Render the articles.ejs view with the posts data and pagination info
     } catch (err) {
         console.error(err);
-        res.status(500).send('Server Error',err);
+        res.status(500).send('Server Error', err);
     }
 });
 router.get('/articles/page/:page?', async (req, res) => {
@@ -653,10 +653,10 @@ router.get('/articles/page/:page?', async (req, res) => {
         const posts = await Post.find({ status: 'Published' }).skip(skip).limit(limit); // Fetch posts from the database with pagination
         const totalPosts = await Post.countDocuments({ status: 'Published' }); // Get the total number of posts
 
-        res.render('post/articles', { morePosts: posts, currentPage: page, totalPages: Math.ceil(totalPosts / limit),totalPosts:totalPosts  }); // Render the articles.ejs view with the posts data and pagination info
+        res.render('post/articles', { morePosts: posts, currentPage: page, totalPages: Math.ceil(totalPosts / limit), totalPosts: totalPosts }); // Render the articles.ejs view with the posts data and pagination info
     } catch (err) {
         console.error(err);
-        res.status(500).send('Server Error',err);
+        res.status(500).send('Server Error', err);
     }
 });
 
@@ -707,7 +707,8 @@ router.get('/input', (req, res) => {
 
 router.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(404).render('not-found/page-not-found.ejs',err);
+    console.log("error",err);
+    res.status(404).render('not-found/page-not-found.ejs', err);
 });
 
 module.exports = router;
