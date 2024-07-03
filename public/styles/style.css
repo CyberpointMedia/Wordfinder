@@ -684,6 +684,10 @@ video {
     margin-bottom: 0.5rem;
 }
 
+.mb-\[6px\] {
+    margin-bottom: 6px;
+}
+
 .mt-\[10px\] {
     margin-top: 10px;
 }
@@ -1458,6 +1462,10 @@ video {
 
 .leading-none {
     line-height: 1;
+}
+
+.leading-normal {
+    line-height: 1.5;
 }
 
 .leading-8 {
@@ -2666,6 +2674,10 @@ video {
 
 .text-\[28px\] {
     font-size: 28px;
+}
+
+.text-\[32px\] {
+    font-size: 32px;
 }
 
 .text-base {
