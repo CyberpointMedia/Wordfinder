@@ -24,6 +24,7 @@ const fetchPageAndMorePosts = async (req, res, next) => {
             }
         }
         console.log('Menus:', menus);
+        console.log('Menus length:', menus.length);
         res.locals.morePosts = morePosts;
         res.locals.page = page;
         res.locals.menus = menus;

@@ -4,7 +4,13 @@
         <!-- header start here -->
         <%- (include('../frontend/head/header.ejs')) %>
             <!-- header end here -->
-
+            <div class="bread-crumbs mb-4">
+                <span><a href="/">Home</a></span>
+                <span class="crumb-slash">/</span>
+                <span><a href="/category/words-with-letters/">Words That Start With</a></span>
+                <span class="crumb-slash">/</span>
+                <span class="current-page"><%= filter_results %> Words with <%= must_contain.toUpperCase() %> without <%= must_not_contain.toUpperCase() %></span>
+                </div>
             <!-- content section start -->
             <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-12">
                 <div class="container">

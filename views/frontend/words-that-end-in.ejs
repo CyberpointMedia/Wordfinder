@@ -4,6 +4,13 @@
         <!-- header start here -->
         <%- (include('../frontend/head/header.ejs')) %>
             <!-- header end here -->
+            <div class="bread-crumbs mb-4">
+                <span><a href="/">Home</a></span>
+                <span class="crumb-slash">/</span>
+                <span><a href="/category/words-that-end-in">Words That End In</a></span>
+                <span class="crumb-slash">/</span>
+                <span class="current-page"><%= filter_results %> Words That End in <%= endsWith.toUpperCase() %></span>
+            </div>
 
             <!-- content section start -->
             <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-12">
@@ -13,7 +20,7 @@
                         <div class="w-full md:w-2/3">
                             <!-- Words with X and Q box start -->
                             <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
-                                <h2 class="mb-4 text-3xl font-semibold md:text-4xl">Words that End with <%=
+                                <h2 class="mb-4 text-3xl font-semibold md:text-4xl"><%= filter_results %> Words that End with <%=
                                         endsWith.toUpperCase() %>
                                 </h2>
                                 <p>
