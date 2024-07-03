@@ -4,20 +4,34 @@
         <!-- header start here -->
         <%- (include('../frontend/head/header.ejs')) %>
             <!-- header end here -->
-<!-- Breadcrem start -->
-<div class="bread-crumbs mb-4">
-    <span><a href="/">Home</a></span>
-    <span class="crumb-slash">/</span>
-    <span><a href="/category/words-with-letters/">Words That Start With</a></span>
-    <span class="crumb-slash">/</span>
-    <span class="current-page"><%= filter_results %> Words that Start with <%= startsWith.toUpperCase() %> End with <%=
-                                            endsWith.toUpperCase() %></span>
-    </div>
-    <!-- Breadcrem end -->
 
             <!-- content section start -->
             <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-12">
                 <div class="container">
+                    <!-- breadcrumb start -->
+                    <ol class="flex items-center whitespace-nowrap mb-10" aria-label="Breadcrumb">
+                        <li class="inline-flex items-center">
+                            <a class="flex items-center text-sm text-[#007BFF] hover:opacity-50 focus:outline-none focus:opacity-50" href="/">
+                                Home
+                            </a>
+                            <svg class="flex-shrink-0 h-5 w-5 opacity-50 text-[#393939]" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"></path>
+                            </svg>
+                        </li>
+                        <li class="inline-flex items-center">
+                            <a class="flex items-center text-sm text-[#007BFF] hover:opacity-50 focus:outline-none focus:opacity-50" href="/category/words-with-letters/">
+                                Words That Start With
+                                <svg class="flex-shrink-0 h-5 w-5 text-[#393939] opacity-50" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"></path>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="inline-flex items-center text-sm text-[#393939] opacity-50 truncate" aria-current="page">
+                            <%= filter_results %> Words that Start with <%= startsWith.toUpperCase() %> End with <%=
+                            endsWith.toUpperCase() %>
+                        </li>
+                    </ol>
+                    <!-- breadcrumb end -->
                     <div class="flex flex-col gap-8 md:flex-row">
                         <!-- left col start -->
                         <div class="w-full md:w-2/3">
