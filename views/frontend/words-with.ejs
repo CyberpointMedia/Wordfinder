@@ -28,7 +28,7 @@
                         </li>
                         <li class="inline-flex items-center text-sm text-[#393939] opacity-50 truncate" aria-current="page">
                             <% if (typeof contains_char2 !=='undefined' && contains_char2) { %>
-                                <span class="current-page">Words With <%= contains_char1.toUpperCase() %> and <%= contains_char2.toUpperCase() %></span>
+                                <span class="current-page">All Words With <%= contains_char1.toUpperCase() %> and <%= contains_char2.toUpperCase() %></span>
                                 <% } else { %>
                                     <span class="current-page">Words With <%= contains.toUpperCase() %>- All Words that Contain <%= contains.toUpperCase() %></span>
                                     <% } %>
@@ -158,7 +158,6 @@
                                 </h2>
                             </div>
                             <!-- show--scarabble -->
-                            <!-- ... -->
                             <% if (specifiedLength) { %>
                                 <% if (wordsByLength && wordsByLength[specifiedLength] &&
                                     wordsByLength[specifiedLength].length> 0) { %>
@@ -288,7 +287,7 @@
         <% if (typeof contains_char2 !== 'undefined' && contains_char2) { %>
             <% surroundingLetters.forEach(letter => { %>
                 <li class="">
-                    <a href="/words-with/<%= contains_char1 %>/and/<%= letter.toLowerCase() %>/" class="text-base font-normal text-blue-500 underline hover:text-blue">
+                    <a href="/words-with/<%= contains_char1.toLowerCase() %>/and/<%= letter.toLowerCase() %>/" class="text-base font-normal text-blue-500 underline hover:text-blue">
                         Words With <%= contains_char1.toUpperCase() %> and <%= letter.toUpperCase() %>
                     </a>
                 </li>

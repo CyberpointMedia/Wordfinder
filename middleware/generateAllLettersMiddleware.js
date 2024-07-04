@@ -10,7 +10,7 @@ const generateAllLetters = () => {
     // Add combinations of two letters from 'AA' to 'ZZ'
     for (let i = 0; i < 26; i++) {
         for (let j = 0; j < 26; j++) {
-            allLetters.push(String.fromCharCode(65 + i) + String.fromCharCode(65 + j));
+            allLetters.push(String.fromCharCode(97 + i) + String.fromCharCode(97 + j));
         }
     }
 
@@ -18,7 +18,7 @@ const generateAllLetters = () => {
     for (let i = 0; i < 26; i++) {
         for (let j = 0; j < 26; j++) {
             for (let k = 0; k < 26; k++) {
-                allLetters.push(String.fromCharCode(65 + i) + String.fromCharCode(65 + j) + String.fromCharCode(65 + k));
+                allLetters.push(String.fromCharCode(97 + i) + String.fromCharCode(97 + j) + String.fromCharCode(97 + k));
             }
         }
     }
