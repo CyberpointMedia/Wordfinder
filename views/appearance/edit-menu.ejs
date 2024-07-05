@@ -376,7 +376,13 @@
                                             success: function (response) {
                                                 // Handle success response
                                                 console.log(data);
-                                            },
+                                                // Optionally, show a success message
+                Toastify({
+                    text: "Menu updated successfully",
+                    duration: 3000,
+                    close: true
+                }).showToast();
+            },
                                             error: function (error) {
                                                 // Handle error response
                                                 console.error(error);

@@ -291,7 +291,7 @@ router.get('/words-that-start-with/:combination', async (req, res) => {
         const combination = req.params.combination;
         const allLetters = res.locals.allLetters;
         const index = allLetters.indexOf(combination);
-        const surroundingLetters = allLetters.slice(Math.max(0, index - 1), Math.min(allLetters.length, index + 5));
+        let surroundingLetters = allLetters.slice(Math.max(0, index - 3), Math.min(allLetters.length, index + 5));
         const page = await Page.findOne({ page_router: `words-that-start-with/${combination}` }) || "";
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = 'wwf'; // default dictionary
@@ -301,6 +301,32 @@ router.get('/words-that-start-with/:combination', async (req, res) => {
         const contains = '';
         const include = '';
         const exclude = '';
+
+         // Filter surrounding letters to only include those which result in valid words
+         const filterLetters = async (letters) => {
+            const filteredLettersPromises = letters.map(async (letter) => {
+                let url = `https://fly.wordfinderapi.com/api/search?letters=${letters}&word_sorting=points&group_by_length=true&page_size=20000&dictionary=${dictionary}&starts_with=${letter}`;
+                const response = await fetch(url);
+                const data = await response.json();
+                if (data && data.word_pages && data.word_pages.length > 0) {
+                    return letter;
+                }
+                return null;
+            });
+            let filteredLettersResults = await Promise.all(filteredLettersPromises);
+            return filteredLettersResults.filter(letter => letter !== null);
+        };
+
+        let filteredLetters = await filterLetters(surroundingLetters);
+
+        // If fewer than 5 valid letters, expand the range and refetch
+        let expandFactor = 1;
+        while (filteredLetters.length < 5 && (index - (3 * expandFactor) >= 0 || index + (8 * expandFactor) < allLetters.length)) {
+            expandFactor++;
+            surroundingLetters = allLetters.slice(Math.max(0, index - (3 * expandFactor)), Math.min(allLetters.length, index + (8 * expandFactor)));
+            filteredLetters = await filterLetters(surroundingLetters);
+        }
+
         let url = `https://fly.wordfinderapi.com/api/search?letters=${letters}&word_sorting=points&group_by_length=true&page_size=20000&dictionary=${dictionary}&starts_with=${combination}`;
 
         const response = await fetch(url);
@@ -322,7 +348,7 @@ router.get('/words-that-start-with/:combination', async (req, res) => {
                 return acc;
             }, {});
             console.log("letters", letters, "startsWith", combination, "specifiedLength", length, "endsWith", endsWith, "contains", contains, "includeLetters", include, "excludeLetters", exclude ,"filter_results",data.filter_results);
-            res.render('frontend/words-that-start-with.ejs', { letters, morePosts, startsWith: combination, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude, page, surroundingLetters ,filter_results:data.filter_results});
+            res.render('frontend/words-that-start-with.ejs', { letters, morePosts, startsWith: combination, wordsByLength, specifiedLength: length, endsWith, contains, includeLetters: include, excludeLetters: exclude, page, surroundingLetters: filteredLetters ,filter_results:data.filter_results});
         } else {
             console.error('Error: Invalid data structure');
             res.redirect('/no-words-found');
@@ -338,7 +364,7 @@ router.get('/words-that-end-in/:combination', async (req, res) => {
         const combination = req.params.combination;
         const allLetters = res.locals.allLetters;
         const index = allLetters.indexOf(combination);
-        const surroundingLetters = allLetters.slice(Math.max(0, index - 1), Math.min(allLetters.length, index + 5));
+        let surroundingLetters = allLetters.slice(Math.max(0, index - 1), Math.min(allLetters.length, index + 5));
         const page = await Page.findOne({ page_router: `words-that-end-in/${combination}` }) || "";
         const morePosts = await Post.find({ status: 'Published' }).limit(3);
         const dictionary = 'wwf'; // default dictionary
@@ -348,6 +374,32 @@ router.get('/words-that-end-in/:combination', async (req, res) => {
         const contains = '';
         const include = '';
         const exclude = '';
+
+        // Function to filter surrounding letters to only include those which result in valid words
+        const filterLetters = async (letters) => {
+            const filteredLettersPromises = letters.map(async (letter) => {
+                let url = `https://fly.wordfinderapi.com/api/search?letters=${letters}&word_sorting=points&group_by_length=true&page_size=20000&dictionary=${dictionary}&ends_with=${letter}`;
+                const response = await fetch(url);
+                const data = await response.json();
+                if (data && data.word_pages && data.word_pages.length > 0) {
+                    return letter;
+                }
+                return null;
+            });
+            let filteredLettersResults = await Promise.all(filteredLettersPromises);
+            return filteredLettersResults.filter(letter => letter !== null).slice(0, 5); // Limit to 5 letters
+        };
+
+        let filteredLetters = await filterLetters(surroundingLetters);
+
+        // If fewer than 5 valid letters, expand the range and refetch
+        let expandFactor = 1;
+        while (filteredLetters.length < 5 && (index - (3 * expandFactor) >= 0 || index + (8 * expandFactor) < allLetters.length)) {
+            expandFactor++;
+            surroundingLetters = allLetters.slice(Math.max(0, index - (3 * expandFactor)), Math.min(allLetters.length, index + (8 * expandFactor)));
+            filteredLetters = await filterLetters(surroundingLetters);
+        }
+
         let url = `https://fly.wordfinderapi.com/api/search?letters=${letters}&word_sorting=points&group_by_length=true&page_size=20000&ends_with=${combination}`;
 
         const response = await fetch(url);
@@ -369,7 +421,20 @@ router.get('/words-that-end-in/:combination', async (req, res) => {
                 return acc;
             }, {});
 
-            res.render('frontend/words-that-end-in.ejs', { letters, morePosts, startsWith, wordsByLength, specifiedLength: length, endsWith: combination, contains, includeLetters: include, excludeLetters: exclude, page, surroundingLetters,filter_results:data.filter_results  });
+            res.render('frontend/words-that-end-in.ejs', { 
+                letters, 
+                morePosts, 
+                startsWith, 
+                wordsByLength, 
+                specifiedLength: length, 
+                endsWith: combination, 
+                contains, 
+                includeLetters: include, 
+                excludeLetters: exclude, 
+                page, 
+                surroundingLetters: filteredLetters,
+                filter_results: data.filter_results  
+            });
         } else {
             console.error('Error: Invalid data structure');
             res.redirect('/no-words-found');
@@ -379,6 +444,7 @@ router.get('/words-that-end-in/:combination', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
 //words-by-length/:length
 router.get('/:length-letter-words/', async (req, res) => {
     try {
