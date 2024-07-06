@@ -13,16 +13,26 @@
                 <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] my-16">
                     <h1 class="mb-4 text-3xl font-semibold md:text-4xl text-center">Words That Start With</h1>
                    
-                    <ul class="space-y-2 list-disc">
+                    <% let groupedCombinations = {}; %>
                         <% combinations.forEach(combination => { %>
-                            <li>
-                                <a href="/words-that-start-with/<%= combination %>" class="text-base font-normal text-blue-500 underline hover-text-blue">
-                                    Words Start With <%= combination %>
-                                </a>
-                            </li>
-                        <% }) %>
-                    </ul>
-                </div>
+                            <% let firstLetter = combination[0].toUpperCase(); %>
+                            <% if (!groupedCombinations[firstLetter]) { groupedCombinations[firstLetter] = []; } %>
+                            <% groupedCombinations[firstLetter].push(combination); %>
+                        <% }); %>
+
+                        <% Object.keys(groupedCombinations).sort().forEach(letter => { %>
+                            <ul class="space-y-2 list-disc ml-6">
+                                <% groupedCombinations[letter].sort().forEach(combination => { %>
+                                    <li>
+                                        <a href="/words-that-start-with/<%= combination %>" class="text-base font-normal text-blue-500 underline hover:text-blue-700">
+                                            Words That Start With <%= combination %>
+                                        </a>
+                                    </li>
+                                <% }); %>
+                            </ul>
+                        <% }); %>
+                    </div>
+
                 <!-- pagination start here -->
      <nav class="flex items-center justify-center mb-10 gap-x-1 pagination">
         <a href="/category/words-that-start-with?page=<%= Math.max(page - 1, 1) %>" onclick="if(page === 1) { alert('No previous page exists'); return false; }" class="min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm sm:text-lg rounded-lg text-[#747474] hover:text-[#007BFF] hover:bg-[#F0F7FA] focus:outline-none focus:bg-[#F0F7FA] disabled:opacity-50 disabled:pointer-events-none">

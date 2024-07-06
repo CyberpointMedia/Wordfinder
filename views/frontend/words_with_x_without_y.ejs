@@ -4,10 +4,32 @@
         <!-- header start here -->
         <%- (include('../frontend/head/header.ejs')) %>
             <!-- header end here -->
-
             <!-- content section start -->
             <div class="pt-10 pb-10 bg-white md:pt-20 md:pb-12">
                 <div class="container">
+                    <!-- breadcrumb start -->
+                    <ol class="flex items-center whitespace-nowrap mb-10" aria-label="Breadcrumb">
+                        <li class="inline-flex items-center">
+                            <a class="flex items-center text-sm text-[#007BFF] hover:opacity-50 focus:outline-none focus:opacity-50" href="/">
+                                Home
+                            </a>
+                            <svg class="flex-shrink-0 h-5 w-5 opacity-50 text-[#393939]" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"></path>
+                            </svg>
+                        </li>
+                        <li class="inline-flex items-center">
+                            <a class="flex items-center text-sm text-[#007BFF] hover:opacity-50 focus:outline-none focus:opacity-50" href="/category/words-with-letters/">
+                                Words With Letters
+                                <svg class="flex-shrink-0 h-5 w-5 text-[#393939] opacity-50" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"></path>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="inline-flex items-center text-sm text-[#393939] opacity-50 truncate" aria-current="page">
+                             Words with <%= must_contain.toUpperCase() %> without <%= must_not_contain.toUpperCase() %>
+                        </li>
+                    </ol>
+                    <!-- breadcrumb end -->
                     <div class="flex flex-col gap-8 md:flex-row">
                         <!-- left col start -->
                         <div class="w-full md:w-2/3">
@@ -168,22 +190,17 @@
                                                                                 <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
     <h2 class="mb-4 text-3xl font-semibold md:text-4xl">Related</h2>
     <ul class="space-y-2 list-disc">
-        <% let counter = 0; %>
-        <% for(let i = 'a'.charCodeAt(0); i <= 'z'.charCodeAt(0); i++) { %>
-            <% let letter = String.fromCharCode(i); %>
-            <% if (letter !== must_contain && letter !== must_not_contain) { %>
-                <li class="">
-                    <a href="/words-with/<%= must_contain %>/without/<%= letter %>/"
-                        class="text-base font-normal text-blue-500 underline hover-text-blue">
-                        Words With <%= must_contain.toUpperCase() %> and Without <%= letter.toUpperCase() %>
-                    </a>
-                </li>
-                <% counter++; %>
-            <% } %>
-            <% if (counter >= 5) break; %>
-        <% } %>
+        <% surroundingLetters.forEach(letter => { %>
+            <li class="">
+                <a href="/words-with/<%= must_contain %>/without/<%= letter %>/"
+                   class="text-base font-normal text-blue-500 underline hover:text-blue">
+                    Words With <%= must_contain.toUpperCase() %> and Without <%= letter.toUpperCase() %>
+                </a>
+            </li>
+        <% }); %>
     </ul>
 </div>
+
                         </div>
                         <!-- left col end -->
                         <!-- right col end -->
