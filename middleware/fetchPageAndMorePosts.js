@@ -18,12 +18,12 @@ const fetchPageAndMorePosts = async (req, res, next) => {
             });
         } catch (error) {
             if (error instanceof mongoose.Error.MissingSchemaError) {
-                menus = await ShowMenu.find();
+                 menus = await ShowMenu.find({ headerMenu: true });
             } else {
                 throw error;
             }
         }
-        console.log('Menus:', menus);
+        //console.log('Menus:', menus);
         console.log('Menus length:', menus.length);
         res.locals.morePosts = morePosts;
         res.locals.page = page;

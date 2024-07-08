@@ -1,6 +1,12 @@
 <script>
     function fetchWordDefinition(word) {
         console.log("fetchworddefination", word);
+
+            // Clear previous modal content
+    const modalContainer = document.getElementById('hs-medium-modal');
+    modalContainer.innerHTML = '';
+
+    // Show the modal
         fetch(`/word-definition?word=${word}`)
             .then(response => {
                 if (!response.ok) {
@@ -77,7 +83,7 @@
     }
     partOfSpeech = partOfSpeech || 'Noun'; 
 
-        const modalContainer = document.getElementById('hs-medium-modal');
+    const modalContainer = document.getElementById('hs-medium-modal');
         const modalContent = `
             <div class="m-3 mt-0 transition-all ease-out hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 md:max-w-[740px] md:w-full md:mx-auto">
                 <div class="flex flex-col overflow-hidden bg-white pointer-events-auto rounded-[20px]">
