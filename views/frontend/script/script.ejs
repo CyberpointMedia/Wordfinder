@@ -163,6 +163,14 @@
         });
     });
 </script>
+
+<!-- removed the style attributes from p tag -->
+<script>
+    var paragraphs = document.querySelectorAll('p');
+    paragraphs.forEach(function(p) {
+        p.removeAttribute('style');
+    });
+</script>
 </body>
 
 </html>
