@@ -59,10 +59,20 @@ router.get('/get-menu-details/:menuId', ensureAdmin, async (req, res) => {
     try {
         const menuId = req.params.menuId;
         console.log("Menu ID:", menuId);
-        // Find the menu by id
+
+        // Find the menu by id in the Appearance collection
         const menu = await Appearance.findById(menuId).populate('pages').populate('posts');
         if (menu) {
-            res.json(menu);
+            // Find the corresponding menuName in the ShowMenu collection
+            const showMenu = await ShowMenu.findOne({ menuName: menu.menuName });
+            if (showMenu) {
+                console.log("menu",menu ,"ShowMenu Data:", showMenu);
+                // Pass the Appearance menu and ShowMenu data to res.json
+                res.json({ menu, showMenu });
+            } else {
+                res.json({menu});
+
+            }
         } else {
             res.status(404).json({ message: 'Menu not found' });
         }
@@ -71,6 +81,7 @@ router.get('/get-menu-details/:menuId', ensureAdmin, async (req, res) => {
         res.status(500).json({ message: 'An error occurred' });
     }
 });
+
 
 router.get('/edit-menu/:id', ensureAdmin, async (req, res) => {
     try {
@@ -97,7 +108,7 @@ router.get('/edit-menu/:id', ensureAdmin, async (req, res) => {
 router.post('/show-menu', ensureAdmin, async (req, res) => {
     try {
         // Extract data from the request
-        const { selectedMenuId, updated_name, parent ,headerMenu } = req.body;
+        const { selectedMenuId, updated_name, parent , headerMenu } = req.body;
         console.log("Selected Menu ID:", selectedMenuId , "Updated Name:", updated_name, "Parent:", parent);
 
         // Find the appearance by its id
@@ -106,6 +117,11 @@ router.post('/show-menu', ensureAdmin, async (req, res) => {
         if (!appearance) {
             return res.status(404).json({ error: 'Appearance not found' });
         }
+        console.log("Header Menu:", headerMenu);
+        // Update the headerMenu value in the Appearance document
+        appearance.headerMenu = headerMenu === 'on';
+        await appearance.save();
+        
         // Check if updated_name and parent are arrays and have the same length
         if (!Array.isArray(updated_name) || !Array.isArray(parent) || updated_name.length !== parent.length) {
             return res.status(400).json({ error: 'Invalid updated_name or parent' });
@@ -137,7 +153,7 @@ router.post('/show-menu', ensureAdmin, async (req, res) => {
                         parent: parent[index]
                     }))
                 ),
-                 headerMenu: headerMenu === 'on'
+                headerMenu: appearance.headerMenu
             });
         } else {
             // If the ShowMenu document exists, update the updated_name and parent fields of each item
@@ -149,7 +165,7 @@ router.post('/show-menu', ensureAdmin, async (req, res) => {
                     item.parent = parent[index];
                 }
             });
-            showMenu.headerMenu = headerMenu === 'on'; // Update the headerMenu field
+            showMenu.headerMenu = appearance.headerMenu; // Update the headerMenu field
         }
 
         await showMenu.save();

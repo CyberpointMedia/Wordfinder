@@ -1,4 +1,5 @@
 <%- (include('../frontend/head/head.ejs')) %>
+
     <body class="font-custom">
         <!-- header start here -->
         <%- (include('../frontend/head/header.ejs')) %>
@@ -232,7 +233,43 @@
                                                                                                                 with ZYZ
                                                                                                             </a>
                                                                                                         </li>
-                                                                                                        <% } %>
+                                                                                                        <li class="">
+                                                                                                            <a href="/words-that-start-with/B/"
+                                                                                                                class="text-base font-normal text-blue-500 underline hover-text-blue">
+                                                                                                                Words
+                                                                                                                that
+                                                                                                                Start
+                                                                                                                with B
+                                                                                                            </a>
+                                                                                                        </li>
+                                                                                                        <li class="">
+                                                                                                            <a href="/words-that-start-with/C/"
+                                                                                                                class="text-base font-normal text-blue-500 underline hover-text-blue">
+                                                                                                                Words
+                                                                                                                that
+                                                                                                                Start
+                                                                                                                with C
+                                                                                                            </a>
+                                                                                                        </li>
+                                                                                                        <li class="">
+                                                                                                            <a href="/words-that-start-with/D/"
+                                                                                                                class="text-base font-normal text-blue-500 underline hover-text-blue">
+                                                                                                                Words
+                                                                                                                that
+                                                                                                                Start
+                                                                                                                with D
+                                                                                                            </a>
+                                                                                                        </li>
+                                                                                                        <li class="">
+                                                                                                            <a href="/words-that-start-with/E/"
+                                                                                                                class="text-base font-normal text-blue-500 underline hover-text-blue">
+                                                                                                                Words
+                                                                                                                that
+                                                                                                                Start
+                                                                                                                with E
+                                                                                                            </a>
+                                                                                                        </li>
+                                                                                                        <% } else { %>
                                                                                                             <%
                                                                                                                 surroundingLetters.forEach(letter=>
                                                                                                                 { %>
@@ -256,7 +293,10 @@
                                                                                                                         %>
                                                                                                                         <% });
                                                                                                                             %>
+                                                                                                                            <% }
+                                                                                                                                %>
                                                                                                 </ul>
+
                                                                                         </div>
                         </div>
                         <!-- left col end -->
@@ -281,6 +321,7 @@
                 </div>
             </div>
             <!-- content section end -->
+            <!-- Modal Element -->
             <div id="hs-medium-modal"
                 class="hs-overlay hidden w-full h-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none">
             </div>
