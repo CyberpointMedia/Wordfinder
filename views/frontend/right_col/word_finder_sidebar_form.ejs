@@ -4,8 +4,8 @@
         <p>Enter up to 15 letters and up to 2 wildcards (? or space).</p>
         <form id="search-main1" class="w-full mt-5 mb-6" action="/unscramble" method="post">
             <div class="mb-[10px] rounded-[5px] overflow-hidden bg-white py-5">
-                <input type="text" name="letters" class="border-0 px-5 w-full main-search-input sm:text-lg focus:outline-none" placeholder="Type Letters ..." aria-label="Letters" aria-describedby="dictionary-select-field" value="_">
-            </div>
+    <input type="text" name="letters" class="border-0 px-5 w-full main-search-input sm:text-lg focus:outline-none" placeholder="Type Letters ..." aria-label="Letters" aria-describedby="dictionary-select-field" value="<%= letters ? letters : '' %>">
+</div>
             <div class="">
                 <select id="dictionary-select-field" class="py-5 text-sm bg-white border-0 rounded-[5px] px-5 sm:text-lg focus:outline-none w-full" aria-label="Default select example" name="scrabble_type">
                     <option value="wwf" selected="">Words With Friends</option>

@@ -2,12 +2,13 @@
     function fetchWordDefinition(word) {
         console.log("fetchworddefination", word);
 
-           // Show the loader
-          document.getElementById('loader').classList.remove('hidden');
+        //   // Show the loader inside the modal container
+        //   const modalContentContainer = document.getElementById('modal-content-container');
+        // modalContentContainer.innerHTML = '';
 
             // Clear previous modal content
     const modalContainer = document.getElementById('hs-medium-modal');
-    modalContainer.innerHTML = '';
+    modalContainer.innerHTML = '<div id="loader" class="loader"><div class="spinner"></div></div>';
 
 
     // Show the modal
