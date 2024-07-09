@@ -264,7 +264,9 @@ router.post('/unscramble', visitCounter, async (req, res) => {
                 });
                 return acc;
             }, {});
-            letters = '_'; // Set letters to '_' if it's empty
+            if (letters.trim() === '') {
+                 letters = '_'; // Set letters to '_' if it's empty
+            }
             console.log("letter-",letters);
 
             let redirectUrl = `/unscramble/${letters}/dictionary/${dictionary}`;
