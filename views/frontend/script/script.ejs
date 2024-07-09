@@ -2,9 +2,13 @@
     function fetchWordDefinition(word) {
         console.log("fetchworddefination", word);
 
+           // Show the loader
+          document.getElementById('loader').classList.remove('hidden');
+
             // Clear previous modal content
     const modalContainer = document.getElementById('hs-medium-modal');
     modalContainer.innerHTML = '';
+
 
     // Show the modal
         fetch(`/word-definition?word=${word}`)
@@ -57,7 +61,11 @@
             })
             .catch(error => {
                 console.error('Error fetching word definition:', error);
-            });
+            })
+            .finally(() => {
+            // Hide the loader
+            loader.classList.add('hidden');
+        });
     }
 
     function displayDefinitionModal(word, definition, partOfSpeech, synonyms, typeOf, examples) {
