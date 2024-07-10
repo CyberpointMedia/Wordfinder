@@ -12,11 +12,13 @@
                         <div class="w-full md:w-2/3">
                             <!-- Words with X and Q box start -->
                             <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
-                                <h2 class="mb-4 text-3xl font-semibold md:text-4xl">Words with <%= letters %>
+                                <h2 class="mb-4 text-3xl font-semibold md:text-4xl">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="38" height="27" viewBox="0 0 38 27" fill="none" class="me-2 inline-block">
+                                        <path d="M34.364 0.00011484C28.0751 6.2955 20.7692 13.5711 14.3051 20.0356L3.31663 10.7161L0 14.6074L12.7866 25.4632L14.5847 27L16.2628 25.3238C23.0779 18.502 31.1763 10.4426 38 3.61209L34.3636 0L34.364 0.00011484Z" fill="#007BFF"></path>
+                                    </svg> Words with <%= letters %>
                                 </h2>
                                 <% if (startsWith && !endsWith) { %>
-                                    <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"
-                                        id="isPasted">Here you'll find a list of words with A in them, in addition to
+                                    <p id="isPasted">Here you'll find a list of words with A in them, in addition to
                                         the points they score in word games like Scrabble and Words With Friends. The
                                         highest-scoring and longest words containing A are listed first. Select the game
                                         you’re playing and click on a word to see if you’re allowed to play it. If this
@@ -28,8 +30,7 @@
                                             style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">words
                                             ending with A</a>.
                                     </p>
-                                    <p
-                                        style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
+                                    <p>
                                         Looking for Wordle help? Go to our <a href="https://word-finder.com/wordle/"
                                             style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Wordle
                                             solving tool</a> and also check out the <a
@@ -61,11 +62,17 @@
                                             check out the best first guesses in Wordle.
                                     <% } %>
                                     <% if(startsWith && endsWith) {%>
-                                        Here is a list of words that start with A and end with Y, as well as their scores in word games like Scrabble and Words With Friends. The longest and top-scoring words starting with A and ending with Y are listed first. Pick your game and click on any word to see whether you can play it. You can refine your search by adding letters contained within the word.
+                                        <p>
+                                            Here is a list of words that <span class="blue-text">start with A and end with Y</span>, as well as their scores in word games like <a class="underline blue-text" href="#">Scrabble</a> and <a class="underline blue-text" href="#">Words With Friends</a>. The longest and top-scoring words <span class="blue-text">starting with A and ending with Y</span> are listed first. Pick your game and click on any word to see whether you can play it. You can refine your search by adding letters contained within the word.
+                                        </p>
 
-Also, don’t forget to check out words with A and Y, words containing A but not Y, words that start with A, and words that end in Y.
+                                        <p>
+                                            Also, don’t forget to check out <a class="underline blue-text" href="#">words with A and Y</a>, <a class="underline blue-text" href="#">words containing A but not Y</a>, <a class="underline blue-text" href="#">words that start with A</a>, and <a class="underline blue-text" href="#">words that end in Y</a>.
+                                        </p>
 
-Happen to be playing Wordle? Take a look at our Wordle solver tool or go to a list of the best starting Wordle words.
+                                        <p>
+                                            Happen to be playing Wordle? Take a look at our <a class="underline blue-text" href="#">Wordle solver tool</a> or go to a list of the <a class="underline blue-text" href="#">best starting Wordle words</a>.
+                                        </p>
                                         <% } %>
                             </div>
                             <!-- show--scarabble -->

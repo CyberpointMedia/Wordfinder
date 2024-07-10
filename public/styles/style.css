@@ -732,6 +732,10 @@ video {
     margin-inline-end: 0.5rem;
 }
 
+.me-4 {
+    margin-inline-end: 1rem /* 16px */;
+}
+
 .ml-2 {
     margin-left: 0.5rem;
 }

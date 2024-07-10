@@ -255,3 +255,7 @@ select {
 .listing li a {
     color: #393939;
 }
+
+.blue-text{
+    color: rgb(13, 110, 253);
+}

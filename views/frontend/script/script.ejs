@@ -8,8 +8,7 @@
 
             // Clear previous modal content
     const modalContainer = document.getElementById('hs-medium-modal');
-    modalContainer.innerHTML = '<div id="loader" class="loader"><div class="spinner"></div></div>';
-
+    modalContainer.innerHTML = '<div id="loader" class="loader"><img src="/images/loader.gif" /></div>';
 
     // Show the modal
         fetch(`/word-definition?word=${word}`)
@@ -104,7 +103,7 @@
                             <svg class="flex-shrink-0 w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                         </button>
                     </div>
-                    <div class="p-4 sm:p-6 modal-body">
+                    <div class="p-4 sm:p-6 modal-body" id="resultDetail">
                         <h3 class="text-[22px] font-semibold text-black mb-4">${typeOf}</h3>
                         <div class="mb-4">
                             <p class="text-sm text-black sm:text-lg">
