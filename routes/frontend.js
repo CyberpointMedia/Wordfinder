@@ -478,7 +478,7 @@ router.get('/words-that-start-with/:combination', async (req, res) => {
         }
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.redirect('/no-words-found');
     }
 });
 
@@ -574,7 +574,7 @@ router.get('/words-that-end-in/:combination', async (req, res) => {
         }
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.redirect('/no-words-found');
     }
 });
 
@@ -669,7 +669,7 @@ router.get('/words-with/:contains', async (req, res) => {
         }
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.redirect('/no-words-found');
     }
 });
 
@@ -737,7 +737,7 @@ router.get('/words-with/:contains_char1/and/:contains_char2', async (req, res) =
         }
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.redirect('/no-words-found');
     }
 });
 
@@ -800,7 +800,7 @@ router.get('/words-with/:must_contain/without/:must_not_contain', async (req, re
         }
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.redirect('/no-words-found');
     }
 });
 
@@ -868,7 +868,7 @@ router.get('/words-that-start-with/:start_with/end-with/:end_with', async (req, 
         }
     } catch (error) {
         console.error('Error:', error);
-        res.status(500).json({ error: 'Internal server error' });
+        res.redirect('/no-words-found');
     }
 });
 

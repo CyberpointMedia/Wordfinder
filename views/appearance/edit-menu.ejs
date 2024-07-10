@@ -557,9 +557,12 @@
                                 return;
                             }      // Create the options for the parent select element
                             const parentOptions = allNames.map(n => {
-                                const selected = n === parent ? 'selected' : '';
+                                const selected = n === parent ? 'selected' : 'Select the parent';
+                                console.log('Name:', n,"parent", parent,'Selected:', selected);
                                 return `<option value="${n}" ${selected}>${n}</option>`;
                             }).join('');
+
+                    
                             // Create the button HTML
                             const buttonHtml = `
         <div data-name="" class="hs-accordion" id="hs-basic-nested-sub-heading-colOne">
@@ -579,10 +582,10 @@
                         <label class="mb-2 text-xs font-normal" for="updated_name${index}">Name</label>
                         <input id="updated_name${index}" name="updated_name" type="text" class="rounded-[5px] border border-[#B1D5FF] py-3 px-4 w-full" value="${updatedName}" placeholder="Enter the updated name">
                     </div>
-                    <div class="mb-4 form-group">
+                    <div class="hidden mb-4 form-group">
                         <label class="mb-2 text-xs font-normal" for="parent${index}">Parent</label>
                         <select id="parent${index}" name="parent" class="w-full border border-[#B1D5FF] rounded-[5px] p-4 font-normal text-sm bg-white bg-opacity-95">
-                            <option value="">Select the parent</option>
+                            <option value="Select the parent">Select the parent</option>
                             ${parentOptions}
                         </select>
                     </div>
