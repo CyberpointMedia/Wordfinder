@@ -366,12 +366,25 @@ router.post('/unscramble', visitCounter, async (req, res) => {
             res.redirect(redirectUrl);
         } else {
             console.error('Error: Invalid data structure');
-            res.redirect('/no-words-found');
+            res.render('/frontend/no-word-found-insidebar-search.ejs',{letters, morePosts, startsWith, endsWith, contains, includeLetters: include, excludeLetters: exclude, specifiedLength: length, wordsByLength});
         }
     } catch (error) {
         console.error('Error:', error);
-        res.redirect('/no-words-found');
-    }
+        // Define the variables with default values in the catch block
+        const letters = req.body.letters || '';
+        const morePosts = [];
+        const startsWith = req.body.starts_with || '';
+        const endsWith = req.body.end_with || '';
+        const contains = req.body.contains || '';
+        const length = req.body.length || '';
+        const include = req.body.include || '';
+        const exclude = req.body.exclude || '';
+        const wordsByLength = {};
+
+        res.render('frontend/no-word-found-insidebar-search.ejs', {
+            letters, morePosts, startsWith, endsWith, contains, includeLetters: include, excludeLetters: exclude, specifiedLength: length, wordsByLength
+        });
+      }
 });
 
 router.get('/unscramble/:letters/*/dictionary/:dictionary', wrapAsync(async (req, res) => {

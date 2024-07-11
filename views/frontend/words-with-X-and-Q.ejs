@@ -12,85 +12,72 @@
                         <div class="w-full md:w-2/3">
                             <!-- Words with X and Q box start -->
                             <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
-                                <h2 class="mb-4 text-3xl font-semibold md:text-4xl">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="38" height="27" viewBox="0 0 38 27"
-                                        fill="none" class="me-2 inline-block">
-                                        <path
-                                            d="M34.364 0.00011484C28.0751 6.2955 20.7692 13.5711 14.3051 20.0356L3.31663 10.7161L0 14.6074L12.7866 25.4632L14.5847 27L16.2628 25.3238C23.0779 18.502 31.1763 10.4426 38 3.61209L34.3636 0L34.364 0.00011484Z"
-                                            fill="#007BFF"></path>
-                                    </svg>
-                                    Words with <%= letters %>
-                                </h2>
-                                <% if (startsWith && !endsWith) { %>
+                                <% if (letters !== '_' && !startsWith && !endsWith && !contains && !specifiedLength) { %>
+                                    <h2 class="mb-4 text-3xl font-semibold md:text-4xl">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="38" height="27" viewBox="0 0 38 27" fill="none" class="me-2 inline-block">
+                                            <path d="M34.364 0.00011484C28.0751 6.2955 20.7692 13.5711 14.3051 20.0356L3.31663 10.7161L0 14.6074L12.7866 25.4632L14.5847 27L16.2628 25.3238C23.0779 18.502 31.1763 10.4426 38 3.61209L34.3636 0L34.364 0.00011484Z" fill="#007BFF"></path>
+                                        </svg>
+                                        Words with <%= letters %>
+                                    </h2>
+                                <% } else if (specifiedLength && !startsWith && !endsWith && !contains) { %>
+                                    <h2 class="mb-4 text-3xl font-semibold md:text-4xl">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="38" height="27" viewBox="0 0 38 27" fill="none" class="me-2 inline-block">
+                                            <path d="M34.364 0.00011484C28.0751 6.2955 20.7692 13.5711 14.3051 20.0356L3.31663 10.7161L0 14.6074L12.7866 25.4632L14.5847 27L16.2628 25.3238C23.0779 18.502 31.1763 10.4426 38 3.61209L34.3636 0L34.364 0.00011484Z" fill="#007BFF"></path>
+                                        </svg>
+                                        <%= specifiedLength %> Letter Words
+                                    </h2>
+                                <% } else if (startsWith && !endsWith) { %>
+                                    <h2 class="mb-4 text-3xl font-semibold md:text-4xl">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="38" height="27" viewBox="0 0 38 27" fill="none" class="me-2 inline-block">
+                                            <path d="M34.364 0.00011484C28.0751 6.2955 20.7692 13.5711 14.3051 20.0356L3.31663 10.7161L0 14.6074L12.7866 25.4632L14.5847 27L16.2628 25.3238C23.0779 18.502 31.1763 10.4426 38 3.61209L34.3636 0L34.364 0.00011484Z" fill="#007BFF"></path>
+                                        </svg>
+                                        Words start with <%= startsWith.toUpperCase() %>
+                                    </h2>
                                     <p>
-                                        This page lists <span class="blue-text">words  that begin with <%= startsWith.toUpperCase() %></span>, along with their point values in
-                                        popular word games like <a class="underline blue-text" href="/words-with-frinds-cheat-tool">Words With Friends</a> and <a class="underline blue-text" href="/scrabble-word-finder/">Scrabble</a>. The longest and
-                                        best-scoring <span class="blue-text">words starting with <%= startsWith.toUpperCase() %></span>  are listed first. Select your game and click
-                                        a word to make sure it’s legal to play. After looking at <span class="blue-text">words beginning with <%= startsWith.toUpperCase() %></span>,
-                                        you may want to check out <a class="underline blue-text" href="/words-that-end-in/<%= startsWith.toLowerCase() %>">words that end in <%= startsWith.toUpperCase() %></a> or <a class="underline blue-text" href="/words-with/<%= startsWith.toLowerCase() %>/">words containing <%= startsWith.toUpperCase() %></a>.
+                                        This page lists <span class="blue-text">words that begin with <%= startsWith.toUpperCase() %></span>, along with their point values in popular word games like <a class="underline blue-text" href="/words-with-frinds-cheat-tool">Words With Friends</a> and <a class="underline blue-text" href="/scrabble-word-finder/">Scrabble</a>. The longest and best-scoring <span class="blue-text">words starting with <%= startsWith.toUpperCase() %></span> are listed first. Select your game and click a word to make sure it’s legal to play. After looking at <span class="blue-text">words beginning with <%= startsWith.toUpperCase() %></span>, you may want to check out <a class="underline blue-text" href="/words-that-end-in/<%= startsWith.toLowerCase() %>">words that end in <%= startsWith.toUpperCase() %></a> or <a class="underline blue-text" href="/words-with/<%= startsWith.toLowerCase() %>/">words containing <%= startsWith.toUpperCase() %></a>.
                                     </p>
                                     <p>
-                                        If you’re playing NYTimes’ Wordle, try our <a class="underline blue-text" href="/wordle">Wordle solver</a>. To up your Wordle
-                                        game, read about the <a class="underline blue-text" href="/articles/best-word-to-start-wordle/">best starting words for Wordle</a>.
+                                        If you’re playing NYTimes’ Wordle, try our <a class="underline blue-text" href="/wordle">Wordle solver</a>. To up your Wordle game, read about the <a class="underline blue-text" href="/articles/best-word-to-start-wordle/">best starting words for Wordle</a>.
                                     </p>
-                                    <% } %>
-                                        <% if(endsWith && !startsWith){ %>
-                                            On this page is a list of <span class="blue-text">words that end in <%= endsWith.toUpperCase() %></span> , along with how much they
-                                            score in word games like Scrabble (play with our <a class="underline blue-text" href="/scrabble-word-finder/">Scrabble word finder</a>) and
-                                            WWF (check out our <a class="underline blue-text" href="/words-with-frinds-cheat-tool">Words With Friends cheat tool</a>).
-
-                                            The best-scoring and longest <span class="blue-text">words ending with <%= endsWith.toUpperCase() %></span> are listed first. Choose
-                                            your game and click on a word to see if you can play it. Once you've seen
-                                            <span>words that end in <%= endsWith.toUpperCase() %></span> , you should also see <a class="underline blue-text" href="/words-that-start-with/<%= endsWith.toLowerCase() %>">words that start with <%= endsWith.toUpperCase() %></a> and <a class="underline blue-text" href="/words-with/<%= endsWith.toLowerCase() %>/">words with <%= endsWith.toUpperCase() %> in them.</a> 
-                                           
-
-                                            Playing Wordle? Check out our <a class="underline blue-text" href="/wordle">Wordle solver tool</a>. To level up your Wordle
-                                            play, read about the <a class="underline blue-text" href="/articles/best-word-to-start-wordle/">best starting words in Wordle.</a>
-                                            <% } %>
-                                                <% if(contains){ %>
-                                                    Here you'll find a list of <span class="blue-text">words with <%= contains.toUpperCase() %></span>  in them, in addition to the
-                                                    points they score in word games like <a class="underline blue-text" href="/scrabble-word-finder/">Scrabble</a> and <a class="underline blue-text" href="/words-with-friends-cheat-tool/">Words With Friends</a>
-                                                    . The highest-scoring and longest <span class="blue-text">words containing A</span>  are
-                                                    listed first. Select the game you’re playing and click on a word to
-                                                    see if you’re allowed to play it. If this list is too large, you
-                                                    could look at only <a class="underline blue-text" href="/words-that-start-with/<%= contains.toLowerCase() %>/">words starting with <%= contains.toUpperCase() %> </a>or words <a class="underline blue-text" href="/words-that-end-in/<%= contains.toLowerCase() %>/">ending with <%= contains.toUpperCase() %>.</a>
-                                                    Looking for Wordle help? Go to our  <a class="underline blue-text" href="/wordle">Wordle solving tool</a> and also
-                                                    check out the <a class="underline blue-text" href="/articles/best-word-to-start-wordle">best first guesses in Wordle.</a> 
-                                                    <% } %>
-                                                        <% if(startsWith && endsWith) {%>
-                                                            <p>
-                                                                Here is a list of words that <span
-                                                                    class="blue-text">start with <%= startsWith.toUpperCase() %> and end with
-                                                                    <%= endsWith.toUpperCase() %></span>, as well as their scores in word games like
-                                                                <a class="underline blue-text" href="/scrabble-word-finder">Scrabble</a> and
-                                                                <a class="underline blue-text" href="/words-with-friends-cheat-tool/">Words With
-                                                                    Friends</a>. The longest and top-scoring words <span
-                                                                    class="blue-text">starting with <%= startsWith.toUpperCase() %> and ending with
-                                                                    <%= endsWith.toLowerCase() %></span> are listed first. Pick your game and click
-                                                                on any word to see whether you can play it. You can
-                                                                refine your search by adding letters contained within
-                                                                the word.
-                                                            </p>
-
-                                                            <p>
-                                                                Also, don’t forget to check out <a
-                                                                    class="underline blue-text" href="/words-with/<%= startsWith.toLowerCase() %>/and/<%= endsWith.toLowerCase() %>/">words with <%= startsWith.toUpperCase() %>
-                                                                    and <%= endsWith.toLowerCase() %></a>, <a class="underline blue-text"
-                                                                    href="/words-with/<%= startsWith.toLowerCase() %>/without/<%= endsWith.toLowerCase() %>/">words containing <%= startsWith.toUpperCase() %> but not <%= endsWith.toUpperCase() %></a>, <a
-                                                                    class="underline blue-text" href="/words-that-start-with/<%= startsWith.toLowerCase() %>/">words that
-                                                                    start with <%= startsWith.toUpperCase() %></a>, and <a class="underline blue-text"
-                                                                    href="/words-that-end-with/<%= endsWith.toLowerCase() %>/">words that end in <%= endsWith.toUpperCase() %></a>.
-                                                            </p>
-
-                                                            <p>
-                                                                Happen to be playing Wordle? Take a look at our <a
-                                                                    class="underline blue-text" href="/wordle/">Wordle solver
-                                                                    tool</a> or go to a list of the <a
-                                                                    class="underline blue-text" href="/articles/best-word-to-start-wordle/">best starting
-                                                                    Wordle words</a>.
-                                                            </p>
-                                                            <% } %>
-                            </div>
+                                <% } else if (endsWith && !startsWith) { %>
+                                    <h2 class="mb-4 text-3xl font-semibold md:text-4xl">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="38" height="27" viewBox="0 0 38 27" fill="none" class="me-2 inline-block">
+                                            <path d="M34.364 0.00011484C28.0751 6.2955 20.7692 13.5711 14.3051 20.0356L3.31663 10.7161L0 14.6074L12.7866 25.4632L14.5847 27L16.2628 25.3238C23.0779 18.502 31.1763 10.4426 38 3.61209L34.3636 0L34.364 0.00011484Z" fill="#007BFF"></path>
+                                        </svg>
+                                        Words ends with <%= endsWith.toUpperCase() %>
+                                    </h2>
+                                    On this page is a list of <span class="blue-text">words that end in <%= endsWith.toUpperCase() %></span>, along with how much they score in word games like Scrabble (play with our <a class="underline blue-text" href="/scrabble-word-finder/">Scrabble word finder</a>) and WWF (check out our <a class="underline blue-text" href="/words-with-frinds-cheat-tool">Words With Friends cheat tool</a>).
+                            
+                                    The best-scoring and longest <span class="blue-text">words ending with <%= endsWith.toUpperCase() %></span> are listed first. Choose your game and click on a word to see if you can play it. Once you've seen <span>words that end in <%= endsWith.toUpperCase() %></span>, you should also see <a class="underline blue-text" href="/words-that-start-with/<%= endsWith.toLowerCase() %>">words that start with <%= endsWith.toUpperCase() %></a> and <a class="underline blue-text" href="/words-with/<%= endsWith.toLowerCase() %>/">words with <%= endsWith.toUpperCase() %> in them.</a>
+                            
+                                    Playing Wordle? Check out our <a class="underline blue-text" href="/wordle">Wordle solver tool</a>. To level up your Wordle play, read about the <a class="underline blue-text" href="/articles/best-word-to-start-wordle/">best starting words in Wordle.</a>
+                                <% } else if (contains) { %>
+                                    <h2 class="mb-4 text-3xl font-semibold md:text-4xl">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="38" height="27" viewBox="0 0 38 27" fill="none" class="me-2 inline-block">
+                                            <path d="M34.364 0.00011484C28.0751 6.2955 20.7692 13.5711 14.3051 20.0356L3.31663 10.7161L0 14.6074L12.7866 25.4632L14.5847 27L16.2628 25.3238C23.0779 18.502 31.1763 10.4426 38 3.61209L34.3636 0L34.364 0.00011484Z" fill="#007BFF"></path>
+                                        </svg>
+                                        Words that contains <%= contains.toUpperCase() %>
+                                    </h2>
+                                    Here you'll find a list of <span class="blue-text">words with <%= contains.toUpperCase() %></span> in them, in addition to the points they score in word games like <a class="underline blue-text" href="/scrabble-word-finder/">Scrabble</a> and <a class="underline blue-text" href="/words-with-friends-cheat-tool/">Words With Friends</a>. The highest-scoring and longest <span class="blue-text">words containing A</span> are listed first. Select the game you’re playing and click on a word to see if you’re allowed to play it. If this list is too large, you could look at only <a class="underline blue-text" href="/words-that-start-with/<%= contains.toLowerCase() %>/">words starting with <%= contains.toUpperCase() %></a> or words <a class="underline blue-text" href="/words-that-end-in/<%= contains.toLowerCase() %>/">ending with <%= contains.toUpperCase() %>.</a>
+                                    Looking for Wordle help? Go to our <a class="underline blue-text" href="/wordle">Wordle solving tool</a> and also check out the <a class="underline blue-text" href="/articles/best-word-to-start-wordle">best first guesses in Wordle.</a>
+                                <% } else if (startsWith && endsWith) { %>
+                                    <h2 class="mb-4 text-3xl font-semibold md:text-4xl">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="38" height="27" viewBox="0 0 38 27" fill="none" class="me-2 inline-block">
+                                            <path d="M34.364 0.00011484C28.0751 6.2955 20.7692 13.5711 14.3051 20.0356L3.31663 10.7161L0 14.6074L12.7866 25.4632L14.5847 27L16.2628 25.3238C23.0779 18.502 31.1763 10.4426 38 3.61209L34.3636 0L34.364 0.00011484Z" fill="#007BFF"></path>
+                                        </svg>
+                                        Words that startsWith <%= startsWith.toUpperCase() %> and endsWith <%= endsWith.toUpperCase() %>
+                                    </h2>
+                                    <p>
+                                        Here is a list of words that <span class="blue-text">start with <%= startsWith.toUpperCase() %> and end with <%= endsWith.toUpperCase() %></span>, as well as their scores in word games like <a class="underline blue-text" href="/scrabble-word-finder">Scrabble</a> and <a class="underline blue-text" href="/words-with-friends-cheat-tool/">Words With Friends</a>. The longest and top-scoring words <span class="blue-text">starting with <%= startsWith.toUpperCase() %> and ending with <%= endsWith.toLowerCase() %></span> are listed first. Pick your game and click on any word to see whether you can play it. You can refine your search by adding letters contained within the word.
+                                    </p>
+                                    <p>
+                                        Also, don’t forget to check out <a class="underline blue-text" href="/words-with/<%= startsWith.toLowerCase() %>/and/<%= endsWith.toLowerCase() %>/">words with <%= startsWith.toUpperCase() %> and <%= endsWith.toLowerCase() %></a>, <a class="underline blue-text" href="/words-with/<%= startsWith.toLowerCase() %>/without/<%= endsWith.toLowerCase() %>/">words containing <%= startsWith.toUpperCase() %> but not <%= endsWith.toUpperCase() %></a>, <a class="underline blue-text" href="/words-that-start-with/<%= startsWith.toLowerCase() %>/">words that start with <%= startsWith.toUpperCase() %></a>, and <a class="underline blue-text" href="/words-that-end-with/<%= endsWith.toLowerCase() %>/">words that end in <%= endsWith.toUpperCase() %></a>.
+                                    </p>
+                                    <p>
+                                        Happen to be playing Wordle? Take a look at our <a class="underline blue-text" href="/wordle/">Wordle solver tool</a> or go to a list of the <a class="underline blue-text" href="/articles/best-word-to-start-wordle/">best starting Wordle words</a>.
+                                    </p>
+                                <% } %>
+                            </div>                            
                             <!-- show--scarabble -->
                             <% if (specifiedLength) { %>
                                 <% if (wordsByLength && wordsByLength[specifiedLength] &&
