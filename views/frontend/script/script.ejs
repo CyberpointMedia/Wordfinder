@@ -185,6 +185,55 @@
         p.removeAttribute('style');
     });
 </script>
+
+<!-- tooltip js start -->
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+
+    <script>
+        const buttons = document.querySelectorAll('.tooltip-button');
+        const tooltipTemplate = document.getElementById('tooltip-template');
+
+        buttons.forEach(button => {
+            const tooltipHtml = button.getAttribute('data-tooltip');
+            const tooltip = tooltipTemplate.cloneNode(true);
+            tooltip.removeAttribute('id');
+            tooltip.querySelector('.tooltip-arrow'); // Ensure the arrow is included
+            tooltip.innerHTML = `<div class="tooltip-arrow" data-popper-arrow></div>` + tooltipHtml; // Set the inner HTML of the tooltip
+            document.body.appendChild(tooltip);
+
+            const popperInstance = Popper.createPopper(button, tooltip, {
+                placement: 'top',
+                modifiers: [
+                    {
+                        name: 'offset',
+                        options: {
+                            offset: [0, 8],
+                        },
+                    },
+                    {
+                        name: 'arrow',
+                        options: {
+                            element: tooltip.querySelector('[data-popper-arrow]'),
+                        },
+                    },
+                ],
+            });
+
+            function showTooltip() {
+                tooltip.classList.add('visible');
+                popperInstance.update();
+            }
+
+            function hideTooltip() {
+                tooltip.classList.remove('visible');
+            }
+
+            button.addEventListener('mouseover', showTooltip);
+            button.addEventListener('mouseout', hideTooltip);
+        });
+    </script>
+<!-- tooltip js end -->
+
 </body>
 
 </html>
