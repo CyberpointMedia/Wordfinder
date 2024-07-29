@@ -11,26 +11,34 @@
                     <!-- breadcrumb start -->
                     <ol class="flex items-center whitespace-nowrap mb-10" aria-label="Breadcrumb">
                         <li class="inline-flex items-center">
-                            <a class="flex items-center text-sm text-[#007BFF] hover:opacity-50 focus:outline-none focus:opacity-50" href="/">
+                            <a class="flex items-center text-sm text-[#007BFF] hover:opacity-50 focus:outline-none focus:opacity-50"
+                                href="/">
                                 Home
                             </a>
-                            <svg class="flex-shrink-0 h-5 w-5 opacity-50 text-[#393939]" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <svg class="flex-shrink-0 h-5 w-5 opacity-50 text-[#393939]" width="16" height="16"
+                                viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"></path>
                             </svg>
                         </li>
                         <li class="inline-flex items-center">
-                            <a class="flex items-center text-sm text-[#007BFF] hover:opacity-50 focus:outline-none focus:opacity-50" href="/category/words-with-letters">
+                            <a class="flex items-center text-sm text-[#007BFF] hover:opacity-50 focus:outline-none focus:opacity-50"
+                                href="/category/words-with-letters">
                                 Words With Letters
-                                <svg class="flex-shrink-0 h-5 w-5 text-[#393939] opacity-50" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <svg class="flex-shrink-0 h-5 w-5 text-[#393939] opacity-50" width="16" height="16"
+                                    viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true">
                                     <path d="M6 13L10 3" stroke="currentColor" stroke-linecap="round"></path>
                                 </svg>
                             </a>
                         </li>
-                        <li class="inline-flex items-center text-sm text-[#393939] opacity-50 truncate" aria-current="page">
+                        <li class="inline-flex items-center text-sm text-[#393939] opacity-50 truncate"
+                            aria-current="page">
                             <% if (typeof contains_char2 !=='undefined' && contains_char2) { %>
-                                <span class="current-page">All Words With <%= contains_char1.toUpperCase() %> and <%= contains_char2.toUpperCase() %></span>
+                                <span class="current-page">All Words With <%= contains_char1.toUpperCase() %> and <%=
+                                            contains_char2.toUpperCase() %></span>
                                 <% } else { %>
-                                    <span class="current-page">Words With <%= contains.toUpperCase() %>- All Words that Contain <%= contains.toUpperCase() %></span>
+                                    <span class="current-page">Words With <%= contains.toUpperCase() %>- All Words that
+                                            Contain <%= contains.toUpperCase() %></span>
                                     <% } %>
                         </li>
                     </ol>
@@ -51,115 +59,115 @@
                                         All Words with <%= contains_char1.toUpperCase() %> and <%=
                                                 contains_char2.toUpperCase() %> (or <%= contains_char2.toUpperCase() %>
                                                     and <%= contains_char1.toUpperCase() %>)
-                                                        <p>
-                                                            <% if (!page.sub_heading) { %>
-                                                                <p >This page shows a list of <span>words
-                                                                        with both <%= contains_char1.toUpperCase() %> and <%=
-                                                                        contains_char2.toUpperCase() %></span>, along with the points
-                                                                    they&rsquo;re worth in word games like&nbsp;<a
-                                                                        href="https://word-finder.com/scrabble-word-finder/"
-                                                                        style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Scrabble</a>
-                                                                    and&nbsp;<a
-                                                                        href="https://word-finder.com/words-with-friends-cheat-tool/"
-                                                                        style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Words
-                                                                        With Friends</a>. The longest and
-                                                                    highest-scoring&nbsp;<span
-                                                                        style="box-sizing: border-box; color: var(--secondaryblue);">words
-                                                                        containing <%= contains_char1.toUpperCase() %> and <%=
-                                                                        contains_char2.toUpperCase() %></span> are listed first.</p>
-
-                                                                <p
-                                                                    style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
-                                                                    Choose the game you&rsquo;re playing and click on
-                                                                    any word to check if it&rsquo;s a legal play. You
-                                                                    may also check&nbsp;<a
-                                                                        href="https://word-finder.com/words-that-start-with/<%= contains_char1.toUpperCase() %>/end-with/<%=
-                                                                        contains_char2.toUpperCase() %>/"
-                                                                        style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">words
-                                                                        starting with <%= contains_char1.toUpperCase() %> Ending with <%=
-                                                                        contains_char2.toUpperCase() %></a>,&nbsp;<a
-                                                                        href="https://word-finder.com/words-with/x/without/j/"
-                                                                        style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">words
-                                                                        with <%= contains_char1.toUpperCase() %> and without <%=
-                                                                        contains_char2.toUpperCase() %></a>,&nbsp;<a
-                                                                        href="https://word-finder.com/words-that-start-with/<%= contains_char1.toUpperCase() %>/"
-                                                                        style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">words
-                                                                        that start with X</a>, and&nbsp;<a
-                                                                        href="https://word-finder.com/words-that-start-with/<%=
-                                                                        contains_char2.toUpperCase() %>/"
-                                                                        style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">words
-                                                                        starting with <%=
-                                                                        contains_char2.toUpperCase() %></a>.</p>
-
-                                                                <p
-                                                                    style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
-                                                                    Want help with Wordle? Try out our&nbsp;<a
-                                                                        href="https://word-finder.com/wordle/"
-                                                                        style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">New
-                                                                        York Times&rsquo; Wordle solver</a> or see
-                                                                    the&nbsp;<a
-                                                                        href="https://word-finder.com/articles/best-word-to-start-wordle/"
-                                                                        style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">best
-                                                                        words to start Wordle</a>.</p>
-                                                                <% } else { %>
-                                                                    <%- page.sub_heading %>
-                                                                        <% } %>
-                                                        </p>
                                                         <% } else { %>
                                                             Words With <%= contains.toUpperCase() %> - All Words that
                                                                 Contain <%= contains.toUpperCase() %>
-                                                                    <p>
-                                                                        <% if (!page.sub_heading) { %>
-                                                                            <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"
-                                                                                id="isPasted">Here you&#39;ll find a
-                                                                                list of&nbsp;<span
-                                                                                    style="box-sizing: border-box; color: var(--secondaryblue);">words
-                                                                                    with <%= contains.toUpperCase() %>
-                                                                                </span> in them, in addition to
-                                                                                the points they score in word games
-                                                                                like&nbsp;<a
-                                                                                    href="https://word-finder.com/scrabble-word-finder/"
-                                                                                    style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Scrabble</a>
-                                                                                and&nbsp;<a
-                                                                                    href="https://word-finder.com/words-with-friends-cheat-tool/"
-                                                                                    style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Words
-                                                                                    With Friends</a>. The
-                                                                                highest-scoring and longest&nbsp;<span
-                                                                                    style="box-sizing: border-box; color: var(--secondaryblue);">words
-                                                                                    containing <%=
-                                                                                        contains.toUpperCase() %></span>
-                                                                                are listed first. Select the game
-                                                                                you&rsquo;re playing and click on a word
-                                                                                to see if you&rsquo;re allowed to play
-                                                                                it. If this list is too large, you could
-                                                                                look at only&nbsp;<a
-                                                                                    href="https://word-finder.com/words-that-start-with/<%= contains.toUpperCase() %>/"
-                                                                                    style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">words
-                                                                                    starting with <%=
-                                                                                        contains.toUpperCase() %></a> or
-                                                                                words&nbsp;<a
-                                                                                    href="https://word-finder.com/words-that-end-in/<%= contains.toUpperCase() %>/"
-                                                                                    style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">ending
-                                                                                    with <%= contains.toUpperCase() %>
-                                                                                </a>.</p>
-
-                                                                            <p
-                                                                                style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
-                                                                                Looking for Wordle help? Go to
-                                                                                our&nbsp;<a
-                                                                                    href="https://word-finder.com/wordle/"
-                                                                                    style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Wordle
-                                                                                    solving tool</a> and also check out
-                                                                                the&nbsp;<a
-                                                                                    href="https://word-finder.com/articles/best-word-to-start-wordle/"
-                                                                                    style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">best
-                                                                                    first guesses in Wordle</a>.</p>
-                                                                            <% } else { %>
-                                                                                <%- page.sub_heading %>
-                                                                                    <% } %>
-                                                                    </p>
                                                                     <% } %>
+
                                 </h2>
+                                <% if (typeof contains_char2 !=='undefined' && contains_char2) { %>
+
+                                    <p>
+                                        <% if (!page.sub_heading) { %>
+                                            <p>This page shows a list of <span>words
+                                                    with both <%= contains_char1.toUpperCase() %> and <%=
+                                                            contains_char2.toUpperCase() %></span>, along with the
+                                                points
+                                                they&rsquo;re worth in word games like&nbsp;<a
+                                                    href="https://word-finder.com/scrabble-word-finder/"
+                                                    style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Scrabble</a>
+                                                and&nbsp;<a
+                                                    href="https://word-finder.com/words-with-friends-cheat-tool/"
+                                                    style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Words
+                                                    With Friends</a>. The longest and
+                                                highest-scoring&nbsp;<span
+                                                    style="box-sizing: border-box; color: var(--secondaryblue);">words
+                                                    containing <%= contains_char1.toUpperCase() %> and <%=
+                                                            contains_char2.toUpperCase() %></span> are listed first.</p>
+
+                                            <p
+                                                style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
+                                                Choose the game you&rsquo;re playing and click on
+                                                any word to check if it&rsquo;s a legal play. You
+                                                may also check&nbsp;<a href="https://word-finder.com/words-that-start-with/<%= contains_char1.toUpperCase() %>/end-with/<%=
+                                                                        contains_char2.toUpperCase() %>/"
+                                                    style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">words
+                                                    starting with <%= contains_char1.toUpperCase() %> Ending with <%=
+                                                            contains_char2.toUpperCase() %></a>,&nbsp;<a
+                                                    href="https://word-finder.com/words-with/x/without/j/"
+                                                    style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">words
+                                                    with <%= contains_char1.toUpperCase() %> and without <%=
+                                                            contains_char2.toUpperCase() %></a>,&nbsp;<a
+                                                    href="https://word-finder.com/words-that-start-with/<%= contains_char1.toUpperCase() %>/"
+                                                    style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">words
+                                                    that start with X</a>, and&nbsp;<a href="https://word-finder.com/words-that-start-with/<%=
+                                                                        contains_char2.toUpperCase() %>/"
+                                                    style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">words
+                                                    starting with <%= contains_char2.toUpperCase() %></a>.</p>
+
+                                            <p
+                                                style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
+                                                Want help with Wordle? Try out our&nbsp;<a
+                                                    href="https://word-finder.com/wordle/"
+                                                    style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">New
+                                                    York Times&rsquo; Wordle solver</a> or see
+                                                the&nbsp;<a
+                                                    href="https://word-finder.com/articles/best-word-to-start-wordle/"
+                                                    style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">best
+                                                    words to start Wordle</a>.</p>
+                                            <% } else { %>
+                                                <%- page.sub_heading %>
+                                                    <% } %>
+                                    </p>
+                                    <% } else { %>
+
+                                        <p>
+                                            <% if (!page.sub_heading) { %>
+                                                <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"
+                                                    id="isPasted">Here you&#39;ll find a
+                                                    list of&nbsp;<span
+                                                        style="box-sizing: border-box; color: var(--secondaryblue);">words
+                                                        with <%= contains.toUpperCase() %>
+                                                    </span> in them, in addition to
+                                                    the points they score in word games
+                                                    like&nbsp;<a href="https://word-finder.com/scrabble-word-finder/"
+                                                        style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Scrabble</a>
+                                                    and&nbsp;<a
+                                                        href="https://word-finder.com/words-with-friends-cheat-tool/"
+                                                        style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Words
+                                                        With Friends</a>. The
+                                                    highest-scoring and longest&nbsp;<span
+                                                        style="box-sizing: border-box; color: var(--secondaryblue);">words
+                                                        containing <%= contains.toUpperCase() %></span>
+                                                    are listed first. Select the game
+                                                    you&rsquo;re playing and click on a word
+                                                    to see if you&rsquo;re allowed to play
+                                                    it. If this list is too large, you could
+                                                    look at only&nbsp;<a
+                                                        href="https://word-finder.com/words-that-start-with/<%= contains.toUpperCase() %>/"
+                                                        style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">words
+                                                        starting with <%= contains.toUpperCase() %></a> or
+                                                    words&nbsp;<a
+                                                        href="https://word-finder.com/words-that-end-in/<%= contains.toUpperCase() %>/"
+                                                        style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">ending
+                                                        with <%= contains.toUpperCase() %>
+                                                    </a>.</p>
+
+                                                <p
+                                                    style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1.5rem; font-family: RobotoLight; font-style: normal; font-weight: 400; font-size: 18px; line-height: 27px; color: rgba(57, 57, 57, 0.7); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">
+                                                    Looking for Wordle help? Go to
+                                                    our&nbsp;<a href="https://word-finder.com/wordle/"
+                                                        style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">Wordle
+                                                        solving tool</a> and also check out
+                                                    the&nbsp;<a
+                                                        href="https://word-finder.com/articles/best-word-to-start-wordle/"
+                                                        style="box-sizing: border-box; color: rgb(13, 110, 253); text-decoration: underline;">best
+                                                        first guesses in Wordle</a>.</p>
+                                                <% } else { %>
+                                                    <%- page.sub_heading %>
+                                                        <% } %>
+                                        </p>
+                                        <% } %>
                             </div>
                             <!-- show--scarabble -->
                             <% if (specifiedLength) { %>
@@ -285,49 +293,82 @@
                                                                                         <%- page.content %>
                                                                                     </div>
                                                                                     <% } %>
-                                                                                    <div class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
-    <h2 class="mb-4 text-3xl font-semibold md:text-4xl">Related</h2>
-    <ul class="space-y-2 list-disc">
-        <% if (typeof contains_char2 !== 'undefined' && contains_char2) { %>
-            <% surroundingLetters.forEach(letter => { %>
-                <li class="">
-                    <a href="/words-with/<%= contains_char1.toLowerCase() %>/and/<%= letter.toLowerCase() %>/" class="text-base font-normal text-blue-500 underline hover:text-blue">
-                        Words With <%= contains_char1.toUpperCase() %> and <%= letter.toUpperCase() %>
-                    </a>
-                </li>
-            <% }); %>
-          <% } else { %>
-        <% surroundingLetters.forEach(letter => { %>
-            <% if (letter !== contains) { %>
-                <li class="">
-                    <a href="/words-with/<%= letter %>/" class="text-base font-normal text-blue-500 underline hover:text-blue">
-                        Words With Letter <%= letter.toUpperCase() %>
-                    </a>
-                </li>
-            <% } %>
-        <% }); %>
-        <% } %>
-    </ul>
-</div>
+                                                                                        <div
+                                                                                            class="border border-[#007BFF4D] rounded-[20px] md:p-[40px] p-[30px] mb-8">
+                                                                                            <h2
+                                                                                                class="mb-4 text-3xl font-semibold md:text-4xl">
+                                                                                                Related</h2>
+                                                                                            <ul
+                                                                                                class="space-y-2 list-disc">
+                                                                                                <% if (typeof
+                                                                                                    contains_char2
+                                                                                                    !=='undefined' &&
+                                                                                                    contains_char2) { %>
+                                                                                                    <%
+                                                                                                        surroundingLetters.forEach(letter=>
+                                                                                                        { %>
+                                                                                                        <li class="">
+                                                                                                            <a href="/words-with/<%= contains_char1.toLowerCase() %>/and/<%= letter.toLowerCase() %>/"
+                                                                                                                class="text-base font-normal text-blue-500 underline hover:text-blue">
+                                                                                                                Words
+                                                                                                                With <%=
+                                                                                                                    contains_char1.toUpperCase()
+                                                                                                                    %>
+                                                                                                                    and
+                                                                                                                    <%= letter.toUpperCase()
+                                                                                                                        %>
+                                                                                                            </a>
+                                                                                                        </li>
+                                                                                                        <% }); %>
+                                                                                                            <% } else {
+                                                                                                                %>
+                                                                                                                <%
+                                                                                                                    surroundingLetters.forEach(letter=>
+                                                                                                                    { %>
+                                                                                                                    <% if
+                                                                                                                        (letter
+                                                                                                                        !==contains)
+                                                                                                                        {
+                                                                                                                        %>
+                                                                                                                        <li
+                                                                                                                            class="">
+                                                                                                                            <a href="/words-with/<%= letter %>/"
+                                                                                                                                class="text-base font-normal text-blue-500 underline hover:text-blue">
+                                                                                                                                Words
+                                                                                                                                With
+                                                                                                                                Letter
+                                                                                                                                <%= letter.toUpperCase()
+                                                                                                                                    %>
+                                                                                                                            </a>
+                                                                                                                        </li>
+                                                                                                                        <% }
+                                                                                                                            %>
+                                                                                                                            <% });
+                                                                                                                                %>
+                                                                                                                                <% }
+                                                                                                                                    %>
+                                                                                            </ul>
+                                                                                        </div>
                         </div>
                         <!-- left col end -->
                         <!-- right col end -->
                         <div class="w-full md:w-1/3">
-                        <!-- Word Finders -->
-                        <% if (!(typeof contains_char2 !== 'undefined' && contains_char2)) { %>
-    <%- include('../frontend/right_col/word_finder_sidebar_form.ejs'); %>
-<% } %>
-                            <%- (include('../frontend/right_col/word_finder.ejs')) %>
-                                <!-- Words By Length -->
-                                <%- (include('../frontend/right_col/words_of_length.ejs')) %>
-                                    <!-- Words that Start with -->
-                                    <%- (include('../frontend/right_col/words_that_start_with.ejs')) %>
-                                        <!-- catorgies -->
-                                        <%- (include('../frontend/right_col/category.ejs')) %>
-                                            <!-- Popular Searches -->
-                                            <%- (include('../frontend/right_col/Popular_Searches_box.ejs')) %>
-                                                <!-- Latest Article -->
-                                                <%- (include('../frontend/right_col/latest_article.ejs')) %>
+                            <!-- Word Finders -->
+                            <% if (!(typeof contains_char2 !=='undefined' && contains_char2)) { %>
+                                <%- include('../frontend/right_col/word_finder_sidebar_form.ejs'); %>
+                                    <% } %>
+                                        <%- (include('../frontend/right_col/word_finder.ejs')) %>
+                                            <!-- Words By Length -->
+                                            <%- (include('../frontend/right_col/words_of_length.ejs')) %>
+                                                <!-- Words that Start with -->
+                                                <%- (include('../frontend/right_col/words_that_start_with.ejs')) %>
+                                                    <!-- catorgies -->
+                                                    <%- (include('../frontend/right_col/category.ejs')) %>
+                                                        <!-- Popular Searches -->
+                                                        <%- (include('../frontend/right_col/Popular_Searches_box.ejs'))
+                                                            %>
+                                                            <!-- Latest Article -->
+                                                            <%- (include('../frontend/right_col/latest_article.ejs')) %>
                         </div>
                         <!-- right col end -->
                     </div>
