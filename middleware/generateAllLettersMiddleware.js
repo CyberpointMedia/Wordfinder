@@ -22,6 +22,11 @@ const generateAllLetters = () => {
             }
         }
     }
+    
+    // Add single letters from 'a' to 'z'
+    for (let i = 0; i < 26; i++) {
+        allLetters.push(String.fromCharCode(97 + i));
+    }
 
     return allLetters;
 };

@@ -550,7 +550,7 @@ router.get('/words-that-end-in/:combination', async (req, res) => {
 
         const response = await fetch(url);
         const data = await response.json();
-        console.log(data);
+       // console.log(data);
         if (data && Array.isArray(data.word_pages)) {
             const wordsByLength = data.word_pages.reduce((acc, wordPage) => {
                 let count = 0;
@@ -566,7 +566,7 @@ router.get('/words-that-end-in/:combination', async (req, res) => {
                 });
                 return acc;
             }, {});
-
+            console.log("letters", letters, "endsWith", combination, "specifiedLength", length, "contains", contains, "includeLetters", include, "excludeLetters", exclude ,"filter_results",data.filter_results);
             res.render('frontend/words-that-end-in.ejs', { 
                 letters, 
                 morePosts, 
